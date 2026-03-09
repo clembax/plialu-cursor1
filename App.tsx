@@ -46,6 +46,7 @@ const App: React.FC = () => {
   const [formSubmitting, setFormSubmitting] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
   const [formFileError, setFormFileError] = useState<string | null>(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const contactFormRef = React.useRef<HTMLFormElement>(null);
 
   // Header Theme: 'dark' = light header bar (dark logo/menu) for contrast on light backgrounds (Expertises, Ressources, Contact, Articles, Merci)
@@ -69,6 +70,7 @@ const App: React.FC = () => {
   }, []);
 
   useEffect(() => {
+    setIsMenuOpen(false);
     if (currentPage) {
       window.scrollTo(0, 0);
     }
@@ -274,7 +276,7 @@ const App: React.FC = () => {
   ];
 
   return (
-    <div className="font-manrope selection-brand min-h-screen">
+    <div className="font-manrope selection-brand min-h-screen overflow-x-hidden">
       {/* Navigation */}
       <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${isScrolled ? 'h-20' : 'h-24'}`}>
         <div 
@@ -375,13 +377,56 @@ const App: React.FC = () => {
             <button onClick={() => currentPage !== 'contact' && setCurrentPage('contact')} className="hidden md:flex text-xs font-bold bg-[#E2FD48] text-black px-6 py-3 rounded-full hover:bg-[#d4ed3f] transition-all tracking-tight shadow-[0_0_30px_rgba(226,253,72,0.15)]">
               Demander un devis
             </button>
-            <button className={`md:hidden p-2 rounded-lg border transition-all
-              ${headerTheme === 'dark' ? 'text-[#0E2A33] bg-black/5 border-black/10' : 'text-white bg-white/5 border-white/10'}`}>
+            <button
+              type="button"
+              aria-label="Ouvrir le menu"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className={`md:hidden p-2 rounded-lg border transition-all
+                ${headerTheme === 'dark' ? 'text-[#0E2A33] bg-black/5 border-black/10' : 'text-white bg-white/5 border-white/10'}`}
+            >
               <iconify-icon icon="lucide:menu" width="24" stroke-width="1.5"></iconify-icon>
             </button>
           </div>
         </div>
       </nav>
+
+      {/* Menu mobile (panneau coulissant) */}
+      <div
+        className={`fixed inset-0 z-40 md:hidden transition-opacity duration-300 ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+        aria-hidden={!isMenuOpen}
+      >
+        <button
+          type="button"
+          aria-label="Fermer le menu"
+          onClick={() => setIsMenuOpen(false)}
+          className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+        />
+        <div
+          className={`absolute top-0 right-0 h-full w-full max-w-sm bg-[#071318] border-l border-white/10 shadow-2xl flex flex-col transition-transform duration-300 ease-out ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        >
+          <div className="flex items-center justify-between p-6 border-b border-white/10">
+            <span className="text-[10px] font-extrabold tracking-widest text-[#E2FD48] uppercase">Menu</span>
+            <button
+              type="button"
+              aria-label="Fermer le menu"
+              onClick={() => setIsMenuOpen(false)}
+              className="p-2 rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+            >
+              <iconify-icon icon="lucide:x" width="24"></iconify-icon>
+            </button>
+          </div>
+          <nav className="flex flex-col p-6 gap-1 overflow-y-auto">
+            <button onClick={() => { setCurrentPage('home'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Accueil</button>
+            <button onClick={() => { setCurrentPage('expertises'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Expertises</button>
+            <button onClick={() => { setCurrentPage('home'); window.location.hash = 'solutions'; setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Solutions</button>
+            <button onClick={() => { setCurrentPage('projects'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Portfolio</button>
+            <button onClick={() => { setCurrentPage('ressources'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Ressources</button>
+            <button onClick={() => { setCurrentPage('a-propos'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">À propos</button>
+            <button onClick={() => { setCurrentPage('contact'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Contact</button>
+            <button onClick={() => { setCurrentPage('contact'); setIsMenuOpen(false); }} className="mt-4 py-3 px-4 rounded-xl bg-[#E2FD48] text-[#0E2A33] font-bold text-center hover:bg-[#d4ed3f] transition-colors">Demander un devis</button>
+          </nav>
+        </div>
+      </div>
 
       {/* --- HOMEPAGE CONTENT --- */}
       {currentPage === 'home' && (
@@ -616,7 +661,7 @@ const App: React.FC = () => {
           <section id="contact" className="py-48 section--light">
             <div className="relative z-10 max-w-4xl mx-auto px-6 text-center animate-fade-up">
               <span className="text-[10px] font-extrabold tracking-[0.4em] uppercase mb-8 inline-block text-[#0E2A33]/40">CONTACT</span>
-              <h2 className="text-5xl md:text-7xl text-[#0E2A33] tracking-tighter font-extrabold mb-10 leading-[1.1]">Un projet en tête ? <br />Concrétisons-le.</h2>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-[#0E2A33] tracking-tighter font-extrabold mb-10 leading-[1.1]">Un projet en tête ? <br />Concrétisons-le.</h2>
               <p className="text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed font-medium text-[#0E2A33]/70">Lancez la discussion dès aujourd’hui avec nos experts techniques.</p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
                 <button onClick={() => setCurrentPage('contact')} className="w-full sm:w-auto px-12 py-4 bg-[#0E2A33] text-white text-sm font-extrabold rounded-full transition-all shadow-lg hover:shadow-2xl">Demander un devis</button>
@@ -2050,9 +2095,9 @@ const App: React.FC = () => {
           </section>
 
           {/* Coordonnées & Info (Light section) */}
-          <section className="py-24 bg-[#F3F6F7]">
-            <div className="max-w-7xl mx-auto px-6">
-              <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-20">
+          <section className="py-12 md:py-24 bg-[#F3F6F7]">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6">
+              <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-12 lg:gap-20">
                 {/* Coordonnées */}
                 <div className="space-y-12">
                   <div className="space-y-4">
