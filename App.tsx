@@ -42,7 +42,7 @@ const App: React.FC = () => {
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
   const [activeImage, setActiveImage] = useState<{ src: string; srcset?: string } | null>(null);
 
-  // Header Theme Logic: 'dark' corresponds to white background header style (used on Expertises, Ressources, Articles & Contact)
+  // Header Theme: 'dark' = light header bar (dark logo/menu) for contrast on light backgrounds (Expertises, Ressources, Contact, Articles)
   const headerTheme =
     currentPage === 'expertises' ||
     currentPage === 'ressources' ||
@@ -72,6 +72,22 @@ const App: React.FC = () => {
       }
     }
 
+    // Livre Blanc: force body light background on the 3 resource article pages only
+    const isArticlePage = currentPage === 'ressource-1' || currentPage === 'ressource-2' || currentPage === 'ressource-3';
+    if (isArticlePage) {
+      document.body.style.backgroundColor = '#FFFFFF';
+      document.body.style.color = '#1F2937';
+    } else {
+      document.body.style.backgroundColor = '';
+      document.body.style.color = '';
+    }
+    return () => {
+      document.body.style.backgroundColor = '';
+      document.body.style.color = '';
+    };
+  }, [currentPage]);
+
+  useEffect(() => {
     // SEO: basic document title per page
     let title = 'PLIALU';
     let description: string | null = null;
@@ -497,15 +513,6 @@ const App: React.FC = () => {
                       }
                     }}
                   >
-                    {idx === 2 && (
-                      <div className="absolute top-8 right-8 w-9 opacity-[0.85] pointer-events-none">
-                        <img 
-                          src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1771500844/logo_qf_kzo395.png" 
-                          alt="Qualicoat" 
-                          className="w-full h-auto"
-                        />
-                      </div>
-                    )}
                     <div className="mb-4 text-[#0E2A33]/20 group-hover:text-[#0E2A33] transition-colors duration-200">
                       <iconify-icon icon="lucide:file-text" width="32"></iconify-icon>
                     </div>
@@ -640,10 +647,10 @@ const App: React.FC = () => {
       {currentPage === 'a-propos' && (
         <div className="animate-fade-up">
           {/* 1. HERO SECTION (DARK) */}
-          <section className="relative bg-[#071318] pt-48 md:pt-56 pb-24 overflow-hidden">
+          <section className="relative bg-[#071318] pt-28 md:pt-36 pb-16 overflow-hidden">
             <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#0e2a33]/40 to-[#071318]"></div>
             <div className="relative z-10 max-w-7xl mx-auto px-6">
-              <div className="max-w-4xl space-y-8">
+              <div className="max-w-4xl space-y-6">
                 <span className="text-[10px] font-extrabold tracking-[0.4em] text-[#E2FD48] uppercase block">
                   NOTRE IDENTITÉ INDUSTRIELLE
                 </span>
@@ -1380,9 +1387,9 @@ const App: React.FC = () => {
       {currentPage === 'ressources' && (
         <div className="animate-fade-up">
           {/* Hero Ressources */}
-          <section className="bg-white pt-48 md:pt-56 pb-20">
+          <section className="bg-white pt-20 md:pt-24 pb-6">
             <div className="max-w-7xl mx-auto px-6">
-              <div className="max-w-4xl space-y-8">
+              <div className="max-w-4xl space-y-4">
                 <span className="text-[10px] font-extrabold tracking-[0.4em] text-zinc-400 uppercase block">
                   RESSOURCES TECHNIQUES
                 </span>
@@ -1446,15 +1453,6 @@ const App: React.FC = () => {
                     className="group bg-white rounded-[24px] p-8 flex flex-col border border-zinc-100 shadow-sm transition-all duration-200 ease-out hover:border-2 hover:border-[#E2FD48] hover:-translate-y-0.5 hover:shadow-md cursor-pointer"
                     onClick={() => setCurrentPage(article.id as typeof currentPage)}
                   >
-                    {article.showQualicoatLogo && (
-                      <div className="absolute top-8 right-8 w-9 opacity-[0.9] pointer-events-none">
-                        <img
-                          src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1771500844/logo_qf_kzo395.png"
-                          alt="Qualicoat"
-                          className="w-full h-auto"
-                        />
-                      </div>
-                    )}
                     <span className="text-[9px] font-black tracking-[0.3em] text-[#0E2A33]/40 uppercase mb-3">
                       {article.tag}
                     </span>
@@ -1483,16 +1481,16 @@ const App: React.FC = () => {
 
       {/* --- RESSOURCE ARTICLE 1 --- */}
       {currentPage === 'ressource-1' && (
-        <div className="animate-fade-up">
-          <section className="bg-[#000000] pt-48 md:pt-56 pb-20">
-            <div className="max-w-4xl mx-auto px-6 text-white">
-              <span className="text-[10px] font-extrabold tracking-[0.4em] text-white/40 uppercase block mb-4">
+        <div className="animate-fade-up bg-white" style={{ backgroundColor: '#FFFFFF' }}>
+          <section className="pt-32 md:pt-40 pb-12 bg-white" style={{ backgroundColor: '#FFFFFF' }}>
+            <div className="max-w-4xl mx-auto px-6">
+              <span className="text-[10px] font-extrabold tracking-[0.4em] text-[#6B7280] uppercase block mb-4">
                 RESSOURCES TECHNIQUES · MATÉRIAUX
               </span>
-              <h1 className="text-4xl md:text-5xl tracking-tighter leading-[1.1] font-black mb-6">
+              <h1 className="text-4xl md:text-5xl tracking-tighter leading-[1.1] font-black mb-6 text-[#000000]">
                 Choisir le bon métal pour une façade extérieure
               </h1>
-              <p className="text-base md:text-lg text-white/70 leading-relaxed font-medium mb-10">
+              <p className="text-base md:text-lg text-[#1F2937]/80 leading-relaxed font-medium mb-10">
                 Pour un architecte ou un façadier, <strong>choisir le bon métal pour une façade extérieure</strong> est une décision
                 critique qui conditionne la pérennité structurelle et l’esthétique du bâti. Cette sélection repose sur une compréhension
                 précise des propriétés mécaniques, des coefficients de <strong>dilatation</strong> et des exigences de protection contre
@@ -1501,17 +1499,17 @@ const App: React.FC = () => {
             </div>
           </section>
 
-          <section className="py-20 bg-[#000000] border-t border-white/10">
-            <div className="max-w-4xl mx-auto px-6 space-y-16 text-white">
+          <section className="py-20 border-t border-gray-200 bg-white" style={{ backgroundColor: '#FFFFFF' }}>
+            <div className="max-w-4xl mx-auto px-6 space-y-16 text-[#1F2937]">
               <div className="space-y-4">
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">
+                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-[#000000]">
                   Comparatif technique : Aluminium, Acier et Inox
                 </h2>
-                <p className="text-base text-white/70 leading-relaxed">
+                <p className="text-base text-[#1F2937]/80 leading-relaxed">
                   Le choix du substrat influence directement la charge sur le gros œuvre et la complexité du pliage métallique sur
                   mesure.
                 </p>
-                <ul className="list-disc list-inside space-y-3 text-sm md:text-base text-white/80">
+                <ul className="list-disc list-inside space-y-3 text-sm md:text-base text-[#1F2937]/90">
                   <li>
                     <strong>L’Aluminium</strong> : Prisé pour sa légèreté (environ 2,7 g/cm³), il réduit les contraintes sur les
                     ossatures secondaires. Sa résistance naturelle à l’oxydation en fait le matériau de prédilection pour les zones
@@ -1529,14 +1527,14 @@ const App: React.FC = () => {
               </div>
 
               <div className="space-y-4">
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">
+                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-[#000000]">
                   Durabilité et finitions : l’importance du thermolaquage
                 </h2>
-                <p className="text-base text-white/70 leading-relaxed">
+                <p className="text-base text-[#1F2937]/80 leading-relaxed">
                   Le traitement de surface est indissociable du choix du métal. Pour une façade extérieure, nous recommandons le label{' '}
                   <strong>QUALICOAT</strong>&nbsp;:
                 </p>
-                <ul className="list-disc list-inside space-y-3 text-sm md:text-base text-white/80">
+                <ul className="list-disc list-inside space-y-3 text-sm md:text-base text-[#1F2937]/90">
                   <li>
                     <strong>Préparation de surface</strong> : Un dégraissage et un mordançage rigoureux.
                   </li>
@@ -1551,10 +1549,10 @@ const App: React.FC = () => {
               </div>
 
               <div className="space-y-4">
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">
+                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-[#000000]">
                   Précision du pliage CNC : l’exigence du sur-mesure
                 </h2>
-                <p className="text-base text-white/70 leading-relaxed">
+                <p className="text-base text-[#1F2937]/80 leading-relaxed">
                   La réussite technique dépend de la précision géométrique. Nos presses plieuses numériques (CNC) permettent des
                   tolérances de ±0,3&nbsp;mm. Un pliage de haute précision assure la régularité des joints creux et facilite l’étanchéité
                   à l’air et à l’eau de l’enveloppe.
@@ -1562,10 +1560,10 @@ const App: React.FC = () => {
               </div>
 
               <div className="space-y-4">
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">
+                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-[#000000]">
                   Conclusion : l’expertise Plialu au service de l’architecture
                 </h2>
-                <p className="text-base text-white/70 leading-relaxed">
+                <p className="text-base text-[#1F2937]/80 leading-relaxed">
                   <strong>Choisir le bon métal pour une façade extérieure</strong> nécessite de concilier esthétique et contraintes
                   normatives (DTU). La précision de notre pliage associé à des certifications <strong>QUALICOAT</strong> offre la
                   garantie d’une enveloppe performante.
@@ -1578,21 +1576,21 @@ const App: React.FC = () => {
 
       {/* --- RESSOURCE ARTICLE 2 --- */}
       {currentPage === 'ressource-2' && (
-        <div className="animate-fade-up">
-          <section className="bg-[#000000] pt-48 md:pt-56 pb-20">
-            <div className="max-w-4xl mx-auto px-6 text-white">
-              <span className="text-[10px] font-extrabold tracking-[0.4em] text-white/40 uppercase block mb-4">
+        <div className="animate-fade-up bg-white" style={{ backgroundColor: '#FFFFFF' }}>
+          <section className="pt-32 md:pt-40 pb-12 bg-white" style={{ backgroundColor: '#FFFFFF' }}>
+            <div className="max-w-4xl mx-auto px-6">
+              <span className="text-[10px] font-extrabold tracking-[0.4em] text-[#6B7280] uppercase block mb-4">
                 RESSOURCES TECHNIQUES · FAÇADE ALUMINIUM
               </span>
-              <h1 className="text-4xl md:text-5xl tracking-tighter leading-[1.1] font-black mb-6">
+              <h1 className="text-4xl md:text-5xl tracking-tighter leading-[1.1] font-black mb-6 text-[#000000]">
                 Pliage aluminium pour façade
               </h1>
-              <p className="text-base md:text-lg text-white/70 leading-relaxed font-medium mb-6">
+              <p className="text-base md:text-lg text-[#1F2937]/80 leading-relaxed font-medium mb-6">
                 Le <strong>pliage aluminium pour façade</strong> constitue une étape critique de l’ingénierie de l’enveloppe, intervenant
                 juste après l’étape consistant à{' '}
                 <button
                   onClick={() => setCurrentPage('ressource-1')}
-                  className="underline underline-offset-4 decoration-white/40 hover:decoration-white transition-colors font-semibold"
+                  className="underline underline-offset-4 decoration-[#6B7280] hover:decoration-[#1F2937] transition-colors font-semibold text-[#1F2937]"
                 >
                   choisir le bon métal pour une façade extérieure
                 </button>{' '}
@@ -1600,7 +1598,7 @@ const App: React.FC = () => {
                 façonnage n’est pas qu’une question de forme, mais une réponse rigoureuse aux contraintes mécaniques et
                 environnementales.
               </p>
-              <p className="text-base md:text-lg text-white/70 leading-relaxed font-medium">
+              <p className="text-base md:text-lg text-[#1F2937]/80 leading-relaxed font-medium">
                 Une cassette ou un habillage mal conçu peut compromettre l’étanchéité globale et la planéité visuelle du bâtiment. Ce
                 guide détaille les paramètres physiques et industriels essentiels pour réussir vos projets de façades métalliques
                 premium.
@@ -1608,42 +1606,42 @@ const App: React.FC = () => {
             </div>
           </section>
 
-          <section className="py-20 bg-[#000000] border-t border-white/10">
-            <div className="max-w-4xl mx-auto px-6 space-y-16 text-white">
+          <section className="py-20 border-t border-gray-200 bg-[#F9FAFB]" style={{ backgroundColor: '#F9FAFB' }}>
+            <div className="max-w-4xl mx-auto px-6 space-y-16 text-[#1F2937]">
               <div className="space-y-4">
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">
+                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-[#000000]">
                   Gestion de la dilatation thermique : anticiper le mouvement
                 </h2>
-                <p className="text-base text-white/70 leading-relaxed">
+                <p className="text-base text-[#1F2937]/80 leading-relaxed">
                   L’aluminium possède un coefficient de <strong>dilatation</strong> thermique linéaire élevé, ce qui impose une
                   conception capable d’absorber les variations dimensionnelles sans générer de contraintes internes.
                 </p>
-                <h3 className="text-sm font-bold tracking-[0.2em] uppercase text-white/50">
+                <h3 className="text-sm font-bold tracking-[0.2em] uppercase text-gray-500">
                   DONNÉES PHYSIQUES ET CALCULS
                 </h3>
-                <p className="text-base text-white/70 leading-relaxed">
+                <p className="text-base text-[#1F2937]/80 leading-relaxed">
                   La valeur de référence pour les alliages d’aluminium est d’environ 2,4&nbsp;mm/m pour 100&nbsp;°C de variation
                   thermique. Pour une façade exposée, une amplitude de 100&nbsp;°C (de -20&nbsp;°C en hiver à +80&nbsp;°C sur une tôle
                   sombre en plein soleil) constitue une base de calcul réaliste.
                 </p>
-                <p className="text-base text-white/70 leading-relaxed">
+                <p className="text-base text-[#1F2937]/80 leading-relaxed">
                   La variation de longueur se calcule selon la formule classique de la <strong>dilatation</strong>&nbsp;:
                 </p>
-                <p className="text-base text-white font-mono bg-white/5 inline-block px-3 py-2 rounded-md">
+                <p className="text-base text-[#1F2937] font-mono bg-[#F9FAFB] inline-block px-3 py-2 rounded-md border border-[#D1D5DB]">
                   ΔL = α × L₀ × ΔT
                 </p>
-                <ul className="list-disc list-inside space-y-2 text-sm md:text-base text-white/80 mt-4">
+                <ul className="list-disc list-inside space-y-2 text-sm md:text-base text-[#1F2937]/90 mt-4">
                   <li>α est le coefficient de dilatation.</li>
                   <li>L₀ est la longueur initiale de la pièce.</li>
                   <li>ΔT est l’écart de température pris en compte.</li>
                 </ul>
-                <h3 className="text-sm font-bold tracking-[0.2em] uppercase text-white/50 mt-6">
+                <h3 className="text-sm font-bold tracking-[0.2em] uppercase text-gray-500 mt-6">
                   CONSÉQUENCES SUR LA CONCEPTION
                 </h3>
-                <p className="text-base text-white/70 leading-relaxed">
+                <p className="text-base text-[#1F2937]/80 leading-relaxed">
                   Le pliage doit intégrer des jeux de fonctionnement précis pour éviter des pathologies lourdes&nbsp;:
                 </p>
-                <ul className="list-disc list-inside space-y-2 text-sm md:text-base text-white/80">
+                <ul className="list-disc list-inside space-y-2 text-sm md:text-base text-[#1F2937]/90">
                   <li>
                     <strong>Oil canning</strong> : ondulations de surface dues au bridage thermique des cassettes.
                   </li>
@@ -1659,22 +1657,22 @@ const App: React.FC = () => {
               </div>
 
               <div className="space-y-4">
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">
+                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-[#000000]">
                   Métallurgie et rayons de pliage : les limites du matériau
                 </h2>
-                <p className="text-base text-white/70 leading-relaxed">
+                <p className="text-base text-[#1F2937]/80 leading-relaxed">
                   Le choix de l’alliage et du rayon de courbure dicte la résistance structurelle et l’aspect fini de la façade. Une
                   approche purement esthétique sans prise en compte de ces paramètres conduit à des fragilités mécaniques.
                 </p>
-                <h3 className="text-sm font-bold tracking-[0.2em] uppercase text-white/50">
+                <h3 className="text-sm font-bold tracking-[0.2em] uppercase text-gray-500">
                   ANALYSE DES ALLIAGES COURANTS ET CONTRAINTES DE FAÇONNAGE
                 </h3>
-                <p className="text-base text-white/70 leading-relaxed">
+                <p className="text-base text-[#1F2937]/80 leading-relaxed">
                   L’épaisseur de la tôle détermine le rayon de pliage minimal à respecter pour éviter la fissuration des grains. Plus la
                   tôle est fine, plus le rayon de pliage peut être serré, mais au prix d’une plus grande sensibilité aux chocs et aux
                   déformations.
                 </p>
-                <ul className="list-disc list-inside space-y-2 text-sm md:text-base text-white/80">
+                <ul className="list-disc list-inside space-y-2 text-sm md:text-base text-[#1F2937]/90">
                   <li>Pour des épaisseurs faibles, le rayon minimal est réduit mais doit rester compatible avec l’usage en façade.</li>
                   <li>
                     Le pliage doit préférentiellement s’effectuer perpendiculairement au sens de laminage pour garantir une intégrité
@@ -1684,18 +1682,18 @@ const App: React.FC = () => {
               </div>
 
               <div className="space-y-4">
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">
+                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-[#000000]">
                   Finitions et thermolaquage : l’assurance QUALICOAT
                 </h2>
-                <p className="text-base text-white/70 leading-relaxed">
+                <p className="text-base text-[#1F2937]/80 leading-relaxed">
                   Après le <strong>pliage aluminium pour façade</strong>, le traitement de surface assure la protection contre les UV et
                   la pollution. Le label <strong>QUALICOAT</strong> impose des protocoles stricts garantissant la durabilité du système
                   de revêtement.
                 </p>
-                <h3 className="text-sm font-bold tracking-[0.2em] uppercase text-white/50">
+                <h3 className="text-sm font-bold tracking-[0.2em] uppercase text-gray-500">
                   CERTIFICATION ET PERFORMANCES
                 </h3>
-                <ul className="list-disc list-inside space-y-2 text-sm md:text-base text-white/80">
+                <ul className="list-disc list-inside space-y-2 text-sm md:text-base text-[#1F2937]/90">
                   <li>Épaisseur de laque d’environ 60&nbsp;µm minimum sur les faces vues.</li>
                   <li>Adhérence optimale vérifiée par des tests de quadrillage et de pliage.</li>
                   <li>
@@ -1703,34 +1701,34 @@ const App: React.FC = () => {
                     fortement corrosifs.
                   </li>
                 </ul>
-                <h3 className="text-sm font-bold tracking-[0.2em] uppercase text-white/50 mt-6">
+                <h3 className="text-sm font-bold tracking-[0.2em] uppercase text-gray-500 mt-6">
                   AVANTAGES DU POST-LAQUAGE
                 </h3>
-                <p className="text-base text-white/70 leading-relaxed">
+                <p className="text-base text-[#1F2937]/80 leading-relaxed">
                   Réaliser le thermolaquage après le pliage permet de protéger les arêtes de coupe et les arrondis de plis, zones où les
                   tôles pré-laquées présentent souvent des fragilités et des amorces de corrosion.
                 </p>
               </div>
 
               <div className="space-y-4">
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">
+                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-[#000000]">
                   Précision industrielle et apport de la commande numérique (CNC)
                 </h2>
-                <p className="text-base text-white/70 leading-relaxed">
+                <p className="text-base text-[#1F2937]/80 leading-relaxed">
                   L’utilisation de presses plieuses à commande numérique (CNC) est indispensable pour répondre aux standards de
                   l’architecture contemporaine. Elle garantit une répétabilité des angles, des dimensions et des rayons de pliage sur
                   l’ensemble des pièces d’un même projet.
                 </p>
               </div>
 
-              <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                <p className="text-sm text-white/70 max-w-xl">
+              <div className="pt-8 border-t border-gray-200 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <p className="text-sm text-[#1F2937]/80 max-w-xl">
                   Pour vos projets de <strong>pliage aluminium pour façade</strong>, PLIALU met à disposition une capacité industrielle
                   de haut niveau et un accompagnement technique dédié, de l’esquisse au dossier d’exécution.
                 </p>
                 <button
                   onClick={() => setCurrentPage('contact')}
-                  className="px-8 py-3 bg-white text-[#000000] text-xs font-black tracking-[0.2em] uppercase rounded-full hover:bg-[#E2FD48] transition-colors"
+                  className="px-8 py-3 bg-[#1F2937] text-white text-xs font-black tracking-[0.2em] uppercase rounded-full hover:bg-[#E2FD48] transition-colors"
                 >
                   ÉCHANGER AVEC UN EXPERT
                 </button>
@@ -1742,16 +1740,16 @@ const App: React.FC = () => {
 
       {/* --- RESSOURCE ARTICLE 3 --- */}
       {currentPage === 'ressource-3' && (
-        <div className="animate-fade-up">
-          <section className="bg-[#000000] pt-48 md:pt-56 pb-20">
-            <div className="max-w-4xl mx-auto px-6 text-white">
-              <span className="text-[10px] font-extrabold tracking-[0.4em] text-white/40 uppercase block mb-4">
+        <div className="animate-fade-up bg-white" style={{ backgroundColor: '#FFFFFF' }}>
+          <section className="pt-32 md:pt-40 pb-12 bg-white" style={{ backgroundColor: '#FFFFFF' }}>
+            <div className="max-w-4xl mx-auto px-6">
+              <span className="text-[10px] font-extrabold tracking-[0.4em] text-[#6B7280] uppercase block mb-4">
                 RESSOURCES TECHNIQUES · THERMOLAQUAGE QUALICOAT
               </span>
-              <h1 className="text-4xl md:text-5xl tracking-tighter leading-[1.1] font-black mb-6">
+              <h1 className="text-4xl md:text-5xl tracking-tighter leading-[1.1] font-black mb-6 text-[#000000]">
                 Thermolaquage certifié Qualicoat
               </h1>
-              <p className="text-base md:text-lg text-white/70 leading-relaxed font-medium">
+              <p className="text-base md:text-lg text-[#1F2937]/80 leading-relaxed font-medium">
                 Le <strong>Thermolaquage certifié Qualicoat</strong> représente l'exigence technique absolue pour garantir la pérennité
                 structurelle et esthétique des enveloppes métalliques soumises aux contraintes environnementales sévères. Dans le domaine
                 de la conception architecturale contemporaine, la durabilité d'une façade ne peut plus être perçue comme la simple
@@ -1760,27 +1758,27 @@ const App: React.FC = () => {
             </div>
           </section>
 
-          <section className="py-20 bg-[#000000] border-t border-white/10">
-            <div className="max-w-4xl mx-auto px-6 space-y-16 text-white">
+          <section className="py-20 border-t border-gray-200 bg-[#F9FAFB]" style={{ backgroundColor: '#F9FAFB' }}>
+            <div className="max-w-4xl mx-auto px-6 space-y-16 text-[#1F2937]">
               <div className="space-y-4">
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">
+                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-[#000000]">
                   La science du label : fondements et garanties de la certification Qualicoat
                 </h2>
-                <p className="text-base text-white/70 leading-relaxed">
+                <p className="text-base text-[#1F2937]/80 leading-relaxed">
                   Le label international <strong>QUALICOAT</strong> est une certification régie par des spécifications rigoureuses visant à
                   établir des niveaux d'exigence minimaux pour les installations de laquage, les matériaux de revêtement et les produits
                   finis destinés aux applications architecturales.
                 </p>
-                <p className="text-base text-white/70 leading-relaxed">
+                <p className="text-base text-[#1F2937]/80 leading-relaxed">
                   La certification ne se limite pas à un contrôle visuel&nbsp;: elle repose sur une validation multidimensionnelle des
                   propriétés physico-chimiques du complexe métal-peinture. Les spécifications intègrent des normes ISO et EN pour
                   quantifier chaque paramètre de performance, avec une traçabilité renforcée sur les nouvelles générations d’alliages
                   (dont l’aluminium recyclé).
                 </p>
-                <h3 className="text-sm font-bold tracking-[0.2em] uppercase text-white/50">
+                <h3 className="text-sm font-bold tracking-[0.2em] uppercase text-gray-500">
                   PROTOCOLES DE TESTS : ADHÉRENCE, BRILLANCE ET RÉSISTANCE
                 </h3>
-                <ul className="list-disc list-inside space-y-2 text-sm md:text-base text-white/80">
+                <ul className="list-disc list-inside space-y-2 text-sm md:text-base text-[#1F2937]/90">
                   <li>
                     <strong>Test de quadrillage (ISO 2409)</strong> : classification "Grade 0" obligatoire, sans aucun éclat ni
                     détachement de la laque au croisement des coupes.
@@ -1797,27 +1795,27 @@ const App: React.FC = () => {
               </div>
 
               <div className="space-y-4">
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">
+                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-[#000000]">
                   Stabilité colorimétrique et classes de poudres
                 </h2>
-                <p className="text-base text-white/70 leading-relaxed">
+                <p className="text-base text-[#1F2937]/80 leading-relaxed">
                   Pour les prescripteurs, la stabilité visuelle est primordiale. Le <strong>Thermolaquage certifié Qualicoat</strong>{' '}
                   garantit la tenue des teintes et de la brillance face au rayonnement solaire grâce à des familles de poudres classées
                   par niveau de durabilité.
                 </p>
-                <table className="w-full text-left text-sm md:text-base border border-white/10 border-collapse mt-4">
-                  <thead className="bg-white/5">
+                <table className="w-full text-left text-sm md:text-base border border-[#D1D5DB] border-collapse mt-4 text-[#000000]">
+                  <thead className="bg-[#F3F4F6]">
                     <tr>
-                      <th className="px-4 py-3 border-b border-white/10 font-semibold">Classe de poudre</th>
-                      <th className="px-4 py-3 border-b border-white/10 font-semibold">Durabilité UV</th>
+                      <th className="px-4 py-3 border-b border-[#D1D5DB] font-semibold text-[#000000]">Classe de poudre</th>
+                      <th className="px-4 py-3 border-b border-[#D1D5DB] font-semibold text-[#000000]">Durabilité UV</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="border-b border-white/10">
+                    <tr className="border-b border-[#D1D5DB]">
                       <td className="px-4 py-3">Classe 1</td>
                       <td className="px-4 py-3">Poudres standards testées 1 an en Floride (ISO 2810).</td>
                     </tr>
-                    <tr className="border-b border-white/10">
+                    <tr className="border-b border-[#D1D5DB]">
                       <td className="px-4 py-3">Classe 2</td>
                       <td className="px-4 py-3">
                         Poudres «&nbsp;Super Durables&nbsp;» testées 3 ans, avec une rétention de brillance nettement supérieure.
@@ -1832,65 +1830,65 @@ const App: React.FC = () => {
               </div>
 
               <div className="space-y-4">
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">
+                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-[#000000]">
                   Le processus Qualicoat : ingénierie de la surface et chimie des matériaux
                 </h2>
-                <p className="text-base text-white/70 leading-relaxed">
+                <p className="text-base text-[#1F2937]/80 leading-relaxed">
                   Le succès d'un <strong>Thermolaquage certifié Qualicoat</strong> repose sur une préparation de surface qui transforme
                   l'aluminium d'un état passif à un état chimiquement réactif. Chaque étape du processus est monitorée par des relevés
                   de production et des tests sur plaquettes témoins conservées sur la durée.
                 </p>
-                <h3 className="text-sm font-bold tracking-[0.2em] uppercase text-white/50">
+                <h3 className="text-sm font-bold tracking-[0.2em] uppercase text-gray-500">
                   PRÉTRAITEMENT CHIMIQUE : DÉCONTAMINATION, DÉROCHAGE, CONVERSION
                 </h3>
-                <p className="text-base text-white/70 leading-relaxed">
+                <p className="text-base text-[#1F2937]/80 leading-relaxed">
                   Après dégraissage, le dérochage élimine les impuretés métalliques et l’oxyde naturel. La conversion chimique, désormais
                   majoritairement <strong>Chrome-free</strong> (sels de titane ou de zirconium), crée une couche nanométrique jouant le
                   rôle d’interface entre le substrat et la laque poudre.
                 </p>
-                <h3 className="text-sm font-bold tracking-[0.2em] uppercase text-white/50">
+                <h3 className="text-sm font-bold tracking-[0.2em] uppercase text-gray-500">
                   APPLICATION PAR POUDRAGE ÉLECTROSTATIQUE
                 </h3>
-                <p className="text-base text-white/70 leading-relaxed">
+                <p className="text-base text-[#1F2937]/80 leading-relaxed">
                   La peinture poudre, projetée par pistolet électrostatique, se dépose de manière uniforme sur les géométries
                   complexes. Le recyclage des excédents (jusqu’à 98&nbsp;%) en fait un procédé performant et peu émissif en COV.
                 </p>
-                <h3 className="text-sm font-bold tracking-[0.2em] uppercase text-white/50">
+                <h3 className="text-sm font-bold tracking-[0.2em] uppercase text-gray-500">
                   POLYMÉRISATION ET RÉTICULATION THERMIQUE
                 </h3>
-                <p className="text-base text-white/70 leading-relaxed">
+                <p className="text-base text-[#1F2937]/80 leading-relaxed">
                   La cuisson au four assure la réticulation du film de peinture. Le contrôle de l’<strong>indice de cuisson</strong>{' '}
                   garantit que la laque atteint ses propriétés mécaniques optimales de dureté et de souplesse.
                 </p>
               </div>
 
               <div className="space-y-4">
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">
+                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-[#000000]">
                   Focus Seaside : protection renforcée pour les zones littorales
                 </h2>
-                <p className="text-base text-white/70 leading-relaxed">
+                <p className="text-base text-[#1F2937]/80 leading-relaxed">
                   Les environnements côtiers, riches en chlorures et en humidité, sont parmi les plus agressifs pour l’aluminium
                   architectural. La mention <strong>Qualicoat Seaside</strong> renforce la protection en imposant un dérochage plus
                   profond et des protocoles de contrôle spécifiques.
                 </p>
-                <h3 className="text-sm font-bold tracking-[0.2em] uppercase text-white/50">
+                <h3 className="text-sm font-bold tracking-[0.2em] uppercase text-gray-500">
                   TABLEAU TECHNIQUE : PRÉTRAITEMENTS ET DISTANCE AU LITTORAL
                 </h3>
-                <table className="w-full text-left text-sm md:text-base border border-white/10 border-collapse mt-4">
-                  <thead className="bg-white/5">
+                <table className="w-full text-left text-sm md:text-base border border-[#D1D5DB] border-collapse mt-4 text-[#000000]">
+                  <thead className="bg-[#F3F4F6]">
                     <tr>
-                      <th className="px-4 py-3 border-b border-white/10 font-semibold">Type de prétraitement</th>
-                      <th className="px-4 py-3 border-b border-white/10 font-semibold">Taux d’attaque (g/m²)</th>
-                      <th className="px-4 py-3 border-b border-white/10 font-semibold">Distance recommandée du littoral</th>
+                      <th className="px-4 py-3 border-b border-[#D1D5DB] font-semibold text-[#000000]">Type de prétraitement</th>
+                      <th className="px-4 py-3 border-b border-[#D1D5DB] font-semibold text-[#000000]">Taux d’attaque (g/m²)</th>
+                      <th className="px-4 py-3 border-b border-[#D1D5DB] font-semibold text-[#000000]">Distance recommandée du littoral</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="border-b border-white/10">
+                    <tr className="border-b border-[#D1D5DB]">
                       <td className="px-4 py-3">Standard</td>
                       <td className="px-4 py-3">Attaque modérée</td>
                       <td className="px-4 py-3">&gt; 20 km</td>
                     </tr>
-                    <tr className="border-b border-white/10">
+                    <tr className="border-b border-[#D1D5DB]">
                       <td className="px-4 py-3">Seaside A</td>
                       <td className="px-4 py-3">Taux d’attaque renforcé</td>
                       <td className="px-4 py-3">Environ 5 à 20 km du littoral</td>
@@ -1902,28 +1900,28 @@ const App: React.FC = () => {
                     </tr>
                   </tbody>
                 </table>
-                <p className="text-base text-white/70 leading-relaxed">
+                <p className="text-base text-[#1F2937]/80 leading-relaxed">
                   Ces configurations réduisent drastiquement les sites d’amorçage de la{' '}
                   <strong>corrosion filiforme</strong>, pathologie redoutée des façades exposées aux embruns.
                 </p>
               </div>
 
               <div className="space-y-4">
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">
+                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-[#000000]">
                   Post-laquage vs pré-laquage : l’enjeu du pliage aluminium pour façade
                 </h2>
-                <p className="text-base text-white/70 leading-relaxed">
+                <p className="text-base text-[#1F2937]/80 leading-relaxed">
                   La durabilité d'une enveloppe métallique ne dépend pas uniquement de la qualité de la peinture, mais de la
                   chronologie industrielle. Laquer après le{' '}
                   <button
                     onClick={() => setCurrentPage('ressource-2')}
-                    className="underline underline-offset-4 decoration-white/40 hover:decoration-white transition-colors font-semibold"
+                    className="underline underline-offset-4 decoration-[#6B7280] hover:decoration-[#1F2937] transition-colors font-semibold text-[#1F2937]"
                   >
                     pliage aluminium pour façade
                   </button>{' '}
                   permet de supprimer les micro-fissures et les tranches nues caractéristiques des systèmes pré-laqués.
                 </p>
-                <p className="text-base text-white/70 leading-relaxed">
+                <p className="text-base text-[#1F2937]/80 leading-relaxed">
                   Le post-laquage, pratiqué par Plialu, enrobe intégralement les pièces déjà façonnées, y compris les arêtes vives et
                   l'intérieur des perçages. La couche de laque polymérise sur une géométrie stabilisée, sans subir de déformation
                   ultérieure.
@@ -1931,18 +1929,18 @@ const App: React.FC = () => {
               </div>
 
               <div className="space-y-4">
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">
+                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-[#000000]">
                   Maillage réglementaire et recommandations pour les prescripteurs
                 </h2>
-                <p className="text-base text-white/70 leading-relaxed">
+                <p className="text-base text-[#1F2937]/80 leading-relaxed">
                   Le <strong>Thermolaquage certifié Qualicoat</strong> s’inscrit dans un cadre normatif précis (NF DTU, normes d’exposition,
                   prescriptions d’entretien). La façade devient un système global où le métal apporte la rigidité et le traitement de
                   surface assure la longévité.
                 </p>
-                <h3 className="text-sm font-bold tracking-[0.2em] uppercase text-white/50">
+                <h3 className="text-sm font-bold tracking-[0.2em] uppercase text-gray-500">
                   POINTS CLÉS POUR LES ARCHITECTES ET BUREAUX D’ÉTUDES
                 </h3>
-                <ul className="list-disc list-inside space-y-2 text-sm md:text-base text-white/80">
+                <ul className="list-disc list-inside space-y-2 text-sm md:text-base text-[#1F2937]/90">
                   <li>
                     Exiger des systèmes <strong>Qualicoat Seaside</strong> pour tout projet à proximité du littoral.
                   </li>
@@ -1959,12 +1957,12 @@ const App: React.FC = () => {
                 </ul>
               </div>
 
-              <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                <p className="text-sm text-white/70 max-w-xl">
+              <div className="pt-8 border-t border-gray-300 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <p className="text-sm text-[#1F2937]/80 max-w-xl">
                   Pour une enveloppe durable, commencez par{' '}
                   <button
                     onClick={() => setCurrentPage('ressource-1')}
-                    className="underline underline-offset-4 decoration-white/40 hover:decoration-white transition-colors font-semibold"
+                    className="underline underline-offset-4 decoration-[#6B7280] hover:decoration-[#1F2937] transition-colors font-semibold text-[#1F2937]"
                   >
                     choisir le bon métal pour une façade extérieure
                   </button>
@@ -1972,7 +1970,7 @@ const App: React.FC = () => {
                 </p>
                 <button
                   onClick={() => setCurrentPage('contact')}
-                  className="px-8 py-3 bg-white text-[#000000] text-xs font-black tracking-[0.2em] uppercase rounded-full hover:bg-[#E2FD48] transition-colors"
+                  className="px-8 py-3 bg-[#1F2937] text-white text-xs font-black tracking-[0.2em] uppercase rounded-full hover:bg-[#0E2A33] transition-colors"
                 >
                   PARLER THERMOLAQUAGE AVEC NOUS
                 </button>
