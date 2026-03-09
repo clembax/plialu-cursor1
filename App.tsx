@@ -149,7 +149,7 @@ const App: React.FC = () => {
     if (!form) return;
 
     const fileInput = form.querySelector<HTMLInputElement>('input[name="upload"]');
-    if (fileInput?.files?.length) {
+    if (fileInput && fileInput.files && fileInput.files.length > 0) {
       const file = fileInput.files[0];
       if (file.size > MAX_FILE_SIZE_BYTES) {
         setFormFileError("Fichier trop lourd (Max 10 Mo). Pour vos plans volumineux, utilisez un lien WeTransfer dans le message ou nous contacter par mail directement.");
