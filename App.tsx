@@ -21,6 +21,7 @@ declare global {
 }
 
 import TerritorialMap from './TerritorialMap';
+import MerciPage from './MerciPage';
 
 const App: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -36,20 +37,26 @@ const App: React.FC = () => {
     | 'ressource-1'
     | 'ressource-2'
     | 'ressource-3'
+    | 'merci'
   >('home');
   const [hoveredStep, setHoveredStep] = useState<number | null>(null);
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
   const [activeImage, setActiveImage] = useState<{ src: string; srcset?: string } | null>(null);
+  const [formSubmitting, setFormSubmitting] = useState(false);
+  const [formError, setFormError] = useState<string | null>(null);
+  const [formFileError, setFormFileError] = useState<string | null>(null);
+  const contactFormRef = React.useRef<HTMLFormElement>(null);
 
-  // Header Theme: 'dark' = light header bar (dark logo/menu) for contrast on light backgrounds (Expertises, Ressources, Contact, Articles)
+  // Header Theme: 'dark' = light header bar (dark logo/menu) for contrast on light backgrounds (Expertises, Ressources, Contact, Articles, Merci)
   const headerTheme =
     currentPage === 'expertises' ||
     currentPage === 'ressources' ||
     currentPage === 'ressource-1' ||
     currentPage === 'ressource-2' ||
     currentPage === 'ressource-3' ||
-    currentPage === 'contact'
+    currentPage === 'contact' ||
+    currentPage === 'merci'
       ? 'dark'
       : 'light';
 
@@ -131,6 +138,45 @@ const App: React.FC = () => {
     navigator.clipboard.writeText(text);
     setCopiedKey(key);
     setTimeout(() => setCopiedKey(null), 2000);
+  };
+
+  const MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024; // 10 Mo
+  const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setFormError(null);
+    setFormFileError(null);
+    const form = contactFormRef.current;
+    if (!form) return;
+
+    const fileInput = form.querySelector<HTMLInputElement>('input[name="attachment"]');
+    if (fileInput?.files?.length) {
+      const file = fileInput.files[0];
+      if (file.size > MAX_FILE_SIZE_BYTES) {
+        setFormFileError("Fichier trop lourd (Max 10 Mo). Pour vos plans volumineux, utilisez un lien WeTransfer dans le message ou nous contacter par mail directement.");
+        return;
+      }
+    }
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    setFormSubmitting(true);
+    try {
+      const formData = new FormData(form);
+      const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.success) {
+        setCurrentPage('merci');
+      } else {
+        setFormError("Une erreur est survenue. Veuillez réessayer ou nous contacter par téléphone ou par mail.");
+      }
+    } catch {
+      setFormError("Une erreur est survenue. Veuillez réessayer ou nous contacter par téléphone ou par mail.");
+    } finally {
+      setFormSubmitting(false);
+    }
   };
 
   const solutions = [
