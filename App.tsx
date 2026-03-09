@@ -21,7 +21,7 @@ declare global {
 }
 
 import TerritorialMap from './TerritorialMap';
-import MerciPage from './MerciPage';
+import Success from './Success';
 
 const App: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -148,7 +148,7 @@ const App: React.FC = () => {
     const form = contactFormRef.current;
     if (!form) return;
 
-    const fileInput = form.querySelector<HTMLInputElement>('input[name="attachment"]');
+    const fileInput = form.querySelector<HTMLInputElement>('input[name="upload"]');
     if (fileInput?.files?.length) {
       const file = fileInput.files[0];
       if (file.size > MAX_FILE_SIZE_BYTES) {
@@ -165,15 +165,15 @@ const App: React.FC = () => {
     setFormSubmitting(true);
     try {
       const formData = new FormData(form);
-      const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData });
-      const data = await res.json().catch(() => ({}));
-      if (res.ok && data.success) {
+      const res = await fetch('https://formspree.io/f/mwvrvrqg', { method: 'POST', body: formData });
+      await res.json().catch(() => ({}));
+      if (res.ok) {
         setCurrentPage('merci');
       } else {
-        setFormError("Une erreur est survenue. Veuillez réessayer ou nous contacter par téléphone ou par mail.");
+        setFormError("Erreur lors de l'envoi. Vérifiez la taille du fichier (Max 10Mo) ou contactez-nous par téléphone.");
       }
     } catch {
-      setFormError("Une erreur est survenue. Veuillez réessayer ou nous contacter par téléphone ou par mail.");
+      setFormError("Erreur lors de l'envoi. Vérifiez la taille du fichier (Max 10Mo) ou contactez-nous par téléphone.");
     } finally {
       setFormSubmitting(false);
     }
@@ -2141,11 +2141,7 @@ const App: React.FC = () => {
 
                 {/* Formulaire Web3Forms */}
                 <div id="contact-form" className="bg-white rounded-[32px] p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.03)] border border-zinc-100 scroll-mt-32">
-                  <form ref={contactFormRef} action="https://api.web3forms.com/submit" method="POST" encType="multipart/form-data" className="space-y-6" onSubmit={handleContactSubmit}>
-                    <input type="hidden" name="access_key" value="3d6b8235-0982-4388-b70a-b2c644cb701e" />
-                    <input type="hidden" name="subject" value="Nouvelle demande de devis Bureau d'Études - Plialu" />
-                    <input type="hidden" name="from_name" value="Site Web Plialu" />
-                    <input type="hidden" name="redirect" value="https://grey-wren-904418.hostingersite.com/merci" />
+                  <form ref={contactFormRef} action="https://formspree.io/f/mwvrvrqg" method="POST" encType="multipart/form-data" className="space-y-6" onSubmit={handleContactSubmit}>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
@@ -2183,7 +2179,7 @@ const App: React.FC = () => {
                       <label className="block text-sm font-bold mb-2 text-[#0E2A33]">
                         <span className="text-[#E2FD48]">Joindre vos plans ou photos</span> (PDF, DWG, DXF, JPG)
                       </label>
-                      <input type="file" name="attachment" accept=".pdf,.dwg,.dxf,.jpg,.jpeg,.png" className="block w-full text-sm text-[#0E2A33]/70 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#E2FD48] file:text-[#0E2A33] hover:file:bg-[#d4ed3f] cursor-pointer" />
+                      <input type="file" name="upload" accept=".pdf,.dwg,.dxf,.jpg,.jpeg,.png" className="block w-full text-sm text-[#0E2A33]/70 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#E2FD48] file:text-[#0E2A33] hover:file:bg-[#d4ed3f] cursor-pointer" />
                       <p className="mt-2 text-xs text-[#0E2A33]/50 text-center">Taille maximale : 10 Mo par envoi.</p>
                     </div>
 
@@ -2210,7 +2206,7 @@ const App: React.FC = () => {
 
       {/* Page Merci (succès envoi formulaire) */}
       {currentPage === 'merci' && (
-        <MerciPage onBackHome={() => setCurrentPage('home')} />
+        <Success onBackHome={() => setCurrentPage('home')} />
       )}
 
       {/* Premium Footer */}
