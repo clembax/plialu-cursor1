@@ -2141,11 +2141,11 @@ const App: React.FC = () => {
 
                 {/* Formulaire Web3Forms */}
                 <div id="contact-form" className="bg-white rounded-[32px] p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.03)] border border-zinc-100 scroll-mt-32">
-                  <form action="https://api.web3forms.com/submit" method="POST" encType="multipart/form-data" className="space-y-6">
+                  <form ref={contactFormRef} action="https://api.web3forms.com/submit" method="POST" encType="multipart/form-data" className="space-y-6" onSubmit={handleContactSubmit}>
                     <input type="hidden" name="access_key" value="3d6b8235-0982-4388-b70a-b2c644cb701e" />
                     <input type="hidden" name="subject" value="Nouvelle demande de devis Bureau d'Études - Plialu" />
                     <input type="hidden" name="from_name" value="Site Web Plialu" />
-                    <input type="hidden" name="redirect" value="https://grey-wren-904418.hostingersite.com" />
+                    <input type="hidden" name="redirect" value="https://grey-wren-904418.hostingersite.com/merci" />
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
@@ -2187,8 +2187,18 @@ const App: React.FC = () => {
                       <p className="mt-2 text-xs text-[#0E2A33]/50 text-center">Taille maximale : 10 Mo par envoi.</p>
                     </div>
 
-                    <button type="submit" className="w-full py-4 bg-[#E2FD48] text-[#0E2A33] font-bold rounded-lg hover:bg-[#d4ed3f] transition-colors uppercase tracking-wider shadow-[0_0_30px_rgba(226,253,72,0.2)]">
-                      Envoyer ma demande de devis technique
+                    {formFileError && (
+                      <div className="p-4 rounded-xl bg-orange-50 border-2 border-orange-300 text-orange-800 text-sm font-medium" role="alert">
+                        {formFileError}
+                      </div>
+                    )}
+                    {formError && (
+                      <p className="text-sm text-red-600 font-medium" role="alert">
+                        {formError}
+                      </p>
+                    )}
+                    <button type="submit" disabled={formSubmitting} className="w-full py-4 bg-[#E2FD48] text-[#0E2A33] font-bold rounded-lg hover:bg-[#d4ed3f] transition-colors uppercase tracking-wider shadow-[0_0_30px_rgba(226,253,72,0.2)] disabled:opacity-60 disabled:cursor-not-allowed">
+                      {formSubmitting ? 'Envoi en cours...' : 'Envoyer ma demande de devis technique'}
                     </button>
                   </form>
                 </div>
@@ -2196,6 +2206,11 @@ const App: React.FC = () => {
             </div>
           </section>
         </div>
+      )}
+
+      {/* Page Merci (succès envoi formulaire) */}
+      {currentPage === 'merci' && (
+        <MerciPage onBackHome={() => setCurrentPage('home')} />
       )}
 
       {/* Premium Footer */}
