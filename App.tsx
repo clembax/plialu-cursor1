@@ -327,9 +327,9 @@ const App: React.FC = () => {
               Accueil
             </button>
             <button 
-              onClick={() => setCurrentPage('expertises')} 
-              className={`text-xs font-semibold px-5 py-2 rounded-full transition-all 
-                ${currentPage === 'expertises' 
+onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.history.replaceState(null, '', window.location.pathname + window.location.search || '#'); }}
+              className={`text-xs font-semibold px-5 py-2 rounded-full transition-all
+                ${currentPage === 'expertises'
                   ? (headerTheme === 'dark' ? 'text-[#0E2A33] bg-[#0E2A33]/10' : 'text-white bg-white/10')
                   : (headerTheme === 'dark' ? 'text-[#0E2A33]/60 hover:text-[#0E2A33] hover:bg-black/5' : 'text-zinc-400 hover:text-white hover:bg-white/5')
                 }`}
@@ -433,7 +433,7 @@ const App: React.FC = () => {
           </div>
           <nav className="flex flex-col p-6 gap-1 overflow-y-auto">
             <button onClick={() => { setCurrentPage('home'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Accueil</button>
-            <button onClick={() => { setCurrentPage('expertises'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Expertises</button>
+            <button onClick={() => { setCurrentPage('expertises'); setIsMenuOpen(false); if (window.location.hash) window.history.replaceState(null, '', window.location.pathname + window.location.search || '#'); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Expertises</button>
             <button onClick={() => { setCurrentPage('solutions'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Solutions</button>
             <button onClick={() => { setCurrentPage('projects'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Portfolio</button>
             <button onClick={() => { setCurrentPage('ressources'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Ressources</button>
@@ -1549,9 +1549,9 @@ const App: React.FC = () => {
       {/* --- EXPERTISES PAGE CONTENT --- */}
       {currentPage === 'expertises' && (
         <div className="animate-fade-up">
-          {/* Hero Expertises */}
-          <section className="bg-white pt-48 md:pt-56 pb-20 min-h-screen flex flex-col justify-center">
-            <div className="max-w-7xl mx-auto px-6">
+          {/* Hero Expertises (contient le sommaire en bas, au-dessus de la ligne de flottaison) */}
+          <section className="bg-white pt-48 md:pt-56 pb-0 min-h-screen flex flex-col">
+            <div className="flex-1 flex flex-col justify-center max-w-7xl mx-auto px-6 w-full">
               <div className="max-w-4xl space-y-8">
                 <span className="text-[10px] font-extrabold tracking-[0.4em] text-zinc-400 uppercase block">
                   PROCESS INDUSTRIEL INTÉGRÉ
@@ -1572,40 +1572,38 @@ const App: React.FC = () => {
                 </a>
               </div>
             </div>
-          </section>
-
-          {/* Mini Sommaire : Mini Blocs Compacts Reliés (Process Continu) */}
-          <div id="expertises-sommaire" className="relative z-10 bg-white border-b border-zinc-100 scroll-mt-24">
-            <div className="max-w-7xl mx-auto px-6">
-              <div className="relative flex items-center overflow-x-auto no-scrollbar py-14 px-4 md:justify-center scroll-snap-x">
-                <div className="flex items-center gap-0 md:flex-row">
-                  {expertisesDetails.map((exp, idx) => (
-                    <React.Fragment key={exp.id}>
-                      <a 
-                        href={`#${exp.id}`} 
-                        onMouseEnter={() => setHoveredStep(idx)}
-                        onMouseLeave={() => setHoveredStep(null)}
-                        className="relative z-10 flex items-center gap-3 px-3 py-2 rounded-[6px] border border-black/[0.15] bg-black/[0.02] group hover:bg-[#071318] hover:border-[#071318] hover:-translate-y-0.5 transition-all duration-200 scroll-snap-align-start shrink-0"
-                      >
-                        <span className="text-[10.5px] font-extrabold text-black/60 group-hover:text-[#E2FD48] transition-colors leading-none">
-                          0{idx + 1}
-                        </span>
-                        <span className="text-[11px] font-bold tracking-tight text-[#0E2A33]/70 group-hover:text-white transition-colors uppercase whitespace-nowrap leading-none">
-                          {exp.title}
-                        </span>
-                      </a>
-                      {/* Connector Line between blocks with micro-animation */}
-                      {idx < expertisesDetails.length - 1 && (
-                        <div className={`hidden md:block w-8 lg:w-12 h-[1px] shrink-0 self-center transition-colors duration-200 ${
-                          hoveredStep === idx || hoveredStep === idx + 1 ? 'bg-[#E2FD48]' : 'bg-black/[0.15]'
-                        }`}></div>
-                      )}
-                    </React.Fragment>
-                  ))}
+            {/* Mini Sommaire : en bas du Hero, visible au-dessus de la ligne de flottaison */}
+            <div id="expertises-sommaire" className="relative z-10 bg-white border-t border-zinc-100 scroll-mt-24 shrink-0">
+              <div className="max-w-7xl mx-auto px-6">
+                <div className="relative flex items-center overflow-x-auto no-scrollbar py-14 px-4 md:justify-center scroll-snap-x">
+                  <div className="flex items-center gap-0 md:flex-row">
+                    {expertisesDetails.map((exp, idx) => (
+                      <React.Fragment key={exp.id}>
+                        <a 
+                          href={`#${exp.id}`} 
+                          onMouseEnter={() => setHoveredStep(idx)}
+                          onMouseLeave={() => setHoveredStep(null)}
+                          className="relative z-10 flex items-center gap-3 px-3 py-2 rounded-[6px] border border-black/[0.15] bg-black/[0.02] group hover:bg-[#071318] hover:border-[#071318] hover:-translate-y-0.5 transition-all duration-200 scroll-snap-align-start shrink-0"
+                        >
+                          <span className="text-[10.5px] font-extrabold text-black/60 group-hover:text-[#E2FD48] transition-colors leading-none">
+                            0{idx + 1}
+                          </span>
+                          <span className="text-[11px] font-bold tracking-tight text-[#0E2A33]/70 group-hover:text-white transition-colors uppercase whitespace-nowrap leading-none">
+                            {exp.title}
+                          </span>
+                        </a>
+                        {idx < expertisesDetails.length - 1 && (
+                          <div className={`hidden md:block w-8 lg:w-12 h-[1px] shrink-0 self-center transition-colors duration-200 ${
+                            hoveredStep === idx || hoveredStep === idx + 1 ? 'bg-[#E2FD48]' : 'bg-black/[0.15]'
+                          }`}></div>
+                        )}
+                      </React.Fragment>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </section>
 
           {/* Section Chiffres clés */}
           <section className="py-16 md:py-24 text-white border-b border-white/5" style={{ background: 'linear-gradient(to bottom, #071318 0%, #0b1e26 100%)' }}>
