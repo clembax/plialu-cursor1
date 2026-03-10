@@ -218,8 +218,8 @@ const App: React.FC = () => {
       title: "Bureau d’études",
       tag: "ÉTUDE & OPTIMISATION",
       text: "Analyse critique de vos plans DXF/DWG, optimisation des calepinages et validation des tolérances mécaniques pour une mise en fabrication sans erreur. Nos ingénieurs valident la faisabilité technique de chaque pliage complexe.",
-      img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070",
-      alt: "Ingénieurs validant des plans techniques sur station CAO",
+      img: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1773074223/BE-1200px_nzpfpj.webp",
+      alt: "Bureau d'études technique Plialu - Optimisation de plans DXF et calcul de pliage",
       materials: "AutoCAD • SolidWorks • Optimisation DXF",
       light: true
     },
@@ -1445,13 +1445,25 @@ const App: React.FC = () => {
                       </div>
                       
                       <div className={`relative overflow-hidden rounded-xl shadow-lg h-[320px] md:h-[500px] ${idx % 2 !== 0 ? 'lg:order-1' : ''} group bg-zinc-50`}>
-                        <img 
-                          src={exp.img} 
-                          className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" 
-                          alt={exp.alt} 
-                          loading="lazy" 
-                          decoding="async" 
-                        />
+                        {exp.id === 'bureau-etudes' ? (
+                          <img
+                            src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773074223/BE-1200px_nzpfpj.webp"
+                            srcSet="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773074223/BE-800px_wa43jv.webp 800w, https://res.cloudinary.com/dyiup6v5x/image/upload/v1773074223/BE-1200px_nzpfpj.webp 1200w, https://res.cloudinary.com/dyiup6v5x/image/upload/v1773074223/BE-1600px_x6mpih.webp 1600w"
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                            alt="Bureau d'études technique Plialu - Optimisation de plans DXF et calcul de pliage"
+                            loading="lazy"
+                            decoding="async"
+                            className="w-full h-full object-cover rounded-2xl shadow-lg transition-transform duration-1000 group-hover:scale-105"
+                          />
+                        ) : (
+                          <img
+                            src={exp.img}
+                            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                            alt={exp.alt}
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        )}
                         <div className="absolute inset-0 bg-gradient-to-t from-[#0E2A33]/10 to-transparent opacity-40"></div>
                       </div>
                     </div>
