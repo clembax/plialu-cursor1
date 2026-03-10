@@ -1491,21 +1491,23 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
         <div className="animate-fade-up bg-white">
           <section className="pt-48 md:pt-56 pb-20 bg-white border-b border-zinc-100 min-h-screen flex flex-col justify-center">
             <div className="max-w-7xl mx-auto px-6">
-              <a
-                href="/solutions"
-                onClick={(e) => { e.preventDefault(); setCurrentPage('solutions'); }}
-                className="inline-flex items-center gap-2 text-sm font-bold text-[#0E2A33]/60 hover:text-[#0E2A33] mb-8 transition-colors"
-              >
-                <iconify-icon icon="lucide:arrow-left" width="18"></iconify-icon>
-                Retour aux solutions
-              </a>
-              <span className="text-[10px] font-extrabold tracking-[0.4em] text-[#0E2A33]/40 uppercase block mb-4">SOLUTIONS PAR MATIÈRE</span>
-              <h1 className="text-4xl md:text-6xl tracking-tighter leading-[1.1] font-black text-[#0E2A33]">
-                Solutions Aluminium
-              </h1>
-              <p className="text-lg text-[#0E2A33]/70 max-w-2xl mt-6 leading-relaxed font-medium">
-                Bardages, cassettes, couvertines et précadres en aluminium pour l'enveloppe du bâtiment. Contenu à compléter avec vos textes SEO et visuels.
-              </p>
+              <div className="max-w-4xl">
+                <a
+                  href="/solutions"
+                  onClick={(e) => { e.preventDefault(); setCurrentPage('solutions'); }}
+                  className="inline-flex items-center gap-2 text-sm font-bold text-[#0E2A33]/60 hover:text-[#0E2A33] mb-8 transition-colors"
+                >
+                  <iconify-icon icon="lucide:arrow-left" width="18"></iconify-icon>
+                  Retour aux solutions
+                </a>
+                <span className="text-[10px] font-extrabold tracking-[0.4em] text-[#0E2A33]/40 uppercase block mb-4">SOLUTIONS PAR MATIÈRE</span>
+                <h1 className="text-4xl md:text-6xl tracking-tighter leading-[1.1] font-black text-[#0E2A33]">
+                  Solutions Aluminium
+                </h1>
+                <p className="text-lg text-[#0E2A33]/70 max-w-2xl mt-6 leading-relaxed font-medium">
+                  Bardages, cassettes, couvertines et précadres en aluminium pour l'enveloppe du bâtiment. Contenu à compléter avec vos textes SEO et visuels.
+                </p>
+              </div>
             </div>
           </section>
           <section className="py-16 md:py-24 bg-[#F3F6F7]">
@@ -1521,21 +1523,23 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
         <div className="animate-fade-up bg-white">
           <section className="pt-48 md:pt-56 pb-20 bg-white border-b border-zinc-100 min-h-screen flex flex-col justify-center">
             <div className="max-w-7xl mx-auto px-6">
-              <a
-                href="/solutions"
-                onClick={(e) => { e.preventDefault(); setCurrentPage('solutions'); }}
-                className="inline-flex items-center gap-2 text-sm font-bold text-[#0E2A33]/60 hover:text-[#0E2A33] mb-8 transition-colors"
-              >
-                <iconify-icon icon="lucide:arrow-left" width="18"></iconify-icon>
-                Retour aux solutions
-              </a>
-              <span className="text-[10px] font-extrabold tracking-[0.4em] text-[#0E2A33]/40 uppercase block mb-4">SOLUTIONS PAR MATIÈRE</span>
-              <h1 className="text-4xl md:text-6xl tracking-tighter leading-[1.1] font-black text-[#0E2A33]">
-                Solutions Acier
-              </h1>
-              <p className="text-lg text-[#0E2A33]/70 max-w-2xl mt-6 leading-relaxed font-medium">
-                Supports, couvertines, tôles nervurées et précadres en acier pour l'enveloppe du bâtiment. Contenu à compléter avec vos textes SEO et visuels.
-              </p>
+              <div className="max-w-4xl">
+                <a
+                  href="/solutions"
+                  onClick={(e) => { e.preventDefault(); setCurrentPage('solutions'); }}
+                  className="inline-flex items-center gap-2 text-sm font-bold text-[#0E2A33]/60 hover:text-[#0E2A33] mb-8 transition-colors"
+                >
+                  <iconify-icon icon="lucide:arrow-left" width="18"></iconify-icon>
+                  Retour aux solutions
+                </a>
+                <span className="text-[10px] font-extrabold tracking-[0.4em] text-[#0E2A33]/40 uppercase block mb-4">SOLUTIONS PAR MATIÈRE</span>
+                <h1 className="text-4xl md:text-6xl tracking-tighter leading-[1.1] font-black text-[#0E2A33]">
+                  Solutions Acier
+                </h1>
+                <p className="text-lg text-[#0E2A33]/70 max-w-2xl mt-6 leading-relaxed font-medium">
+                  Supports, couvertines, tôles nervurées et précadres en acier pour l'enveloppe du bâtiment. Contenu à compléter avec vos textes SEO et visuels.
+                </p>
+              </div>
             </div>
           </section>
           <section className="py-16 md:py-24 bg-[#F3F6F7]">
@@ -1873,19 +1877,21 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
       {currentPage === 'ressource-1' && (
         <div className="animate-fade-up bg-white" style={{ backgroundColor: '#FFFFFF' }}>
           <section className="pt-32 md:pt-40 pb-12 bg-white" style={{ backgroundColor: '#FFFFFF' }}>
-            <div className="max-w-4xl mx-auto px-6">
-              <span className="text-[10px] font-extrabold tracking-[0.4em] text-[#6B7280] uppercase block mb-4">
-                RESSOURCES TECHNIQUES · MATÉRIAUX
-              </span>
-              <h1 className="text-4xl md:text-5xl tracking-tighter leading-[1.1] font-black mb-6 text-[#000000]">
-                Choisir le bon métal pour une façade extérieure
-              </h1>
-              <p className="text-base md:text-lg text-[#1F2937]/80 leading-relaxed font-medium mb-10">
-                Pour un architecte ou un façadier, <strong>choisir le bon métal pour une façade extérieure</strong> est une décision
-                critique qui conditionne la pérennité structurelle et l’esthétique du bâti. Cette sélection repose sur une compréhension
-                précise des propriétés mécaniques, des coefficients de <strong>dilatation</strong> et des exigences de protection contre
-                la corrosion.
-              </p>
+            <div className="max-w-7xl mx-auto px-6">
+              <div className="max-w-4xl">
+                <span className="text-[10px] font-extrabold tracking-[0.4em] text-[#6B7280] uppercase block mb-4">
+                  RESSOURCES TECHNIQUES · MATÉRIAUX
+                </span>
+                <h1 className="text-4xl md:text-5xl tracking-tighter leading-[1.1] font-black mb-6 text-[#000000]">
+                  Choisir le bon métal pour une façade extérieure
+                </h1>
+                <p className="text-base md:text-lg text-[#1F2937]/80 leading-relaxed font-medium mb-10">
+                  Pour un architecte ou un façadier, <strong>choisir le bon métal pour une façade extérieure</strong> est une décision
+                  critique qui conditionne la pérennité structurelle et l’esthétique du bâti. Cette sélection repose sur une compréhension
+                  précise des propriétés mécaniques, des coefficients de <strong>dilatation</strong> et des exigences de protection contre
+                  la corrosion.
+                </p>
+              </div>
             </div>
           </section>
 
@@ -1968,31 +1974,33 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
       {currentPage === 'ressource-2' && (
         <div className="animate-fade-up bg-white" style={{ backgroundColor: '#FFFFFF' }}>
           <section className="pt-32 md:pt-40 pb-12 bg-white" style={{ backgroundColor: '#FFFFFF' }}>
-            <div className="max-w-4xl mx-auto px-6">
-              <span className="text-[10px] font-extrabold tracking-[0.4em] text-[#6B7280] uppercase block mb-4">
-                RESSOURCES TECHNIQUES · FAÇADE ALUMINIUM
-              </span>
-              <h1 className="text-4xl md:text-5xl tracking-tighter leading-[1.1] font-black mb-6 text-[#000000]">
-                Pliage aluminium pour façade : limites et tolérances
-              </h1>
-              <p className="text-base md:text-lg text-[#1F2937]/80 leading-relaxed font-medium mb-6">
-                Le <strong>pliage aluminium pour façade</strong> constitue une étape critique de l’ingénierie de l’enveloppe, intervenant
-                juste après l’étape consistant à{' '}
-                <button
-                  onClick={() => setCurrentPage('ressource-1')}
-                  className="underline underline-offset-4 decoration-[#6B7280] hover:decoration-[#1F2937] transition-colors font-semibold text-[#1F2937]"
-                >
-                  choisir le bon métal pour une façade extérieure
-                </button>{' '}
-                pour garantir la pérennité et l’esthétique de l’ouvrage. Pour les architectes et bureaux d’études, la maîtrise du
-                façonnage n’est pas qu’une question de forme, mais une réponse rigoureuse aux contraintes mécaniques et
-                environnementales.
-              </p>
-              <p className="text-base md:text-lg text-[#1F2937]/80 leading-relaxed font-medium">
-                Une cassette ou un habillage mal conçu peut compromettre l’étanchéité globale et la planéité visuelle du bâtiment. Ce
-                guide détaille les paramètres physiques et industriels essentiels pour réussir vos projets de façades métalliques
-                premium.
-              </p>
+            <div className="max-w-7xl mx-auto px-6">
+              <div className="max-w-4xl">
+                <span className="text-[10px] font-extrabold tracking-[0.4em] text-[#6B7280] uppercase block mb-4">
+                  RESSOURCES TECHNIQUES · FAÇADE ALUMINIUM
+                </span>
+                <h1 className="text-4xl md:text-5xl tracking-tighter leading-[1.1] font-black mb-6 text-[#000000]">
+                  Pliage aluminium pour façade : limites et tolérances
+                </h1>
+                <p className="text-base md:text-lg text-[#1F2937]/80 leading-relaxed font-medium mb-6">
+                  Le <strong>pliage aluminium pour façade</strong> constitue une étape critique de l’ingénierie de l’enveloppe, intervenant
+                  juste après l’étape consistant à{' '}
+                  <button
+                    onClick={() => setCurrentPage('ressource-1')}
+                    className="underline underline-offset-4 decoration-[#6B7280] hover:decoration-[#1F2937] transition-colors font-semibold text-[#1F2937]"
+                  >
+                    choisir le bon métal pour une façade extérieure
+                  </button>{' '}
+                  pour garantir la pérennité et l’esthétique de l’ouvrage. Pour les architectes et bureaux d’études, la maîtrise du
+                  façonnage n’est pas qu’une question de forme, mais une réponse rigoureuse aux contraintes mécaniques et
+                  environnementales.
+                </p>
+                <p className="text-base md:text-lg text-[#1F2937]/80 leading-relaxed font-medium">
+                  Une cassette ou un habillage mal conçu peut compromettre l’étanchéité globale et la planéité visuelle du bâtiment. Ce
+                  guide détaille les paramètres physiques et industriels essentiels pour réussir vos projets de façades métalliques
+                  premium.
+                </p>
+              </div>
             </div>
           </section>
 
@@ -2132,19 +2140,21 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
       {currentPage === 'ressource-3' && (
         <div className="animate-fade-up bg-white" style={{ backgroundColor: '#FFFFFF' }}>
           <section className="pt-32 md:pt-40 pb-12 bg-white" style={{ backgroundColor: '#FFFFFF' }}>
-            <div className="max-w-4xl mx-auto px-6">
-              <span className="text-[10px] font-extrabold tracking-[0.4em] text-[#6B7280] uppercase block mb-4">
-                RESSOURCES TECHNIQUES · THERMOLAQUAGE QUALICOAT
-              </span>
-              <h1 className="text-4xl md:text-5xl tracking-tighter leading-[1.1] font-black mb-6 text-[#000000]">
-                Thermolaquage certifié Qualicoat : garanties
-              </h1>
-              <p className="text-base md:text-lg text-[#1F2937]/80 leading-relaxed font-medium">
-                Le <strong>Thermolaquage certifié Qualicoat</strong> représente l'exigence technique absolue pour garantir la pérennité
-                structurelle et esthétique des enveloppes métalliques soumises aux contraintes environnementales sévères. Dans le domaine
-                de la conception architecturale contemporaine, la durabilité d'une façade ne peut plus être perçue comme la simple
-                résultante de la nature intrinsèque du métal utilisé.
-              </p>
+            <div className="max-w-7xl mx-auto px-6">
+              <div className="max-w-4xl">
+                <span className="text-[10px] font-extrabold tracking-[0.4em] text-[#6B7280] uppercase block mb-4">
+                  RESSOURCES TECHNIQUES · THERMOLAQUAGE QUALICOAT
+                </span>
+                <h1 className="text-4xl md:text-5xl tracking-tighter leading-[1.1] font-black mb-6 text-[#000000]">
+                  Thermolaquage certifié Qualicoat : garanties
+                </h1>
+                <p className="text-base md:text-lg text-[#1F2937]/80 leading-relaxed font-medium">
+                  Le <strong>Thermolaquage certifié Qualicoat</strong> représente l'exigence technique absolue pour garantir la pérennité
+                  structurelle et esthétique des enveloppes métalliques soumises aux contraintes environnementales sévères. Dans le domaine
+                  de la conception architecturale contemporaine, la durabilité d'une façade ne peut plus être perçue comme la simple
+                  résultante de la nature intrinsèque du métal utilisé.
+                </p>
+              </div>
             </div>
           </section>
 
