@@ -30,6 +30,9 @@ const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<
     | 'home'
     | 'expertises'
+    | 'solutions'
+    | 'solutions-aluminium'
+    | 'solutions-acier'
     | 'contact'
     | 'projects'
     | 'a-propos'
@@ -47,11 +50,15 @@ const App: React.FC = () => {
   const [formError, setFormError] = useState<string | null>(null);
   const [formFileError, setFormFileError] = useState<string | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [solutionsAccordionOpen, setSolutionsAccordionOpen] = useState<string | null>(null);
   const contactFormRef = React.useRef<HTMLFormElement>(null);
 
-  // Header Theme: 'dark' = light header bar (dark logo/menu) for contrast on light backgrounds (Expertises, Ressources, Contact, Articles, Merci)
+  // Header Theme: 'dark' = light header bar (dark logo/menu) for contrast on light backgrounds (Expertises, Solutions, Ressources, Contact, Articles, Merci)
   const headerTheme =
     currentPage === 'expertises' ||
+    currentPage === 'solutions' ||
+    currentPage === 'solutions-aluminium' ||
+    currentPage === 'solutions-acier' ||
     currentPage === 'ressources' ||
     currentPage === 'ressource-1' ||
     currentPage === 'ressource-2' ||
@@ -105,12 +112,18 @@ const App: React.FC = () => {
       title = 'Façonnage métallique sur mesure : expertise et précision | Plialu';
       description =
         "Spécialiste du façonnage métallique pour le bâtiment. Étude technique, pliage CNC haute précision et thermolaquage certifié Qualicoat pour vos façades.";
+    } else if (currentPage === 'solutions') {
+      title = 'Solutions métalliques enveloppe du bâtiment | Plialu';
+    } else if (currentPage === 'solutions-aluminium') {
+      title = 'Solutions aluminium enveloppe du bâtiment | Plialu';
+    } else if (currentPage === 'solutions-acier') {
+      title = 'Solutions acier enveloppe du bâtiment | Plialu';
     } else if (currentPage === 'ressource-1') {
-      title = 'Choisir le bon métal pour une façade extérieure | Expertise Plialu';
+      title = 'Choisir le bon métal pour une façade extérieure | Plialu';
     } else if (currentPage === 'ressource-2') {
-      title = 'Pliage aluminium pour façade | Ressources Plialu';
+      title = 'Limites et tolérances du pliage aluminium pour façade | Plialu';
     } else if (currentPage === 'ressource-3') {
-      title = 'Thermolaquage certifié Qualicoat | Ressources Plialu';
+      title = 'Garanties du thermolaquage certifié Qualicoat | Plialu';
     }
     document.title = title;
 
@@ -217,7 +230,7 @@ const App: React.FC = () => {
       id: "bureau-etudes",
       title: "Bureau d’études",
       tag: "ÉTUDE & OPTIMISATION",
-      text: "Analyse critique de vos plans DXF/DWG, optimisation des calepinages et validation des tolérances mécaniques pour une mise en fabrication sans erreur. Nos ingénieurs valident la faisabilité technique de chaque pliage complexe.",
+      text: "Analyse critique de vos plans DXF/DWG, optimisation des calepinages et validation des tolérances fabrication métal sur mesure pour une production sans erreur. Nos ingénieurs valident la faisabilité technique de chaque pliage complexe en anticipant les contraintes fabrication pièces métalliques.",
       img: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1773074223/BE-1200px_nzpfpj.webp",
       alt: "Bureau d'études technique Plialu - Optimisation de plans DXF et calcul de pliage",
       materials: "AutoCAD • SolidWorks • Optimisation DXF",
@@ -324,9 +337,12 @@ const App: React.FC = () => {
               Expertises
             </button>
             <button 
-              onClick={() => { if(currentPage !== 'home') setCurrentPage('home'); window.location.hash = 'solutions'; }} 
+              onClick={() => setCurrentPage('solutions')} 
               className={`text-xs font-semibold px-5 py-2 rounded-full transition-all
-                ${headerTheme === 'dark' ? 'text-[#0E2A33]/60 hover:text-[#0E2A33] hover:bg-black/5' : 'text-zinc-400 hover:text-white hover:bg-white/5'}`}
+                ${currentPage === 'solutions' || currentPage === 'solutions-aluminium' || currentPage === 'solutions-acier'
+                  ? (headerTheme === 'dark' ? 'text-[#0E2A33] bg-[#0E2A33]/10' : 'text-white bg-white/10')
+                  : (headerTheme === 'dark' ? 'text-[#0E2A33]/60 hover:text-[#0E2A33] hover:bg-black/5' : 'text-zinc-400 hover:text-white hover:bg-white/5')
+                }`}
             >
               Solutions
             </button>
@@ -418,7 +434,7 @@ const App: React.FC = () => {
           <nav className="flex flex-col p-6 gap-1 overflow-y-auto">
             <button onClick={() => { setCurrentPage('home'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Accueil</button>
             <button onClick={() => { setCurrentPage('expertises'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Expertises</button>
-            <button onClick={() => { setCurrentPage('home'); window.location.hash = 'solutions'; setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Solutions</button>
+            <button onClick={() => { setCurrentPage('solutions'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Solutions</button>
             <button onClick={() => { setCurrentPage('projects'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Portfolio</button>
             <button onClick={() => { setCurrentPage('ressources'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Ressources</button>
             <button onClick={() => { setCurrentPage('a-propos'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">À propos</button>
@@ -445,11 +461,11 @@ const App: React.FC = () => {
             <div className="relative z-30 w-full max-w-7xl mx-auto px-6 py-20">
               <div className="max-w-5xl animate-fade-up">
                 <h1 className="text-4xl md:text-6xl lg:text-[clamp(2.5rem,6.5vw,5.8rem)] tracking-tighter leading-[1.15] mb-12 font-black uppercase max-w-4xl text-white">
-                  Expert industriel <br className="hidden md:block" />
-                  <span className="text-[#8E9BA4]">du façonnage métallique</span>
+                  EXPERT INDUSTRIEL EN <br className="hidden md:block" />
+                  <span className="text-[#8E9BA4]">FAÇONNAGE MÉTALLIQUE SUR MESURE</span>
                 </h1>
                 <p className="text-base md:text-lg text-white/80 max-w-xl leading-relaxed border-l-2 border-[#E2FD48] pl-8 mb-16 font-medium">
-                  Conception et fabrication de solutions métalliques sur mesure pour l’enveloppe bâtiment, les structures et projets industriels exigeants.
+                  Conception, usinage et finition de solutions métalliques pour l'enveloppe du bâtiment et les projets industriels exigeants. Une chaîne de production intégrée pour garantir vos tolérances et délais.
                 </p>
                 <div className="space-y-8">
                   <div className="flex flex-col sm:flex-row items-center gap-4">
@@ -479,10 +495,12 @@ const App: React.FC = () => {
               <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-20 items-center">
                 <div className="space-y-8">
                   <div className="space-y-4">
-                    <span className="text-[10px] font-extrabold tracking-[0.3em] text-[#E2FD48] uppercase">NOS EXPERTISES</span>
-                    <h2 className="text-4xl md:text-5xl text-white tracking-tighter font-extrabold leading-tight">Process maîtrisés de bout en bout</h2>
+                    <span className="text-[10px] font-extrabold tracking-[0.3em] text-[#E2FD48] uppercase">PROCESS INTÉGRÉ</span>
+                    <h2 className="text-4xl md:text-5xl text-white tracking-tighter font-extrabold leading-tight">Fabrication de pièces métalliques sur mesure</h2>
                   </div>
-                  <p className="text-white/90 text-lg leading-relaxed font-medium">De l’étude technique au pliage et au façonnage métallique, jusqu’au thermolaquage industriel, chaque étape est intégrée et maîtrisée.</p>
+                  <p className="text-white/90 text-lg leading-relaxed font-medium">
+                    De l'étude technique Bureau d'Études au pliage grande longueur, jusqu'au thermolaquage industriel certifié Qualicoat. Chaque étape de notre <strong>fabrication industrielle métal</strong> est maîtrisée en interne pour une qualité irréprochable.
+                  </p>
                   <button onClick={() => setCurrentPage('expertises')} className="inline-flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-[#E2FD48] hover:text-white transition-all group">
                     Découvrir nos expertises
                     <iconify-icon icon="lucide:arrow-right" className="group-hover:translate-x-2 transition-transform"></iconify-icon>
@@ -492,7 +510,7 @@ const App: React.FC = () => {
                   <img
                     src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1771508868/Expertise-1200_rb2ubu.webp"
                     className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                    alt="Opérateur Plialu en plein façonnage métallique sur mesure par pliage CNC haute précision"
+                    alt="Opérateur réalisant la fabrication de pièces métalliques sur mesure sur presse plieuse"
                     loading="lazy"
                   />
                 </div>
@@ -500,37 +518,21 @@ const App: React.FC = () => {
             </div>
           </section>
 
-          {/* 3. NOS SOLUTIONS (LIGHT) */}
+          {/* 3. SOLUTIONS — Teaser (CTA vers page Solutions) */}
           <section id="solutions" className="py-32 section--light">
             <div className="max-w-7xl mx-auto px-6">
-              <div className="mb-20">
-                <span className="text-[10px] font-extrabold tracking-[0.4em] text-[#0E2A33]/40 uppercase">INGÉNIERIE & FABRICATION</span>
-                <h2 className="text-4xl md:text-5xl text-[#0E2A33] tracking-tighter font-extrabold mt-4">Solutions techniques sur mesure</h2>
-              </div>
-              <div className="flex flex-col gap-8">
-                {solutions.map((item, idx) => (
-                  <article key={idx} className="group relative flex flex-col md:flex-row items-stretch bg-white border border-[#0E2A33]/10 rounded-[24px] overflow-hidden hover:border-[#0E2A33]/30 transition-all duration-500 ease-out cursor-pointer shadow-sm md:h-[300px]">
-                    <div className="w-full md:w-[380px] h-[220px] md:h-full overflow-hidden shrink-0">
-                      <img src={item.img} alt={item.alt} loading="lazy" className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105" />
-                    </div>
-                    <div className="relative flex-1 p-8 md:p-10 flex flex-col">
-                      <div className="mb-4">
-                        <span className="text-[9px] font-black tracking-[0.3em] text-[#0E2A33]/40 uppercase mb-2 block">{item.tag}</span>
-                        <h3 className="text-2xl md:text-3xl font-extrabold text-[#0E2A33] tracking-tight mb-4">{item.title}</h3>
-                        <p className="text-[#0E2A33]/60 text-base md:text-lg leading-relaxed max-w-2xl">{item.text}</p>
-                      </div>
-                      <div className="mt-auto pt-6 border-t border-[#0E2A33]/5 flex items-end justify-between">
-                        <div className="flex-1">
-                          <span className="block text-[10px] font-bold tracking-[0.2em] text-[#0E2A33]/30 uppercase mb-2">MATÉRIAUX UTILISÉS</span>
-                          <p className="text-sm font-medium text-[#0E2A33]/50 tracking-tight italic">{item.materials}</p>
-                        </div>
-                        <div className="text-[#0E2A33]/20 group-hover:text-[#E2FD48] group-hover:translate-x-1 transition-all duration-300 ml-4 mb-1">
-                          <iconify-icon icon="lucide:arrow-right" width="28"></iconify-icon>
-                        </div>
-                      </div>
-                    </div>
-                  </article>
-                ))}
+              <div className="max-w-2xl space-y-6">
+                <span className="text-[10px] font-extrabold tracking-[0.4em] text-[#0E2A33]/40 uppercase">SOLUTIONS</span>
+                <h2 className="text-4xl md:text-5xl text-[#0E2A33] tracking-tighter font-extrabold">Solutions métalliques pour l'enveloppe du bâtiment</h2>
+                <p className="text-[#0E2A33]/60 text-lg leading-relaxed font-medium">Catalogue B2B : enduit mince, ravalement, bardages et cassettes, précadres, tôles prélaquées. Découvrez nos gammes aluminium et acier.</p>
+                <a
+                  href="/solutions"
+                  onClick={(e) => { e.preventDefault(); setCurrentPage('solutions'); }}
+                  className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-[#E2FD48] hover:text-[#0E2A33] transition-all group"
+                >
+                  Découvrir nos solutions
+                  <iconify-icon icon="lucide:arrow-right" className="group-hover:translate-x-2 transition-transform"></iconify-icon>
+                </a>
               </div>
             </div>
           </section>
@@ -540,23 +542,23 @@ const App: React.FC = () => {
             <div className="max-w-7xl mx-auto px-6">
               <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
                 <div className="max-w-2xl space-y-4">
-                  <span className="text-[10px] font-extrabold tracking-[0.3em] text-[#E2FD48] uppercase">NOS RÉALISATIONS</span>
-                  <h2 className="text-4xl md:text-5xl text-white tracking-tighter font-extrabold">Projets de référence</h2>
+                  <span className="text-[10px] font-extrabold tracking-[0.3em] text-[#E2FD48] uppercase">PORTFOLIO COLLABORATIONS</span>
+                  <h2 className="text-4xl md:text-5xl text-white tracking-tighter font-extrabold">Projets réalisés en collaboration</h2>
                 </div>
-                <a href="#" className="flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-[#E2FD48] hover:text-white transition-colors group">
-                  Toutes les réalisations
+                <a href="/portfolio" onClick={(e) => { e.preventDefault(); setCurrentPage('projects'); }} className="flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-[#E2FD48] hover:text-white transition-colors group">
+                  TOUTES NOS COLLABORATIONS
                   <iconify-icon icon="lucide:arrow-up-right" width="18" className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></iconify-icon>
                 </a>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                 <div className="group relative aspect-[16/10] overflow-hidden rounded-3xl border border-white/10 bg-[#07161C] cursor-pointer" onClick={() => setCaeSlide(prev => (prev === 0 ? 1 : 0))}>
-                  <img src={caeSlide === 0 ? "https://res.cloudinary.com/dyiup6v5x/image/upload/v1771517735/CAE-1200px_cdhouc.webp" : "https://res.cloudinary.com/dyiup6v5x/image/upload/v1771518042/CAE2-1200px_sr3dgl.webp"} className="w-full h-full object-cover transition-all duration-1000 grayscale opacity-60 group-hover:opacity-100 group-hover:grayscale-0" alt="Projet CAE Lyon" />
+                  <img src={caeSlide === 0 ? "https://res.cloudinary.com/dyiup6v5x/image/upload/v1771517735/CAE-1200px_cdhouc.webp" : "https://res.cloudinary.com/dyiup6v5x/image/upload/v1771518042/CAE2-1200px_sr3dgl.webp"} className="w-full h-full object-cover transition-all duration-1000 grayscale opacity-60 group-hover:opacity-100 group-hover:grayscale-0" alt="Pièces métalliques sur mesure pour la façade du projet CAE à Lyon 3" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#050E12]/25 p-10 flex flex-col justify-end pointer-events-none">
                     <h3 className="text-3xl text-white font-extrabold tracking-tighter">CAE – Lyon 3</h3>
                   </div>
                 </div>
                 <div className="group relative aspect-[16/10] overflow-hidden rounded-3xl border border-white/10 bg-[#07161C] cursor-pointer md:mt-12" onClick={() => setZentoSlide(prev => (prev === 0 ? 1 : 0))}>
-                  <img src={zentoSlide === 0 ? "https://res.cloudinary.com/dyiup6v5x/image/upload/v1771521475/ZENTO1-1200px_w66src.webp" : "https://res.cloudinary.com/dyiup6v5x/image/upload/v1771521598/ZENTO2-1200px_qbazyy.webp"} className="w-full h-full object-cover transition-all duration-1000 grayscale opacity-60 group-hover:opacity-100 group-hover:grayscale-0" alt="Projet ZENTO Grenoble" />
+                  <img src={zentoSlide === 0 ? "https://res.cloudinary.com/dyiup6v5x/image/upload/v1771521475/ZENTO1-1200px_w66src.webp" : "https://res.cloudinary.com/dyiup6v5x/image/upload/v1771521598/ZENTO2-1200px_qbazyy.webp"} className="w-full h-full object-cover transition-all duration-1000 grayscale opacity-60 group-hover:opacity-100 group-hover:grayscale-0" alt="Habillage métallique extérieur fourni pour le projet Zento à Grenoble" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#050E12]/25 p-10 flex flex-col justify-end pointer-events-none">
                     <h3 className="text-3xl text-white font-extrabold tracking-tighter">ZENTO - Grenoble</h3>
                   </div>
@@ -570,8 +572,8 @@ const App: React.FC = () => {
             <div className="max-w-7xl mx-auto px-6">
               <div className="mb-20">
                 <span className="text-[10px] font-extrabold tracking-[0.4em] text-[#0E2A33]/40 uppercase mb-4 block">RESSOURCES</span>
-                <h2 className="text-4xl md:text-5xl text-[#0E2A33] tracking-tighter font-extrabold mb-6">Expertise technique</h2>
-                <p className="text-[#0E2A33]/60 text-lg md:text-xl font-medium max-w-2xl">Comprendre les enjeux techniques pour optimiser la conception de vos projets.</p>
+                <h2 className="text-4xl md:text-5xl text-[#0E2A33] tracking-tighter font-extrabold mb-6">Centre de ressources et expertise technique</h2>
+                <p className="text-[#0E2A33]/60 text-lg md:text-xl font-medium max-w-2xl">Comprendre les enjeux techniques, les tolérances et les finitions pour optimiser la conception de vos pièces métalliques.</p>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -583,12 +585,12 @@ const App: React.FC = () => {
                   },
                   {
                     id: 'ressource-2',
-                    title: "Pliage aluminium pour façade",
+                    title: "Pliage aluminium pour façade : limites et tolérances",
                     desc: "Découvrez comment maîtriser le pliage aluminium pour façade en anticipant la dilatation thermique, le choix des alliages et le thermolaquage QUALICOAT."
                   },
                   {
                     id: 'ressource-3',
-                    title: "Thermolaquage certifié Qualicoat",
+                    title: "Thermolaquage certifié Qualicoat : garanties",
                     desc: "La durabilité d'une façade ne dépend pas que du métal. Découvrez pourquoi le thermolaquage certifié Qualicoat après façonnage est le seul rempart contre la corrosion."
                   }
                 ].map((card, idx) => (
@@ -622,12 +624,13 @@ const App: React.FC = () => {
               </div>
 
               <div className="mt-20 text-center">
-                <button
-                  onClick={() => setCurrentPage('ressources')}
-                  className="px-10 py-4 bg-[#0b2421] text-white text-xs font-black tracking-[0.2em] uppercase rounded-full transition-all hover:bg-[#0E2A33] shadow-lg"
+                <a
+                  href="/ressources"
+                  onClick={(e) => { e.preventDefault(); setCurrentPage('ressources'); }}
+                  className="inline-block px-10 py-4 bg-[#0b2421] text-white text-xs font-black tracking-[0.2em] uppercase rounded-full transition-all hover:bg-[#0E2A33] shadow-lg"
                 >
                   ACCÉDER AUX DOSSIERS COMPLETS
-                </button>
+                </a>
               </div>
             </div>
           </section>
@@ -640,18 +643,17 @@ const App: React.FC = () => {
                   <img
                     src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1771522416/APROPOS-1200px_wkguv2.webp"
                     className="w-full h-full object-cover opacity-80"
-                    alt="Atelier de production Plialu à Lyon : 5 000 m² dédiés au façonnage métallique et pliage aluminium en Rhône-Alpes"
+                    alt="Vue extérieure de l'usine Plialu, entreprise de métallurgie et façonnage en Rhône-Alpes"
                     loading="lazy"
                   />
                 </div>
                 <div className="space-y-8 order-1 lg:order-2">
                   <span className="text-[10px] font-extrabold tracking-[0.3em] text-[#E2FD48] uppercase">À PROPOS</span>
-                  <h2 className="text-4xl md:text-5xl text-white tracking-tighter font-extrabold">Une capacité industrielle au service de vos chantiers</h2>
+                  <h2 className="text-4xl md:text-5xl text-white tracking-tighter font-extrabold">Votre entreprise de métallurgie en Rhône-Alpes</h2>
                   <p className="text-white/80 text-lg leading-relaxed">
-                    Depuis notre <strong>atelier lyonnais</strong>, nous assurons une <strong>réactivité optimale</strong> pour accompagner vos projets en
-                    <strong> Rhône-Alpes</strong> et en Europe, sur plus de <strong>5 000 m²</strong> dédiés au façonnage métallique.
+                    Depuis notre <strong>atelier lyonnais</strong>, nous assurons une réactivité optimale pour accompagner vos chantiers en <strong>Rhône-Alpes</strong> et en Europe. Une capacité de production appuyée par plus de 5 000 m² dédiés au façonnage métallique sur mesure.
                   </p>
-                  <button onClick={() => setCurrentPage('a-propos')} className="flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-[#E2FD48] hover:text-white transition-all group">En savoir plus <iconify-icon icon="lucide:arrow-right" className="group-hover:translate-x-2 transition-transform"></iconify-icon></button>
+                  <a href="/a-propos" onClick={(e) => { e.preventDefault(); setCurrentPage('a-propos'); }} className="flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-[#E2FD48] hover:text-white transition-all group">EN SAVOIR PLUS <iconify-icon icon="lucide:arrow-right" className="group-hover:translate-x-2 transition-transform"></iconify-icon></a>
                 </div>
               </div>
             </div>
@@ -738,10 +740,10 @@ const App: React.FC = () => {
       {currentPage === 'a-propos' && (
         <div className="animate-fade-up">
           {/* 1. HERO SECTION (DARK) */}
-          <section className="relative bg-[#071318] pt-28 md:pt-36 pb-16 overflow-hidden">
+          <section className="relative bg-[#071318] pt-48 md:pt-56 pb-20 overflow-hidden min-h-screen flex flex-col justify-center">
             <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#0e2a33]/40 to-[#071318]"></div>
             <div className="relative z-10 max-w-7xl mx-auto px-6">
-              <div className="max-w-4xl space-y-6">
+              <div className="max-w-4xl space-y-8">
                 <span className="text-[10px] font-extrabold tracking-[0.4em] text-[#E2FD48] uppercase block">
                   NOTRE IDENTITÉ INDUSTRIELLE
                 </span>
@@ -811,7 +813,7 @@ const App: React.FC = () => {
       {currentPage === 'projects' && (
         <div className="animate-fade-up">
           {/* Hero Réalisations */}
-          <section className="relative bg-[#071318] pt-48 md:pt-56 pb-24 overflow-hidden">
+          <section className="relative bg-[#071318] pt-48 md:pt-56 pb-24 overflow-hidden min-h-screen flex flex-col justify-center">
             <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#0e2a33]/40 to-[#071318]"></div>
             <div className="relative z-10 max-w-7xl mx-auto px-6">
               <div className="max-w-4xl space-y-8">
@@ -825,12 +827,20 @@ const App: React.FC = () => {
                   Une sélection de projets menés aux côtés de maîtres d’œuvre, architectes et entreprises générales. <br />
                   Façonnage métallique, enveloppe bâtiment et solutions sur mesure au service d’exigences techniques élevées.
                 </p>
+                <a
+                  href="#projets-grille"
+                  onClick={(e) => { e.preventDefault(); document.getElementById('projets-grille')?.scrollIntoView({ behavior: 'smooth' }); }}
+                  className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#0E2A33] bg-[#E2FD48] hover:bg-white px-6 py-3 rounded-full transition-all"
+                >
+                  Voir nos collaborations
+                  <iconify-icon icon="lucide:arrow-down" width="18"></iconify-icon>
+                </a>
               </div>
             </div>
           </section>
 
           {/* Grille des Projets */}
-          <section className="py-24 bg-white">
+          <section id="projets-grille" className="py-24 bg-white scroll-mt-24">
             <div className="max-w-7xl mx-auto px-6">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {[
@@ -1306,54 +1316,266 @@ const App: React.FC = () => {
         </div>
       )}
 
+      {/* --- SOLUTIONS HUB PAGE CONTENT --- */}
+      {currentPage === 'solutions' && (
+        <div className="animate-fade-up">
+          {/* Hero Solutions */}
+          <section className="bg-white pt-48 md:pt-56 pb-20 min-h-screen flex flex-col justify-center">
+            <div className="max-w-7xl mx-auto px-6">
+              <div className="max-w-4xl space-y-8">
+                <span className="text-[10px] font-extrabold tracking-[0.4em] text-zinc-400 uppercase block">CATALOGUE B2B</span>
+                <h1 className="text-4xl md:text-6xl tracking-tighter leading-[1.1] font-black uppercase text-[#0E2A33]">
+                  Solutions métalliques enveloppe du bâtiment
+                </h1>
+                <p className="text-base md:text-lg text-[#0E2A33]/70 max-w-2xl leading-relaxed font-medium">
+                  Enduit mince sur isolant, ravalement de façade, bardages et cassettes, précadres, tôles prélaquées. Découvrez nos gammes aluminium et acier pour l'enveloppe du bâtiment.
+                </p>
+                <a
+                  href="#solutions-familles"
+                  onClick={(e) => { e.preventDefault(); document.getElementById('solutions-familles')?.scrollIntoView({ behavior: 'smooth' }); }}
+                  className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-white bg-[#0E2A33] hover:bg-[#0E2A33]/90 px-6 py-3 rounded-full transition-all"
+                >
+                  Découvrir nos familles de produits
+                  <iconify-icon icon="lucide:arrow-down" width="18"></iconify-icon>
+                </a>
+              </div>
+            </div>
+          </section>
+
+          {/* Cinq sections applicatives */}
+          <section id="solutions-familles" className="py-16 md:py-24 bg-[#F3F6F7] border-t border-zinc-200 scroll-mt-24">
+            <div className="max-w-7xl mx-auto px-6">
+              <span className="text-[10px] font-extrabold tracking-[0.3em] text-[#0E2A33]/40 uppercase block mb-8">NOS FAMILLES DE PRODUITS</span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+                {['Enduit mince sur isolant', 'Ravalement de façade', 'Bardages & cassettes', 'Précadres', 'Tôles prélaquées'].map((label, idx) => (
+                  <div key={idx} className="bg-white rounded-2xl p-6 border border-[#0E2A33]/10 shadow-sm">
+                    <h3 className="text-lg font-extrabold text-[#0E2A33] tracking-tight">{label}</h3>
+                    <p className="text-sm text-[#0E2A33]/60 mt-2">Contenu à venir</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Blocs par matière : Aluminium puis Acier (alternés image/texte + accordéon) */}
+          <div className="bg-white">
+            {/* Bloc Aluminium — texte à gauche, image à droite */}
+            <section className="relative overflow-hidden py-12 md:py-20 border-t border-[#0E2A33]/5">
+              <div className="relative z-10 max-w-7xl mx-auto px-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+                  <div className="space-y-6">
+                    <div className="space-y-3">
+                      <span className="text-[10px] font-extrabold tracking-[0.3em] text-[#0E2A33]/40 uppercase block">MATIÈRE</span>
+                      <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">Solutions Aluminium</h2>
+                    </div>
+                    <p className="text-base md:text-lg leading-relaxed font-medium text-[#0E2A33]/70">
+                      L'aluminium est le matériau de prédilection pour l'enveloppe du bâtiment : bardages, cassettes, couvertines et précadres. Légèreté, résistance à la corrosion et finitions Qualicoat pour une durabilité optimale.
+                    </p>
+                    {/* Accordéon Aluminium */}
+                    <div className="border border-[#0E2A33]/10 rounded-xl overflow-hidden">
+                      {[
+                        { id: 'alu-0', title: 'Alliages', content: 'Séries 5000 et 6000 pour façades. Contenu détaillé à compléter.' },
+                        { id: 'alu-1', title: 'Finitions', content: 'Thermolaquage Qualicoat, anodisation. Contenu détaillé à compléter.' }
+                      ].map((item) => (
+                        <div key={item.id} className="border-b border-[#0E2A33]/10 last:border-b-0">
+                          <button
+                            type="button"
+                            onClick={() => setSolutionsAccordionOpen(solutionsAccordionOpen === item.id ? null : item.id)}
+                            className="w-full flex items-center justify-between px-5 py-4 text-left text-sm font-bold text-[#0E2A33] hover:bg-[#0E2A33]/5 transition-colors"
+                          >
+                            {item.title}
+                            <iconify-icon icon={solutionsAccordionOpen === item.id ? 'lucide:chevron-up' : 'lucide:chevron-down'} width="20"></iconify-icon>
+                          </button>
+                          {solutionsAccordionOpen === item.id && (
+                            <div className="px-5 pb-4 pt-0 text-sm text-[#0E2A33]/70">{item.content}</div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                    <a
+                      href="/solutions/aluminium"
+                      onClick={(e) => { e.preventDefault(); setCurrentPage('solutions-aluminium'); }}
+                      className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#E2FD48] bg-[#0E2A33] hover:bg-[#0E2A33]/90 px-6 py-3 rounded-full transition-all"
+                    >
+                      Découvrir nos solutions Aluminium
+                      <iconify-icon icon="lucide:arrow-right" width="18"></iconify-icon>
+                    </a>
+                  </div>
+                  <div className="relative overflow-hidden rounded-xl shadow-lg h-[320px] md:h-[500px] group bg-zinc-50">
+                    <img
+                      src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1771515763/Solutions-enveloppe-1200px_guufmy.webp"
+                      alt="Solutions aluminium enveloppe du bâtiment"
+                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0E2A33]/10 to-transparent opacity-40"></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Bloc Acier — image à gauche, texte à droite */}
+            <section className="relative overflow-hidden py-12 md:py-20 border-t border-[#0E2A33]/5 bg-[#F3F6F7]">
+              <div className="relative z-10 max-w-7xl mx-auto px-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+                  <div className="relative overflow-hidden rounded-xl shadow-lg h-[320px] md:h-[500px] group bg-zinc-50 order-2 lg:order-1">
+                    <img
+                      src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1771515264/Solutions2-1200px_cqiecv.webp"
+                      alt="Solutions acier enveloppe du bâtiment"
+                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0E2A33]/10 to-transparent opacity-40"></div>
+                  </div>
+                  <div className="space-y-6 order-1 lg:order-2">
+                    <div className="space-y-3">
+                      <span className="text-[10px] font-extrabold tracking-[0.3em] text-[#0E2A33]/40 uppercase block">MATIÈRE</span>
+                      <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">Solutions Acier</h2>
+                    </div>
+                    <p className="text-base md:text-lg leading-relaxed font-medium text-[#0E2A33]/70">
+                      L'acier galvanisé et prélaqué pour l'enveloppe : supports, couvertines, tôles nervurées et précadres. Robustesse et conformité aux exigences du bâtiment.
+                    </p>
+                    {/* Accordéon Acier */}
+                    <div className="border border-[#0E2A33]/10 rounded-xl overflow-hidden bg-white">
+                      {[
+                        { id: 'acier-0', title: 'Alliages & nuances', content: 'Acier galvanisé S320GD, prélaqué. Contenu détaillé à compléter.' },
+                        { id: 'acier-1', title: 'Finitions', content: 'Prélaquage, galvanisation. Contenu détaillé à compléter.' }
+                      ].map((item) => (
+                        <div key={item.id} className="border-b border-[#0E2A33]/10 last:border-b-0">
+                          <button
+                            type="button"
+                            onClick={() => setSolutionsAccordionOpen(solutionsAccordionOpen === item.id ? null : item.id)}
+                            className="w-full flex items-center justify-between px-5 py-4 text-left text-sm font-bold text-[#0E2A33] hover:bg-[#0E2A33]/5 transition-colors"
+                          >
+                            {item.title}
+                            <iconify-icon icon={solutionsAccordionOpen === item.id ? 'lucide:chevron-up' : 'lucide:chevron-down'} width="20"></iconify-icon>
+                          </button>
+                          {solutionsAccordionOpen === item.id && (
+                            <div className="px-5 pb-4 pt-0 text-sm text-[#0E2A33]/70">{item.content}</div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                    <a
+                      href="/solutions/acier"
+                      onClick={(e) => { e.preventDefault(); setCurrentPage('solutions-acier'); }}
+                      className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#E2FD48] bg-[#0E2A33] hover:bg-[#0E2A33]/90 px-6 py-3 rounded-full transition-all"
+                    >
+                      Découvrir nos solutions Acier
+                      <iconify-icon icon="lucide:arrow-right" width="18"></iconify-icon>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          {/* Section conversion */}
+          <section className="py-20 md:py-28 text-white" style={{ background: 'linear-gradient(to bottom, #071318 0%, #0b1e26 100%)' }}>
+            <div className="max-w-7xl mx-auto px-6 text-center">
+              <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-6">Un projet en tête ?</h2>
+              <p className="text-white/80 text-lg max-w-xl mx-auto mb-10">Chiffrez votre projet sur mesure avec nos équipes.</p>
+              <button
+                onClick={() => setCurrentPage('contact')}
+                className="px-12 py-4 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full hover:bg-white transition-all shadow-lg"
+              >
+                Chiffrer votre projet sur mesure
+              </button>
+            </div>
+          </section>
+        </div>
+      )}
+
+      {/* --- SOLUTIONS ALUMINIUM SUB-PAGE --- */}
+      {currentPage === 'solutions-aluminium' && (
+        <div className="animate-fade-up bg-white">
+          <section className="pt-48 md:pt-56 pb-20 bg-white border-b border-zinc-100 min-h-screen flex flex-col justify-center">
+            <div className="max-w-7xl mx-auto px-6">
+              <a
+                href="/solutions"
+                onClick={(e) => { e.preventDefault(); setCurrentPage('solutions'); }}
+                className="inline-flex items-center gap-2 text-sm font-bold text-[#0E2A33]/60 hover:text-[#0E2A33] mb-8 transition-colors"
+              >
+                <iconify-icon icon="lucide:arrow-left" width="18"></iconify-icon>
+                Retour aux solutions
+              </a>
+              <span className="text-[10px] font-extrabold tracking-[0.4em] text-[#0E2A33]/40 uppercase block mb-4">SOLUTIONS PAR MATIÈRE</span>
+              <h1 className="text-4xl md:text-6xl tracking-tighter leading-[1.1] font-black text-[#0E2A33]">
+                Solutions Aluminium
+              </h1>
+              <p className="text-lg text-[#0E2A33]/70 max-w-2xl mt-6 leading-relaxed font-medium">
+                Bardages, cassettes, couvertines et précadres en aluminium pour l'enveloppe du bâtiment. Contenu à compléter avec vos textes SEO et visuels.
+              </p>
+            </div>
+          </section>
+          <section className="py-16 md:py-24 bg-[#F3F6F7]">
+            <div className="max-w-7xl mx-auto px-6">
+              <p className="text-[#0E2A33]/70 leading-relaxed">Contenu des sous-pages aluminium à intégrer (familles de produits, fiches, etc.).</p>
+            </div>
+          </section>
+        </div>
+      )}
+
+      {/* --- SOLUTIONS ACIER SUB-PAGE --- */}
+      {currentPage === 'solutions-acier' && (
+        <div className="animate-fade-up bg-white">
+          <section className="pt-48 md:pt-56 pb-20 bg-white border-b border-zinc-100 min-h-screen flex flex-col justify-center">
+            <div className="max-w-7xl mx-auto px-6">
+              <a
+                href="/solutions"
+                onClick={(e) => { e.preventDefault(); setCurrentPage('solutions'); }}
+                className="inline-flex items-center gap-2 text-sm font-bold text-[#0E2A33]/60 hover:text-[#0E2A33] mb-8 transition-colors"
+              >
+                <iconify-icon icon="lucide:arrow-left" width="18"></iconify-icon>
+                Retour aux solutions
+              </a>
+              <span className="text-[10px] font-extrabold tracking-[0.4em] text-[#0E2A33]/40 uppercase block mb-4">SOLUTIONS PAR MATIÈRE</span>
+              <h1 className="text-4xl md:text-6xl tracking-tighter leading-[1.1] font-black text-[#0E2A33]">
+                Solutions Acier
+              </h1>
+              <p className="text-lg text-[#0E2A33]/70 max-w-2xl mt-6 leading-relaxed font-medium">
+                Supports, couvertines, tôles nervurées et précadres en acier pour l'enveloppe du bâtiment. Contenu à compléter avec vos textes SEO et visuels.
+              </p>
+            </div>
+          </section>
+          <section className="py-16 md:py-24 bg-[#F3F6F7]">
+            <div className="max-w-7xl mx-auto px-6">
+              <p className="text-[#0E2A33]/70 leading-relaxed">Contenu des sous-pages acier à intégrer (familles de produits, fiches, etc.).</p>
+            </div>
+          </section>
+        </div>
+      )}
+
       {/* --- EXPERTISES PAGE CONTENT --- */}
       {currentPage === 'expertises' && (
         <div className="animate-fade-up">
           {/* Hero Expertises */}
-          <section className="bg-white pt-48 md:pt-56 pb-20">
+          <section className="bg-white pt-48 md:pt-56 pb-20 min-h-screen flex flex-col justify-center">
             <div className="max-w-7xl mx-auto px-6">
               <div className="max-w-4xl space-y-8">
                 <span className="text-[10px] font-extrabold tracking-[0.4em] text-zinc-400 uppercase block">
                   PROCESS INDUSTRIEL INTÉGRÉ
                 </span>
                 <h1 className="text-4xl md:text-6xl tracking-tighter leading-[1.1] font-black uppercase text-[#0E2A33]">
-                  Expertises de façonnage métallique
+                  FABRICATION DE PIÈCES MÉTALLIQUES SUR MESURE
                 </h1>
                 <p className="text-base md:text-lg text-[#0E2A33]/70 max-w-2xl leading-relaxed font-medium">
-                  De l’étude technique (DXF/DWG) au thermolaquage industriel, notre chaîne de valeur intégrée garantit précision, conformité et performance chantier.
+                  De l'étude technique (DXF/DWG), au thermolaquage industriel, jusqu'au pliage, notre chaîne de valeur intégrée garantit précision, conformité et performance chantier.
                 </p>
-              </div>
-            </div>
-          </section>
-
-          {/* Section Chiffres clés */}
-          <section className="py-16 md:py-24 text-white border-b border-white/5" style={{ background: 'linear-gradient(to bottom, #071318 0%, #0b1e26 100%)' }}>
-            <div className="max-w-7xl mx-auto px-6">
-              <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-16 md:gap-8 text-center">
-                <div className="flex-1 relative md:after:content-[''] md:after:absolute md:after:-right-4 md:after:top-1/2 md:after:-translate-y-1/2 md:after:h-[60%] md:after:w-px md:after:bg-white/[0.12] last:after:hidden">
-                  <div className="text-3xl md:text-5xl font-black text-[#E2FD48] mb-3">
-                    <strong>+ 5 000 m²</strong>
-                  </div>
-                  <p className="text-[9px] font-extrabold tracking-widest text-white/40 uppercase">Atelier de production intégré</p>
-                </div>
-                <div className="flex-1 relative md:after:content-[''] md:after:absolute md:after:-right-4 md:after:top-1/2 md:after:-translate-y-1/2 md:after:h-[60%] md:after:w-px md:after:bg-white/[0.12] last:after:hidden">
-                  <div className="text-2xl md:text-4xl lg:text-5xl font-black text-[#E2FD48] mb-3 text-balance leading-tight">
-                    <strong>2 lignes intégrées</strong>
-                  </div>
-                  <p className="text-[9px] font-extrabold tracking-widest text-white/40 uppercase">Façonnage & thermolaquage industriel</p>
-                </div>
-                <div className="flex-1 relative md:after:content-[''] md:after:absolute md:after:-right-4 md:after:top-1/2 md:after:-translate-y-1/2 md:after:h-[60%] md:after:w-px md:after:bg-white/[0.12] last:after:hidden">
-                  <div className="text-3xl md:text-5xl font-black text-[#E2FD48] mb-3 uppercase">
-                    <strong>4 M</strong>
-                  </div>
-                  <p className="text-[9px] font-extrabold tracking-widest text-white/40 uppercase">Longueur maximale</p>
-                </div>
+                <a
+                  href="#expertises-sommaire"
+                  onClick={(e) => { e.preventDefault(); document.getElementById('expertises-sommaire')?.scrollIntoView({ behavior: 'smooth' }); }}
+                  className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-white bg-[#0E2A33] hover:bg-[#0E2A33]/90 px-6 py-3 rounded-full transition-all"
+                >
+                  Découvrir notre process
+                  <iconify-icon icon="lucide:arrow-down" width="18"></iconify-icon>
+                </a>
               </div>
             </div>
           </section>
 
           {/* Mini Sommaire : Mini Blocs Compacts Reliés (Process Continu) */}
-          <div className="relative z-10 bg-white border-b border-zinc-100">
+          <div id="expertises-sommaire" className="relative z-10 bg-white border-b border-zinc-100 scroll-mt-24">
             <div className="max-w-7xl mx-auto px-6">
               <div className="relative flex items-center overflow-x-auto no-scrollbar py-14 px-4 md:justify-center scroll-snap-x">
                 <div className="flex items-center gap-0 md:flex-row">
@@ -1385,6 +1607,32 @@ const App: React.FC = () => {
             </div>
           </div>
 
+          {/* Section Chiffres clés */}
+          <section className="py-16 md:py-24 text-white border-b border-white/5" style={{ background: 'linear-gradient(to bottom, #071318 0%, #0b1e26 100%)' }}>
+            <div className="max-w-7xl mx-auto px-6">
+              <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-16 md:gap-8 text-center">
+                <div className="flex-1 relative md:after:content-[''] md:after:absolute md:after:-right-4 md:after:top-1/2 md:after:-translate-y-1/2 md:after:h-[60%] md:after:w-px md:after:bg-white/[0.12] last:after:hidden">
+                  <div className="text-3xl md:text-5xl font-black text-[#E2FD48] mb-3">
+                    <strong>+ 5 000 m²</strong>
+                  </div>
+                  <p className="text-[9px] font-extrabold tracking-widest text-white/40 uppercase">Atelier de production intégré</p>
+                </div>
+                <div className="flex-1 relative md:after:content-[''] md:after:absolute md:after:-right-4 md:after:top-1/2 md:after:-translate-y-1/2 md:after:h-[60%] md:after:w-px md:after:bg-white/[0.12] last:after:hidden">
+                  <div className="text-2xl md:text-4xl lg:text-5xl font-black text-[#E2FD48] mb-3 text-balance leading-tight">
+                    <strong>2 lignes intégrées</strong>
+                  </div>
+                  <p className="text-[9px] font-extrabold tracking-widest text-white/40 uppercase">Façonnage & thermolaquage industriel</p>
+                </div>
+                <div className="flex-1 relative md:after:content-[''] md:after:absolute md:after:-right-4 md:after:top-1/2 md:after:-translate-y-1/2 md:after:h-[60%] md:after:w-px md:after:bg-white/[0.12] last:after:hidden">
+                  <div className="text-3xl md:text-5xl font-black text-[#E2FD48] mb-3 uppercase">
+                    <strong>4 M</strong>
+                  </div>
+                  <p className="text-[9px] font-extrabold tracking-widest text-white/40 uppercase">Longueur maximale</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
           {/* Corps de Page */}
           <div className="bg-[#F3F6F7]">
             {expertisesDetails.map((exp, idx) => (
@@ -1411,31 +1659,37 @@ const App: React.FC = () => {
                             {exp.title}
                           </h2>
                         </div>
-                        <p className="text-base md:text-lg leading-relaxed font-medium text-[#0E2A33]/70">
-                          {exp.text}
-                        </p>
-                        {exp.id === 'pliage-automatise' && (
-                          <p className="text-sm md:text-base text-[#0E2A33]/70 leading-relaxed">
-                            En savoir plus sur les défis techniques du{' '}
-                            <button
-                              onClick={() => setCurrentPage('ressource-2')}
-                              className="underline underline-offset-4 decoration-[#0E2A33]/40 hover:decoration-[#0E2A33] font-semibold"
-                            >
-                              pliage aluminium pour façade
-                            </button>
-                            .
+                        {exp.id === 'bureau-etudes' ? (
+                          <p className="text-base md:text-lg leading-relaxed font-medium text-[#0E2A33]/70">
+                            Analyse critique de vos plans DXF/DWG, optimisation des calepinages et validation des <strong>tolérances fabrication métal sur mesure</strong> pour une production sans erreur. Nos ingénieurs valident la faisabilité technique de chaque pliage complexe en anticipant les <strong>contraintes fabrication pièces métalliques</strong>.
                           </p>
-                        )}
-                        {exp.id === 'thermolaquage-plat' && (
-                          <p className="text-sm md:text-base text-[#0E2A33]/70 leading-relaxed">
-                            Découvrez les garanties du{' '}
-                            <button
-                              onClick={() => setCurrentPage('ressource-3')}
-                              className="underline underline-offset-4 decoration-[#0E2A33]/40 hover:decoration-[#0E2A33] font-semibold"
-                            >
-                              thermolaquage certifié Qualicoat
-                            </button>
-                            .
+                        ) : exp.id === 'deroulage-mise-format' ? (
+                          <>
+                            <p className="text-base md:text-lg leading-relaxed font-medium text-[#0E2A33]/70">
+                              Transformation des bobines en formats plats via nos lignes de refendage et cisaillage. Une maîtrise totale de la planéité, première étape clé de notre <strong>fabrication industrielle métal</strong>, indispensable pour les façades haut de gamme et les cassettes aluminium.
+                            </p>
+                          </>
+                        ) : exp.id === 'thermolaquage-plat' ? (
+                          <>
+                            <p className="text-base md:text-lg leading-relaxed font-medium text-[#0E2A33]/70">
+                              Application automatisée de <strong>peinture poudre métal</strong> certifiée Qualicoat. Un rendu homogène et une durabilité accrue face aux exigences du bâtiment.
+                            </p>
+                            <p className="text-base md:text-lg leading-relaxed font-medium text-[#0E2A33]/70">
+                              <a href="/expertises/thermolaquage-industriel">Découvrez notre thermolaquage certifié Qualicoat</a>
+                            </p>
+                          </>
+                        ) : exp.id === 'pliage-automatise' ? (
+                          <>
+                            <p className="text-base md:text-lg leading-relaxed font-medium text-[#0E2A33]/70">
+                              Nos centres de pliage robotisés et presses plieuses grande longueur permettent de réaliser des profils complexes avec une répétabilité absolue. Nous repoussons les <strong>limites du pliage aluminium</strong> avec une capacité allant jusqu'à 4 mètres pour vos couvertines et bavettes.
+                            </p>
+                            <p className="text-base md:text-lg leading-relaxed font-medium text-[#0E2A33]/70">
+                              <a href="/expertises/pliage-aluminium-sur-mesure">En savoir plus sur nos capacités de pliage aluminium sur mesure</a>
+                            </p>
+                          </>
+                        ) : (
+                          <p className="text-base md:text-lg leading-relaxed font-medium text-[#0E2A33]/70">
+                            {exp.text}
                           </p>
                         )}
                         <div className="pt-6 border-t border-[#0E2A33]/10 flex flex-col gap-2">
@@ -1450,10 +1704,37 @@ const App: React.FC = () => {
                             src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773074223/BE-1200px_nzpfpj.webp"
                             srcSet="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773074223/BE-800px_wa43jv.webp 800w, https://res.cloudinary.com/dyiup6v5x/image/upload/v1773074223/BE-1200px_nzpfpj.webp 1200w, https://res.cloudinary.com/dyiup6v5x/image/upload/v1773074223/BE-1600px_x6mpih.webp 1600w"
                             sizes="(max-width: 768px) 100vw, 50vw"
-                            alt="Bureau d'études technique Plialu - Optimisation de plans DXF et calcul de pliage"
+                            alt="Ingénieur bureau d'études analysant des plans CAO pour la fabrication de pièces métalliques sur mesure"
                             loading="lazy"
                             decoding="async"
                             className="w-full h-full object-cover rounded-2xl shadow-lg transition-transform duration-1000 group-hover:scale-105"
+                          />
+                        ) : exp.id === 'deroulage-mise-format' ? (
+                          <img
+                            srcSet="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773075246/De%CC%81roulage-800px_qz2nnx.webp 800w, https://res.cloudinary.com/dyiup6v5x/image/upload/v1773075246/De%CC%81roulage-1200px_e0hd8r.webp 1200w, https://res.cloudinary.com/dyiup6v5x/image/upload/v1773075246/De%CC%81roulage-1600px_plmy5l.webp 1600w"
+                            sizes="(max-width: 1024px) 100vw, 50vw"
+                            src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773075246/De%CC%81roulage-1200px_e0hd8r.webp"
+                            alt="Stockage de bobines de métal industrielles lourdes dans l'atelier Plialu pour l'étape de déroulage et préparation matière"
+                            loading="lazy"
+                            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                          />
+                        ) : exp.id === 'thermolaquage-plat' ? (
+                          <img
+                            srcSet="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773147911/Thermolaquage-800px_xe7she.webp 800w, https://res.cloudinary.com/dyiup6v5x/image/upload/v1773147911/Thermolaquage-1200px_gnf55a.webp 1200w, https://res.cloudinary.com/dyiup6v5x/image/upload/v1773147911/Thermolaquage-1600px_wo40dl.webp 1600w"
+                            sizes="(max-width: 1024px) 100vw, 50vw"
+                            src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773147911/Thermolaquage-1200px_gnf55a.webp"
+                            alt="Thermolaquage et peinture poudre métal"
+                            loading="lazy"
+                            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                          />
+                        ) : exp.id === 'pliage-automatise' ? (
+                          <img
+                            srcSet="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773149127/Pliage-800px_x24kz6.webp 800w, https://res.cloudinary.com/dyiup6v5x/image/upload/v1773149127/Pliage-1200px_bl5tzv.webp 1200w, https://res.cloudinary.com/dyiup6v5x/image/upload/v1773149127/Pliage-1600px_yxsdqe.webp 1600w"
+                            sizes="(max-width: 1024px) 100vw, 50vw"
+                            src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773149127/Pliage-1200px_bl5tzv.webp"
+                            alt="Pliage aluminium sur presse plieuse Amada"
+                            loading="lazy"
+                            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                           />
                         ) : (
                           <img
@@ -1490,9 +1771,9 @@ const App: React.FC = () => {
       {currentPage === 'ressources' && (
         <div className="animate-fade-up">
           {/* Hero Ressources */}
-          <section className="bg-white pt-20 md:pt-24 pb-6">
+          <section className="bg-white pt-48 md:pt-56 pb-20 min-h-screen flex flex-col justify-center">
             <div className="max-w-7xl mx-auto px-6">
-              <div className="max-w-4xl space-y-4">
+              <div className="max-w-4xl space-y-8">
                 <span className="text-[10px] font-extrabold tracking-[0.4em] text-zinc-400 uppercase block">
                   RESSOURCES TECHNIQUES
                 </span>
@@ -1503,12 +1784,20 @@ const App: React.FC = () => {
                   Dossiers techniques et guides pratiques pour éclairer vos choix de matériaux, sécuriser vos décisions de conception et
                   fiabiliser vos chantiers en enveloppe et habillage métallique.
                 </p>
+                <a
+                  href="#dossiers"
+                  onClick={(e) => { e.preventDefault(); document.getElementById('dossiers')?.scrollIntoView({ behavior: 'smooth' }); }}
+                  className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-white bg-[#0E2A33] hover:bg-[#0E2A33]/90 px-6 py-3 rounded-full transition-all"
+                >
+                  Accéder aux dossiers complets
+                  <iconify-icon icon="lucide:arrow-down" width="18"></iconify-icon>
+                </a>
               </div>
             </div>
           </section>
 
           {/* Cards des 3 dossiers principaux */}
-          <section className="py-24 bg-[#F3F6F7] border-t border-zinc-200">
+          <section id="dossiers" className="py-24 bg-[#F3F6F7] border-t border-zinc-200 scroll-mt-24">
             <div className="max-w-7xl mx-auto px-6">
               <div className="mb-16 max-w-3xl">
                 <span className="text-[10px] font-extrabold tracking-[0.3em] text-[#0E2A33]/40 uppercase mb-4 block">
@@ -1531,23 +1820,23 @@ const App: React.FC = () => {
                     title: "Choisir le bon métal pour une façade extérieure",
                     excerpt:
                       "Comprendre les différences de comportement, de tenue à la corrosion et de maintenance pour choisir la bonne matière en habillage de façade.",
-                    readingTime: '7 minutes de lecture'
+                    readingTime: '5 minutes de lecture'
                   },
                   {
                     id: 'ressource-2',
                     tag: 'CONCEPTION FAÇADE',
-                    title: "Pliage aluminium pour façade",
+                    title: "Pliage aluminium pour façade : limites et tolérances",
                     excerpt:
                       "Découvrez comment maîtriser le pliage aluminium pour façade en anticipant la dilatation thermique, le choix des alliages et le thermolaquage QUALICOAT.",
-                    readingTime: '8 minutes de lecture'
+                    readingTime: '5 minutes de lecture'
                   },
                   {
                     id: 'ressource-3',
                     tag: 'DURABILITÉ & QUALICOAT',
-                    title: "Thermolaquage certifié Qualicoat",
+                    title: "Thermolaquage certifié Qualicoat : garanties",
                     excerpt:
                       "La durabilité d'une façade ne dépend pas que du métal. Découvrez pourquoi le thermolaquage certifié Qualicoat après façonnage est le seul rempart contre la corrosion.",
-                    readingTime: '6 minutes de lecture',
+                    readingTime: '5 minutes de lecture',
                     showQualicoatLogo: true
                   }
                 ].map((article) => (
@@ -1686,7 +1975,7 @@ const App: React.FC = () => {
                 RESSOURCES TECHNIQUES · FAÇADE ALUMINIUM
               </span>
               <h1 className="text-4xl md:text-5xl tracking-tighter leading-[1.1] font-black mb-6 text-[#000000]">
-                Pliage aluminium pour façade
+                Pliage aluminium pour façade : limites et tolérances
               </h1>
               <p className="text-base md:text-lg text-[#1F2937]/80 leading-relaxed font-medium mb-6">
                 Le <strong>pliage aluminium pour façade</strong> constitue une étape critique de l’ingénierie de l’enveloppe, intervenant
@@ -1850,7 +2139,7 @@ const App: React.FC = () => {
                 RESSOURCES TECHNIQUES · THERMOLAQUAGE QUALICOAT
               </span>
               <h1 className="text-4xl md:text-5xl tracking-tighter leading-[1.1] font-black mb-6 text-[#000000]">
-                Thermolaquage certifié Qualicoat
+                Thermolaquage certifié Qualicoat : garanties
               </h1>
               <p className="text-base md:text-lg text-[#1F2937]/80 leading-relaxed font-medium">
                 Le <strong>Thermolaquage certifié Qualicoat</strong> représente l'exigence technique absolue pour garantir la pérennité
@@ -2087,7 +2376,7 @@ const App: React.FC = () => {
       {currentPage === 'contact' && (
         <div className="animate-fade-up">
           {/* Hero Contact (White background, Dark header logic) */}
-          <section className="bg-white pt-48 md:pt-56 pb-20">
+          <section className="bg-white pt-48 md:pt-56 pb-20 min-h-screen flex flex-col justify-center">
             <div className="max-w-7xl mx-auto px-6">
               <div className="max-w-4xl space-y-8">
                 <span className="text-[10px] font-extrabold tracking-[0.4em] text-zinc-400 uppercase block">
