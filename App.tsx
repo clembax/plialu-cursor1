@@ -482,7 +482,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             </div>
             <div className="relative z-30 w-full max-w-7xl mx-auto px-6 py-20">
               <div className="max-w-5xl animate-fade-up">
-                <h1 className="text-4xl md:text-6xl lg:text-[clamp(2.5rem,6.5vw,5.8rem)] tracking-tighter leading-[1.15] mb-12 font-black uppercase max-w-4xl text-white">
+                <h1 className="text-4xl md:text-6xl lg:text-[clamp(2.1rem,5.5vw,4.9rem)] tracking-tighter leading-[1.15] mb-12 font-black uppercase max-w-4xl text-white">
                   EXPERT INDUSTRIEL EN <br className="hidden md:block" />
                   <span className="text-[#8E9BA4]">FAÇONNAGE MÉTALLIQUE SUR MESURE</span>
                 </h1>
