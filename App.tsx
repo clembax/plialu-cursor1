@@ -852,7 +852,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 <a
                   href="#projets-grille"
                   onClick={(e) => { e.preventDefault(); document.getElementById('projets-grille')?.scrollIntoView({ behavior: 'smooth' }); }}
-                  className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#0E2A33] bg-[#E2FD48] hover:bg-white px-6 py-3 rounded-full transition-all"
+                  className="inline-flex items-center gap-2 px-10 py-4 md:px-12 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all shadow-xl hover:shadow-[#E2FD48]/20 hover:-translate-y-1"
                 >
                   Voir nos collaborations
                   <iconify-icon icon="lucide:arrow-down" width="18"></iconify-icon>
@@ -1513,7 +1513,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 <a
                   href="#expertises-sommaire"
                   onClick={(e) => { e.preventDefault(); document.getElementById('expertises-sommaire')?.scrollIntoView({ behavior: 'smooth' }); }}
-                  className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-white bg-[#0E2A33] hover:bg-[#0E2A33]/90 px-6 py-3 rounded-full transition-all"
+                  className="inline-flex items-center gap-2 w-full sm:w-auto px-12 py-4 bg-[#0E2A33] text-white text-sm font-extrabold rounded-full transition-all shadow-lg hover:shadow-2xl"
                 >
                   Découvrir notre process
                   <iconify-icon icon="lucide:arrow-down" width="18"></iconify-icon>
@@ -1733,7 +1733,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 <a
                   href="#dossiers"
                   onClick={(e) => { e.preventDefault(); document.getElementById('dossiers')?.scrollIntoView({ behavior: 'smooth' }); }}
-                  className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-white bg-[#0E2A33] hover:bg-[#0E2A33]/90 px-6 py-3 rounded-full transition-all"
+                  className="inline-flex items-center gap-2 w-full sm:w-auto px-12 py-4 bg-[#0E2A33] text-white text-sm font-extrabold rounded-full transition-all shadow-lg hover:shadow-2xl"
                 >
                   Accéder aux dossiers complets
                   <iconify-icon icon="lucide:arrow-down" width="18"></iconify-icon>
