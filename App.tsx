@@ -572,8 +572,17 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           </section>
 
           {/* Section dédiée : vidéo Teaser (loop, muette, lecture au scroll) */}
-          <section id="teaser-video" className="section--dark py-24" style={{ background: '#071318' }}>
-            <div className="max-w-6xl mx-auto px-6">
+          <section
+            id="teaser-video"
+            className="relative py-24"
+            style={{ background: 'linear-gradient(to bottom, #0b1e26 0%, #071318 100%)' }}
+          >
+            {/* Dégradé de transition avec la section Expertises */}
+            <div
+              className="absolute inset-0 z-0 pointer-events-none"
+              style={{ background: 'linear-gradient(to bottom, rgba(11,30,38,0) 0%, rgba(11,30,38,0.4) 8%, #0b1e26 20%)' }}
+            ></div>
+            <div className="relative max-w-6xl mx-auto px-6 z-10">
               <div className="rounded-2xl overflow-hidden border border-white/10">
                 <video
                   ref={teaserVideoRef}
