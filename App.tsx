@@ -54,6 +54,7 @@ const App: React.FC = () => {
   const [formFileError, setFormFileError] = useState<string | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [solutionsAccordionOpen, setSolutionsAccordionOpen] = useState<string | null>(null);
+  const [activeSolutionHover, setActiveSolutionHover] = React.useState(0);
   const contactFormRef = React.useRef<HTMLFormElement>(null);
 
   // Header Theme: 'dark' = light header bar (dark logo/menu) for contrast on light backgrounds (Expertises, Solutions, Ressources, Contact, Articles, Merci)
@@ -235,6 +236,14 @@ const App: React.FC = () => {
       tag: "OPTIMISATION CHANTIER",
       materials: "Aluminium • Acier galvanisé • Inox"
     }
+  ];
+
+  const homeSolutionsList = [
+    { id: '01', title: "Bardages & cassettes", image: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1773147911/Placeholder-Dark_xe7she.webp" },
+    { id: '02', title: "Enduit mince sur isolant", image: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1773147911/Placeholder-Dark_xe7she.webp" },
+    { id: '03', title: "Précadres", image: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1773147911/Placeholder-Dark_xe7she.webp" },
+    { id: '04', title: "Tôles prélaquées", image: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1773147911/Placeholder-Dark_xe7she.webp" },
+    { id: '05', title: "Ravalement de façade", image: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1773147911/Placeholder-Dark_xe7she.webp" }
   ];
 
   const expertisesDetails = [
@@ -543,18 +552,66 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           {/* 3. SOLUTIONS — Teaser (CTA vers page Solutions) */}
           <section id="solutions" className="py-32 section--light">
             <div className="max-w-7xl mx-auto px-6">
-              <div className="max-w-2xl space-y-6">
-                <span className="text-[10px] font-extrabold tracking-[0.4em] text-[#0E2A33]/40 uppercase">SOLUTIONS</span>
-                <h2 className="text-4xl md:text-5xl text-[#0E2A33] tracking-tighter font-extrabold">Solutions métalliques pour l'enveloppe du bâtiment</h2>
-                <p className="text-[#0E2A33]/60 text-lg leading-relaxed font-medium">Catalogue B2B : enduit mince, ravalement, bardages et cassettes, précadres, tôles prélaquées. Découvrez nos gammes aluminium et acier.</p>
-                <a
-                  href="/solutions"
-                  onClick={(e) => { e.preventDefault(); setCurrentPage('solutions'); }}
-                  className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-[#E2FD48] hover:text-[#0E2A33] transition-all group"
-                >
-                  Découvrir nos solutions
-                  <iconify-icon icon="lucide:arrow-right" className="group-hover:translate-x-2 transition-transform"></iconify-icon>
-                </a>
+              <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+                {/* Colonne gauche : intro + liste interactive + CTA */}
+                <div className="flex flex-col h-full">
+                  <div className="max-w-2xl space-y-6 mb-10">
+                    <span className="text-[10px] font-extrabold tracking-[0.4em] text-[#0E2A33]/40 uppercase">SOLUTIONS</span>
+                    <h2 className="text-4xl md:text-5xl text-[#0E2A33] tracking-tighter font-extrabold">Solutions métalliques pour l'enveloppe du bâtiment</h2>
+                    <p className="text-[#0E2A33]/60 text-lg leading-relaxed font-medium">Catalogue B2B : enduit mince, ravalement, bardages et cassettes, précadres, tôles prélaquées. Découvrez nos gammes aluminium et acier.</p>
+                  </div>
+
+                  <div className="flex flex-col gap-6">
+                  {homeSolutionsList.map((item, index) => {
+                    const isActive = activeSolutionHover === index;
+                    return (
+                      <button
+                        key={item.id}
+                        type="button"
+                        onMouseEnter={() => setActiveSolutionHover(index)}
+                        className="text-left group"
+                      >
+                        <div className="flex flex-col">
+                          <div className={`flex items-center gap-4 transition-colors duration-200 ${isActive ? 'text-[#0E2A33]' : 'text-[#0E2A33]/40'}`}>
+                            <span className={`text-[11px] font-black tracking-[0.3em] uppercase ${isActive ? 'text-[#0E2A33]' : 'text-[#0E2A33]/30'}`}>
+                              {item.id}
+                            </span>
+                            <span className="text-3xl md:text-4xl font-extrabold tracking-tight">
+                              {item.title}
+                            </span>
+                          </div>
+                          <div
+                            className={`mt-3 h-[2px] rounded-full transition-all duration-200 origin-left ${
+                              isActive ? 'w-16 bg-[#0E2A33]' : 'w-10 bg-[#0E2A33]/10'
+                            }`}
+                          />
+                        </div>
+                      </button>
+                    );
+                  })}
+                  </div>
+
+                  <div className="mt-12">
+                    <button
+                      onClick={() => setCurrentPage('solutions')}
+                      className="px-12 py-4 border border-[#0E2A33] text-[#0E2A33] text-sm font-bold rounded-full transition-all hover:bg-[#0E2A33] hover:text-white"
+                    >
+                      Voir toutes nos solutions
+                    </button>
+                  </div>
+                </div>
+
+                {/* Colonne droite : image dynamique */}
+                <div className="relative h-full">
+                  <div className="relative rounded-2xl overflow-hidden min-h-[320px] lg:h-full border border-zinc-100 bg-white shadow-sm">
+                    <img
+                      key={homeSolutionsList[activeSolutionHover].id}
+                      src={homeSolutionsList[activeSolutionHover].image}
+                      alt={homeSolutionsList[activeSolutionHover].title}
+                      className="w-full h-full object-cover transition-opacity duration-500 ease-in-out"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </section>
