@@ -31,8 +31,6 @@ const App: React.FC = () => {
     | 'home'
     | 'expertises'
     | 'solutions'
-    | 'solutions-aluminium'
-    | 'solutions-acier'
     | 'contact'
     | 'projects'
     | 'a-propos'
@@ -40,6 +38,11 @@ const App: React.FC = () => {
     | 'ressource-1'
     | 'ressource-2'
     | 'ressource-3'
+    | 'solution-bardage'
+    | 'solution-enduit'
+    | 'solution-precadres'
+    | 'solution-toles'
+    | 'solution-ravalement'
     | 'merci'
   >('home');
   const [hoveredStep, setHoveredStep] = useState<number | null>(null);
@@ -57,8 +60,11 @@ const App: React.FC = () => {
   const headerTheme =
     currentPage === 'expertises' ||
     currentPage === 'solutions' ||
-    currentPage === 'solutions-aluminium' ||
-    currentPage === 'solutions-acier' ||
+    currentPage === 'solution-bardage' ||
+    currentPage === 'solution-enduit' ||
+    currentPage === 'solution-precadres' ||
+    currentPage === 'solution-toles' ||
+    currentPage === 'solution-ravalement' ||
     currentPage === 'ressources' ||
     currentPage === 'ressource-1' ||
     currentPage === 'ressource-2' ||
@@ -114,10 +120,16 @@ const App: React.FC = () => {
         "Spécialiste du façonnage métallique pour le bâtiment. Étude technique, pliage CNC haute précision et thermolaquage certifié Qualicoat pour vos façades.";
     } else if (currentPage === 'solutions') {
       title = 'Solutions métalliques enveloppe du bâtiment | Plialu';
-    } else if (currentPage === 'solutions-aluminium') {
-      title = 'Solutions aluminium enveloppe du bâtiment | Plialu';
-    } else if (currentPage === 'solutions-acier') {
-      title = 'Solutions acier enveloppe du bâtiment | Plialu';
+    } else if (currentPage === 'solution-bardage') {
+      title = 'Bardages et Cassettes Métalliques sur mesure | Plialu';
+    } else if (currentPage === 'solution-enduit') {
+      title = 'Profils pour Enduit Mince sur Isolant (ITE) | Plialu';
+    } else if (currentPage === 'solution-precadres') {
+      title = 'Précadres Métalliques de Fenêtre sur mesure | Plialu';
+    } else if (currentPage === 'solution-toles') {
+      title = 'Tôles Prélaquées | Plialu';
+    } else if (currentPage === 'solution-ravalement') {
+      title = 'Solutions Métalliques pour Ravalement de Façade | Plialu';
     } else if (currentPage === 'ressource-1') {
       title = 'Choisir le bon métal pour une façade extérieure | Plialu';
     } else if (currentPage === 'ressource-2') {
@@ -336,12 +348,22 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             >
               Expertises
             </button>
-            <button 
-              onClick={() => setCurrentPage('solutions')} 
+            <button
+              onClick={() => setCurrentPage('solutions')}
               className={`text-xs font-semibold px-5 py-2 rounded-full transition-all
-                ${currentPage === 'solutions' || currentPage === 'solutions-aluminium' || currentPage === 'solutions-acier'
-                  ? (headerTheme === 'dark' ? 'text-[#0E2A33] bg-[#0E2A33]/10' : 'text-white bg-white/10')
-                  : (headerTheme === 'dark' ? 'text-[#0E2A33]/60 hover:text-[#0E2A33] hover:bg-black/5' : 'text-zinc-400 hover:text-white hover:bg-white/5')
+                ${
+                  currentPage === 'solutions' ||
+                  currentPage === 'solution-bardage' ||
+                  currentPage === 'solution-enduit' ||
+                  currentPage === 'solution-precadres' ||
+                  currentPage === 'solution-toles' ||
+                  currentPage === 'solution-ravalement'
+                    ? headerTheme === 'dark'
+                      ? 'text-[#0E2A33] bg-[#0E2A33]/10'
+                      : 'text-white bg-white/10'
+                    : headerTheme === 'dark'
+                      ? 'text-[#0E2A33]/60 hover:text-[#0E2A33] hover:bg-black/5'
+                      : 'text-zinc-400 hover:text-white hover:bg-white/5'
                 }`}
             >
               Solutions
@@ -1330,221 +1352,143 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 <p className="text-base md:text-lg text-[#0E2A33]/70 max-w-2xl leading-relaxed font-medium">
                   Enduit mince sur isolant, ravalement de façade, bardages et cassettes, précadres, tôles prélaquées. Découvrez nos gammes aluminium et acier pour l'enveloppe du bâtiment.
                 </p>
-                <a
-                  href="#solutions-familles"
-                  onClick={(e) => { e.preventDefault(); document.getElementById('solutions-familles')?.scrollIntoView({ behavior: 'smooth' }); }}
-                  className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-white bg-[#0E2A33] hover:bg-[#0E2A33]/90 px-6 py-3 rounded-full transition-all"
-                >
-                  Découvrir nos familles de produits
-                  <iconify-icon icon="lucide:arrow-down" width="18"></iconify-icon>
-                </a>
               </div>
             </div>
           </section>
 
-          {/* Cinq sections applicatives */}
-          <section id="solutions-familles" className="py-16 md:py-24 bg-[#F3F6F7] border-t border-zinc-200 scroll-mt-24">
-            <div className="max-w-7xl mx-auto px-6">
-              <span className="text-[10px] font-extrabold tracking-[0.3em] text-[#0E2A33]/40 uppercase block mb-8">NOS FAMILLES DE PRODUITS</span>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-                {['Enduit mince sur isolant', 'Ravalement de façade', 'Bardages & cassettes', 'Précadres', 'Tôles prélaquées'].map((label, idx) => (
-                  <div key={idx} className="bg-white rounded-2xl p-6 border border-[#0E2A33]/10 shadow-sm">
-                    <h3 className="text-lg font-extrabold text-[#0E2A33] tracking-tight">{label}</h3>
-                    <p className="text-sm text-[#0E2A33]/60 mt-2">Contenu à venir</p>
+          {/* --- BENTO GRID : 5 FAMILLES DE PRODUITS --- */}
+          <section className="py-20 bg-[#0a1f26]">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">Nos Solutions Enveloppe</h2>
+                <p className="text-gray-400 max-w-2xl text-lg">
+                  Découvrez nos expertises en façonnage métallique sur mesure pour l'habillage technique et esthétique de vos façades.
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-4">
+                {/* Ligne 1 : 2 grandes cartes (50/50) */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {/* Carte 1 */}
+                  <div
+                    className="group relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 h-[400px] cursor-pointer"
+                    onClick={() => setCurrentPage('solution-bardage')}
+                  >
+                    <div
+                      className="absolute inset-0 bg-neutral-800 bg-cover bg-center opacity-70 group-hover:opacity-100 transition duration-500"
+                      style={{
+                        backgroundImage:
+                          "url('https://res.cloudinary.com/dyiup6v5x/image/upload/v1773147911/Placeholder-Dark_xe7she.webp')",
+                      }}
+                    ></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0E2A33] via-[#0E2A33]/40 to-transparent opacity-90 group-hover:opacity-70 transition duration-500"></div>
+                    <div className="absolute bottom-6 left-6 right-6 transform translate-y-2 group-hover:translate-y-0 transition duration-500">
+                      <h3 className="text-2xl font-bold text-white group-hover:text-[#E2FD48] transition duration-300">
+                        Bardages & Cassettes
+                      </h3>
+                      <p className="mt-2 text-gray-300 opacity-0 group-hover:opacity-100 transition duration-500 delay-100">
+                        Systèmes de fixation invisible et habillages grandes dimensions.
+                      </p>
+                    </div>
                   </div>
-                ))}
+
+                  {/* Carte 2 */}
+                  <div
+                    className="group relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 h-[400px] cursor-pointer"
+                    onClick={() => setCurrentPage('solution-enduit')}
+                  >
+                    <div
+                      className="absolute inset-0 bg-neutral-800 bg-cover bg-center opacity-70 group-hover:opacity-100 transition duration-500"
+                      style={{
+                        backgroundImage:
+                          "url('https://res.cloudinary.com/dyiup6v5x/image/upload/v1773147911/Placeholder-Dark_xe7she.webp')",
+                      }}
+                    ></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0E2A33] via-[#0E2A33]/40 to-transparent opacity-90 group-hover:opacity-70 transition duration-500"></div>
+                    <div className="absolute bottom-6 left-6 right-6 transform translate-y-2 group-hover:translate-y-0 transition duration-500">
+                      <h3 className="text-2xl font-bold text-white group-hover:text-[#E2FD48] transition duration-300">
+                        Enduit mince sur isolant
+                      </h3>
+                      <p className="mt-2 text-gray-300 opacity-0 group-hover:opacity-100 transition duration-500 delay-100">
+                        Profils de départ, d'angle et d'arrêt pour systèmes ITE.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Ligne 2 : 3 cartes moyennes (33/33/33) */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {/* Carte 3 */}
+                  <div
+                    className="group relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 h-[300px] cursor-pointer"
+                    onClick={() => setCurrentPage('solution-precadres')}
+                  >
+                    <div
+                      className="absolute inset-0 bg-neutral-800 bg-cover bg-center opacity-70 group-hover:opacity-100 transition duration-500"
+                      style={{
+                        backgroundImage:
+                          "url('https://res.cloudinary.com/dyiup6v5x/image/upload/v1773147911/Placeholder-Dark_xe7she.webp')",
+                      }}
+                    ></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0E2A33] via-[#0E2A33]/40 to-transparent opacity-90 group-hover:opacity-70 transition duration-500"></div>
+                    <div className="absolute bottom-6 left-6 right-6">
+                      <h3 className="text-xl font-bold text-white group-hover:text-[#E2FD48] transition duration-300">Précadres</h3>
+                    </div>
+                  </div>
+
+                  {/* Carte 4 */}
+                  <div
+                    className="group relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 h-[300px] cursor-pointer"
+                    onClick={() => setCurrentPage('solution-toles')}
+                  >
+                    <div
+                      className="absolute inset-0 bg-neutral-800 bg-cover bg-center opacity-70 group-hover:opacity-100 transition duration-500"
+                      style={{
+                        backgroundImage:
+                          "url('https://res.cloudinary.com/dyiup6v5x/image/upload/v1773147911/Placeholder-Dark_xe7she.webp')",
+                      }}
+                    ></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0E2A33] via-[#0E2A33]/40 to-transparent opacity-90 group-hover:opacity-70 transition duration-500"></div>
+                    <div className="absolute bottom-6 left-6 right-6">
+                      <h3 className="text-xl font-bold text-white group-hover:text-[#E2FD48] transition duration-300">Tôles prélaquées</h3>
+                    </div>
+                  </div>
+
+                  {/* Carte 5 */}
+                  <div
+                    className="group relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 h-[300px] cursor-pointer"
+                    onClick={() => setCurrentPage('solution-ravalement')}
+                  >
+                    <div
+                      className="absolute inset-0 bg-neutral-800 bg-cover bg-center opacity-70 group-hover:opacity-100 transition duration-500"
+                      style={{
+                        backgroundImage:
+                          "url('https://res.cloudinary.com/dyiup6v5x/image/upload/v1773147911/Placeholder-Dark_xe7she.webp')",
+                      }}
+                    ></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0E2A33] via-[#0E2A33]/40 to-transparent opacity-90 group-hover:opacity-70 transition duration-500"></div>
+                    <div className="absolute bottom-6 left-6 right-6">
+                      <h3 className="text-xl font-bold text-white group-hover:text-[#E2FD48] transition duration-300">Ravalement de façade</h3>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
 
-          {/* Blocs par matière : Aluminium puis Acier (alternés image/texte + accordéon) */}
-          <div className="bg-white">
-            {/* Bloc Aluminium — texte à gauche, image à droite */}
-            <section className="relative overflow-hidden py-12 md:py-20 border-t border-[#0E2A33]/5">
-              <div className="relative z-10 max-w-7xl mx-auto px-6">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-                  <div className="space-y-6">
-                    <div className="space-y-3">
-                      <span className="text-[10px] font-extrabold tracking-[0.3em] text-[#0E2A33]/40 uppercase block">MATIÈRE</span>
-                      <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">Solutions Aluminium</h2>
-                    </div>
-                    <p className="text-base md:text-lg leading-relaxed font-medium text-[#0E2A33]/70">
-                      L'aluminium est le matériau de prédilection pour l'enveloppe du bâtiment : bardages, cassettes, couvertines et précadres. Légèreté, résistance à la corrosion et finitions Qualicoat pour une durabilité optimale.
-                    </p>
-                    {/* Accordéon Aluminium */}
-                    <div className="border border-[#0E2A33]/10 rounded-xl overflow-hidden">
-                      {[
-                        { id: 'alu-0', title: 'Alliages', content: 'Séries 5000 et 6000 pour façades. Contenu détaillé à compléter.' },
-                        { id: 'alu-1', title: 'Finitions', content: 'Thermolaquage Qualicoat, anodisation. Contenu détaillé à compléter.' }
-                      ].map((item) => (
-                        <div key={item.id} className="border-b border-[#0E2A33]/10 last:border-b-0">
-                          <button
-                            type="button"
-                            onClick={() => setSolutionsAccordionOpen(solutionsAccordionOpen === item.id ? null : item.id)}
-                            className="w-full flex items-center justify-between px-5 py-4 text-left text-sm font-bold text-[#0E2A33] hover:bg-[#0E2A33]/5 transition-colors"
-                          >
-                            {item.title}
-                            <iconify-icon icon={solutionsAccordionOpen === item.id ? 'lucide:chevron-up' : 'lucide:chevron-down'} width="20"></iconify-icon>
-                          </button>
-                          {solutionsAccordionOpen === item.id && (
-                            <div className="px-5 pb-4 pt-0 text-sm text-[#0E2A33]/70">{item.content}</div>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                    <a
-                      href="/solutions/aluminium"
-                      onClick={(e) => { e.preventDefault(); setCurrentPage('solutions-aluminium'); }}
-                      className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#E2FD48] bg-[#0E2A33] hover:bg-[#0E2A33]/90 px-6 py-3 rounded-full transition-all"
-                    >
-                      Découvrir nos solutions Aluminium
-                      <iconify-icon icon="lucide:arrow-right" width="18"></iconify-icon>
-                    </a>
-                  </div>
-                  <div className="relative overflow-hidden rounded-xl shadow-lg h-[320px] md:h-[500px] group bg-zinc-50">
-                    <img
-                      src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1771515763/Solutions-enveloppe-1200px_guufmy.webp"
-                      alt="Solutions aluminium enveloppe du bâtiment"
-                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0E2A33]/10 to-transparent opacity-40"></div>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* Bloc Acier — image à gauche, texte à droite */}
-            <section className="relative overflow-hidden py-12 md:py-20 border-t border-[#0E2A33]/5 bg-[#F3F6F7]">
-              <div className="relative z-10 max-w-7xl mx-auto px-6">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-                  <div className="relative overflow-hidden rounded-xl shadow-lg h-[320px] md:h-[500px] group bg-zinc-50 order-2 lg:order-1">
-                    <img
-                      src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1771515264/Solutions2-1200px_cqiecv.webp"
-                      alt="Solutions acier enveloppe du bâtiment"
-                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0E2A33]/10 to-transparent opacity-40"></div>
-                  </div>
-                  <div className="space-y-6 order-1 lg:order-2">
-                    <div className="space-y-3">
-                      <span className="text-[10px] font-extrabold tracking-[0.3em] text-[#0E2A33]/40 uppercase block">MATIÈRE</span>
-                      <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">Solutions Acier</h2>
-                    </div>
-                    <p className="text-base md:text-lg leading-relaxed font-medium text-[#0E2A33]/70">
-                      L'acier galvanisé et prélaqué pour l'enveloppe : supports, couvertines, tôles nervurées et précadres. Robustesse et conformité aux exigences du bâtiment.
-                    </p>
-                    {/* Accordéon Acier */}
-                    <div className="border border-[#0E2A33]/10 rounded-xl overflow-hidden bg-white">
-                      {[
-                        { id: 'acier-0', title: 'Alliages & nuances', content: 'Acier galvanisé S320GD, prélaqué. Contenu détaillé à compléter.' },
-                        { id: 'acier-1', title: 'Finitions', content: 'Prélaquage, galvanisation. Contenu détaillé à compléter.' }
-                      ].map((item) => (
-                        <div key={item.id} className="border-b border-[#0E2A33]/10 last:border-b-0">
-                          <button
-                            type="button"
-                            onClick={() => setSolutionsAccordionOpen(solutionsAccordionOpen === item.id ? null : item.id)}
-                            className="w-full flex items-center justify-between px-5 py-4 text-left text-sm font-bold text-[#0E2A33] hover:bg-[#0E2A33]/5 transition-colors"
-                          >
-                            {item.title}
-                            <iconify-icon icon={solutionsAccordionOpen === item.id ? 'lucide:chevron-up' : 'lucide:chevron-down'} width="20"></iconify-icon>
-                          </button>
-                          {solutionsAccordionOpen === item.id && (
-                            <div className="px-5 pb-4 pt-0 text-sm text-[#0E2A33]/70">{item.content}</div>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                    <a
-                      href="/solutions/acier"
-                      onClick={(e) => { e.preventDefault(); setCurrentPage('solutions-acier'); }}
-                      className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#E2FD48] bg-[#0E2A33] hover:bg-[#0E2A33]/90 px-6 py-3 rounded-full transition-all"
-                    >
-                      Découvrir nos solutions Acier
-                      <iconify-icon icon="lucide:arrow-right" width="18"></iconify-icon>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </div>
-
-          {/* Section conversion */}
+          {/* Section conversion vers le contact */}
           <section className="py-20 md:py-28 text-white" style={{ background: 'linear-gradient(to bottom, #071318 0%, #0b1e26 100%)' }}>
             <div className="max-w-7xl mx-auto px-6 text-center">
               <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-6">Un projet en tête ?</h2>
-              <p className="text-white/80 text-lg max-w-xl mx-auto mb-10">Chiffrez votre projet sur mesure avec nos équipes.</p>
+              <p className="text-white/80 text-lg max-w-xl mx-auto mb-10">
+                Chiffrez votre projet sur mesure avec nos équipes.
+              </p>
               <button
                 onClick={() => setCurrentPage('contact')}
                 className="px-12 py-4 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full hover:bg-white transition-all shadow-lg"
               >
                 Chiffrer votre projet sur mesure
               </button>
-            </div>
-          </section>
-        </div>
-      )}
-
-      {/* --- SOLUTIONS ALUMINIUM SUB-PAGE --- */}
-      {currentPage === 'solutions-aluminium' && (
-        <div className="animate-fade-up bg-white">
-          <section className="pt-48 md:pt-56 pb-20 bg-white border-b border-zinc-100 min-h-screen flex flex-col justify-center">
-            <div className="max-w-7xl mx-auto px-6">
-              <div className="max-w-4xl">
-                <a
-                  href="/solutions"
-                  onClick={(e) => { e.preventDefault(); setCurrentPage('solutions'); }}
-                  className="inline-flex items-center gap-2 text-sm font-bold text-[#0E2A33]/60 hover:text-[#0E2A33] mb-8 transition-colors"
-                >
-                  <iconify-icon icon="lucide:arrow-left" width="18"></iconify-icon>
-                  Retour aux solutions
-                </a>
-                <span className="text-[10px] font-extrabold tracking-[0.4em] text-[#0E2A33]/40 uppercase block mb-4">SOLUTIONS PAR MATIÈRE</span>
-                <h1 className="text-4xl md:text-6xl tracking-tighter leading-[1.1] font-black text-[#0E2A33]">
-                  Solutions Aluminium
-                </h1>
-                <p className="text-lg text-[#0E2A33]/70 max-w-2xl mt-6 leading-relaxed font-medium">
-                  Bardages, cassettes, couvertines et précadres en aluminium pour l'enveloppe du bâtiment. Contenu à compléter avec vos textes SEO et visuels.
-                </p>
-              </div>
-            </div>
-          </section>
-          <section className="py-16 md:py-24 bg-[#F3F6F7]">
-            <div className="max-w-7xl mx-auto px-6">
-              <p className="text-[#0E2A33]/70 leading-relaxed">Contenu des sous-pages aluminium à intégrer (familles de produits, fiches, etc.).</p>
-            </div>
-          </section>
-        </div>
-      )}
-
-      {/* --- SOLUTIONS ACIER SUB-PAGE --- */}
-      {currentPage === 'solutions-acier' && (
-        <div className="animate-fade-up bg-white">
-          <section className="pt-48 md:pt-56 pb-20 bg-white border-b border-zinc-100 min-h-screen flex flex-col justify-center">
-            <div className="max-w-7xl mx-auto px-6">
-              <div className="max-w-4xl">
-                <a
-                  href="/solutions"
-                  onClick={(e) => { e.preventDefault(); setCurrentPage('solutions'); }}
-                  className="inline-flex items-center gap-2 text-sm font-bold text-[#0E2A33]/60 hover:text-[#0E2A33] mb-8 transition-colors"
-                >
-                  <iconify-icon icon="lucide:arrow-left" width="18"></iconify-icon>
-                  Retour aux solutions
-                </a>
-                <span className="text-[10px] font-extrabold tracking-[0.4em] text-[#0E2A33]/40 uppercase block mb-4">SOLUTIONS PAR MATIÈRE</span>
-                <h1 className="text-4xl md:text-6xl tracking-tighter leading-[1.1] font-black text-[#0E2A33]">
-                  Solutions Acier
-                </h1>
-                <p className="text-lg text-[#0E2A33]/70 max-w-2xl mt-6 leading-relaxed font-medium">
-                  Supports, couvertines, tôles nervurées et précadres en acier pour l'enveloppe du bâtiment. Contenu à compléter avec vos textes SEO et visuels.
-                </p>
-              </div>
-            </div>
-          </section>
-          <section className="py-16 md:py-24 bg-[#F3F6F7]">
-            <div className="max-w-7xl mx-auto px-6">
-              <p className="text-[#0E2A33]/70 leading-relaxed">Contenu des sous-pages acier à intégrer (familles de produits, fiches, etc.).</p>
             </div>
           </section>
         </div>
@@ -2378,6 +2322,81 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             </div>
           </section>
         </div>
+      )}
+
+      {/* --- SOLUTION BARDAGES & CASSETTES --- */}
+      {currentPage === 'solution-bardage' && (
+        <main className="min-h-screen flex flex-col pt-48 md:pt-56 pb-20 bg-[#0E2A33]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow">
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">Bardages &amp; Cassettes</h1>
+            <button
+              onClick={() => setCurrentPage('solutions')}
+              className="text-[#E2FD48] hover:text-white transition font-medium flex items-center gap-2 mt-8"
+            >
+              &larr; Retour aux solutions
+            </button>
+          </div>
+        </main>
+      )}
+
+      {/* --- SOLUTION ENDUIT MINCE SUR ISOLANT --- */}
+      {currentPage === 'solution-enduit' && (
+        <main className="min-h-screen flex flex-col pt-48 md:pt-56 pb-20 bg-[#0E2A33]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow">
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">Enduit mince sur isolant</h1>
+            <button
+              onClick={() => setCurrentPage('solutions')}
+              className="text-[#E2FD48] hover:text-white transition font-medium flex items-center gap-2 mt-8"
+            >
+              &larr; Retour aux solutions
+            </button>
+          </div>
+        </main>
+      )}
+
+      {/* --- SOLUTION PRÉCADRES --- */}
+      {currentPage === 'solution-precadres' && (
+        <main className="min-h-screen flex flex-col pt-48 md:pt-56 pb-20 bg-[#0E2A33]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow">
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">Précadres</h1>
+            <button
+              onClick={() => setCurrentPage('solutions')}
+              className="text-[#E2FD48] hover:text-white transition font-medium flex items-center gap-2 mt-8"
+            >
+              &larr; Retour aux solutions
+            </button>
+          </div>
+        </main>
+      )}
+
+      {/* --- SOLUTION TÔLES PRÉLAQUÉES --- */}
+      {currentPage === 'solution-toles' && (
+        <main className="min-h-screen flex flex-col pt-48 md:pt-56 pb-20 bg-[#0E2A33]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow">
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">Tôles prélaquées</h1>
+            <button
+              onClick={() => setCurrentPage('solutions')}
+              className="text-[#E2FD48] hover:text-white transition font-medium flex items-center gap-2 mt-8"
+            >
+              &larr; Retour aux solutions
+            </button>
+          </div>
+        </main>
+      )}
+
+      {/* --- SOLUTION RAVALEMENT DE FAÇADE --- */}
+      {currentPage === 'solution-ravalement' && (
+        <main className="min-h-screen flex flex-col pt-48 md:pt-56 pb-20 bg-[#0E2A33]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow">
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">Ravalement de façade</h1>
+            <button
+              onClick={() => setCurrentPage('solutions')}
+              className="text-[#E2FD48] hover:text-white transition font-medium flex items-center gap-2 mt-8"
+            >
+              &larr; Retour aux solutions
+            </button>
+          </div>
+        </main>
       )}
 
       {/* --- CONTACT PAGE CONTENT --- */}
