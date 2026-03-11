@@ -762,7 +762,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
       {currentPage === 'a-propos' && (
         <div className="animate-fade-up">
           {/* 1. HERO SECTION (DARK) */}
-          <section className="relative bg-[#071318] pt-48 md:pt-56 pb-20 overflow-hidden min-h-screen flex flex-col justify-center">
+          <section className="relative bg-[#071318] pt-48 md:pt-56 pb-20 overflow-hidden min-h-[70vh] flex flex-col justify-center">
             <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#0e2a33]/40 to-[#071318]"></div>
             <div className="relative z-10 max-w-7xl mx-auto px-6">
               <div className="max-w-4xl space-y-8">
@@ -835,7 +835,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
       {currentPage === 'projects' && (
         <div className="animate-fade-up">
           {/* Hero Réalisations */}
-          <section className="relative bg-[#071318] pt-48 md:pt-56 pb-24 overflow-hidden min-h-screen flex flex-col justify-center">
+          <section className="relative bg-[#071318] pt-48 md:pt-56 pb-24 overflow-hidden min-h-[70vh] flex flex-col justify-center">
             <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#0e2a33]/40 to-[#071318]"></div>
             <div className="relative z-10 max-w-7xl mx-auto px-6">
               <div className="max-w-4xl space-y-8">
@@ -1342,7 +1342,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
       {currentPage === 'solutions' && (
         <div className="animate-fade-up">
           {/* Hero Solutions */}
-          <section className="bg-white pt-48 md:pt-56 pb-20 min-h-screen flex flex-col justify-center">
+          <section className="bg-white pt-48 md:pt-56 pb-20 min-h-[70vh] flex flex-col justify-center">
             <div className="max-w-7xl mx-auto px-6">
               <div className="max-w-4xl space-y-8">
                 <span className="text-[10px] font-extrabold tracking-[0.4em] text-zinc-400 uppercase block">CATALOGUE B2B</span>
@@ -1498,7 +1498,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
       {currentPage === 'expertises' && (
         <div className="animate-fade-up">
           {/* Hero Expertises (contient le sommaire en bas, au-dessus de la ligne de flottaison) */}
-          <section className="bg-white pt-48 md:pt-56 pb-0 min-h-screen flex flex-col">
+          <section className="bg-white pt-48 md:pt-56 pb-0 min-h-[70vh] flex flex-col">
             <div className="flex-1 flex flex-col justify-center max-w-7xl mx-auto px-6 w-full">
               <div className="max-w-4xl space-y-8">
                 <span className="text-[10px] font-extrabold tracking-[0.4em] text-zinc-400 uppercase block">
@@ -1717,7 +1717,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
       {currentPage === 'ressources' && (
         <div className="animate-fade-up">
           {/* Hero Ressources */}
-          <section className="bg-white pt-48 md:pt-56 pb-20 min-h-screen flex flex-col justify-center">
+          <section className="bg-white pt-48 md:pt-56 pb-20 min-h-[70vh] flex flex-col justify-center">
             <div className="max-w-7xl mx-auto px-6">
               <div className="max-w-4xl space-y-8">
                 <span className="text-[10px] font-extrabold tracking-[0.4em] text-zinc-400 uppercase block">
@@ -2326,7 +2326,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
       {/* --- SOLUTION BARDAGES & CASSETTES --- */}
       {currentPage === 'solution-bardage' && (
-        <main className="min-h-screen flex flex-col pt-48 md:pt-56 pb-20 bg-[#0E2A33]">
+        <main className="min-h-[50vh] flex flex-col pt-48 md:pt-56 pb-20 bg-[#0E2A33]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">Bardages &amp; Cassettes</h1>
             <button
@@ -2341,7 +2341,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
       {/* --- SOLUTION ENDUIT MINCE SUR ISOLANT --- */}
       {currentPage === 'solution-enduit' && (
-        <main className="min-h-screen flex flex-col pt-48 md:pt-56 pb-20 bg-[#0E2A33]">
+        <main className="min-h-[50vh] flex flex-col pt-48 md:pt-56 pb-20 bg-[#0E2A33]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">Enduit mince sur isolant</h1>
             <button
@@ -2356,7 +2356,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
       {/* --- SOLUTION PRÉCADRES --- */}
       {currentPage === 'solution-precadres' && (
-        <main className="min-h-screen flex flex-col pt-48 md:pt-56 pb-20 bg-[#0E2A33]">
+        <main className="min-h-[50vh] flex flex-col pt-48 md:pt-56 pb-20 bg-[#0E2A33]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">Précadres</h1>
             <button
@@ -2371,7 +2371,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
       {/* --- SOLUTION TÔLES PRÉLAQUÉES --- */}
       {currentPage === 'solution-toles' && (
-        <main className="min-h-screen flex flex-col pt-48 md:pt-56 pb-20 bg-[#0E2A33]">
+        <main className="min-h-[50vh] flex flex-col pt-48 md:pt-56 pb-20 bg-[#0E2A33]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">Tôles prélaquées</h1>
             <button
@@ -2386,7 +2386,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
       {/* --- SOLUTION RAVALEMENT DE FAÇADE --- */}
       {currentPage === 'solution-ravalement' && (
-        <main className="min-h-screen flex flex-col pt-48 md:pt-56 pb-20 bg-[#0E2A33]">
+        <main className="min-h-[50vh] flex flex-col pt-48 md:pt-56 pb-20 bg-[#0E2A33]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">Ravalement de façade</h1>
             <button
@@ -2403,7 +2403,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
       {currentPage === 'contact' && (
         <div className="animate-fade-up">
           {/* Hero Contact (White background, Dark header logic) */}
-          <section className="bg-white pt-48 md:pt-56 pb-20 min-h-screen flex flex-col justify-center">
+          <section className="bg-white pt-48 md:pt-56 pb-20 min-h-[70vh] flex flex-col justify-center">
             <div className="max-w-7xl mx-auto px-6">
               <div className="max-w-4xl space-y-8">
                 <span className="text-[10px] font-extrabold tracking-[0.4em] text-zinc-400 uppercase block">
