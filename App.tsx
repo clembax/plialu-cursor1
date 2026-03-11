@@ -56,6 +56,8 @@ const App: React.FC = () => {
   const [solutionsAccordionOpen, setSolutionsAccordionOpen] = useState<string | null>(null);
   const [activeSolutionHover, setActiveSolutionHover] = React.useState(0);
   const contactFormRef = React.useRef<HTMLFormElement>(null);
+  const teaserVideoRef = React.useRef<HTMLVideoElement>(null);
+  const expertisesVideoRef = React.useRef<HTMLVideoElement>(null);
 
   // Header Theme: 'dark' = light header bar (dark logo/menu) for contrast on light backgrounds (Expertises, Solutions, Ressources, Contact, Articles, Merci)
   const headerTheme =
@@ -161,6 +163,26 @@ const App: React.FC = () => {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [activeImage]);
+
+  // Vidéo Teaser / Expertises : lecture au scroll (Intersection Observer)
+  useEffect(() => {
+    const videoEl = currentPage === 'home' ? teaserVideoRef.current : currentPage === 'expertises' ? expertisesVideoRef.current : null;
+    if (!videoEl) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            videoEl.play().catch(() => {});
+          } else {
+            videoEl.pause();
+          }
+        });
+      },
+      { threshold: 0.25 }
+    );
+    observer.observe(videoEl);
+    return () => observer.disconnect();
+  }, [currentPage]);
 
   const handleCopy = (text: string, key: string) => {
     navigator.clipboard.writeText(text);
@@ -545,6 +567,28 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     loading="lazy"
                   />
                 </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Section dédiée : vidéo Teaser (loop, muette, lecture au scroll) */}
+          <section id="teaser-video" className="section--dark py-24" style={{ background: '#071318' }}>
+            <div className="max-w-6xl mx-auto px-6">
+              <div className="rounded-2xl overflow-hidden border border-white/10">
+                <video
+                  ref={teaserVideoRef}
+                  className="w-full h-auto"
+                  loop
+                  muted
+                  playsInline
+                  aria-label="Teaser vidéo PLIALU"
+                >
+                  <source media="(min-width: 768px)" src="https://res.cloudinary.com/dyiup6v5x/video/upload/w_1920,q_auto/v1773244558/Teaser-Plialu_lqvf75.webm" type="video/webm" />
+                  <source media="(min-width: 768px)" src="https://res.cloudinary.com/dyiup6v5x/video/upload/w_1920,f_auto,q_auto/v1773244180/Teaser-Plialu_zxa8ml.mp4" type="video/mp4" />
+                  <source src="https://res.cloudinary.com/dyiup6v5x/video/upload/w_768,q_auto/v1773244558/Teaser-Plialu_lqvf75.webm" type="video/webm" />
+                  <source src="https://res.cloudinary.com/dyiup6v5x/video/upload/w_768,f_auto,q_auto/v1773244180/Teaser-Plialu_zxa8ml.mp4" type="video/mp4" />
+                  Votre navigateur ne supporte pas la lecture de vidéos.
+                </video>
               </div>
             </div>
           </section>
@@ -1567,14 +1611,24 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 <p className="text-base md:text-lg text-[#0E2A33]/70 max-w-2xl leading-relaxed font-medium">
                   De l'étude technique (DXF/DWG), au thermolaquage industriel, jusqu'au pliage, notre chaîne de valeur intégrée garantit précision, conformité et performance chantier.
                 </p>
-                <a
-                  href="#expertises-sommaire"
-                  onClick={(e) => { e.preventDefault(); document.getElementById('expertises-sommaire')?.scrollIntoView({ behavior: 'smooth' }); }}
-                  className="inline-flex items-center gap-2 w-full sm:w-auto px-12 py-4 bg-[#0E2A33] text-white text-sm font-extrabold rounded-full transition-all shadow-lg hover:shadow-2xl"
-                >
-                  Découvrir notre process
-                  <iconify-icon icon="lucide:arrow-down" width="18"></iconify-icon>
-                </a>
+                <div className="flex flex-col sm:flex-row items-start gap-4">
+                  <a
+                    href="#expertises-sommaire"
+                    onClick={(e) => { e.preventDefault(); document.getElementById('expertises-sommaire')?.scrollIntoView({ behavior: 'smooth' }); }}
+                    className="inline-flex items-center gap-2 w-full sm:w-auto px-12 py-4 bg-[#0E2A33] text-white text-sm font-extrabold rounded-full transition-all shadow-lg hover:shadow-2xl"
+                  >
+                    Découvrir notre process
+                    <iconify-icon icon="lucide:arrow-down" width="18"></iconify-icon>
+                  </a>
+                  <a
+                    href="#video-complete"
+                    onClick={(e) => { e.preventDefault(); document.getElementById('video-complete')?.scrollIntoView({ behavior: 'smooth' }); }}
+                    className="inline-flex items-center gap-2 w-full sm:w-auto px-12 py-4 border border-[#0E2A33] text-[#0E2A33] text-sm font-bold rounded-full transition-all hover:bg-[#0E2A33] hover:text-white"
+                  >
+                    Voir la vidéo complète
+                    <iconify-icon icon="lucide:play" width="18"></iconify-icon>
+                  </a>
+                </div>
               </div>
             </div>
             {/* Mini Sommaire : en bas du Hero, visible au-dessus de la ligne de flottaison */}
@@ -1606,6 +1660,32 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     ))}
                   </div>
                 </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Vidéo complète – emplacement préparé (placeholder, sans balise vidéo pour l'instant) */}
+          <section id="video-complete" className="section--dark py-24 scroll-mt-24" style={{ background: '#071318' }}>
+            <div className="max-w-6xl mx-auto px-6">
+              <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-black/40 aspect-video group transition-transform duration-300 hover:scale-[1.02]">
+                {/* Overlay décoratif */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/5 opacity-40 pointer-events-none"></div>
+
+                {/* Contenu placeholder */}
+                <div className="relative z-10 flex flex-col items-center justify-center text-center px-6">
+                  <div className="mb-4 flex items-center justify-center w-16 h-16 rounded-full border border-white/40 bg-black/50 group-hover:border-[#E2FD48] group-hover:bg-black/70 transition-colors">
+                    <iconify-icon icon="lucide:play" width="28" className="text-white/85"></iconify-icon>
+                  </div>
+                  <p className="text-sm md:text-base text-white/85 font-medium">
+                    Prochainement : vidéo complète du process PLIALU
+                  </p>
+                  <p className="mt-2 text-[11px] md:text-xs text-white/55 uppercase tracking-[0.2em]">
+                    Cliquez pour découvrir prochainement
+                  </p>
+                </div>
+
+                {/* Overlay de survol */}
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
               </div>
             </div>
           </section>
