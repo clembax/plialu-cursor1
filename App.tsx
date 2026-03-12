@@ -543,7 +543,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           </section>
 
           {/* 2. NOS EXPERTISES (DARK) */}
-          <section id="expertise" className="py-32 section--dark" style={{ background: 'linear-gradient(to bottom, #071318 0%, #0b1e26 100%)' }}>
+          <section id="expertise" className="pt-32 pb-10 section--dark" style={{ background: 'linear-gradient(to bottom, #071318 0%, #0b1e26 100%)' }}>
             <div className="max-w-7xl mx-auto px-6">
               <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-20 items-center">
                 <div className="space-y-8">
@@ -574,7 +574,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           {/* Section dédiée : vidéo Teaser (loop, muette, lecture au scroll) */}
           <section
             id="teaser-video"
-            className="relative py-24"
+            className="relative pt-4 pb-24"
             style={{ background: 'linear-gradient(to bottom, #0b1e26 0%, #071318 100%)' }}
           >
             {/* Dégradé de transition avec la section Expertises */}
