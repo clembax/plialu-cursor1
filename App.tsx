@@ -1760,9 +1760,24 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                           <span className="text-[10px] font-extrabold tracking-[0.3em] text-[#0E2A33]/40 uppercase block">
                             {exp.tag}
                           </span>
-                          <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
-                            {exp.title}
-                          </h2>
+                          {exp.id === 'thermolaquage-plat' ? (
+                            <div className="flex flex-wrap items-center gap-4 mb-6 mt-2">
+                              <h3 className="text-3xl md:text-4xl font-bold text-[#0E2A33]">
+                                Thermolaquage
+                              </h3>
+                              <div className="flex items-center gap-3 px-5 py-2 bg-gray-50 rounded-full border border-gray-200 shadow-sm mt-1">
+                                <img
+                                  src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773322881/INFINI_Noir_ompn2i.png"
+                                  alt="Logo Infinimetal"
+                                  className="h-7 w-auto object-contain opacity-80"
+                                />
+                              </div>
+                            </div>
+                          ) : (
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
+                              {exp.title}
+                            </h2>
+                          )}
                         </div>
                         {exp.id === 'bureau-etudes' ? (
                           <p className="text-base md:text-lg leading-relaxed font-medium text-[#0E2A33]/70">
