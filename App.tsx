@@ -583,22 +583,46 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               style={{ background: 'linear-gradient(to bottom, rgba(11,30,38,0) 0%, rgba(11,30,38,0.4) 8%, #0b1e26 20%)' }}
             ></div>
             <div className="relative max-w-6xl mx-auto px-6 z-10">
-              <div className="rounded-2xl overflow-hidden border border-white/10">
-                <video
-                  ref={teaserVideoRef}
-                  className="w-full h-auto"
-                  loop
-                  muted
-                  playsInline
-                  aria-label="Teaser vidéo PLIALU"
-                >
-                  <source media="(min-width: 768px)" src="https://res.cloudinary.com/dyiup6v5x/video/upload/w_1920,q_auto/v1773244558/Teaser-Plialu_lqvf75.webm" type="video/webm" />
-                  <source media="(min-width: 768px)" src="https://res.cloudinary.com/dyiup6v5x/video/upload/w_1920,f_auto,q_auto/v1773244180/Teaser-Plialu_zxa8ml.mp4" type="video/mp4" />
-                  <source src="https://res.cloudinary.com/dyiup6v5x/video/upload/w_768,q_auto/v1773244558/Teaser-Plialu_lqvf75.webm" type="video/webm" />
-                  <source src="https://res.cloudinary.com/dyiup6v5x/video/upload/w_768,f_auto,q_auto/v1773244180/Teaser-Plialu_zxa8ml.mp4" type="video/mp4" />
-                  Votre navigateur ne supporte pas la lecture de vidéos.
-                </video>
-              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  // Définir l'ancre pour le scroll automatique sur la page Expertises
+                  window.location.hash = '#video-complete';
+                  // Basculer sur la page Expertises
+                  setCurrentPage('expertises');
+                }}
+                className="group w-full text-left focus:outline-none"
+              >
+                <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-black/40 aspect-video transition-transform duration-300 group-hover:scale-[1.02] cursor-pointer">
+                  {/* Overlay de survol */}
+                  <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <div className="flex flex-col items-center gap-2">
+                      <span className="inline-flex items-center justify-center w-12 h-12 rounded-full border border-white/70 bg-black/60">
+                        <iconify-icon icon="lucide:play" width="22" className="text-white"></iconify-icon>
+                      </span>
+                      <span className="text-xs font-medium tracking-[0.2em] uppercase text-white/80">
+                        Lire le teaser
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Vidéo */}
+                  <video
+                    ref={teaserVideoRef}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    loop
+                    muted
+                    playsInline
+                    aria-label="Teaser vidéo PLIALU"
+                  >
+                    <source media="(min-width: 768px)" src="https://res.cloudinary.com/dyiup6v5x/video/upload/w_1920,q_auto/v1773244558/Teaser-Plialu_lqvf75.webm" type="video/webm" />
+                    <source media="(min-width: 768px)" src="https://res.cloudinary.com/dyiup6v5x/video/upload/w_1920,f_auto,q_auto/v1773244180/Teaser-Plialu_zxa8ml.mp4" type="video/mp4" />
+                    <source src="https://res.cloudinary.com/dyiup6v5x/video/upload/w_768,q_auto/v1773244558/Teaser-Plialu_lqvf75.webm" type="video/webm" />
+                    <source src="https://res.cloudinary.com/dyiup6v5x/video/upload/w_768,f_auto,q_auto/v1773244180/Teaser-Plialu_zxa8ml.mp4" type="video/mp4" />
+                    Votre navigateur ne supporte pas la lecture de vidéos.
+                  </video>
+                </div>
+              </button>
             </div>
           </section>
 
@@ -1673,28 +1697,17 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             </div>
           </section>
 
-          {/* Vidéo complète – emplacement préparé (placeholder, sans balise vidéo pour l'instant) */}
+          {/* Vidéo complète – lecteur Vimeo */}
           <section id="video-complete" className="section--dark py-24 scroll-mt-24" style={{ background: '#071318' }}>
             <div className="max-w-6xl mx-auto px-6">
-              <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-black/40 aspect-video group transition-transform duration-300 hover:scale-[1.02]">
-                {/* Overlay décoratif */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/5 opacity-40 pointer-events-none"></div>
-
-                {/* Contenu placeholder */}
-                <div className="relative z-10 flex flex-col items-center justify-center text-center px-6">
-                  <div className="mb-4 flex items-center justify-center w-16 h-16 rounded-full border border-white/40 bg-black/50 group-hover:border-[#E2FD48] group-hover:bg-black/70 transition-colors">
-                    <iconify-icon icon="lucide:play" width="28" className="text-white/85"></iconify-icon>
-                  </div>
-                  <p className="text-sm md:text-base text-white/85 font-medium">
-                    Prochainement : vidéo complète du process PLIALU
-                  </p>
-                  <p className="mt-2 text-[11px] md:text-xs text-white/55 uppercase tracking-[0.2em]">
-                    Cliquez pour découvrir prochainement
-                  </p>
-                </div>
-
-                {/* Overlay de survol */}
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+              <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-black/40 aspect-video">
+                <iframe
+                  src="https://player.vimeo.com/video/1172884207?title=0&byline=0&portrait=0"
+                  title="Vidéo complète du process PLIALU"
+                  className="absolute inset-0 w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
               </div>
             </div>
           </section>
