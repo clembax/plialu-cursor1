@@ -1583,8 +1583,15 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       }}
                     ></div>
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0E2A33] via-[#0E2A33]/40 to-transparent opacity-90 group-hover:opacity-70 transition duration-500"></div>
-                    <div className="absolute bottom-6 left-6 right-6">
+                    <div className="absolute bottom-6 left-6 right-6 flex flex-wrap items-center gap-4">
                       <h3 className="text-xl font-bold text-white group-hover:text-[#E2FD48] transition duration-300">Tôles prélaquées</h3>
+                      <div className="flex items-center gap-2 px-3 py-1.5 bg-gray-50 rounded-full border border-gray-200 shadow-sm mt-1">
+                        <img
+                          src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773322881/INFINI_Noir_ompn2i.png"
+                          alt="Logo Infinimetal"
+                          className="h-5 w-auto object-contain opacity-80"
+                        />
+                      </div>
                     </div>
                   </div>
 
