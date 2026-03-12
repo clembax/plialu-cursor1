@@ -1794,17 +1794,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                             <p className="text-base md:text-lg leading-relaxed font-medium text-[#0E2A33]/70">
                               Application automatisée de <strong>peinture poudre métal</strong> certifiée Qualicoat. Un rendu homogène et une durabilité accrue face aux exigences du bâtiment.
                             </p>
-                            <p className="text-base md:text-lg leading-relaxed font-medium text-[#0E2A33]/70">
-                              <a href="/expertises/thermolaquage-industriel">Découvrez notre thermolaquage certifié Qualicoat</a>
-                            </p>
                           </>
                         ) : exp.id === 'pliage-automatise' ? (
                           <>
                             <p className="text-base md:text-lg leading-relaxed font-medium text-[#0E2A33]/70">
                               Nos centres de pliage robotisés et presses plieuses grande longueur permettent de réaliser des profils complexes avec une répétabilité absolue. Nous repoussons les <strong>limites du pliage aluminium</strong> avec une capacité allant jusqu'à 4 mètres pour vos couvertines et bavettes.
-                            </p>
-                            <p className="text-base md:text-lg leading-relaxed font-medium text-[#0E2A33]/70">
-                              <a href="/expertises/pliage-aluminium-sur-mesure">En savoir plus sur nos capacités de pliage aluminium sur mesure</a>
                             </p>
                           </>
                         ) : (
