@@ -30,14 +30,30 @@
     .card {
       background: rgba(7, 19, 24, 0.9);
       border-radius: 1.75rem;
-      padding: 2.25rem 1.75rem 2.5rem;
+      padding: 3.5rem 3.5rem 3.25rem;
       box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
       text-align: center;
     }
     .logo {
       display: flex;
       justify-content: center;
-      margin-bottom: 1.75rem;
+      margin-bottom: 2rem;
+    }
+    .success-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 999px;
+      background-color: #E2FD48;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px auto;
+    }
+    .success-icon span {
+      color: #0E2A33;
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1;
     }
     .logo img {
       height: 32px;
@@ -52,7 +68,14 @@
       font-size: 0.95rem;
       line-height: 1.6;
       color: rgba(255, 255, 255, 0.75);
-      margin-bottom: 2rem;
+      margin-bottom: 0.75rem;
+    }
+    p.reassurance {
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.6);
+      margin-top: 0.5rem;
+      margin-bottom: 1.5rem;
     }
     .button-wrapper {
       display: flex;
@@ -87,7 +110,7 @@
         padding: 1.5rem;
       }
       .card {
-        padding: 2rem 1.5rem 2.25rem;
+        padding: 2.75rem 1.75rem 2.5rem;
       }
       h1 {
         font-size: 1.6rem;
@@ -107,8 +130,12 @@
           alt="PLIALU"
         />
       </div>
+      <div class="success-icon">
+        <span>✓</span>
+      </div>
       <h1 id="success-title">Demande envoyée avec succès</h1>
       <p class="subtitle">Nous reviendrons vers vous sous 24h ouvrées.</p>
+      <p class="reassurance">Un commercial vous contactera par email ou téléphone.</p>
       <div class="button-wrapper">
         <a href="/" class="button">Retour au site</a>
       </div>
