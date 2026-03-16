@@ -2689,60 +2689,106 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
                 {/* Formulaire Web3Forms */}
                 <div id="contact-form" className="bg-white rounded-[32px] p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.03)] border border-zinc-100 scroll-mt-32">
-                  <form ref={contactFormRef} action="https://formspree.io/f/mwvrvrqg" method="POST" encType="multipart/form-data" className="space-y-6" onSubmit={handleContactSubmit}>
+                  <form
+                    action="https://formsubmit.co/clementbax@yahoo.com"
+                    method="POST"
+                    encType="multipart/form-data"
+                    className="space-y-6"
+                  >
+                    {/* Champs cachés Formsubmit */}
+                    <input type="hidden" name="_captcha" value="false" />
+                    <input type="hidden" name="_subject" value="Nouvelle demande de devis — PLIALU" />
+                    <input type="hidden" name="_next" value="https://grey-wren-904418.hostingersite.com/merci.html" />
 
+                    {/* Ligne 1 : Prénom / Nom */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm font-medium mb-1 text-[#0E2A33]">Prénom</label>
-                        <input type="text" name="firstname" required className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-lg focus:border-[#E2FD48] focus:ring-2 focus:ring-[#E2FD48]/30 outline-none text-[#0E2A33]" placeholder="Jean" />
+                        <input
+                          type="text"
+                          name="firstname"
+                          required
+                          className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-lg focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33]"
+                          placeholder="Jean"
+                        />
                       </div>
                       <div>
                         <label className="block text-sm font-medium mb-1 text-[#0E2A33]">Nom</label>
-                        <input type="text" name="lastname" required className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-lg focus:border-[#E2FD48] focus:ring-2 focus:ring-[#E2FD48]/30 outline-none text-[#0E2A33]" placeholder="Dupont" />
+                        <input
+                          type="text"
+                          name="lastname"
+                          required
+                          className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-lg focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33]"
+                          placeholder="Dupont"
+                        />
                       </div>
                     </div>
 
+                    {/* Ligne 2 : Email / Téléphone */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm font-medium mb-1 text-[#0E2A33]">Email professionnel</label>
-                        <input type="email" name="email" required className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-lg focus:border-[#E2FD48] focus:ring-2 focus:ring-[#E2FD48]/30 outline-none text-[#0E2A33]" placeholder="contact@entreprise.com" />
+                        <input
+                          type="email"
+                          name="email"
+                          required
+                          className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-lg focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33]"
+                          placeholder="contact@entreprise.com"
+                        />
                       </div>
                       <div>
                         <label className="block text-sm font-medium mb-1 text-[#0E2A33]">Téléphone</label>
-                        <input type="tel" name="phone" required className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-lg focus:border-[#E2FD48] focus:ring-2 focus:ring-[#E2FD48]/30 outline-none text-[#0E2A33]" placeholder="06 00 00 00 00" />
+                        <input
+                          type="tel"
+                          name="phone"
+                          className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-lg focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33]"
+                          placeholder="06 00 00 00 00"
+                        />
                       </div>
                     </div>
 
+                    {/* Entreprise */}
                     <div>
                       <label className="block text-sm font-medium mb-1 text-[#0E2A33]">Entreprise / Cabinet</label>
-                      <input type="text" name="company" className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-lg focus:border-[#E2FD48] focus:ring-2 focus:ring-[#E2FD48]/30 outline-none text-[#0E2A33]" placeholder="Nom de votre société" />
+                      <input
+                        type="text"
+                        name="company"
+                        className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-lg focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33]"
+                        placeholder="Nom de votre société"
+                      />
                     </div>
 
+                    {/* Description du projet */}
                     <div>
-                      <label className="block text-sm font-medium mb-1 text-[#0E2A33]">Description de votre projet (pliage, façonnage, dimensions...)</label>
-                      <textarea name="message" required rows={4} className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-lg focus:border-[#E2FD48] focus:ring-2 focus:ring-[#E2FD48]/30 outline-none text-[#0E2A33] resize-none" placeholder="Détaillez vos besoins techniques..."></textarea>
+                      <label className="block text-sm font-medium mb-1 text-[#0E2A33]">Description du projet</label>
+                      <textarea
+                        name="message"
+                        rows={4}
+                        className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-lg focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33] resize-none"
+                        placeholder="Détaillez vos besoins techniques..."
+                      ></textarea>
                     </div>
 
+                    {/* Upload fichier */}
                     <div className="p-4 border-2 border-dashed border-[#0E2A33]/20 rounded-xl bg-[#F3F6F7]">
                       <label className="block text-sm font-bold mb-2 text-[#0E2A33]">
                         <span className="text-[#E2FD48]">Joindre vos plans ou photos</span> (PDF, DWG, DXF, JPG)
                       </label>
-                      <input type="file" name="upload" accept=".pdf,.dwg,.dxf,.jpg,.jpeg,.png" className="block w-full text-sm text-[#0E2A33]/70 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#E2FD48] file:text-[#0E2A33] hover:file:bg-[#d4ed3f] cursor-pointer" />
+                      <input
+                        type="file"
+                        name="attachment"
+                        accept=".pdf,.dwg,.dxf,.jpg,.jpeg"
+                        className="block w-full text-sm text-[#0E2A33]/70 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#E2FD48] file:text-[#0E2A33] hover:file:bg-[#d4ed3f] cursor-pointer"
+                      />
                       <p className="mt-2 text-xs text-[#0E2A33]/50 text-center">Taille maximale : 10 Mo par envoi.</p>
                     </div>
 
-                    {formFileError && (
-                      <div className="p-4 rounded-xl bg-orange-50 border-2 border-orange-300 text-orange-800 text-sm font-medium" role="alert">
-                        {formFileError}
-                      </div>
-                    )}
-                    {formError && (
-                      <p className="text-sm text-red-600 font-medium" role="alert">
-                        {formError}
-                      </p>
-                    )}
-                    <button type="submit" disabled={formSubmitting} className="w-full py-4 bg-[#E2FD48] text-[#0E2A33] font-bold rounded-lg hover:bg-[#d4ed3f] transition-colors uppercase tracking-wider shadow-[0_0_30px_rgba(226,253,72,0.2)] disabled:opacity-60 disabled:cursor-not-allowed">
-                      {formSubmitting ? 'Envoi en cours...' : 'Envoyer ma demande de devis technique'}
+                    {/* Bouton submit */}
+                    <button
+                      type="submit"
+                      className="w-full py-4 bg-[#E2FD48] text-[#0E2A33] font-bold rounded-lg hover:bg-[#d4ed3f] transition-colors uppercase tracking-wider shadow-[0_0_30px_rgba(226,253,72,0.2)]"
+                    >
+                      ENVOYER MA DEMANDE DE DEVIS TECHNIQUE
                     </button>
                   </form>
                 </div>
