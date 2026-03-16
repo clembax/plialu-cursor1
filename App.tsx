@@ -2020,95 +2020,242 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
       {/* --- RESSOURCE ARTICLE 1 --- */}
       {currentPage === 'ressource-1' && (
         <div className="animate-fade-up bg-white" style={{ backgroundColor: '#FFFFFF' }}>
+          {/* HERO ARTICLE */}
           <section className="pt-32 md:pt-40 pb-12 bg-white" style={{ backgroundColor: '#FFFFFF' }}>
-            <div className="max-w-7xl mx-auto px-6">
-              <div className="max-w-4xl">
-                <span className="text-[10px] font-extrabold tracking-[0.4em] text-[#6B7280] uppercase block mb-4">
-                  RESSOURCES TECHNIQUES · MATÉRIAUX
-                </span>
-                <h1 className="text-4xl md:text-5xl tracking-tighter leading-[1.1] font-black mb-6 text-[#000000]">
+            <div className="max-w-5xl mx-auto px-6">
+              <div className="w-full">
+                <button
+                  type="button"
+                  onClick={() => setCurrentPage('ressources')}
+                  className="flex items-center gap-2 text-sm font-semibold text-[#0E2A33] hover:text-[#E2FD48] cursor-pointer mb-8 uppercase tracking-widest"
+                >
+                  <span>← Retour aux ressources</span>
+                </button>
+                <h1 className="text-4xl md:text-5xl font-black text-[#0E2A33] leading-tight mt-20 text-center max-w-3xl mx-auto">
                   Choisir le bon métal pour une façade extérieure
                 </h1>
-                <p className="text-base md:text-lg text-[#1F2937]/80 leading-relaxed font-medium mb-10">
-                  Pour un architecte ou un façadier, <strong>choisir le bon métal pour une façade extérieure</strong> est une décision
-                  critique qui conditionne la pérennité structurelle et l’esthétique du bâti. Cette sélection repose sur une compréhension
-                  précise des propriétés mécaniques, des coefficients de <strong>dilatation</strong> et des exigences de protection contre
-                  la corrosion.
+                <p className="text-lg text-gray-600 mt-6 max-w-2xl mx-auto text-center">
+                  Aluminium, acier ou inox&nbsp;— chaque métal réagit différemment aux contraintes climatiques, aux normes et aux exigences
+                  esthétiques d&apos;un projet de façade. Ce guide vous aide à choisir en fonction de votre contexte, avant même d&apos;appeler un
+                  fabricant.
+                </p>
+                <div className="w-full h-[500px] rounded-2xl mt-8 mb-6 relative overflow-hidden mx-auto">
+                  <img
+                    src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773674033/Article1-hero-1200px_fmli5z.webp"
+                    srcSet="
+                      https://res.cloudinary.com/dyiup6v5x/image/upload/v1773674033/Article1-hero-800px_ocbjuj.webp 800w,
+                      https://res.cloudinary.com/dyiup6v5x/image/upload/v1773674033/Article1-hero-1200px_fmli5z.webp 1200w,
+                      https://res.cloudinary.com/dyiup6v5x/image/upload/v1773674033/Article1-hero-1600px_uh1kd0.webp 1600w
+                    "
+                    sizes="(max-width: 768px) 800px, (max-width: 1200px) 1200px, 1600px"
+                    alt="Façade aluminium thermolaqué anthracite — réalisation PLIALU Rhône-Alpes"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/30 to-transparent"></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* CORPS DE L'ARTICLE */}
+          <section className="pt-8 pb-20 bg-white" style={{ backgroundColor: '#FFFFFF' }}>
+            <div className="max-w-3xl mx-auto px-6 text-gray-700 leading-relaxed space-y-12">
+              {/* Section 1 */}
+              <div className="pt-4 mt-8 border-t border-gray-100">
+                <h2 className="text-2xl font-bold text-[#0E2A33] mt-0 mb-6">
+                  Pourquoi le choix du substrat est déterminant
+                </h2>
+                <p className="text-base mb-12">
+                  Le substrat (matériau de base) d&apos;une façade détermine le poids sur l&apos;ossature secondaire, la liberté de formes
+                  obtenue au pliage et la durabilité globale de l&apos;enveloppe. Un métal trop lourd peut surdimensionner les fixations,
+                  alors qu&apos;un matériau mal adapté au climat accélère la corrosion et les désordres esthétiques. Un mauvais choix en phase
+                  d&apos;étude se traduit souvent par un surcoût en phase chantier&nbsp;: renforts ajoutés, reprises de calepinage ou retours usine
+                  imprévus. Les tolérances de pliage
+                  <button
+                    onClick={() => setCurrentPage('ressource-2')}
+                    className="underline underline-offset-4 decoration-[#6B7280] hover:decoration-[#0E2A33] font-semibold text-[#0E2A33] ml-1"
+                  >
+                    (précision géométrique du façonnage)
+                  </button>
+                  varient elles aussi selon la dureté du substrat choisi.
+                </p>
+              </div>
+
+              {/* Section 2 */}
+              <div className="pt-8 mt-24 border-t border-gray-100">
+                <h2 className="text-2xl font-bold text-[#0E2A33] mt-0 mb-6">
+                  Aluminium, acier galvanisé, inox&nbsp;: comparatif technique
+                </h2>
+                <p className="text-base mb-12">
+                  Aluminium, acier galvanisé et inox 316L couvrent à eux trois la grande majorité des projets de façade. L&apos;aluminium
+                  s&apos;impose pour les enveloppes légères et très dessinées, l&apos;acier galvanisé pour les structures plus lourdes et
+                  économiques, et l&apos;inox 316L pour les environnements agressifs (zones marines ou sites industriels exposés). Comprendre
+                  leurs différences permet d&apos;adapter le bon métal à chaque contexte plutôt que de tout traiter de la même façon.
+                </p>
+                <div className="overflow-x-auto min-w-full">
+                  <table className="w-full border-collapse text-sm">
+                    <thead>
+                      <tr className="bg-[#0E2A33] text-white">
+                        <th className="py-3 px-3 text-left">Critère</th>
+                        <th className="py-3 px-3 text-left">Aluminium</th>
+                        <th className="py-3 px-3 text-left">Acier galvanisé</th>
+                        <th className="py-3 px-3 text-left">Inox 316L</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="bg-gray-50">
+                        <td className="py-4 px-6 font-medium text-[#0E2A33]">Densité</td>
+                        <td className="py-4 px-6">2,7 g/cm³</td>
+                        <td className="py-4 px-6">7,8 g/cm³</td>
+                        <td className="py-4 px-6">7,9 g/cm³</td>
+                      </tr>
+                      <tr>
+                        <td className="py-4 px-6 font-medium text-[#0E2A33]">Résistance naturelle à la corrosion</td>
+                        <td className="py-4 px-6">Oui</td>
+                        <td className="py-4 px-6">Non (nécessite galvanisation)</td>
+                        <td className="py-4 px-6">Excellente</td>
+                      </tr>
+                      <tr className="bg-gray-50">
+                        <td className="py-4 px-6 font-medium text-[#0E2A33]">Pliage sur mesure</td>
+                        <td className="py-4 px-6">Facile</td>
+                        <td className="py-4 px-6">Possible jusqu&apos;à 3&nbsp;mm</td>
+                        <td className="py-4 px-6">Complexe</td>
+                      </tr>
+                      <tr>
+                        <td className="py-4 px-6 font-medium text-[#0E2A33]">Zone littorale</td>
+                        <td className="py-4 px-6">Avec traitement Seaside</td>
+                        <td className="py-4 px-6">Déconseillé</td>
+                        <td className="py-4 px-6">Recommandé</td>
+                      </tr>
+                      <tr className="bg-gray-50">
+                        <td className="py-4 px-6 font-medium text-[#0E2A33]">Coût matière</td>
+                        <td className="py-4 px-6">Moyen</td>
+                        <td className="py-4 px-6">Faible</td>
+                        <td className="py-4 px-6">Élevé</td>
+                      </tr>
+                      <tr>
+                        <td className="py-4 px-6 font-medium text-[#0E2A33]">Durée de vie estimée</td>
+                        <td className="py-4 px-6">30-40 ans</td>
+                        <td className="py-4 px-6">20-25 ans</td>
+                        <td className="py-4 px-6">40+ ans</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* Section 3 */}
+              <div className="pt-8 mt-24 border-t border-gray-100">
+                <h2 className="text-2xl font-bold text-[#0E2A33] mt-0 mb-6">
+                  3 contextes, 3 choix différents
+                </h2>
+                <div className="flex flex-col md:flex-row gap-6">
+                  <div className="flex-1 bg-gray-50 rounded-2xl border border-gray-100 border-t-4 border-[#E2FD48] p-8 shadow-sm relative">
+                    <div className="w-10 h-10 rounded-full bg-[#E2FD48] flex items-center justify-center text-[#0E2A33] font-black text-sm absolute -top-5 left-6">
+                      01
+                    </div>
+                    <h3 className="text-base font-bold text-[#0E2A33]">Façade urbaine</h3>
+                    <p className="mt-2 text-sm text-gray-600">
+                      <span className="font-semibold">Matériau&nbsp;:</span> Aluminium thermolaqué
+                    </p>
+                    <p className="mt-1 text-sm text-gray-600">
+                      <span className="font-semibold">Pourquoi&nbsp;:</span> Légèreté, liberté de formes et large choix de coloris RAL pour
+                      s&apos;adapter aux chartes architecturales.
+                    </p>
+                  </div>
+                  <div className="flex-1 bg-gray-50 rounded-2xl border border-gray-100 border-t-4 border-[#E2FD48] p-8 shadow-sm relative">
+                    <div className="w-10 h-10 rounded-full bg-[#E2FD48] flex items-center justify-center text-[#0E2A33] font-black text-sm absolute -top-5 left-6">
+                      02
+                    </div>
+                    <h3 className="text-base font-bold text-[#0E2A33]">Façade maritime</h3>
+                    <p className="mt-2 text-sm text-gray-600">
+                      <span className="font-semibold">Matériau&nbsp;:</span> Aluminium traitement Seaside ou inox 316L
+                    </p>
+                    <p className="mt-1 text-sm text-gray-600">
+                      <span className="font-semibold">Pourquoi&nbsp;:</span> Résistance à la corrosion filiforme en zone littorale et
+                      tenue longue durée face aux embruns salins.
+                    </p>
+                  </div>
+                  <div className="flex-1 bg-gray-50 rounded-2xl border border-gray-100 border-t-4 border-[#E2FD48] p-8 shadow-sm relative">
+                    <div className="w-10 h-10 rounded-full bg-[#E2FD48] flex items-center justify-center text-[#0E2A33] font-black text-sm absolute -top-5 left-6">
+                      03
+                    </div>
+                    <h3 className="text-base font-bold text-[#0E2A33]">Structure industrielle</h3>
+                    <p className="mt-2 text-sm text-gray-600">
+                      <span className="font-semibold">Matériau&nbsp;:</span> Acier galvanisé prélaqué (nuance S320GD)
+                    </p>
+                    <p className="mt-1 text-sm text-gray-600">
+                      <span className="font-semibold">Pourquoi&nbsp;:</span> Rigidité, coût maîtrisé et adaptation aux grandes portées des
+                      bâtiments logistiques.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Section 4 */}
+              <div className="pt-8 mt-24 border-t border-gray-100">
+                <h2 className="text-2xl font-bold text-[#0E2A33] mt-0 mb-6">
+                  Ce que ça change sur le traitement de surface
+                </h2>
+                <p className="text-base mb-12">
+                  Le substrat choisi conditionne directement le process de thermolaquage (application d&apos;une poudre polymérisée pour
+                  protéger et teinter la pièce). L&apos;aluminium accepte les épaisseurs les plus fines, autour de 45&nbsp;microns, tandis que
+                  l&apos;acier exige une préparation plus lourde pour éviter la corrosion sous film. La
+                  <button
+                    onClick={() => setCurrentPage('ressource-3')}
+                    className="underline underline-offset-4 decoration-[#6B7280] hover:decoration-[#0E2A33] font-semibold text-[#0E2A33] mx-1"
+                  >
+                    certification QUALICOAT
+                  </button>
+                  (label européen de qualité du thermolaquage) impose des protocoles différents selon le métal de base, un process
+                  industriel que vous pouvez observer en détail sur notre{' '}
+                  <button
+                    onClick={() => setCurrentPage('expertises')}
+                    className="underline underline-offset-4 decoration-[#6B7280] hover:decoration-[#0E2A33] font-semibold text-[#0E2A33]"
+                  >
+                    page Expertises
+                  </button>
+                  .
                 </p>
               </div>
             </div>
           </section>
 
-          <section className="py-20 border-t border-gray-200 bg-white" style={{ backgroundColor: '#FFFFFF' }}>
-            <div className="max-w-4xl mx-auto px-6 space-y-16 text-[#1F2937]">
-              <div className="space-y-4">
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-[#000000]">
-                  Comparatif technique : Aluminium, Acier et Inox
-                </h2>
-                <p className="text-base text-[#1F2937]/80 leading-relaxed">
-                  Le choix du substrat influence directement la charge sur le gros œuvre et la complexité du pliage métallique sur
-                  mesure.
-                </p>
-                <ul className="list-disc list-inside space-y-3 text-sm md:text-base text-[#1F2937]/90">
-                  <li>
-                    <strong>L’Aluminium</strong> : Prisé pour sa légèreté (environ 2,7 g/cm³), il réduit les contraintes sur les
-                    ossatures secondaires. Sa résistance naturelle à l’oxydation en fait le matériau de prédilection pour les zones
-                    humides.
-                  </li>
-                  <li>
-                    <strong>L’Acier</strong> : Offre une rigidité supérieure (Module d’Young de 210 GPa). Il doit être utilisé sous forme
-                    galvanisée ou prélaquée (nuance S320GD) pour garantir une protection anti-corrosion efficace.
-                  </li>
-                  <li>
-                    <strong>L’Inox (Acier Inoxydable)</strong> : La nuance 316L (A4) est la seule recommandée pour les environnements
-                    marins ou industriels agressifs.
-                  </li>
-                </ul>
+          {/* PHOTO PRODUIT PLIALU */}
+          <section className="bg-white pb-12" style={{ backgroundColor: '#FFFFFF' }}>
+            <div className="max-w-7xl mx-auto px-6">
+              <div className="max-w-4xl mx-auto mt-12">
+                <img
+                  src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773674033/Article1-1200px_fq9vgq.webp"
+                  srcSet="
+                    https://res.cloudinary.com/dyiup6v5x/image/upload/v1773674033/Article1-800px_rrm7j2.webp 800w,
+                    https://res.cloudinary.com/dyiup6v5x/image/upload/v1773674033/Article1-1200px_fq9vgq.webp 1200w,
+                    https://res.cloudinary.com/dyiup6v5x/image/upload/v1773674033/Article1-1600px_aj9jzf.webp 1600w
+                  "
+                  sizes="(max-width: 768px) 800px, (max-width: 1200px) 1200px, 1600px"
+                  alt="Pièces métalliques pliées sur mesure en atelier — façonnage PLIALU"
+                  loading="lazy"
+                  className="w-full h-64 object-cover rounded-2xl mt-12"
+                />
               </div>
+            </div>
+          </section>
 
-              <div className="space-y-4">
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-[#000000]">
-                  Durabilité et finitions : l’importance du thermolaquage
-                </h2>
-                <p className="text-base text-[#1F2937]/80 leading-relaxed">
-                  Le traitement de surface est indissociable du choix du métal. Pour une façade extérieure, nous recommandons le label{' '}
-                  <strong>QUALICOAT</strong>&nbsp;:
-                </p>
-                <ul className="list-disc list-inside space-y-3 text-sm md:text-base text-[#1F2937]/90">
-                  <li>
-                    <strong>Préparation de surface</strong> : Un dégraissage et un mordançage rigoureux.
-                  </li>
-                  <li>
-                    <strong>Application</strong> : Une couche de poudre polymérisée entre 45 et 60 microns.
-                  </li>
-                  <li>
-                    <strong>Variante Seaside</strong> : Obligatoire pour les projets en littoral afin de prévenir la corrosion
-                    filiforme.
-                  </li>
-                </ul>
-              </div>
-
-              <div className="space-y-4">
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-[#000000]">
-                  Précision du pliage CNC : l’exigence du sur-mesure
-                </h2>
-                <p className="text-base text-[#1F2937]/80 leading-relaxed">
-                  La réussite technique dépend de la précision géométrique. Nos presses plieuses numériques (CNC) permettent des
-                  tolérances de ±0,3&nbsp;mm. Un pliage de haute précision assure la régularité des joints creux et facilite l’étanchéité
-                  à l’air et à l’eau de l’enveloppe.
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-[#000000]">
-                  Conclusion : l’expertise Plialu au service de l’architecture
-                </h2>
-                <p className="text-base text-[#1F2937]/80 leading-relaxed">
-                  <strong>Choisir le bon métal pour une façade extérieure</strong> nécessite de concilier esthétique et contraintes
-                  normatives (DTU). La précision de notre pliage associé à des certifications <strong>QUALICOAT</strong> offre la
-                  garantie d’une enveloppe performante.
-                </p>
-              </div>
+          {/* SECTION CONTACT BAS DE PAGE */}
+          <section className="py-24 bg-[#071318] text-center border-t border-white/5">
+            <div className="max-w-3xl mx-auto px-6 space-y-8">
+              <h2 className="text-3xl md:text-5xl text-white tracking-tighter font-extrabold">
+                Vous avez un projet de façade ?
+              </h2>
+              <p className="text-base md:text-lg text-white/50">
+                Nos chargés d&apos;affaires analysent vos contraintes pour vous orienter vers le bon matériau.
+              </p>
+              <button
+                onClick={() => setCurrentPage('solutions')}
+                className="px-10 py-4 md:px-12 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all shadow-xl hover:shadow-[#E2FD48]/20 hover:-translate-y-1"
+              >
+                Découvrir nos solutions
+              </button>
             </div>
           </section>
         </div>
@@ -2117,164 +2264,256 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
       {/* --- RESSOURCE ARTICLE 2 --- */}
       {currentPage === 'ressource-2' && (
         <div className="animate-fade-up bg-white" style={{ backgroundColor: '#FFFFFF' }}>
+          {/* HERO ARTICLE */}
           <section className="pt-32 md:pt-40 pb-12 bg-white" style={{ backgroundColor: '#FFFFFF' }}>
-            <div className="max-w-7xl mx-auto px-6">
-              <div className="max-w-4xl">
-                <span className="text-[10px] font-extrabold tracking-[0.4em] text-[#6B7280] uppercase block mb-4">
-                  RESSOURCES TECHNIQUES · FAÇADE ALUMINIUM
-                </span>
-                <h1 className="text-4xl md:text-5xl tracking-tighter leading-[1.1] font-black mb-6 text-[#000000]">
-                  Pliage aluminium pour façade : limites et tolérances
+            <div className="max-w-5xl mx-auto px-6">
+              <div className="w-full">
+                <button
+                  type="button"
+                  onClick={() => setCurrentPage('ressources')}
+                  className="flex items-center gap-2 text-sm font-semibold text-[#0E2A33] hover:text-[#E2FD48] cursor-pointer mb-8 uppercase tracking-widest"
+                >
+                  <span>← RETOUR AUX RESSOURCES</span>
+                </button>
+
+                <h1 className="text-4xl md:text-5xl font-black text-[#0E2A33] leading-tight mt-20 max-w-3xl mx-auto text-center">
+                  Pliage aluminium : limites et tolérances
                 </h1>
-                <p className="text-base md:text-lg text-[#1F2937]/80 leading-relaxed font-medium mb-6">
-                  Le <strong>pliage aluminium pour façade</strong> constitue une étape critique de l’ingénierie de l’enveloppe, intervenant
-                  juste après l’étape consistant à{' '}
-                  <button
-                    onClick={() => setCurrentPage('ressource-1')}
-                    className="underline underline-offset-4 decoration-[#6B7280] hover:decoration-[#1F2937] transition-colors font-semibold text-[#1F2937]"
-                  >
-                    choisir le bon métal pour une façade extérieure
-                  </button>{' '}
-                  pour garantir la pérennité et l’esthétique de l’ouvrage. Pour les architectes et bureaux d’études, la maîtrise du
-                  façonnage n’est pas qu’une question de forme, mais une réponse rigoureuse aux contraintes mécaniques et
-                  environnementales.
+
+                <p className="text-lg text-gray-600 mt-6 max-w-2xl mx-auto text-center">
+                  Épaisseur, rayon de pliage, angle cible — trois paramètres qui déterminent si une pièce aluminium sera précise,
+                  durable, ou à refaire. Ce guide vous explique ce que votre fabricant doit maîtriser avant même de démarrer la
+                  production.
                 </p>
-                <p className="text-base md:text-lg text-[#1F2937]/80 leading-relaxed font-medium">
-                  Une cassette ou un habillage mal conçu peut compromettre l’étanchéité globale et la planéité visuelle du bâtiment. Ce
-                  guide détaille les paramètres physiques et industriels essentiels pour réussir vos projets de façades métalliques
-                  premium.
+
+                <img
+                  src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773679861/Article2hero-1600px_ny59xx.webp"
+                  srcSet="
+                    https://res.cloudinary.com/dyiup6v5x/image/upload/v1773679860/Article2hero-800px_wpy72f.webp 800w,
+                    https://res.cloudinary.com/dyiup6v5x/image/upload/v1773679860/Article2hero-1200px_k7lnyr.webp 1200w,
+                    https://res.cloudinary.com/dyiup6v5x/image/upload/v1773679861/Article2hero-1600px_ny59xx.webp 1600w
+                  "
+                  sizes="100vw"
+                  alt="Presse plieuse CNC en action — Atelier PLIALU"
+                  className="w-full h-[500px] object-cover rounded-2xl mt-8"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </section>
+
+          {/* CORPS DE L'ARTICLE */}
+          <section className="pt-8 pb-20 bg-white" style={{ backgroundColor: '#FFFFFF' }}>
+            <div className="max-w-3xl mx-auto px-6 text-gray-700 leading-relaxed space-y-12">
+              {/* Section 1 */}
+              <div className="pt-8 mt-8 border-t border-gray-100">
+                <h2 className="text-2xl font-bold text-[#0E2A33] mt-0 mb-6">
+                  Pourquoi l&apos;aluminium est le métal de référence en pliage
+                </h2>
+                <p className="text-base mb-12">
+                  L&apos;aluminium combine légèreté (2,7 g/cm³ — 3 fois plus léger que l&apos;acier), malléabilité et résistance naturelle à la
+                  corrosion. Ces propriétés en font le substrat (matériau de base) privilégié pour le façonnage de précision en enveloppe
+                  du bâtiment. Attention&nbsp;: toutes les nuances d&apos;aluminium ne se comportent pas de la même façon au pliage — la nuance
+                  1050 est plus souple, la 5754 plus rigide et résistante en milieu marin. Le choix de la nuance dépend aussi du contexte
+                  du projet — un sujet que nous détaillons dans notre{' '}
+                  <button
+                    type="button"
+                    onClick={() => setCurrentPage('ressource-1')}
+                    className="underline underline-offset-4 decoration-[#6B7280] hover:decoration-[#0E2A33] font-semibold text-[#0E2A33]"
+                  >
+                    guide sur le choix du métal de façade
+                  </button>
+                  .
+                </p>
+              </div>
+
+              {/* Section 2 */}
+              <div className="pt-8 mt-20 border-t border-gray-100">
+                <h2 className="text-2xl font-bold text-[#0E2A33] mt-0 mb-6">
+                  Les 3 paramètres techniques d&apos;un pliage réussi
+                </h2>
+                <p className="text-base mb-12">
+                  Pour obtenir une pièce conforme aux plans, trois paramètres doivent être maîtrisés simultanément. L&apos;épaisseur de la tôle
+                  détermine la rigidité de la pièce finale et les capacités machines nécessaires. Le rayon intérieur de pliage est la
+                  distance minimale entre les deux faces pliées — en dessous d&apos;un seuil critique, la face externe de l&apos;angle se craquelle.
+                  L&apos;angle de pliage cible, enfin, doit tenir compte du retour élastique (springback)&nbsp;: phénomène par lequel la tôle reprend
+                  légèrement sa forme initiale une fois la pression de la presse relâchée. Une presse plieuse CNC (Commande Numérique par
+                  Calculateur) compense automatiquement ce retour élastique en sur-pliant légèrement la pièce avant relâchement.
+                </p>
+
+                <div className="overflow-x-auto">
+                  <table className="w-full border-collapse mt-6 text-sm">
+                    <thead>
+                      <tr className="bg-[#0E2A33] text-white">
+                        <th className="px-6 py-4 text-left">Épaisseur</th>
+                        <th className="px-6 py-4 text-left">Rayon mini intérieur</th>
+                        <th className="px-6 py-4 text-left">Angle mini réalisable</th>
+                        <th className="px-6 py-4 text-left">Usage typique</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="bg-gray-50">
+                        <td className="px-6 py-4 font-medium text-[#0E2A33]">1 mm</td>
+                        <td className="px-6 py-4">1,5 mm</td>
+                        <td className="px-6 py-4">15°</td>
+                        <td className="px-6 py-4">Habillage léger, sous-faces</td>
+                      </tr>
+                      <tr>
+                        <td className="px-6 py-4 font-medium text-[#0E2A33]">1,5 mm</td>
+                        <td className="px-6 py-4">2 mm</td>
+                        <td className="px-6 py-4">25°</td>
+                        <td className="px-6 py-4">Bardage, cassettes façade</td>
+                      </tr>
+                      <tr className="bg-gray-50">
+                        <td className="px-6 py-4 font-medium text-[#0E2A33]">2 mm</td>
+                        <td className="px-6 py-4">3 mm</td>
+                        <td className="px-6 py-4">30°</td>
+                        <td className="px-6 py-4">Profils structurels, cadres</td>
+                      </tr>
+                      <tr>
+                        <td className="px-6 py-4 font-medium text-[#0E2A33]">3 mm</td>
+                        <td className="px-6 py-4">4,5 mm</td>
+                        <td className="px-6 py-4">45°</td>
+                        <td className="px-6 py-4">Pièces techniques, renforts</td>
+                      </tr>
+                      <tr className="bg-gray-50">
+                        <td className="px-6 py-4 font-medium text-[#0E2A33]">4-5 mm</td>
+                        <td className="px-6 py-4">6 mm</td>
+                        <td className="px-6 py-4">60°</td>
+                        <td className="px-6 py-4">Éléments porteurs lourds</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p className="text-sm text-gray-400 italic mt-3">
+                    * Valeurs indicatives — nous consulter pour votre projet.
+                  </p>
+                </div>
+              </div>
+
+              {/* Section 3 */}
+              <div className="pt-8 mt-20 border-t border-gray-100">
+                <h2 className="text-2xl font-bold text-[#0E2A33] mt-0 mb-6">
+                  Tolérance ±0,3 mm : ce que ça change sur chantier
+                </h2>
+                <p className="text-base mb-12">
+                  La tolérance de pliage (précision géométrique du façonnage) de ±0,3&nbsp;mm obtenue par presse plieuse CNC (Commande
+                  Numérique par Calculateur) garantit la régularité des joints entre cassettes, l&apos;étanchéité à l&apos;air et à l&apos;eau
+                  de l&apos;enveloppe, et l&apos;absence de reprises en pose. Sans cette précision, les désaffleurs (décalages visibles entre deux
+                  pièces adjacentes) compromettent l&apos;aspect final et génèrent des retouches coûteuses sur chantier. C&apos;est pourquoi nos
+                  presses plieuses CNC sont étalonnées quotidiennement et chaque série fait l&apos;objet d&apos;un contrôle dimensionnel avant
+                  expédition.
+                </p>
+              </div>
+
+              {/* Section 4 */}
+              <div className="pt-8 mt-20 border-t border-gray-100">
+                <h2 className="text-2xl font-bold text-[#0E2A33] mt-0 mb-6">
+                  3 limites techniques à anticiper en phase d&apos;étude
+                </h2>
+                <div className="flex flex-col md:flex-row gap-6">
+                  <div className="flex-1 bg-gray-50 rounded-2xl border border-gray-100 border-t-4 border-[#E2FD48] p-8 shadow-sm relative">
+                    <div className="w-10 h-10 rounded-full bg-[#E2FD48] flex items-center justify-center text-[#0E2A33] font-black text-sm absolute -top-5 left-6">
+                      01
+                    </div>
+                    <h3 className="text-base font-bold text-[#0E2A33]">Épaisseur maximale</h3>
+                    <p className="mt-2 text-sm text-gray-600">
+                      Au-delà de 4&nbsp;mm, le pliage aluminium exige des presses de très haute capacité. Au-delà de 6&nbsp;mm, on bascule sur
+                      de l&apos;usinage (fraisage) plutôt que du pliage — un process différent, un délai et un coût différents.
+                    </p>
+                  </div>
+
+                  <div className="flex-1 bg-gray-50 rounded-2xl border border-gray-100 border-t-4 border-[#E2FD48] p-8 shadow-sm relative">
+                    <div className="w-10 h-10 rounded-full bg-[#E2FD48] flex items-center justify-center text-[#0E2A33] font-black text-sm absolute -top-5 left-6">
+                      02
+                    </div>
+                    <h3 className="text-base font-bold text-[#0E2A33]">Rayon trop serré</h3>
+                    <p className="mt-2 text-sm text-gray-600">
+                      Un rayon intérieur inférieur à l&apos;épaisseur de la tôle génère des micro-craquelures sur la face externe, invisibles
+                      à l&apos;œil nu mais fragilisant la tenue du revêtement sur le long terme.
+                    </p>
+                  </div>
+
+                  <div className="flex-1 bg-gray-50 rounded-2xl border border-gray-100 border-t-4 border-[#E2FD48] p-8 shadow-sm relative">
+                    <div className="w-10 h-10 rounded-full bg-[#E2FD48] flex items-center justify-center text-[#0E2A33] font-black text-sm absolute -top-5 left-6">
+                      03
+                    </div>
+                    <h3 className="text-base font-bold text-[#0E2A33]">Retour élastique</h3>
+                    <p className="mt-2 text-sm text-gray-600">
+                      Quand la presse relâche la pression, la tôle reprend légèrement sa forme initiale — c&apos;est le springback.
+                      Si ce phénomène n&apos;est pas intégré dans la programmation CNC, l&apos;angle final ne correspond pas aux plans.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Section 5 */}
+              <div className="pt-8 mt-20 border-t border-gray-100">
+                <h2 className="text-2xl font-bold text-[#0E2A33] mt-0 mb-6">
+                  Comment la qualité du pliage conditionne le thermolaquage
+                </h2>
+                <p className="text-base mb-12">
+                  Une surface craquelée ou géométriquement imprécise ne permet pas une accroche homogène de la poudre polymérisée.
+                  Résultat&nbsp;: décollements locaux, taches d&apos;oxydation sous revêtement, et impossibilité d&apos;obtenir la certification
+                  QUALICOAT (label européen de qualité du thermolaquage) sur la pièce concernée. Découvrez{' '}
+                  <button
+                    type="button"
+                    onClick={() => setCurrentPage('ressource-3')}
+                    className="underline underline-offset-4 decoration-[#6B7280] hover:decoration-[#0E2A33] font-semibold text-[#0E2A33]"
+                  >
+                    les protocoles exacts que la certification QUALICOAT impose sur la préparation de surface
+                  </button>
+                  , et comment s&apos;inscrit{' '}
+                  <button
+                    type="button"
+                    onClick={() => setCurrentPage('expertises')}
+                    className="underline underline-offset-4 decoration-[#6B7280] hover:decoration-[#0E2A33] font-semibold text-[#0E2A33]"
+                  >
+                    notre process de thermolaquage intégré en atelier
+                  </button>
+                  .
                 </p>
               </div>
             </div>
           </section>
 
-          <section className="py-20 border-t border-gray-200 bg-[#F9FAFB]" style={{ backgroundColor: '#F9FAFB' }}>
-            <div className="max-w-4xl mx-auto px-6 space-y-16 text-[#1F2937]">
-              <div className="space-y-4">
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-[#000000]">
-                  Gestion de la dilatation thermique : anticiper le mouvement
-                </h2>
-                <p className="text-base text-[#1F2937]/80 leading-relaxed">
-                  L’aluminium possède un coefficient de <strong>dilatation</strong> thermique linéaire élevé, ce qui impose une
-                  conception capable d’absorber les variations dimensionnelles sans générer de contraintes internes.
+          {/* PHOTO PRODUIT PLIALU */}
+          <section className="bg-white pb-12" style={{ backgroundColor: '#FFFFFF' }}>
+            <div className="max-w-7xl mx-auto px-6">
+              <div className="max-w-4xl mx-auto mt-12">
+                <img
+                  src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773679861/Article2-1600px_kkmsjf.webp"
+                  srcSet="
+                    https://res.cloudinary.com/dyiup6v5x/image/upload/v1773679860/Article2-800px_gjokka.webp 800w,
+                    https://res.cloudinary.com/dyiup6v5x/image/upload/v1773679861/Article2-1200px_u1bj5c.webp 1200w,
+                    https://res.cloudinary.com/dyiup6v5x/image/upload/v1773679861/Article2-1600px_kkmsjf.webp 1600w
+                  "
+                  sizes="100vw"
+                  alt="Pièces aluminium pliées — Atelier PLIALU, Rhône-Alpes"
+                  className="w-full h-64 object-cover rounded-2xl mt-12"
+                  loading="lazy"
+                />
+                <p className="text-sm text-gray-400 text-center mt-2">
+                  Pièces aluminium pliées — Atelier PLIALU, Rhône-Alpes
                 </p>
-                <h3 className="text-sm font-bold tracking-[0.2em] uppercase text-gray-500">
-                  DONNÉES PHYSIQUES ET CALCULS
-                </h3>
-                <p className="text-base text-[#1F2937]/80 leading-relaxed">
-                  La valeur de référence pour les alliages d’aluminium est d’environ 2,4&nbsp;mm/m pour 100&nbsp;°C de variation
-                  thermique. Pour une façade exposée, une amplitude de 100&nbsp;°C (de -20&nbsp;°C en hiver à +80&nbsp;°C sur une tôle
-                  sombre en plein soleil) constitue une base de calcul réaliste.
-                </p>
-                <p className="text-base text-[#1F2937]/80 leading-relaxed">
-                  La variation de longueur se calcule selon la formule classique de la <strong>dilatation</strong>&nbsp;:
-                </p>
-                <p className="text-base text-[#1F2937] font-mono bg-[#F9FAFB] inline-block px-3 py-2 rounded-md border border-[#D1D5DB]">
-                  ΔL = α × L₀ × ΔT
-                </p>
-                <ul className="list-disc list-inside space-y-2 text-sm md:text-base text-[#1F2937]/90 mt-4">
-                  <li>α est le coefficient de dilatation.</li>
-                  <li>L₀ est la longueur initiale de la pièce.</li>
-                  <li>ΔT est l’écart de température pris en compte.</li>
-                </ul>
-                <h3 className="text-sm font-bold tracking-[0.2em] uppercase text-gray-500 mt-6">
-                  CONSÉQUENCES SUR LA CONCEPTION
-                </h3>
-                <p className="text-base text-[#1F2937]/80 leading-relaxed">
-                  Le pliage doit intégrer des jeux de fonctionnement précis pour éviter des pathologies lourdes&nbsp;:
-                </p>
-                <ul className="list-disc list-inside space-y-2 text-sm md:text-base text-[#1F2937]/90">
-                  <li>
-                    <strong>Oil canning</strong> : ondulations de surface dues au bridage thermique des cassettes.
-                  </li>
-                  <li>
-                    <strong>Fatigue des fixations</strong> : cisaillement des rivets si les trous oblongs sont absents ou mal
-                    dimensionnés.
-                  </li>
-                  <li>
-                    <strong>Défaut d’étanchéité</strong> : usure prématurée des joints de calfeutrement soumis à des élongations
-                    excessives.
-                  </li>
-                </ul>
               </div>
+            </div>
+          </section>
 
-              <div className="space-y-4">
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-[#000000]">
-                  Métallurgie et rayons de pliage : les limites du matériau
-                </h2>
-                <p className="text-base text-[#1F2937]/80 leading-relaxed">
-                  Le choix de l’alliage et du rayon de courbure dicte la résistance structurelle et l’aspect fini de la façade. Une
-                  approche purement esthétique sans prise en compte de ces paramètres conduit à des fragilités mécaniques.
-                </p>
-                <h3 className="text-sm font-bold tracking-[0.2em] uppercase text-gray-500">
-                  ANALYSE DES ALLIAGES COURANTS ET CONTRAINTES DE FAÇONNAGE
-                </h3>
-                <p className="text-base text-[#1F2937]/80 leading-relaxed">
-                  L’épaisseur de la tôle détermine le rayon de pliage minimal à respecter pour éviter la fissuration des grains. Plus la
-                  tôle est fine, plus le rayon de pliage peut être serré, mais au prix d’une plus grande sensibilité aux chocs et aux
-                  déformations.
-                </p>
-                <ul className="list-disc list-inside space-y-2 text-sm md:text-base text-[#1F2937]/90">
-                  <li>Pour des épaisseurs faibles, le rayon minimal est réduit mais doit rester compatible avec l’usage en façade.</li>
-                  <li>
-                    Le pliage doit préférentiellement s’effectuer perpendiculairement au sens de laminage pour garantir une intégrité
-                    moléculaire maximale.
-                  </li>
-                </ul>
-              </div>
-
-              <div className="space-y-4">
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-[#000000]">
-                  Finitions et thermolaquage : l’assurance QUALICOAT
-                </h2>
-                <p className="text-base text-[#1F2937]/80 leading-relaxed">
-                  Après le <strong>pliage aluminium pour façade</strong>, le traitement de surface assure la protection contre les UV et
-                  la pollution. Le label <strong>QUALICOAT</strong> impose des protocoles stricts garantissant la durabilité du système
-                  de revêtement.
-                </p>
-                <h3 className="text-sm font-bold tracking-[0.2em] uppercase text-gray-500">
-                  CERTIFICATION ET PERFORMANCES
-                </h3>
-                <ul className="list-disc list-inside space-y-2 text-sm md:text-base text-[#1F2937]/90">
-                  <li>Épaisseur de laque d’environ 60&nbsp;µm minimum sur les faces vues.</li>
-                  <li>Adhérence optimale vérifiée par des tests de quadrillage et de pliage.</li>
-                  <li>
-                    Résistance prouvée au brouillard salin acétique, avec la variante <strong>Seaside</strong> pour les milieux
-                    fortement corrosifs.
-                  </li>
-                </ul>
-                <h3 className="text-sm font-bold tracking-[0.2em] uppercase text-gray-500 mt-6">
-                  AVANTAGES DU POST-LAQUAGE
-                </h3>
-                <p className="text-base text-[#1F2937]/80 leading-relaxed">
-                  Réaliser le thermolaquage après le pliage permet de protéger les arêtes de coupe et les arrondis de plis, zones où les
-                  tôles pré-laquées présentent souvent des fragilités et des amorces de corrosion.
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-[#000000]">
-                  Précision industrielle et apport de la commande numérique (CNC)
-                </h2>
-                <p className="text-base text-[#1F2937]/80 leading-relaxed">
-                  L’utilisation de presses plieuses à commande numérique (CNC) est indispensable pour répondre aux standards de
-                  l’architecture contemporaine. Elle garantit une répétabilité des angles, des dimensions et des rayons de pliage sur
-                  l’ensemble des pièces d’un même projet.
-                </p>
-              </div>
-
-              <div className="pt-8 border-t border-gray-200 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                <p className="text-sm text-[#1F2937]/80 max-w-xl">
-                  Pour vos projets de <strong>pliage aluminium pour façade</strong>, PLIALU met à disposition une capacité industrielle
-                  de haut niveau et un accompagnement technique dédié, de l’esquisse au dossier d’exécution.
-                </p>
-                <button
-                  onClick={() => setCurrentPage('contact')}
-                  className="px-8 py-3 bg-[#1F2937] text-white text-xs font-black tracking-[0.2em] uppercase rounded-full hover:bg-[#E2FD48] transition-colors"
-                >
-                  ÉCHANGER AVEC UN EXPERT
-                </button>
-              </div>
+          {/* SECTION CONTACT BAS DE PAGE */}
+          <section className="py-24 bg-[#071318] text-center border-t border-white/5">
+            <div className="max-w-3xl mx-auto px-6 space-y-8">
+              <h2 className="text-3xl md:text-5xl text-white tracking-tighter font-extrabold">
+                Un projet de façade aluminium ?
+              </h2>
+              <p className="text-base md:text-lg text-white/50">
+                Nos techniciens analysent vos contraintes de pliage et vous proposent la solution adaptée.
+              </p>
+              <button
+                onClick={() => setCurrentPage('contact')}
+                className="px-10 py-4 md:px-12 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all shadow-xl hover:shadow-[#E2FD48]/20 hover:-translate-y-1"
+              >
+                Demander un devis
+              </button>
             </div>
           </section>
         </div>
