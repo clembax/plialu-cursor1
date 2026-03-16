@@ -574,7 +574,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           {/* Section dédiée : vidéo Teaser (loop, muette, lecture au scroll) */}
           <section
             id="teaser-video"
-            className="relative pt-4 pb-24"
+            className="relative py-20"
             style={{ background: 'linear-gradient(to bottom, #0b1e26 0%, #071318 100%)' }}
           >
             {/* Dégradé de transition avec la section Expertises */}
@@ -582,47 +582,72 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               className="absolute inset-0 z-0 pointer-events-none"
               style={{ background: 'linear-gradient(to bottom, rgba(11,30,38,0) 0%, rgba(11,30,38,0.4) 8%, #0b1e26 20%)' }}
             ></div>
-            <div className="relative max-w-6xl mx-auto px-6 z-10">
-              <button
-                type="button"
-                onClick={() => {
-                  // Définir l'ancre pour le scroll automatique sur la page Expertises
-                  window.location.hash = '#video-complete';
-                  // Basculer sur la page Expertises
-                  setCurrentPage('expertises');
-                }}
-                className="group w-full text-left focus:outline-none"
-              >
-                <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-black/40 aspect-video transition-transform duration-300 group-hover:scale-[1.02] cursor-pointer">
-                  {/* Overlay de survol */}
-                  <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <div className="flex flex-col items-center gap-2">
-                      <span className="inline-flex items-center justify-center w-12 h-12 rounded-full border border-white/70 bg-black/60">
-                        <iconify-icon icon="lucide:play" width="22" className="text-white"></iconify-icon>
-                      </span>
-                      <span className="text-xs font-medium tracking-[0.2em] uppercase text-white/80">
-                        Lire le teaser
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Vidéo */}
-                  <video
-                    ref={teaserVideoRef}
-                    className="absolute inset-0 w-full h-full object-cover"
-                    loop
-                    muted
-                    playsInline
-                    aria-label="Teaser vidéo PLIALU"
+            <div className="relative max-w-7xl mx-auto px-6 z-10">
+              <div className="flex flex-col md:flex-row items-center gap-12">
+                {/* Colonne gauche : vidéo teaser */}
+                <div className="flex-1 w-full">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      // Définir l'ancre pour le scroll automatique sur la page Expertises
+                      window.location.hash = '#video-complete';
+                      // Basculer sur la page Expertises
+                      setCurrentPage('expertises');
+                    }}
+                    className="group w-full text-left focus:outline-none"
                   >
-                    <source media="(min-width: 768px)" src="https://res.cloudinary.com/dyiup6v5x/video/upload/w_1920,q_auto/v1773244558/Teaser-Plialu_lqvf75.webm" type="video/webm" />
-                    <source media="(min-width: 768px)" src="https://res.cloudinary.com/dyiup6v5x/video/upload/w_1920,f_auto,q_auto/v1773244180/Teaser-Plialu_zxa8ml.mp4" type="video/mp4" />
-                    <source src="https://res.cloudinary.com/dyiup6v5x/video/upload/w_768,q_auto/v1773244558/Teaser-Plialu_lqvf75.webm" type="video/webm" />
-                    <source src="https://res.cloudinary.com/dyiup6v5x/video/upload/w_768,f_auto,q_auto/v1773244180/Teaser-Plialu_zxa8ml.mp4" type="video/mp4" />
-                    Votre navigateur ne supporte pas la lecture de vidéos.
-                  </video>
+                    <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-black/40 aspect-video transition-transform duration-300 group-hover:scale-[1.02] cursor-pointer">
+                      {/* Overlay de survol */}
+                      <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <div className="flex flex-col items-center gap-2">
+                          <span className="inline-flex items-center justify-center w-12 h-12 rounded-full border border-white/70 bg-black/60">
+                            <iconify-icon icon="lucide:play" width="22" className="text-white"></iconify-icon>
+                          </span>
+                          <span className="text-xs font-medium tracking-[0.2em] uppercase text-white/80">
+                            Lire le teaser
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Vidéo */}
+                      <video
+                        ref={teaserVideoRef}
+                        className="absolute inset-0 w-full h-full object-cover"
+                        loop
+                        muted
+                        playsInline
+                        aria-label="Teaser vidéo PLIALU"
+                      >
+                        <source media="(min-width: 768px)" src="https://res.cloudinary.com/dyiup6v5x/video/upload/w_1920,q_auto/v1773244558/Teaser-Plialu_lqvf75.webm" type="video/webm" />
+                        <source media="(min-width: 768px)" src="https://res.cloudinary.com/dyiup6v5x/video/upload/w_1920,f_auto,q_auto/v1773244180/Teaser-Plialu_zxa8ml.mp4" type="video/mp4" />
+                        <source src="https://res.cloudinary.com/dyiup6v5x/video/upload/w_768,q_auto/v1773244558/Teaser-Plialu_lqvf75.webm" type="video/webm" />
+                        <source src="https://res.cloudinary.com/dyiup6v5x/video/upload/w_768,f_auto,q_auto/v1773244180/Teaser-Plialu_zxa8ml.mp4" type="video/mp4" />
+                        Votre navigateur ne supporte pas la lecture de vidéos.
+                      </video>
+                    </div>
+                  </button>
                 </div>
-              </button>
+
+                {/* Colonne droite : texte d'accroche */}
+                <div className="max-w-xs w-full md:w-auto text-left space-y-3">
+                  <span className="text-xs font-bold tracking-[0.3em] text-[#E2FD48] uppercase">
+                    VISITE D'USINE
+                  </span>
+                  <h3 className="text-2xl font-bold leading-tight text-white mt-3">
+                    Découvrez nos lignes de production en action
+                  </h3>
+                  <p className="text-sm text-white/70 mt-3">
+                    2 minutes pour comprendre pourquoi nos clients nous font confiance depuis 20 ans.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setCurrentPage('expertises')}
+                    className="inline-flex items-center justify-center bg-[#E2FD48] text-[#0E2A33] font-bold px-5 py-3 rounded-full mt-6 text-sm"
+                  >
+                    Voir la visite complète →
+                  </button>
+                </div>
+              </div>
             </div>
           </section>
 
@@ -2772,7 +2797,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     {/* Upload fichier */}
                     <div className="p-4 border-2 border-dashed border-[#0E2A33]/20 rounded-xl bg-[#F3F6F7]">
                       <label className="block text-sm font-bold mb-2 text-[#0E2A33]">
-                        <span className="text-[#E2FD48]">Joindre vos plans ou photos</span> (PDF, DWG, DXF, JPG)
+                        <span className="text-[#0E2A33]">Joindre vos plans ou photos</span> (PDF, DWG, DXF, JPG)
                       </label>
                       <input
                         type="file"
