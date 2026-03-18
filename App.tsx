@@ -22,6 +22,7 @@ declare global {
 
 import TerritorialMap from './TerritorialMap';
 import Success from './Success';
+import EnduitMinceIsolant from './src/components/solutions/EnduitMinceIsolant';
 
 const App: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -64,7 +65,6 @@ const App: React.FC = () => {
     currentPage === 'expertises' ||
     currentPage === 'solutions' ||
     currentPage === 'solution-bardage' ||
-    currentPage === 'solution-enduit' ||
     currentPage === 'solution-precadres' ||
     currentPage === 'solution-toles' ||
     currentPage === 'solution-ravalement' ||
@@ -706,12 +706,27 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 {/* Colonne droite : image dynamique */}
                 <div className="relative h-full">
                   <div className="relative rounded-2xl overflow-hidden min-h-[320px] lg:h-full border border-zinc-100 bg-white shadow-sm">
-                    <img
-                      key={homeSolutionsList[activeSolutionHover].id}
-                      src={homeSolutionsList[activeSolutionHover].image}
-                      alt={homeSolutionsList[activeSolutionHover].title}
-                      className="w-full h-full object-cover transition-opacity duration-500 ease-in-out"
-                    />
+                    {homeSolutionsList[activeSolutionHover]?.id === '02' ? (
+                      <img
+                        src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773850275/enduitminceisolant-1200px_ibn4ly.webp"
+                        srcSet="
+                          https://res.cloudinary.com/dyiup6v5x/image/upload/v1773850274/enduitminceisolant-800px_poxwkk.webp 800w,
+                          https://res.cloudinary.com/dyiup6v5x/image/upload/v1773850275/enduitminceisolant-1200px_ibn4ly.webp 1200w,
+                          https://res.cloudinary.com/dyiup6v5x/image/upload/v1773850275/enduitminceisolant-1600px_y0zenz.webp 1600w
+                        "
+                        sizes="(max-width: 768px) 800px, (max-width: 1200px) 1200px, 1600px"
+                        alt="Enduit mince sur isolant — PLIALU"
+                        className="absolute inset-0 w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <img
+                        key={homeSolutionsList[activeSolutionHover].id}
+                        src={homeSolutionsList[activeSolutionHover].image}
+                        alt={homeSolutionsList[activeSolutionHover].title}
+                        className="w-full h-full object-cover transition-opacity duration-500 ease-in-out"
+                      />
+                    )}
                   </div>
                 </div>
               </div>
@@ -1556,13 +1571,18 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     className="group relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 h-[400px] cursor-pointer"
                     onClick={() => setCurrentPage('solution-enduit')}
                   >
-                    <div
-                      className="absolute inset-0 bg-neutral-800 bg-cover bg-center opacity-70 group-hover:opacity-100 transition duration-500"
-                      style={{
-                        backgroundImage:
-                          "url('https://res.cloudinary.com/dyiup6v5x/image/upload/v1773147911/Placeholder-Dark_xe7she.webp')",
-                      }}
-                    ></div>
+                    <img
+                      src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773850275/enduitminceisolant-1200px_ibn4ly.webp"
+                      srcSet="
+                        https://res.cloudinary.com/dyiup6v5x/image/upload/v1773850274/enduitminceisolant-800px_poxwkk.webp 800w,
+                        https://res.cloudinary.com/dyiup6v5x/image/upload/v1773850275/enduitminceisolant-1200px_ibn4ly.webp 1200w,
+                        https://res.cloudinary.com/dyiup6v5x/image/upload/v1773850275/enduitminceisolant-1600px_y0zenz.webp 1600w
+                      "
+                      sizes="(max-width: 768px) 800px, (max-width: 1200px) 1200px, 1600px"
+                      alt="Enduit mince sur isolant — PLIALU"
+                      className="absolute inset-0 w-full h-full object-cover"
+                      loading="lazy"
+                    />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0E2A33] via-[#0E2A33]/40 to-transparent opacity-90 group-hover:opacity-70 transition duration-500"></div>
                     <div className="absolute bottom-6 left-6 right-6 transform translate-y-2 group-hover:translate-y-0 transition duration-500">
                       <h3 className="text-2xl font-bold text-white group-hover:text-[#E2FD48] transition duration-300">
@@ -2780,17 +2800,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
       {/* --- SOLUTION ENDUIT MINCE SUR ISOLANT --- */}
       {currentPage === 'solution-enduit' && (
-        <main className="min-h-[50vh] flex flex-col pt-48 md:pt-56 pb-20 bg-[#0E2A33]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow">
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">Enduit mince sur isolant</h1>
-            <button
-              onClick={() => setCurrentPage('solutions')}
-              className="text-[#E2FD48] hover:text-white transition font-medium flex items-center gap-2 mt-8"
-            >
-              &larr; Retour aux solutions
-            </button>
-          </div>
-        </main>
+        <EnduitMinceIsolant setCurrentPage={setCurrentPage} />
       )}
 
       {/* --- SOLUTION PRÉCADRES --- */}
