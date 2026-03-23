@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { iteProfiles, schemaImages } from '../../config/schemaConfig';
 
 interface EnduitMinceIsolantProps {
@@ -8,9 +8,35 @@ interface EnduitMinceIsolantProps {
 const EnduitMinceIsolant: React.FC<EnduitMinceIsolantProps> = ({ setCurrentPage }) => {
   const [activeProfile, setActiveProfile] = useState<number | null>(null);
   const [zoomedImage, setZoomedImage] = useState<null | { src: string; srcSet: string; alt: string }>(null);
+  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
+  const [cardOpacities, setCardOpacities] = useState<number[]>(iteProfiles.map(() => 1));
 
-  const handleCardClick = (id: number) => {
-    setActiveProfile(prev => prev === id ? null : id);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const schemaRef = useRef<HTMLDivElement | null>(null);
+
+  const handleCardClick = (id: number, fromSchema = false) => {
+    setActiveProfile(prev => {
+      const next = prev === id ? null : id;
+
+      if (fromSchema && next !== null) {
+        const index = iteProfiles.findIndex(p => p.id === id);
+        cardRefs.current[index]?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+        });
+      }
+
+      if (!fromSchema && next !== null) {
+        if (window.innerWidth < 768) {
+          setTimeout(() => {
+            schemaRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+        }
+      }
+
+      return next;
+    });
   };
 
   const activeConfig = iteProfiles.find(p => p.id === activeProfile);
@@ -26,6 +52,39 @@ const EnduitMinceIsolant: React.FC<EnduitMinceIsolantProps> = ({ setCurrentPage 
         transformOrigin: 'center center',
       transition: 'transform 0.7s ease-in-out, transform-origin 0s',
       };
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    const updateOpacities = () => {
+      const viewportCenter = window.innerHeight / 2;
+      const maxDistance = window.innerHeight / 2;
+
+      const nextOpacities = iteProfiles.map((profile, index) => {
+        if (profile.id === activeProfile) return 1;
+
+        const card = cardRefs.current[index];
+        if (!card) return 1;
+
+        const rect = card.getBoundingClientRect();
+        const cardCenter = rect.top + rect.height / 2;
+        return Math.max(0.35, 1 - Math.abs(cardCenter - viewportCenter) / maxDistance);
+      });
+
+      setCardOpacities(nextOpacities);
+    };
+
+    updateOpacities();
+    window.addEventListener('scroll', updateOpacities);
+    window.addEventListener('resize', updateOpacities);
+
+    return () => {
+      window.removeEventListener('scroll', updateOpacities);
+      window.removeEventListener('resize', updateOpacities);
+    };
+  }, [activeProfile]);
 
   useEffect(() => {
     if (!zoomedImage) return;
@@ -67,44 +126,39 @@ const EnduitMinceIsolant: React.FC<EnduitMinceIsolantProps> = ({ setCurrentPage 
 
           {/* Left column — profile cards (40%) */}
           <div className="w-full lg:w-[40%] flex flex-col gap-3">
-            {iteProfiles.map(profile => {
+            {iteProfiles.map((profile, index) => {
               const isActive = activeProfile === profile.id;
               return (
                 <div
                   key={profile.id}
+                  ref={(el) => (cardRefs.current[index] = el)}
                   onClick={() => handleCardClick(profile.id)}
-                  className={`border rounded-xl cursor-pointer transition-all duration-300 p-4 ${
+                  style={{ transitionDelay: mounted ? `${index * 80}ms` : '0ms', opacity: isActive ? 1 : cardOpacities[index] }}
+                  className={`border rounded-xl cursor-pointer p-4 transition-transform duration-200 ${
+                    mounted ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-[-20px]'
+                  } ${
                     isActive
-                      ? 'bg-white/8 backdrop-blur-sm border border-[#E2FD48]/50 rounded-xl'
-                      : 'bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl'
+                      ? 'bg-white/8 backdrop-blur-sm border border-[#E2FD48]/50 rounded-xl shadow-[0_0_20px_rgba(226,253,72,0.15)]'
+                      : 'bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl hover:scale-[1.02] hover:shadow-lg'
                   }`}
                 >
                   {/* Card header row */}
                   <div className="flex items-center gap-4">
                     {/* Profile image — white bg, square, object-contain */}
-                    <div
-                      className={`flex-shrink-0 bg-white p-1.5 rounded-xl overflow-hidden transition-all duration-300 ${
-                        isActive ? 'w-20 h-20' : 'w-16 h-16'
-                      } ${isActive ? 'cursor-zoom-in' : ''}`}
-                      onClick={(e) => {
-                        if (!isActive) return;
-                        e.stopPropagation();
-                        setZoomedImage({
-                          src: profile.images.large,
-                          srcSet: `${profile.images.small} 800w, ${profile.images.medium} 1200w, ${profile.images.large} 1600w`,
-                          alt: profile.nom,
-                        });
-                      }}
-                    >
-                      <img
-                        src={profile.images.medium}
-                        srcSet={`${profile.images.small} 800w, ${profile.images.medium} 1200w, ${profile.images.large} 1600w`}
-                        sizes="(max-width: 640px) 64px, 80px"
-                        alt={profile.nom}
-                        loading="lazy"
-                        className="w-full h-full object-contain bg-white rounded-lg"
-                      />
-                    </div>
+                    {!isActive && (
+                      <div
+                        className="flex-shrink-0 bg-white p-1.5 rounded-xl overflow-hidden transition-all duration-300 w-16 h-16"
+                      >
+                        <img
+                          src={profile.images.medium}
+                          srcSet={`${profile.images.small} 800w, ${profile.images.medium} 1200w, ${profile.images.large} 1600w`}
+                          sizes="(max-width: 640px) 64px, 80px"
+                          alt={profile.nom}
+                          loading="lazy"
+                          className="w-full h-full object-contain bg-white rounded-lg"
+                        />
+                      </div>
+                    )}
 
                     {/* Name + origine */}
                     <div className="flex-1 min-w-0">
@@ -115,27 +169,12 @@ const EnduitMinceIsolant: React.FC<EnduitMinceIsolantProps> = ({ setCurrentPage 
                       >
                         {profile.nom}
                       </p>
-                      <p className="text-xs text-gray-500 mt-0.5">{profile.origine}</p>
                     </div>
 
                     {/* Chevron */}
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="none"
-                      className={`flex-shrink-0 text-gray-500 transition-transform duration-300 ${
-                        isActive ? 'rotate-180' : ''
-                      }`}
-                    >
-                      <path
-                        d="M4 6l4 4 4-4"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
+                    <span className="text-white/50 text-xl font-light transition-all duration-200">
+                      {isActive ? '−' : '+'}
+                    </span>
                   </div>
 
                   {/* Expanded description — fade in */}
@@ -143,12 +182,27 @@ const EnduitMinceIsolant: React.FC<EnduitMinceIsolantProps> = ({ setCurrentPage 
                     <div
                       className="mt-3 pt-3 border-t border-white/10 animate-fade-in"
                     >
+                      <div className="relative group mb-4" onClick={(e) => { e.stopPropagation(); setLightboxImage(profile.images.large); }}>
+                        <img
+                          src={profile.images.medium}
+                          srcSet={`${profile.images.small} 800w, ${profile.images.medium} 1200w, ${profile.images.large} 1600w`}
+                          sizes="(max-width: 1024px) 100vw, 40vw"
+                          alt={profile.nom}
+                          loading="lazy"
+                          className="w-full max-h-52 object-contain bg-white rounded-lg cursor-pointer"
+                        />
+                        <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-lg flex items-center justify-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 text-white drop-shadow-lg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
+                          </svg>
+                        </div>
+                      </div>
                       <p className="text-gray-300 text-sm leading-relaxed">
                         {profile.description}
                       </p>
                       {profile.utilite && (
                         <p className="text-gray-400 text-sm mt-2 leading-relaxed">
-                          <span className="text-[#E2FD48] font-medium">Utilite : </span>
+                          <span className="text-[#E2FD48] font-medium">Utilité : </span>
                           {profile.utilite}
                         </p>
                       )}
@@ -160,7 +214,7 @@ const EnduitMinceIsolant: React.FC<EnduitMinceIsolantProps> = ({ setCurrentPage 
           </div>
 
           {/* Right column — interactive schema (60%) */}
-          <div className="w-full lg:w-[60%] lg:sticky lg:top-32">
+          <div className="w-full lg:w-[60%] lg:sticky lg:top-32" ref={schemaRef}>
             <div className="relative overflow-hidden rounded-2xl bg-[#0E2A33] border border-white/10">
               {/* Transform wrapper — image + hotspot move together */}
               <div className="relative" style={schemaStyle}>
@@ -173,32 +227,38 @@ const EnduitMinceIsolant: React.FC<EnduitMinceIsolantProps> = ({ setCurrentPage 
                   className="w-full h-auto block"
                 />
 
-                {/* Hotspot badge — positioned relative to image content */}
-                {activeConfig && (
-                  <div
-                    className="absolute pointer-events-none"
-                    style={{
-                      top: activeConfig.hotspot.top,
-                      left: activeConfig.hotspot.left,
-                      transform: 'translate(-50%, -50%)',
-                    }}
-                  >
-                    <div className="w-8 h-8 rounded-full bg-[#0E2A33] border-2 border-[#E2FD48] flex items-center justify-center text-[#E2FD48] font-bold text-sm shadow-lg">
-                      {activeConfig.id}
+                {/* Hotspot badges — positioned relative to image content */}
+                {iteProfiles.map(profile => {
+                  const isActive = activeProfile === profile.id;
+                  return (
+                    <div
+                      key={profile.id}
+                      className="absolute"
+                      style={{
+                        top: profile.hotspot.top,
+                        left: profile.hotspot.left,
+                        transform: 'translate(-50%, -50%)',
+                      }}
+                    >
+                      <div
+                        onClick={() => handleCardClick(profile.id, true)}
+                        className={`cursor-pointer transition-all duration-300 rounded-full flex items-center justify-center shadow-lg ${
+                          isActive
+                            ? 'bg-[#E2FD48] text-[#0E2A33] border-2 border-[#E2FD48] opacity-100 w-8 h-8 text-sm font-bold scale-110'
+                            : `bg-[#0E2A33] text-[#E2FD48] border-2 border-[#E2FD48] ${
+                                activeProfile ? 'opacity-40' : 'opacity-100'
+                              } w-7 h-7 text-xs ${!activeProfile ? 'animate-pulse' : ''}`
+                        }`}
+                      >
+                        {profile.id}
+                      </div>
                     </div>
-                  </div>
-                )}
+                  );
+                })}
               </div>
 
-              {/* Idle hint */}
-              {!activeProfile && (
-                <div className="absolute bottom-4 left-0 right-0 flex justify-center pointer-events-none">
-                  <p className="text-gray-500 text-xs tracking-widest uppercase">
-                    Sélectionnez un profil pour zoomer
-                  </p>
-                </div>
-              )}
             </div>
+            <p className="text-white/30 text-xs text-center mt-3 tracking-widest uppercase">Coupe technique — ITE sous enduit</p>
           </div>
         </div>
 
@@ -227,6 +287,27 @@ const EnduitMinceIsolant: React.FC<EnduitMinceIsolantProps> = ({ setCurrentPage 
           </div>
         </div>
       </section>
+
+      {lightboxImage !== null && (
+        <div
+          className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center"
+          onClick={() => setLightboxImage(null)}
+        >
+          <button
+            type="button"
+            onClick={() => setLightboxImage(null)}
+            className="absolute top-4 right-4 text-white/80 hover:text-white text-3xl font-light"
+          >
+            ×
+          </button>
+          <img
+            src={lightboxImage}
+            alt="Aperçu profil"
+            className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
 
       {zoomedImage && (
         <div

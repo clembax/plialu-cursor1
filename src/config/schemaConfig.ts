@@ -34,7 +34,7 @@ export const iteProfiles: ProfileConfig[] = [
       large: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1773830839/Couronnement-1600px_jc1kpe.webp"
     },
     zoom: { x: -12, y: 0, scale: 1.6, transformOrigin: 'top center' },
-    hotspot: { top: '7%', left: '62%' }
+    hotspot: { top: '5%', left: '65%' }
   },
   {
     id: 2,
@@ -44,7 +44,7 @@ export const iteProfiles: ProfileConfig[] = [
     origine: 'Baukom',
     images: {
       small: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1773830839/GE-entoile%CC%81e-800px_rm0344.webp",
-      medium: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1773830839/GE-entoi-1200px_vmylvg.webp",
+      medium: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1773830839/GE-entoile%CC%81e-1200px_vmylvg.webp",
       large: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1773830840/GE-entoile%CC%81e-1600px_gpo7rj.webp"
     },
     zoom: { x: -3, y: 0, scale: 1.6, transformOrigin: 'top center' },
@@ -90,7 +90,7 @@ export const iteProfiles: ProfileConfig[] = [
       large: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1773830834/Rail-depart-1600px_jdhka4.webp"
     },
     zoom: { x: -17, y: 0, scale: 1.6, transformOrigin: 'bottom center' },
-    hotspot: { top: '88%', left: '58%' }
+    hotspot: { top: '95%', left: '71%' }
   },
   {
     id: 6,
