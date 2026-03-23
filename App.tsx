@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 // Fix: Use 'declare global' to augment the JSX namespace globally.
 declare global {
@@ -56,9 +56,16 @@ const App: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [solutionsAccordionOpen, setSolutionsAccordionOpen] = useState<string | null>(null);
   const [activeSolutionHover, setActiveSolutionHover] = React.useState(0);
+  const [isSommaireSticky, setIsSommaireSticky] = useState(false);
   const contactFormRef = React.useRef<HTMLFormElement>(null);
   const teaserVideoRef = React.useRef<HTMLVideoElement>(null);
   const expertisesVideoRef = React.useRef<HTMLVideoElement>(null);
+  const sommaireRef = useRef<HTMLDivElement>(null);
+  const expertisesHeroRef = useRef<HTMLElement | null>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const isDownRef = useRef(false);
+  const startXRef = useRef(0);
+  const scrollLeftRef = useRef(0);
 
   // Header Theme: 'dark' = light header bar (dark logo/menu) for contrast on light backgrounds (Expertises, Solutions, Ressources, Contact, Articles, Merci)
   const headerTheme =
@@ -164,6 +171,41 @@ const App: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [activeImage]);
 
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    const handleMouseDown = (e: MouseEvent) => {
+      isDownRef.current = true;
+      startXRef.current = e.pageX - el.offsetLeft;
+      scrollLeftRef.current = el.scrollLeft;
+    };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isDownRef.current) return;
+      e.preventDefault();
+      const x = e.pageX - el.offsetLeft;
+      const walk = (x - startXRef.current) * 1.5;
+      el.scrollLeft = scrollLeftRef.current - walk;
+    };
+
+    const stopDragging = () => {
+      isDownRef.current = false;
+    };
+
+    el.addEventListener('mousedown', handleMouseDown);
+    el.addEventListener('mousemove', handleMouseMove);
+    el.addEventListener('mouseup', stopDragging);
+    el.addEventListener('mouseleave', stopDragging);
+
+    return () => {
+      el.removeEventListener('mousedown', handleMouseDown);
+      el.removeEventListener('mousemove', handleMouseMove);
+      el.removeEventListener('mouseup', stopDragging);
+      el.removeEventListener('mouseleave', stopDragging);
+    };
+  }, [currentPage]);
+
   // Vidéo Teaser / Expertises : lecture au scroll (Intersection Observer)
   useEffect(() => {
     const videoEl = currentPage === 'home' ? teaserVideoRef.current : currentPage === 'expertises' ? expertisesVideoRef.current : null;
@@ -182,6 +224,24 @@ const App: React.FC = () => {
     );
     observer.observe(videoEl);
     return () => observer.disconnect();
+  }, [currentPage]);
+
+  useEffect(() => {
+    const handleSommaireScroll = () => {
+      if (currentPage !== 'expertises') {
+        setIsSommaireSticky(false);
+        return;
+      }
+      const heroBottom = expertisesHeroRef.current?.getBoundingClientRect().bottom ?? 0;
+      setIsSommaireSticky(heroBottom <= 64);
+    };
+
+    window.addEventListener('scroll', handleSommaireScroll);
+    handleSommaireScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleSommaireScroll);
+    };
   }, [currentPage]);
 
   const handleCopy = (text: string, key: string) => {
@@ -332,7 +392,7 @@ const App: React.FC = () => {
   ];
 
   return (
-    <div className="font-manrope selection-brand min-h-screen overflow-x-hidden">
+    <div className="font-manrope selection-brand min-h-screen">
       {/* Navigation */}
       <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${isScrolled ? 'h-20' : 'h-24'}`}>
         <div 
@@ -937,10 +997,10 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
         <div className="animate-fade-up">
           {/* 1. HERO SECTION (DARK) */}
           <section className="relative bg-[#071318] pt-48 md:pt-56 pb-20 overflow-hidden min-h-[70vh] flex flex-col justify-center">
-            <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#0e2a33]/40 to-[#071318]"></div>
-            <div className="relative z-10 max-w-7xl mx-auto px-6">
+            <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-b from-[#0e2a33]/40 to-[#071318]"></div>
+            <div className="relative z-10 flex-1 flex flex-col justify-center max-w-7xl mx-auto px-6 w-full">
               <div className="max-w-4xl space-y-8">
-                <span className="text-[10px] font-extrabold tracking-[0.4em] text-[#E2FD48] uppercase block">
+                <span className="text-[10px] font-extrabold tracking-[0.4em] text-white/50 uppercase block">
                   NOTRE IDENTITÉ INDUSTRIELLE
                 </span>
                 <h1 className="text-4xl md:text-6xl tracking-tighter leading-[1.1] font-black uppercase text-white">
@@ -952,15 +1012,19 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 <p className="text-base md:text-lg text-white/70 max-w-2xl leading-relaxed font-medium">
                   Implantée en région lyonnaise, PLIALU est une entreprise de façonnage et de transformation du métal spécialisée dans la fabrication sur mesure.
                 </p>
-                <button onClick={() => setCurrentPage('contact')} className="px-10 py-4 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full hover:bg-white transition-all tracking-tight shadow-[0_20px_40px_rgba(226,253,72,0.15)]">
+                <a
+                  href="#a-propos-contenu"
+                  onClick={(e) => { e.preventDefault(); document.getElementById('a-propos-contenu')?.scrollIntoView({ behavior: 'smooth' }); }}
+                  className="inline-flex items-center gap-2 px-10 py-4 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full hover:bg-white transition-all tracking-tight shadow-[0_20px_40px_rgba(226,253,72,0.15)]"
+                >
                   Demander un devis
-                </button>
+                </a>
               </div>
             </div>
           </section>
 
           {/* 2. POSITIONNEMENT (LIGHT) */}
-          <section className="py-32 bg-white">
+          <section id="a-propos-contenu" className="py-32 bg-white">
             <div className="max-w-7xl mx-auto px-6">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                 <div className="space-y-8">
@@ -1010,10 +1074,10 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
         <div className="animate-fade-up">
           {/* Hero Réalisations */}
           <section className="relative bg-[#071318] pt-48 md:pt-56 pb-24 overflow-hidden min-h-[70vh] flex flex-col justify-center">
-            <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#0e2a33]/40 to-[#071318]"></div>
-            <div className="relative z-10 max-w-7xl mx-auto px-6">
+            <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-b from-[#0e2a33]/40 to-[#071318]"></div>
+            <div className="relative z-10 flex-1 flex flex-col justify-center max-w-7xl mx-auto px-6 w-full">
               <div className="max-w-4xl space-y-8">
-                <span className="text-[10px] font-extrabold tracking-[0.4em] text-[#E2FD48] uppercase block">
+                <span className="text-[10px] font-extrabold tracking-[0.4em] text-white/50 uppercase block">
                   PORTFOLIO COLLABORATIONS
                 </span>
                 <h1 className="text-4xl md:text-6xl tracking-tighter leading-[1.1] font-black uppercase text-white">
@@ -1026,7 +1090,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 <a
                   href="#projets-grille"
                   onClick={(e) => { e.preventDefault(); document.getElementById('projets-grille')?.scrollIntoView({ behavior: 'smooth' }); }}
-                  className="inline-flex items-center gap-2 px-10 py-4 md:px-12 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all shadow-xl hover:shadow-[#E2FD48]/20 hover:-translate-y-1"
+                  className="inline-flex items-center gap-2 px-10 py-4 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full hover:bg-white transition-all tracking-tight shadow-[0_20px_40px_rgba(226,253,72,0.15)]"
                 >
                   Voir nos collaborations
                   <iconify-icon icon="lucide:arrow-down" width="18"></iconify-icon>
@@ -1037,8 +1101,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
           {/* Grille des Projets */}
           <section id="projets-grille" className="py-24 bg-white scroll-mt-24">
-            <div className="max-w-7xl mx-auto px-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="w-full">
+              <div
+                ref={scrollRef}
+                className="flex overflow-x-auto gap-6 px-8 md:px-16 pb-12 snap-x snap-mandatory no-scrollbar w-full cursor-grab active:cursor-grabbing"
+              >
                 {[
                   {
                     id: "cae-lyon",
@@ -1372,99 +1439,182 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       }
                     ]
                   }
-                ].map((project, idx) => (
-                  <React.Fragment key={project.id}>
-                    <article 
-                      className={`group relative aspect-[3/2] overflow-hidden rounded-2xl border border-zinc-100 bg-zinc-50 cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1 ${selectedProjectId === project.id ? 'ring-0' : ''}`}
-                      onClick={() => setSelectedProjectId(selectedProjectId === project.id ? null : project.id)}
+                ].map((project) => {
+                  const isOpen = selectedProjectId === project.id;
+                  const projectImages = [project.mainImg, ...project.gallery].slice(0, 4);
+                  const technicalDescription =
+                    (project as { description?: string }).description ?? project.context;
+
+                  return (
+                    <article
+                      key={project.id}
+                      role="button"
+                      tabIndex={0}
+                      aria-label={`Ouvrir le projet ${project.title}`}
+                      className="snap-center shrink-0 w-[85vw] md:w-[600px] h-[75vh] relative group overflow-hidden rounded-none cursor-pointer"
+                      onClick={() => setSelectedProjectId(isOpen ? null : project.id)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          setSelectedProjectId(isOpen ? null : project.id);
+                        }
+                      }}
                     >
-                      <img 
-                        src={project.mainImg.src} 
-                        srcset={project.mainImg.srcset}
-                        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 800px"
-                        alt={`${project.title} – ${project.tag}`} 
-                        loading="lazy" 
-                        decoding="async"
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 flex flex-col justify-end">
-                        <span className="text-[9px] font-black tracking-[0.2em] text-[#E2FD48] uppercase mb-2">{project.tag}</span>
-                        <h3 className="text-xl font-extrabold text-white tracking-tight">{project.title}</h3>
-                        <div className="flex items-center justify-between mt-1">
-                          <span className="text-xs text-white/60 font-medium">{project.city}</span>
-                          <span className="text-[10px] font-bold text-white/40 uppercase tracking-widest group-hover:text-white transition-colors">Détails</span>
-                        </div>
-                      </div>
-                    </article>
+                      {!isOpen && (
+                        <>
+                          <img
+                            src={project.mainImg.src}
+                            srcset={project.mainImg.srcset}
+                            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 800px"
+                            alt={`${project.title} – ${project.tag}`}
+                            loading="lazy"
+                            decoding="async"
+                            className="w-full h-full object-cover rounded-none transition-transform duration-[1.5s] group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#0E2A33]/80 via-transparent to-transparent"></div>
+                          <div className="absolute bottom-0 left-0 w-full p-8 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                            <span className="text-[10px] font-bold tracking-[0.3em] text-[#E2FD48] uppercase mb-2 block">{project.tag}</span>
+                            <h3 className="text-2xl font-black text-white uppercase tracking-tight">{project.title}</h3>
+                            <p className="text-white/60 text-sm mt-1">{project.city}</p>
+                            <p className="text-[#E2FD48] text-xs font-bold tracking-widest uppercase mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                              DÉTAILS →
+                            </p>
+                          </div>
+                        </>
+                      )}
 
-                    {/* Panneau Projet (Expandable) */}
-                    {selectedProjectId === project.id && (
-                      <div className="col-span-1 md:col-span-2 lg:col-span-3 animate-fade-up overflow-hidden">
-                        <div className="relative my-6 bg-[#F3F6F7] rounded-[32px] border border-zinc-200 overflow-hidden max-w-[1100px] mx-auto shadow-xl">
-                          <div className="flex flex-col lg:flex-row max-h-[unset] lg:max-h-[500px]">
-                            {/* Colonne Gauche (Infos) */}
-                            <div className="w-full lg:w-[40%] p-8 md:p-10 overflow-y-auto no-scrollbar">
-                              <div className="mb-8">
-                                <h4 className="text-2xl md:text-3xl font-black text-[#0E2A33] tracking-tighter mb-2">{project.title}</h4>
-                                <p className="text-sm font-bold text-[#0E2A33]/40 uppercase tracking-widest">{project.city} • {project.year}</p>
-                              </div>
-                              
-                              <p className="text-[#0E2A33]/70 text-base font-medium leading-relaxed mb-8 border-l-2 border-[#E2FD48] pl-6 whitespace-pre-line">
-                                {project.context}
-                              </p>
-                            </div>
-
-                            {/* Colonne Droite (Galerie) */}
-                            <div className="w-full lg:w-[60%] p-4 lg:p-8 bg-white/50 overflow-y-auto no-scrollbar">
-                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <button 
-                                  onClick={() => setActiveImage(project.mainImg)}
-                                  aria-label="Agrandir l'image"
-                                  className="md:col-span-2 aspect-[3/2] rounded-2xl overflow-hidden cursor-zoom-in outline-none focus-visible:ring-2 focus-visible:ring-[#E2FD48]"
-                                >
-                                  <img 
-                                    src={project.mainImg.src} 
-                                    srcset={project.mainImg.srcset}
-                                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 800px"
-                                    alt={`${project.title} – ${project.tag}`} 
-                                    loading="lazy"
-                                    decoding="async"
-                                    className="w-full h-full object-cover" 
-                                  />
-                                </button>
-                                {project.gallery.map((img, gIdx) => (
-                                  <button 
-                                    key={gIdx} 
-                                    onClick={() => setActiveImage(img)}
+                      {isOpen && (
+                        <>
+                          <div className="w-full h-full relative transition-all duration-500 ease-in-out">
+                            <div className="h-full">
+                            {projectImages.length === 2 && (
+                              <div className="grid grid-cols-2 h-full gap-2">
+                                {projectImages.map((img, idx) => (
+                                  <button
+                                    key={idx}
+                                    type="button"
                                     aria-label="Agrandir l'image"
-                                    className="aspect-square rounded-2xl overflow-hidden cursor-zoom-in outline-none focus-visible:ring-2 focus-visible:ring-[#E2FD48]"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      setActiveImage({ src: img.src, srcset: img.srcset });
+                                    }}
+                                    className="h-full w-full overflow-hidden"
                                   >
-                                    <img 
-                                      src={img.src} 
+                                    <img
+                                      src={img.src}
                                       srcset={img.srcset}
                                       sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 800px"
-                                      alt={`${project.title} – Détail technique ${gIdx + 1}`} 
+                                      alt={`${project.title} – Détail technique ${idx + 1}`}
                                       loading="lazy"
                                       decoding="async"
-                                      className="w-full h-full object-cover" 
+                                      className="w-full h-full object-cover rounded-none"
                                     />
                                   </button>
                                 ))}
                               </div>
+                            )}
+
+                            {projectImages.length === 3 && (
+                              <div className="grid grid-cols-3 h-full gap-2">
+                                <button
+                                  type="button"
+                                  aria-label="Agrandir l'image"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    setActiveImage({ src: projectImages[0].src, srcset: projectImages[0].srcset });
+                                  }}
+                                  className="col-span-2 h-full w-full overflow-hidden"
+                                >
+                                  <img
+                                    src={projectImages[0].src}
+                                    srcset={projectImages[0].srcset}
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 800px"
+                                    alt={`${project.title} – Détail technique 1`}
+                                    loading="lazy"
+                                    decoding="async"
+                                    className="w-full h-full object-cover rounded-none"
+                                  />
+                                </button>
+                                <div className="col-span-1 grid grid-rows-2 h-full gap-2">
+                                  {projectImages.slice(1).map((img, idx) => (
+                                    <button
+                                      key={idx}
+                                      type="button"
+                                      aria-label="Agrandir l'image"
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        setActiveImage({ src: img.src, srcset: img.srcset });
+                                      }}
+                                      className="h-full w-full overflow-hidden"
+                                    >
+                                      <img
+                                        src={img.src}
+                                        srcset={img.srcset}
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 800px"
+                                        alt={`${project.title} – Détail technique ${idx + 2}`}
+                                        loading="lazy"
+                                        decoding="async"
+                                        className="w-full h-full object-cover rounded-none"
+                                      />
+                                    </button>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+
+                            {(projectImages.length === 1 || projectImages.length >= 4) && (
+                              <div className={`grid ${projectImages.length === 1 ? 'grid-cols-1' : 'grid-cols-2'} h-full gap-2`}>
+                                {(projectImages.length === 1 ? projectImages : projectImages.slice(0, 4)).map((img, idx) => (
+                                  <button
+                                    key={idx}
+                                    type="button"
+                                    aria-label="Agrandir l'image"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      setActiveImage({ src: img.src, srcset: img.srcset });
+                                    }}
+                                    className={`h-full w-full overflow-hidden ${projectImages.length >= 4 ? 'aspect-square' : ''}`}
+                                  >
+                                    <img
+                                      src={img.src}
+                                      srcset={img.srcset}
+                                      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 800px"
+                                      alt={`${project.title} – Détail technique ${idx + 1}`}
+                                      loading="lazy"
+                                      decoding="async"
+                                      className="w-full h-full object-cover rounded-none"
+                                    />
+                                  </button>
+                                ))}
+                              </div>
+                            )}
+                            </div>
+
+                            <div className={`absolute bottom-0 left-0 right-0 bg-black/50 backdrop-blur-md border-t border-white/10 px-6 py-5 flex items-center gap-6 transition-opacity duration-500 ease-in-out ${isOpen ? 'opacity-100' : 'opacity-0'}`}>
+                              <span className="text-[#E2FD48] text-xs font-bold tracking-widest uppercase shrink-0">{project.year}</span>
+                              <div className="w-px h-8 bg-white/20 shrink-0"></div>
+                              <h3 className="text-white font-black uppercase tracking-tight text-lg leading-tight">{project.title}</h3>
+                              <div className="w-px h-8 bg-white/20 shrink-0"></div>
+                              <p className="text-white/60 text-xs leading-relaxed">{technicalDescription}</p>
                             </div>
                           </div>
-                          <button 
-                            onClick={() => setSelectedProjectId(null)}
+
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setSelectedProjectId(null);
+                            }}
                             aria-label="Fermer le projet"
-                            className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/80 backdrop-blur-md flex items-center justify-center text-[#0E2A33] hover:bg-white transition-all shadow-md z-20"
+                            className="absolute top-4 right-4 z-20 w-8 h-8 bg-[#0E2A33]/80 rounded-full flex items-center justify-center text-white text-lg hover:bg-[#E2FD48] hover:text-[#0E2A33] transition-all"
                           >
-                            <iconify-icon icon="lucide:x" width="20"></iconify-icon>
+                            ×
                           </button>
-                        </div>
-                      </div>
-                    )}
-                  </React.Fragment>
-                ))}
+                        </>
+                      )}
+                    </article>
+                  );
+                })}
               </div>
             </div>
           </section>
@@ -1517,7 +1667,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
         <div className="animate-fade-up">
           {/* Hero Solutions */}
           <section className="bg-white pt-48 md:pt-56 pb-20 min-h-[70vh] flex flex-col justify-center">
-            <div className="max-w-7xl mx-auto px-6">
+            <div className="flex-1 flex flex-col justify-center max-w-7xl mx-auto px-6 w-full">
               <div className="max-w-4xl space-y-8">
                 <span className="text-[10px] font-extrabold tracking-[0.4em] text-zinc-400 uppercase block">CATALOGUE B2B</span>
                 <h1 className="text-4xl md:text-6xl tracking-tighter leading-[1.1] font-black uppercase text-[#0E2A33]">
@@ -1682,9 +1832,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
       {/* --- EXPERTISES PAGE CONTENT --- */}
       {currentPage === 'expertises' && (
-        <div className="animate-fade-up">
+        <div className="animate-fade-in">
           {/* Hero Expertises (contient le sommaire en bas, au-dessus de la ligne de flottaison) */}
-          <section className="bg-white pt-48 md:pt-56 pb-0 min-h-[70vh] flex flex-col">
+          <section ref={expertisesHeroRef} className="bg-white pt-48 md:pt-56 pb-0 min-h-[70vh] flex flex-col">
             <div className="flex-1 flex flex-col justify-center max-w-7xl mx-auto px-6 w-full">
               <div className="max-w-4xl space-y-8">
                 <span className="text-[10px] font-extrabold tracking-[0.4em] text-zinc-400 uppercase block">
@@ -1716,38 +1866,47 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 </div>
               </div>
             </div>
-            {/* Mini Sommaire : en bas du Hero, visible au-dessus de la ligne de flottaison */}
-            <div id="expertises-sommaire" className="relative z-10 bg-white border-t border-zinc-100 scroll-mt-24 shrink-0">
-              <div className="max-w-7xl mx-auto px-6">
-                <div className="relative flex items-center overflow-x-auto no-scrollbar py-14 px-4 md:justify-center scroll-snap-x">
-                  <div className="flex items-center gap-0 md:flex-row">
-                    {expertisesDetails.map((exp, idx) => (
-                      <React.Fragment key={exp.id}>
-                        <a 
-                          href={`#${exp.id}`} 
-                          onMouseEnter={() => setHoveredStep(idx)}
-                          onMouseLeave={() => setHoveredStep(null)}
-                          className="relative z-10 flex items-center gap-3 px-3 py-2 rounded-[6px] border border-black/[0.15] bg-black/[0.02] group hover:bg-[#071318] hover:border-[#071318] hover:-translate-y-0.5 transition-all duration-200 scroll-snap-align-start shrink-0"
-                        >
-                          <span className="text-[10.5px] font-extrabold text-black/60 group-hover:text-[#E2FD48] transition-colors leading-none">
-                            0{idx + 1}
-                          </span>
-                          <span className="text-[11px] font-bold tracking-tight text-[#0E2A33]/70 group-hover:text-white transition-colors uppercase whitespace-nowrap leading-none">
-                            {exp.title}
-                          </span>
-                        </a>
-                        {idx < expertisesDetails.length - 1 && (
-                          <div className={`hidden md:block w-8 lg:w-12 h-[1px] shrink-0 self-center transition-colors duration-200 ${
-                            hoveredStep === idx || hoveredStep === idx + 1 ? 'bg-[#E2FD48]' : 'bg-black/[0.15]'
-                          }`}></div>
-                        )}
-                      </React.Fragment>
-                    ))}
-                  </div>
+          </section>
+
+          {/* Mini Sommaire : sticky sous le header */}
+          <div
+            id="expertises-sommaire"
+            ref={sommaireRef}
+            className={`sticky top-16 z-30 scroll-mt-24 shrink-0 ${
+              isSommaireSticky
+                ? 'bg-white/70 backdrop-blur-md border-t border-zinc-100/50'
+                : 'bg-white border-t border-zinc-100'
+            }`}
+          >
+            <div className="max-w-7xl mx-auto px-6">
+              <div className="relative flex items-center overflow-x-auto no-scrollbar py-14 px-4 md:justify-center scroll-snap-x">
+                <div className="flex items-center gap-0 md:flex-row">
+                  {expertisesDetails.map((exp, idx) => (
+                    <React.Fragment key={exp.id}>
+                      <a 
+                        href={`#${exp.id}`} 
+                        onMouseEnter={() => setHoveredStep(idx)}
+                        onMouseLeave={() => setHoveredStep(null)}
+                        className="relative z-10 flex items-center gap-3 px-3 py-2 rounded-[6px] border border-black/[0.15] bg-black/[0.02] group hover:bg-[#071318] hover:border-[#071318] hover:-translate-y-0.5 transition-all duration-200 scroll-snap-align-start shrink-0"
+                      >
+                        <span className="text-[10.5px] font-extrabold text-black/60 group-hover:text-[#E2FD48] transition-colors leading-none">
+                          0{idx + 1}
+                        </span>
+                        <span className="text-[11px] font-bold tracking-tight text-[#0E2A33]/70 group-hover:text-white transition-colors uppercase whitespace-nowrap leading-none">
+                          {exp.title}
+                        </span>
+                      </a>
+                      {idx < expertisesDetails.length - 1 && (
+                        <div className={`hidden md:block w-8 lg:w-12 h-[1px] shrink-0 self-center transition-colors duration-200 ${
+                          hoveredStep === idx || hoveredStep === idx + 1 ? 'bg-[#E2FD48]' : 'bg-black/[0.15]'
+                        }`}></div>
+                      )}
+                    </React.Fragment>
+                  ))}
                 </div>
               </div>
             </div>
-          </section>
+          </div>
 
           {/* Vidéo complète – lecteur Vimeo */}
           <section id="video-complete" className="section--dark py-24 scroll-mt-24" style={{ background: '#071318' }}>
@@ -1938,7 +2097,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
         <div className="animate-fade-up">
           {/* Hero Ressources */}
           <section className="bg-white pt-48 md:pt-56 pb-20 min-h-[70vh] flex flex-col justify-center">
-            <div className="max-w-7xl mx-auto px-6">
+            <div className="flex-1 flex flex-col justify-center max-w-7xl mx-auto px-6 w-full">
               <div className="max-w-4xl space-y-8">
                 <span className="text-[10px] font-extrabold tracking-[0.4em] text-zinc-400 uppercase block">
                   RESSOURCES TECHNIQUES
@@ -2542,242 +2701,315 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
       {/* --- RESSOURCE ARTICLE 3 --- */}
       {currentPage === 'ressource-3' && (
         <div className="animate-fade-up bg-white" style={{ backgroundColor: '#FFFFFF' }}>
+          {/* HERO ARTICLE */}
           <section className="pt-32 md:pt-40 pb-12 bg-white" style={{ backgroundColor: '#FFFFFF' }}>
-            <div className="max-w-7xl mx-auto px-6">
-              <div className="max-w-4xl">
-                <span className="text-[10px] font-extrabold tracking-[0.4em] text-[#6B7280] uppercase block mb-4">
-                  RESSOURCES TECHNIQUES · THERMOLAQUAGE QUALICOAT
-                </span>
-                <h1 className="text-4xl md:text-5xl tracking-tighter leading-[1.1] font-black mb-6 text-[#000000]">
+            <div className="max-w-5xl mx-auto px-6">
+              <div className="w-full">
+                <button
+                  type="button"
+                  onClick={() => setCurrentPage('ressources')}
+                  className="flex items-center gap-2 text-sm font-semibold text-[#0E2A33] hover:text-[#E2FD48] cursor-pointer mb-8 uppercase tracking-widest"
+                >
+                  <span>← Retour aux ressources</span>
+                </button>
+
+                <h1 className="text-4xl md:text-5xl font-black text-[#0E2A33] leading-tight mt-20 max-w-3xl mx-auto text-center">
                   Thermolaquage certifié Qualicoat : garanties
                 </h1>
-                <p className="text-base md:text-lg text-[#1F2937]/80 leading-relaxed font-medium">
-                  Le <strong>Thermolaquage certifié Qualicoat</strong> représente l'exigence technique absolue pour garantir la pérennité
-                  structurelle et esthétique des enveloppes métalliques soumises aux contraintes environnementales sévères. Dans le domaine
-                  de la conception architecturale contemporaine, la durabilité d'une façade ne peut plus être perçue comme la simple
-                  résultante de la nature intrinsèque du métal utilisé.
+
+                <p className="text-lg text-gray-600 mt-6 max-w-3xl mx-auto text-center">
+                  La durabilité d'une façade métallique ne se joue pas uniquement sur le choix de l'alliage. C'est le traitement de
+                  surface qui détermine la résistance réelle du système dans le temps — face aux UV, à l'humidité et aux cycles
+                  thermiques. QUALICOAT est la certification internationale qui valide cette performance. PLIALU l'applique sur
+                  l'intégralité de sa production thermolaquée, avec une particularité process décisive : le laquage intervient après le
+                  façonnage, jamais avant. La performance d'un traitement de surface se décide en phase d'études, pas sur chantier — cet
+                  article détaille ce qu'un prescripteur doit exiger et pourquoi.
+                </p>
+
+                <div className="relative mt-8">
+                  <img
+                    srcSet="https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,w_800/v1774283296/PLIALU_Juin24_245_G_Perret_vsy4ar.jpg 800w, https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,w_1200/v1774283296/PLIALU_Juin24_245_G_Perret_vsy4ar.jpg 1200w, https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,w_1600/v1774283296/PLIALU_Juin24_245_G_Perret_vsy4ar.jpg 1600w"
+                    sizes="100vw"
+                    src="https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,w_1200/v1774283296/PLIALU_Juin24_245_G_Perret_vsy4ar.jpg"
+                    alt="RAL et teintes thermolaquage certifié QUALICOAT"
+                    className="w-full h-[500px] object-cover rounded-2xl"
+                    loading="lazy"
+                  />
+                  <div className="absolute top-4 right-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-3">
+                    <img
+                      src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1771500844/logo_qf_kzo395.png"
+                      alt="Certification QUALICOAT"
+                      className="h-8 w-auto"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+                <p className="text-sm text-gray-400 text-center mt-2">Nuancier RAL — Atelier PLIALU, Rhône-Alpes</p>
+              </div>
+            </div>
+          </section>
+
+          {/* CORPS DE L'ARTICLE */}
+          <section className="pt-8 pb-20 bg-white" style={{ backgroundColor: '#FFFFFF' }}>
+            <div className="max-w-3xl mx-auto px-6 text-gray-700 leading-relaxed space-y-12">
+              <div className="pt-8 mt-8 border-t border-gray-100">
+                <h2 className="text-2xl font-bold text-[#0E2A33] mt-0 mb-6">Pourquoi la certification QUALICOAT change tout</h2>
+                <p className="text-base mb-6">
+                  QUALICOAT est un label de qualité délivré par une association internationale indépendante, basée en Suisse, qui certifie
+                  les laqueurs industriels sur aluminium et alliages légers. Le périmètre de certification ne se limite pas à un contrôle
+                  visuel de la teinte ou de l'aspect de surface. QUALICOAT impose une validation multidimensionnelle des propriétés
+                  physico-chimiques du complexe métal-peinture : adhérence, épaisseur de couche, résistance à la corrosion, stabilité
+                  colorimétrique sous exposition UV, et résistance mécanique aux chocs et à l'abrasion.
+                </p>
+                <p className="text-base mb-6">
+                  Chaque laqueur certifié est audité régulièrement. Les paramètres de process — températures de cuisson, durées de
+                  polymérisation, concentrations des bains chimiques — sont tracés et contrôlés. Ce niveau d'exigence garantit aux
+                  prescripteurs une reproductibilité industrielle du résultat, indépendamment du lot de production ou de la période de
+                  fabrication.
+                </p>
+                <p className="text-base mb-12">
+                  Un profilé thermolaqué certifié QUALICOAT n'est pas simplement peint. Il est traité selon un protocole normé dont chaque
+                  étape est mesurée, enregistrée et vérifiable.
+                </p>
+              </div>
+
+              <div className="pt-8 mt-20 border-t border-gray-100">
+                <h2 className="text-2xl font-bold text-[#0E2A33] mt-0 mb-6">Post-laquage vs pré-laquage : l'argument PLIALU</h2>
+                <p className="text-base mb-6">
+                  Dans l'industrie du façonnage métallique, deux approches coexistent pour le laquage des pièces de façade.
+                </p>
+                <p className="text-base mb-6">
+                  Le pré-laquage en bobine (coil coating) consiste à laquer la tôle en continu avant les opérations de découpe et de
+                  pliage. C'est un process adapté aux éléments plans de grande série. Ses limites apparaissent dès qu'il y a façonnage.
+                  Chaque pli génère des micro-fissures dans le film de peinture sur les arêtes vives et les angles serrés. Les tranches de
+                  découpe restent nues — métal brut exposé à l'atmosphère — et constituent des points d'amorce de corrosion. Sur des
+                  éléments de façade exposés aux intempéries pendant 20 ou 30 ans, ces défauts ne sont pas cosmétiques : ils sont
+                  fonctionnels.
+                </p>
+                <p className="text-base mb-12">
+                  Le post-laquage — la méthode intégrée dans le process PLIALU — inverse la logique. La tôle est d'abord découpée,
+                  poinçonnée, pliée et assemblée. Ce n'est qu'une fois la pièce dans sa géométrie définitive que le traitement de surface
+                  intervient. Le résultat est un enrobage intégral de la pièce finie : arêtes vives, retours de pli, intérieur des
+                  perçages et tranches de découpe sont couverts de manière homogène. La couche de peinture polymérise (durcit par réaction
+                  chimique sous chaleur) sur une géométrie stabilisée — aucune contrainte mécanique ultérieure ne vient solliciter le film.
+                </p>
+                <p className="text-base mb-12">
+                  Pour un prescripteur, la différence est nette : le post-laquage supprime les deux faiblesses intrinsèques du pré-laquage
+                  sur pièces façonnées et garantit une protection complète sur 100 % de la surface exposée.
+                </p>
+                <img
+                  srcSet="https://res.cloudinary.com/dyiup6v5x/image/upload/v1774283604/Postlaquage-800px_azmopo.webp 800w, https://res.cloudinary.com/dyiup6v5x/image/upload/v1774283603/Postlaquage-1200px_cwuvqo.webp 1200w, https://res.cloudinary.com/dyiup6v5x/image/upload/v1774283604/Postlaquage-1600px_rpy0k2.webp 1600w"
+                  sizes="100vw"
+                  src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1774283603/Postlaquage-1200px_cwuvqo.webp"
+                  alt="Poudrage électrostatique post-laquage thermolaquage certifié QUALICOAT — atelier PLIALU"
+                  className="w-full h-[420px] object-cover rounded-2xl"
+                  loading="lazy"
+                />
+                <p className="text-sm text-gray-400 text-center mt-2">
+                  Poudrage électrostatique sur pièces façonnées — Atelier PLIALU, Rhône-Alpes
+                </p>
+              </div>
+
+              <div className="pt-8 mt-20 border-t border-gray-100">
+                <h2 className="text-2xl font-bold text-[#0E2A33] mt-0 mb-6">Le processus QUALICOAT : ingénierie de surface</h2>
+                <p className="text-base mb-6">
+                  Le thermolaquage certifié QUALICOAT est une séquence industrielle en trois phases, où chaque étape conditionne la
+                  performance de la suivante.
+                </p>
+                <p className="text-base mb-2">
+                  <strong>Prétraitement chimique</strong>
+                </p>
+                <p className="text-base mb-6">
+                  La surface de l'aluminium est d'abord dégraissée puis dérochée (dissolution de la couche d'oxyde naturel et des
+                  impuretés métalliques). Ces deux étapes exposent un substrat propre et réactif. Vient ensuite la conversion chimique
+                  Chrome-free : des sels de titane ou de zirconium créent une couche nanométrique entre le substrat et la laque, qui
+                  renforce l'adhérence et constitue une barrière anticorrosion supplémentaire.
+                </p>
+                <p className="text-base mb-2">
+                  <strong>Poudrage électrostatique</strong>
+                </p>
+                <p className="text-base mb-6">
+                  La peinture poudre sèche (sans solvant liquide) est projetée par pistolet électrostatique. Les particules chargées se
+                  déposent de manière uniforme sur toutes les géométries — retours, angles, cavités. L'épaisseur minimale exigée par
+                  QUALICOAT est de 60 microns. Les excédents sont recyclés, et l'absence de solvant rend le procédé peu émissif en COV
+                  (Composés Organiques Volatils).
+                </p>
+                <p className="text-base mb-2">
+                  <strong>Polymérisation et réticulation thermique</strong>
+                </p>
+                <p className="text-base mb-12">
+                  La pièce est cuite entre 180 °C et 200 °C pendant une durée contrôlée. La poudre fond, s'étale en film continu, puis
+                  polymérise : les chaînes moléculaires se réticulent (créent des liaisons chimiques croisées irréversibles) pour former un
+                  revêtement durci et stable. QUALICOAT impose des fenêtres de cuisson strictes pour garantir l'équilibre entre dureté de
+                  surface et souplesse résiduelle — nécessaire pour encaisser les dilatations thermiques en façade.
+                </p>
+              </div>
+
+              <div className="pt-8 mt-20 border-t border-gray-100">
+                <h2 className="text-2xl font-bold text-[#0E2A33] mt-0 mb-6">Les protocoles de validation</h2>
+                <p className="text-base mb-6">
+                  La certification QUALICOAT repose sur des tests normalisés réalisés sur chaque lot de production. Ces protocoles qualifient
+                  le comportement physico-chimique du système complet substrat-conversion-peinture.
+                </p>
+                <div className="overflow-x-auto">
+                  <table className="w-full border-collapse mt-6 text-sm">
+                    <thead>
+                      <tr className="bg-[#0E2A33] text-white">
+                        <th className="px-6 py-4 text-left">Test</th>
+                        <th className="px-6 py-4 text-left">Ce qu'il garantit</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="bg-gray-50">
+                        <td className="px-6 py-4 font-medium text-[#0E2A33]">Test de quadrillage ISO 2409</td>
+                        <td className="px-6 py-4">
+                          Un quadrillage est incisé dans le film, puis un ruban adhésif normalisé est arraché. La classification Grade 0 est
+                          obligatoire : aucun éclat, aucun détachement. Valide l'adhérence entre conversion et laque.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="px-6 py-4 font-medium text-[#0E2A33]">Mesure de brillance ISO 2813</td>
+                        <td className="px-6 py-4">
+                          Contrôle de la rétention de brillance sous UV avec des tolérances strictes par rapport à l'échantillon initial. Une
+                          perte excessive signale une dégradation prématurée du liant polymère.
+                        </td>
+                      </tr>
+                      <tr className="bg-gray-50">
+                        <td className="px-6 py-4 font-medium text-[#0E2A33]">Vieillissement accéléré et brouillard salin</td>
+                        <td className="px-6 py-4">
+                          Exposition en atmosphère corrosive simulant plusieurs années d'intempéries. Valide la tenue du système dans le temps
+                          en environnement urbain ou industriel.
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <img
+                  srcSet="https://res.cloudinary.com/dyiup6v5x/image/upload/v1774284080/Thermolaquage-800px_mitqzm.webp 800w, https://res.cloudinary.com/dyiup6v5x/image/upload/v1774284080/Thermolaquage-1200px_lyexrk.webp 1200w, https://res.cloudinary.com/dyiup6v5x/image/upload/v1774284081/Thermolaquage-1600px_pke4oc.webp 1600w"
+                  sizes="100vw"
+                  src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1774284080/Thermolaquage-1200px_lyexrk.webp"
+                  alt="Test de quadrillage ISO 2409 — protocole de validation thermolaquage certifié QUALICOAT atelier PLIALU"
+                  className="w-full h-[420px] object-cover rounded-2xl mt-10"
+                  loading="lazy"
+                />
+                <p className="text-sm text-gray-400 text-center mt-2">
+                  Test de quadrillage ISO 2409 — Contrôle qualité PLIALU, Rhône-Alpes
+                </p>
+              </div>
+
+              <div className="pt-8 mt-20 border-t border-gray-100">
+                <h2 className="text-2xl font-bold text-[#0E2A33] mt-0 mb-6">Classes de poudres : durabilité UV</h2>
+                <p className="text-base mb-6">
+                  Le choix de la classe de poudre détermine la stabilité colorimétrique (maintien de la teinte RAL d'origine) et la
+                  rétention de brillance sur la durée d'exposition aux UV. C'est un paramètre à intégrer dès la rédaction du CCTP (Cahier
+                  des Clauses Techniques Particulières, document contractuel qui définit les exigences techniques du marché) — pas en fin de
+                  projet lorsque les arbitrages budgétaires ont déjà été faits.
+                </p>
+                <div className="overflow-x-auto">
+                  <table className="w-full border-collapse mt-6 text-sm">
+                    <thead>
+                      <tr className="bg-[#0E2A33] text-white">
+                        <th className="px-6 py-4 text-left">Classe</th>
+                        <th className="px-6 py-4 text-left">Durabilité UV</th>
+                        <th className="px-6 py-4 text-left">Usage recommandé</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="bg-gray-50">
+                        <td className="px-6 py-4 font-medium text-[#0E2A33]">Classe 1</td>
+                        <td className="px-6 py-4">
+                          Poudres standards, testées 1 an d'exposition naturelle (ISO 2810, protocole Florida).
+                        </td>
+                        <td className="px-6 py-4">
+                          Projets courants, éléments peu exposés aux UV directs : façades nord, éléments protégés par des débords.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="px-6 py-4 font-medium text-[#0E2A33]">Classe 2</td>
+                        <td className="px-6 py-4">
+                          Poudres Super Durables, testées 3 ans. Rétention de brillance et stabilité colorimétrique nettement supérieures.
+                        </td>
+                        <td className="px-6 py-4">
+                          Façades exposées, orientations sud et ouest, bâtiments tertiaires, ERP, équipements publics. Recommandé par défaut
+                          pour tout élément de façade visible.
+                        </td>
+                      </tr>
+                      <tr className="bg-gray-50">
+                        <td className="px-6 py-4 font-medium text-[#0E2A33]">Classe 3</td>
+                        <td className="px-6 py-4">
+                          Poudres Ultra Durables, niveau d'exigence maximal. Performances validées pour les conditions d'exposition les plus
+                          sévères.
+                        </td>
+                        <td className="px-6 py-4">
+                          Environnements extrêmes : altitude, zones industrielles à forte concentration de polluants atmosphériques.
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div className="pt-8 mt-20 border-t border-gray-100">
+                <h2 className="text-2xl font-bold text-[#0E2A33] mt-0 mb-6">Ce qu'un prescripteur doit exiger</h2>
+                <p className="text-base mb-6">Quatre points à verrouiller dans le cahier des charges.</p>
+                <p className="text-base mb-6">
+                  <strong>Exiger des poudres de Classe 2 minimum sur toutes les façades sollicitées par les UV.</strong> La Classe 1 peut
+                  montrer une dérive colorimétrique visible après quelques années sur une orientation sud ou ouest fortement exposée. Le
+                  surcoût de la Classe 2 est marginal rapporté à la durée de vie du bâtiment.
+                </p>
+                <p className="text-base mb-6">
+                  <strong>Privilégier systématiquement le post-laquage après façonnage pour les éléments exposés.</strong> Le pré-laquage est
+                  un compromis acceptable sur des pièces planes non découpées. Dès qu'il y a pliage, perçage ou assemblage, le post-laquage
+                  est le seul process qui garantit un enrobage intégral sans zone de fragilité.
+                </p>
+                <p className="text-base mb-6">
+                  <strong>Vérifier la traçabilité des certificats du laqueur.</strong> Un laqueur certifié QUALICOAT doit fournir, pour
+                  chaque lot, les paramètres de cuisson, les résultats des tests d'adhérence ISO 2409 et les contrôles d'épaisseur de
+                  couche. Si ces données ne sont pas disponibles sur demande, la certification n'a aucune valeur opérationnelle.
+                </p>
+                <p className="text-base mb-12">
+                  <strong>Associer le choix du métal et de la référence RAL au traitement de surface dès la phase d'études.</strong>{' '}
+                  L'alliage, l'épaisseur, la teinte RAL, la classe de poudre et le process de laquage forment un système. Spécifier l'un
+                  sans l'autre revient à dimensionner une structure sans connaître les charges.
                 </p>
               </div>
             </div>
           </section>
 
-          <section className="py-20 border-t border-gray-200 bg-[#F9FAFB]" style={{ backgroundColor: '#F9FAFB' }}>
-            <div className="max-w-4xl mx-auto px-6 space-y-16 text-[#1F2937]">
-              <div className="space-y-4">
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-[#000000]">
-                  La science du label : fondements et garanties de la certification Qualicoat
-                </h2>
-                <p className="text-base text-[#1F2937]/80 leading-relaxed">
-                  Le label international <strong>QUALICOAT</strong> est une certification régie par des spécifications rigoureuses visant à
-                  établir des niveaux d'exigence minimaux pour les installations de laquage, les matériaux de revêtement et les produits
-                  finis destinés aux applications architecturales.
+          {/* PHOTO PRODUIT PLIALU */}
+          <section className="bg-white pb-12" style={{ backgroundColor: '#FFFFFF' }}>
+            <div className="max-w-7xl mx-auto px-6">
+              <div className="max-w-4xl mx-auto mt-12">
+                <img
+                  srcSet="https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,w_800/v1774284198/PLIALU_Juin24_280_G_Perret_kcw5mi.jpg 800w, https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,w_1200/v1774284198/PLIALU_Juin24_280_G_Perret_kcw5mi.jpg 1200w, https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,w_1600/v1774284198/PLIALU_Juin24_280_G_Perret_kcw5mi.jpg 1600w"
+                  sizes="100vw"
+                  src="https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,w_1200/v1774284198/PLIALU_Juin24_280_G_Perret_kcw5mi.jpg"
+                  alt="Contrôle qualité thermolaquage certifié QUALICOAT — mesure épaisseur et certificat laqueur PLIALU"
+                  className="w-full h-64 object-cover rounded-2xl mt-12"
+                  loading="lazy"
+                />
+                <p className="text-sm text-gray-400 text-center mt-2">
+                  Contrôle d'épaisseur de couche et traçabilité par lot — Atelier PLIALU, Rhône-Alpes
                 </p>
-                <p className="text-base text-[#1F2937]/80 leading-relaxed">
-                  La certification ne se limite pas à un contrôle visuel&nbsp;: elle repose sur une validation multidimensionnelle des
-                  propriétés physico-chimiques du complexe métal-peinture. Les spécifications intègrent des normes ISO et EN pour
-                  quantifier chaque paramètre de performance, avec une traçabilité renforcée sur les nouvelles générations d’alliages
-                  (dont l’aluminium recyclé).
-                </p>
-                <h3 className="text-sm font-bold tracking-[0.2em] uppercase text-gray-500">
-                  PROTOCOLES DE TESTS : ADHÉRENCE, BRILLANCE ET RÉSISTANCE
-                </h3>
-                <ul className="list-disc list-inside space-y-2 text-sm md:text-base text-[#1F2937]/90">
-                  <li>
-                    <strong>Test de quadrillage (ISO 2409)</strong> : classification "Grade 0" obligatoire, sans aucun éclat ni
-                    détachement de la laque au croisement des coupes.
-                  </li>
-                  <li>
-                    <strong>Mesure de brillance (ISO 2813)</strong> : contrôle de la rétention de brillance sous rayonnement UV avec des
-                    tolérances strictes par rapport à l’échantillon initial.
-                  </li>
-                  <li>
-                    <strong>Vieillissement accéléré et brouillard salin</strong> : exposition prolongée en atmosphère corrosive pour
-                    valider la tenue du système dans le temps.
-                  </li>
-                </ul>
               </div>
+            </div>
+          </section>
 
-              <div className="space-y-4">
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-[#000000]">
-                  Stabilité colorimétrique et classes de poudres
-                </h2>
-                <p className="text-base text-[#1F2937]/80 leading-relaxed">
-                  Pour les prescripteurs, la stabilité visuelle est primordiale. Le <strong>Thermolaquage certifié Qualicoat</strong>{' '}
-                  garantit la tenue des teintes et de la brillance face au rayonnement solaire grâce à des familles de poudres classées
-                  par niveau de durabilité.
-                </p>
-                <table className="w-full text-left text-sm md:text-base border border-[#D1D5DB] border-collapse mt-4 text-[#000000]">
-                  <thead className="bg-[#F3F4F6]">
-                    <tr>
-                      <th className="px-4 py-3 border-b border-[#D1D5DB] font-semibold text-[#000000]">Classe de poudre</th>
-                      <th className="px-4 py-3 border-b border-[#D1D5DB] font-semibold text-[#000000]">Durabilité UV</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="border-b border-[#D1D5DB]">
-                      <td className="px-4 py-3">Classe 1</td>
-                      <td className="px-4 py-3">Poudres standards testées 1 an en Floride (ISO 2810).</td>
-                    </tr>
-                    <tr className="border-b border-[#D1D5DB]">
-                      <td className="px-4 py-3">Classe 2</td>
-                      <td className="px-4 py-3">
-                        Poudres «&nbsp;Super Durables&nbsp;» testées 3 ans, avec une rétention de brillance nettement supérieure.
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="px-4 py-3">Classe 3</td>
-                      <td className="px-4 py-3">Poudres «&nbsp;Ultra Durables&nbsp;» destinées aux environnements extrêmes.</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <div className="space-y-4">
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-[#000000]">
-                  Le processus Qualicoat : ingénierie de la surface et chimie des matériaux
-                </h2>
-                <p className="text-base text-[#1F2937]/80 leading-relaxed">
-                  Le succès d'un <strong>Thermolaquage certifié Qualicoat</strong> repose sur une préparation de surface qui transforme
-                  l'aluminium d'un état passif à un état chimiquement réactif. Chaque étape du processus est monitorée par des relevés
-                  de production et des tests sur plaquettes témoins conservées sur la durée.
-                </p>
-                <h3 className="text-sm font-bold tracking-[0.2em] uppercase text-gray-500">
-                  PRÉTRAITEMENT CHIMIQUE : DÉCONTAMINATION, DÉROCHAGE, CONVERSION
-                </h3>
-                <p className="text-base text-[#1F2937]/80 leading-relaxed">
-                  Après dégraissage, le dérochage élimine les impuretés métalliques et l’oxyde naturel. La conversion chimique, désormais
-                  majoritairement <strong>Chrome-free</strong> (sels de titane ou de zirconium), crée une couche nanométrique jouant le
-                  rôle d’interface entre le substrat et la laque poudre.
-                </p>
-                <h3 className="text-sm font-bold tracking-[0.2em] uppercase text-gray-500">
-                  APPLICATION PAR POUDRAGE ÉLECTROSTATIQUE
-                </h3>
-                <p className="text-base text-[#1F2937]/80 leading-relaxed">
-                  La peinture poudre, projetée par pistolet électrostatique, se dépose de manière uniforme sur les géométries
-                  complexes. Le recyclage des excédents (jusqu’à 98&nbsp;%) en fait un procédé performant et peu émissif en COV.
-                </p>
-                <h3 className="text-sm font-bold tracking-[0.2em] uppercase text-gray-500">
-                  POLYMÉRISATION ET RÉTICULATION THERMIQUE
-                </h3>
-                <p className="text-base text-[#1F2937]/80 leading-relaxed">
-                  La cuisson au four assure la réticulation du film de peinture. Le contrôle de l’<strong>indice de cuisson</strong>{' '}
-                  garantit que la laque atteint ses propriétés mécaniques optimales de dureté et de souplesse.
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-[#000000]">
-                  Focus Seaside : protection renforcée pour les zones littorales
-                </h2>
-                <p className="text-base text-[#1F2937]/80 leading-relaxed">
-                  Les environnements côtiers, riches en chlorures et en humidité, sont parmi les plus agressifs pour l’aluminium
-                  architectural. La mention <strong>Qualicoat Seaside</strong> renforce la protection en imposant un dérochage plus
-                  profond et des protocoles de contrôle spécifiques.
-                </p>
-                <h3 className="text-sm font-bold tracking-[0.2em] uppercase text-gray-500">
-                  TABLEAU TECHNIQUE : PRÉTRAITEMENTS ET DISTANCE AU LITTORAL
-                </h3>
-                <table className="w-full text-left text-sm md:text-base border border-[#D1D5DB] border-collapse mt-4 text-[#000000]">
-                  <thead className="bg-[#F3F4F6]">
-                    <tr>
-                      <th className="px-4 py-3 border-b border-[#D1D5DB] font-semibold text-[#000000]">Type de prétraitement</th>
-                      <th className="px-4 py-3 border-b border-[#D1D5DB] font-semibold text-[#000000]">Taux d’attaque (g/m²)</th>
-                      <th className="px-4 py-3 border-b border-[#D1D5DB] font-semibold text-[#000000]">Distance recommandée du littoral</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="border-b border-[#D1D5DB]">
-                      <td className="px-4 py-3">Standard</td>
-                      <td className="px-4 py-3">Attaque modérée</td>
-                      <td className="px-4 py-3">&gt; 20 km</td>
-                    </tr>
-                    <tr className="border-b border-[#D1D5DB]">
-                      <td className="px-4 py-3">Seaside A</td>
-                      <td className="px-4 py-3">Taux d’attaque renforcé</td>
-                      <td className="px-4 py-3">Environ 5 à 20 km du littoral</td>
-                    </tr>
-                    <tr>
-                      <td className="px-4 py-3">Seaside Ox (pré-anodisation)</td>
-                      <td className="px-4 py-3">Couche anodique mince</td>
-                      <td className="px-4 py-3">Front de mer / Offshore</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <p className="text-base text-[#1F2937]/80 leading-relaxed">
-                  Ces configurations réduisent drastiquement les sites d’amorçage de la{' '}
-                  <strong>corrosion filiforme</strong>, pathologie redoutée des façades exposées aux embruns.
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-[#000000]">
-                  Post-laquage vs pré-laquage : l’enjeu du pliage aluminium pour façade
-                </h2>
-                <p className="text-base text-[#1F2937]/80 leading-relaxed">
-                  La durabilité d'une enveloppe métallique ne dépend pas uniquement de la qualité de la peinture, mais de la
-                  chronologie industrielle. Laquer après le{' '}
-                  <button
-                    onClick={() => setCurrentPage('ressource-2')}
-                    className="underline underline-offset-4 decoration-[#6B7280] hover:decoration-[#1F2937] transition-colors font-semibold text-[#1F2937]"
-                  >
-                    pliage aluminium pour façade
-                  </button>{' '}
-                  permet de supprimer les micro-fissures et les tranches nues caractéristiques des systèmes pré-laqués.
-                </p>
-                <p className="text-base text-[#1F2937]/80 leading-relaxed">
-                  Le post-laquage, pratiqué par Plialu, enrobe intégralement les pièces déjà façonnées, y compris les arêtes vives et
-                  l'intérieur des perçages. La couche de laque polymérise sur une géométrie stabilisée, sans subir de déformation
-                  ultérieure.
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-[#000000]">
-                  Maillage réglementaire et recommandations pour les prescripteurs
-                </h2>
-                <p className="text-base text-[#1F2937]/80 leading-relaxed">
-                  Le <strong>Thermolaquage certifié Qualicoat</strong> s’inscrit dans un cadre normatif précis (NF DTU, normes d’exposition,
-                  prescriptions d’entretien). La façade devient un système global où le métal apporte la rigidité et le traitement de
-                  surface assure la longévité.
-                </p>
-                <h3 className="text-sm font-bold tracking-[0.2em] uppercase text-gray-500">
-                  POINTS CLÉS POUR LES ARCHITECTES ET BUREAUX D’ÉTUDES
-                </h3>
-                <ul className="list-disc list-inside space-y-2 text-sm md:text-base text-[#1F2937]/90">
-                  <li>
-                    Exiger des systèmes <strong>Qualicoat Seaside</strong> pour tout projet à proximité du littoral.
-                  </li>
-                  <li>
-                    Privilégier systématiquement le <strong>post-laquage</strong> après façonnage pour les éléments de façade les plus
-                    exposés.
-                  </li>
-                  <li>
-                    Spécifier des poudres de <strong>Classe 2</strong> minimum sur les façades les plus sollicitées par les UV.
-                  </li>
-                  <li>
-                    Vérifier la traçabilité des certificats de laqueur (paramètres de cuisson, tests d’adhérence, contrôles qualité).
-                  </li>
-                </ul>
-              </div>
-
-              <div className="pt-8 border-t border-gray-300 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                <p className="text-sm text-[#1F2937]/80 max-w-xl">
-                  Pour une enveloppe durable, commencez par{' '}
-                  <button
-                    onClick={() => setCurrentPage('ressource-1')}
-                    className="underline underline-offset-4 decoration-[#6B7280] hover:decoration-[#1F2937] transition-colors font-semibold text-[#1F2937]"
-                  >
-                    choisir le bon métal pour une façade extérieure
-                  </button>
-                  , puis associez-le à un <strong>Thermolaquage certifié Qualicoat</strong> appliqué après le façonnage.
-                </p>
-                <button
-                  onClick={() => setCurrentPage('contact')}
-                  className="px-8 py-3 bg-[#1F2937] text-white text-xs font-black tracking-[0.2em] uppercase rounded-full hover:bg-[#0E2A33] transition-colors"
-                >
-                  PARLER THERMOLAQUAGE AVEC NOUS
-                </button>
-              </div>
+          {/* SECTION CONTACT BAS DE PAGE */}
+          <section className="py-24 bg-[#071318] text-center border-t border-white/5">
+            <div className="max-w-3xl mx-auto px-6 space-y-8">
+              <h2 className="text-3xl md:text-5xl text-white tracking-tighter font-extrabold">
+                Un projet de façade aluminium ?
+              </h2>
+              <p className="text-base md:text-lg text-white/50">
+                Nos techniciens analysent vos contraintes de pliage et vous proposent la solution adaptée.
+              </p>
+              <button
+                onClick={() => setCurrentPage('contact')}
+                className="px-10 py-4 md:px-12 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all shadow-xl hover:shadow-[#E2FD48]/20 hover:-translate-y-1"
+              >
+                Demander un devis
+              </button>
             </div>
           </section>
         </div>
@@ -2853,7 +3085,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
         <div className="animate-fade-up">
           {/* Hero Contact (White background, Dark header logic) */}
           <section className="bg-white pt-48 md:pt-56 pb-20 min-h-[70vh] flex flex-col justify-center">
-            <div className="max-w-7xl mx-auto px-6">
+            <div className="flex-1 flex flex-col justify-center max-w-7xl mx-auto px-6 w-full">
               <div className="max-w-4xl space-y-8">
                 <span className="text-[10px] font-extrabold tracking-[0.4em] text-zinc-400 uppercase block">
                   ÉCHANGER SUR VOTRE PROJET
