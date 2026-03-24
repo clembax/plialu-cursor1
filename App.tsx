@@ -920,8 +920,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           <section id="contact" className="py-48 section--light">
             <div className="relative z-10 max-w-4xl mx-auto px-6 text-center animate-fade-up">
               <span className="text-[10px] font-extrabold tracking-[0.4em] uppercase mb-8 inline-block text-[#0E2A33]/40">CONTACT</span>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-[#0E2A33] tracking-tighter font-extrabold mb-10 leading-[1.1]">Un projet en tête ? <br />Concrétisons-le.</h2>
-              <p className="text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed font-medium text-[#0E2A33]/70">Lancez la discussion dès aujourd’hui avec nos experts techniques.</p>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-[#0E2A33] tracking-tighter font-extrabold mb-10 leading-[1.1]">Votre prochain chantier métal. Notre prochain projet.</h2>
+              <p className="text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed font-medium text-[#0E2A33]/70">Bureau d'études, fabrication, thermolaquage — un seul appel suffit.</p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
                 <button onClick={() => setCurrentPage('contact')} className="w-full sm:w-auto px-12 py-4 bg-[#0E2A33] text-white text-sm font-extrabold rounded-full transition-all shadow-lg hover:shadow-2xl">Demander un devis</button>
                 <button onClick={() => setCurrentPage('contact')} className="w-full sm:w-auto px-12 py-4 border border-[#0E2A33] text-[#0E2A33] text-sm font-bold rounded-full transition-all hover:bg-[#0E2A33] hover:text-white">Contacter un expert</button>
@@ -1067,6 +1067,15 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               <TerritorialMap />
             </div>
           </section>
+          <section className="py-24 bg-[#071318] text-center border-t border-white/5">
+            <div className="max-w-3xl mx-auto px-6 space-y-8">
+              <h2 className="text-3xl md:text-5xl text-white tracking-tighter font-extrabold">20 ans de façonnage métallique en Rhône-Alpes.</h2>
+              <p className="text-base md:text-lg text-white/50">Parlons de votre projet — nos techniciens répondent sous 48h.</p>
+              <button onClick={() => setCurrentPage('contact')} className="px-10 py-4 md:px-12 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all shadow-xl hover:shadow-[#E2FD48]/20 hover:-translate-y-1">
+                Soumettre mon projet
+              </button>
+            </div>
+          </section>
         </div>
       )}
 
@@ -1103,8 +1112,16 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           {/* Grille des Projets */}
           <section id="projets-grille" className="py-24 bg-white scroll-mt-24">
             <div className="w-full">
-              <div className="flex justify-between items-end px-8 md:px-16 mb-8">
-                <div></div>
+              <div className="max-w-7xl mx-auto px-6 w-full mb-12 flex justify-between items-end">
+                <div>
+                  <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-[#0E2A33] mb-3">
+                    Nos références
+                  </h2>
+                  <p className="text-[#0E2A33]/60 text-sm md:text-base max-w-2xl leading-relaxed">
+                    Chaque réalisation engage notre process complet : bureau d'études, fabrication sur mesure, thermolaquage certifié QUALICOAT.
+                  </p>
+                </div>
+
                 <div className="flex items-center gap-2 text-[#0E2A33]/40 text-[10px] font-bold tracking-[0.3em] uppercase">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                     <rect x="6" y="2" width="12" height="20" rx="6"/>
@@ -1112,14 +1129,6 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </svg>
                   Faire défiler
                 </div>
-              </div>
-              <div className="max-w-7xl mx-auto px-6 w-full mb-12">
-                <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-[#0E2A33] mb-3">
-                  Nos références
-                </h2>
-                <p className="text-[#0E2A33]/60 text-sm md:text-base max-w-2xl leading-relaxed">
-                  Chaque réalisation engage notre process complet : bureau d'études, fabrication sur mesure, thermolaquage certifié QUALICOAT.
-                </p>
               </div>
               <div className="max-w-7xl mx-auto w-full">
                 <div
@@ -1644,9 +1653,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           <section className="py-24 bg-[#071318] text-center border-t border-white/5">
             <div className="max-w-3xl mx-auto px-6 space-y-8">
               <h2 className="text-3xl md:text-5xl text-white tracking-tighter font-extrabold">Un projet similaire à nous confier ?</h2>
-              <p className="text-base md:text-lg text-white/50">Nos équipes techniques vous accompagnent de la conception à la fabrication.</p>
+              <p className="text-base md:text-lg text-white/50">Nos équipes techniques accompagnent architectes et bureaux d'études de la conception à la fabrication.</p>
               <button onClick={() => setCurrentPage('contact')} className="px-10 py-4 md:px-12 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all shadow-xl hover:shadow-[#E2FD48]/20 hover:-translate-y-1">
-                Demander un devis personnalisé
+                Soumettre mon projet
               </button>
             </div>
           </section>
@@ -1828,17 +1837,15 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           </section>
 
           {/* Section conversion vers le contact */}
-          <section className="py-20 md:py-28 text-white" style={{ background: 'linear-gradient(to bottom, #071318 0%, #0b1e26 100%)' }}>
-            <div className="max-w-7xl mx-auto px-6 text-center">
-              <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-6">Un projet en tête ?</h2>
-              <p className="text-white/80 text-lg max-w-xl mx-auto mb-10">
-                Chiffrez votre projet sur mesure avec nos équipes.
-              </p>
+          <section className="py-24 bg-[#071318] text-center border-t border-white/5">
+            <div className="max-w-3xl mx-auto px-6 space-y-8">
+              <h2 className="text-3xl md:text-5xl text-white tracking-tighter font-extrabold">Du profilé à la pose — tout se fabrique ici.</h2>
+              <p className="text-base md:text-lg text-white/50">Profilés aluminium, accessoires ITE, thermolaquage post-façonnage. Un seul interlocuteur pour tout le système.</p>
               <button
                 onClick={() => setCurrentPage('contact')}
-                className="px-12 py-4 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full hover:bg-white transition-all shadow-lg"
+                className="px-10 py-4 md:px-12 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all shadow-xl hover:shadow-[#E2FD48]/20 hover:-translate-y-1"
               >
-                Chiffrer votre projet sur mesure
+                Chiffrer mon projet
               </button>
             </div>
           </section>
@@ -2097,10 +2104,10 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           {/* CTA Final */}
           <section className="py-24 bg-[#071318] text-center border-t border-white/5">
             <div className="max-w-3xl mx-auto px-6 space-y-8">
-              <h2 className="text-3xl md:text-5xl text-white tracking-tighter font-extrabold">Une étude technique pour votre projet ?</h2>
-              <p className="text-base md:text-lg text-white/50">Nos chargés d'affaires analysent vos contraintes pour optimiser vos coûts de fabrication.</p>
+              <h2 className="text-3xl md:text-5xl text-white tracking-tighter font-extrabold">Vos contraintes techniques ont une réponse ici.</h2>
+              <p className="text-base md:text-lg text-white/50">Chargés d'affaires disponibles pour analyser vos plans DXF et optimiser vos coûts avant production.</p>
               <button onClick={() => setCurrentPage('contact')} className="px-10 py-4 md:px-12 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all shadow-xl hover:shadow-[#E2FD48]/20 hover:-translate-y-1">
-                Demander un devis personnalisé
+                Soumettre mes plans
               </button>
             </div>
           </section>
@@ -2206,6 +2213,15 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </article>
                 ))}
               </div>
+            </div>
+          </section>
+          <section className="py-24 bg-[#071318] text-center border-t border-white/5">
+            <div className="max-w-3xl mx-auto px-6 space-y-8">
+              <h2 className="text-3xl md:text-5xl text-white tracking-tighter font-extrabold">Prêt à passer à la fabrication ?</h2>
+              <p className="text-base md:text-lg text-white/50">Nos techniciens prennent le relais — avec ou sans plans finalisés.</p>
+              <button onClick={() => setCurrentPage('contact')} className="px-10 py-4 md:px-12 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all shadow-xl hover:shadow-[#E2FD48]/20 hover:-translate-y-1">
+                Lancer mon projet
+              </button>
             </div>
           </section>
         </div>
@@ -2439,16 +2455,16 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           <section className="py-24 bg-[#071318] text-center border-t border-white/5">
             <div className="max-w-3xl mx-auto px-6 space-y-8">
               <h2 className="text-3xl md:text-5xl text-white tracking-tighter font-extrabold">
-                Vous avez un projet de façade ?
+                Votre métal est choisi. Place au façonnage.
               </h2>
               <p className="text-base md:text-lg text-white/50">
-                Nos chargés d&apos;affaires analysent vos contraintes pour vous orienter vers le bon matériau.
+                Nos techniciens optimisent vos profils et vos coûts dès réception des plans.
               </p>
               <button
-                onClick={() => setCurrentPage('solutions')}
+                onClick={() => setCurrentPage('contact')}
                 className="px-10 py-4 md:px-12 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all shadow-xl hover:shadow-[#E2FD48]/20 hover:-translate-y-1"
               >
-                Découvrir nos solutions
+                Demander un chiffrage
               </button>
             </div>
           </section>
@@ -2697,16 +2713,16 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           <section className="py-24 bg-[#071318] text-center border-t border-white/5">
             <div className="max-w-3xl mx-auto px-6 space-y-8">
               <h2 className="text-3xl md:text-5xl text-white tracking-tighter font-extrabold">
-                Un projet de façade aluminium ?
+                ±0,3 mm garanti. Sur votre prochaine commande aussi.
               </h2>
               <p className="text-base md:text-lg text-white/50">
-                Nos techniciens analysent vos contraintes de pliage et vous proposent la solution adaptée.
+                Presse plieuse CNC étalonnée quotidiennement. Contrôle dimensionnel systématique avant expédition.
               </p>
               <button
                 onClick={() => setCurrentPage('contact')}
                 className="px-10 py-4 md:px-12 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all shadow-xl hover:shadow-[#E2FD48]/20 hover:-translate-y-1"
               >
-                Demander un devis
+                Soumettre mes plans
               </button>
             </div>
           </section>
@@ -3014,10 +3030,10 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           <section className="py-24 bg-[#071318] text-center border-t border-white/5">
             <div className="max-w-3xl mx-auto px-6 space-y-8">
               <h2 className="text-3xl md:text-5xl text-white tracking-tighter font-extrabold">
-                Un projet de façade aluminium ?
+                Votre prochain projet. Thermolaquage certifié QUALICOAT inclus.
               </h2>
               <p className="text-base md:text-lg text-white/50">
-                Nos techniciens analysent vos contraintes de pliage et vous proposent la solution adaptée.
+                Post-laquage après façonnage, traçabilité par lot, certificats disponibles sur demande.
               </p>
               <button
                 onClick={() => setCurrentPage('contact')}
