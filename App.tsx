@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 
 // Fix: Use 'declare global' to augment the JSX namespace globally.
 declare global {
@@ -1102,18 +1103,37 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           {/* Grille des Projets */}
           <section id="projets-grille" className="py-24 bg-white scroll-mt-24">
             <div className="w-full">
-              <div
-                ref={scrollRef}
-                className="flex overflow-x-auto gap-6 px-8 md:px-16 pb-12 snap-x snap-mandatory no-scrollbar w-full cursor-grab active:cursor-grabbing"
-              >
+              <div className="flex justify-between items-end px-8 md:px-16 mb-8">
+                <div></div>
+                <div className="flex items-center gap-2 text-[#0E2A33]/40 text-[10px] font-bold tracking-[0.3em] uppercase">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="6" y="2" width="12" height="20" rx="6"/>
+                    <path d="M12 6v4"/>
+                  </svg>
+                  Faire défiler
+                </div>
+              </div>
+              <div className="max-w-7xl mx-auto px-6 w-full mb-12">
+                <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-[#0E2A33] mb-3">
+                  Nos références
+                </h2>
+                <p className="text-[#0E2A33]/60 text-sm md:text-base max-w-2xl leading-relaxed">
+                  Chaque réalisation engage notre process complet : bureau d'études, fabrication sur mesure, thermolaquage certifié QUALICOAT.
+                </p>
+              </div>
+              <div className="max-w-7xl mx-auto w-full">
+                <div
+                  ref={scrollRef}
+                  className="flex overflow-x-auto gap-6 px-6 pb-12 snap-x snap-mandatory no-scrollbar w-full cursor-grab active:cursor-grabbing"
+                >
                 {[
                   {
                     id: "cae-lyon",
-                    title: "CAE – Lyon 3",
+                    title: "CAE –\nLyon 3",
                     city: "Lyon",
                     year: "2023",
                     tag: "ENVELOPPE BÂTIMENT",
-                    context: "Façade complète & ossatures GALVA en aluminium 20/10 teinte Golden Beach (Akzo Nobel), RAL 9003 et inox recuit brillant.\nIntervention sur l’enveloppe d’un ensemble administratif d’État d’envergure, associant ossatures galvanisées structurelles et habillage aluminium thermolaqué pour garantir précision d’exécution, durabilité et cohérence architecturale.",
+                    context: "Façade complète & ossatures GALVA\nAlu 20/10 teinte Golden Beach – AKZO NOBEL – Alu 20/10 RAL 9003 & Inox recuit brillant",
                     bullets: [],
                     figures: [],
                     mainImg: {
@@ -1137,11 +1157,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   },
                   {
                     id: "zento-grenoble",
-                    title: "ZENTO – Grenoble",
+                    title: "ZENTO –\nGrenoble",
                     city: "Grenoble",
                     year: "2023",
                     tag: "INFRASTRUCTURE",
-                    context: "Cassettes et habillages architecturaux en aluminium 20/10 teinte Copper (Arconic).\nRéalisation intégrant des volumes courbes et façades arrondies, avec fabrication sur mesure de cassettes adaptées aux lignes contemporaines d’un bâtiment tertiaire.",
+                    context: "Cassettes et divers habillages\nAlu 20/10 teinte Copper – ARCONIC",
                     bullets: [],
                     figures: [],
                     mainImg: {
@@ -1165,11 +1185,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   },
                   {
                     id: "bureau-le-e",
-                    title: "Bureau Le E – Annecy",
+                    title: "Bureau Le E –\nAnnecy",
                     city: "Annecy",
                     year: "2024",
                     tag: "AMÉNAGEMENT TERTIAIRE",
-                    context: "Cassettes et embrasures de fenêtres en aluminium 20/10 WhiteGold (Arconic) et RAL 7012.\nHabillage précis des façades et tableaux, intégré à un ensemble tertiaire contemporain avec exigence de régularité et qualité de finition.",
+                    context: "Cassettes & embrasures fenêtres\nAlu 20/10 teinte WhiteGold – ARCONIC – Alu 20/10 RAL 7012",
                     bullets: [],
                     figures: [],
                     mainImg: {
@@ -1189,11 +1209,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   },
                   {
                     id: "welink-lyon",
-                    title: "WeLink – Lyon 7",
+                    title: "WeLink –\nLyon 7",
                     city: "Lyon",
                     year: "2023",
                     tag: "ENVELOPPE BÂTIMENT",
-                    context: "Cassettes et embrasures en aluminium 20/10 teinte Copper DS 0010 (Adapta).\nFaçade à dominante cuivrée intégrant des éléments métalliques façonnés sur mesure pour un ensemble tertiaire urbain.",
+                    context: "Cassettes & Embrasures\nAlu 20/10 teinte Copper DS 0010 – ADAPTA",
                     bullets: [],
                     figures: [],
                     mainImg: {
@@ -1213,11 +1233,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   },
                   {
                     id: "odyssey-venissieux",
-                    title: "ODYSSEY – Vénissieux",
+                    title: "ODYSSEY –\nVénissieux",
                     city: "Vénissieux",
                     year: "2022",
                     tag: "ENVELOPPE BÂTIMENT",
-                    context: "Cassettes et corniches en aluminium anodisé.\nTraitement de façade structuré mettant en valeur les lignes horizontales et la régularité architecturale du bâtiment.",
+                    context: "Cassettes et corniches\nAlu Anodisé",
                     bullets: [],
                     figures: [],
                     mainImg: {
@@ -1237,11 +1257,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   },
                   {
                     id: "lycee-delorme",
-                    title: "Lycée Delorme – L’Isle-d’Abeau",
-                    city: "L’Isle-d’Abeau",
+                    title: "Lycée DELORME –\nL'Isle-d'Abeau",
+                    city: "L'Isle-d'Abeau",
                     year: "2021",
                     tag: "INFRASTRUCTURE SCOLAIRE",
-                    context: "Cassettes architecturales poinçonnées sur mesure en aluminium 20/10 RAL 9003.\nFaçade technique à forte identité visuelle intégrant un travail de perforation spécifique adapté à un équipement public.",
+                    context: "Cassettes architecturales poiçonnées sur-mesure\nAlu 20/10 RAL 9003",
                     bullets: [],
                     figures: [],
                     mainImg: {
@@ -1257,11 +1277,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   },
                   {
                     id: "le-binome-meylan",
-                    title: "Le Binôme – Meylan",
+                    title: "LE BINÔME –\nMeylan",
                     city: "Meylan",
                     year: "2025",
                     tag: "ENVELOPPE BÂTIMENT",
-                    context: "Cassettes aluminium 20/10 RAL 9001 et 7022.\nTraitement contrasté des façades associant tons clairs et foncés pour rythmer les volumes résidentiels.",
+                    context: "Cassettes\nAlu 20/10 RAL 9001 & 7022",
                     bullets: [],
                     figures: [],
                     mainImg: {
@@ -1281,11 +1301,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   },
                   {
                     id: "iut-lyon-1",
-                    title: "IUT Lyon 1 – Villeurbanne",
+                    title: "IUT LYON 1 –\nVilleurbanne",
                     city: "Villeurbanne",
                     year: "2024",
-                    tag: "INFRASTRUCTURE",
-                    context: "Précadres soudés de fenêtres avec angles cintrés en acier 15/10 galvanisé avec post-laquage RAL 5005.\nIntervention technique sur structure acier intégrant cintrage, soudure et finition colorée pour un bâtiment d’enseignement supérieur.",
+                    tag: "INFRASTRUCTURE SCOLAIRE",
+                    context: "Précadres soudés de fenêtres avec angles cintrés\nAcier 15/10 Galva + post-laquage RAL 5005",
                     bullets: [],
                     figures: [],
                     mainImg: {
@@ -1305,11 +1325,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   },
                   {
                     id: "voisin-lyon",
-                    title: "VOISIN – Lyon 9",
+                    title: "VOISIN –\nLyon 9",
                     city: "Lyon",
                     year: "2024",
-                    tag: "cassettes intérieures",
-                    context: "Siège social – cassettes intérieures en aluminium 20/10 teinte Tasilaq Sable YW2304I (Akzo Nobel).\nHabillage intérieur structurant combinant finition texturée et intégration architecturale soignée.",
+                    tag: "CASSETTES INTÉRIEURES",
+                    context: "Cassettes intérieures – Siège social Voisin\nAlu 20/10 teinte Tasilaq Sable YW2304I – AKZO NOBEL",
                     bullets: [],
                     figures: [],
                     mainImg: {
@@ -1329,11 +1349,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   },
                   {
                     id: "incurve-dardilly",
-                    title: "Incurve – Dardilly",
+                    title: "INCURVE –\nDardilly",
                     city: "Dardilly",
                     year: "2022",
                     tag: "ENVELOPPE BÂTIMENT",
-                    context: "Cassettes aluminium RAL 7022.\nHabillage de façade à géométrie courbe intégrant des panneaux sur mesure adaptés aux lignes arrondies du bâtiment.",
+                    context: "Cassettes\nAlu RAL 7022",
                     bullets: [],
                     figures: [],
                     mainImg: {
@@ -1349,11 +1369,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   },
                   {
                     id: "alpina-seyssinet",
-                    title: "Alpina – Seyssinet",
+                    title: "ALPINA –\nSeyssinet",
                     city: "Seyssinet",
                     year: "2021",
-                    tag: "HABILLAGE DE FAÇADE",
-                    context: "Cassettes aluminium 20/10 RAL 7021 et Golden Beach (Akzo Nobel).\nHabillage de façade tertiaire combinant teintes contrastées et précision d’assemblage.",
+                    tag: "ENVELOPPE BÂTIMENT",
+                    context: "Cassettes\nAlu 20/10 RAL 7021 & teinte Golden Beach – AKZO NOBEL",
                     bullets: [],
                     figures: [],
                     mainImg: {
@@ -1409,11 +1429,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   },
                   {
                     id: "nexity",
-                    title: "Le Quartz – Grand Parilly",
+                    title: "LE QUARTZ –\nGrand Parilly",
                     city: "Grand Parilly",
                     year: "2023",
-                    tag: "image",
-                    context: "Clins, encadrements, habillages de balcons et couvertines en aluminium teinte Anodic Gold (Axalta).\nIntervention multi-éléments sur bâtiment résidentiel, assurant protection des acrotères, finition des ouvertures et cohérence esthétique de l’enveloppe.",
+                    tag: "ENVELOPPE BÂTIMENT",
+                    context: "Clins, encadrements, habillages balcons & couvertines\nAlu teinte Anodic Gold – AXALTA",
                     bullets: [],
                     figures: [],
                     mainImg: {
@@ -1474,7 +1494,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                           <div className="absolute inset-0 bg-gradient-to-t from-[#0E2A33]/80 via-transparent to-transparent"></div>
                           <div className="absolute bottom-0 left-0 w-full p-8 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
                             <span className="text-[10px] font-bold tracking-[0.3em] text-[#E2FD48] uppercase mb-2 block">{project.tag}</span>
-                            <h3 className="text-2xl font-black text-white uppercase tracking-tight">{project.title}</h3>
+                            <span className="text-2xl font-black text-white uppercase tracking-tight whitespace-pre-line">{project.title}</span>
                             <p className="text-white/60 text-sm mt-1">{project.city}</p>
                             <p className="text-[#E2FD48] text-xs font-bold tracking-widest uppercase mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                               DÉTAILS →
@@ -1590,7 +1610,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                             )}
                             </div>
 
-                            <div className={`absolute bottom-0 left-0 right-0 bg-black/50 backdrop-blur-md border-t border-white/10 px-6 py-5 flex items-center gap-6 transition-opacity duration-500 ease-in-out ${isOpen ? 'opacity-100' : 'opacity-0'}`}>
+                            <div className={`absolute bottom-0 left-0 right-0 bg-black/50 backdrop-blur-md border-t border-white/10 px-6 py-5 flex items-start gap-6 transition-opacity duration-500 ease-in-out ${isOpen ? 'opacity-100' : 'opacity-0'}`}>
                               <span className="text-[#E2FD48] text-xs font-bold tracking-widest uppercase shrink-0">{project.year}</span>
                               <div className="w-px h-8 bg-white/20 shrink-0"></div>
                               <h3 className="text-white font-black uppercase tracking-tight text-lg leading-tight">{project.title}</h3>
@@ -1615,6 +1635,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     </article>
                   );
                 })}
+                </div>
               </div>
             </div>
           </section>
@@ -1632,32 +1653,26 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
           {/* Image Lightbox Overlay */}
           {activeImage && (
-            <div 
-              className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-12 animate-fade-in"
-              onClick={() => setActiveImage(null)}
-            >
-              <div className="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
-              <div 
-                className="relative z-10 max-w-full max-h-full flex items-center justify-center"
-                onClick={(e) => e.stopPropagation()}
+            createPortal(
+              <div
+                className="fixed top-0 left-0 w-screen h-screen z-[200] flex items-center justify-center bg-black/90"
+                onClick={() => setActiveImage(null)}
               >
-                <img 
-                  src={activeImage.src} 
-                  srcset={activeImage.srcset}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 1200px"
-                  alt="Agrandissement" 
-                  className="max-w-[80vw] max-h-[80vh] [@media(min-width:1440px)]:max-w-[70vw] [@media(min-width:1440px)]:max-h-[70vh] object-contain rounded-lg shadow-2xl transition-transform duration-300 ease-out"
-                  style={{ transform: 'scale(min(1.3, 1))' }}
+                <img
+                  src={activeImage?.src}
+                  srcSet={activeImage?.srcset}
+                  className="max-w-[90vw] max-h-[90vh] object-contain"
+                  onClick={(e) => e.stopPropagation()}
                 />
-                <button 
+                <button
+                  className="absolute top-6 right-6 text-white/70 hover:text-white text-4xl font-light"
                   onClick={() => setActiveImage(null)}
-                  aria-label="Fermer l'image"
-                  className="absolute -top-12 right-0 md:-right-12 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all outline-none focus-visible:ring-2 focus-visible:ring-[#E2FD48]"
                 >
-                  <iconify-icon icon="lucide:x" width="24"></iconify-icon>
+                  ×
                 </button>
-              </div>
-            </div>
+              </div>,
+              document.body
+            )
           )}
         </div>
       )}
