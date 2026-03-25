@@ -271,7 +271,7 @@ const EnduitMinceIsolant: React.FC<EnduitMinceIsolantProps> = ({ setCurrentPage 
           <span className="text-sm font-extrabold tracking-widest uppercase mb-8 inline-block text-gray-500">
             VOTRE PROJET ITE
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-[#0E2A33] tracking-tighter font-extrabold mb-10 leading-[1.1]">
+          <h2 className="mb-10 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
             Un projet ITE ?
           </h2>
           <p className="text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed font-medium text-gray-600">

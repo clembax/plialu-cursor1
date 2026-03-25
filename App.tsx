@@ -25,6 +25,25 @@ import TerritorialMap from './TerritorialMap';
 import Success from './Success';
 import EnduitMinceIsolant from './src/components/solutions/EnduitMinceIsolant';
 
+const SEO_CONFIG: Record<string, { path: string; title: string; desc: string; noindex?: boolean }> = {
+  'home': { path: '/', title: 'Façonnage métallique sur mesure en Rhône-Alpes | PLIALU', desc: 'Façonnage métallique sur mesure en Rhône-Alpes. Bureau d\'études intégré, pliage CNC, thermolaquage certifié QUALICOAT. Devis technique sous 48h.' },
+  'expertises': { path: '/expertises', title: 'Process industriel & Fabrication métallique sur mesure | PLIALU', desc: 'Fabrication de pièces métalliques sur mesure : étude DXF, déroulage, pliage grande longueur, thermolaquage QUALICOAT. Parc machine intégré pour un contrôle qualité absolu.' },
+  'solutions': { path: '/solutions', title: 'Solutions métalliques pour l\'enveloppe du bâtiment | PLIALU', desc: 'Solutions métalliques enveloppe bâtiment : bardage, ITE, cassettes, précadres. Profilés aluminium sur mesure, thermolaquage QUALICOAT inclus.' },
+  'projects': { path: '/portfolio', title: 'Nos réalisations — Façades aluminium et enveloppe bâtiment | PLIALU', desc: 'Découvrez les projets de façonnage métallique et profilés aluminium réalisés par PLIALU pour l\'enveloppe du bâtiment.' },
+  'a-propos': { path: '/a-propos', title: 'PLIALU — Entreprise de façonnage métallique en Rhône-Alpes', desc: 'Spécialiste du façonnage métallique en Rhône-Alpes depuis 20 ans. Atelier intégré à Lyon, certification QUALICOAT, livraison chantier partout en Europe.' },
+  'ressources': { path: '/ressources', title: 'Ressources techniques — Enveloppe du bâtiment | PLIALU', desc: 'Dossiers techniques et guides pratiques PLIALU pour vos choix de matériaux et conceptions de façades métalliques.' },
+  'ressource-1': { path: '/ressources/choix-metal-facade', title: 'Quel métal choisir pour une façade extérieure ? | PLIALU', desc: 'Aluminium, acier ou inox pour une façade extérieure : comparatif technique, comportement aux UV, corrosion et contraintes chantier. Guide prescripteurs.' },
+  'ressource-2': { path: '/ressources/pliage-aluminium-tolerances', title: 'Pliage aluminium : limites et tolérances | PLIALU', desc: 'Pliage aluminium : épaisseurs, rayons mini, tolérances ±0,3 mm. Ce que votre fabricant doit maîtriser avant de démarrer la production.' },
+  'ressource-3': { path: '/ressources/thermolaquage-qualicoat', title: 'Thermolaquage certifié QUALICOAT : garanties | PLIALU', desc: 'Thermolaquage certifié QUALICOAT : protocoles de validation, classes de poudres, post-laquage après façonnage. Ce qu\'un prescripteur doit exiger.' },
+  'contact': { path: '/contact', title: 'Contact & Devis | PLIALU', desc: 'Contactez le bureau d\'études PLIALU pour votre projet de façonnage métallique sur mesure. Réponse sous 48h.', noindex: true },
+  'solution-bardage': { path: '/solutions/bardages-cassettes', title: 'Bardages & Cassettes sur mesure | PLIALU', desc: 'Fabrication de bardages et cassettes métalliques pour habillage de façade.' },
+  'solution-enduit': { path: '/solutions/enduit-mince-isolant', title: 'Profilés pour Enduit Mince sur Isolant (ITE) | PLIALU', desc: 'Accessoires et profilés aluminium sur mesure pour systèmes d\'Isolation Thermique par l\'Extérieur (ITE).' },
+  'solution-precadres': { path: '/solutions/precadres', title: 'Précadres métalliques sur mesure | PLIALU', desc: 'Fabrication de précadres d\'habillage de baies sur mesure en aluminium et acier.' },
+  'solution-toles': { path: '/solutions/toles-prelaquees', title: 'Tôles prélaquées & Thermolaquage | PLIALU', desc: 'Tôles aluminium et acier prélaquées. Service de thermolaquage QUALICOAT intégré.' },
+  'solution-ravalement': { path: '/solutions/ravalement-facade', title: 'Solutions métalliques pour ravalement de façade | PLIALU', desc: 'Habillages et profilés métalliques sur mesure pour la rénovation et le ravalement de façades.' },
+  'merci': { path: '/merci', title: 'Demande envoyée | PLIALU', desc: 'Votre demande de devis a bien été envoyée à notre bureau d\'études.', noindex: true }
+};
+
 const App: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [caeSlide, setCaeSlide] = useState(0);
@@ -50,7 +69,7 @@ const App: React.FC = () => {
   const [hoveredStep, setHoveredStep] = useState<number | null>(null);
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
-  const [activeImage, setActiveImage] = useState<{ src: string; srcset?: string } | null>(null);
+  const [activeImage, setActiveImage] = useState<{ src: string; srcset?: string; alt?: string } | null>(null);
   const [formSubmitting, setFormSubmitting] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
   const [formFileError, setFormFileError] = useState<string | null>(null);
@@ -58,6 +77,97 @@ const App: React.FC = () => {
   const [solutionsAccordionOpen, setSolutionsAccordionOpen] = useState<string | null>(null);
   const [activeSolutionHover, setActiveSolutionHover] = React.useState(0);
   const [isSommaireSticky, setIsSommaireSticky] = useState(false);
+
+  // Initialisation au montage : lit l'URL pour afficher la bonne page si accès direct (ex: F5)
+  useEffect(() => {
+    const currentPath = window.location.pathname;
+    const matchingKey = Object.keys(SEO_CONFIG).find(key => SEO_CONFIG[key].path === currentPath);
+    if (matchingKey && matchingKey !== currentPage) {
+      setCurrentPage(matchingKey as any);
+    }
+  }, []); // Exécuté une seule fois au montage
+
+  // Gère la mise à jour SEO et la fausse URL lors d'un changement de page
+  useEffect(() => {
+    const config = SEO_CONFIG[currentPage];
+    if (config) {
+      document.title = config.title;
+      
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) metaDesc.setAttribute('content', config.desc);
+
+      const metaRobots = document.querySelector('meta[name="robots"]');
+      if (metaRobots) metaRobots.setAttribute('content', config.noindex ? 'noindex, follow' : 'index, follow');
+
+      const updateOrCreateTag = (selector: string, createNode: () => HTMLElement) => {
+        let el = document.querySelector(selector) as HTMLElement | null;
+        if (!el) {
+          el = createNode();
+          document.head.appendChild(el);
+        }
+        return el;
+      };
+
+      const currentUrl = window.location.origin + config.path;
+
+      const ogTitleEl = updateOrCreateTag('meta[property="og:title"]', () => {
+        const el = document.createElement('meta');
+        el.setAttribute('property', 'og:title');
+        return el;
+      });
+      ogTitleEl.setAttribute('content', config.title);
+
+      const ogDescEl = updateOrCreateTag('meta[property="og:description"]', () => {
+        const el = document.createElement('meta');
+        el.setAttribute('property', 'og:description');
+        return el;
+      });
+      ogDescEl.setAttribute('content', config.desc);
+
+      const ogTypeEl = updateOrCreateTag('meta[property="og:type"]', () => {
+        const el = document.createElement('meta');
+        el.setAttribute('property', 'og:type');
+        return el;
+      });
+      ogTypeEl.setAttribute('content', 'website');
+
+      const ogUrlEl = updateOrCreateTag('meta[property="og:url"]', () => {
+        const el = document.createElement('meta');
+        el.setAttribute('property', 'og:url');
+        return el;
+      });
+      ogUrlEl.setAttribute('content', currentUrl);
+
+      const canonicalEl = updateOrCreateTag('link[rel="canonical"]', () => {
+        const el = document.createElement('link');
+        el.setAttribute('rel', 'canonical');
+        return el;
+      });
+      canonicalEl.setAttribute('href', currentUrl);
+
+      // Met à jour l'URL sans recharger la page
+      if (window.location.pathname !== config.path) {
+        window.history.pushState(null, '', config.path);
+      }
+    }
+  }, [currentPage]);
+
+  // Écoute le bouton "Retour/Avance" du navigateur
+  useEffect(() => {
+    const handlePopState = () => {
+      const currentPath = window.location.pathname;
+      const matchingKey = Object.keys(SEO_CONFIG).find(key => SEO_CONFIG[key].path === currentPath);
+      if (matchingKey) {
+        setCurrentPage(matchingKey as any);
+      } else {
+        setCurrentPage('home');
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
   const contactFormRef = React.useRef<HTMLFormElement>(null);
   const teaserVideoRef = React.useRef<HTMLVideoElement>(null);
   const expertisesVideoRef = React.useRef<HTMLVideoElement>(null);
@@ -118,44 +228,6 @@ const App: React.FC = () => {
       document.body.style.backgroundColor = '';
       document.body.style.color = '';
     };
-  }, [currentPage]);
-
-  useEffect(() => {
-    // SEO: basic document title per page
-    let title = 'PLIALU';
-    let description: string | null = null;
-
-    if (currentPage === 'expertises') {
-      title = 'Façonnage métallique sur mesure : expertise et précision | Plialu';
-      description =
-        "Spécialiste du façonnage métallique pour le bâtiment. Étude technique, pliage CNC haute précision et thermolaquage certifié Qualicoat pour vos façades.";
-    } else if (currentPage === 'solutions') {
-      title = 'Solutions métalliques enveloppe du bâtiment | Plialu';
-    } else if (currentPage === 'solution-bardage') {
-      title = 'Bardages et Cassettes Métalliques sur mesure | Plialu';
-    } else if (currentPage === 'solution-enduit') {
-      title = 'Profils pour Enduit Mince sur Isolant (ITE) | Plialu';
-    } else if (currentPage === 'solution-precadres') {
-      title = 'Précadres Métalliques de Fenêtre sur mesure | Plialu';
-    } else if (currentPage === 'solution-toles') {
-      title = 'Tôles Prélaquées | Plialu';
-    } else if (currentPage === 'solution-ravalement') {
-      title = 'Solutions Métalliques pour Ravalement de Façade | Plialu';
-    } else if (currentPage === 'ressource-1') {
-      title = 'Choisir le bon métal pour une façade extérieure | Plialu';
-    } else if (currentPage === 'ressource-2') {
-      title = 'Limites et tolérances du pliage aluminium pour façade | Plialu';
-    } else if (currentPage === 'ressource-3') {
-      title = 'Garanties du thermolaquage certifié Qualicoat | Plialu';
-    }
-    document.title = title;
-
-    if (description) {
-      const meta = document.querySelector('meta[name="description"]');
-      if (meta) {
-        meta.setAttribute('content', description);
-      }
-    }
   }, [currentPage]);
 
   useEffect(() => {
@@ -575,7 +647,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             <div className="relative z-30 w-full max-w-7xl mx-auto px-6 py-20">
               <div className="max-w-5xl animate-fade-up">
                 <h1 className="text-4xl md:text-6xl lg:text-[clamp(2.1rem,5.5vw,4.9rem)] tracking-tighter leading-[1.15] mb-12 font-black uppercase max-w-4xl text-white">
-                  EXPERT INDUSTRIEL EN <br className="hidden md:block" />
+                  EXPERT INDUSTRIEL : <br className="hidden md:block" />
                   <span className="text-[#8E9BA4]">FAÇONNAGE MÉTALLIQUE SUR MESURE</span>
                 </h1>
                 <p className="text-base md:text-lg text-white/80 max-w-xl leading-relaxed border-l-2 border-[#E2FD48] pl-8 mb-16 font-medium">
@@ -610,7 +682,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 <div className="space-y-8">
                   <div className="space-y-4">
                     <span className="text-[10px] font-extrabold tracking-[0.3em] text-[#E2FD48] uppercase">PROCESS INTÉGRÉ</span>
-                    <h2 className="text-4xl md:text-5xl text-white tracking-tighter font-extrabold leading-tight">Fabrication de pièces métalliques sur mesure</h2>
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">Fabrication de pièces métalliques sur mesure</h2>
                   </div>
                   <p className="text-white/90 text-lg leading-relaxed font-medium">
                     De l'étude technique Bureau d'Études au pliage grande longueur, jusqu'au thermolaquage industriel certifié Qualicoat. Chaque étape de notre <strong>fabrication industrielle métal</strong> est maîtrisée en interne pour une qualité irréprochable.
@@ -720,7 +792,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 <div className="flex flex-col h-full">
                   <div className="max-w-2xl space-y-6 mb-10">
                     <span className="text-[10px] font-extrabold tracking-[0.4em] text-[#0E2A33]/40 uppercase">SOLUTIONS</span>
-                    <h2 className="text-4xl md:text-5xl text-[#0E2A33] tracking-tighter font-extrabold">Solutions métalliques pour l'enveloppe du bâtiment</h2>
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">Solutions métalliques pour l'enveloppe du bâtiment</h2>
                     <p className="text-[#0E2A33]/60 text-lg leading-relaxed font-medium">Catalogue B2B : enduit mince, ravalement, bardages et cassettes, précadres, tôles prélaquées. Découvrez nos gammes aluminium et acier.</p>
                   </div>
 
@@ -800,7 +872,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
                 <div className="max-w-2xl space-y-4">
                   <span className="text-[10px] font-extrabold tracking-[0.3em] text-[#E2FD48] uppercase">PORTFOLIO COLLABORATIONS</span>
-                  <h2 className="text-4xl md:text-5xl text-white tracking-tighter font-extrabold">Projets réalisés en collaboration</h2>
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">Projets réalisés en collaboration</h2>
                 </div>
                 <a href="/portfolio" onClick={(e) => { e.preventDefault(); setCurrentPage('projects'); }} className="flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-[#E2FD48] hover:text-white transition-colors group">
                   TOUTES NOS COLLABORATIONS
@@ -829,7 +901,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             <div className="max-w-7xl mx-auto px-6">
               <div className="mb-20">
                 <span className="text-[10px] font-extrabold tracking-[0.4em] text-[#0E2A33]/40 uppercase mb-4 block">RESSOURCES</span>
-                <h2 className="text-4xl md:text-5xl text-[#0E2A33] tracking-tighter font-extrabold mb-6">Centre de ressources et expertise technique</h2>
+                <h2 className="mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">Centre de ressources et expertise technique</h2>
                 <p className="text-[#0E2A33]/60 text-lg md:text-xl font-medium max-w-2xl">Comprendre les enjeux techniques, les tolérances et les finitions pour optimiser la conception de vos pièces métalliques.</p>
               </div>
               
@@ -906,7 +978,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 </div>
                 <div className="space-y-8 order-1 lg:order-2">
                   <span className="text-[10px] font-extrabold tracking-[0.3em] text-[#E2FD48] uppercase">À PROPOS</span>
-                  <h2 className="text-4xl md:text-5xl text-white tracking-tighter font-extrabold">Votre entreprise de métallurgie en Rhône-Alpes</h2>
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">Votre entreprise de métallurgie en Rhône-Alpes</h2>
                   <p className="text-white/80 text-lg leading-relaxed">
                     Depuis notre <strong>atelier lyonnais</strong>, nous assurons une réactivité optimale pour accompagner vos chantiers en <strong>Rhône-Alpes</strong> et en Europe. Une capacité de production appuyée par plus de 5 000 m² dédiés au façonnage métallique sur mesure.
                   </p>
@@ -920,7 +992,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           <section id="contact" className="py-48 section--light">
             <div className="relative z-10 max-w-4xl mx-auto px-6 text-center animate-fade-up">
               <span className="text-[10px] font-extrabold tracking-[0.4em] uppercase mb-8 inline-block text-[#0E2A33]/40">CONTACT</span>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-[#0E2A33] tracking-tighter font-extrabold mb-10 leading-[1.1]">Votre prochain chantier métal. Notre prochain projet.</h2>
+              <h2 className="mb-10 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">Votre prochain chantier métal. Notre prochain projet.</h2>
               <p className="text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed font-medium text-[#0E2A33]/70">Bureau d'études, fabrication, thermolaquage — un seul appel suffit.</p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
                 <button onClick={() => setCurrentPage('contact')} className="w-full sm:w-auto px-12 py-4 bg-[#0E2A33] text-white text-sm font-extrabold rounded-full transition-all shadow-lg hover:shadow-2xl">Demander un devis</button>
@@ -1008,10 +1080,10 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   PLIALU, Entreprise de façonnage métal en Rhône-Alpes
                 </h1>
                 <p className="text-xl md:text-2xl text-[#E2FD48] font-bold tracking-tight">
-                  Façonnage industriel du métal en feuille depuis près de 20 ans
+                  Spécialiste du façonnage métallique en Rhône-Alpes depuis 20 ans.
                 </p>
                 <p className="text-base md:text-lg text-white/70 max-w-2xl leading-relaxed font-medium">
-                  Implantée en région lyonnaise, PLIALU est une entreprise de façonnage et de transformation du métal spécialisée dans la fabrication sur mesure.
+                  Implantée en région lyonnaise, notre usine intégrée accompagne les professionnels de l'enveloppe du bâtiment dans la transformation industrielle et la fabrication sur mesure de pièces métalliques.
                 </p>
                 <a
                   href="#a-propos-contenu"
@@ -1024,52 +1096,105 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             </div>
           </section>
 
-          {/* 2. POSITIONNEMENT (LIGHT) */}
-          <section id="a-propos-contenu" className="py-32 bg-white">
-            <div className="max-w-7xl mx-auto px-6">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-                <div className="space-y-8">
-                  <h2 className="text-3xl md:text-4xl font-extrabold tracking-tighter text-[#0E2A33] leading-tight">
-                    20 ans d’expertise
-                  </h2>
-                  <p className="text-[#0E2A33]/70 text-lg font-medium leading-relaxed">
+          {/* 2. POSITIONNEMENT (LIGHT) - MACHINED PERFECTION V2 (FIXED BACKGROUND) */}
+          <section id="a-propos-contenu" className="py-24 md:py-32 bg-white selection-brand relative">
+            <div className="max-w-7xl mx-auto px-6 relative z-10">
+              
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+                <div className="lg:col-span-6 space-y-10 py-10">
+                  <div className="space-y-6">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
+                      20 ans <br/>d’expertise
+                    </h2>
+                    <div className="w-20 h-1.5 bg-[#E2FD48]"></div>
+                  </div>
+                  <p className="text-zinc-500 text-base leading-relaxed max-w-lg">
                     Sous la direction de Jean-Pierre Bax, l’entreprise développe une expertise industrielle reconnue, fondée sur la précision, la maîtrise technique et la performance opérationnelle.
                     <br /><br />
                     Entreprise à taille humaine, PLIALU accompagne ses partenaires industriels, acteurs du bâtiment et professionnels exigeants dans la conception et la production de pièces métalliques adaptées à leurs contraintes techniques.
                   </p>
-                  <ul className="space-y-3">
-                    {['Rhône-Alpes', 'Reste de la France', 'Suisse', 'Belgique'].map((item) => (
-                      <li key={item} className="flex items-center gap-3 text-[#0E2A33] font-bold">
-                        <div className="w-1.5 h-1.5 rounded-full bg-[#E2FD48]"></div>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                  <a href="/contact#contact-form" className="inline-flex items-center justify-center text-xs font-bold bg-[#E2FD48] text-black px-6 py-3 rounded-full hover:bg-[#d4ed3f] transition-all tracking-tight shadow-[0_0_30px_rgba(226,253,72,0.15)]">
-                    Échanger sur votre projet
-                  </a>
+                  <div className="pt-4">
+                    <button onClick={() => setCurrentPage('contact')} className="inline-flex items-center justify-center gap-3 group px-10 py-4 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm md:text-base font-extrabold rounded-full transition-all tracking-tight shadow-[0_15px_30px_rgba(226,253,72,0.2)] hover:shadow-[#E2FD48]/40 hover:-translate-y-1">
+                      <span>Échanger sur votre projet</span>
+                      <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12H19M19 12L13 6M19 12L13 18"/></svg>
+                    </button>
+                  </div>
                 </div>
-                <div className="relative rounded-2xl overflow-hidden aspect-[4/3] border border-zinc-100 shadow-sm">
-                  <img 
-                    src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1771522416/APROPOS-1200px_wkguv2.webp" 
-                    className="w-full h-full object-cover" 
-                    alt="Atelier de production Plialu à Lyon : 5 000 m² dédiés au façonnage métallique et pliage aluminium en Rhône-Alpes" 
-                    loading="lazy" 
-                  />
+
+                <div className="lg:col-span-6">
+                  <div className="relative p-2 bg-white rounded-3xl border border-zinc-200 shadow-2xl shadow-[#0E2A33]/5 aspect-[4/3] group">
+                    <img src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1771522416/APROPOS-1200px_wkguv2.webp" className="w-full h-full object-cover rounded-xl relative z-10 filter contrast-[1.05]" alt="Atelier de production Plialu à Lyon" loading="lazy" />
+                  </div>
+                </div>
+            </div>
+
+            <div className="mt-20 md:mt-32">
+              <h3 className="text-[10px] font-black uppercase text-zinc-400 tracking-[0.4em] mb-8">Les fondations de notre outil industriel</h3>
+              
+              <div className="rounded-2xl overflow-hidden border border-zinc-200 shadow-sm bg-zinc-200">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[1px]">
+                  {[
+                    { expert: 'Précision', desc: 'Tolérances strictes au dixième.', icon: <svg className="w-8 h-8 transition-colors duration-500 text-zinc-300 group-hover:text-[#E2FD48]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M5 21l3-18M11 21l3-18M16 3l-1 4M18.5 3l-1.5 6M21 3l-2 8" strokeLinecap="round" strokeLinejoin="round"/><path d="M4 17h16" strokeLinecap="round" strokeLinejoin="round"/></svg> },
+                    { expert: 'Maîtrise Technique', desc: 'Parc machine CNC de pointe.', icon: <svg className="w-8 h-8 transition-colors duration-500 text-zinc-300 group-hover:text-[#E2FD48]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg> },
+                    { expert: 'Performance', desc: 'Production pour grands volumes.', icon: <svg className="w-8 h-8 transition-colors duration-500 text-zinc-300 group-hover:text-[#E2FD48]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8Z" strokeLinecap="round" strokeLinejoin="round"/></svg> },
+                    { expert: 'Standard Qualité', desc: 'Traçabilité et norme QUALICOAT.', icon: <svg className="w-8 h-8 transition-colors duration-500 text-zinc-300 group-hover:text-[#E2FD48]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 15a7 7 0 1 0 0-14 7 7 0 0 0 0 14Z" strokeLinecap="round" strokeLinejoin="round"/><path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.11" strokeLinecap="round" strokeLinejoin="round"/></svg> }
+                  ].map((item) => (
+                    <div key={item.expert} className="group bg-white hover:bg-[#0E2A33] transition-colors duration-500 px-8 py-10 md:py-12 flex flex-col justify-between min-h-[220px]">
+                      <div className="mb-6">{item.icon}</div>
+                      <div>
+                        <span className="block text-[#0E2A33] group-hover:text-white font-black text-xl tracking-tight mb-2 transition-colors duration-500">{item.expert}</span>
+                        <span className="text-zinc-500 group-hover:text-zinc-400 font-medium text-sm leading-relaxed transition-colors duration-500">{item.desc}</span>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
-          </section>
 
-          {/* 3. CARTE TERRITORIALE (LIGHT) */}
-          <section className="py-32 bg-[#F3F6F7]">
-            <div className="max-w-7xl mx-auto px-6">
-              <TerritorialMap />
+          </div>
+        </section>
+
+          {/* 3. CARTE TERRITORIALE (LIGHT) - BADGES EDITION */}
+          <section className="py-24 md:py-32 bg-[#F3F6F7] selection-brand border-t border-zinc-100 relative">
+            <div className="max-w-7xl mx-auto px-6 relative z-10">
+              
+              <div className="max-w-3xl mb-12 space-y-5 text-center mx-auto flex flex-col items-center">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
+                  Notre rayonnement
+                </h2>
+                <div className="w-20 h-1 bg-[#E2FD48]"></div>
+                <p className="text-zinc-500 text-base leading-relaxed pt-2 max-w-2xl">
+                  Un ancrage régional fort associé à une capacité de livraison et d'accompagnement sur l'ensemble de vos chantiers en France et en Europe francophone.
+                </p>
+              </div>
+
+              <div className="mb-10 p-8 md:p-12 bg-white rounded-3xl border border-zinc-100 shadow-sm relative overflow-hidden group max-w-5xl mx-auto">
+                <div className="absolute inset-0 z-0 bg-white group-hover:scale-110 transition-transform duration-700 pointer-events-none opacity-50"></div>
+                <div className="relative z-10">
+                  <TerritorialMap />
+                </div>
+              </div>
+
+              {/* Badges compacts (Remplace les anciennes cartes géantes) */}
+              <div className="flex flex-wrap justify-center gap-3 md:gap-4 max-w-4xl mx-auto">
+                {[
+                  { region: 'Rhône-Alpes', color: 'bg-[#E2FD48]' },
+                  { region: 'France entière', color: 'bg-[#0E2A33]' },
+                  { region: 'Suisse', color: 'bg-zinc-300' },
+                  { region: 'Belgique', color: 'bg-zinc-300' }
+                ].map((item) => (
+                  <div key={item.region} className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-white border border-zinc-200 rounded-full shadow-sm hover:border-zinc-300 transition-colors">
+                    <div className={`w-2 h-2 rounded-full ${item.color}`}></div>
+                    <span className="text-sm font-bold text-[#0E2A33]">{item.region}</span>
+                  </div>
+                ))}
+              </div>
+
             </div>
           </section>
           <section className="py-24 bg-[#071318] text-center border-t border-white/5">
             <div className="max-w-3xl mx-auto px-6 space-y-8">
-              <h2 className="text-3xl md:text-5xl text-white tracking-tighter font-extrabold">20 ans de façonnage métallique en Rhône-Alpes.</h2>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">20 ans de façonnage métallique en Rhône-Alpes.</h2>
               <p className="text-base md:text-lg text-white/50">Parlons de votre projet — nos techniciens répondent sous 48h.</p>
               <button onClick={() => setCurrentPage('contact')} className="px-10 py-4 md:px-12 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all shadow-xl hover:shadow-[#E2FD48]/20 hover:-translate-y-1">
                 Soumettre mon projet
@@ -1114,7 +1239,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             <div className="w-full">
               <div className="max-w-7xl mx-auto px-6 w-full mb-12 flex justify-between items-end">
                 <div>
-                  <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-[#0E2A33] mb-3">
+                  <h2 className="mb-3 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
                     Nos références
                   </h2>
                   <p className="text-[#0E2A33]/60 text-sm md:text-base max-w-2xl leading-relaxed">
@@ -1652,7 +1777,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           {/* CTA Final */}
           <section className="py-24 bg-[#071318] text-center border-t border-white/5">
             <div className="max-w-3xl mx-auto px-6 space-y-8">
-              <h2 className="text-3xl md:text-5xl text-white tracking-tighter font-extrabold">Un projet similaire à nous confier ?</h2>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">Un projet similaire à nous confier ?</h2>
               <p className="text-base md:text-lg text-white/50">Nos équipes techniques accompagnent architectes et bureaux d'études de la conception à la fabrication.</p>
               <button onClick={() => setCurrentPage('contact')} className="px-10 py-4 md:px-12 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all shadow-xl hover:shadow-[#E2FD48]/20 hover:-translate-y-1">
                 Soumettre mon projet
@@ -1670,6 +1795,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 <img
                   src={activeImage?.src}
                   srcSet={activeImage?.srcset}
+                  alt={activeImage.alt ?? 'Réalisation PLIALU - Façonnage métallique et enveloppe du bâtiment'}
                   className="max-w-[90vw] max-h-[90vh] object-contain"
                   onClick={(e) => e.stopPropagation()}
                 />
@@ -1708,7 +1834,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           <section className="py-20 bg-[#0a1f26]">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">Nos Solutions Enveloppe</h2>
+                <h2 className="mb-4 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">Nos Solutions Enveloppe</h2>
                 <p className="text-gray-400 max-w-2xl text-lg">
                   Découvrez nos expertises en façonnage métallique sur mesure pour l'habillage technique et esthétique de vos façades.
                 </p>
@@ -1839,7 +1965,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           {/* Section conversion vers le contact */}
           <section className="py-24 bg-[#071318] text-center border-t border-white/5">
             <div className="max-w-3xl mx-auto px-6 space-y-8">
-              <h2 className="text-3xl md:text-5xl text-white tracking-tighter font-extrabold">Du profilé à la pose — tout se fabrique ici.</h2>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">Du profilé à la pose — tout se fabrique ici.</h2>
               <p className="text-base md:text-lg text-white/50">Profilés aluminium, accessoires ITE, thermolaquage post-façonnage. Un seul interlocuteur pour tout le système.</p>
               <button
                 onClick={() => setCurrentPage('contact')}
@@ -1995,9 +2121,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                           </span>
                           {exp.id === 'thermolaquage-plat' ? (
                             <div className="flex flex-wrap items-center gap-4 mb-6 mt-2">
-                              <h3 className="text-3xl md:text-4xl font-bold text-[#0E2A33]">
+                              <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
                                 Thermolaquage
-                              </h3>
+                              </h2>
                               <div className="flex items-center gap-3 px-5 py-2 bg-gray-50 rounded-full border border-gray-200 shadow-sm mt-1">
                                 <img
                                   src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773322881/INFINI_Noir_ompn2i.png"
@@ -2104,7 +2230,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           {/* CTA Final */}
           <section className="py-24 bg-[#071318] text-center border-t border-white/5">
             <div className="max-w-3xl mx-auto px-6 space-y-8">
-              <h2 className="text-3xl md:text-5xl text-white tracking-tighter font-extrabold">Vos contraintes techniques ont une réponse ici.</h2>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">Vos contraintes techniques ont une réponse ici.</h2>
               <p className="text-base md:text-lg text-white/50">Chargés d'affaires disponibles pour analyser vos plans DXF et optimiser vos coûts avant production.</p>
               <button onClick={() => setCurrentPage('contact')} className="px-10 py-4 md:px-12 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all shadow-xl hover:shadow-[#E2FD48]/20 hover:-translate-y-1">
                 Soumettre mes plans
@@ -2150,7 +2276,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 <span className="text-[10px] font-extrabold tracking-[0.3em] text-[#0E2A33]/40 uppercase mb-4 block">
                   DOSSIERS TECHNIQUES
                 </span>
-                <h2 className="text-3xl md:text-4xl font-extrabold tracking-tighter text-[#0E2A33] mb-4">
+                <h2 className="mb-4 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
                   3 articles pour structurer vos choix techniques
                 </h2>
                 <p className="text-base md:text-lg text-[#0E2A33]/70 leading-relaxed font-medium">
@@ -2217,7 +2343,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           </section>
           <section className="py-24 bg-[#071318] text-center border-t border-white/5">
             <div className="max-w-3xl mx-auto px-6 space-y-8">
-              <h2 className="text-3xl md:text-5xl text-white tracking-tighter font-extrabold">Prêt à passer à la fabrication ?</h2>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">Prêt à passer à la fabrication ?</h2>
               <p className="text-base md:text-lg text-white/50">Nos techniciens prennent le relais — avec ou sans plans finalisés.</p>
               <button onClick={() => setCurrentPage('contact')} className="px-10 py-4 md:px-12 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all shadow-xl hover:shadow-[#E2FD48]/20 hover:-translate-y-1">
                 Lancer mon projet
@@ -2272,7 +2398,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             <div className="max-w-3xl mx-auto px-6 text-gray-700 leading-relaxed space-y-12">
               {/* Section 1 */}
               <div className="pt-4 mt-8 border-t border-gray-100">
-                <h2 className="text-2xl font-bold text-[#0E2A33] mt-0 mb-6">
+                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
                   Pourquoi le choix du substrat est déterminant
                 </h2>
                 <p className="text-base mb-12">
@@ -2293,7 +2419,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
               {/* Section 2 */}
               <div className="pt-8 mt-24 border-t border-gray-100">
-                <h2 className="text-2xl font-bold text-[#0E2A33] mt-0 mb-6">
+                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
                   Aluminium, acier galvanisé, inox&nbsp;: comparatif technique
                 </h2>
                 <p className="text-base mb-12">
@@ -2356,7 +2482,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
               {/* Section 3 */}
               <div className="pt-8 mt-24 border-t border-gray-100">
-                <h2 className="text-2xl font-bold text-[#0E2A33] mt-0 mb-6">
+                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
                   3 contextes, 3 choix différents
                 </h2>
                 <div className="flex flex-col md:flex-row gap-6">
@@ -2404,7 +2530,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
               {/* Section 4 */}
               <div className="pt-8 mt-24 border-t border-gray-100">
-                <h2 className="text-2xl font-bold text-[#0E2A33] mt-0 mb-6">
+                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
                   Ce que ça change sur le traitement de surface
                 </h2>
                 <p className="text-base mb-12">
@@ -2454,7 +2580,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           {/* SECTION CONTACT BAS DE PAGE */}
           <section className="py-24 bg-[#071318] text-center border-t border-white/5">
             <div className="max-w-3xl mx-auto px-6 space-y-8">
-              <h2 className="text-3xl md:text-5xl text-white tracking-tighter font-extrabold">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">
                 Votre métal est choisi. Place au façonnage.
               </h2>
               <p className="text-base md:text-lg text-white/50">
@@ -2517,7 +2643,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             <div className="max-w-3xl mx-auto px-6 text-gray-700 leading-relaxed space-y-12">
               {/* Section 1 */}
               <div className="pt-8 mt-8 border-t border-gray-100">
-                <h2 className="text-2xl font-bold text-[#0E2A33] mt-0 mb-6">
+                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
                   Pourquoi l&apos;aluminium est le métal de référence en pliage
                 </h2>
                 <p className="text-base mb-12">
@@ -2539,7 +2665,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
               {/* Section 2 */}
               <div className="pt-8 mt-20 border-t border-gray-100">
-                <h2 className="text-2xl font-bold text-[#0E2A33] mt-0 mb-6">
+                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
                   Les 3 paramètres techniques d&apos;un pliage réussi
                 </h2>
                 <p className="text-base mb-12">
@@ -2602,7 +2728,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
               {/* Section 3 */}
               <div className="pt-8 mt-20 border-t border-gray-100">
-                <h2 className="text-2xl font-bold text-[#0E2A33] mt-0 mb-6">
+                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
                   Tolérance ±0,3 mm : ce que ça change sur chantier
                 </h2>
                 <p className="text-base mb-12">
@@ -2617,7 +2743,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
               {/* Section 4 */}
               <div className="pt-8 mt-20 border-t border-gray-100">
-                <h2 className="text-2xl font-bold text-[#0E2A33] mt-0 mb-6">
+                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
                   3 limites techniques à anticiper en phase d&apos;étude
                 </h2>
                 <div className="flex flex-col md:flex-row gap-6">
@@ -2658,7 +2784,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
               {/* Section 5 */}
               <div className="pt-8 mt-20 border-t border-gray-100">
-                <h2 className="text-2xl font-bold text-[#0E2A33] mt-0 mb-6">
+                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
                   Comment la qualité du pliage conditionne le thermolaquage
                 </h2>
                 <p className="text-base mb-12">
@@ -2712,7 +2838,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           {/* SECTION CONTACT BAS DE PAGE */}
           <section className="py-24 bg-[#071318] text-center border-t border-white/5">
             <div className="max-w-3xl mx-auto px-6 space-y-8">
-              <h2 className="text-3xl md:text-5xl text-white tracking-tighter font-extrabold">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">
                 ±0,3 mm garanti. Sur votre prochaine commande aussi.
               </h2>
               <p className="text-base md:text-lg text-white/50">
@@ -2784,7 +2910,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           <section className="pt-8 pb-20 bg-white" style={{ backgroundColor: '#FFFFFF' }}>
             <div className="max-w-3xl mx-auto px-6 text-gray-700 leading-relaxed space-y-12">
               <div className="pt-8 mt-8 border-t border-gray-100">
-                <h2 className="text-2xl font-bold text-[#0E2A33] mt-0 mb-6">Pourquoi la certification QUALICOAT change tout</h2>
+                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">Pourquoi la certification QUALICOAT change tout</h2>
                 <p className="text-base mb-6">
                   QUALICOAT est un label de qualité délivré par une association internationale indépendante, basée en Suisse, qui certifie
                   les laqueurs industriels sur aluminium et alliages légers. Le périmètre de certification ne se limite pas à un contrôle
@@ -2805,7 +2931,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               </div>
 
               <div className="pt-8 mt-20 border-t border-gray-100">
-                <h2 className="text-2xl font-bold text-[#0E2A33] mt-0 mb-6">Post-laquage vs pré-laquage : l'argument PLIALU</h2>
+                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">Post-laquage vs pré-laquage : l'argument PLIALU</h2>
                 <p className="text-base mb-6">
                   Dans l'industrie du façonnage métallique, deux approches coexistent pour le laquage des pièces de façade.
                 </p>
@@ -2842,7 +2968,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               </div>
 
               <div className="pt-8 mt-20 border-t border-gray-100">
-                <h2 className="text-2xl font-bold text-[#0E2A33] mt-0 mb-6">Le processus QUALICOAT : ingénierie de surface</h2>
+                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">Le processus QUALICOAT : ingénierie de surface</h2>
                 <p className="text-base mb-6">
                   Le thermolaquage certifié QUALICOAT est une séquence industrielle en trois phases, où chaque étape conditionne la
                   performance de la suivante.
@@ -2877,7 +3003,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               </div>
 
               <div className="pt-8 mt-20 border-t border-gray-100">
-                <h2 className="text-2xl font-bold text-[#0E2A33] mt-0 mb-6">Les protocoles de validation</h2>
+                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">Les protocoles de validation</h2>
                 <p className="text-base mb-6">
                   La certification QUALICOAT repose sur des tests normalisés réalisés sur chaque lot de production. Ces protocoles qualifient
                   le comportement physico-chimique du système complet substrat-conversion-peinture.
@@ -2929,7 +3055,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               </div>
 
               <div className="pt-8 mt-20 border-t border-gray-100">
-                <h2 className="text-2xl font-bold text-[#0E2A33] mt-0 mb-6">Classes de poudres : durabilité UV</h2>
+                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">Classes de poudres : durabilité UV</h2>
                 <p className="text-base mb-6">
                   Le choix de la classe de poudre détermine la stabilité colorimétrique (maintien de la teinte RAL d'origine) et la
                   rétention de brillance sur la durée d'exposition aux UV. C'est un paramètre à intégrer dès la rédaction du CCTP (Cahier
@@ -2981,7 +3107,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               </div>
 
               <div className="pt-8 mt-20 border-t border-gray-100">
-                <h2 className="text-2xl font-bold text-[#0E2A33] mt-0 mb-6">Ce qu'un prescripteur doit exiger</h2>
+                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">Ce qu'un prescripteur doit exiger</h2>
                 <p className="text-base mb-6">Quatre points à verrouiller dans le cahier des charges.</p>
                 <p className="text-base mb-6">
                   <strong>Exiger des poudres de Classe 2 minimum sur toutes les façades sollicitées par les UV.</strong> La Classe 1 peut
@@ -3029,7 +3155,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           {/* SECTION CONTACT BAS DE PAGE */}
           <section className="py-24 bg-[#071318] text-center border-t border-white/5">
             <div className="max-w-3xl mx-auto px-6 space-y-8">
-              <h2 className="text-3xl md:text-5xl text-white tracking-tighter font-extrabold">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">
                 Votre prochain projet. Thermolaquage certifié QUALICOAT inclus.
               </h2>
               <p className="text-base md:text-lg text-white/50">
@@ -3142,7 +3268,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 <div className="space-y-12">
                   <div className="space-y-4">
                     <span className="text-[10px] font-extrabold tracking-[0.3em] text-[#0E2A33]/40 uppercase">COORDONNÉES</span>
-                    <h2 className="text-3xl md:text-4xl font-extrabold tracking-tighter text-[#0E2A33]">Où nous trouver ?</h2>
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">Où nous trouver ?</h2>
                   </div>
                   
                   <div className="space-y-8">
