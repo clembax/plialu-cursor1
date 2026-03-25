@@ -24,11 +24,17 @@ declare global {
 import TerritorialMap from './TerritorialMap';
 import Success from './Success';
 import EnduitMinceIsolant from './src/components/solutions/EnduitMinceIsolant';
+import Etancheite from './components/Etancheite';
 
 const SEO_CONFIG: Record<string, { path: string; title: string; desc: string; noindex?: boolean }> = {
   'home': { path: '/', title: 'Façonnage métallique sur mesure en Rhône-Alpes | PLIALU', desc: 'Façonnage métallique sur mesure en Rhône-Alpes. Bureau d\'études intégré, pliage CNC, thermolaquage certifié QUALICOAT. Devis technique sous 48h.' },
   'expertises': { path: '/expertises', title: 'Process industriel & Fabrication métallique sur mesure | PLIALU', desc: 'Fabrication de pièces métalliques sur mesure : étude DXF, déroulage, pliage grande longueur, thermolaquage QUALICOAT. Parc machine intégré pour un contrôle qualité absolu.' },
   'solutions': { path: '/solutions', title: 'Solutions métalliques pour l\'enveloppe du bâtiment | PLIALU', desc: 'Solutions métalliques enveloppe bâtiment : bardage, ITE, cassettes, précadres. Profilés aluminium sur mesure, thermolaquage QUALICOAT inclus.' },
+  'etancheite': {
+    path: '/solutions/etancheite',
+    title: 'Solutions d’Étanchéité Métallique',
+    desc: 'Couvertines, bavettes et protections d’ouvrage pour toits plats. Fabrication sur mesure en métal prélaqué avec finitions durables pour une étanchéité parfaite des bâtiments industriels et collectifs.',
+  },
   'projects': { path: '/portfolio', title: 'Nos réalisations — Façades aluminium et enveloppe bâtiment | PLIALU', desc: 'Découvrez les projets de façonnage métallique et profilés aluminium réalisés par PLIALU pour l\'enveloppe du bâtiment.' },
   'a-propos': { path: '/a-propos', title: 'PLIALU — Entreprise de façonnage métallique en Rhône-Alpes', desc: 'Spécialiste du façonnage métallique en Rhône-Alpes depuis 20 ans. Atelier intégré à Lyon, certification QUALICOAT, livraison chantier partout en Europe.' },
   'ressources': { path: '/ressources', title: 'Ressources techniques — Enveloppe du bâtiment | PLIALU', desc: 'Dossiers techniques et guides pratiques PLIALU pour vos choix de matériaux et conceptions de façades métalliques.' },
@@ -52,6 +58,7 @@ const App: React.FC = () => {
     | 'home'
     | 'expertises'
     | 'solutions'
+    | 'etancheite'
     | 'contact'
     | 'projects'
     | 'a-propos'
@@ -398,7 +405,13 @@ const App: React.FC = () => {
     { id: '02', title: "Enduit mince sur isolant", image: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1773147911/Placeholder-Dark_xe7she.webp" },
     { id: '03', title: "Précadres", image: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1773147911/Placeholder-Dark_xe7she.webp" },
     { id: '04', title: "Tôles prélaquées", image: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1773147911/Placeholder-Dark_xe7she.webp" },
-    { id: '05', title: "Ravalement de façade", image: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1773147911/Placeholder-Dark_xe7she.webp" }
+    { id: '05', title: "Ravalement de façade", image: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1773147911/Placeholder-Dark_xe7she.webp" },
+    {
+      id: '06',
+      title: "Étanchéité",
+      description: "Modèle d'étanchéité sur toit plat",
+      image: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1773147911/Placeholder-Dark_xe7she.webp",
+    }
   ];
 
   const expertisesDetails = [
@@ -793,7 +806,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   <div className="max-w-2xl space-y-6 mb-10">
                     <span className="text-[10px] font-extrabold tracking-[0.4em] text-[#0E2A33]/40 uppercase">SOLUTIONS</span>
                     <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">Solutions métalliques pour l'enveloppe du bâtiment</h2>
-                    <p className="text-[#0E2A33]/60 text-lg leading-relaxed font-medium">Catalogue B2B : enduit mince, ravalement, bardages et cassettes, précadres, tôles prélaquées. Découvrez nos gammes aluminium et acier.</p>
+                    <p className="text-[#0E2A33]/60 text-lg leading-relaxed font-medium">Catalogue B2B : enduit mince, ravalement, bardages et cassettes, précadres, tôles prélaquées et étanchéité... Découvrez nos gammes aluminium et acier.</p>
                   </div>
 
                   <div className="flex flex-col gap-6">
@@ -804,6 +817,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                         key={item.id}
                         type="button"
                         onMouseEnter={() => setActiveSolutionHover(index)}
+                        onClick={() => {
+                          if (item.id === '06') setCurrentPage('etancheite');
+                        }}
                         className="text-left group"
                       >
                         <div className="flex flex-col">
@@ -852,6 +868,12 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                         className="absolute inset-0 w-full h-full object-cover"
                         loading="lazy"
                       />
+                    ) : homeSolutionsList[activeSolutionHover]?.id === '06' ? (
+                      <div className="absolute inset-0 bg-[#071318] border border-white/10 flex items-center justify-center">
+                        <span className="text-[#0E2A33] opacity-80 text-sm font-semibold">
+                          Visualisation 3D en cours
+                        </span>
+                      </div>
                     ) : (
                       <img
                         key={homeSolutionsList[activeSolutionHover].id}
@@ -1830,7 +1852,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             </div>
           </section>
 
-          {/* --- BENTO GRID : 5 FAMILLES DE PRODUITS --- */}
+          {/* --- BENTO GRID : 6 FAMILLES DE PRODUITS --- */}
           <section className="py-20 bg-[#0a1f26]">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="mb-12">
@@ -1840,37 +1862,35 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 </p>
               </div>
 
-              <div className="flex flex-col gap-4">
-                {/* Ligne 1 : 2 grandes cartes (50/50) */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {/* Carte 1 */}
-                  <div
-                    className="group relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 h-[400px] cursor-pointer"
-                    onClick={() => setCurrentPage('solution-bardage')}
-                  >
-                    <div
-                      className="absolute inset-0 bg-neutral-800 bg-cover bg-center opacity-70 group-hover:opacity-100 transition duration-500"
-                      style={{
-                        backgroundImage:
-                          "url('https://res.cloudinary.com/dyiup6v5x/image/upload/v1773147911/Placeholder-Dark_xe7she.webp')",
-                      }}
-                    ></div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0E2A33] via-[#0E2A33]/40 to-transparent opacity-90 group-hover:opacity-70 transition duration-500"></div>
-                    <div className="absolute bottom-6 left-6 right-6 transform translate-y-2 group-hover:translate-y-0 transition duration-500">
-                      <h3 className="text-2xl font-bold text-white group-hover:text-[#E2FD48] transition duration-300">
-                        Bardages & Cassettes
-                      </h3>
-                      <p className="mt-2 text-gray-300 opacity-0 group-hover:opacity-100 transition duration-500 delay-100">
-                        Systèmes de fixation invisible et habillages grandes dimensions.
-                      </p>
-                    </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {/* Carte 1: Bardage */}
+                <div
+                  className="group relative flex flex-col overflow-hidden rounded-2xl bg-[#0E2A33] border border-white/10 h-[400px] cursor-pointer transition-all duration-300 hover:border-[#E2FD48] hover:shadow-[0_0_30px_rgba(226,253,72,0.15)]"
+                  onClick={() => setCurrentPage('solution-bardage')}
+                >
+                  <div className="relative w-full aspect-video bg-[#071318] border border-white/10 flex items-center justify-center overflow-hidden">
+                    <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,rgba(226,253,72,0.35),transparent_60%)]" />
+                    <span className="relative text-[#0E2A33] opacity-80 text-sm font-semibold">
+                      Visualisation 3D en cours
+                    </span>
                   </div>
 
-                  {/* Carte 2 */}
-                  <div
-                    className="group relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 h-[400px] cursor-pointer"
-                    onClick={() => setCurrentPage('solution-enduit')}
-                  >
+                  <div className="mt-auto p-6 w-full flex flex-col">
+                    <h3 className="text-2xl font-bold text-white group-hover:text-[#E2FD48] transition-colors duration-300">
+                      Bardages &amp; Cassettes
+                    </h3>
+                    <p className="mt-2 text-gray-300">
+                      Systèmes de fixation invisible et habillages grandes dimensions.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Carte 2: ITE (image réelle conservée) */}
+                <div
+                  className="group relative flex flex-col overflow-hidden rounded-2xl bg-[#0E2A33] border border-white/10 h-[400px] cursor-pointer transition-all duration-300 hover:border-[#E2FD48] hover:shadow-[0_0_30px_rgba(226,253,72,0.15)]"
+                  onClick={() => setCurrentPage('solution-enduit')}
+                >
+                  <div className="relative w-full aspect-video bg-[#071318] overflow-hidden">
                     <img
                       src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773850275/enduitminceisolant-1200px_ibn4ly.webp"
                       srcSet="
@@ -1883,54 +1903,59 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       className="absolute inset-0 w-full h-full object-cover"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0E2A33] via-[#0E2A33]/40 to-transparent opacity-90 group-hover:opacity-70 transition duration-500"></div>
-                    <div className="absolute bottom-6 left-6 right-6 transform translate-y-2 group-hover:translate-y-0 transition duration-500">
-                      <h3 className="text-2xl font-bold text-white group-hover:text-[#E2FD48] transition duration-300">
-                        Enduit mince sur isolant
-                      </h3>
-                      <p className="mt-2 text-gray-300 opacity-0 group-hover:opacity-100 transition duration-500 delay-100">
-                        Profils de départ, d'angle et d'arrêt pour systèmes ITE.
-                      </p>
-                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0E2A33] via-[#0E2A33]/40 to-transparent opacity-90" />
+                  </div>
+
+                  <div className="mt-auto p-6 w-full flex flex-col">
+                    <h3 className="text-2xl font-bold text-white group-hover:text-[#E2FD48] transition-colors duration-300">
+                      Enduit mince sur isolant
+                    </h3>
+                    <p className="mt-2 text-gray-300">
+                      Profils de départ, d&apos;angle et d&apos;arrêt pour systèmes ITE.
+                    </p>
                   </div>
                 </div>
 
-                {/* Ligne 2 : 3 cartes moyennes (33/33/33) */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {/* Carte 3 */}
-                  <div
-                    className="group relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 h-[300px] cursor-pointer"
-                    onClick={() => setCurrentPage('solution-precadres')}
-                  >
-                    <div
-                      className="absolute inset-0 bg-neutral-800 bg-cover bg-center opacity-70 group-hover:opacity-100 transition duration-500"
-                      style={{
-                        backgroundImage:
-                          "url('https://res.cloudinary.com/dyiup6v5x/image/upload/v1773147911/Placeholder-Dark_xe7she.webp')",
-                      }}
-                    ></div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0E2A33] via-[#0E2A33]/40 to-transparent opacity-90 group-hover:opacity-70 transition duration-500"></div>
-                    <div className="absolute bottom-6 left-6 right-6">
-                      <h3 className="text-xl font-bold text-white group-hover:text-[#E2FD48] transition duration-300">Précadres</h3>
-                    </div>
+                {/* Carte 3: Précadres */}
+                <div
+                  className="group relative flex flex-col overflow-hidden rounded-2xl bg-[#0E2A33] border border-white/10 h-[400px] cursor-pointer transition-all duration-300 hover:border-[#E2FD48] hover:shadow-[0_0_30px_rgba(226,253,72,0.15)]"
+                  onClick={() => setCurrentPage('solution-precadres')}
+                >
+                  <div className="relative w-full aspect-video bg-[#071318] border border-white/10 flex items-center justify-center overflow-hidden">
+                    <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,rgba(226,253,72,0.35),transparent_60%)]" />
+                    <span className="relative text-[#0E2A33] opacity-80 text-sm font-semibold">
+                      Visualisation 3D en cours
+                    </span>
                   </div>
 
-                  {/* Carte 4 */}
-                  <div
-                    className="group relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 h-[300px] cursor-pointer"
-                    onClick={() => setCurrentPage('solution-toles')}
-                  >
-                    <div
-                      className="absolute inset-0 bg-neutral-800 bg-cover bg-center opacity-70 group-hover:opacity-100 transition duration-500"
-                      style={{
-                        backgroundImage:
-                          "url('https://res.cloudinary.com/dyiup6v5x/image/upload/v1773147911/Placeholder-Dark_xe7she.webp')",
-                      }}
-                    ></div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0E2A33] via-[#0E2A33]/40 to-transparent opacity-90 group-hover:opacity-70 transition duration-500"></div>
-                    <div className="absolute bottom-6 left-6 right-6 flex flex-wrap items-center gap-4">
-                      <h3 className="text-xl font-bold text-white group-hover:text-[#E2FD48] transition duration-300">Tôles prélaquées</h3>
-                      <div className="flex items-center gap-2 px-3 py-1.5 bg-gray-50 rounded-full border border-gray-200 shadow-sm mt-1">
+                  <div className="mt-auto p-6 w-full flex flex-col">
+                    <h3 className="text-2xl font-bold text-white group-hover:text-[#E2FD48] transition-colors duration-300">
+                      Précadres
+                    </h3>
+                    <p className="mt-2 text-gray-300">
+                      Encadrements de baies soudés ou en kit pour une finition étanche et esthétique.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Carte 4: Tôles prélaquées */}
+                <div
+                  className="group relative flex flex-col overflow-hidden rounded-2xl bg-[#0E2A33] border border-white/10 h-[400px] cursor-pointer transition-all duration-300 hover:border-[#E2FD48] hover:shadow-[0_0_30px_rgba(226,253,72,0.15)]"
+                  onClick={() => setCurrentPage('solution-toles')}
+                >
+                  <div className="relative w-full aspect-video bg-[#071318] border border-white/10 flex items-center justify-center overflow-hidden">
+                    <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,rgba(226,253,72,0.35),transparent_60%)]" />
+                    <span className="relative text-[#0E2A33] opacity-80 text-sm font-semibold">
+                      Visualisation 3D en cours
+                    </span>
+                  </div>
+
+                  <div className="mt-auto p-6 w-full flex flex-col">
+                    <div className="flex items-center justify-between">
+                      <h3 className="text-2xl font-bold text-white group-hover:text-[#E2FD48] transition-colors duration-300">
+                        Tôles prélaquées
+                      </h3>
+                      <div className="flex items-center gap-2 px-3 py-1 bg-gray-50 rounded-full border border-gray-200 shadow-sm w-fit">
                         <img
                           src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773322881/INFINI_Noir_ompn2i.png"
                           alt="Logo Infinimetal"
@@ -1938,24 +1963,53 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                         />
                       </div>
                     </div>
+                    <p className="mt-2 text-gray-300">
+                      Vente de tôles prélaquées, RAL standards, déroulage sur mesure ou dimensions standards.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Carte 5: Ravalement de façade */}
+                <div
+                  className="group relative flex flex-col overflow-hidden rounded-2xl bg-[#0E2A33] border border-white/10 h-[400px] cursor-pointer transition-all duration-300 hover:border-[#E2FD48] hover:shadow-[0_0_30px_rgba(226,253,72,0.15)]"
+                  onClick={() => setCurrentPage('solution-ravalement')}
+                >
+                  <div className="relative w-full aspect-video bg-[#071318] border border-white/10 flex items-center justify-center overflow-hidden">
+                    <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,rgba(226,253,72,0.35),transparent_60%)]" />
+                    <span className="relative text-[#0E2A33] opacity-80 text-sm font-semibold">
+                      Visualisation 3D en cours
+                    </span>
                   </div>
 
-                  {/* Carte 5 */}
-                  <div
-                    className="group relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 h-[300px] cursor-pointer"
-                    onClick={() => setCurrentPage('solution-ravalement')}
-                  >
-                    <div
-                      className="absolute inset-0 bg-neutral-800 bg-cover bg-center opacity-70 group-hover:opacity-100 transition duration-500"
-                      style={{
-                        backgroundImage:
-                          "url('https://res.cloudinary.com/dyiup6v5x/image/upload/v1773147911/Placeholder-Dark_xe7she.webp')",
-                      }}
-                    ></div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0E2A33] via-[#0E2A33]/40 to-transparent opacity-90 group-hover:opacity-70 transition duration-500"></div>
-                    <div className="absolute bottom-6 left-6 right-6">
-                      <h3 className="text-xl font-bold text-white group-hover:text-[#E2FD48] transition duration-300">Ravalement de façade</h3>
-                    </div>
+                  <div className="mt-auto p-6 w-full flex flex-col">
+                    <h3 className="text-2xl font-bold text-white group-hover:text-[#E2FD48] transition-colors duration-300">
+                      Ravalement de façade
+                    </h3>
+                    <p className="mt-2 text-gray-300">
+                      Profils de finition, nez de dalles et goutte d'eau pour la rénovation des bâtiments.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Carte 6: Solutions pour l&apos;étanchéité */}
+                <div
+                  className="group relative flex flex-col overflow-hidden rounded-2xl bg-[#0E2A33] border border-white/10 h-[400px] cursor-pointer transition-all duration-300 hover:border-[#E2FD48] hover:shadow-[0_0_30px_rgba(226,253,72,0.15)]"
+                  onClick={() => setCurrentPage('etancheite')}
+                >
+                  <div className="relative w-full aspect-video bg-[#071318] border border-white/10 flex items-center justify-center overflow-hidden">
+                    <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,rgba(226,253,72,0.35),transparent_60%)]" />
+                    <span className="relative text-[#0E2A33] opacity-80 text-sm font-semibold">
+                      Visualisation 3D en cours
+                    </span>
+                  </div>
+
+                  <div className="mt-auto p-6 w-full flex flex-col">
+                    <h3 className="text-2xl font-bold text-white group-hover:text-[#E2FD48] transition-colors duration-300">
+                      Solutions pour l&apos;étanchéité
+                    </h3>
+                    <p className="mt-2 text-gray-300">
+                      Modèle d&apos;étanchéité sur toit plat
+                    </p>
                   </div>
                 </div>
               </div>
@@ -3236,6 +3290,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           </div>
         </main>
       )}
+
+      {/* --- SOLUTIONS ÉTANCHÉITÉ --- */}
+      {currentPage === 'etancheite' && <Etancheite />}
 
       {/* --- CONTACT PAGE CONTENT --- */}
       {currentPage === 'contact' && (
