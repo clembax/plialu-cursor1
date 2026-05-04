@@ -3292,7 +3292,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
       )}
 
       {/* --- SOLUTIONS ÉTANCHÉITÉ --- */}
-      {currentPage === 'etancheite' && <Etancheite />}
+      {currentPage === 'etancheite' && <Etancheite setCurrentPage={setCurrentPage} />}
 
       {/* --- CONTACT PAGE CONTENT --- */}
       {currentPage === 'contact' && (
