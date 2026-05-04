@@ -155,7 +155,7 @@ export const etancheiteProfiles: ProfileConfig[] = [
       large: "https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,w_400/v1777882163/EclExtCouv_tgrjsg.png"
     },
     zoom: { x: 0, y: 0, scale: 1.6, transformOrigin: 'center center' },
-    hotspot: { top: '50%', left: '55%' }
+    hotspot: { top: '44%', left: '50%' }
   },
   {
     id: 4,
