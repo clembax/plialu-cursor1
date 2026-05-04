@@ -113,3 +113,68 @@ export const schemaImages = {
   medium: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1773832608/Sche%CC%81ma-1500px_aqoufg.webp",
   large: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1773832609/Sche%CC%81ma-2000px_e7obaz.webp"
 }
+
+export const etancheiteProfiles: ProfileConfig[] = [
+  {
+    id: 1,
+    nom: "Couvertine simple",
+    description: "Profil posé en couronnement de mur pour protéger le sommet des acrotères et murets.",
+    utilite: "Évacue les eaux pluviales et protège la tête de mur contre les infiltrations.",
+    origine: 'PLIALU',
+    images: {
+      small: "https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,w_400/v1777882167/Couv_wni7gu.png",
+      medium: "https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,w_400/v1777882167/Couv_wni7gu.png",
+      large: "https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,w_400/v1777882167/Couv_wni7gu.png"
+    },
+    zoom: { x: 0, y: 0, scale: 1.6, transformOrigin: 'top right' },
+    hotspot: { top: '15%', left: '70%' }
+  },
+  {
+    id: 2,
+    nom: "Support extrudé nervuré",
+    description: "Profil support en aluminium extrudé nervuré pour la fixation des couvertines.",
+    utilite: "Assure la rigidité et la fixation mécanique du système de couverture.",
+    origine: 'PLIALU',
+    images: {
+      small: "https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,w_400/v1777882162/SUPCouv_hco7w4.png",
+      medium: "https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,w_400/v1777882162/SUPCouv_hco7w4.png",
+      large: "https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,w_400/v1777882162/SUPCouv_hco7w4.png"
+    },
+    zoom: { x: 0, y: 0, scale: 1.6, transformOrigin: 'top center' },
+    hotspot: { top: '35%', left: '60%' }
+  },
+  {
+    id: 3,
+    nom: "Éclisse de jonction extérieure",
+    description: "Pièce de liaison entre deux longueurs de couvertine, posée côté extérieur.",
+    utilite: "Assure la continuité étanche du système aux jonctions tout en absorbant la dilatation.",
+    origine: 'PLIALU',
+    images: {
+      small: "https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,w_400/v1777882163/EclExtCouv_tgrjsg.png",
+      medium: "https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,w_400/v1777882163/EclExtCouv_tgrjsg.png",
+      large: "https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,w_400/v1777882163/EclExtCouv_tgrjsg.png"
+    },
+    zoom: { x: 0, y: 0, scale: 1.6, transformOrigin: 'center center' },
+    hotspot: { top: '38%', left: '48%' }
+  },
+  {
+    id: 4,
+    nom: "Angle couvertine",
+    description: "Pièce d'angle fabriquée sur mesure pour les retours en coin d'acrotère.",
+    utilite: "Garantit l'étanchéité aux angles sortants sans découpe ni soudure sur chantier.",
+    origine: 'PLIALU',
+    images: {
+      small: "https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,w_400/v1777882228/ACouv_msqxno.png",
+      medium: "https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,w_400/v1777882228/ACouv_msqxno.png",
+      large: "https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,w_400/v1777882228/ACouv_msqxno.png"
+    },
+    zoom: { x: 0, y: 0, scale: 1.6, transformOrigin: 'bottom left' },
+    hotspot: { top: '55%', left: '20%' }
+  }
+]
+
+export const etancheiteSchemaImages = {
+  small: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1777883039/plan-page-e%CC%81tanche%CC%81ite%CC%81-800px_kabn0m.webp",
+  medium: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1777883039/plan-page-e%CC%81tanche%CC%81ite%CC%81-1200_g2nc7h.webp",
+  large: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1777883040/plan-page-e%CC%81tanche%CC%81ite%CC%81-1600px_qeq1sd.webp"
+}
