@@ -127,7 +127,7 @@ export const etancheiteProfiles: ProfileConfig[] = [
       large: "https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,w_400/v1777882167/Couv_wni7gu.png"
     },
     zoom: { x: 0, y: 0, scale: 1.6, transformOrigin: 'top right' },
-    hotspot: { top: '15%', left: '70%' }
+    hotspot: { top: '32%', left: '78%' }
   },
   {
     id: 2,
@@ -141,7 +141,7 @@ export const etancheiteProfiles: ProfileConfig[] = [
       large: "https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,w_400/v1777882162/SUPCouv_hco7w4.png"
     },
     zoom: { x: 0, y: 0, scale: 1.6, transformOrigin: 'top center' },
-    hotspot: { top: '35%', left: '60%' }
+    hotspot: { top: '42%', left: '68%' }
   },
   {
     id: 3,
@@ -155,7 +155,7 @@ export const etancheiteProfiles: ProfileConfig[] = [
       large: "https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,w_400/v1777882163/EclExtCouv_tgrjsg.png"
     },
     zoom: { x: 0, y: 0, scale: 1.6, transformOrigin: 'center center' },
-    hotspot: { top: '38%', left: '48%' }
+    hotspot: { top: '38%', left: '52%' }
   },
   {
     id: 4,
@@ -169,7 +169,7 @@ export const etancheiteProfiles: ProfileConfig[] = [
       large: "https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,w_400/v1777882228/ACouv_msqxno.png"
     },
     zoom: { x: 0, y: 0, scale: 1.6, transformOrigin: 'bottom left' },
-    hotspot: { top: '55%', left: '20%' }
+    hotspot: { top: '58%', left: '30%' }
   }
 ]
 
