@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
+import CookieBanner from './src/components/CookieBanner';
 
 // Fix: Use 'declare global' to augment the JSX namespace globally.
 declare global {
@@ -1996,11 +1997,15 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   className="group relative flex flex-col overflow-hidden rounded-2xl bg-[#0E2A33] border border-white/10 h-[400px] cursor-pointer transition-all duration-300 hover:border-[#E2FD48] hover:shadow-[0_0_30px_rgba(226,253,72,0.15)]"
                   onClick={() => setCurrentPage('etancheite')}
                 >
-                  <div className="relative w-full aspect-video bg-[#071318] border border-white/10 flex items-center justify-center overflow-hidden">
-                    <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,rgba(226,253,72,0.35),transparent_60%)]" />
-                    <span className="relative text-[#0E2A33] opacity-80 text-sm font-semibold">
-                      Visualisation 3D en cours
-                    </span>
+                  <div className="relative w-full aspect-video overflow-hidden">
+                    <img
+                      src="https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,w_800/v1777883039/plan-page-e%CC%81tanche%CC%81ite%CC%81-800px_kabn0m.webp"
+                      srcSet="https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,w_800/v1777883039/plan-page-e%CC%81tanche%CC%81ite%CC%81-800px_kabn0m.webp 800w, https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,w_1200/v1777883039/plan-page-e%CC%81tanche%CC%81ite%CC%81-1200_g2nc7h.webp 1200w"
+                      sizes="(max-width: 1024px) 100vw, 400px"
+                      alt="Schéma étanchéité toit plat — couvertines aluminium PLIALU"
+                      loading="lazy"
+                      className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                    />
                   </div>
 
                   <div className="mt-auto p-6 w-full flex flex-col">
@@ -3571,6 +3576,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           </div>
         </div>
       </footer>
+      <CookieBanner onOpenPrivacy={() => setCurrentPage('politique-confidentialite')} />
     </div>
   );
 };
