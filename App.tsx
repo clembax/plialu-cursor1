@@ -3515,7 +3515,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     {/* Upload fichier */}
                     <div className="p-4 border-2 border-dashed border-[#0E2A33]/20 rounded-xl bg-[#F3F6F7]">
                       <label className="block text-sm font-bold mb-2 text-[#0E2A33]">
-                        <span className="text-[#0E2A33]">Joindre vos plans ou photos</span> (PDF, DWG, DXF, JPG)
+                        <span className="text-[#0E2A33]">Joindre vos documents</span> (PDF, DWG, DXF, JPG, etc.)
                       </label>
                       <input
                         type="file"
