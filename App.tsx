@@ -3631,47 +3631,67 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
       {/* Premium Footer */}
       <footer className="pt-32 pb-12 section--dark" style={{ background: 'linear-gradient(to bottom, #071318 0%, #0b1e26 100%)' }}>
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 lg:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-16 lg:gap-12 mb-24">
+            {/* Column 1 -- Brand */}
             <div className="space-y-8">
               <button onClick={() => setCurrentPage('home')} className="text-2xl font-black tracking-tighter text-white uppercase block">PLIALU.</button>
               <p className="text-white/50 text-sm leading-relaxed max-w-xs">Solutions métalliques industrielles sur mesure pour le bâtiment et l'industrie.</p>
               <div className="flex items-center gap-4 pt-4">
-                <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-[#E2FD48] hover:border-[#E2FD48] transition-all"><iconify-icon icon="line-md:linkedin" width="20"></iconify-icon></a>
-                <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-[#E2FD48] hover:border-[#E2FD48] transition-all"><iconify-icon icon="line-md:youtube" width="20"></iconify-icon></a>
+                <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-[#E2FD48] hover:border-[#E2FD48] transition-all">
+                  <iconify-icon icon="line-md:linkedin" width="20"></iconify-icon>
+                </a>
               </div>
             </div>
-            {['Expertises', 'Ressources', 'Société'].map((title) => (
-              <div key={title}>
-                <h4 className="text-white text-[10px] font-extrabold uppercase tracking-[0.3em] mb-8">{title}</h4>
-                <ul className="space-y-4">
-                  {(title === 'Expertises' ? ['Bureau d’études', 'Mise au format', 'Pliage grande longueur', 'Thermolaquage'] : 
-                    title === 'Ressources' ? ['Centre de ressources', 'Dossiers techniques', 'Certifications', 'Contact expert'] :
-                    ['À propos', 'Réalisations', 'Solutions', 'Contact']
-                  ).map((link) => (
-                    <li key={link}>
-                      <button 
-                        onClick={() => { 
-                          if (link === 'Contact' || link === 'Contact expert') setCurrentPage('contact'); 
-                          else if (title === 'Expertises' || link === 'Bureau d’études' || link === 'Mise au format') setCurrentPage('expertises'); 
-                          else if (title === 'Ressources' || link === 'Centre de ressources' || link === 'Dossiers techniques') setCurrentPage('ressources');
-                          else if (link === 'Réalisations') setCurrentPage('projects');
-                          else if (link === 'À propos') setCurrentPage('a-propos');
-                        }} 
-                        className="text-white/40 hover:text-[#E2FD48] transition-colors text-sm font-medium text-left"
-                      >
-                        {link}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+
+            {/* Column 2 -- Products & Services */}
+            <div>
+              <h4 className="text-white text-[10px] font-extrabold uppercase tracking-[0.3em] mb-8">Navigation</h4>
+              <ul className="space-y-4">
+                {['Expertises', 'Solutions', 'Ressources'].map((link) => (
+                  <li key={link}>
+                    <button
+                      onClick={() => {
+                        if (link === 'Expertises') setCurrentPage('expertises');
+                        else if (link === 'Solutions') setCurrentPage('solutions');
+                        else if (link === 'Ressources') setCurrentPage('ressources');
+                      }}
+                      className="text-white/40 hover:text-[#E2FD48] transition-colors text-sm font-medium text-left"
+                    >
+                      {link}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Column 3 -- Company */}
+            <div>
+              <h4 className="text-white text-[10px] font-extrabold uppercase tracking-[0.3em] mb-8">Société</h4>
+              <ul className="space-y-4">
+                {['À propos', 'Portfolio', 'Contact'].map((link) => (
+                  <li key={link}>
+                    <button
+                      onClick={() => {
+                        if (link === 'À propos') setCurrentPage('a-propos');
+                        else if (link === 'Portfolio') setCurrentPage('projects');
+                        else if (link === 'Contact') setCurrentPage('contact');
+                      }}
+                      className="text-white/40 hover:text-[#E2FD48] transition-colors text-sm font-medium text-left"
+                    >
+                      {link}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-          <div className="mt-32 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+
+          {/* Bottom -- Legal Links */}
+          <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
             <span className="text-[10px] text-white/30 font-bold uppercase tracking-[0.2em]">© 2025 PLIALU SAS — TOUS DROITS RÉSERVÉS</span>
-            <div className="flex gap-8 text-[10px] text-white/30 font-bold uppercase tracking-[0.2em]">
-              <a href="#" className="hover:text-white transition-colors">Mentions Légales</a>
-              <a href="#" className="hover:text-white transition-colors">Politique de confidentialité</a>
+            <div className="flex gap-6 text-[10px] text-white/30 font-bold uppercase tracking-[0.2em] flex-wrap justify-center md:justify-end">
+              <button onClick={() => setCurrentPage('mentions-legales')} className="hover:text-white transition-colors text-left">Mentions légales</button>
+              <button onClick={() => setCurrentPage('politique-confidentialite')} className="hover:text-white transition-colors text-left">Politique de confidentialité</button>
             </div>
           </div>
         </div>
