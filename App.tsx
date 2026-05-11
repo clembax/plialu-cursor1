@@ -43,6 +43,8 @@ const SEO_CONFIG: Record<string, { path: string; title: string; desc: string; no
   'ressource-2': { path: '/ressources/pliage-aluminium-tolerances', title: 'Pliage aluminium : limites et tolérances | PLIALU', desc: 'Pliage aluminium : épaisseurs, rayons mini, tolérances ±0,3 mm. Ce que votre fabricant doit maîtriser avant de démarrer la production.' },
   'ressource-3': { path: '/ressources/thermolaquage-qualicoat', title: 'Thermolaquage certifié QUALICOAT : garanties | PLIALU', desc: 'Thermolaquage certifié QUALICOAT : protocoles de validation, classes de poudres, post-laquage après façonnage. Ce qu\'un prescripteur doit exiger.' },
   'contact': { path: '/contact', title: 'Contact & Devis | PLIALU', desc: 'Contactez le bureau d\'études PLIALU pour votre projet de façonnage métallique sur mesure. Réponse sous 48h.', noindex: true },
+  'mentions-legales': { path: '/mentions-legales', title: 'Mentions légales | PLIALU', desc: 'Mentions légales du site PLIALU — éditeur, directeur, hébergeur et responsabilité.', noindex: true },
+  'politique-confidentialite': { path: '/politique-confidentialite', title: 'Politique de confidentialité | PLIALU', desc: 'Politique de confidentialité PLIALU — protection des données, RGPD, droits utilisateur.', noindex: true },
   'solution-bardage': { path: '/solutions/bardages-cassettes', title: 'Bardages & Cassettes sur mesure | PLIALU', desc: 'Fabrication de bardages et cassettes métalliques pour habillage de façade.' },
   'solution-enduit': { path: '/solutions/enduit-mince-isolant', title: 'Profilés pour Enduit Mince sur Isolant (ITE) | PLIALU', desc: 'Accessoires et profilés aluminium sur mesure pour systèmes d\'Isolation Thermique par l\'Extérieur (ITE).' },
   'solution-precadres': { path: '/solutions/precadres', title: 'Précadres métalliques sur mesure | PLIALU', desc: 'Fabrication de précadres d\'habillage de baies sur mesure en aluminium et acier.' },
@@ -73,6 +75,8 @@ const App: React.FC = () => {
     | 'solution-toles'
     | 'solution-ravalement'
     | 'merci'
+    | 'mentions-legales'
+    | 'politique-confidentialite'
   >('home');
   const [hoveredStep, setHoveredStep] = useState<number | null>(null);
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
@@ -3526,6 +3530,102 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
       {/* Page Merci (succès envoi formulaire) */}
       {currentPage === 'merci' && (
         <Success onBackHome={() => setCurrentPage('home')} />
+      )}
+
+      {/* --- MENTIONS LÉGALES PAGE --- */}
+      {currentPage === 'mentions-legales' && (
+        <div className="animate-fade-up">
+          <section className="relative bg-[#071318] pt-48 md:pt-56 pb-24 overflow-hidden min-h-screen flex flex-col justify-center">
+            <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-b from-[#0e2a33]/40 to-[#071318]"></div>
+            <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 w-full">
+              <button
+                onClick={() => setCurrentPage('home')}
+                className="text-[#E2FD48] hover:opacity-70 transition-opacity font-medium text-xs uppercase tracking-widest flex items-center gap-2 mb-14"
+              >
+                &larr; RETOUR À L'ACCUEIL
+              </button>
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-8">Mentions légales</h1>
+              <div className="prose prose-invert max-w-none text-white/80">
+                <h2 className="text-2xl font-bold text-white mt-8 mb-4">1. Éditeur du site</h2>
+                <p>Le site www.plialu.fr est édité par la société PLIALU, spécialisée dans le façonnage métallique industriel.</p>
+                <p><strong>Forme juridique :</strong> Société par Actions Simplifiée Unipersonnelle (S.A.S.U.)</p>
+                <p><strong>Capital social :</strong> 50 000 €</p>
+                <p><strong>SIRET :</strong> 498 363 001 00039</p>
+                <p><strong>Siège social :</strong> 150 route Copernic, Technoparc Saône Vallée, 01390 Civrieux, France</p>
+                <p><strong>Contact :</strong> commercial@plialu.fr | 04 78 08 93 70</p>
+
+                <h2 className="text-2xl font-bold text-white mt-8 mb-4">2. Directeur de la publication</h2>
+                <p>Le Directeur de la publication est Jean-Pierre Bax, en sa qualité de dirigeant de la société PLIALU.</p>
+
+                <h2 className="text-2xl font-bold text-white mt-8 mb-4">3. Hébergement</h2>
+                <p>L'hébergement du site est assuré par Hostinger.</p>
+                <p><strong>Adresse de l'hébergeur :</strong> Hostinger International Ltd., 61 Lordou Vironos Street, 6023 Larnaca, Chypre.</p>
+                <p><strong>Contact de l'hébergeur :</strong> <a href="https://www.hostinger.fr/contact" className="text-[#E2FD48] hover:underline">https://www.hostinger.fr/contact</a></p>
+
+                <h2 className="text-2xl font-bold text-white mt-8 mb-4">4. Propriété intellectuelle</h2>
+                <p>L'ensemble des éléments constituant ce site (textes, graphismes, logiciels, photographies, vidéos hébergées via Vimeo, images diffusées via Cloudinary, logos, marques) constitue une oeuvre de l'esprit protégée par les dispositions du Code de la Propriété Intellectuelle. Toute représentation, reproduction, modification ou exploitation commerciale, totale ou partielle, sans l'autorisation expresse et préalable de PLIALU, est strictement interdite et s'apparente à un délit de contrefaçon.</p>
+
+                <h2 className="text-2xl font-bold text-white mt-8 mb-4">5. Limitation de responsabilité</h2>
+                <p>PLIALU s'efforce de fournir des informations fiables et actualisées sur ses capacités industrielles et techniques. Toutefois, l'entreprise ne saurait garantir l'exactitude absolue ni l'exhaustivité des données publiées. Dans un contexte B2B, il appartient à l'utilisateur (architecte, bureau d'études, acheteur technique) de valider la faisabilité technique de son projet en contactant directement nos équipes. PLIALU décline toute responsabilité quant aux dommages directs ou indirects pouvant résulter de l'accès au site ou de l'utilisation des informations qui y figurent.</p>
+
+                <h2 className="text-2xl font-bold text-white mt-8 mb-4">6. Liens hypertextes</h2>
+                <p>Le site peut contenir des liens vers des sites partenaires ou des ressources externes. PLIALU n'exerçant aucun contrôle sur ces plateformes tierces, l'entreprise décline toute responsabilité quant à leur contenu, leur disponibilité ou leurs pratiques en matière de protection des données.</p>
+              </div>
+            </div>
+          </section>
+        </div>
+      )}
+
+      {/* --- POLITIQUE DE CONFIDENTIALITÉ PAGE --- */}
+      {currentPage === 'politique-confidentialite' && (
+        <div className="animate-fade-up">
+          <section className="relative bg-[#071318] pt-48 md:pt-56 pb-24 overflow-hidden min-h-screen flex flex-col justify-center">
+            <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-b from-[#0e2a33]/40 to-[#071318]"></div>
+            <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 w-full">
+              <button
+                onClick={() => setCurrentPage('home')}
+                className="text-[#E2FD48] hover:opacity-70 transition-opacity font-medium text-xs uppercase tracking-widest flex items-center gap-2 mb-14"
+              >
+                &larr; RETOUR À L'ACCUEIL
+              </button>
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-8">Politique de confidentialité</h1>
+              <div className="prose prose-invert max-w-none text-white/80">
+                <h2 className="text-2xl font-bold text-white mt-8 mb-4">1. Responsable du traitement</h2>
+                <p>Le responsable du traitement des données à caractère personnel collectées sur ce site est la société PLIALU, représentée par Jean-Pierre Bax.</p>
+
+                <h2 className="text-2xl font-bold text-white mt-8 mb-4">2. Données collectées et méthodes de collecte</h2>
+                <p>Dans le cadre de notre relation B2B, nous collectons de manière loyale et transparente les données suivantes :</p>
+                <p><strong>Données d'identification professionnelles :</strong> Nom, prénom, fonction, entreprise, adresse e-mail professionnelle, numéro de téléphone. Ces données sont récoltées via nos formulaires de contact.</p>
+                <p><strong>Données techniques de navigation :</strong> Adresses IP, logs de connexion, statistiques de visionnage (via notre lecteur vidéo Vimeo).</p>
+
+                <h2 className="text-2xl font-bold text-white mt-8 mb-4">3. Finalités du traitement et base légale</h2>
+                <p>La collecte de ces données s'appuie sur deux bases légales principales (Art. 6 du RGPD) :</p>
+                <p><strong>L'exécution de mesures précontractuelles :</strong> Traitement de vos demandes de devis, analyse de plans techniques (fichiers joints), et réponses à vos interrogations commerciales ou industrielles.</p>
+                <p><strong>L'intérêt légitime de PLIALU :</strong> Prospection B2B, suivi commercial, et amélioration de la sécurité et de la performance de notre infrastructure web.</p>
+
+                <h2 className="text-2xl font-bold text-white mt-8 mb-4">4. Destinataires des données et Sous-traitants</h2>
+                <p>Les données collectées sont strictement destinées au personnel habilité de PLIALU (direction, équipe commerciale, bureau d'études). Pour assurer le fonctionnement technique du site, nous nous appuyons sur des sous-traitants reconnus, en conformité avec le RGPD :</p>
+                <p><strong>Formsubmit.co :</strong> Routage sécurisé des données saisies dans nos formulaires de contact.</p>
+                <p><strong>Vimeo :</strong> Hébergement et diffusion de nos vidéos techniques de présentation.</p>
+                <p><strong>Cloudinary :</strong> Optimisation et diffusion sécurisée de nos ressources visuelles (images et schémas techniques).</p>
+                <p><strong>Hostinger :</strong> Hébergement global du site et des bases de données.</p>
+
+                <h2 className="text-2xl font-bold text-white mt-8 mb-4">5. Durée de conservation</h2>
+                <p>Conformément à la réglementation applicable en milieu B2B :</p>
+                <p><strong>Données de prospects :</strong> Conservées 3 ans à compter de leur collecte ou du dernier contact émanant du prospect (ex: demande de devis non aboutie).</p>
+                <p><strong>Données de clients :</strong> Conservées pendant toute la durée de la relation commerciale, puis archivées pendant 10 ans pour répondre à nos obligations comptables et légales.</p>
+
+                <h2 className="text-2xl font-bold text-white mt-8 mb-4">6. Vos droits (RGPD)</h2>
+                <p>Vous disposez d'un contrôle total sur vos données personnelles. Vous pouvez exercer à tout moment :</p>
+                <p>Un droit d'accès et de rectification.</p>
+                <p>Un droit à l'effacement (droit à l'oubli).</p>
+                <p>Un droit à la limitation du traitement et à la portabilité.</p>
+                <p>Un droit d'opposition à la prospection commerciale.</p>
+                <p>Pour exercer ces droits, adressez votre demande à commercial@plialu.fr. Une réponse vous sera apportée dans un délai maximal de 30 jours. En cas de litige, vous conservez le droit d'introduire une réclamation auprès de l'autorité de contrôle compétente (la CNIL en France, sur <a href="https://www.cnil.fr" className="text-[#E2FD48] hover:underline">www.cnil.fr</a>).</p>
+              </div>
+            </div>
+          </section>
+        </div>
       )}
 
       {/* Premium Footer */}
