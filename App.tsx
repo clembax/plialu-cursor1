@@ -3432,7 +3432,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     {/* Ligne 1 : Prénom / Nom */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-sm font-medium mb-1 text-[#0E2A33]">Prénom</label>
+                        <label className="block text-sm font-medium mb-1 text-[#0E2A33]">Prénom <span className="text-red-500">*</span></label>
                         <input
                           type="text"
                           name="firstname"
@@ -3442,7 +3442,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium mb-1 text-[#0E2A33]">Nom</label>
+                        <label className="block text-sm font-medium mb-1 text-[#0E2A33]">Nom <span className="text-red-500">*</span></label>
                         <input
                           type="text"
                           name="lastname"
@@ -3456,7 +3456,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     {/* Ligne 2 : Email / Téléphone */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-sm font-medium mb-1 text-[#0E2A33]">Email professionnel</label>
+                        <label className="block text-sm font-medium mb-1 text-[#0E2A33]">Email professionnel <span className="text-red-500">*</span></label>
                         <input
                           type="email"
                           name="email"
@@ -3485,6 +3485,20 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                         className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-lg focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33]"
                         placeholder="Nom de votre société"
                       />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium mb-1 text-[#0E2A33]">Intention de contact <span className="text-red-500">*</span></label>
+                      <select
+                        name="intention"
+                        required
+                        className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-lg focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33]"
+                      >
+                        <option value="">— Sélectionner une intention —</option>
+                        <option value="Demander un devis">Demander un devis</option>
+                        <option value="Question / Info produit">Question / Info produit</option>
+                        <option value="Postuler chez PLIALU">Postuler chez PLIALU</option>
+                      </select>
                     </div>
 
                     {/* Description du projet */}
