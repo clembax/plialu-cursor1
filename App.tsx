@@ -3425,7 +3425,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     className="space-y-6"
                   >
                     {/* Champs cachés Formsubmit */}
-                    <input type="hidden" name="_captcha" value="false" />
+                    <input type="hidden" name="_captcha" value="true" />
                     <input type="hidden" name="_subject" value="Nouvelle demande de devis — PLIALU" />
                     <input type="hidden" name="_next" value="https://grey-wren-904418.hostingersite.com/merci.html" />
 
