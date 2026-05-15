@@ -423,8 +423,8 @@ const App: React.FC = () => {
     {
       id: "bureau-etudes",
       title: "Bureau d’études",
-      tag: "ÉTUDE & OPTIMISATION",
-      text: "Analyse critique de vos plans DXF/DWG, optimisation des calepinages et validation des tolérances fabrication métal sur mesure pour une production sans erreur. Nos ingénieurs valident la faisabilité technique de chaque pliage complexe en anticipant les contraintes fabrication pièces métalliques.",
+      tag: "ANALYSE & OPTIMISATION",
+      text: "En collaboration avec les équipes commerciales et de production, nos techniciens analysent vos plans et cahiers des charges, avec optimisation des formats, validation des contraintes techniques pour une gamme de production sur mesure adaptée à chaque dossier, du plus simple au plus complexe",
       img: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1773074223/BE-1200px_nzpfpj.webp",
       alt: "Bureau d'études technique Plialu - Optimisation de plans DXF et calcul de pliage",
       materials: "AutoCAD • SolidWorks • Optimisation DXF",
@@ -433,8 +433,8 @@ const App: React.FC = () => {
     {
       id: "deroulage-mise-format",
       title: "Déroulage",
-      tag: "PRÉPARATION MATIÈRE",
-      text: "Transformation des bobines en formats plats via nos lignes de refendage et cisaillage. Une maîtrise totale de la planéité, critère indispensable pour les façades haut de gamme et les cassettes aluminium.",
+      tag: "AU CŒUR DE LA MATIÈRE PREMIÈRE",
+      text: "Déroulage de bobines : redressage - découpe de formats à plat et optimisation par dossier. Une étape clé de la fabrication et de la maîtrise des coûts",
       img: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?q=80&w=2070",
       alt: "Stock de bobines et centre de déroulage industriel",
       materials: "Acier • Aluminium • Inox jusqu'à 4mm",
@@ -444,7 +444,7 @@ const App: React.FC = () => {
       id: "thermolaquage-plat",
       title: "Thermolaquage",
       tag: "TRAITEMENT DE SURFACE",
-      text: "Application automatisée de peinture poudre polyester sur formats plats avant pliage. Ce process garantit un rendu homogène, sans coulures, et une durabilité accrue certifiée Qualicoat conforme aux exigences du bâtiment.",
+      text: "Deux lignes de production certifiées Qualicoat pour une flexibilité dans le choix de la gamme de production, nous travaillons à partir de feuilles d'aluminium prélaquées ou bien nous laquons après façonnage",
       img: "https://images.unsplash.com/photo-1534398079244-67c8ad85931b?q=80&w=2070",
       alt: "Ligne de thermolaquage automatisée pour panneaux métalliques",
       materials: "Certifié Qualicoat • Poudre Polyester",
@@ -453,11 +453,11 @@ const App: React.FC = () => {
     {
       id: "pliage-automatise",
       title: "Pliage",
-      tag: "MISE EN FORME",
-      text: "Nos centres de pliage robotisés et presses plieuses grande longueur permettent de réaliser des profils complexes avec une répétabilité absolue. Capacité de pliage jusqu'à 4 mètres pour vos couvertines et bavettes.",
+      tag: "FAÇONNAGE ET PLIAGE",
+      text: "Du pliage traditionnel sur presse plieuse à CNC ou grâce à notre ligne de production automatisée : découpe, poinçonnage, panneautage, nous maîtrisons le pliage de A à Z",
       img: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=2070",
       alt: "Presse plieuse numérique grande longueur en action",
-      materials: "Grande longueur jusqu'à 4 m • Robotique",
+      materials: "Répétabilité - Profils complexes - Longueurs jusqu'à 4m",
       light: false
     },
     {
@@ -2203,24 +2203,24 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                         </div>
                         {exp.id === 'bureau-etudes' ? (
                           <p className="text-base md:text-lg leading-relaxed font-medium text-[#0E2A33]/70">
-                            Analyse critique de vos plans DXF/DWG, optimisation des calepinages et validation des <strong>tolérances fabrication métal sur mesure</strong> pour une production sans erreur. Nos ingénieurs valident la faisabilité technique de chaque pliage complexe en anticipant les <strong>contraintes fabrication pièces métalliques</strong>.
+                            En collaboration avec les équipes commerciales et de production, nos techniciens analysent vos plans et cahiers des charges, avec optimisation des formats, validation des contraintes techniques pour une gamme de production sur mesure adaptée à chaque dossier, du plus simple au plus complexe
                           </p>
                         ) : exp.id === 'deroulage-mise-format' ? (
                           <>
                             <p className="text-base md:text-lg leading-relaxed font-medium text-[#0E2A33]/70">
-                              Transformation des bobines en formats plats via nos lignes de refendage et cisaillage. Une maîtrise totale de la planéité, première étape clé de notre <strong>fabrication industrielle métal</strong>, indispensable pour les façades haut de gamme et les cassettes aluminium.
+                              Déroulage de bobines : redressage - découpe de formats à plat et optimisation par dossier. Une étape clé de la fabrication et de la maîtrise des coûts
                             </p>
                           </>
                         ) : exp.id === 'thermolaquage-plat' ? (
                           <>
                             <p className="text-base md:text-lg leading-relaxed font-medium text-[#0E2A33]/70">
-                              Application automatisée de <strong>peinture poudre métal</strong> certifiée Qualicoat. Un rendu homogène et une durabilité accrue face aux exigences du bâtiment.
+                              Deux lignes de production certifiées Qualicoat pour une flexibilité dans le choix de la gamme de production, nous travaillons à partir de feuilles d'aluminium prélaquées ou bien nous laquons après façonnage
                             </p>
                           </>
                         ) : exp.id === 'pliage-automatise' ? (
                           <>
                             <p className="text-base md:text-lg leading-relaxed font-medium text-[#0E2A33]/70">
-                              Nos centres de pliage robotisés et presses plieuses grande longueur permettent de réaliser des profils complexes avec une répétabilité absolue. Nous repoussons les <strong>limites du pliage aluminium</strong> avec une capacité allant jusqu'à 4 mètres pour vos couvertines et bavettes.
+                              Du pliage traditionnel sur presse plieuse à CNC ou grâce à notre ligne de production automatisée : découpe, poinçonnage, panneautage, nous maîtrisons le pliage de A à Z
                             </p>
                           </>
                         ) : (
