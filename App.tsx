@@ -1240,14 +1240,13 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             <div className="relative z-10 flex-1 flex flex-col justify-center max-w-7xl mx-auto px-6 w-full">
               <div className="max-w-4xl space-y-8">
                 <span className="text-[10px] font-extrabold tracking-[0.4em] text-white/50 uppercase block">
-                  PORTFOLIO COLLABORATIONS
+                  PORTFOLIO
                 </span>
                 <h1 className="text-4xl md:text-6xl tracking-tighter leading-[1.1] font-black uppercase text-white">
-                  Projets réalisés en collaboration
+                  Fiers de nos collaborations avec nos clients
                 </h1>
                 <p className="text-base md:text-lg text-white/70 max-w-2xl leading-relaxed font-medium">
-                  Une sélection de projets menés aux côtés de maîtres d’œuvre, architectes et entreprises générales. <br />
-                  Façonnage métallique, enveloppe bâtiment et solutions sur mesure au service d’exigences techniques élevées.
+                  Une sélection de projets menés aux côtés de Maîtres d'oeuvre, Maîtres d'ouvrage, Cabinets d'architecture, Professionnels de l'enveloppe, Bureaux d'études.
                 </p>
                 <a
                   href="#projets-grille"
@@ -1804,8 +1803,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           {/* CTA Final */}
           <section className="py-24 bg-[#071318] text-center border-t border-white/5">
             <div className="max-w-3xl mx-auto px-6 space-y-8">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">Un projet similaire à nous confier ?</h2>
-              <p className="text-base md:text-lg text-white/50">Nos équipes techniques accompagnent architectes et bureaux d'études de la conception à la fabrication.</p>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">Confiez-nous vos projets</h2>
+              <p className="text-base md:text-lg text-white/50">Nos équipes vous accompagnent dans la recherche de solutions pour vos projets</p>
               <button onClick={() => setCurrentPage('contact')} className="px-10 py-4 md:px-12 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all shadow-xl hover:shadow-[#E2FD48]/20 hover:-translate-y-1">
                 Soumettre mon projet
               </button>
