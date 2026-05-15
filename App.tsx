@@ -1653,7 +1653,6 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-[#0E2A33]/80 via-transparent to-transparent"></div>
                           <div className="absolute bottom-0 left-0 w-full p-8 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                            <span className="text-[10px] font-bold tracking-[0.3em] text-[#E2FD48] uppercase mb-2 block">{project.tag}</span>
                             <span className="text-2xl font-black text-white uppercase tracking-tight whitespace-pre-line">{project.title}</span>
                             <p className="text-white/60 text-sm mt-1">{project.city}</p>
                             <p className="text-[#E2FD48] text-xs font-bold tracking-widest uppercase mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
