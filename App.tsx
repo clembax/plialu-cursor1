@@ -3649,7 +3649,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             {/* Column 1 -- Brand */}
             <div className="space-y-8">
               <button onClick={() => setCurrentPage('home')} className="text-2xl font-black tracking-tighter text-white uppercase block">PLIALU.</button>
-              <p className="text-white/50 text-sm leading-relaxed max-w-xs">PME INDUSTRIELLE : SOLUTIONS MÉTALLIQUES SUR-MESURE POUR L'ENVELOPPE DU BÂTIMENT</p>
+              <p className="text-white/50 text-sm leading-relaxed max-w-xs">PME industrielle : solutions métalliques sur-mesure pour l'enveloppe du bâtiment</p>
               <div className="flex items-center gap-4 pt-4">
                 <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-[#E2FD48] hover:border-[#E2FD48] transition-all">
                   <iconify-icon icon="line-md:linkedin" width="20"></iconify-icon>
