@@ -3396,7 +3396,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       </div>
                       <div className="flex-1">
                         <span className="block text-[9px] font-bold text-zinc-400 uppercase tracking-widest mb-1">Horaires d'ouverture</span>
-                        <p className="text-lg font-bold text-[#0E2A33] leading-tight max-w-xs">Du Lundi au Vendredi de 8h à 12h et de 13h à 16h30</p>
+                        <p className="text-lg font-bold text-[#0E2A33] leading-tight max-w-xs">Du Lundi au Jeudi de 7h30 à 16h30 et le Vendredi de 7h30 à 12h</p>
                       </div>
                     </div>
                   </div>
