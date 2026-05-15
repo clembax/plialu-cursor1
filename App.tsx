@@ -427,7 +427,7 @@ const App: React.FC = () => {
       text: "En collaboration avec les équipes commerciales et de production, nos techniciens analysent vos plans et cahiers des charges, avec optimisation des formats, validation des contraintes techniques pour une gamme de production sur mesure adaptée à chaque dossier, du plus simple au plus complexe",
       img: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1773074223/BE-1200px_nzpfpj.webp",
       alt: "Bureau d'études technique Plialu - Optimisation de plans DXF et calcul de pliage",
-      materials: "AutoCAD • SolidWorks • Optimisation DXF",
+      materials: "",
       light: true
     },
     {
@@ -437,7 +437,7 @@ const App: React.FC = () => {
       text: "Déroulage de bobines : redressage - découpe de formats à plat et optimisation par dossier. Une étape clé de la fabrication et de la maîtrise des coûts",
       img: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?q=80&w=2070",
       alt: "Stock de bobines et centre de déroulage industriel",
-      materials: "Acier • Aluminium • Inox jusqu'à 4mm",
+      materials: "Acier • Aluminium",
       light: false
     },
     {
@@ -447,7 +447,7 @@ const App: React.FC = () => {
       text: "Deux lignes de production certifiées Qualicoat pour une flexibilité dans le choix de la gamme de production, nous travaillons à partir de feuilles d'aluminium prélaquées ou bien nous laquons après façonnage",
       img: "https://images.unsplash.com/photo-1534398079244-67c8ad85931b?q=80&w=2070",
       alt: "Ligne de thermolaquage automatisée pour panneaux métalliques",
-      materials: "Certifié Qualicoat • Poudre Polyester",
+      materials: "",
       light: true
     },
     {
@@ -457,7 +457,7 @@ const App: React.FC = () => {
       text: "Du pliage traditionnel sur presse plieuse à CNC ou grâce à notre ligne de production automatisée : découpe, poinçonnage, panneautage, nous maîtrisons le pliage de A à Z",
       img: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=2070",
       alt: "Presse plieuse numérique grande longueur en action",
-      materials: "Répétabilité - Profils complexes - Longueurs jusqu'à 4m",
+      materials: "",
       light: false
     },
     {
@@ -467,7 +467,7 @@ const App: React.FC = () => {
       text: "Rivetage haute résistance, collage structurel certifié et pose d'accessoires (joint, mousse). Nos livrons des ensembles complets prêts à poser pour accélérer vos cadences de montage sur site.",
       img: "https://images.unsplash.com/photo-1513828583688-c52646db42da?q=80&w=2070",
       alt: "Poste d'assemblage et de rivetage technique",
-      materials: "Collage • Rivetage • Pose de raidisseurs",
+      materials: "",
       light: true
     },
     {
@@ -477,7 +477,7 @@ const App: React.FC = () => {
       text: "Conditionnement rigoureux sur palettes sur-mesure pour prévenir toute de formation. Nous assurons la traçabilité et le respect des flux tendus pour livrer vos chantiers partout en Europe dans les délais convenus.",
       img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070",
       alt: "Expédition sécurisée de panneaux métalliques protégés",
-      materials: "Protection UV • Logistique Europe",
+      materials: "",
       light: false
     }
   ];
@@ -2228,10 +2228,12 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                             {exp.text}
                           </p>
                         )}
-                        <div className="pt-6 border-t border-[#0E2A33]/10 flex flex-col gap-2">
-                          <span className="text-[9px] font-bold tracking-[0.2em] text-[#0E2A33]/40 uppercase">DOMAINES D'APPLICATION</span>
-                          <p className="text-sm font-bold text-[#0E2A33]/60 italic">{exp.materials}</p>
-                        </div>
+                        {exp.materials && (
+                          <motion.div className="pt-6 border-t border-[#0E2A33]/10 flex flex-col gap-2">
+                            <span className="text-[9px] font-bold tracking-[0.2em] text-[#0E2A33]/40 uppercase">DOMAINES D'APPLICATION</span>
+                            <p className="text-sm font-bold text-[#0E2A33]/60 italic">{exp.materials}</p>
+                          </motion.div>
+                        )}
                       </div>
                       
                       <div className={`relative overflow-hidden rounded-xl shadow-lg h-[320px] md:h-[500px] ${idx % 2 !== 0 ? 'lg:order-1' : ''} group bg-zinc-50`}>
