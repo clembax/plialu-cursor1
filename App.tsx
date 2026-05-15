@@ -1266,7 +1266,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               <div className="max-w-7xl mx-auto px-6 w-full mb-12 flex justify-between items-end">
                 <div>
                   <h2 className="mb-3 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
-                    Des chantiers références
+                    Des chantiers de référence
                   </h2>
                   <p className="text-[#0E2A33]/60 text-sm md:text-base max-w-2xl leading-relaxed">
                     Chaque réalisation engage notre process complet : bureau d'études, fabrication sur mesure, thermolaquage certifié QUALICOAT.
