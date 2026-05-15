@@ -663,8 +663,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               <div className="absolute inset-x-0 bottom-0 h-full z-20 pointer-events-none" style={{ background: 'linear-gradient(180deg, rgba(7, 19, 24, 0) 0%, rgba(7, 19, 24, 0.10) 60%, rgba(7, 19, 24, 0.55) 85%, #071318 100%)' }}></div>
             </div>
             <div className="relative z-30 w-full max-w-7xl mx-auto px-6 py-20">
-              <div className="max-w-5xl animate-fade-up">
-                <h1 className="text-2xl md:text-4xl lg:text-[clamp(1.5rem,4.5vw,4rem)] tracking-tighter leading-tight mb-12 font-black max-w-5xl text-white flex flex-col gap-5 md:gap-6">
+              <div className="max-w-7xl animate-fade-up">
+                <h1 className="text-xl md:text-3xl lg:text-[clamp(1.4rem,4.2vw,3.8rem)] tracking-tighter leading-tight mb-12 font-black max-w-7xl text-white flex flex-col gap-5 md:gap-6">
                   <span className="text-[#8E9BA4]">PME industrielle</span>
                   <span className="uppercase">SOLUTIONS MÉTALLIQUES SUR-MESURE</span>
                   <span className="text-[#8E9BA4]">pour l'enveloppe du bâtiment</span>
