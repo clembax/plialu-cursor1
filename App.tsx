@@ -665,11 +665,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             <div className="relative z-30 w-full max-w-7xl mx-auto px-6 py-20">
               <div className="max-w-5xl animate-fade-up">
                 <h1 className="text-4xl md:text-6xl lg:text-[clamp(2.1rem,5.5vw,4.9rem)] tracking-tighter leading-[1.15] mb-12 font-black uppercase max-w-4xl text-white">
-                  EXPERT INDUSTRIEL : <br className="hidden md:block" />
-                  <span className="text-[#8E9BA4]">FAÇONNAGE MÉTALLIQUE SUR MESURE</span>
+                  PME INDUSTRIELLE : <br className="hidden md:block" />
+                  <span className="text-[#8E9BA4]">SOLUTIONS MÉTALLIQUES SUR-MESURE POUR L'ENVELOPPE DU BÂTIMENT</span>
                 </h1>
                 <p className="text-base md:text-lg text-white/80 max-w-xl leading-relaxed border-l-2 border-[#E2FD48] pl-8 mb-16 font-medium">
-                  Conception, usinage et finition de solutions métalliques pour l'enveloppe du bâtiment et les projets industriels exigeants. Une chaîne de production intégrée pour garantir vos tolérances et délais.
+                  Notre expertise : conception, façonnage, pliage, thermolaquage de métal en feuilles. Process de production intégré et maîtrise de la qualité, des coûts et des délais pour chaque projet
                 </p>
                 <div className="space-y-8">
                   <div className="flex flex-col sm:flex-row items-center gap-4">
@@ -1019,8 +1019,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           <section id="contact" className="py-48 section--light">
             <div className="relative z-10 max-w-4xl mx-auto px-6 text-center animate-fade-up">
               <span className="text-[10px] font-extrabold tracking-[0.4em] uppercase mb-8 inline-block text-[#0E2A33]/40">CONTACT</span>
-              <h2 className="mb-10 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">Votre prochain chantier métal. Notre prochain projet.</h2>
-              <p className="text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed font-medium text-[#0E2A33]/70">Bureau d'études, fabrication, thermolaquage — un seul appel suffit.</p>
+              <h2 className="mb-10 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">Étude technique, de faisabilité et chiffrage. Ou pour toute autre demande.</h2>
+              <p className="text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed font-medium text-[#0E2A33]/70">Nos équipes vous répondent rapidement avec une approche intégrant vos contraintes.</p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
                 <button onClick={() => setCurrentPage('contact')} className="w-full sm:w-auto px-12 py-4 bg-[#0E2A33] text-white text-sm font-extrabold rounded-full transition-all shadow-lg hover:shadow-2xl">Demander un devis</button>
                 <button onClick={() => setCurrentPage('contact')} className="w-full sm:w-auto px-12 py-4 border border-[#0E2A33] text-[#0E2A33] text-sm font-bold rounded-full transition-all hover:bg-[#0E2A33] hover:text-white">Contacter un expert</button>
@@ -1083,7 +1083,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </div>
                   <div className="flex-1">
                     <span className="block text-[8px] font-bold text-zinc-400 uppercase tracking-widest mb-0.5">Horaires</span>
-                    <p className="text-sm font-bold text-[#0E2A33] leading-tight">Du Lundi au Vendredi de 8h à 12h et de 13h à 16h30</p>
+                    <p className="text-sm font-bold text-[#0E2A33] leading-tight">Du Lundi au Jeudi de 7h30 à 16h30 et le Vendredi de 7h30 à 12h</p>
                   </div>
                 </div>
               </div>
