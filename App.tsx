@@ -667,7 +667,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 <h1 className="text-2xl md:text-4xl lg:text-[clamp(1.54rem,4.62vw,4.18rem)] tracking-tighter leading-tight mb-12 font-black max-w-7xl text-white flex flex-col gap-8 md:gap-9">
                   <span className="text-[#8E9BA4]">PME industrielle:</span>
                   <span className="uppercase">SOLUTIONS MÉTALLIQUES SUR-MESURE</span>
-                  <span className="text-[#8E9BA4]">pour l'enveloppe du bâtiment</span>
+                  <span className="text-[#8E9BA4] -mt-2">pour l'enveloppe du bâtiment</span>
                 </h1>
                 <p className="text-base md:text-lg text-white/80 max-w-xl leading-relaxed border-l-2 border-[#E2FD48] pl-8 mb-16 font-medium">
                   Notre expertise : conception, façonnage, pliage, thermolaquage de métal en feuilles. Process de production intégré et maîtrise de la qualité, des coûts et des délais pour chaque projet
