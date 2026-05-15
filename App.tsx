@@ -2229,10 +2229,10 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                           </p>
                         )}
                         {exp.materials && (
-                          <motion.div className="pt-6 border-t border-[#0E2A33]/10 flex flex-col gap-2">
+                          <div className="pt-6 border-t border-[#0E2A33]/10 flex flex-col gap-2">
                             <span className="text-[9px] font-bold tracking-[0.2em] text-[#0E2A33]/40 uppercase">DOMAINES D'APPLICATION</span>
                             <p className="text-sm font-bold text-[#0E2A33]/60 italic">{exp.materials}</p>
-                          </motion.div>
+                          </div>
                         )}
                       </div>
                       
