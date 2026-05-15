@@ -447,7 +447,7 @@ const App: React.FC = () => {
       text: "Deux lignes de production certifiées Qualicoat pour une flexibilité dans le choix de la gamme de production, nous travaillons à partir de feuilles d'aluminium prélaquées ou bien nous laquons après façonnage",
       img: "https://images.unsplash.com/photo-1534398079244-67c8ad85931b?q=80&w=2070",
       alt: "Ligne de thermolaquage automatisée pour panneaux métalliques",
-      materials: "",
+      materials: "Thermolaquage à plat • Thermolaquage post formage • Label Qualicoat",
       light: true
     },
     {
@@ -457,7 +457,7 @@ const App: React.FC = () => {
       text: "Du pliage traditionnel sur presse plieuse à CNC ou grâce à notre ligne de production automatisée : découpe, poinçonnage, panneautage, nous maîtrisons le pliage de A à Z",
       img: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=2070",
       alt: "Presse plieuse numérique grande longueur en action",
-      materials: "",
+      materials: "Répétabilité • Profils complexes • Longueurs jusqu'à 4m",
       light: false
     },
     {
