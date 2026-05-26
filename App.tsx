@@ -2050,108 +2050,106 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           {/* Domaines section */}
           <section className="bg-[#0a1f26] py-20">
             <div className="relative z-30 w-full max-w-7xl mx-auto px-6">
-              <h2 className="text-3xl md:text-4xl font-black text-white mb-2">
-                Nos Solutions
-              </h2>
-              <p className="text-white/60 mb-16 max-w-2xl">
-                Chaque domaine décrit brièvement
-              </p>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* 1. Enduit mince */}
-                <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-8 hover:bg-white/10 transition-all duration-300">
-                  <h3 className="text-lg md:text-xl font-bold text-white mb-3">
-                    Enduit mince sur isolant
-                  </h3>
-                  <p className="text-white/70 text-sm md:text-base leading-relaxed">
-                    Profils de départ, d'angle et d'arrêt pour systèmes ITE. Solutions complètes pour l'isolation thermique par l'extérieur.
-                  </p>
+              <div className="space-y-16">
+                {/* En-tête section */}
+                <div>
+                  <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+                    Nos Solutions
+                  </h2>
+                  <div className="w-16 h-1 bg-gradient-to-r from-[#E2FD48] to-transparent rounded-full"></div>
                 </div>
 
-                {/* 2. Étanchéité */}
-                <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-8 hover:bg-white/10 transition-all duration-300">
-                  <h3 className="text-lg md:text-xl font-bold text-white mb-3">
-                    Solutions pour l'étanchéité
-                  </h3>
-                  <p className="text-white/70 text-sm md:text-base leading-relaxed">
-                    Couvertines, supports, éclisses et accessoires pour l'étanchéité des façades. Gammes standards et sur-mesure.
-                  </p>
-                </div>
-
-                {/* 3. Bardages */}
-                <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-8 hover:bg-white/10 transition-all duration-300">
-                  <h3 className="text-lg md:text-xl font-bold text-white mb-3">
-                    Bardages & Cassettes
-                  </h3>
-                  <p className="text-white/70 text-sm md:text-base leading-relaxed">
-                    Bardages, cassettes et ossatures. Solutions structurantes pour l'enveloppe du bâtiment.
-                  </p>
-                </div>
-
-                {/* 4. Ravalement */}
-                <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-8 hover:bg-white/10 transition-all duration-300">
-                  <h3 className="text-lg md:text-xl font-bold text-white mb-3">
-                    Ravalement de façade
-                  </h3>
-                  <p className="text-white/70 text-sm md:text-base leading-relaxed">
-                    Profilés et accessoires pour le ravalement de façade. Finitions durables et esthétiques.
-                  </p>
-                </div>
-
-                {/* 5. Précadres */}
-                <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-8 hover:bg-white/10 transition-all duration-300">
-                  <h3 className="text-lg md:text-xl font-bold text-white mb-3">
-                    Précadres
-                  </h3>
-                  <p className="text-white/70 text-sm md:text-base leading-relaxed">
-                    Précadres pour portes et fenêtres. Pose simplifiée, qualité intégrée.
-                  </p>
-                </div>
-
-                {/* 6. MOB & FOB */}
-                <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-8 hover:bg-white/10 transition-all duration-300">
-                  <h3 className="text-lg md:text-xl font-bold text-white mb-4">
-                    MOB & FOB
-                  </h3>
-                  <div className="space-y-4">
-                    <div>
-                      <h4 className="text-sm font-bold text-white/90 mb-2">
-                        MOB (Maison Ossature Bois)
-                      </h4>
-                      <p className="text-white/70 text-sm md:text-base leading-relaxed">
-                        Solutions métalliques spécifiques pour l'ossature bois. Profils de renforcement et d'étanchéité.
-                      </p>
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-bold text-white/90 mb-2">
-                        FOB (Façade Ossature Bois)
-                      </h4>
-                      <p className="text-white/70 text-sm md:text-base leading-relaxed">
-                        Systèmes complets pour la façade ossature bois. Étanchéité, pluie et finitions.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Tôles prélaquées — Infinimetal */}
-              <div className="mt-8">
-                <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-8 hover:bg-white/10 transition-all duration-300">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg md:text-xl font-bold text-white">
-                      Tôles prélaquées
+                {/* Grille 6 domaines */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {/* 1. Enduit mince */}
+                  <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-900/20 to-cyan-900/10 border border-cyan-500/30 p-8 hover:border-cyan-500/60 hover:from-blue-900/40 transition-all duration-300">
+                    <div className="absolute -right-20 -top-20 w-40 h-40 bg-cyan-500/10 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
+                    <h3 className="text-xl font-bold text-white mb-3 relative z-10">
+                      Enduit mince sur isolant
                     </h3>
-                    <div className="flex items-center gap-2 px-3 py-1 bg-gray-50 rounded-full border border-gray-200 shadow-sm w-fit">
-                      <img
-                        src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773322881/INFINI_Noir_ompn2i.png"
-                        alt="Logo Infinimetal"
-                        className="h-5 w-auto object-contain opacity-80"
-                      />
+                    <p className="text-white/70 text-sm leading-relaxed relative z-10">
+                      Profils de départ, d'angle et d'arrêt pour systèmes ITE. Solutions complètes pour l'isolation thermique par l'extérieur.
+                    </p>
+                  </div>
+
+                  {/* 2. Étanchéité */}
+                  <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-amber-900/20 to-orange-900/10 border border-amber-500/30 p-8 hover:border-amber-500/60 hover:from-amber-900/40 transition-all duration-300">
+                    <div className="absolute -right-20 -top-20 w-40 h-40 bg-amber-500/10 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
+                    <h3 className="text-xl font-bold text-white mb-3 relative z-10">
+                      Solutions pour l'étanchéité
+                    </h3>
+                    <p className="text-white/70 text-sm leading-relaxed relative z-10">
+                      Couvertines, supports, éclisses et accessoires pour l'étanchéité des façades. Gammes standards et sur-mesure.
+                    </p>
+                  </div>
+
+                  {/* 3. Bardages */}
+                  <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-emerald-900/20 to-teal-900/10 border border-emerald-500/30 p-8 hover:border-emerald-500/60 hover:from-emerald-900/40 transition-all duration-300">
+                    <div className="absolute -right-20 -top-20 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
+                    <h3 className="text-xl font-bold text-white mb-3 relative z-10">
+                      Bardages & Cassettes
+                    </h3>
+                    <p className="text-white/70 text-sm leading-relaxed relative z-10">
+                      Bardages, cassettes et ossatures. Solutions structurantes pour l'enveloppe du bâtiment.
+                    </p>
+                  </div>
+
+                  {/* 4. Ravalement */}
+                  <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-purple-900/20 to-violet-900/10 border border-purple-500/30 p-8 hover:border-purple-500/60 hover:from-purple-900/40 transition-all duration-300">
+                    <div className="absolute -right-20 -top-20 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
+                    <h3 className="text-xl font-bold text-white mb-3 relative z-10">
+                      Ravalement de façade
+                    </h3>
+                    <p className="text-white/70 text-sm leading-relaxed relative z-10">
+                      Profilés et accessoires pour le ravalement de façade. Finitions durables et esthétiques.
+                    </p>
+                  </div>
+
+                  {/* 5. Précadres */}
+                  <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-rose-900/20 to-pink-900/10 border border-rose-500/30 p-8 hover:border-rose-500/60 hover:from-rose-900/40 transition-all duration-300">
+                    <div className="absolute -right-20 -top-20 w-40 h-40 bg-rose-500/10 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
+                    <h3 className="text-xl font-bold text-white mb-3 relative z-10">
+                      Précadres
+                    </h3>
+                    <p className="text-white/70 text-sm leading-relaxed relative z-10">
+                      Précadres pour portes et fenêtres. Pose simplifiée, qualité intégrée.
+                    </p>
+                  </div>
+
+                  {/* 6. MOB & FOB */}
+                  <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-slate-800/40 to-slate-900/20 border border-slate-500/30 p-8 hover:border-slate-500/60 hover:from-slate-800/60 transition-all duration-300">
+                    <div className="absolute -right-20 -top-20 w-40 h-40 bg-slate-500/10 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
+                    <h3 className="text-xl font-bold text-white mb-3 relative z-10">
+                      MOB & FOB
+                    </h3>
+                    <p className="text-white/70 text-sm leading-relaxed relative z-10">
+                      Solutions métalliques spécifiques pour l'ossature bois. Profils, étanchéité et finitions complètes.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Tôles prélaquées — Infinimetal */}
+                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#E2FD48]/10 via-transparent to-transparent border border-[#E2FD48]/40 p-12 hover:border-[#E2FD48]/70 transition-all duration-300 group">
+                  <div className="absolute -left-32 -top-32 w-64 h-64 bg-[#E2FD48]/5 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
+                  <div className="relative z-10 flex items-center justify-between">
+                    <div className="max-w-2xl">
+                      <h3 className="text-3xl md:text-4xl font-black text-white mb-4">
+                        Tôles prélaquées
+                      </h3>
+                      <p className="text-white/70 text-base leading-relaxed">
+                        Tôles prélaquées en formats standards et sur-mesure. Gamme complète de teintes RAL. Expertise PLIALU associée à la qualité Infinimetal.
+                      </p>
+                    </div>
+                    <div className="flex-shrink-0">
+                      <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-full border border-[#E2FD48]/30 shadow-lg">
+                        <img
+                          src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773322881/INFINI_Noir_ompn2i.png"
+                          alt="Logo Infinimetal"
+                          className="h-6 w-auto object-contain"
+                        />
+                      </div>
                     </div>
                   </div>
-                  <p className="text-white/70 text-sm md:text-base leading-relaxed">
-                    Tôles prélaquées en formats standards et sur-mesure. Gamme complète de teintes RAL.
-                  </p>
                 </div>
               </div>
             </div>
