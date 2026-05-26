@@ -533,6 +533,21 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             >
               Expertises
             </button>
+            <button
+              onClick={() => setCurrentPage('solutions-temporaire')}
+              className={`text-xs font-semibold px-5 py-2 rounded-full transition-all
+                ${
+                  currentPage === 'solutions-temporaire'
+                    ? headerTheme === 'dark'
+                      ? 'text-[#0E2A33] bg-[#0E2A33]/10'
+                      : 'text-white bg-white/10'
+                    : headerTheme === 'dark'
+                      ? 'text-[#0E2A33]/60 hover:text-[#0E2A33] hover:bg-black/5'
+                      : 'text-zinc-400 hover:text-white hover:bg-white/5'
+                }`}
+            >
+              Solutions
+            </button>
             <button 
               onClick={() => setCurrentPage('projects')} 
               className={`text-xs font-semibold px-5 py-2 rounded-full transition-all 
@@ -611,6 +626,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           <nav className="flex flex-col p-6 gap-1 overflow-y-auto">
             <button onClick={() => { setCurrentPage('home'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Accueil</button>
             <button onClick={() => { setCurrentPage('expertises'); setIsMenuOpen(false); if (window.location.hash) window.history.replaceState(null, '', window.location.pathname + window.location.search || '#'); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Expertises</button>
+            <button onClick={() => { setCurrentPage('solutions-temporaire'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Solutions</button>
             <button onClick={() => { setCurrentPage('projects'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Portfolio</button>
             <button onClick={() => { setCurrentPage('a-propos'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">À propos</button>
             <button onClick={() => { setCurrentPage('contact'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Contact</button>
