@@ -530,26 +530,6 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             >
               Expertises
             </button>
-            <button
-              onClick={() => setCurrentPage('solutions')}
-              className={`text-xs font-semibold px-5 py-2 rounded-full transition-all
-                ${
-                  currentPage === 'solutions' ||
-                  currentPage === 'solution-bardage' ||
-                  currentPage === 'solution-enduit' ||
-                  currentPage === 'solution-precadres' ||
-                  currentPage === 'solution-toles' ||
-                  currentPage === 'solution-ravalement'
-                    ? headerTheme === 'dark'
-                      ? 'text-[#0E2A33] bg-[#0E2A33]/10'
-                      : 'text-white bg-white/10'
-                    : headerTheme === 'dark'
-                      ? 'text-[#0E2A33]/60 hover:text-[#0E2A33] hover:bg-black/5'
-                      : 'text-zinc-400 hover:text-white hover:bg-white/5'
-                }`}
-            >
-              Solutions
-            </button>
             <button 
               onClick={() => setCurrentPage('projects')} 
               className={`text-xs font-semibold px-5 py-2 rounded-full transition-all 
@@ -628,7 +608,6 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           <nav className="flex flex-col p-6 gap-1 overflow-y-auto">
             <button onClick={() => { setCurrentPage('home'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Accueil</button>
             <button onClick={() => { setCurrentPage('expertises'); setIsMenuOpen(false); if (window.location.hash) window.history.replaceState(null, '', window.location.pathname + window.location.search || '#'); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Expertises</button>
-            <button onClick={() => { setCurrentPage('solutions'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Solutions</button>
             <button onClick={() => { setCurrentPage('projects'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Portfolio</button>
             <button onClick={() => { setCurrentPage('a-propos'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">À propos</button>
             <button onClick={() => { setCurrentPage('contact'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Contact</button>
@@ -3651,12 +3630,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             <div>
               <h4 className="text-white text-[10px] font-extrabold uppercase tracking-[0.3em] mb-8">Navigation</h4>
               <ul className="space-y-4">
-                {['Expertises', 'Solutions'].map((link) => (
+                {['Expertises'].map((link) => (
                   <li key={link}>
                     <button
                       onClick={() => {
                         if (link === 'Expertises') setCurrentPage('expertises');
-                        else if (link === 'Solutions') setCurrentPage('solutions');
                       }}
                       className="text-white/40 hover:text-[#E2FD48] transition-colors text-sm font-medium text-left"
                     >
