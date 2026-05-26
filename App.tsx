@@ -2037,7 +2037,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 <span className="inline-block text-xs md:text-sm font-bold uppercase tracking-widest text-[#0E2A33] mb-4">
                   CATALOGUE B2B
                 </span>
-                <h1 className="text-2xl md:text-4xl lg:text-5xl font-black text-[#0E2A33] mb-6 leading-tight">
+                <h1 className="text-4xl md:text-6xl tracking-tighter leading-[1.1] font-black uppercase text-[#0E2A33]">
                   Solutions métalliques enveloppe du bâtiment
                 </h1>
                 <p className="text-base md:text-lg text-[#0E2A33]/80 leading-relaxed mb-8">
