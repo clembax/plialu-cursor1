@@ -31,6 +31,7 @@ const SEO_CONFIG: Record<string, { path: string; title: string; desc: string; no
   'home': { path: '/', title: 'Façonnage métallique sur mesure en Rhône-Alpes | PLIALU', desc: 'Façonnage métallique sur mesure en Rhône-Alpes. Bureau d\'études intégré, pliage CNC, thermolaquage certifié QUALICOAT. Devis technique sous 48h.' },
   'expertises': { path: '/expertises', title: 'Process industriel & Fabrication métallique sur mesure | PLIALU', desc: 'Fabrication de pièces métalliques sur mesure : étude DXF, déroulage, pliage grande longueur, thermolaquage QUALICOAT. Parc machine intégré pour un contrôle qualité absolu.' },
   'solutions': { path: '/solutions', title: 'Solutions métalliques pour l\'enveloppe du bâtiment | PLIALU', desc: 'Solutions métalliques enveloppe bâtiment : bardage, ITE, cassettes, précadres. Profilés aluminium sur mesure, thermolaquage QUALICOAT inclus.' },
+  'solutions-temporaire': { path: '/solutions-temporaire', title: 'Solutions | PLIALU', desc: 'Découvrez nos 8 domaines de solutions métalliques pour l\'enveloppe du bâtiment. Page temporaire.', noindex: true },
   'etancheite': {
     path: '/solutions/etancheite',
     title: 'Solutions d’Étanchéité Métallique',
@@ -61,6 +62,7 @@ const App: React.FC = () => {
     | 'home'
     | 'expertises'
     | 'solutions'
+    | 'solutions-temporaire'
     | 'etancheite'
     | 'contact'
     | 'projects'
@@ -194,6 +196,7 @@ const App: React.FC = () => {
   const headerTheme =
     currentPage === 'expertises' ||
     currentPage === 'solutions' ||
+    currentPage === 'solutions-temporaire' ||
     currentPage === 'solution-bardage' ||
     currentPage === 'solution-precadres' ||
     currentPage === 'solution-toles' ||
@@ -2000,6 +2003,129 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               <button
                 onClick={() => setCurrentPage('contact')}
                 className="px-10 py-4 md:px-12 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all shadow-xl hover:shadow-[#E2FD48]/20 hover:-translate-y-1"
+              >
+                Chiffrer mon projet
+              </button>
+            </div>
+          </section>
+        </div>
+      )}
+
+      {/* --- SOLUTIONS TEMPORAIRE PAGE --- */}
+      {currentPage === 'solutions-temporaire' && (
+        <div className="animate-fade-up">
+          {/* Hero section */}
+          <section className="bg-white pt-48 md:pt-56 pb-20 min-h-[70vh] flex flex-col justify-center">
+            <div className="relative z-30 w-full max-w-7xl mx-auto px-6 py-20">
+              <div className="max-w-5xl">
+                <span className="inline-block text-xs md:text-sm font-bold uppercase tracking-widest text-[#0E2A33] mb-4">
+                  CATALOGUE B2B
+                </span>
+                <h1 className="text-2xl md:text-4xl lg:text-5xl font-black text-[#0E2A33] mb-6 leading-tight">
+                  Solutions métalliques enveloppe du bâtiment
+                </h1>
+                <p className="text-base md:text-lg text-[#0E2A33]/80 leading-relaxed mb-8">
+                  Découvrez l'ensemble de nos solutions pour l'enveloppe du bâtiment. Des systèmes d'isolation thermique au ravalement de façade, en passant par les bardages, précadres et tôles prélaquées, nous couvrons vos besoins métalliques complets.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* Domaines section */}
+          <section className="bg-[#0a1f26] py-20">
+            <div className="relative z-30 w-full max-w-7xl mx-auto px-6">
+              <h2 className="text-3xl md:text-4xl font-black text-white mb-2">
+                Nos Solutions
+              </h2>
+              <p className="text-white/60 mb-16 max-w-2xl">
+                Chaque domaine décrit brièvement
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                  <h3 className="text-lg md:text-xl font-bold text-white mb-3">
+                    Enduit mince sur isolant
+                  </h3>
+                  <p className="text-white/70 text-sm md:text-base leading-relaxed">
+                    Profils de départ, d'angle et d'arrêt pour systèmes ITE. Solutions complètes pour l'isolation thermique par l'extérieur.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-lg md:text-xl font-bold text-white mb-3">
+                    Solutions pour l'étanchéité
+                  </h3>
+                  <p className="text-white/70 text-sm md:text-base leading-relaxed">
+                    Couvertines, supports, éclisses et accessoires pour l'étanchéité des façades. Gammes standards et sur-mesure.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-lg md:text-xl font-bold text-white mb-3">
+                    Bardages & Cassettes
+                  </h3>
+                  <p className="text-white/70 text-sm md:text-base leading-relaxed">
+                    Bardages, cassettes et ossatures. Solutions structurantes pour l'enveloppe du bâtiment.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-lg md:text-xl font-bold text-white mb-3">
+                    Ravalement de façade
+                  </h3>
+                  <p className="text-white/70 text-sm md:text-base leading-relaxed">
+                    Profilés et accessoires pour le ravalement de façade. Finitions durables et esthétiques.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-lg md:text-xl font-bold text-white mb-3">
+                    Précadres
+                  </h3>
+                  <p className="text-white/70 text-sm md:text-base leading-relaxed">
+                    Précadres pour portes et fenêtres. Pose simplifiée, qualité intégrée.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-lg md:text-xl font-bold text-white mb-3">
+                    Tôles prélaquées
+                  </h3>
+                  <p className="text-white/70 text-sm md:text-base leading-relaxed">
+                    Tôles prélaquées en formats standards et sur-mesure. Gamme complète de teintes RAL.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-lg md:text-xl font-bold text-white mb-3">
+                    MOB (Maison Ossature Bois)
+                  </h3>
+                  <p className="text-white/70 text-sm md:text-base leading-relaxed">
+                    Solutions métalliques spécifiques pour l'ossature bois. Profils de renforcement et d'étanchéité.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-lg md:text-xl font-bold text-white mb-3">
+                    FOB (Façade Ossature Bois)
+                  </h3>
+                  <p className="text-white/70 text-sm md:text-base leading-relaxed">
+                    Systèmes complets pour la façade ossature bois. Étanchéité, pluie et finitions.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* CTA section */}
+          <section className="bg-[#071318] py-20">
+            <div className="relative z-30 w-full max-w-7xl mx-auto px-6 text-center">
+              <h2 className="text-2xl md:text-3xl font-black text-white mb-8">
+                Du profilé à la pose — tout se fabrique ici.
+              </h2>
+              <button
+                onClick={() => setCurrentPage('contact')}
+                className="inline-block bg-[#E2FD48] text-[#0E2A33] font-bold px-8 py-3 rounded-full hover:bg-[#E2FD48]/90 transition-all"
               >
                 Chiffrer mon projet
               </button>
