@@ -2062,8 +2062,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 {/* Grille 6 domaines */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {/* 1. Enduit mince */}
-                  <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-900/20 to-cyan-900/10 border border-cyan-500/30 p-8 hover:border-cyan-500/60 hover:from-blue-900/40 transition-all duration-300">
-                    <div className="absolute -right-20 -top-20 w-40 h-40 bg-cyan-500/10 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
+                  <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-[#0E2A33]/50 to-[#0E2A33]/20 border border-[#0E2A33]/50 p-8 hover:border-[#0E2A33]/80 hover:from-[#0E2A33]/70 transition-all duration-300">
+                    <div className="absolute -right-20 -top-20 w-40 h-40 bg-[#0E2A33]/20 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
                     <h3 className="text-xl font-bold text-white mb-3 relative z-10">
                       Enduit mince sur isolant
                     </h3>
@@ -2073,8 +2073,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </div>
 
                   {/* 2. Étanchéité */}
-                  <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-amber-900/20 to-orange-900/10 border border-amber-500/30 p-8 hover:border-amber-500/60 hover:from-amber-900/40 transition-all duration-300">
-                    <div className="absolute -right-20 -top-20 w-40 h-40 bg-amber-500/10 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
+                  <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-[#0E2A33]/50 to-[#0E2A33]/20 border border-[#0E2A33]/50 p-8 hover:border-[#0E2A33]/80 hover:from-[#0E2A33]/70 transition-all duration-300">
+                    <div className="absolute -right-20 -top-20 w-40 h-40 bg-[#0E2A33]/20 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
                     <h3 className="text-xl font-bold text-white mb-3 relative z-10">
                       Solutions pour l'étanchéité
                     </h3>
@@ -2084,8 +2084,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </div>
 
                   {/* 3. Bardages */}
-                  <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-emerald-900/20 to-teal-900/10 border border-emerald-500/30 p-8 hover:border-emerald-500/60 hover:from-emerald-900/40 transition-all duration-300">
-                    <div className="absolute -right-20 -top-20 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
+                  <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-[#0E2A33]/50 to-[#0E2A33]/20 border border-[#0E2A33]/50 p-8 hover:border-[#0E2A33]/80 hover:from-[#0E2A33]/70 transition-all duration-300">
+                    <div className="absolute -right-20 -top-20 w-40 h-40 bg-[#0E2A33]/20 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
                     <h3 className="text-xl font-bold text-white mb-3 relative z-10">
                       Bardages & Cassettes
                     </h3>
@@ -2095,8 +2095,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </div>
 
                   {/* 4. Ravalement */}
-                  <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-purple-900/20 to-violet-900/10 border border-purple-500/30 p-8 hover:border-purple-500/60 hover:from-purple-900/40 transition-all duration-300">
-                    <div className="absolute -right-20 -top-20 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
+                  <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-[#0E2A33]/50 to-[#0E2A33]/20 border border-[#0E2A33]/50 p-8 hover:border-[#0E2A33]/80 hover:from-[#0E2A33]/70 transition-all duration-300">
+                    <div className="absolute -right-20 -top-20 w-40 h-40 bg-[#0E2A33]/20 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
                     <h3 className="text-xl font-bold text-white mb-3 relative z-10">
                       Ravalement de façade
                     </h3>
@@ -2106,8 +2106,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </div>
 
                   {/* 5. Précadres */}
-                  <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-rose-900/20 to-pink-900/10 border border-rose-500/30 p-8 hover:border-rose-500/60 hover:from-rose-900/40 transition-all duration-300">
-                    <div className="absolute -right-20 -top-20 w-40 h-40 bg-rose-500/10 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
+                  <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-[#0E2A33]/50 to-[#0E2A33]/20 border border-[#0E2A33]/50 p-8 hover:border-[#0E2A33]/80 hover:from-[#0E2A33]/70 transition-all duration-300">
+                    <div className="absolute -right-20 -top-20 w-40 h-40 bg-[#0E2A33]/20 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
                     <h3 className="text-xl font-bold text-white mb-3 relative z-10">
                       Précadres
                     </h3>
@@ -2117,8 +2117,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </div>
 
                   {/* 6. MOB & FOB */}
-                  <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-slate-800/40 to-slate-900/20 border border-slate-500/30 p-8 hover:border-slate-500/60 hover:from-slate-800/60 transition-all duration-300">
-                    <div className="absolute -right-20 -top-20 w-40 h-40 bg-slate-500/10 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
+                  <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-[#0E2A33]/50 to-[#0E2A33]/20 border border-[#0E2A33]/50 p-8 hover:border-[#0E2A33]/80 hover:from-[#0E2A33]/70 transition-all duration-300">
+                    <div className="absolute -right-20 -top-20 w-40 h-40 bg-[#0E2A33]/20 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
                     <h3 className="text-xl font-bold text-white mb-3 relative z-10">
                       MOB & FOB
                     </h3>
