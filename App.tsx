@@ -2108,33 +2108,49 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </p>
                 </div>
 
-                {/* 6. Tôles prélaquées */}
+                {/* 6. MOB & FOB */}
                 <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-8 hover:bg-white/10 transition-all duration-300">
-                  <h3 className="text-lg md:text-xl font-bold text-white mb-3">
-                    Tôles prélaquées
+                  <h3 className="text-lg md:text-xl font-bold text-white mb-4">
+                    MOB & FOB
                   </h3>
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="text-sm font-bold text-white/90 mb-2">
+                        MOB (Maison Ossature Bois)
+                      </h4>
+                      <p className="text-white/70 text-sm md:text-base leading-relaxed">
+                        Solutions métalliques spécifiques pour l'ossature bois. Profils de renforcement et d'étanchéité.
+                      </p>
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold text-white/90 mb-2">
+                        FOB (Façade Ossature Bois)
+                      </h4>
+                      <p className="text-white/70 text-sm md:text-base leading-relaxed">
+                        Systèmes complets pour la façade ossature bois. Étanchéité, pluie et finitions.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Tôles prélaquées — Infinimetal */}
+              <div className="mt-8">
+                <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-8 hover:bg-white/10 transition-all duration-300">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg md:text-xl font-bold text-white">
+                      Tôles prélaquées
+                    </h3>
+                    <div className="flex items-center gap-2 px-3 py-1 bg-gray-50 rounded-full border border-gray-200 shadow-sm w-fit">
+                      <img
+                        src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773322881/INFINI_Noir_ompn2i.png"
+                        alt="Logo Infinimetal"
+                        className="h-5 w-auto object-contain opacity-80"
+                      />
+                    </div>
+                  </div>
                   <p className="text-white/70 text-sm md:text-base leading-relaxed">
                     Tôles prélaquées en formats standards et sur-mesure. Gamme complète de teintes RAL.
-                  </p>
-                </div>
-
-                {/* 7. MOB */}
-                <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-8 hover:bg-white/10 transition-all duration-300">
-                  <h3 className="text-lg md:text-xl font-bold text-white mb-3">
-                    MOB (Maison Ossature Bois)
-                  </h3>
-                  <p className="text-white/70 text-sm md:text-base leading-relaxed">
-                    Solutions métalliques spécifiques pour l'ossature bois. Profils de renforcement et d'étanchéité.
-                  </p>
-                </div>
-
-                {/* 8. FOB */}
-                <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-8 hover:bg-white/10 transition-all duration-300">
-                  <h3 className="text-lg md:text-xl font-bold text-white mb-3">
-                    FOB (Façade Ossature Bois)
-                  </h3>
-                  <p className="text-white/70 text-sm md:text-base leading-relaxed">
-                    Systèmes complets pour la façade ossature bois. Étanchéité, pluie et finitions.
                   </p>
                 </div>
               </div>
