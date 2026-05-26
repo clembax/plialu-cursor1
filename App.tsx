@@ -2057,8 +2057,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 Chaque domaine décrit brièvement
               </p>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* 1. Enduit mince */}
+                <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-8 hover:bg-white/10 transition-all duration-300">
                   <h3 className="text-lg md:text-xl font-bold text-white mb-3">
                     Enduit mince sur isolant
                   </h3>
@@ -2067,7 +2068,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </p>
                 </div>
 
-                <div>
+                {/* 2. Étanchéité */}
+                <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-8 hover:bg-white/10 transition-all duration-300">
                   <h3 className="text-lg md:text-xl font-bold text-white mb-3">
                     Solutions pour l'étanchéité
                   </h3>
@@ -2076,7 +2078,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </p>
                 </div>
 
-                <div>
+                {/* 3. Bardages */}
+                <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-8 hover:bg-white/10 transition-all duration-300">
                   <h3 className="text-lg md:text-xl font-bold text-white mb-3">
                     Bardages & Cassettes
                   </h3>
@@ -2085,7 +2088,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </p>
                 </div>
 
-                <div>
+                {/* 4. Ravalement */}
+                <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-8 hover:bg-white/10 transition-all duration-300">
                   <h3 className="text-lg md:text-xl font-bold text-white mb-3">
                     Ravalement de façade
                   </h3>
@@ -2094,7 +2098,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </p>
                 </div>
 
-                <div>
+                {/* 5. Précadres */}
+                <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-8 hover:bg-white/10 transition-all duration-300">
                   <h3 className="text-lg md:text-xl font-bold text-white mb-3">
                     Précadres
                   </h3>
@@ -2103,7 +2108,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </p>
                 </div>
 
-                <div>
+                {/* 6. Tôles prélaquées */}
+                <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-8 hover:bg-white/10 transition-all duration-300">
                   <h3 className="text-lg md:text-xl font-bold text-white mb-3">
                     Tôles prélaquées
                   </h3>
@@ -2112,7 +2118,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </p>
                 </div>
 
-                <div>
+                {/* 7. MOB */}
+                <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-8 hover:bg-white/10 transition-all duration-300">
                   <h3 className="text-lg md:text-xl font-bold text-white mb-3">
                     MOB (Maison Ossature Bois)
                   </h3>
@@ -2121,7 +2128,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </p>
                 </div>
 
-                <div>
+                {/* 8. FOB */}
+                <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-8 hover:bg-white/10 transition-all duration-300">
                   <h3 className="text-lg md:text-xl font-bold text-white mb-3">
                     FOB (Façade Ossature Bois)
                   </h3>
