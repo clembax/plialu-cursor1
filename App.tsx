@@ -2064,9 +2064,14 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   {/* 1. Enduit mince */}
                   <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-[#0E2A33]/50 to-[#0E2A33]/20 border border-[#0E2A33]/50 p-8 hover:border-[#0E2A33]/80 hover:from-[#0E2A33]/70 transition-all duration-300">
                     <div className="absolute -right-20 -top-20 w-40 h-40 bg-[#0E2A33]/20 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
-                    <h3 className="text-xl font-bold text-white mb-3 relative z-10">
-                      Enduit mince sur isolant
-                    </h3>
+                    <div className="flex items-center gap-2 mb-4 relative z-10">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 text-[#E2FD48]">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                      </svg>
+                      <h3 className="text-xl font-bold text-white">
+                        Enduit mince sur isolant
+                      </h3>
+                    </div>
                     <p className="text-white/70 text-sm leading-relaxed relative z-10">
                       Profils de départ, d'angle et d'arrêt pour systèmes ITE. Solutions complètes pour l'isolation thermique par l'extérieur.
                     </p>
@@ -2075,9 +2080,14 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   {/* 2. Étanchéité */}
                   <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-[#0E2A33]/50 to-[#0E2A33]/20 border border-[#0E2A33]/50 p-8 hover:border-[#0E2A33]/80 hover:from-[#0E2A33]/70 transition-all duration-300">
                     <div className="absolute -right-20 -top-20 w-40 h-40 bg-[#0E2A33]/20 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
-                    <h3 className="text-xl font-bold text-white mb-3 relative z-10">
-                      Solutions pour l'étanchéité
-                    </h3>
+                    <div className="flex items-center gap-2 mb-4 relative z-10">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="w-6 h-6 text-[#E2FD48]">
+                        <path d="M53.92,34.62A8,8,0,1,0,42.08,45.38L64.72,70.29C48.32,95,40,119.78,40,144a88,88,0,0,0,149.21,63.22l12.87,14.16a8,8,0,1,0,11.84-10.76ZM128,216a72.08,72.08,0,0,1-72-72c0-19.93,6.68-40.57,19.86-61.46L178.43,195.36A71.84,71.84,0,0,1,128,216ZM90,50.51a8,8,0,0,1-.27-11.31A247.8,247.8,0,0,1,123.41,9.45a8,8,0,0,1,9.18,0C136,11.83,216,68.7,216,144a88.08,88.08,0,0,1-3.15,23.4,8,8,0,0,1-7.71,5.88A7.79,7.79,0,0,1,203,173a8,8,0,0,1-5.59-9.83A72.55,72.55,0,0,0,200,144c0-57.24-55.48-105-72-118a252.23,252.23,0,0,0-26.66,24.23A8,8,0,0,1,90,50.51Z" />
+                      </svg>
+                      <h3 className="text-xl font-bold text-white">
+                        Solutions pour l'étanchéité
+                      </h3>
+                    </div>
                     <p className="text-white/70 text-sm leading-relaxed relative z-10">
                       Couvertines, supports, éclisses et accessoires pour l'étanchéité des façades. Gammes standards et sur-mesure.
                     </p>
@@ -2086,9 +2096,14 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   {/* 3. Bardages */}
                   <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-[#0E2A33]/50 to-[#0E2A33]/20 border border-[#0E2A33]/50 p-8 hover:border-[#0E2A33]/80 hover:from-[#0E2A33]/70 transition-all duration-300">
                     <div className="absolute -right-20 -top-20 w-40 h-40 bg-[#0E2A33]/20 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
-                    <h3 className="text-xl font-bold text-white mb-3 relative z-10">
-                      Bardages & Cassettes
-                    </h3>
+                    <div className="flex items-center gap-2 mb-4 relative z-10">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="w-6 h-6 text-[#E2FD48]">
+                        <path d="M240,208h-8V72a8,8,0,0,0-8-8H184V40a8,8,0,0,0-8-8H80a8,8,0,0,0-8,8V96H32a8,8,0,0,0-8,8V208H16a8,8,0,0,0,0,16H240a8,8,0,0,0,0-16ZM40,112H80a8,8,0,0,0,8-8V48h80V72a8,8,0,0,0,8,8h40V208H152V168a8,8,0,0,0-8-8H112a8,8,0,0,0-8,8v40H40Zm96,96H120V176h16ZM112,72a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H120A8,8,0,0,1,112,72Zm0,32a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H120A8,8,0,0,1,112,104Zm56,0a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H176A8,8,0,0,1,168,104ZM88,136a8,8,0,0,1-8,8H64a8,8,0,0,1,0-16H80A8,8,0,0,1,88,136Zm0,32a8,8,0,0,1-8,8H64a8,8,0,0,1,0-16H80A8,8,0,0,1,88,168Zm24-32a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H120A8,8,0,0,1,112,136Zm56,0a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H176A8,8,0,0,1,168,136Zm0,32a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H176A8,8,0,0,1,168,168Z" />
+                      </svg>
+                      <h3 className="text-xl font-bold text-white">
+                        Bardages & Cassettes
+                      </h3>
+                    </div>
                     <p className="text-white/70 text-sm leading-relaxed relative z-10">
                       Bardages, cassettes et ossatures. Solutions structurantes pour l'enveloppe du bâtiment.
                     </p>
@@ -2097,9 +2112,14 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   {/* 4. Ravalement */}
                   <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-[#0E2A33]/50 to-[#0E2A33]/20 border border-[#0E2A33]/50 p-8 hover:border-[#0E2A33]/80 hover:from-[#0E2A33]/70 transition-all duration-300">
                     <div className="absolute -right-20 -top-20 w-40 h-40 bg-[#0E2A33]/20 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
-                    <h3 className="text-xl font-bold text-white mb-3 relative z-10">
-                      Ravalement de façade
-                    </h3>
+                    <div className="flex items-center gap-2 mb-4 relative z-10">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="w-6 h-6 text-[#E2FD48]">
+                        <path d="M226.76,69a8,8,0,0,0-12.84-2.88l-40.3,37.19-17.23-3.7-3.7-17.23,37.19-40.3A8,8,0,0,0,187,29.24,72,72,0,0,0,88,96,72.34,72.34,0,0,0,94,124.94L33.79,177c-.15.12-.29.26-.43.39a32,32,0,0,0,45.26,45.26c.13-.13.27-.28.39-.42L131.06,162A72,72,0,0,0,232,96,71.56,71.56,0,0,0,226.76,69ZM160,152a56.14,56.14,0,0,1-27.07-7,8,8,0,0,0-9.92,1.77L67.11,211.51a16,16,0,0,1-22.62-22.62L109.18,133a8,8,0,0,0,1.77-9.93,56,56,0,0,1,58.36-82.31l-31.2,33.81a8,8,0,0,0-1.94,7.1L141.83,108a8,8,0,0,0,6.14,6.14l26.35,5.66a8,8,0,0,0,7.1-1.94l33.81-31.2A56.06,56.06,0,0,1,160,152Z" />
+                      </svg>
+                      <h3 className="text-xl font-bold text-white">
+                        Ravalement de façade
+                      </h3>
+                    </div>
                     <p className="text-white/70 text-sm leading-relaxed relative z-10">
                       Profilés et accessoires pour le ravalement de façade. Finitions durables et esthétiques.
                     </p>
@@ -2108,9 +2128,14 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   {/* 5. Précadres */}
                   <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-[#0E2A33]/50 to-[#0E2A33]/20 border border-[#0E2A33]/50 p-8 hover:border-[#0E2A33]/80 hover:from-[#0E2A33]/70 transition-all duration-300">
                     <div className="absolute -right-20 -top-20 w-40 h-40 bg-[#0E2A33]/20 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
-                    <h3 className="text-xl font-bold text-white mb-3 relative z-10">
-                      Précadres
-                    </h3>
+                    <div className="flex items-center gap-2 mb-4 relative z-10">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="w-6 h-6 text-[#E2FD48]">
+                        <path d="M200,80v32a8,8,0,0,1-16,0V88H160a8,8,0,0,1,0-16h32A8,8,0,0,1,200,80ZM96,168H72V144a8,8,0,0,0-16,0v32a8,8,0,0,0,8,8H96a8,8,0,0,0,0-16ZM232,56V200a16,16,0,0,1-16,16H40a16,16,0,0,1-16-16V56A16,16,0,0,1,40,40H216A16,16,0,0,1,232,56ZM216,200V56H40V200H216Z" />
+                      </svg>
+                      <h3 className="text-xl font-bold text-white">
+                        Précadres
+                      </h3>
+                    </div>
                     <p className="text-white/70 text-sm leading-relaxed relative z-10">
                       Précadres pour portes et fenêtres. Pose simplifiée, qualité intégrée.
                     </p>
@@ -2119,9 +2144,14 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   {/* 6. MOB & FOB */}
                   <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-[#0E2A33]/50 to-[#0E2A33]/20 border border-[#0E2A33]/50 p-8 hover:border-[#0E2A33]/80 hover:from-[#0E2A33]/70 transition-all duration-300">
                     <div className="absolute -right-20 -top-20 w-40 h-40 bg-[#0E2A33]/20 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
-                    <h3 className="text-xl font-bold text-white mb-3 relative z-10">
-                      MOB & FOB
-                    </h3>
+                    <div className="flex items-center gap-2 mb-4 relative z-10">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="w-6 h-6 text-[#E2FD48]">
+                        <path d="M200.77,53.89A103.27,103.27,0,0,0,128,24h-1.07A104,104,0,0,0,24,128c0,43,26.58,79.06,69.36,94.17A32,32,0,0,0,136,192a16,16,0,0,1,16-16h46.21a31.81,31.81,0,0,0,31.2-24.88,104.43,104.43,0,0,0,2.59-24A103.28,103.28,0,0,0,200.77,53.89Zm13,93.71A15.89,15.89,0,0,1,198.21,160H152a32,32,0,0,0-32,32,16,16,0,0,1-21.31,15.07C62.49,194.3,40,164,40,128a88,88,0,0,1,87.09-88h.9a88.35,88.35,0,0,1,88,87.25A88.86,88.86,0,0,1,213.81,147.6ZM140,76a12,12,0,1,1-12-12A12,12,0,0,1,140,76ZM96,100A12,12,0,1,1,84,88,12,12,0,0,1,96,100Zm0,56a12,12,0,1,1-12-12A12,12,0,0,1,96,156Zm88-56a12,12,0,1,1-12-12A12,12,0,0,1,184,100Z" />
+                      </svg>
+                      <h3 className="text-xl font-bold text-white">
+                        MOB & FOB
+                      </h3>
+                    </div>
                     <p className="text-white/70 text-sm leading-relaxed relative z-10">
                       Solutions métalliques spécifiques pour l'ossature bois. Profils, étanchéité et finitions complètes.
                     </p>
@@ -2133,9 +2163,14 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   <div className="absolute -left-32 -top-32 w-64 h-64 bg-[#E2FD48]/5 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
                   <div className="relative z-10 flex items-center justify-between">
                     <div className="max-w-2xl">
-                      <h3 className="text-3xl md:text-4xl font-black text-white mb-4">
-                        Tôles prélaquées
-                      </h3>
+                      <div className="flex items-center gap-2 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="w-6 h-6 text-[#E2FD48]">
+                          <path d="M200.77,53.89A103.27,103.27,0,0,0,128,24h-1.07A104,104,0,0,0,24,128c0,43,26.58,79.06,69.36,94.17A32,32,0,0,0,136,192a16,16,0,0,1,16-16h46.21a31.81,31.81,0,0,0,31.2-24.88,104.43,104.43,0,0,0,2.59-24A103.28,103.28,0,0,0,200.77,53.89Zm13,93.71A15.89,15.89,0,0,1,198.21,160H152a32,32,0,0,0-32,32,16,16,0,0,1-21.31,15.07C62.49,194.3,40,164,40,128a88,88,0,0,1,87.09-88h.9a88.35,88.35,0,0,1,88,87.25A88.86,88.86,0,0,1,213.81,147.6ZM140,76a12,12,0,1,1-12-12A12,12,0,0,1,140,76ZM96,100A12,12,0,1,1,84,88,12,12,0,0,1,96,100Zm0,56a12,12,0,1,1-12-12A12,12,0,0,1,96,156Zm88-56a12,12,0,1,1-12-12A12,12,0,0,1,184,100Z" />
+                        </svg>
+                        <h3 className="text-3xl md:text-4xl font-black text-white">
+                          Tôles prélaquées
+                        </h3>
+                      </div>
                       <p className="text-white/70 text-base leading-relaxed">
                         Tôles prélaquées en formats standards et sur-mesure. Gamme complète de teintes RAL. Expertise PLIALU associée à la qualité Infinimetal.
                       </p>
@@ -2171,8 +2206,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
                     <div className="bg-[#0E2A33]/40 border border-[#0E2A33]/50 rounded-lg p-6">
                       <div className="flex items-center gap-3 mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 text-[#E2FD48]">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205 3 1m1.5.5-1.5-.5M6.75 7.364V3h-3v18m3-13.636 10.5-3.819" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="w-6 h-6 text-[#E2FD48]">
+                          <path d="M235.32,73.37,182.63,20.69a16,16,0,0,0-22.63,0L20.68,160a16,16,0,0,0,0,22.63l52.69,52.68a16,16,0,0,0,22.63,0L235.32,96A16,16,0,0,0,235.32,73.37ZM84.68,224,32,171.31l32-32,26.34,26.35a8,8,0,0,0,11.32-11.32L75.31,128,96,107.31l26.34,26.35a8,8,0,0,0,11.32-11.32L107.31,96,128,75.31l26.34,26.35a8,8,0,0,0,11.32-11.32L139.31,64l32-32L224,84.69Z" />
                         </svg>
                         <h3 className="text-xl font-bold text-white">Déroulage</h3>
                       </div>
