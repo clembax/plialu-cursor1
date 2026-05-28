@@ -591,7 +591,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               type="button"
               aria-label="Ouvrir le menu"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`md:hidden p-2 rounded-lg border transition-all
+              className={`fixed top-4 right-4 z-50 md:hidden p-2 rounded-lg border transition-all
                 ${headerTheme === 'dark' ? 'text-[#0E2A33] bg-black/5 border-black/10' : 'text-white bg-white/5 border-white/10'}`}
             >
               <iconify-icon icon="lucide:menu" width="24" stroke-width="1.5"></iconify-icon>
