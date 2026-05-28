@@ -497,18 +497,20 @@ const App: React.FC = () => {
         
         <div className="relative max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
           {/* Left: Logo */}
-          <div className="flex-none">
-            <button onClick={() => setCurrentPage('home')} className="flex items-center gap-3 group outline-none h-12">
-              <img 
-                src={headerTheme === 'dark' 
-                  ? "https://res.cloudinary.com/dyiup6v5x/image/upload/v1771582466/Logo_Noir_Plialu_ywbl2o.svg" 
-                  : "https://res.cloudinary.com/dyiup6v5x/image/upload/v1771582757/Logo_Blanc_Plialu_ssatk6.svg"
-                } 
-                alt="PLIALU" 
-                className="h-6 md:h-7 transition-all duration-300 scale-[1.3] origin-left"
-              />
-            </button>
-          </div>
+          {!isMenuOpen && (
+            <div className="flex-none">
+              <button onClick={() => setCurrentPage('home')} className="flex items-center gap-3 group outline-none h-12">
+                <img 
+                  src={headerTheme === 'dark' 
+                    ? "https://res.cloudinary.com/dyiup6v5x/image/upload/v1771582466/Logo_Noir_Plialu_ywbl2o.svg" 
+                    : "https://res.cloudinary.com/dyiup6v5x/image/upload/v1771582757/Logo_Blanc_Plialu_ssatk6.svg"
+                  } 
+                  alt="PLIALU" 
+                  className="h-6 md:h-7 transition-all duration-300 scale-[1.3] origin-left"
+                />
+              </button>
+            </div>
+          )}
 
           {/* Center: Navigation Menu */}
           <div className="absolute left-1/2 -translate-x-1/2 hidden md:flex items-center gap-1 p-1.5 rounded-full border transition-all duration-300
@@ -614,14 +616,6 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
         >
           <div className="flex items-center justify-between p-6 border-b border-white/10">
             <span className="text-[10px] font-extrabold tracking-widest text-[#E2FD48] uppercase">Menu</span>
-            <button
-              type="button"
-              aria-label="Fermer le menu"
-              onClick={() => setIsMenuOpen(false)}
-              className="p-2 rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-colors"
-            >
-              <iconify-icon icon="lucide:x" width="24"></iconify-icon>
-            </button>
           </div>
           <nav className="flex flex-col p-6 gap-1 overflow-y-auto">
             <button onClick={() => { setCurrentPage('home'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Accueil</button>
