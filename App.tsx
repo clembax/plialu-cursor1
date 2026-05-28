@@ -2153,23 +2153,38 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 </div>
 
                 {/* Télécharger les documents */}
-                <div className="space-y-8">
-                  <div>
-                    <h3 className="text-2xl font-bold text-white mb-4">Télécharger les Fiches techniques</h3>
-                    <p className="text-white/70 mb-6 max-w-2xl">Découvrez nos fiches techniques détaillées pour chaque domaine de solution.</p>
-                    <a href="https://grey-wren-904418.hostingersite.com/documents/Fiches_techniques.pdf" download="Fiches_techniques_PLIALU.pdf" className="inline-block bg-[#E2FD48] text-[#0E2A33] font-bold px-8 py-3 rounded-full hover:bg-[#E2FD48]/90 transition-all">Télécharger PDF</a>
-                  </div>
+                <div className="space-y-6">
+                  <h2 className="text-3xl font-bold text-white mb-8">Téléchargez nos ressources</h2>
 
-                  <div>
-                    <h3 className="text-2xl font-bold text-white mb-4">Télécharger le Document Déroulage</h3>
-                    <p className="text-white/70 mb-6 max-w-2xl">Consultez notre document déroulage pour optimiser vos formats et réduire vos chutes.</p>
-                    <a href="https://grey-wren-904418.hostingersite.com/documents/Deroulage.pdf" download="Deroulage_PLIALU.pdf" className="inline-block bg-[#E2FD48] text-[#0E2A33] font-bold px-8 py-3 rounded-full hover:bg-[#E2FD48]/90 transition-all">Télécharger PDF</a>
-                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-                  <div>
-                    <h3 className="text-2xl font-bold text-white mb-4">Télécharger le Catalogue RAL</h3>
-                    <p className="text-white/70 mb-6 max-w-2xl">Accédez à notre gamme complète de teintes RAL disponibles en finition brillante et mate.</p>
-                    <a href="https://grey-wren-904418.hostingersite.com/documents/catalogue_RAL.pdf" download="Catalogue_RAL_PLIALU.pdf" className="inline-block bg-[#E2FD48] text-[#0E2A33] font-bold px-8 py-3 rounded-full hover:bg-[#E2FD48]/90 transition-all">Télécharger PDF</a>
+                    <div className="bg-[#0E2A33]/40 border border-[#0E2A33]/50 rounded-lg p-6">
+                      <div className="flex items-center gap-3 mb-4">
+                        <svg className="w-6 h-6 text-[#E2FD48]" fill="currentColor" viewBox="0 0 20 20"><path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"></path><path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1v-5a1 1 0 00-.293-.707l-2-2A1 1 0 0015 7h-1z"></path></svg>
+                        <h3 className="text-xl font-bold text-white">Fiches techniques</h3>
+                      </div>
+                      <p className="text-white/70 text-sm mb-4">Découvrez nos fiches techniques détaillées pour chaque domaine de solution.</p>
+                      <a href="https://grey-wren-904418.hostingersite.com/documents/Fiches_techniques.pdf" download="Fiches_techniques_PLIALU.pdf" className="inline-block bg-[#E2FD48] text-[#0E2A33] font-bold px-6 py-2 rounded-full text-sm hover:bg-[#E2FD48]/90 transition-all">Télécharger PDF</a>
+                    </div>
+
+                    <div className="bg-[#0E2A33]/40 border border-[#0E2A33]/50 rounded-lg p-6">
+                      <div className="flex items-center gap-3 mb-4">
+                        <svg className="w-6 h-6 text-[#E2FD48]" fill="currentColor" viewBox="0 0 20 20"><path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"></path><path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1v-5a1 1 0 00-.293-.707l-2-2A1 1 0 0015 7h-1z"></path></svg>
+                        <h3 className="text-xl font-bold text-white">Déroulage</h3>
+                      </div>
+                      <p className="text-white/70 text-sm mb-4">Consultez notre document déroulage pour optimiser vos formats et réduire vos chutes.</p>
+                      <a href="https://grey-wren-904418.hostingersite.com/documents/Deroulage.pdf" download="Deroulage_PLIALU.pdf" className="inline-block bg-[#E2FD48] text-[#0E2A33] font-bold px-6 py-2 rounded-full text-sm hover:bg-[#E2FD48]/90 transition-all">Télécharger PDF</a>
+                    </div>
+
+                    <div className="bg-[#0E2A33]/40 border border-[#0E2A33]/50 rounded-lg p-6">
+                      <div className="flex items-center gap-3 mb-4">
+                        <svg className="w-6 h-6 text-[#E2FD48]" fill="currentColor" viewBox="0 0 20 20"><path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"></path><path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1v-5a1 1 0 00-.293-.707l-2-2A1 1 0 0015 7h-1z"></path></svg>
+                        <h3 className="text-xl font-bold text-white">Catalogue RAL</h3>
+                      </div>
+                      <p className="text-white/70 text-sm mb-4">Accédez à notre gamme complète de teintes RAL disponibles en finition brillante et mate.</p>
+                      <a href="https://grey-wren-904418.hostingersite.com/documents/catalogue_RAL.pdf" download="Catalogue_RAL_PLIALU.pdf" className="inline-block bg-[#E2FD48] text-[#0E2A33] font-bold px-6 py-2 rounded-full text-sm hover:bg-[#E2FD48]/90 transition-all">Télécharger PDF</a>
+                    </div>
+
                   </div>
                 </div>
               </div>
