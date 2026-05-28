@@ -2201,7 +2201,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                         <h3 className="text-xl font-bold text-white">Fiches techniques</h3>
                       </div>
                       <p className="text-white/70 text-sm mb-4">Découvrez nos fiches techniques détaillées pour chaque domaine de solution.</p>
-                      <a href="https://grey-wren-904418.hostingersite.com/documents/Fiches_techniques.pdf" download="Fiches_techniques_PLIALU.pdf" className="inline-block bg-[#E2FD48] text-[#0E2A33] font-bold px-6 py-2 rounded-full text-sm hover:bg-[#E2FD48]/90 transition-all">Télécharger PDF</a>
+                      <a href="https://grey-wren-904418.hostingersite.com/Fiches_techniques.pdf" download="Fiches_techniques_PLIALU.pdf" className="inline-block bg-[#E2FD48] text-[#0E2A33] font-bold px-6 py-2 rounded-full text-sm hover:bg-[#E2FD48]/90 transition-all">Télécharger PDF</a>
                     </div>
 
                     <div className="bg-[#0E2A33]/40 border border-[#0E2A33]/50 rounded-lg p-6">
@@ -2212,7 +2212,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                         <h3 className="text-xl font-bold text-white">Déroulage</h3>
                       </div>
                       <p className="text-white/70 text-sm mb-4">Consultez notre document déroulage pour optimiser vos formats et réduire vos chutes.</p>
-                      <a href="https://grey-wren-904418.hostingersite.com/documents/Deroulage.pdf" download="Deroulage_PLIALU.pdf" className="inline-block bg-[#E2FD48] text-[#0E2A33] font-bold px-6 py-2 rounded-full text-sm hover:bg-[#E2FD48]/90 transition-all">Télécharger PDF</a>
+                      <a href="https://grey-wren-904418.hostingersite.com/Deroulage.pdf" download="Deroulage_PLIALU.pdf" className="inline-block bg-[#E2FD48] text-[#0E2A33] font-bold px-6 py-2 rounded-full text-sm hover:bg-[#E2FD48]/90 transition-all">Télécharger PDF</a>
                     </div>
 
                     <div className="bg-[#0E2A33]/40 border border-[#0E2A33]/50 rounded-lg p-6">
@@ -2223,7 +2223,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                         <h3 className="text-xl font-bold text-white">Catalogue RAL</h3>
                       </div>
                       <p className="text-white/70 text-sm mb-4">Accédez à notre gamme complète de teintes RAL disponibles en finition brillante et mate.</p>
-                      <a href="https://grey-wren-904418.hostingersite.com/documents/catalogue_RAL.pdf" download="Catalogue_RAL_PLIALU.pdf" className="inline-block bg-[#E2FD48] text-[#0E2A33] font-bold px-6 py-2 rounded-full text-sm hover:bg-[#E2FD48]/90 transition-all">Télécharger PDF</a>
+                      <a href="https://grey-wren-904418.hostingersite.com/Catalogue_RAL.pdf" download="Catalogue_RAL_PLIALU.pdf" className="inline-block bg-[#E2FD48] text-[#0E2A33] font-bold px-6 py-2 rounded-full text-sm hover:bg-[#E2FD48]/90 transition-all">Télécharger PDF</a>
                     </div>
 
                   </div>
