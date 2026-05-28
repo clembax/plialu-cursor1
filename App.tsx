@@ -2154,55 +2154,22 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
                 {/* Télécharger les documents */}
                 <div className="space-y-8">
-                  {/* Fiches techniques */}
                   <div>
-                    <h3 className="text-2xl font-bold text-white mb-4">
-                      Télécharger les Fiches techniques
-                    </h3>
-                    <p className="text-white/70 mb-6 max-w-2xl">
-                      Découvrez nos fiches techniques détaillées pour chaque domaine de solution.
-                    </p>
-                    <a
-                      href="https://res.cloudinary.com/dyiup6v5x/raw/upload/Fiches_techniques_kts5oo.pdf"
-                      download="Fiches_techniques_PLIALU.pdf"
-                      className="inline-block bg-[#E2FD48] text-[#0E2A33] font-bold px-8 py-3 rounded-full hover:bg-[#E2FD48]/90 transition-all"
-                    >
-                      Télécharger PDF
-                    </a>
+                    <h3 className="text-2xl font-bold text-white mb-4">Télécharger les Fiches techniques</h3>
+                    <p className="text-white/70 mb-6 max-w-2xl">Découvrez nos fiches techniques détaillées pour chaque domaine de solution.</p>
+                    <a href="https://grey-wren-904418.hostingersite.com/documents/Fiches_techniques.pdf" download="Fiches_techniques_PLIALU.pdf" className="inline-block bg-[#E2FD48] text-[#0E2A33] font-bold px-8 py-3 rounded-full hover:bg-[#E2FD48]/90 transition-all">Télécharger PDF</a>
                   </div>
 
-                  {/* Document Deroulage */}
                   <div>
-                    <h3 className="text-2xl font-bold text-white mb-4">
-                      Télécharger le Document Deroulage
-                    </h3>
-                    <p className="text-white/70 mb-6 max-w-2xl">
-                      Consultez notre document deroulage pour optimiser vos formats et réduire vos chutes.
-                    </p>
-                    <a
-                      href="https://res.cloudinary.com/dyiup6v5x/raw/upload/Deroulage_hiyf2x.pdf"
-                      download="Deroulage_PLIALU.pdf"
-                      className="inline-block bg-[#E2FD48] text-[#0E2A33] font-bold px-8 py-3 rounded-full hover:bg-[#E2FD48]/90 transition-all"
-                    >
-                      Télécharger PDF
-                    </a>
+                    <h3 className="text-2xl font-bold text-white mb-4">Télécharger le Document Déroulage</h3>
+                    <p className="text-white/70 mb-6 max-w-2xl">Consultez notre document déroulage pour optimiser vos formats et réduire vos chutes.</p>
+                    <a href="https://grey-wren-904418.hostingersite.com/documents/Deroulage.pdf" download="Deroulage_PLIALU.pdf" className="inline-block bg-[#E2FD48] text-[#0E2A33] font-bold px-8 py-3 rounded-full hover:bg-[#E2FD48]/90 transition-all">Télécharger PDF</a>
                   </div>
 
-                  {/* Catalogue RAL */}
                   <div>
-                    <h3 className="text-2xl font-bold text-white mb-4">
-                      Télécharger le Catalogue RAL
-                    </h3>
-                    <p className="text-white/70 mb-6 max-w-2xl">
-                      Accédez à notre gamme complète de teintes RAL disponibles en finition brillante et mate.
-                    </p>
-                    <a
-                      href="https://res.cloudinary.com/dyiup6v5x/raw/upload/Catalogue_RAL_tmf2ry.pdf"
-                      download="Catalogue_RAL_PLIALU.pdf"
-                      className="inline-block bg-[#E2FD48] text-[#0E2A33] font-bold px-8 py-3 rounded-full hover:bg-[#E2FD48]/90 transition-all"
-                    >
-                      Télécharger PDF
-                    </a>
+                    <h3 className="text-2xl font-bold text-white mb-4">Télécharger le Catalogue RAL</h3>
+                    <p className="text-white/70 mb-6 max-w-2xl">Accédez à notre gamme complète de teintes RAL disponibles en finition brillante et mate.</p>
+                    <a href="https://grey-wren-904418.hostingersite.com/documents/catalogue_RAL.pdf" download="Catalogue_RAL_PLIALU.pdf" className="inline-block bg-[#E2FD48] text-[#0E2A33] font-bold px-8 py-3 rounded-full hover:bg-[#E2FD48]/90 transition-all">Télécharger PDF</a>
                   </div>
                 </div>
               </div>
