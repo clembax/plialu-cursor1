@@ -2285,7 +2285,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           <div
             id="expertises-sommaire"
             ref={sommaireRef}
-            className={`sticky top-16 z-30 scroll-mt-24 shrink-0 ${
+            className={`hidden md:block sticky top-16 z-30 scroll-mt-24 shrink-0 ${
               isSommaireSticky
                 ? 'bg-white/70 backdrop-blur-md border-t border-zinc-100/50'
                 : 'bg-white border-t border-zinc-100'
