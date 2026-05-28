@@ -89,7 +89,6 @@ const App: React.FC = () => {
   const [formFileError, setFormFileError] = useState<string | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [solutionsAccordionOpen, setSolutionsAccordionOpen] = useState<string | null>(null);
-  const [activeSolutionHover, setActiveSolutionHover] = React.useState(0);
   const [isSommaireSticky, setIsSommaireSticky] = useState(false);
 
   // Initialisation au montage : lit l'URL pour afficher la bonne page si accès direct (ex: F5)
@@ -405,20 +404,6 @@ const App: React.FC = () => {
       alt: "Profilés métalliques industriels en série",
       tag: "OPTIMISATION CHANTIER",
       materials: "Aluminium • Acier galvanisé • Inox"
-    }
-  ];
-
-  const homeSolutionsList = [
-    { id: '01', title: "Bardages & cassettes", image: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1773147911/Placeholder-Dark_xe7she.webp" },
-    { id: '02', title: "Enduit mince sur isolant", image: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1773147911/Placeholder-Dark_xe7she.webp" },
-    { id: '03', title: "Précadres", image: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1773147911/Placeholder-Dark_xe7she.webp" },
-    { id: '04', title: "Tôles prélaquées", image: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1773147911/Placeholder-Dark_xe7she.webp" },
-    { id: '05', title: "Ravalement de façade", image: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1773147911/Placeholder-Dark_xe7she.webp" },
-    {
-      id: '06',
-      title: "Étanchéité",
-      description: "Modèle d'étanchéité sur toit plat",
-      image: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1773147911/Placeholder-Dark_xe7she.webp",
     }
   ];
 
@@ -784,94 +769,93 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             </div>
           </section>
 
-          {/* 3. SOLUTIONS — Teaser (CTA vers page Solutions) */}
-          <section id="solutions" className="py-32 section--light">
+          {/* Section Solutions */}
+          <section id="solutions" className="bg-[#0a1f26] pt-24 pb-24">
             <div className="max-w-7xl mx-auto px-6">
-              <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-                {/* Colonne gauche : intro + liste interactive + CTA */}
-                <div className="flex flex-col h-full">
-                  <div className="max-w-2xl space-y-6 mb-10">
-                    <span className="text-[10px] font-extrabold tracking-[0.4em] text-[#0E2A33]/40 uppercase">SOLUTIONS</span>
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">Solutions métalliques pour l'enveloppe du bâtiment</h2>
-                    <p className="text-[#0E2A33]/60 text-lg leading-relaxed font-medium">Catalogue B2B : enduit mince, ravalement, bardages et cassettes, précadres, tôles prélaquées et étanchéité... Découvrez nos gammes aluminium et acier.</p>
-                  </div>
 
-                  <div className="flex flex-col gap-6">
-                  {homeSolutionsList.map((item, index) => {
-                    const isActive = activeSolutionHover === index;
-                    return (
-                      <button
-                        key={item.id}
-                        type="button"
-                        onMouseEnter={() => setActiveSolutionHover(index)}
-                        onClick={() => {
-                          if (item.id === '06') setCurrentPage('etancheite');
-                        }}
-                        className="text-left group"
-                      >
-                        <div className="flex flex-col">
-                          <div className={`flex items-center gap-4 transition-colors duration-200 ${isActive ? 'text-[#0E2A33]' : 'text-[#0E2A33]/40'}`}>
-                            <span className={`text-[11px] font-black tracking-[0.3em] uppercase ${isActive ? 'text-[#0E2A33]' : 'text-[#0E2A33]/30'}`}>
-                              {item.id}
-                            </span>
-                            <span className="text-3xl md:text-4xl font-extrabold tracking-tight">
-                              {item.title}
-                            </span>
-                          </div>
-                          <div
-                            className={`mt-3 h-[2px] rounded-full transition-all duration-200 origin-left ${
-                              isActive ? 'w-16 bg-[#0E2A33]' : 'w-10 bg-[#0E2A33]/10'
-                            }`}
-                          />
-                        </div>
-                      </button>
-                    );
-                  })}
-                  </div>
+              <p className="text-[#8E9BA4] text-xs tracking-[0.2em] uppercase mb-4">NOS SOLUTIONS</p>
+              <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-white uppercase mb-6">
+                Solutions métalliques pour l'enveloppe du bâtiment
+              </h2>
+              <p className="text-[#8E9BA4] text-lg max-w-2xl mb-16">
+                Vos métiers : le bardage, le ravalement de façade, l'isolation thermique... Découvrez nos solutions métalliques complètes, du façonnage à la finition.
+              </p>
 
-                  <div className="mt-12">
-                    <button
-                      onClick={() => setCurrentPage('solutions')}
-                      className="px-12 py-4 border border-[#0E2A33] text-[#0E2A33] text-sm font-bold rounded-full transition-all hover:bg-[#0E2A33] hover:text-white"
-                    >
-                      Voir toutes nos solutions
-                    </button>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+
+                <div className="bg-[#0E2A33]/40 border border-[#0E2A33]/50 rounded-xl p-6 hover:bg-[#0E2A33]/60 transition-all cursor-pointer" onClick={() => setCurrentPage('solutions-temporaire')}>
+                  <div className="flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 text-[#E2FD48]" aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                    </svg>
+                    <h3 className="text-white font-bold text-lg">Enduit mince sur isolant</h3>
                   </div>
                 </div>
 
-                {/* Colonne droite : image dynamique */}
-                <div className="relative h-full">
-                  <div className="relative rounded-2xl overflow-hidden min-h-[320px] lg:h-full border border-zinc-100 bg-white shadow-sm">
-                    {homeSolutionsList[activeSolutionHover]?.id === '02' ? (
-                      <img
-                        src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773850275/enduitminceisolant-1200px_ibn4ly.webp"
-                        srcSet="
-                          https://res.cloudinary.com/dyiup6v5x/image/upload/v1773850274/enduitminceisolant-800px_poxwkk.webp 800w,
-                          https://res.cloudinary.com/dyiup6v5x/image/upload/v1773850275/enduitminceisolant-1200px_ibn4ly.webp 1200w,
-                          https://res.cloudinary.com/dyiup6v5x/image/upload/v1773850275/enduitminceisolant-1600px_y0zenz.webp 1600w
-                        "
-                        sizes="(max-width: 768px) 800px, (max-width: 1200px) 1200px, 1600px"
-                        alt="Enduit mince sur isolant — PLIALU"
-                        className="absolute inset-0 w-full h-full object-cover"
-                        loading="lazy"
-                      />
-                    ) : homeSolutionsList[activeSolutionHover]?.id === '06' ? (
-                      <div className="absolute inset-0 bg-[#071318] border border-white/10 flex items-center justify-center">
-                        <span className="text-[#0E2A33] opacity-80 text-sm font-semibold">
-                          Visualisation 3D en cours
-                        </span>
-                      </div>
-                    ) : (
-                      <img
-                        key={homeSolutionsList[activeSolutionHover].id}
-                        src={homeSolutionsList[activeSolutionHover].image}
-                        alt={homeSolutionsList[activeSolutionHover].title}
-                        className="w-full h-full object-cover transition-opacity duration-500 ease-in-out"
-                      />
-                    )}
+                <div className="bg-[#0E2A33]/40 border border-[#0E2A33]/50 rounded-xl p-6 hover:bg-[#0E2A33]/60 transition-all cursor-pointer" onClick={() => setCurrentPage('solutions-temporaire')}>
+                  <div className="flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="text-[#E2FD48]" aria-hidden="true">
+                      <path d="M53.92,34.62A8,8,0,1,0,42.08,45.38L64.72,70.29C48.32,95,40,119.78,40,144a88,88,0,0,0,149.21,63.22l12.87,14.16a8,8,0,1,0,11.84-10.76ZM128,216a72.08,72.08,0,0,1-72-72c0-19.93,6.68-40.57,19.86-61.46L178.43,195.36A71.84,71.84,0,0,1,128,216ZM90,50.51a8,8,0,0,1-.27-11.31A247.8,247.8,0,0,1,123.41,9.45a8,8,0,0,1,9.18,0C136,11.83,216,68.7,216,144a88.08,88.08,0,0,1-3.15,23.4,8,8,0,0,1-7.71,5.88A7.79,7.79,0,0,1,203,173a8,8,0,0,1-5.59-9.83A72.55,72.55,0,0,0,200,144c0-57.24-55.48-105-72-118a252.23,252.23,0,0,0-26.66,24.23A8,8,0,0,1,90,50.51Z" />
+                    </svg>
+                    <h3 className="text-white font-bold text-lg">Solutions pour l'étanchéité</h3>
                   </div>
+                </div>
+
+                <div className="bg-[#0E2A33]/40 border border-[#0E2A33]/50 rounded-xl p-6 hover:bg-[#0E2A33]/60 transition-all cursor-pointer" onClick={() => setCurrentPage('solutions-temporaire')}>
+                  <div className="flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="text-[#E2FD48]" aria-hidden="true">
+                      <path d="M240,208h-8V72a8,8,0,0,0-8-8H184V40a8,8,0,0,0-8-8H80a8,8,0,0,0-8,8V96H32a8,8,0,0,0-8,8V208H16a8,8,0,0,0,0,16H240a8,8,0,0,0,0-16ZM40,112H80a8,8,0,0,0,8-8V48h80V72a8,8,0,0,0,8,8h40V208H152V168a8,8,0,0,0-8-8H112a8,8,0,0,0-8,8v40H40Zm96,96H120V176h16ZM112,72a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H120A8,8,0,0,1,112,72Zm0,32a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H120A8,8,0,0,1,112,104Zm56,0a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H176A8,8,0,0,1,168,104ZM88,136a8,8,0,0,1-8,8H64a8,8,0,0,1,0-16H80A8,8,0,0,1,88,136Zm0,32a8,8,0,0,1-8,8H64a8,8,0,0,1,0-16H80A8,8,0,0,1,88,168Zm24-32a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H120A8,8,0,0,1,112,136Zm56,0a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H176A8,8,0,0,1,168,136Zm0,32a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H176A8,8,0,0,1,168,168Z" />
+                    </svg>
+                    <h3 className="text-white font-bold text-lg">Bardages & Cassettes</h3>
+                  </div>
+                </div>
+
+                <div className="bg-[#0E2A33]/40 border border-[#0E2A33]/50 rounded-xl p-6 hover:bg-[#0E2A33]/60 transition-all cursor-pointer" onClick={() => setCurrentPage('solutions-temporaire')}>
+                  <div className="flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="text-[#E2FD48]" aria-hidden="true">
+                      <path d="M226.76,69a8,8,0,0,0-12.84-2.88l-40.3,37.19-17.23-3.7-3.7-17.23,37.19-40.3A8,8,0,0,0,187,29.24,72,72,0,0,0,88,96,72.34,72.34,0,0,0,94,124.94L33.79,177c-.15.12-.29.26-.43.39a32,32,0,0,0,45.26,45.26c.13-.13.27-.28.39-.42L131.06,162A72,72,0,0,0,232,96,71.56,71.56,0,0,0,226.76,69ZM160,152a56.14,56.14,0,0,1-27.07-7,8,8,0,0,0-9.92,1.77L67.11,211.51a16,16,0,0,1-22.62-22.62L109.18,133a8,8,0,0,0,1.77-9.93,56,56,0,0,1,58.36-82.31l-31.2,33.81a8,8,0,0,0-1.94,7.1L141.83,108a8,8,0,0,0,6.14,6.14l26.35,5.66a8,8,0,0,0,7.1-1.94l33.81-31.2A56.06,56.06,0,0,1,160,152Z" />
+                    </svg>
+                    <h3 className="text-white font-bold text-lg">Ravalement de façade</h3>
+                  </div>
+                </div>
+
+                <div className="bg-[#0E2A33]/40 border border-[#0E2A33]/50 rounded-xl p-6 hover:bg-[#0E2A33]/60 transition-all cursor-pointer" onClick={() => setCurrentPage('solutions-temporaire')}>
+                  <div className="flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="text-[#E2FD48]" aria-hidden="true">
+                      <path d="M200,80v32a8,8,0,0,1-16,0V88H160a8,8,0,0,1,0-16h32A8,8,0,0,1,200,80ZM96,168H72V144a8,8,0,0,0-16,0v32a8,8,0,0,0,8,8H96a8,8,0,0,0,0-16ZM232,56V200a16,16,0,0,1-16,16H40a16,16,0,0,1-16-16V56A16,16,0,0,1,40,40H216A16,16,0,0,1,232,56ZM216,200V56H40V200H216Z" />
+                    </svg>
+                    <h3 className="text-white font-bold text-lg">Précadres</h3>
+                  </div>
+                </div>
+
+                <div className="bg-[#0E2A33]/40 border border-[#0E2A33]/50 rounded-xl p-6 hover:bg-[#0E2A33]/60 transition-all cursor-pointer" onClick={() => setCurrentPage('solutions-temporaire')}>
+                  <div className="flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="text-[#E2FD48]" aria-hidden="true">
+                      <path d="M212,136a12,12,0,1,1-12-12A12,12,0,0,1,212,136Zm36,0c0,40.37-21.08,72-48,72H56c-26.92,0-48-31.63-48-72S29.08,64,56,64H92.69l37.65-37.66A8,8,0,0,1,136,24h32a8,8,0,0,1,0,16H139.31l-24,24H200C226.92,64,248,95.63,248,136ZM56,192H169.51a73.46,73.46,0,0,1-12.67-24H80a8,8,0,0,1,0-16h73.16A110.63,110.63,0,0,1,152,136c0-22.86,6.76-42.9,17.51-56H56c-12.47,0-23.55,13.26-28.8,32H104a8,8,0,0,1,0,16H24.35q-.34,3.93-.35,8C24,166.36,38.65,192,56,192Zm176-56c0-30.36-14.65-56-32-56s-32,25.64-32,56,14.65,56,32,56S232,166.36,232,136Z" />
+                    </svg>
+                    <h3 className="text-white font-bold text-lg">MOB & FOB</h3>
+                  </div>
+                </div>
+
+              </div>
+
+              <div className="bg-gradient-to-r from-[#E2FD48]/20 to-[#E2FD48]/5 border border-[#E2FD48]/30 rounded-xl p-8 mb-10 cursor-pointer hover:from-[#E2FD48]/30 transition-all" onClick={() => setCurrentPage('solutions-temporaire')}>
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                  <div>
+                    <img src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773322881/INFINI_Noir_ompn2i.png" alt="Infinimetal Laquage Solutions" className="h-8 mb-4 brightness-0 invert" />
+                    <h3 className="text-white font-black text-2xl uppercase tracking-tight mb-2">Tôles prélaquées</h3>
+                    <p className="text-[#8E9BA4]">Feuilles aluminium prélaquées en formats standards et sur-mesure. Gamme complète de teintes RAL.</p>
+                  </div>
+                  <span className="text-[#E2FD48] font-bold text-sm tracking-widest uppercase whitespace-nowrap">Voir le catalogue →</span>
                 </div>
               </div>
+
+              <div className="text-center">
+                <button onClick={() => setCurrentPage('solutions-temporaire')} className="bg-[#E2FD48] text-[#0E2A33] font-bold px-8 py-3 rounded-full hover:bg-[#E2FD48]/90 transition-all">
+                  Découvrir le catalogue complet
+                </button>
+              </div>
+
             </div>
           </section>
 
@@ -901,74 +885,6 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     <h3 className="text-3xl text-white font-extrabold tracking-tighter">ZENTO - Grenoble</h3>
                   </div>
                 </div>
-              </div>
-            </div>
-          </section>
-
-          {/* 4.5 RESSOURCES - EXPERTISE TECHNIQUE (LIGHT) */}
-          <section id="ressources" className="py-32 section--light bg-white">
-            <div className="max-w-7xl mx-auto px-6">
-              <div className="mb-20">
-                <span className="text-[10px] font-extrabold tracking-[0.4em] text-[#0E2A33]/40 uppercase mb-4 block">RESSOURCES</span>
-                <h2 className="mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">Centre de ressources et expertise technique</h2>
-                <p className="text-[#0E2A33]/60 text-lg md:text-xl font-medium max-w-2xl">Comprendre les enjeux techniques, les tolérances et les finitions pour optimiser la conception de vos pièces métalliques.</p>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {[
-                  {
-                    id: 'ressource-1',
-                    title: "Choisir le bon métal pour une façade extérieure",
-                    desc: "Aluminium, acier ou inox ? Découvrez comment choisir le bon métal pour une façade extérieure en fonction des contraintes de corrosion et de durabilité."
-                  },
-                  {
-                    id: 'ressource-2',
-                    title: "Pliage aluminium pour façade : limites et tolérances",
-                    desc: "Découvrez comment maîtriser le pliage aluminium pour façade en anticipant la dilatation thermique, le choix des alliages et le thermolaquage QUALICOAT."
-                  },
-                  {
-                    id: 'ressource-3',
-                    title: "Thermolaquage certifié Qualicoat : garanties",
-                    desc: "La durabilité d'une façade ne dépend pas que du métal. Découvrez pourquoi le thermolaquage certifié Qualicoat après façonnage est le seul rempart contre la corrosion."
-                  }
-                ].map((card, idx) => (
-                  <article 
-                    key={card.id} 
-                    className="group bg-white rounded-[24px] p-8 flex flex-col border border-zinc-100 shadow-sm transition-all duration-200 ease-out hover:border-2 hover:border-[#E2FD48] hover:-translate-y-0.5 hover:shadow-md cursor-pointer focus-within:border-2 focus-within:border-[#E2FD48] focus-within:-translate-y-0.5 outline-none relative"
-                    tabIndex={0}
-                    onClick={() => setCurrentPage(card.id as typeof currentPage)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        setCurrentPage(card.id as typeof currentPage);
-                      }
-                    }}
-                  >
-                    <div className="mb-4 text-[#0E2A33]/20 group-hover:text-[#0E2A33] transition-colors duration-200">
-                      <iconify-icon icon="lucide:file-text" width="32"></iconify-icon>
-                    </div>
-                    <h3 className="text-xl md:text-2xl font-extrabold text-[#0E2A33] tracking-tight mb-4">
-                      {card.title}
-                    </h3>
-                    <p className="text-[#0E2A33]/60 text-base leading-relaxed mb-10">
-                      {card.desc}
-                    </p>
-                    <div className="mt-auto pt-6 border-t border-zinc-50 flex items-center justify-between">
-                      <span className="text-[10px] font-bold tracking-[0.2em] text-[#0E2A33]/30 uppercase">5 minutes de lecture</span>
-                      <iconify-icon icon="lucide:arrow-right" className="text-[#0E2A33]/20 group-hover:text-[#0E2A33] transition-colors" width="20"></iconify-icon>
-                    </div>
-                  </article>
-                ))}
-              </div>
-
-              <div className="mt-20 text-center">
-                <a
-                  href="/ressources"
-                  onClick={(e) => { e.preventDefault(); setCurrentPage('ressources'); }}
-                  className="inline-block px-10 py-4 bg-[#0b2421] text-white text-xs font-black tracking-[0.2em] uppercase rounded-full transition-all hover:bg-[#0E2A33] shadow-lg"
-                >
-                  ACCÉDER AUX DOSSIERS COMPLETS
-                </a>
               </div>
             </div>
           </section>
