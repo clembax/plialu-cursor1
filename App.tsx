@@ -841,7 +841,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
               </div>
 
-              <div className="flex items-center justify-between bg-[#0E2A33] rounded-lg px-6 py-4 mb-10 cursor-pointer hover:bg-[#0E2A33]/90 transition-all" onClick={() => setCurrentPage('solutions-temporaire')}>
+              <div className="flex flex-col sm:flex-row items-center sm:justify-between bg-[#0E2A33] rounded-lg px-6 py-4 mb-10 cursor-pointer hover:bg-[#0E2A33]/90 transition-all" onClick={() => setCurrentPage('solutions-temporaire')}>
                 <div className="flex items-center gap-4">
                   <img src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773322881/INFINI_Noir_ompn2i.png" alt="Infinimetal Laquage Solutions" className="h-6 brightness-0 invert" />
                   <span className="text-white font-bold">Tôles prélaquées</span>
