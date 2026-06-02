@@ -1106,7 +1106,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 </p>
               </div>
 
-              <div className="mb-10 p-4 md:p-6 border border-zinc-100 shadow-sm shadow-[0_0_80px_30px_rgba(226,253,72,0.25)] relative overflow-hidden group max-w-5xl mx-auto">
+              <div className="mb-10 p-4 md:p-6 border border-zinc-100 shadow-sm relative overflow-hidden max-w-5xl mx-auto">
                 <div className="relative z-10">
                   <TerritorialMap />
                 </div>
