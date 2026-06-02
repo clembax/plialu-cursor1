@@ -3539,7 +3539,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       </div>
                       <div className="flex-1">
                         <span className="block text-[9px] font-bold text-zinc-400 uppercase tracking-widest mb-1">Siège & Atelier</span>
-                        <div className="flex items-center gap-3">
+                        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
                           <p className="text-lg font-bold text-[#0E2A33] leading-tight max-w-xs">Technoparc Saône Vallée Ouest, 150, Route Copernic, 01390 Civrieux</p>
                           <button onClick={() => handleCopy("Technoparc Saône Vallée Ouest, 150, Route Copernic, 01390 Civrieux", "addr")} className="p-1.5 rounded-md hover:bg-black/5 transition-colors relative">
                             <iconify-icon icon="lucide:copy" width="16" className="text-zinc-400"></iconify-icon>
