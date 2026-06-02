@@ -3845,6 +3845,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     </button>
                   </li>
                 ))}
+                <li>
+                  <a href="#" onClick={(e) => { e.preventDefault(); setCurrentPage('solutions-temporaire'); }} className="text-white/60 hover:text-[#E2FD48] transition-colors">Solutions</a>
+                </li>
               </ul>
             </div>
 
