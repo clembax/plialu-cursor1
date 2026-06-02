@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /contact
+Disallow: /solutions
+Disallow: /mentions-legales
+Disallow: /politique-confidentialite
+Disallow: /merci
+
+Sitemap: https://plialu.fr/sitemap.xml
