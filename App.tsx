@@ -1012,7 +1012,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 </p>
                 <a
                   href="#a-propos-contenu"
-                  onClick={(e) => { e.preventDefault(); document.getElementById('a-propos-contenu')?.scrollIntoView({ behavior: 'smooth' }); }}
+                  onClick={() => { setCurrentPage('contact'); }}
                   className="inline-flex items-center gap-2 px-10 py-4 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full hover:bg-white transition-all tracking-tight shadow-[0_20px_40px_rgba(226,253,72,0.15)]"
                 >
                   Demander un devis
