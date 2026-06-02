@@ -108,6 +108,20 @@ const App: React.FC = () => {
       
       const metaDesc = document.querySelector('meta[name="description"]');
       if (metaDesc) metaDesc.setAttribute('content', config.desc);
+      const ogImageMeta = document.querySelector('meta[property="og:image"]');
+      if (ogImageMeta) {
+        ogImageMeta.setAttribute('content', 'https://res.cloudinary.com/dyiup6v5x/image/upload/v1771414327/Hero-1200px_vuuw2q.webp');
+      } else {
+        const meta = document.createElement('meta');
+        meta.setAttribute('property', 'og:image');
+        meta.setAttribute('content', 'https://res.cloudinary.com/dyiup6v5x/image/upload/v1771414327/Hero-1200px_vuuw2q.webp');
+        document.head.appendChild(meta);
+      }
+      const ogImageWidthMeta = document.querySelector('meta[property="og:image:width"]') || (() => { const m = document.createElement('meta'); m.setAttribute('property', 'og:image:width'); m.setAttribute('content', '1200'); document.head.appendChild(m); return m; })();
+      ogImageWidthMeta.setAttribute('content', '1200');
+
+      const ogImageHeightMeta = document.querySelector('meta[property="og:image:height"]') || (() => { const m = document.createElement('meta'); m.setAttribute('property', 'og:image:height'); m.setAttribute('content', '630'); document.head.appendChild(m); return m; })();
+      ogImageHeightMeta.setAttribute('content', '630');
 
       const metaRobots = document.querySelector('meta[name="robots"]');
       if (metaRobots) metaRobots.setAttribute('content', config.noindex ? 'noindex, follow' : 'index, follow');
