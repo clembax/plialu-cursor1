@@ -1004,9 +1004,6 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 <h1 className="text-4xl md:text-6xl tracking-tighter leading-[1.1] font-black uppercase text-white">
                   PLIALU, Entreprise de façonnage métal en Rhône-Alpes
                 </h1>
-                <p className="text-xl md:text-2xl text-[#E2FD48] font-bold tracking-tight">
-                  Spécialiste du façonnage métallique en Rhône-Alpes depuis 20 ans.
-                </p>
                 <p className="text-base md:text-lg text-white/70 max-w-2xl leading-relaxed font-medium">
                   Implantée en région lyonnaise, notre usine intégrée accompagne les professionnels de l'enveloppe du bâtiment dans la transformation industrielle et la fabrication sur mesure de pièces métalliques.
                 </p>
