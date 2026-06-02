@@ -3819,7 +3819,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
             {/* Column 2 -- Products & Services */}
             <div>
-              <h4 className="text-white text-[10px] font-extrabold uppercase tracking-[0.3em] mb-8">Navigation</h4>
+              <h3 className="text-white text-[10px] font-extrabold uppercase tracking-[0.3em] mb-8">Navigation</h3>
               <ul className="space-y-4">
                 {['Expertises'].map((link) => (
                   <li key={link}>
@@ -3838,7 +3838,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
             {/* Column 3 -- Company */}
             <div>
-              <h4 className="text-white text-[10px] font-extrabold uppercase tracking-[0.3em] mb-8">Société</h4>
+              <h3 className="text-white text-[10px] font-extrabold uppercase tracking-[0.3em] mb-8">Société</h3>
               <ul className="space-y-4">
                 {['À propos', 'Portfolio', 'Contact'].map((link) => (
                   <li key={link}>
