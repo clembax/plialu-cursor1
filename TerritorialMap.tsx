@@ -237,6 +237,7 @@ const TerritorialMap: React.FC = () => {
           viewBox="0 0 600 500"
           preserveAspectRatio="xMidYMid meet"
           className="max-w-full h-auto"
+          aria-label="Couverture géographique de PLIALU : basée en Rhône-Alpes, opérationnelle en France entière, Suisse et Belgique"
         />
       </div>
     </div>
