@@ -2157,7 +2157,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                         <h3 className="text-xl font-bold">Catalogue RAL</h3>
                       </div>
                       <p className="text-[#0E2A33]/60 text-sm mb-4">Accédez à notre gamme complète de teintes RAL disponibles en finition brillante et mate.</p>
-                      <a href="https://grey-wren-904418.hostingersite.com/Catalogue_RAL.pdf" download="Catalogue_RAL_PLIALU.pdf" className="inline-block bg-[#E2FD48] text-[#0E2A33] font-bold px-6 py-2 rounded-full text-sm hover:bg-[#E2FD48]/90 transition-all">Télécharger PDF</a>
+                      <a href="https://res.cloudinary.com/dyiup6v5x/raw/upload/Catalogue_RAL_isljx5.pdf" download="Catalogue_RAL_PLIALU.pdf" className="inline-block bg-[#E2FD48] text-[#0E2A33] font-bold px-6 py-2 rounded-full text-sm hover:bg-[#E2FD48]/90 transition-all">Télécharger PDF</a>
                     </div>
 
                   </div>
