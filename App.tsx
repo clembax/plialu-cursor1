@@ -207,7 +207,6 @@ const App: React.FC = () => {
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [carouselTotal, setCarouselTotal] = useState(0);
   const carouselIndexRef = useRef(0);
-  const wheelLockRef = useRef(false);
   const scrollSyncTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const scrollToProject = (index: number) => {
@@ -331,17 +330,6 @@ const App: React.FC = () => {
       scrollSyncTimerRef.current = setTimeout(syncCarouselIndex, 80);
     };
 
-    const handleWheel = (e: WheelEvent) => {
-      e.preventDefault();
-      if (wheelLockRef.current) return;
-      const delta = Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
-      if (Math.abs(delta) < 15) return;
-      wheelLockRef.current = true;
-      if (delta > 0) scrollToProject(carouselIndexRef.current + 1);
-      else scrollToProject(carouselIndexRef.current - 1);
-      setTimeout(() => { wheelLockRef.current = false; }, 650);
-    };
-
     const handleMouseDown = (e: MouseEvent) => {
       isDownRef.current = true;
       startXRef.current = e.pageX - el.offsetLeft;
@@ -364,7 +352,6 @@ const App: React.FC = () => {
     el.addEventListener('mousemove', handleMouseMove);
     el.addEventListener('mouseup', stopDragging);
     el.addEventListener('mouseleave', stopDragging);
-    el.addEventListener('wheel', handleWheel, { passive: false });
     el.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
@@ -372,7 +359,6 @@ const App: React.FC = () => {
       el.removeEventListener('mousemove', handleMouseMove);
       el.removeEventListener('mouseup', stopDragging);
       el.removeEventListener('mouseleave', stopDragging);
-      el.removeEventListener('wheel', handleWheel);
       el.removeEventListener('scroll', handleScroll);
       if (scrollSyncTimerRef.current) clearTimeout(scrollSyncTimerRef.current);
     };
@@ -1287,9 +1273,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   aria-label="Projet précédent"
                   onClick={() => navigateCarousel(-1)}
                   disabled={carouselIndex === 0}
-                  className="absolute left-0 top-1/2 -translate-y-1/2 z-20 p-3 md:px-4 md:py-5 text-[#0E2A33]/40 hover:text-[#0E2A33] hover:scale-110 active:scale-95 transition-all duration-200 disabled:opacity-20 disabled:pointer-events-none"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-14 h-14 md:w-16 md:h-16 bg-[#E2FD48] text-[#0E2A33] border-2 border-[#0E2A33] rounded-full hover:scale-110 active:scale-95 transition-transform duration-200 disabled:opacity-30 disabled:pointer-events-none shadow-lg"
                 >
-                  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 256 256" fill="currentColor">
+                  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256" fill="currentColor">
                     <path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"/>
                   </svg>
                 </button>
@@ -1297,10 +1283,10 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   type="button"
                   aria-label="Projet suivant"
                   onClick={() => navigateCarousel(1)}
-                  className="absolute right-0 top-1/2 -translate-y-1/2 z-20 p-3 md:px-4 md:py-5 text-[#0E2A33]/40 hover:text-[#0E2A33] hover:scale-110 active:scale-95 transition-all duration-200 disabled:opacity-20 disabled:pointer-events-none"
                   disabled={carouselIndex >= carouselTotal - 1}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-14 h-14 md:w-16 md:h-16 bg-[#E2FD48] text-[#0E2A33] border-2 border-[#0E2A33] rounded-full hover:scale-110 active:scale-95 transition-transform duration-200 disabled:opacity-30 disabled:pointer-events-none shadow-lg"
                 >
-                  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 256 256" fill="currentColor">
+                  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256" fill="currentColor">
                     <path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"/>
                   </svg>
                 </button>
