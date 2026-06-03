@@ -2099,39 +2099,26 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </div>
                 </div>
 
-              </div>
-            </div>
-          </section>
-
-          {/* Tôles prélaquées — Infinimetal */}
-          <section className="py-12 md:py-16 bg-[#0a1f26] border-y border-white/5">
-            <div className="max-w-7xl mx-auto px-6">
-              <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#E2FD48]/10 via-transparent to-transparent border border-[#E2FD48]/40 p-12 hover:shadow-md hover:border-[#E2FD48]/50 transition-all duration-300 group">
-                <div className="absolute -left-32 -top-32 w-64 h-64 bg-[#E2FD48]/5 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
-                <div className="relative z-10 flex items-center justify-between">
-                  <div className="max-w-2xl">
-                    <div className="flex items-center gap-2 mb-4">
-                      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="w-6 h-6 text-[#E2FD48]">
-                        <path d="M200.77,53.89A103.27,103.27,0,0,0,128,24h-1.07A104,104,0,0,0,24,128c0,43,26.58,79.06,69.36,94.17A32,32,0,0,0,136,192a16,16,0,0,1,16-16h46.21a31.81,31.81,0,0,0,31.2-24.88,104.43,104.43,0,0,0,2.59-24A103.28,103.28,0,0,0,200.77,53.89Zm13,93.71A15.89,15.89,0,0,1,198.21,160H152a32,32,0,0,0-32,32,16,16,0,0,1-21.31,15.07C62.49,194.3,40,164,40,128a88,88,0,0,1,87.09-88h.9a88.35,88.35,0,0,1,88,87.25A88.86,88.86,0,0,1,213.81,147.6ZM140,76a12,12,0,1,1-12-12A12,12,0,0,1,140,76ZM96,100A12,12,0,1,1,84,88,12,12,0,0,1,96,100Zm0,56a12,12,0,1,1-12-12A12,12,0,0,1,96,156Zm88-56a12,12,0,1,1-12-12A12,12,0,0,1,184,100Z" />
-                      </svg>
-                      <h3 className="text-3xl md:text-4xl font-black text-white">
-                        Tôles prélaquées
-                      </h3>
-                    </div>
-                    <p className="text-white/70 text-base leading-relaxed">
-                      Tôles prélaquées en formats standards et sur-mesure. Gamme complète de teintes RAL. Expertise PLIALU associée à la qualité Infinimetal.
-                    </p>
+                {/* Tôles prélaquées — fullwidth */}
+                <div className="relative overflow-hidden rounded-xl bg-white/10 border border-[#E2FD48]/30 p-6 w-full hover:shadow-md hover:border-[#E2FD48]/50 transition-all duration-300">
+                  <div className="flex items-center gap-2 mb-3 relative z-10">
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="w-6 h-6 text-[#E2FD48] shrink-0">
+                      <path d="M235.32,73.37,182.63,20.69a16,16,0,0,0-22.63,0L20.68,160a16,16,0,0,0,0,22.63l52.69,52.68a16,16,0,0,0,22.63,0L235.32,96A16,16,0,0,0,235.32,73.37ZM84.68,224,32,171.31l32-32,26.34,26.35a8,8,0,0,0,11.32-11.32L75.31,128,96,107.31l26.34,26.35a8,8,0,0,0,11.32-11.32L107.31,96,128,75.31l26.34,26.35a8,8,0,0,0,11.32-11.32L139.31,64l32-32L224,84.69Z" />
+                    </svg>
+                    <h3 className="text-xl font-bold text-white">
+                      Tôles prélaquées
+                    </h3>
                   </div>
-                  <div className="flex-shrink-0">
-                    <div className="flex items-center gap-2 px-4 py-2 bg-[#0E2A33] rounded-full border border-white/10 shadow-lg">
-                      <img
-                        src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773322881/INFINI_Noir_ompn2i.png"
-                        alt="Logo Infinimetal"
-                        className="h-6 w-auto object-contain brightness-0 invert"
-                      />
-                    </div>
-                  </div>
+                  <p className="text-white/70 text-sm leading-relaxed relative z-10 max-w-3xl pr-14">
+                    Tôles aluminium en formats standards et sur-mesure. Gamme complète de teintes RAL.
+                  </p>
+                  <img
+                    src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773322881/INFINI_Noir_ompn2i.png"
+                    alt="Logo Infinimetal"
+                    className="absolute bottom-4 right-4 w-10 h-10 object-contain opacity-50 brightness-0 invert pointer-events-none"
+                  />
                 </div>
+
               </div>
             </div>
           </section>
