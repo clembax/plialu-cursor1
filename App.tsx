@@ -795,64 +795,83 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 Vos métiers : le bardage, le ravalement de façade, l'isolation thermique... Découvrez nos solutions métalliques complètes, du façonnage à la finition.
               </p>
 
-              <div className="flex flex-wrap gap-0 mb-12 border-t border-[#0E2A33]/15">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
 
-                <div className="flex items-center gap-3 py-5 pr-8 border-b border-[#0E2A33]/15 w-full md:w-1/2 lg:w-1/3">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 text-[#0E2A33] shrink-0" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-                  </svg>
-                  <span className="text-[#0E2A33] font-medium">Enduit mince sur isolant</span>
+                <div className="bg-[#F5F5F3] border border-[#0E2A33]/20 rounded-lg p-6 hover:shadow-md hover:border-[#E2FD48]/50 transition-all">
+                  <div className="flex items-center gap-3 mb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 text-[#0E2A33] shrink-0" aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                    </svg>
+                    <h3 className="text-[#0E2A33] font-bold">Enduit mince sur isolant</h3>
+                  </div>
+                  <p className="text-[#0E2A33]/60 text-sm leading-relaxed">Profils pour systèmes d'isolation thermique par l'extérieur.</p>
                 </div>
 
-                <div className="flex items-center gap-3 py-5 pr-8 border-b border-[#0E2A33]/15 w-full md:w-1/2 lg:w-1/3">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" className="text-[#0E2A33] shrink-0" aria-hidden="true">
-                    <path d="M53.92,34.62A8,8,0,1,0,42.08,45.38L64.72,70.29C48.32,95,40,119.78,40,144a88,88,0,0,0,149.21,63.22l12.87,14.16a8,8,0,1,0,11.84-10.76ZM128,216a72.08,72.08,0,0,1-72-72c0-19.93,6.68-40.57,19.86-61.46L178.43,195.36A71.84,71.84,0,0,1,128,216ZM90,50.51a8,8,0,0,1-.27-11.31A247.8,247.8,0,0,1,123.41,9.45a8,8,0,0,1,9.18,0C136,11.83,216,68.7,216,144a88.08,88.08,0,0,1-3.15,23.4,8,8,0,0,1-7.71,5.88A7.79,7.79,0,0,1,203,173a8,8,0,0,1-5.59-9.83A72.55,72.55,0,0,0,200,144c0-57.24-55.48-105-72-118a252.23,252.23,0,0,0-26.66,24.23A8,8,0,0,1,90,50.51Z" />
-                  </svg>
-                  <span className="text-[#0E2A33] font-medium">Solutions pour l'étanchéité</span>
+                <div className="bg-[#F5F5F3] border border-[#0E2A33]/20 rounded-lg p-6 hover:shadow-md hover:border-[#E2FD48]/50 transition-all">
+                  <div className="flex items-center gap-3 mb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" className="w-5 h-5 text-[#0E2A33] shrink-0" aria-hidden="true">
+                      <path d="M53.92,34.62A8,8,0,1,0,42.08,45.38L64.72,70.29C48.32,95,40,119.78,40,144a88,88,0,0,0,149.21,63.22l12.87,14.16a8,8,0,1,0,11.84-10.76ZM128,216a72.08,72.08,0,0,1-72-72c0-19.93,6.68-40.57,19.86-61.46L178.43,195.36A71.84,71.84,0,0,1,128,216ZM90,50.51a8,8,0,0,1-.27-11.31A247.8,247.8,0,0,1,123.41,9.45a8,8,0,0,1,9.18,0C136,11.83,216,68.7,216,144a88.08,88.08,0,0,1-3.15,23.4,8,8,0,0,1-7.71,5.88A7.79,7.79,0,0,1,203,173a8,8,0,0,1-5.59-9.83A72.55,72.55,0,0,0,200,144c0-57.24-55.48-105-72-118a252.23,252.23,0,0,0-26.66,24.23A8,8,0,0,1,90,50.51Z" />
+                    </svg>
+                    <h3 className="text-[#0E2A33] font-bold">Solutions pour l'étanchéité</h3>
+                  </div>
+                  <p className="text-[#0E2A33]/60 text-sm leading-relaxed">Couvertines et accessoires pour l'étanchéité des façades.</p>
                 </div>
 
-                <div className="flex items-center gap-3 py-5 pr-8 border-b border-[#0E2A33]/15 w-full md:w-1/2 lg:w-1/3">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" className="text-[#0E2A33] shrink-0" aria-hidden="true">
-                    <path d="M240,208h-8V72a8,8,0,0,0-8-8H184V40a8,8,0,0,0-8-8H80a8,8,0,0,0-8,8V96H32a8,8,0,0,0-8,8V208H16a8,8,0,0,0,0,16H240a8,8,0,0,0,0-16ZM40,112H80a8,8,0,0,0,8-8V48h80V72a8,8,0,0,0,8,8h40V208H152V168a8,8,0,0,0-8-8H112a8,8,0,0,0-8,8v40H40Zm96,96H120V176h16ZM112,72a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H120A8,8,0,0,1,112,72Zm0,32a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H120A8,8,0,0,1,112,104Zm56,0a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H176A8,8,0,0,1,168,104ZM88,136a8,8,0,0,1-8,8H64a8,8,0,0,1,0-16H80A8,8,0,0,1,88,136Zm0,32a8,8,0,0,1-8,8H64a8,8,0,0,1,0-16H80A8,8,0,0,1,88,168Zm24-32a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H120A8,8,0,0,1,112,136Zm56,0a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H176A8,8,0,0,1,168,136Zm0,32a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H176A8,8,0,0,1,168,168Z" />
-                  </svg>
-                  <span className="text-[#0E2A33] font-medium">Bardages & Cassettes</span>
+                <div className="bg-[#F5F5F3] border border-[#0E2A33]/20 rounded-lg p-6 hover:shadow-md hover:border-[#E2FD48]/50 transition-all">
+                  <div className="flex items-center gap-3 mb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" className="w-5 h-5 text-[#0E2A33] shrink-0" aria-hidden="true">
+                      <path d="M240,208h-8V72a8,8,0,0,0-8-8H184V40a8,8,0,0,0-8-8H80a8,8,0,0,0-8,8V96H32a8,8,0,0,0-8,8V208H16a8,8,0,0,0,0,16H240a8,8,0,0,0,0-16ZM40,112H80a8,8,0,0,0,8-8V48h80V72a8,8,0,0,0,8,8h40V208H152V168a8,8,0,0,0-8-8H112a8,8,0,0,0-8,8v40H40Zm96,96H120V176h16ZM112,72a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H120A8,8,0,0,1,112,72Zm0,32a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H120A8,8,0,0,1,112,104Zm56,0a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H176A8,8,0,0,1,168,104ZM88,136a8,8,0,0,1-8,8H64a8,8,0,0,1,0-16H80A8,8,0,0,1,88,136Zm0,32a8,8,0,0,1-8,8H64a8,8,0,0,1,0-16H80A8,8,0,0,1,88,168Zm24-32a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H120A8,8,0,0,1,112,136Zm56,0a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H176A8,8,0,0,1,168,136Zm0,32a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H176A8,8,0,0,1,168,168Z" />
+                    </svg>
+                    <h3 className="text-[#0E2A33] font-bold">Bardages & Cassettes</h3>
+                  </div>
+                  <p className="text-[#0E2A33]/60 text-sm leading-relaxed">Bardages, cassettes et ossatures pour l'enveloppe du bâtiment.</p>
                 </div>
 
-                <div className="flex items-center gap-3 py-5 pr-8 border-b border-[#0E2A33]/15 w-full md:w-1/2 lg:w-1/3">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" className="text-[#0E2A33] shrink-0" aria-hidden="true">
-                    <path d="M226.76,69a8,8,0,0,0-12.84-2.88l-40.3,37.19-17.23-3.7-3.7-17.23,37.19-40.3A8,8,0,0,0,187,29.24,72,72,0,0,0,88,96,72.34,72.34,0,0,0,94,124.94L33.79,177c-.15.12-.29.26-.43.39a32,32,0,0,0,45.26,45.26c.13-.13.27-.28.39-.42L131.06,162A72,72,0,0,0,232,96,71.56,71.56,0,0,0,226.76,69ZM160,152a56.14,56.14,0,0,1-27.07-7,8,8,0,0,0-9.92,1.77L67.11,211.51a16,16,0,0,1-22.62-22.62L109.18,133a8,8,0,0,0,1.77-9.93,56,56,0,0,1,58.36-82.31l-31.2,33.81a8,8,0,0,0-1.94,7.1L141.83,108a8,8,0,0,0,6.14,6.14l26.35,5.66a8,8,0,0,0,7.1-1.94l33.81-31.2A56.06,56.06,0,0,1,160,152Z" />
-                  </svg>
-                  <span className="text-[#0E2A33] font-medium">Ravalement de façade</span>
+                <div className="bg-[#F5F5F3] border border-[#0E2A33]/20 rounded-lg p-6 hover:shadow-md hover:border-[#E2FD48]/50 transition-all">
+                  <div className="flex items-center gap-3 mb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" className="w-5 h-5 text-[#0E2A33] shrink-0" aria-hidden="true">
+                      <path d="M226.76,69a8,8,0,0,0-12.84-2.88l-40.3,37.19-17.23-3.7-3.7-17.23,37.19-40.3A8,8,0,0,0,187,29.24,72,72,0,0,0,88,96,72.34,72.34,0,0,0,94,124.94L33.79,177c-.15.12-.29.26-.43.39a32,32,0,0,0,45.26,45.26c.13-.13.27-.28.39-.42L131.06,162A72,72,0,0,0,232,96,71.56,71.56,0,0,0,226.76,69ZM160,152a56.14,56.14,0,0,1-27.07-7,8,8,0,0,0-9.92,1.77L67.11,211.51a16,16,0,0,1-22.62-22.62L109.18,133a8,8,0,0,0,1.77-9.93,56,56,0,0,1,58.36-82.31l-31.2,33.81a8,8,0,0,0-1.94,7.1L141.83,108a8,8,0,0,0,6.14,6.14l26.35,5.66a8,8,0,0,0,7.1-1.94l33.81-31.2A56.06,56.06,0,0,1,160,152Z" />
+                    </svg>
+                    <h3 className="text-[#0E2A33] font-bold">Ravalement de façade</h3>
+                  </div>
+                  <p className="text-[#0E2A33]/60 text-sm leading-relaxed">Profilés et accessoires pour le ravalement de façade.</p>
                 </div>
 
-                <div className="flex items-center gap-3 py-5 pr-8 border-b border-[#0E2A33]/15 w-full md:w-1/2 lg:w-1/3">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" className="text-[#0E2A33] shrink-0" aria-hidden="true">
-                    <path d="M200,80v32a8,8,0,0,1-16,0V88H160a8,8,0,0,1,0-16h32A8,8,0,0,1,200,80ZM96,168H72V144a8,8,0,0,0-16,0v32a8,8,0,0,0,8,8H96a8,8,0,0,0,0-16ZM232,56V200a16,16,0,0,1-16,16H40a16,16,0,0,1-16-16V56A16,16,0,0,1,40,40H216A16,16,0,0,1,232,56ZM216,200V56H40V200H216Z" />
-                  </svg>
-                  <span className="text-[#0E2A33] font-medium">Précadres</span>
+                <div className="bg-[#F5F5F3] border border-[#0E2A33]/20 rounded-lg p-6 hover:shadow-md hover:border-[#E2FD48]/50 transition-all">
+                  <div className="flex items-center gap-3 mb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" className="w-5 h-5 text-[#0E2A33] shrink-0" aria-hidden="true">
+                      <path d="M200,80v32a8,8,0,0,1-16,0V88H160a8,8,0,0,1,0-16h32A8,8,0,0,1,200,80ZM96,168H72V144a8,8,0,0,0-16,0v32a8,8,0,0,0,8,8H96a8,8,0,0,0,0-16ZM232,56V200a16,16,0,0,1-16,16H40a16,16,0,0,1-16-16V56A16,16,0,0,1,40,40H216A16,16,0,0,1,232,56ZM216,200V56H40V200H216Z" />
+                    </svg>
+                    <h3 className="text-[#0E2A33] font-bold">Précadres</h3>
+                  </div>
+                  <p className="text-[#0E2A33]/60 text-sm leading-relaxed">Précadres sur mesure pour portes et fenêtres.</p>
                 </div>
 
-                <div className="flex items-center gap-3 py-5 pr-8 border-b border-[#0E2A33]/15 w-full md:w-1/2 lg:w-1/3">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" className="text-[#0E2A33] shrink-0" aria-hidden="true">
-                    <path d="M212,136a12,12,0,1,1-12-12A12,12,0,0,1,212,136Zm36,0c0,40.37-21.08,72-48,72H56c-26.92,0-48-31.63-48-72S29.08,64,56,64H92.69l37.65-37.66A8,8,0,0,1,136,24h32a8,8,0,0,1,0,16H139.31l-24,24H200C226.92,64,248,95.63,248,136ZM56,192H169.51a73.46,73.46,0,0,1-12.67-24H80a8,8,0,0,1,0-16h73.16A110.63,110.63,0,0,1,152,136c0-22.86,6.76-42.9,17.51-56H56c-12.47,0-23.55,13.26-28.8,32H104a8,8,0,0,1,0,16H24.35q-.34,3.93-.35,8C24,166.36,38.65,192,56,192Zm176-56c0-30.36-14.65-56-32-56s-32,25.64-32,56,14.65,56,32,56S232,166.36,232,136Z" />
-                  </svg>
-                  <span className="text-[#0E2A33] font-medium">MOB & FOB</span>
+                <div className="bg-[#F5F5F3] border border-[#0E2A33]/20 rounded-lg p-6 hover:shadow-md hover:border-[#E2FD48]/50 transition-all">
+                  <div className="flex items-center gap-3 mb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" className="w-5 h-5 text-[#0E2A33] shrink-0" aria-hidden="true">
+                      <path d="M212,136a12,12,0,1,1-12-12A12,12,0,0,1,212,136Zm36,0c0,40.37-21.08,72-48,72H56c-26.92,0-48-31.63-48-72S29.08,64,56,64H92.69l37.65-37.66A8,8,0,0,1,136,24h32a8,8,0,0,1,0,16H139.31l-24,24H200C226.92,64,248,95.63,248,136ZM56,192H169.51a73.46,73.46,0,0,1-12.67-24H80a8,8,0,0,1,0-16h73.16A110.63,110.63,0,0,1,152,136c0-22.86,6.76-42.9,17.51-56H56c-12.47,0-23.55,13.26-28.8,32H104a8,8,0,0,1,0,16H24.35q-.34,3.93-.35,8C24,166.36,38.65,192,56,192Zm176-56c0-30.36-14.65-56-32-56s-32,25.64-32,56,14.65,56,32,56S232,166.36,232,136Z" />
+                    </svg>
+                    <h3 className="text-[#0E2A33] font-bold">MOB & FOB</h3>
+                  </div>
+                  <p className="text-[#0E2A33]/60 text-sm leading-relaxed">Profils métalliques pour ossature bois (MOB et FOB).</p>
                 </div>
 
               </div>
 
-              <div className="flex flex-col sm:flex-row items-center sm:justify-between bg-[#0E2A33] rounded-lg px-6 py-4 mb-10 cursor-pointer hover:bg-[#0E2A33]/90 transition-all" onClick={() => setCurrentPage('solutions-temporaire')}>
-                <div className="flex items-center gap-4">
-                  <img src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773322881/INFINI_Noir_ompn2i.png" alt="Infinimetal Laquage Solutions" className="h-6 brightness-0 invert" />
-                  <span className="text-white font-bold">Tôles prélaquées</span>
-                  <span className="text-white/60 text-sm hidden md:inline">— Feuilles aluminium en formats standards et sur-mesure</span>
+              <div className="bg-[#F5F5F3] border border-[#0E2A33]/20 rounded-lg p-6 hover:shadow-md hover:border-[#E2FD48]/50 transition-all w-full mb-12">
+                <div className="flex items-center gap-3 mb-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="w-5 h-5 text-[#0E2A33] shrink-0" aria-hidden="true">
+                    <path d="M235.32,73.37,182.63,20.69a16,16,0,0,0-22.63,0L20.68,160a16,16,0,0,0,0,22.63l52.69,52.68a16,16,0,0,0,22.63,0L235.32,96A16,16,0,0,0,235.32,73.37ZM84.68,224,32,171.31l32-32,26.34,26.35a8,8,0,0,0,11.32-11.32L75.31,128,96,107.31l26.34,26.35a8,8,0,0,0,11.32-11.32L107.31,96,128,75.31l26.34,26.35a8,8,0,0,0,11.32-11.32L139.31,64l32-32L224,84.69Z" />
+                  </svg>
+                  <h3 className="text-[#0E2A33] font-bold">Tôles prélaquées</h3>
                 </div>
-                <span className="text-[#E2FD48] font-bold text-sm tracking-widest uppercase whitespace-nowrap">Voir le catalogue →</span>
+                <p className="text-[#0E2A33]/60 text-sm leading-relaxed">Tôles aluminium en formats standards et sur-mesure. Gamme complète de teintes RAL. Expertise PLIALU associée à la qualité Infinimetal.</p>
               </div>
 
               <div className="text-center">
-                <button onClick={() => setCurrentPage('solutions-temporaire')} className="bg-[#E2FD48] text-[#0E2A33] font-bold px-8 py-3 rounded-full hover:bg-[#E2FD48]/90 transition-all">
-                  Découvrir le catalogue complet
+                <button onClick={() => setCurrentPage('solutions-temporaire')} className="px-10 py-4 md:px-12 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all shadow-xl hover:shadow-[#E2FD48]/20 hover:-translate-y-1">
+                  Découvrir toutes nos solutions
                 </button>
               </div>
 
