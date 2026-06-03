@@ -1273,9 +1273,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   aria-label="Projet précédent"
                   onClick={() => navigateCarousel(-1)}
                   disabled={carouselIndex === 0}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-14 h-14 md:w-16 md:h-16 bg-[#E2FD48] text-[#0E2A33] border-2 border-[#0E2A33] rounded-full hover:scale-110 active:scale-95 transition-transform duration-200 disabled:opacity-30 disabled:pointer-events-none shadow-lg"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 bg-[#E2FD48]/70 text-[#0E2A33] border-2 border-[#0E2A33] rounded-full opacity-60 hover:opacity-100 hover:scale-110 active:scale-95 transition-all duration-200 disabled:opacity-30 disabled:pointer-events-none shadow-md"
                 >
-                  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256" fill="currentColor">
+                  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor">
                     <path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"/>
                   </svg>
                 </button>
@@ -1284,9 +1284,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   aria-label="Projet suivant"
                   onClick={() => navigateCarousel(1)}
                   disabled={carouselIndex >= carouselTotal - 1}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-14 h-14 md:w-16 md:h-16 bg-[#E2FD48] text-[#0E2A33] border-2 border-[#0E2A33] rounded-full hover:scale-110 active:scale-95 transition-transform duration-200 disabled:opacity-30 disabled:pointer-events-none shadow-lg"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 bg-[#E2FD48]/70 text-[#0E2A33] border-2 border-[#0E2A33] rounded-full opacity-60 hover:opacity-100 hover:scale-110 active:scale-95 transition-all duration-200 disabled:opacity-30 disabled:pointer-events-none shadow-md"
                 >
-                  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256" fill="currentColor">
+                  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor">
                     <path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"/>
                   </svg>
                 </button>
