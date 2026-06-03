@@ -2003,7 +2003,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 {/* Grille 6 domaines */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {/* 1. Enduit mince */}
-                  <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-[#0E2A33]/50 to-[#0E2A33]/20 border border-[#0E2A33]/50 p-8 hover:border-[#0E2A33]/80 hover:from-[#0E2A33]/70 transition-all duration-300">
+                  <div className="group relative overflow-hidden rounded-xl bg-white/5 bg-gradient-to-br from-[#0E2A33]/50 to-[#0E2A33]/20 border border-[#0E2A33]/50 p-8 hover:shadow-md hover:border-[#E2FD48]/50 hover:from-[#0E2A33]/70 transition-all duration-300">
                     <div className="absolute -right-20 -top-20 w-40 h-40 bg-[#0E2A33]/20 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
                     <div className="flex items-center gap-2 mb-4 relative z-10">
                       <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 text-[#E2FD48]">
@@ -2019,7 +2019,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </div>
 
                   {/* 2. Étanchéité */}
-                  <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-[#0E2A33]/50 to-[#0E2A33]/20 border border-[#0E2A33]/50 p-8 hover:border-[#0E2A33]/80 hover:from-[#0E2A33]/70 transition-all duration-300">
+                  <div className="group relative overflow-hidden rounded-xl bg-white/5 bg-gradient-to-br from-[#0E2A33]/50 to-[#0E2A33]/20 border border-[#0E2A33]/50 p-8 hover:shadow-md hover:border-[#E2FD48]/50 hover:from-[#0E2A33]/70 transition-all duration-300">
                     <div className="absolute -right-20 -top-20 w-40 h-40 bg-[#0E2A33]/20 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
                     <div className="flex items-center gap-2 mb-4 relative z-10">
                       <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="w-6 h-6 text-[#E2FD48]">
@@ -2035,7 +2035,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </div>
 
                   {/* 3. Bardages */}
-                  <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-[#0E2A33]/50 to-[#0E2A33]/20 border border-[#0E2A33]/50 p-8 hover:border-[#0E2A33]/80 hover:from-[#0E2A33]/70 transition-all duration-300">
+                  <div className="group relative overflow-hidden rounded-xl bg-white/5 bg-gradient-to-br from-[#0E2A33]/50 to-[#0E2A33]/20 border border-[#0E2A33]/50 p-8 hover:shadow-md hover:border-[#E2FD48]/50 hover:from-[#0E2A33]/70 transition-all duration-300">
                     <div className="absolute -right-20 -top-20 w-40 h-40 bg-[#0E2A33]/20 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
                     <div className="flex items-center gap-2 mb-4 relative z-10">
                       <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="w-6 h-6 text-[#E2FD48]">
@@ -2051,7 +2051,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </div>
 
                   {/* 4. Ravalement */}
-                  <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-[#0E2A33]/50 to-[#0E2A33]/20 border border-[#0E2A33]/50 p-8 hover:border-[#0E2A33]/80 hover:from-[#0E2A33]/70 transition-all duration-300">
+                  <div className="group relative overflow-hidden rounded-xl bg-white/5 bg-gradient-to-br from-[#0E2A33]/50 to-[#0E2A33]/20 border border-[#0E2A33]/50 p-8 hover:shadow-md hover:border-[#E2FD48]/50 hover:from-[#0E2A33]/70 transition-all duration-300">
                     <div className="absolute -right-20 -top-20 w-40 h-40 bg-[#0E2A33]/20 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
                     <div className="flex items-center gap-2 mb-4 relative z-10">
                       <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="w-6 h-6 text-[#E2FD48]">
@@ -2067,7 +2067,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </div>
 
                   {/* 5. Précadres */}
-                  <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-[#0E2A33]/50 to-[#0E2A33]/20 border border-[#0E2A33]/50 p-8 hover:border-[#0E2A33]/80 hover:from-[#0E2A33]/70 transition-all duration-300">
+                  <div className="group relative overflow-hidden rounded-xl bg-white/5 bg-gradient-to-br from-[#0E2A33]/50 to-[#0E2A33]/20 border border-[#0E2A33]/50 p-8 hover:shadow-md hover:border-[#E2FD48]/50 hover:from-[#0E2A33]/70 transition-all duration-300">
                     <div className="absolute -right-20 -top-20 w-40 h-40 bg-[#0E2A33]/20 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
                     <div className="flex items-center gap-2 mb-4 relative z-10">
                       <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="w-6 h-6 text-[#E2FD48]">
@@ -2083,7 +2083,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </div>
 
                   {/* 6. MOB & FOB */}
-                  <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-[#0E2A33]/50 to-[#0E2A33]/20 border border-[#0E2A33]/50 p-8 hover:border-[#0E2A33]/80 hover:from-[#0E2A33]/70 transition-all duration-300">
+                  <div className="group relative overflow-hidden rounded-xl bg-white/5 bg-gradient-to-br from-[#0E2A33]/50 to-[#0E2A33]/20 border border-[#0E2A33]/50 p-8 hover:shadow-md hover:border-[#E2FD48]/50 hover:from-[#0E2A33]/70 transition-all duration-300">
                     <div className="absolute -right-20 -top-20 w-40 h-40 bg-[#0E2A33]/20 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
                     <div className="flex items-center gap-2 mb-4 relative z-10">
                       <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="text-[#E2FD48]">
@@ -2106,7 +2106,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           {/* Tôles prélaquées — Infinimetal */}
           <section className="py-12 md:py-16 bg-[#0a1f26] border-y border-white/5">
             <div className="max-w-7xl mx-auto px-6">
-              <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#E2FD48]/10 via-transparent to-transparent border border-[#E2FD48]/40 p-12 hover:border-[#E2FD48]/70 transition-all duration-300 group">
+              <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#E2FD48]/10 via-transparent to-transparent border border-[#E2FD48]/40 p-12 hover:shadow-md hover:border-[#E2FD48]/50 transition-all duration-300 group">
                 <div className="absolute -left-32 -top-32 w-64 h-64 bg-[#E2FD48]/5 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
                 <div className="relative z-10 flex items-center justify-between">
                   <div className="max-w-2xl">
