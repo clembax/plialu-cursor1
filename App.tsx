@@ -2109,13 +2109,13 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       Tôles prélaquées
                     </h3>
                   </div>
-                  <p className="text-white/70 text-sm leading-relaxed relative z-10 max-w-3xl pr-14">
+                  <p className="text-white/70 text-sm leading-relaxed relative z-10 max-w-3xl pr-44">
                     Tôles aluminium en formats standards et sur-mesure. Gamme complète de teintes RAL.
                   </p>
                   <img
                     src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773322881/INFINI_Noir_ompn2i.png"
                     alt="Logo Infinimetal"
-                    className="absolute bottom-4 right-4 w-10 h-10 object-contain opacity-50 brightness-0 invert pointer-events-none"
+                    className="absolute right-6 top-1/2 -translate-y-1/2 w-36 h-36 object-contain opacity-50 brightness-0 invert pointer-events-none"
                   />
                 </div>
 
