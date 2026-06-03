@@ -1978,7 +1978,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 <span className="inline-block text-xs md:text-sm font-bold uppercase tracking-widest text-[#0E2A33] mb-4">
                   CATALOGUE B2B
                 </span>
-                <h1 className="text-4xl md:text-6xl tracking-tighter leading-[1.1] font-black uppercase text-[#0E2A33]">
+                <h1 className="text-4xl md:text-6xl tracking-tighter leading-[1.1] font-black uppercase text-[#0E2A33] mb-6 md:mb-8">
                   Solutions métalliques enveloppe du bâtiment
                 </h1>
                 <p className="text-base md:text-lg text-[#0E2A33]/80 leading-relaxed mb-8">
@@ -2123,11 +2123,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     </p>
                   </div>
                   <div className="flex-shrink-0">
-                    <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-full border border-[#E2FD48]/30 shadow-lg">
+                    <div className="flex items-center gap-2 px-4 py-2 bg-[#0E2A33] rounded-full border border-white/10 shadow-lg">
                       <img
                         src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773322881/INFINI_Noir_ompn2i.png"
                         alt="Logo Infinimetal"
-                        className="h-6 w-auto object-contain"
+                        className="h-6 w-auto object-contain brightness-0 invert"
                       />
                     </div>
                   </div>
