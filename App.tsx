@@ -204,6 +204,25 @@ const App: React.FC = () => {
   const isDownRef = useRef(false);
   const startXRef = useRef(0);
   const scrollLeftRef = useRef(0);
+  const [carouselIndex, setCarouselIndex] = useState(0);
+  const [carouselTotal, setCarouselTotal] = useState(0);
+  const carouselIndexRef = useRef(0);
+  const wheelLockRef = useRef(false);
+  const scrollSyncTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const scrollToProject = (index: number) => {
+    const el = scrollRef.current;
+    if (!el || el.children.length === 0) return;
+    const clamped = Math.max(0, Math.min(index, el.children.length - 1));
+    const card = el.children[clamped] as HTMLElement;
+    card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    carouselIndexRef.current = clamped;
+    setCarouselIndex(clamped);
+  };
+
+  const navigateCarousel = (direction: 1 | -1) => {
+    scrollToProject(carouselIndexRef.current + direction);
+  };
 
   // Header Theme: 'dark' = light header bar (dark logo/menu) for contrast on light backgrounds (Expertises, Solutions, Ressources, Contact, Articles, Merci)
   const headerTheme =
@@ -273,8 +292,55 @@ const App: React.FC = () => {
   }, [activeImage]);
 
   useEffect(() => {
+    if (currentPage !== 'projects') return;
+
+    carouselIndexRef.current = 0;
+    setCarouselIndex(0);
     const el = scrollRef.current;
-    if (!el) return;
+    if (el) {
+      el.scrollLeft = 0;
+      setCarouselTotal(el.children.length);
+    }
+  }, [currentPage]);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el || currentPage !== 'projects') return;
+
+    setCarouselTotal(el.children.length);
+
+    const syncCarouselIndex = () => {
+      const center = el.scrollLeft + el.clientWidth / 2;
+      let closest = 0;
+      let minDist = Infinity;
+      Array.from(el.children).forEach((child, i) => {
+        const card = child as HTMLElement;
+        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+        const dist = Math.abs(center - cardCenter);
+        if (dist < minDist) {
+          minDist = dist;
+          closest = i;
+        }
+      });
+      carouselIndexRef.current = closest;
+      setCarouselIndex(closest);
+    };
+
+    const handleScroll = () => {
+      if (scrollSyncTimerRef.current) clearTimeout(scrollSyncTimerRef.current);
+      scrollSyncTimerRef.current = setTimeout(syncCarouselIndex, 80);
+    };
+
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      if (wheelLockRef.current) return;
+      const delta = Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+      if (Math.abs(delta) < 15) return;
+      wheelLockRef.current = true;
+      if (delta > 0) scrollToProject(carouselIndexRef.current + 1);
+      else scrollToProject(carouselIndexRef.current - 1);
+      setTimeout(() => { wheelLockRef.current = false; }, 650);
+    };
 
     const handleMouseDown = (e: MouseEvent) => {
       isDownRef.current = true;
@@ -298,12 +364,17 @@ const App: React.FC = () => {
     el.addEventListener('mousemove', handleMouseMove);
     el.addEventListener('mouseup', stopDragging);
     el.addEventListener('mouseleave', stopDragging);
+    el.addEventListener('wheel', handleWheel, { passive: false });
+    el.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
       el.removeEventListener('mousedown', handleMouseDown);
       el.removeEventListener('mousemove', handleMouseMove);
       el.removeEventListener('mouseup', stopDragging);
       el.removeEventListener('mouseleave', stopDragging);
+      el.removeEventListener('wheel', handleWheel);
+      el.removeEventListener('scroll', handleScroll);
+      if (scrollSyncTimerRef.current) clearTimeout(scrollSyncTimerRef.current);
     };
   }, [currentPage]);
 
@@ -1210,10 +1281,32 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   Faire défiler
                 </div>
               </div>
-              <div className="max-w-7xl mx-auto w-full">
+              <div className="relative w-full">
+                <button
+                  type="button"
+                  aria-label="Projet précédent"
+                  onClick={() => navigateCarousel(-1)}
+                  disabled={carouselIndex === 0}
+                  className="absolute left-0 top-1/2 -translate-y-1/2 z-20 p-3 md:px-4 md:py-5 text-[#0E2A33]/40 hover:text-[#0E2A33] hover:scale-110 active:scale-95 transition-all duration-200 disabled:opacity-20 disabled:pointer-events-none"
+                >
+                  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 256 256" fill="currentColor">
+                    <path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"/>
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  aria-label="Projet suivant"
+                  onClick={() => navigateCarousel(1)}
+                  className="absolute right-0 top-1/2 -translate-y-1/2 z-20 p-3 md:px-4 md:py-5 text-[#0E2A33]/40 hover:text-[#0E2A33] hover:scale-110 active:scale-95 transition-all duration-200 disabled:opacity-20 disabled:pointer-events-none"
+                  disabled={carouselIndex >= carouselTotal - 1}
+                >
+                  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 256 256" fill="currentColor">
+                    <path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"/>
+                  </svg>
+                </button>
                 <div
                   ref={scrollRef}
-                  className="flex overflow-x-auto gap-6 px-6 pb-12 snap-x snap-mandatory no-scrollbar w-full cursor-grab active:cursor-grabbing"
+                  className="flex overflow-x-auto gap-6 px-6 pb-12 snap-x snap-mandatory scroll-smooth no-scrollbar w-full cursor-grab active:cursor-grabbing"
                 >
                 {[
                   {
