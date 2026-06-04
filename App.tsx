@@ -1173,7 +1173,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
           <section className="bg-white py-20 px-6">
             <div className="max-w-2xl mx-auto text-center">
-              <p className="text-[10px] font-extrabold tracking-[0.3em] uppercase text-[#E2FD48] mb-4">NOS ÉQUIPES</p>
+              <p className="text-[10px] font-extrabold tracking-[0.3em] uppercase text-[#0E2A33]/40 mb-4">NOS ÉQUIPES</p>
               <h2 className="text-3xl md:text-4xl font-black text-[#0E2A33] mb-6">Des techniciens impliqués, du début à la fin.</h2>
               <p className="text-gray-700 text-lg leading-relaxed">
                 Techniciens, opérateurs, logisticiens. Nos équipes connaissent leur métier et s'impliquent dans chaque commande. Pas d'intermédiaire, pas de turn-over : les mêmes personnes suivent votre projet de la réception du plan à la livraison sur chantier.
