@@ -1189,18 +1189,20 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             style={{ background: 'linear-gradient(to bottom, #071318 0%, #0b1e26 100%)' }}
           >
             <div className="max-w-4xl mx-auto px-6 text-left">
-              <p className="text-[10px] font-extrabold tracking-[0.3em] uppercase text-[#E2FD48] mb-4 block">
-                THERMOLAQUAGE
-              </p>
-              <div className="flex items-center gap-8">
-                <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">
-                  Nos lignes de thermolaquage
-                </h2>
+              <div className="relative">
+                <div className="flex flex-col items-start space-y-5 pr-72">
+                  <p className="text-[10px] font-extrabold tracking-[0.3em] uppercase text-[#E2FD48] mb-4 block">
+                    THERMOLAQUAGE
+                  </p>
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">
+                    Nos lignes de thermolaquage
+                  </h2>
+                </div>
                 <button
                   type="button"
                   onClick={scrollToInfinimetal}
                   aria-label="Infinimetal — thermolaquage certifié Qualicoat"
-                  className="shrink-0 cursor-pointer border-0 bg-transparent p-0 outline-none ring-0 focus:outline-none focus:ring-0 transition-transform hover:scale-105"
+                  className="absolute top-0 right-0 shrink-0 cursor-pointer border-0 bg-transparent p-0 outline-none ring-0 focus:outline-none focus:ring-0 transition-transform hover:scale-105"
                 >
                   <img
                     src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1780589052/infini_blanc_zvlnn3.png"
