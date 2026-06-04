@@ -1173,8 +1173,10 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
           <section className="bg-white py-20 px-6">
             <div className="max-w-2xl mx-auto text-center">
-              <p className="text-[10px] font-extrabold tracking-[0.3em] uppercase text-[#0E2A33]/40 mb-4">NOS ÉQUIPES</p>
-              <h2 className="text-3xl md:text-4xl font-black text-[#0E2A33] mb-6">Des techniciens impliqués, du début à la fin.</h2>
+              <div className="flex flex-col items-center space-y-5 mb-6">
+                <p className="text-[10px] font-extrabold tracking-[0.3em] uppercase text-[#0E2A33]/40 mb-4 block">NOS ÉQUIPES</p>
+                <h2 className="text-3xl md:text-4xl font-black text-[#0E2A33]">Des techniciens impliqués, du début à la fin.</h2>
+              </div>
               <p className="text-gray-700 text-lg leading-relaxed">
                 Techniciens, opérateurs, logisticiens. Nos équipes connaissent leur métier et s'impliquent dans chaque commande. Pas d'intermédiaire, pas de turn-over : les mêmes personnes suivent votre projet de la réception du plan à la livraison sur chantier.
               </p>
@@ -1187,27 +1189,29 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             style={{ background: 'linear-gradient(to bottom, #071318 0%, #0b1e26 100%)' }}
           >
             <div className="max-w-4xl mx-auto">
-              <p className="text-[10px] font-extrabold tracking-[0.3em] uppercase text-[#E2FD48] mb-6">
-                THERMOLAQUAGE
-              </p>
               <div className="flex items-center justify-between gap-8">
-                <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white text-left">
-                  Nos lignes de thermolaquage
-                </h2>
+                <div className="flex flex-col items-start space-y-5">
+                  <p className="text-[10px] font-extrabold tracking-[0.3em] uppercase text-[#E2FD48] mb-4 block">
+                    THERMOLAQUAGE
+                  </p>
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white text-left">
+                    Nos lignes de thermolaquage
+                  </h2>
+                </div>
                 <button
                   type="button"
                   onClick={scrollToInfinimetal}
                   aria-label="Infinimetal — thermolaquage certifié Qualicoat"
-                  className="shrink-0 cursor-pointer transition-transform hover:scale-105"
+                  className="shrink-0 cursor-pointer border-0 bg-transparent p-0 outline-none ring-0 focus:outline-none focus:ring-0 transition-transform hover:scale-105"
                 >
                   <img
                     src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773322881/INFINI_Noir_ompn2i.png"
                     alt="Logo Infinimetal"
-                    className="w-56 h-56 object-contain brightness-0 invert"
+                    className="w-56 h-56 object-contain brightness-0 invert border-0 outline-none"
                   />
                 </button>
               </div>
-              <div className="mt-8 space-y-4 w-full">
+              <div className="mt-6 space-y-4 w-full">
                 <p className="text-white/70 text-base md:text-lg leading-relaxed">
                   Infinimetal est notre marque déposée spécialisée en thermolaquage certifié Qualicoat. Infinimetal dispose de deux lignes de thermolaquage complémentaires : une ligne à plat pour le laquage de tôles, et une ligne verticale dédiée au laquage post-formage à la main.
                 </p>
