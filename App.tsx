@@ -1183,15 +1183,15 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
           <section
             id="infinimetal"
-            className="py-24 px-6 section--dark border-t border-white/20 scroll-mt-24 text-center"
+            className="py-24 px-6 section--dark border-t border-white/20 scroll-mt-24"
             style={{ background: 'linear-gradient(to bottom, #071318 0%, #0b1e26 100%)' }}
           >
             <div className="max-w-4xl mx-auto">
               <p className="text-[10px] font-extrabold tracking-[0.3em] uppercase text-[#E2FD48] mb-6">
                 THERMOLAQUAGE
               </p>
-              <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 my-8">
-                <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">
+              <div className="flex items-center justify-between gap-8">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white text-left">
                   Nos lignes de thermolaquage
                 </h2>
                 <button
@@ -1203,17 +1203,22 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   <img
                     src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773322881/INFINI_Noir_ompn2i.png"
                     alt="Logo Infinimetal"
-                    className="w-40 h-40 md:w-48 md:h-48 object-contain brightness-0 invert"
+                    className="w-56 h-56 object-contain brightness-0 invert"
                   />
                 </button>
               </div>
-              <p className="text-white/70 text-base md:text-lg leading-relaxed my-8">
-                Infinimetal est notre marque déposée spécialisée en thermolaquage certifié Qualicoat. Infinimetal dispose de deux lignes de thermolaquage complémentaires : une ligne à plat pour le laquage de tôles, et une ligne verticale dédiée au laquage post-formage à la main. Cette approche bipolaire nous permet de répondre à tous les besoins de laquage des façadiers et professionnels du bâtiment, que les pièces soient brutes ou déjà façonnées. Chez Infinimetal, Qualicoat n'est pas une simple certification, c'est un standard. Une qualité de laquage maîtrisée, garantie, non-négociable.
-              </p>
+              <div className="mt-8 space-y-4 w-full">
+                <p className="text-white/70 text-base md:text-lg leading-relaxed">
+                  Infinimetal est notre marque déposée spécialisée en thermolaquage certifié Qualicoat. Infinimetal dispose de deux lignes de thermolaquage complémentaires : une ligne à plat pour le laquage de tôles, et une ligne verticale dédiée au laquage post-formage à la main.
+                </p>
+                <p className="text-white/70 text-base md:text-lg leading-relaxed">
+                  Cette approche bipolaire nous permet de répondre à tous les besoins de laquage des façadiers et professionnels du bâtiment, que les pièces soient brutes ou déjà façonnées. Chez Infinimetal, Qualicoat n'est pas une simple certification, c'est un standard. Une qualité de laquage maîtrisée, garantie, non-négociable.
+                </p>
+              </div>
               <button
                 type="button"
                 onClick={() => setCurrentPage('solutions-temporaire')}
-                className="mx-auto mt-8 inline-flex items-center justify-center gap-3 px-10 py-4 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all tracking-tight shadow-[0_15px_30px_rgba(226,253,72,0.2)] hover:shadow-[#E2FD48]/40 hover:-translate-y-1"
+                className="mt-12 inline-flex items-center justify-center gap-3 px-10 py-4 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all tracking-tight shadow-[0_15px_30px_rgba(226,253,72,0.2)] hover:shadow-[#E2FD48]/40 hover:-translate-y-1"
               >
                 Découvrir le Catalogue RAL
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12H19M19 12L13 6M19 12L13 18"/></svg>
