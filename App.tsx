@@ -1185,27 +1185,17 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
           <section
             id="infinimetal"
-            className="py-24 px-6 section--dark border-t border-white/20 scroll-mt-24"
+            className="py-32 md:py-40 section--dark border-t border-white/20 scroll-mt-24"
             style={{ background: 'linear-gradient(to bottom, #071318 0%, #0b1e26 100%)' }}
           >
-            <div className="max-w-4xl mx-auto">
-              <div className="flex flex-col items-start space-y-5">
-                <p className="text-[10px] font-extrabold tracking-[0.3em] uppercase text-[#E2FD48] mb-4 block">
-                  THERMOLAQUAGE
-                </p>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white text-left">
+            <div className="max-w-4xl mx-auto px-6 text-left">
+              <p className="text-[10px] font-extrabold tracking-[0.3em] uppercase text-[#E2FD48] mb-4 block">
+                THERMOLAQUAGE
+              </p>
+              <div className="flex items-center gap-8">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">
                   Nos lignes de thermolaquage
                 </h2>
-              </div>
-              <div className="mt-6 space-y-4 w-full text-left">
-                <p className="text-white/70 text-base md:text-lg leading-relaxed">
-                  Infinimetal est notre marque déposée spécialisée en thermolaquage certifié Qualicoat. Infinimetal dispose de deux lignes de thermolaquage complémentaires : une ligne à plat pour le laquage de tôles, et une ligne verticale dédiée au laquage post-formage à la main.
-                </p>
-                <p className="text-white/70 text-base md:text-lg leading-relaxed">
-                  Cette approche bipolaire nous permet de répondre à tous les besoins de laquage des façadiers et professionnels du bâtiment, que les pièces soient brutes ou déjà façonnées. Chez Infinimetal, Qualicoat n'est pas une simple certification, c'est un standard. Une qualité de laquage maîtrisée, garantie, non-négociable.
-                </p>
-              </div>
-              <div className="mt-12 flex justify-end mb-8">
                 <button
                   type="button"
                   onClick={scrollToInfinimetal}
@@ -1213,22 +1203,28 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   className="shrink-0 cursor-pointer border-0 bg-transparent p-0 outline-none ring-0 focus:outline-none focus:ring-0 transition-transform hover:scale-105"
                 >
                   <img
-                    src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773322881/INFINI_Noir_ompn2i.png"
+                    src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1780589052/infini_blanc_zvlnn3.png"
                     alt="Logo Infinimetal"
-                    className="w-48 h-48 object-contain brightness-0 invert border-0 outline-none"
+                    className="w-64 h-64 object-contain"
                   />
                 </button>
               </div>
-              <div className="flex justify-center">
-                <button
-                  type="button"
-                  onClick={() => setCurrentPage('solutions-temporaire')}
-                  className="inline-flex items-center justify-center gap-3 px-10 py-4 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all tracking-tight shadow-[0_15px_30px_rgba(226,253,72,0.2)] hover:shadow-[#E2FD48]/40 hover:-translate-y-1"
-                >
-                  Découvrir le Catalogue RAL
-                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12H19M19 12L13 6M19 12L13 18"/></svg>
-                </button>
+              <div className="mt-8 space-y-6 w-full">
+                <p className="text-white/70 text-base md:text-lg leading-relaxed">
+                  Infinimetal est notre marque déposée spécialisée en thermolaquage certifié Qualicoat. Infinimetal dispose de deux lignes de thermolaquage complémentaires : une ligne à plat pour le laquage de tôles, et une ligne verticale dédiée au laquage post-formage à la main.
+                </p>
+                <p className="text-white/70 text-base md:text-lg leading-relaxed">
+                  Cette approche bipolaire nous permet de répondre à tous les besoins de laquage des façadiers et professionnels du bâtiment, que les pièces soient brutes ou déjà façonnées. Chez Infinimetal, Qualicoat n'est pas une simple certification, c'est un standard. Une qualité de laquage maîtrisée, garantie, non-négociable.
+                </p>
               </div>
+              <button
+                type="button"
+                onClick={() => setCurrentPage('solutions-temporaire')}
+                className="mt-12 inline-flex items-center justify-center gap-3 px-10 py-4 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all tracking-tight shadow-[0_15px_30px_rgba(226,253,72,0.2)] hover:shadow-[#E2FD48]/40 hover:-translate-y-1"
+              >
+                Découvrir le Catalogue RAL
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12H19M19 12L13 6M19 12L13 18"/></svg>
+              </button>
             </div>
           </section>
 
