@@ -223,6 +223,20 @@ const App: React.FC = () => {
     scrollToProject(carouselIndexRef.current + direction);
   };
 
+  const scrollToInfinimetal = (e?: React.MouseEvent) => {
+    e?.preventDefault();
+    if (currentPage === 'a-propos') {
+      document.getElementById('infinimetal')?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      setCurrentPage('a-propos');
+      setTimeout(() => {
+        document.getElementById('infinimetal')?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  };
+
+  const infinimetalLinkClass = 'cursor-pointer text-[#E2FD48] hover:underline transition-colors';
+
   // Header Theme: 'dark' = light header bar (dark logo/menu) for contrast on light backgrounds (Expertises, Solutions, Ressources, Contact, Articles, Merci)
   const headerTheme =
     currentPage === 'expertises' ||
@@ -1162,6 +1176,33 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               <p className="text-white/60 text-lg leading-relaxed">
                 Techniciens, opérateurs, logisticiens. Nos équipes connaissent leur métier et s'impliquent dans chaque commande. Pas d'intermédiaire, pas de turn-over : les mêmes personnes suivent votre projet de la réception du plan à la livraison sur chantier.
               </p>
+            </div>
+          </section>
+
+          <section id="infinimetal" className="py-24 px-6 bg-[#0E2A33] border-t border-white/20 scroll-mt-24">
+            <div className="max-w-7xl mx-auto">
+              <p className="text-[10px] font-extrabold tracking-[0.3em] uppercase text-[#E2FD48] mb-6">THERMOLAQUAGE</p>
+              <div className="flex items-center gap-4 md:gap-6 mb-8">
+                <img
+                  src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773322881/INFINI_Noir_ompn2i.png"
+                  alt="Logo Infinimetal"
+                  className="w-24 h-24 md:w-32 md:h-32 object-contain shrink-0 brightness-0 invert"
+                />
+                <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">
+                  Infinimetal
+                </h2>
+              </div>
+              <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-3xl mb-10">
+                Infinimetal est notre marque déposée spécialisée en thermolaquage certifié Qualicoat. Infinimetal dispose de deux lignes de thermolaquage complémentaires : une ligne à plat pour le laquage de tôles, et une ligne verticale dédiée au laquage post-formage à la main. Cette approche bipolaire nous permet de répondre à tous les besoins de laquage des façadiers et professionnels du bâtiment, que les pièces soient brutes ou déjà façonnées. Chez Infinimetal, Qualicoat n'est pas une simple certification, c'est un standard. Une qualité de laquage maîtrisée, garantie, non-négociable.
+              </p>
+              <button
+                type="button"
+                onClick={() => setCurrentPage('solutions-temporaire')}
+                className="inline-flex items-center justify-center gap-3 px-10 py-4 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all tracking-tight shadow-[0_15px_30px_rgba(226,253,72,0.2)] hover:shadow-[#E2FD48]/40 hover:-translate-y-1"
+              >
+                Découvrir le Catalogue RAL
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12H19M19 12L13 6M19 12L13 18"/></svg>
+              </button>
             </div>
           </section>
 
@@ -2179,7 +2220,18 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 </div>
 
                 {/* Tôles prélaquées — fullwidth */}
-                <div className="relative overflow-hidden rounded-xl bg-white/10 border border-[#E2FD48]/30 p-6 w-full hover:shadow-md hover:border-[#E2FD48]/50 transition-all duration-300">
+                <div
+                  role="button"
+                  tabIndex={0}
+                  onClick={scrollToInfinimetal}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      scrollToInfinimetal();
+                    }
+                  }}
+                  className="relative overflow-hidden rounded-xl bg-white/10 border border-[#E2FD48]/30 p-6 w-full hover:shadow-md hover:border-[#E2FD48]/50 transition-all duration-300 cursor-pointer"
+                >
                   <div className="flex items-center gap-2 mb-3 relative z-10">
                     <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="w-6 h-6 text-[#E2FD48] shrink-0">
                       <path d="M235.32,73.37,182.63,20.69a16,16,0,0,0-22.63,0L20.68,160a16,16,0,0,0,0,22.63l52.69,52.68a16,16,0,0,0,22.63,0L235.32,96A16,16,0,0,0,235.32,73.37ZM84.68,224,32,171.31l32-32,26.34,26.35a8,8,0,0,0,11.32-11.32L75.31,128,96,107.31l26.34,26.35a8,8,0,0,0,11.32-11.32L107.31,96,128,75.31l26.34,26.35a8,8,0,0,0,11.32-11.32L139.31,64l32-32L224,84.69Z" />
@@ -2189,7 +2241,15 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     </h3>
                   </div>
                   <p className="text-white/70 text-sm leading-relaxed relative z-10 max-w-3xl pr-44">
-                    Tôles aluminium en formats standards et sur-mesure. Gamme complète de teintes RAL.
+                    Tôles aluminium en formats standards et sur-mesure. Gamme complète de teintes RAL. Expertise PLIALU associée à la qualité{' '}
+                    <button
+                      type="button"
+                      onClick={(e) => { e.stopPropagation(); scrollToInfinimetal(e); }}
+                      className={infinimetalLinkClass}
+                    >
+                      Infinimetal
+                    </button>
+                    .
                   </p>
                   <img
                     src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773322881/INFINI_Noir_ompn2i.png"
@@ -2421,13 +2481,18 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                               <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
                                 Thermolaquage
                               </h2>
-                              <div className="flex items-center gap-3 px-5 py-2 bg-gray-50 rounded-full border border-gray-200 shadow-sm mt-1">
+                              <button
+                                type="button"
+                                onClick={scrollToInfinimetal}
+                                aria-label="En savoir plus sur Infinimetal"
+                                className="flex items-center gap-3 px-5 py-2 bg-gray-50 rounded-full border border-gray-200 shadow-sm mt-1 cursor-pointer hover:border-[#E2FD48]/50 transition-colors"
+                              >
                                 <img
                                   src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773322881/INFINI_Noir_ompn2i.png"
                                   alt="Logo Infinimetal"
                                   className="h-7 w-auto object-contain opacity-80"
                                 />
-                              </div>
+                              </button>
                             </div>
                           ) : (
                             <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
@@ -2448,7 +2513,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                         ) : exp.id === 'thermolaquage-plat' ? (
                           <>
                             <p className="text-base md:text-lg leading-relaxed font-medium text-[#0E2A33]/70">
-                              Deux lignes de production certifiées Qualicoat pour une flexibilité dans le choix de la gamme de production, nous travaillons à partir de feuilles d'aluminium prélaquées ou bien nous laquons après façonnage
+                              Deux lignes de production certifiées Qualicoat via notre marque{' '}
+                              <button type="button" onClick={scrollToInfinimetal} className={infinimetalLinkClass}>
+                                Infinimetal
+                              </button>
+                              {' '}pour une flexibilité dans le choix de la gamme de production : nous travaillons à partir de feuilles d'aluminium prélaquées ou bien nous laquons après façonnage.
                             </p>
                           </>
                         ) : exp.id === 'pliage-automatise' ? (
