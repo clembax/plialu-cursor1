@@ -1202,7 +1202,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   type="button"
                   onClick={scrollToInfinimetal}
                   aria-label="Infinimetal — thermolaquage certifié Qualicoat"
-                  className="absolute top-0 right-0 shrink-0 cursor-pointer border-0 bg-transparent p-0 outline-none ring-0 focus:outline-none focus:ring-0 transition-transform hover:scale-105"
+                  className="absolute top-0 right-0 -mt-4 shrink-0 cursor-pointer border-0 bg-transparent p-0 outline-none ring-0 focus:outline-none focus:ring-0 transition-transform hover:scale-105"
                 >
                   <img
                     src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1780589052/infini_blanc_zvlnn3.png"
