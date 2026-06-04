@@ -1146,17 +1146,20 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             </div>
           </section>
 
-          <section className="py-24 md:py-32 bg-[#0E2A33]">
+          <section
+            className="py-24 md:py-32 section--dark"
+            style={{ background: 'linear-gradient(to bottom, #071318 0%, #0b1e26 100%)' }}
+          >
             <div className="max-w-7xl mx-auto px-6">
               <h3 className="text-[10px] font-extrabold tracking-[0.3em] uppercase text-[#E2FD48] mb-8">CE QUE VOUS Y GAGNEZ</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {[
                   { expert: 'Délais maîtrisés', desc: 'Engagements tenus, même sur les séries courtes.', icon: <svg className="w-8 h-8 text-[#E2FD48]" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256"><path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Zm-96-88v64a8,8,0,0,1-16,0V132.94l-4.42,2.22a8,8,0,0,1-7.16-14.32l16-8A8,8,0,0,1,112,120Zm59.16,30.45L152,176h16a8,8,0,0,1,0,16H136a8,8,0,0,1-6.4-12.8l28.78-38.37A8,8,0,1,0,145.07,132a8,8,0,1,1-13.85-8A24,24,0,0,1,176,136,23.76,23.76,0,0,1,171.16,150.45Z"></path></svg> },
                   { expert: 'Pièces sur mesure', desc: 'Chaque référence fabriquée selon vos plans et tolérances.', icon: <svg className="w-8 h-8 text-[#E2FD48]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg> },
                   { expert: 'Réactivité technique', desc: 'Un interlocuteur qui connaît votre dossier de bout en bout.', icon: <svg className="w-8 h-8 text-[#E2FD48]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8Z" strokeLinecap="round" strokeLinejoin="round"/></svg> },
                   { expert: 'Traçabilité totale', desc: 'Norme QUALICOAT, contrôle qualité à chaque étape de production.', icon: <svg className="w-8 h-8 text-[#E2FD48]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 15a7 7 0 1 0 0-14 7 7 0 0 0 0 14Z" strokeLinecap="round" strokeLinejoin="round"/><path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.11" strokeLinecap="round" strokeLinejoin="round"/></svg> }
                 ].map((item) => (
-                  <div key={item.expert} className="bg-transparent px-4 py-8 md:px-6 md:py-10 flex flex-col justify-between min-h-[220px]">
+                  <div key={item.expert} className="bg-transparent border border-white/10 rounded-lg p-6 md:p-8 flex flex-col justify-between min-h-[220px]">
                     <div className="mb-6">{item.icon}</div>
                     <div>
                       <span className="block text-white font-black text-xl tracking-tight mb-2">{item.expert}</span>
