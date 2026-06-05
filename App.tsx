@@ -2308,16 +2308,14 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 
-                    <div className="bg-[#F5F5F3] text-[#0E2A33] border border-[#0E2A33]/50 rounded-lg p-6 hover:shadow-lg hover:border-[#E2FD48]/50 transition-all flex flex-col justify-between h-full">
-                      <div>
-                        <div className="flex items-center gap-3 mb-4">
-                          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 text-[#0E2A33]">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
-                          </svg>
-                          <h3 className="text-xl font-bold">Fiches techniques</h3>
-                        </div>
-                        <p className="text-[#0E2A33]/60 text-sm">Découvrez nos fiches techniques détaillées pour chaque domaine de solution.</p>
+                    <div className="bg-[#F5F5F3] text-[#0E2A33] border border-[#0E2A33]/50 rounded-lg p-6 hover:shadow-lg hover:border-[#E2FD48]/50 transition-all">
+                      <div className="flex items-center gap-3 mb-4">
+                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 text-[#0E2A33]">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                        </svg>
+                        <h3 className="text-xl font-bold">Fiches techniques</h3>
                       </div>
+                      <p className="text-[#0E2A33]/60 text-sm mb-4">Découvrez nos fiches techniques détaillées pour chaque domaine de solution.</p>
                       <a href="/documents/Fiches_techniques.pdf" download="Fiches_techniques_PLIALU.pdf" className="inline-block bg-[#E2FD48] text-[#0E2A33] font-bold px-8 py-3 rounded-full text-sm hover:bg-[#E2FD48]/90 hover:shadow-lg hover:-translate-y-1 transition-all">
                         <span className="flex items-center gap-2">
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
@@ -2326,16 +2324,14 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       </a>
                     </div>
 
-                    <div className="bg-[#F5F5F3] text-[#0E2A33] border border-[#0E2A33]/50 rounded-lg p-6 hover:shadow-lg hover:border-[#E2FD48]/50 transition-all flex flex-col justify-between h-full">
-                      <div>
-                        <div className="flex items-center gap-3 mb-4">
-                          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="w-6 h-6 text-[#0E2A33]">
-                            <path d="M235.32,73.37,182.63,20.69a16,16,0,0,0-22.63,0L20.68,160a16,16,0,0,0,0,22.63l52.69,52.68a16,16,0,0,0,22.63,0L235.32,96A16,16,0,0,0,235.32,73.37ZM84.68,224,32,171.31l32-32,26.34,26.35a8,8,0,0,0,11.32-11.32L75.31,128,96,107.31l26.34,26.35a8,8,0,0,0,11.32-11.32L107.31,96,128,75.31l26.34,26.35a8,8,0,0,0,11.32-11.32L139.31,64l32-32L224,84.69Z" />
-                          </svg>
-                          <h3 className="text-xl font-bold">Déroulage</h3>
-                        </div>
-                        <p className="text-[#0E2A33]/60 text-sm">Consultez notre document déroulage pour optimiser vos formats et réduire vos chutes.</p>
+                    <div className="bg-[#F5F5F3] text-[#0E2A33] border border-[#0E2A33]/50 rounded-lg p-6 hover:shadow-lg hover:border-[#E2FD48]/50 transition-all">
+                      <div className="flex items-center gap-3 mb-4">
+                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="w-6 h-6 text-[#0E2A33]">
+                          <path d="M235.32,73.37,182.63,20.69a16,16,0,0,0-22.63,0L20.68,160a16,16,0,0,0,0,22.63l52.69,52.68a16,16,0,0,0,22.63,0L235.32,96A16,16,0,0,0,235.32,73.37ZM84.68,224,32,171.31l32-32,26.34,26.35a8,8,0,0,0,11.32-11.32L75.31,128,96,107.31l26.34,26.35a8,8,0,0,0,11.32-11.32L107.31,96,128,75.31l26.34,26.35a8,8,0,0,0,11.32-11.32L139.31,64l32-32L224,84.69Z" />
+                        </svg>
+                        <h3 className="text-xl font-bold">Déroulage</h3>
                       </div>
+                      <p className="text-[#0E2A33]/60 text-sm mb-4">Consultez notre document déroulage pour optimiser vos formats et réduire vos chutes.</p>
                       <a href="/documents/Deroulage.pdf" download="Deroulage_PLIALU.pdf" className="inline-block bg-[#E2FD48] text-[#0E2A33] font-bold px-8 py-3 rounded-full text-sm hover:bg-[#E2FD48]/90 hover:shadow-lg hover:-translate-y-1 transition-all">
                         <span className="flex items-center gap-2">
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
@@ -2344,16 +2340,14 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       </a>
                     </div>
 
-                    <div className="bg-[#F5F5F3] text-[#0E2A33] border border-[#0E2A33]/50 rounded-lg p-6 hover:shadow-lg hover:border-[#E2FD48]/50 transition-all flex flex-col justify-between h-full">
-                      <div>
-                        <div className="flex items-center gap-3 mb-4">
-                          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 text-[#0E2A33]">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M4.098 19.902a3.75 3.75 0 0 0 5.304 0l6.401-6.402M6.75 21A3.75 3.75 0 0 1 3 17.25V4.125C3 3.504 3.504 3 4.125 3h5.25c.621 0 1.125.504 1.125 1.125v4.072M6.75 21a3.75 3.75 0 0 0 3.75-3.75V8.197M6.75 21h13.125c.621 0 1.125-.504 1.125-1.125v-5.25c0-.621-.504-1.125-1.125-1.125h-4.072M10.5 8.197l2.88-2.88c.438-.439 1.15-.439 1.59 0l3.712 3.713c.44.44.44 1.152 0 1.59l-2.879 2.88M6.75 17.25h.008v.008H6.75v-.008Z" />
-                          </svg>
-                          <h3 className="text-xl font-bold">Catalogue RAL</h3>
-                        </div>
-                        <p className="text-[#0E2A33]/60 text-sm">Accédez à notre gamme complète de teintes RAL disponibles en finition brillante et mate.</p>
+                    <div className="bg-[#F5F5F3] text-[#0E2A33] border border-[#0E2A33]/50 rounded-lg p-6 hover:shadow-lg hover:border-[#E2FD48]/50 transition-all">
+                      <div className="flex items-center gap-3 mb-4">
+                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 text-[#0E2A33]">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M4.098 19.902a3.75 3.75 0 0 0 5.304 0l6.401-6.402M6.75 21A3.75 3.75 0 0 1 3 17.25V4.125C3 3.504 3.504 3 4.125 3h5.25c.621 0 1.125.504 1.125 1.125v4.072M6.75 21a3.75 3.75 0 0 0 3.75-3.75V8.197M6.75 21h13.125c.621 0 1.125-.504 1.125-1.125v-5.25c0-.621-.504-1.125-1.125-1.125h-4.072M10.5 8.197l2.88-2.88c.438-.439 1.15-.439 1.59 0l3.712 3.713c.44.44.44 1.152 0 1.59l-2.879 2.88M6.75 17.25h.008v.008H6.75v-.008Z" />
+                        </svg>
+                        <h3 className="text-xl font-bold">Catalogue RAL</h3>
                       </div>
+                      <p className="text-[#0E2A33]/60 text-sm mb-4">Accédez à notre gamme complète de teintes RAL disponibles en finition brillante et mate.</p>
                       <a href="/documents/Catalogue_RAL.pdf" download="Catalogue_RAL_PLIALU.pdf" className="inline-block bg-[#E2FD48] text-[#0E2A33] font-bold px-8 py-3 rounded-full text-sm hover:bg-[#E2FD48]/90 hover:shadow-lg hover:-translate-y-1 transition-all">
                         <span className="flex items-center gap-2">
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
@@ -2362,17 +2356,15 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       </a>
                     </div>
 
-                    <div className="bg-[#F5F5F3] text-[#0E2A33] border border-[#0E2A33]/50 rounded-lg p-6 hover:shadow-lg hover:border-[#E2FD48]/50 transition-all flex flex-col justify-between h-full">
-                      <div>
-                        <div className="flex items-center gap-3 mb-4">
-                          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 text-[#0E2A33]">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
-                          </svg>
-                          <h3 className="text-xl font-bold">Portfolio</h3>
-                        </div>
-                        <p className="text-[#0E2A33]/60 text-sm">Découvrez nos réalisations et chantiers emblématiques.</p>
+                    <div className="bg-[#F5F5F3] text-[#0E2A33] border border-[#0E2A33]/50 rounded-lg p-6 hover:shadow-lg hover:border-[#E2FD48]/50 transition-all flex flex-col h-full">
+                      <div className="flex items-center gap-3 mb-4">
+                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 text-[#0E2A33]">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                        </svg>
+                        <h3 className="text-xl font-bold">Portfolio</h3>
                       </div>
-                      <a href="/documents/Portfolio_Plialu.pdf" download target="_blank" rel="noopener noreferrer" className="inline-block bg-[#E2FD48] text-[#0E2A33] font-bold px-8 py-3 rounded-full text-sm hover:bg-[#E2FD48]/90 hover:shadow-lg hover:-translate-y-1 transition-all">
+                      <p className="text-[#0E2A33]/60 text-sm mb-4">Découvrez nos réalisations et chantiers emblématiques.</p>
+                      <a href="/documents/Portfolio_Plialu.pdf" download target="_blank" rel="noopener noreferrer" className="mt-auto inline-block bg-[#E2FD48] text-[#0E2A33] font-bold px-8 py-3 rounded-full text-sm hover:bg-[#E2FD48]/90 hover:shadow-lg hover:-translate-y-1 transition-all">
                         <span className="flex items-center gap-2">
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
                           Télécharger PDF
