@@ -2520,7 +2520,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                             </div>
                           ) : (
                             <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
-                              {exp.title}
+                              {exp.id === 'bureau-etudes' ? 'Bureau des méthodes' : exp.title}
                             </h2>
                           )}
                         </div>
