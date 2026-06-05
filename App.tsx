@@ -2538,7 +2538,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                           <>
                             <p className="text-base md:text-lg leading-relaxed font-medium text-[#0E2A33]/70">
                               Deux lignes de production certifiées Qualicoat via notre marque{' '}
-                              <button type="button" onClick={scrollToInfinimetal} className={infinimetalLinkClass}>
+                              <button type="button" onClick={scrollToInfinimetal} className="cursor-pointer text-[#0E2A33] font-bold hover:underline transition-colors">
                                 Infinimetal
                               </button>
                               {' '}pour une flexibilité dans le choix de la gamme de production : nous travaillons à partir de feuilles d'aluminium prélaquées ou bien nous laquons après façonnage.
