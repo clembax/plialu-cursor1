@@ -2306,7 +2306,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   <h2 className="text-3xl font-bold text-[#0E2A33] mb-8">Téléchargez nos ressources</h2>
                   <p className="text-base text-[#0E2A33]/60 mb-8">Tous les documents pour optimiser vos projets.</p>
 
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 
                     <div className="bg-[#F5F5F3] text-[#0E2A33] border border-[#0E2A33]/50 rounded-lg p-6 hover:shadow-lg hover:border-[#E2FD48]/50 transition-all">
                       <div className="flex items-center gap-3 mb-4">
@@ -2349,6 +2349,22 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       </div>
                       <p className="text-[#0E2A33]/60 text-sm mb-4">Accédez à notre gamme complète de teintes RAL disponibles en finition brillante et mate.</p>
                       <a href="/documents/Catalogue_RAL.pdf" download="Catalogue_RAL_PLIALU.pdf" className="inline-block bg-[#E2FD48] text-[#0E2A33] font-bold px-8 py-3 rounded-full text-sm hover:bg-[#E2FD48]/90 hover:shadow-lg hover:-translate-y-1 transition-all">
+                        <span className="flex items-center gap-2">
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                          Télécharger PDF
+                        </span>
+                      </a>
+                    </div>
+
+                    <div className="bg-[#F5F5F3] text-[#0E2A33] border border-[#0E2A33]/50 rounded-lg p-6 hover:shadow-lg hover:border-[#E2FD48]/50 transition-all">
+                      <div className="flex items-center gap-3 mb-4">
+                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 text-[#0E2A33]">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                        </svg>
+                        <h3 className="text-xl font-bold">Portfolio</h3>
+                      </div>
+                      <p className="text-[#0E2A33]/60 text-sm mb-4">Découvrez nos réalisations et chantiers emblématiques.</p>
+                      <a href="/documents/Portfolio_Plialu.pdf" download target="_blank" rel="noopener noreferrer" className="inline-block bg-[#E2FD48] text-[#0E2A33] font-bold px-8 py-3 rounded-full text-sm hover:bg-[#E2FD48]/90 hover:shadow-lg hover:-translate-y-1 transition-all">
                         <span className="flex items-center gap-2">
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
                           Télécharger PDF
