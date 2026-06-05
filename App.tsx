@@ -941,11 +941,13 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   <h3 className="text-[#0E2A33] font-bold">Tôles prélaquées</h3>
                 </div>
                 <p className="text-[#0E2A33]/60 text-sm leading-relaxed">Tôles aluminium en formats standards et sur-mesure. Gamme complète de teintes RAL. Expertise PLIALU associée à la qualité Infinimetal.</p>
-                <img
-                  src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1780588809/infini_noir_f4v6lv.png"
-                  alt="Logo Infinimetal"
-                  className="absolute bottom-6 right-6 w-24 h-auto object-contain pointer-events-none"
-                />
+                <div className="absolute right-6 top-1/2 -translate-y-1/2 flex items-center pointer-events-none">
+                  <img
+                    src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1780588809/infini_noir_f4v6lv.png"
+                    alt="Logo Infinimetal"
+                    className="w-36 h-auto object-contain"
+                  />
+                </div>
               </div>
 
               <div className="text-center">
