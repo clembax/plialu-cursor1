@@ -2358,8 +2358,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
                     <div className="bg-[#F5F5F3] text-[#0E2A33] border border-[#0E2A33]/50 rounded-lg p-6 hover:shadow-lg hover:border-[#E2FD48]/50 transition-all flex flex-col h-full">
                       <div className="flex items-center gap-3 mb-4">
-                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 text-[#0E2A33]">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 text-[#0E2A33]">
+                          <path d="m22 11-1.296-1.296a2.4 2.4 0 0 0-3.408 0L11 16"/>
+                          <path d="M4 8a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2"/>
+                          <circle cx="13" cy="7" r="1" fill="currentColor"/>
+                          <rect x="8" y="2" width="14" height="14" rx="2"/>
                         </svg>
                         <h3 className="text-xl font-bold">Portfolio</h3>
                       </div>
