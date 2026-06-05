@@ -930,14 +930,22 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
               </div>
 
-              <div className="bg-[#F5F5F3] border border-[#0E2A33]/20 rounded-lg p-6 hover:shadow-md hover:border-[#E2FD48]/50 transition-all w-full mb-12">
+              <div className="relative bg-[#F5F5F3] border border-[#0E2A33]/20 rounded-lg p-6 hover:shadow-md hover:border-[#E2FD48]/50 transition-all w-full mb-12">
                 <div className="flex items-center gap-3 mb-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="w-5 h-5 text-[#0E2A33] shrink-0" aria-hidden="true">
-                    <path d="M235.32,73.37,182.63,20.69a16,16,0,0,0-22.63,0L20.68,160a16,16,0,0,0,0,22.63l52.69,52.68a16,16,0,0,0,22.63,0L235.32,96A16,16,0,0,0,235.32,73.37ZM84.68,224,32,171.31l32-32,26.34,26.35a8,8,0,0,0,11.32-11.32L75.31,128,96,107.31l26.34,26.35a8,8,0,0,0,11.32-11.32L107.31,96,128,75.31l26.34,26.35a8,8,0,0,0,11.32-11.32L139.31,64l32-32L224,84.69Z" />
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-[#0E2A33] shrink-0" aria-hidden="true">
+                    <path d="M11 7 6 2"/>
+                    <path d="M18.992 12H2.041"/>
+                    <path d="M21.145 18.38A3.34 3.34 0 0 1 20 16.5a3.3 3.3 0 0 1-1.145 1.88c-.575.46-.855 1.02-.855 1.595A2 2 0 0 0 20 22a2 2 0 0 0 2-2.025c0-.58-.285-1.13-.855-1.595"/>
+                    <path d="m8.5 4.5 2.148-2.148a1.205 1.205 0 0 1 1.704 0l7.296 7.296a1.205 1.205 0 0 1 0 1.704l-7.592 7.592a3.615 3.615 0 0 1-5.112 0l-3.888-3.888a3.615 3.615 0 0 1 0-5.112L5.67 7.33"/>
                   </svg>
                   <h3 className="text-[#0E2A33] font-bold">Tôles prélaquées</h3>
                 </div>
                 <p className="text-[#0E2A33]/60 text-sm leading-relaxed">Tôles aluminium en formats standards et sur-mesure. Gamme complète de teintes RAL. Expertise PLIALU associée à la qualité Infinimetal.</p>
+                <img
+                  src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1780588809/infini_noir_f4v6lv.png"
+                  alt="Logo Infinimetal"
+                  className="absolute bottom-6 right-6 w-24 h-auto object-contain pointer-events-none"
+                />
               </div>
 
               <div className="text-center">
@@ -2271,8 +2279,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   className="relative overflow-hidden rounded-xl bg-white/10 border border-[#E2FD48]/30 p-6 w-full hover:shadow-md hover:border-[#E2FD48]/50 transition-all duration-300 cursor-pointer"
                 >
                   <div className="flex items-center gap-2 mb-3 relative z-10">
-                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="w-6 h-6 text-[#E2FD48] shrink-0">
-                      <path d="M235.32,73.37,182.63,20.69a16,16,0,0,0-22.63,0L20.68,160a16,16,0,0,0,0,22.63l52.69,52.68a16,16,0,0,0,22.63,0L235.32,96A16,16,0,0,0,235.32,73.37ZM84.68,224,32,171.31l32-32,26.34,26.35a8,8,0,0,0,11.32-11.32L75.31,128,96,107.31l26.34,26.35a8,8,0,0,0,11.32-11.32L107.31,96,128,75.31l26.34,26.35a8,8,0,0,0,11.32-11.32L139.31,64l32-32L224,84.69Z" />
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 text-[#E2FD48] shrink-0">
+                      <path d="M11 7 6 2"/>
+                      <path d="M18.992 12H2.041"/>
+                      <path d="M21.145 18.38A3.34 3.34 0 0 1 20 16.5a3.3 3.3 0 0 1-1.145 1.88c-.575.46-.855 1.02-.855 1.595A2 2 0 0 0 20 22a2 2 0 0 0 2-2.025c0-.58-.285-1.13-.855-1.595"/>
+                      <path d="m8.5 4.5 2.148-2.148a1.205 1.205 0 0 1 1.704 0l7.296 7.296a1.205 1.205 0 0 1 0 1.704l-7.592 7.592a3.615 3.615 0 0 1-5.112 0l-3.888-3.888a3.615 3.615 0 0 1 0-5.112L5.67 7.33"/>
                     </svg>
                     <h3 className="text-xl font-bold text-white">
                       Tôles prélaquées
@@ -2290,9 +2301,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     .
                   </p>
                   <img
-                    src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773322881/INFINI_Noir_ompn2i.png"
+                    src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1780589052/infini_blanc_zvlnn3.png"
                     alt="Logo Infinimetal"
-                    className="absolute right-6 top-1/2 -translate-y-1/2 w-36 h-36 object-contain opacity-50 brightness-0 invert pointer-events-none"
+                    className="absolute right-6 top-1/2 -translate-y-1/2 w-36 h-auto object-contain pointer-events-none"
                   />
                 </div>
 
