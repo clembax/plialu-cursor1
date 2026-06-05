@@ -1299,14 +1299,28 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 <p className="text-base md:text-lg text-white/70 max-w-2xl leading-relaxed font-medium">
                   Une sélection de projets menés aux côtés de Maîtres d'oeuvre, Maîtres d'ouvrage, Cabinets d'architecture, Professionnels de l'enveloppe, Bureaux d'études.
                 </p>
-                <a
-                  href="#projets-grille"
-                  onClick={(e) => { e.preventDefault(); document.getElementById('projets-grille')?.scrollIntoView({ behavior: 'smooth' }); }}
-                  className="inline-flex items-center gap-2 px-10 py-4 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full hover:bg-white transition-all tracking-tight shadow-[0_20px_40px_rgba(226,253,72,0.15)]"
-                >
-                  Voir nos collaborations
-                  <iconify-icon icon="lucide:arrow-down" width="18"></iconify-icon>
-                </a>
+                <div className="flex flex-col sm:flex-row items-start gap-4">
+                  <a
+                    href="/documents/Portfolio_Plialu.pdf"
+                    download
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block bg-[#E2FD48] text-[#0E2A33] font-extrabold px-8 py-3 rounded-full text-sm hover:bg-[#E2FD48]/90 hover:shadow-lg hover:-translate-y-1 transition-all"
+                  >
+                    <span className="flex items-center gap-2">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                      Télécharger le Portfolio
+                    </span>
+                  </a>
+                  <a
+                    href="#projets-grille"
+                    onClick={(e) => { e.preventDefault(); document.getElementById('projets-grille')?.scrollIntoView({ behavior: 'smooth' }); }}
+                    className="inline-flex items-center gap-2 px-10 py-4 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full hover:bg-white transition-all tracking-tight shadow-[0_20px_40px_rgba(226,253,72,0.15)]"
+                  >
+                    Voir nos collaborations
+                    <iconify-icon icon="lucide:arrow-down" width="18"></iconify-icon>
+                  </a>
+                </div>
               </div>
             </div>
           </section>
