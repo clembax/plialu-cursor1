@@ -83,7 +83,11 @@ const App: React.FC = () => {
   const [hoveredStep, setHoveredStep] = useState<number | null>(null);
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
-  const [activeImage, setActiveImage] = useState<{ src: string; srcset?: string; alt?: string } | null>(null);
+  const [projectImageIndex, setProjectImageIndex] = useState(0);
+  const [projectLightbox, setProjectLightbox] = useState<{
+    images: { src: string; srcset?: string; alt?: string }[];
+    index: number;
+  } | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [solutionsAccordionOpen, setSolutionsAccordionOpen] = useState<string | null>(null);
   const [isSommaireSticky, setIsSommaireSticky] = useState(false);
@@ -287,18 +291,36 @@ const App: React.FC = () => {
   }, [currentPage]);
 
   useEffect(() => {
+    setProjectImageIndex(0);
+    setProjectLightbox(null);
+  }, [selectedProjectId]);
+
+  useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        if (activeImage) {
-          setActiveImage(null);
-        } else {
+        if (projectLightbox) {
+          setProjectImageIndex(projectLightbox.index);
+          setProjectLightbox(null);
+        } else if (selectedProjectId) {
           setSelectedProjectId(null);
+        }
+        return;
+      }
+      if (projectLightbox) {
+        const { images, index } = projectLightbox;
+        if (e.key === 'ArrowLeft' && images.length > 1) {
+          e.preventDefault();
+          setProjectLightbox({ images, index: (index - 1 + images.length) % images.length });
+        }
+        if (e.key === 'ArrowRight' && images.length > 1) {
+          e.preventDefault();
+          setProjectLightbox({ images, index: (index + 1) % images.length });
         }
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [activeImage]);
+  }, [projectLightbox, selectedProjectId]);
 
   useEffect(() => {
     if (currentPage !== 'projects') return;
@@ -417,6 +439,16 @@ const App: React.FC = () => {
     setCopiedKey(key);
     setTimeout(() => setCopiedKey(null), 2000);
   };
+
+  const closeProjectLightbox = () => {
+    if (projectLightbox) {
+      setProjectImageIndex(projectLightbox.index);
+    }
+    setProjectLightbox(null);
+  };
+
+  const projectImageNavButtonClass =
+    'absolute top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-9 h-9 md:w-10 md:h-10 bg-[#E2FD48]/70 text-[#0E2A33] rounded-full opacity-70 hover:opacity-100 hover:scale-110 active:scale-95 transition-all duration-200 shadow-md';
 
   const solutions = [
     {
@@ -1675,7 +1707,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   }
                 ].map((project) => {
                   const isOpen = selectedProjectId === project.id;
-                  const projectImages = [project.mainImg, ...project.gallery].slice(0, 4);
+                  const projectImages = [project.mainImg, ...project.gallery];
+                  const currentImageIndex = isOpen ? projectImageIndex : 0;
+                  const currentImage = projectImages[currentImageIndex];
                   const technicalDescription =
                     (project as { description?: string }).description ?? project.context;
 
@@ -1686,11 +1720,27 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       tabIndex={0}
                       aria-label={`Ouvrir le projet ${project.title}`}
                       className="snap-center shrink-0 w-[85vw] md:w-[600px] h-[75vh] relative group overflow-hidden rounded-none cursor-pointer"
-                      onClick={() => setSelectedProjectId(isOpen ? null : project.id)}
+                      onClick={() => {
+                        if (isOpen) {
+                          setSelectedProjectId(null);
+                          setProjectLightbox(null);
+                        } else {
+                          setProjectImageIndex(0);
+                          setProjectLightbox(null);
+                          setSelectedProjectId(project.id);
+                        }
+                      }}
                       onKeyDown={(e) => {
                         if (e.key === 'Enter' || e.key === ' ') {
                           e.preventDefault();
-                          setSelectedProjectId(isOpen ? null : project.id);
+                          if (isOpen) {
+                            setSelectedProjectId(null);
+                            setProjectLightbox(null);
+                          } else {
+                            setProjectImageIndex(0);
+                            setProjectLightbox(null);
+                            setSelectedProjectId(project.id);
+                          }
                         }
                       }}
                     >
@@ -1718,109 +1768,62 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
                       {isOpen && (
                         <>
-                          <div className="w-full h-full relative transition-all duration-500 ease-in-out">
-                            <div className="h-full">
-                            {projectImages.length === 2 && (
-                              <div className="grid grid-cols-2 h-full gap-2">
-                                {projectImages.map((img, idx) => (
+                          <div className="w-full h-full relative bg-[#0E2A33] transition-all duration-500 ease-in-out">
+                            <div className="absolute inset-0 flex items-center justify-center">
+                              <button
+                                type="button"
+                                aria-label="Agrandir l'image en plein écran"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setProjectLightbox({ images: projectImages, index: currentImageIndex });
+                                }}
+                                className="relative w-full h-full flex items-center justify-center cursor-zoom-in"
+                              >
+                                <img
+                                  key={`${project.id}-${currentImageIndex}`}
+                                  src={currentImage.src}
+                                  srcSet={currentImage.srcset}
+                                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 800px"
+                                  alt={`${project.title} – Détail technique ${currentImageIndex + 1}`}
+                                  loading="lazy"
+                                  decoding="async"
+                                  className="w-full h-full object-contain animate-fade-in"
+                                />
+                              </button>
+
+                              {projectImages.length > 1 && (
+                                <>
                                   <button
-                                    key={idx}
                                     type="button"
-                                    aria-label="Agrandir l'image"
+                                    aria-label="Photo précédente"
                                     onClick={(e) => {
                                       e.stopPropagation();
-                                      setActiveImage({ src: img.src, srcset: img.srcset });
+                                      setProjectImageIndex((prev) => (prev - 1 + projectImages.length) % projectImages.length);
                                     }}
-                                    className="h-full w-full overflow-hidden"
+                                    className={`${projectImageNavButtonClass} left-3`}
                                   >
-                                    <img
-                                      src={img.src}
-                                      srcset={img.srcset}
-                                      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 800px"
-                                      alt={`${project.title} – Détail technique ${idx + 1}`}
-                                      loading="lazy"
-                                      decoding="async"
-                                      className="w-full h-full object-cover rounded-none"
-                                    />
+                                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 256 256" fill="currentColor">
+                                      <path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"/>
+                                    </svg>
                                   </button>
-                                ))}
-                              </div>
-                            )}
-
-                            {projectImages.length === 3 && (
-                              <div className="grid grid-cols-3 h-full gap-2">
-                                <button
-                                  type="button"
-                                  aria-label="Agrandir l'image"
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    setActiveImage({ src: projectImages[0].src, srcset: projectImages[0].srcset });
-                                  }}
-                                  className="col-span-2 h-full w-full overflow-hidden"
-                                >
-                                  <img
-                                    src={projectImages[0].src}
-                                    srcset={projectImages[0].srcset}
-                                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 800px"
-                                    alt={`${project.title} – Détail technique 1`}
-                                    loading="lazy"
-                                    decoding="async"
-                                    className="w-full h-full object-cover rounded-none"
-                                  />
-                                </button>
-                                <div className="col-span-1 grid grid-rows-2 h-full gap-2">
-                                  {projectImages.slice(1).map((img, idx) => (
-                                    <button
-                                      key={idx}
-                                      type="button"
-                                      aria-label="Agrandir l'image"
-                                      onClick={(e) => {
-                                        e.stopPropagation();
-                                        setActiveImage({ src: img.src, srcset: img.srcset });
-                                      }}
-                                      className="h-full w-full overflow-hidden"
-                                    >
-                                      <img
-                                        src={img.src}
-                                        srcset={img.srcset}
-                                        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 800px"
-                                        alt={`${project.title} – Détail technique ${idx + 2}`}
-                                        loading="lazy"
-                                        decoding="async"
-                                        className="w-full h-full object-cover rounded-none"
-                                      />
-                                    </button>
-                                  ))}
-                                </div>
-                              </div>
-                            )}
-
-                            {(projectImages.length === 1 || projectImages.length >= 4) && (
-                              <div className={`grid ${projectImages.length === 1 ? 'grid-cols-1' : 'grid-cols-2'} h-full gap-2`}>
-                                {(projectImages.length === 1 ? projectImages : projectImages.slice(0, 4)).map((img, idx) => (
                                   <button
-                                    key={idx}
                                     type="button"
-                                    aria-label="Agrandir l'image"
+                                    aria-label="Photo suivante"
                                     onClick={(e) => {
                                       e.stopPropagation();
-                                      setActiveImage({ src: img.src, srcset: img.srcset });
+                                      setProjectImageIndex((prev) => (prev + 1) % projectImages.length);
                                     }}
-                                    className={`h-full w-full overflow-hidden ${projectImages.length >= 4 ? 'aspect-square' : ''}`}
+                                    className={`${projectImageNavButtonClass} right-3`}
                                   >
-                                    <img
-                                      src={img.src}
-                                      srcset={img.srcset}
-                                      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 800px"
-                                      alt={`${project.title} – Détail technique ${idx + 1}`}
-                                      loading="lazy"
-                                      decoding="async"
-                                      className="w-full h-full object-cover rounded-none"
-                                    />
+                                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 256 256" fill="currentColor">
+                                      <path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"/>
+                                    </svg>
                                   </button>
-                                ))}
-                              </div>
-                            )}
+                                  <div className="absolute bottom-28 left-1/2 -translate-x-1/2 z-10 px-3 py-1 rounded-full bg-black/40 text-white/90 text-[11px] font-bold tracking-widest">
+                                    {currentImageIndex + 1} / {projectImages.length}
+                                  </div>
+                                </>
+                              )}
                             </div>
 
                             <div className={`absolute bottom-0 left-0 right-0 bg-black/50 backdrop-blur-md border-t border-white/10 px-6 py-5 flex items-start gap-6 transition-opacity duration-500 ease-in-out ${isOpen ? 'opacity-100' : 'opacity-0'}`}>
@@ -1836,6 +1839,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                             type="button"
                             onClick={(e) => {
                               e.stopPropagation();
+                              setProjectLightbox(null);
                               setSelectedProjectId(null);
                             }}
                             aria-label="Fermer le projet"
@@ -1865,22 +1869,71 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           </section>
 
           {/* Image Lightbox Overlay */}
-          {activeImage && (
+          {projectLightbox && (
             createPortal(
               <div
                 className="fixed top-0 left-0 w-screen h-screen z-[200] flex items-center justify-center bg-black/90"
-                onClick={() => setActiveImage(null)}
+                onClick={closeProjectLightbox}
               >
                 <img
-                  src={activeImage?.src}
-                  srcSet={activeImage?.srcset}
-                  alt={activeImage.alt ?? 'Réalisation PLIALU - Façonnage métallique et enveloppe du bâtiment'}
-                  className="max-w-[90vw] max-h-[90vh] object-contain"
+                  key={`lightbox-${projectLightbox.index}`}
+                  src={projectLightbox.images[projectLightbox.index].src}
+                  srcSet={projectLightbox.images[projectLightbox.index].srcset}
+                  alt={projectLightbox.images[projectLightbox.index].alt ?? 'Réalisation PLIALU - Façonnage métallique et enveloppe du bâtiment'}
+                  className="max-w-[90vw] max-h-[90vh] object-contain animate-fade-in"
                   onClick={(e) => e.stopPropagation()}
                 />
+
+                {projectLightbox.images.length > 1 && (
+                  <>
+                    <button
+                      type="button"
+                      aria-label="Photo précédente"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setProjectLightbox((prev) => {
+                          if (!prev) return prev;
+                          const len = prev.images.length;
+                          return { ...prev, index: (prev.index - 1 + len) % len };
+                        });
+                      }}
+                      className={`${projectImageNavButtonClass} left-4 md:left-8`}
+                    >
+                      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor">
+                        <path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"/>
+                      </svg>
+                    </button>
+                    <button
+                      type="button"
+                      aria-label="Photo suivante"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setProjectLightbox((prev) => {
+                          if (!prev) return prev;
+                          const len = prev.images.length;
+                          return { ...prev, index: (prev.index + 1) % len };
+                        });
+                      }}
+                      className={`${projectImageNavButtonClass} right-4 md:right-8`}
+                    >
+                      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor">
+                        <path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"/>
+                      </svg>
+                    </button>
+                    <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 px-4 py-1.5 rounded-full bg-black/50 text-white/90 text-xs font-bold tracking-widest">
+                      {projectLightbox.index + 1} / {projectLightbox.images.length}
+                    </div>
+                  </>
+                )}
+
                 <button
+                  type="button"
+                  aria-label="Fermer le plein écran"
                   className="absolute top-6 right-6 text-white/70 hover:text-white text-4xl font-light"
-                  onClick={() => setActiveImage(null)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    closeProjectLightbox();
+                  }}
                 >
                   ×
                 </button>
