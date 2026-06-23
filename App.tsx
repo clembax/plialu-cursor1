@@ -54,6 +54,44 @@ const SEO_CONFIG: Record<string, { path: string; title: string; desc: string; no
   'merci': { path: '/merci', title: 'Demande envoyée | PLIALU', desc: 'Votre demande de devis a bien été envoyée à notre bureau d\'études.', noindex: true }
 };
 
+type ProjectGalleryImage = { src: string; srcset?: string; alt?: string };
+
+const ProjectImageGlassView: React.FC<{
+  image: ProjectGalleryImage;
+  transitionKey: string;
+  alt: string;
+  frameClassName?: string;
+  imageClassName?: string;
+}> = ({
+  image,
+  transitionKey,
+  alt,
+  frameClassName = 'w-full h-full',
+  imageClassName = 'w-full h-full object-contain animate-fade-in',
+}) => (
+  <div className={`relative overflow-hidden ${frameClassName}`}>
+    <img
+      key={`glass-bg-${transitionKey}`}
+      src={image.src}
+      srcSet={image.srcset}
+      alt=""
+      aria-hidden="true"
+      className="absolute inset-0 h-full w-full scale-110 object-cover blur-2xl opacity-70 animate-fade-in"
+    />
+    <div className="absolute inset-0 bg-black/20 backdrop-blur-xl" />
+    <img
+      key={`glass-fg-${transitionKey}`}
+      src={image.src}
+      srcSet={image.srcset}
+      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 800px"
+      alt={alt}
+      loading="lazy"
+      decoding="async"
+      className={`relative z-10 ${imageClassName}`}
+    />
+  </div>
+);
+
 const App: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [caeSlide, setCaeSlide] = useState(0);
@@ -1768,7 +1806,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
                       {isOpen && (
                         <>
-                          <div className="w-full h-full relative bg-[#0E2A33] transition-all duration-500 ease-in-out">
+                          <div className="w-full h-full relative overflow-hidden transition-all duration-500 ease-in-out">
                             <div className="absolute inset-0 flex items-center justify-center">
                               <button
                                 type="button"
@@ -1777,17 +1815,12 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                                   e.stopPropagation();
                                   setProjectLightbox({ images: projectImages, index: currentImageIndex });
                                 }}
-                                className="relative w-full h-full flex items-center justify-center cursor-zoom-in"
+                                className="relative w-full h-full flex items-center justify-center cursor-zoom-in border-0 bg-transparent p-0"
                               >
-                                <img
-                                  key={`${project.id}-${currentImageIndex}`}
-                                  src={currentImage.src}
-                                  srcSet={currentImage.srcset}
-                                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 800px"
+                                <ProjectImageGlassView
+                                  image={currentImage}
+                                  transitionKey={`${project.id}-${currentImageIndex}`}
                                   alt={`${project.title} – Détail technique ${currentImageIndex + 1}`}
-                                  loading="lazy"
-                                  decoding="async"
-                                  className="w-full h-full object-contain animate-fade-in"
                                 />
                               </button>
 
@@ -1872,17 +1905,21 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           {projectLightbox && (
             createPortal(
               <div
-                className="fixed top-0 left-0 w-screen h-screen z-[200] flex items-center justify-center bg-black/90"
+                className="fixed top-0 left-0 w-screen h-screen z-[200] flex items-center justify-center bg-black/70 backdrop-blur-sm"
                 onClick={closeProjectLightbox}
               >
-                <img
-                  key={`lightbox-${projectLightbox.index}`}
-                  src={projectLightbox.images[projectLightbox.index].src}
-                  srcSet={projectLightbox.images[projectLightbox.index].srcset}
-                  alt={projectLightbox.images[projectLightbox.index].alt ?? 'Réalisation PLIALU - Façonnage métallique et enveloppe du bâtiment'}
-                  className="max-w-[90vw] max-h-[90vh] object-contain animate-fade-in"
+                <div
+                  className="relative h-[90vh] w-[90vw] max-h-[90vh] max-w-[90vw]"
                   onClick={(e) => e.stopPropagation()}
-                />
+                >
+                  <ProjectImageGlassView
+                    image={projectLightbox.images[projectLightbox.index]}
+                    transitionKey={`lightbox-${projectLightbox.index}`}
+                    alt={projectLightbox.images[projectLightbox.index].alt ?? 'Réalisation PLIALU - Façonnage métallique et enveloppe du bâtiment'}
+                    frameClassName="h-full w-full"
+                    imageClassName="h-full w-full max-h-full max-w-full object-contain animate-fade-in"
+                  />
+                </div>
 
                 {projectLightbox.images.length > 1 && (
                   <>
