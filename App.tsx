@@ -1307,7 +1307,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   Infinimetal est notre marque déposée spécialisée en thermolaquage certifié Qualicoat. Infinimetal dispose de deux lignes de thermolaquage complémentaires : une ligne à plat pour le laquage de tôles, et une ligne verticale dédiée au laquage post-formage à la main.
                 </p>
                 <p className="text-white/70 text-base md:text-lg leading-relaxed">
-                  Cette approche bipolaire nous permet de répondre à tous les besoins de laquage des façadiers et professionnels du bâtiment, que les pièces soient brutes ou déjà façonnées. Chez Infinimetal, Qualicoat n'est pas une simple certification, c'est un standard. Une qualité de laquage maîtrisée, garantie, non-négociable.
+                  Cette polyvalence de thermolaquage nous permet de répondre à tous les besoins de laquage des façadiers et professionnels du bâtiment, que les pièces soient brutes ou déjà façonnées. Chez Infinimetal, Qualicoat n'est pas une simple certification, c'est un standard. Une qualité de laquage maîtrisée, garantie, non-négociable.
                 </p>
               </div>
               <button
