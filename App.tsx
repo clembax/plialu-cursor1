@@ -936,7 +936,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           </section>
 
           {/* Section Solutions */}
-          <section id="solutions" className="bg-white pt-16 pb-24">
+          <section id="solutions" className="bg-white pt-12 pb-24">
             <div className="max-w-7xl mx-auto px-6">
 
               <p className="text-[10px] font-extrabold tracking-[0.3em] uppercase text-[#0E2A33]/50 mb-4">NOS SOLUTIONS</p>
