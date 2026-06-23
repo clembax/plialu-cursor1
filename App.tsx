@@ -4121,14 +4121,14 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
       )}
 
       {/* Premium Footer */}
-      <footer className="pt-12 pb-8 section--dark" style={{ background: 'linear-gradient(to bottom, #071318 0%, #0b1e26 100%)' }}>
+      <footer className="pt-16 pb-10 section--dark" style={{ background: 'linear-gradient(to bottom, #071318 0%, #0b1e26 100%)' }}>
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-6 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-8 mb-12">
             {/* Column 1 -- Brand */}
-            <div className="space-y-4">
+            <div className="space-y-5">
               <button onClick={() => setCurrentPage('home')} className="text-2xl font-black tracking-tighter text-white uppercase block">PLIALU.</button>
               <p className="text-white/50 text-sm leading-relaxed max-w-xs">PME industrielle : solutions métalliques sur-mesure pour l'enveloppe du bâtiment</p>
-              <div className="flex items-center gap-4 pt-2">
+              <div className="flex items-center gap-4 pt-3">
                 <a href="https://www.linkedin.com/company/plialu" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-[#E2FD48] hover:border-[#E2FD48] transition-all">
                   <iconify-icon icon="line-md:linkedin" width="20"></iconify-icon>
                 </a>
@@ -4137,8 +4137,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
             {/* Column 2 -- Products & Services */}
             <div>
-              <h3 className="text-white text-[10px] font-extrabold uppercase tracking-[0.3em] mb-4">Navigation</h3>
-              <ul className="space-y-3">
+              <h3 className="text-white text-[10px] font-extrabold uppercase tracking-[0.3em] mb-5">Navigation</h3>
+              <ul className="space-y-4">
                 {['Expertises'].map((link) => (
                   <li key={link}>
                     <button
@@ -4159,8 +4159,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
             {/* Column 3 -- Company */}
             <div>
-              <h3 className="text-white text-[10px] font-extrabold uppercase tracking-[0.3em] mb-4">Société</h3>
-              <ul className="space-y-3">
+              <h3 className="text-white text-[10px] font-extrabold uppercase tracking-[0.3em] mb-5">Société</h3>
+              <ul className="space-y-4">
                 {['À propos', 'Portfolio', 'Contact'].map((link) => (
                   <li key={link}>
                     <button
@@ -4180,7 +4180,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           </div>
 
           {/* Bottom -- Legal Links */}
-          <div className="pt-6 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-5">
             <span className="text-[10px] text-white/30 font-bold uppercase tracking-[0.2em]">© 2025 PLIALU SAS — TOUS DROITS RÉSERVÉS</span>
             <div className="flex gap-6 text-[10px] text-white/30 font-bold uppercase tracking-[0.2em] flex-wrap justify-center md:justify-end">
               <button onClick={() => setCurrentPage('mentions-legales')} className="hover:text-white transition-colors text-left">Mentions légales</button>
