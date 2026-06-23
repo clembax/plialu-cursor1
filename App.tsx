@@ -246,6 +246,45 @@ const App: React.FC = () => {
   const [carouselTotal, setCarouselTotal] = useState(0);
   const carouselIndexRef = useRef(0);
   const scrollSyncTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const pendingProjectOpenRef = useRef<string | null>(null);
+
+  const isCarouselCardCentered = (cardIndex: number) => {
+    const el = scrollRef.current;
+    if (!el?.children[cardIndex]) return false;
+    const card = el.children[cardIndex] as HTMLElement;
+    const viewportCenter = el.scrollLeft + el.clientWidth / 2;
+    const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+    return Math.abs(viewportCenter - cardCenter) < 24;
+  };
+
+  const completePendingProjectOpen = () => {
+    const projectId = pendingProjectOpenRef.current;
+    if (!projectId) return;
+    pendingProjectOpenRef.current = null;
+    setProjectImageIndex(0);
+    setProjectLightbox(null);
+    setSelectedProjectId(projectId);
+  };
+
+  const handleProjectCardActivate = (projectId: string, cardIndex: number) => {
+    if (selectedProjectId === projectId) {
+      pendingProjectOpenRef.current = null;
+      setSelectedProjectId(null);
+      setProjectLightbox(null);
+      return;
+    }
+
+    if (isCarouselCardCentered(cardIndex)) {
+      pendingProjectOpenRef.current = null;
+      setProjectImageIndex(0);
+      setProjectLightbox(null);
+      setSelectedProjectId(projectId);
+      return;
+    }
+
+    pendingProjectOpenRef.current = projectId;
+    scrollToProject(cardIndex);
+  };
 
   const scrollToProject = (index: number) => {
     const el = scrollRef.current;
@@ -365,6 +404,7 @@ const App: React.FC = () => {
 
     carouselIndexRef.current = 0;
     setCarouselIndex(0);
+    pendingProjectOpenRef.current = null;
     const el = scrollRef.current;
     if (el) {
       el.scrollLeft = 0;
@@ -397,7 +437,19 @@ const App: React.FC = () => {
 
     const handleScroll = () => {
       if (scrollSyncTimerRef.current) clearTimeout(scrollSyncTimerRef.current);
-      scrollSyncTimerRef.current = setTimeout(syncCarouselIndex, 80);
+      scrollSyncTimerRef.current = setTimeout(() => {
+        syncCarouselIndex();
+        if (pendingProjectOpenRef.current) {
+          completePendingProjectOpen();
+        }
+      }, 80);
+    };
+
+    const handleScrollEnd = () => {
+      syncCarouselIndex();
+      if (pendingProjectOpenRef.current) {
+        completePendingProjectOpen();
+      }
     };
 
     const handleMouseDown = (e: MouseEvent) => {
@@ -423,6 +475,7 @@ const App: React.FC = () => {
     el.addEventListener('mouseup', stopDragging);
     el.addEventListener('mouseleave', stopDragging);
     el.addEventListener('scroll', handleScroll, { passive: true });
+    el.addEventListener('scrollend', handleScrollEnd);
 
     return () => {
       el.removeEventListener('mousedown', handleMouseDown);
@@ -430,6 +483,7 @@ const App: React.FC = () => {
       el.removeEventListener('mouseup', stopDragging);
       el.removeEventListener('mouseleave', stopDragging);
       el.removeEventListener('scroll', handleScroll);
+      el.removeEventListener('scrollend', handleScrollEnd);
       if (scrollSyncTimerRef.current) clearTimeout(scrollSyncTimerRef.current);
     };
   }, [currentPage]);
@@ -1743,7 +1797,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       }
                     ]
                   }
-                ].map((project) => {
+                ].map((project, cardIndex) => {
                   const isOpen = selectedProjectId === project.id;
                   const projectImages = [project.mainImg, ...project.gallery];
                   const currentImageIndex = isOpen ? projectImageIndex : 0;
@@ -1758,27 +1812,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       tabIndex={0}
                       aria-label={`Ouvrir le projet ${project.title}`}
                       className="snap-center shrink-0 w-[85vw] md:w-[600px] h-[75vh] relative group overflow-hidden rounded-none cursor-pointer"
-                      onClick={() => {
-                        if (isOpen) {
-                          setSelectedProjectId(null);
-                          setProjectLightbox(null);
-                        } else {
-                          setProjectImageIndex(0);
-                          setProjectLightbox(null);
-                          setSelectedProjectId(project.id);
-                        }
-                      }}
+                      onClick={() => handleProjectCardActivate(project.id, cardIndex)}
                       onKeyDown={(e) => {
                         if (e.key === 'Enter' || e.key === ' ') {
                           e.preventDefault();
-                          if (isOpen) {
-                            setSelectedProjectId(null);
-                            setProjectLightbox(null);
-                          } else {
-                            setProjectImageIndex(0);
-                            setProjectLightbox(null);
-                            setSelectedProjectId(project.id);
-                          }
+                          handleProjectCardActivate(project.id, cardIndex);
                         }
                       }}
                     >
