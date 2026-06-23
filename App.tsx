@@ -28,7 +28,7 @@ import EnduitMinceIsolant from './src/components/solutions/EnduitMinceIsolant';
 import Etancheite from './components/Etancheite';
 
 const SEO_CONFIG: Record<string, { path: string; title: string; desc: string; noindex?: boolean }> = {
-  'home': { path: '/', title: 'Façonnage métallique sur mesure en Rhône-Alpes | PLIALU', desc: 'Solutions métalliques sur-mesure : bureau d\'études intégré, thermolaquage Qualicoat, pliage précis. PME Rhône-Alpes depuis 20 ans.' },
+  'home': { path: '/', title: 'PLIALU | Façonnage métallique sur-mesure en Rhône-Alpes', desc: 'Spécialiste du façonnage métallique en Rhône-Alpes depuis 20 ans. Solutions sur-mesure pour architectes, bureaux d\'études et façadiers. Devis sous 48h.' },
   'expertises': { path: '/expertises', title: 'Process industriel & Fabrication métallique sur mesure | PLIALU', desc: 'Bureau d\'études, déroulage, thermolaquage, pliage, assemblage. Chaîne de production intégrée pour façonnage métal haute précision.' },
   'solutions': { path: '/solutions', title: 'Solutions métalliques pour l\'enveloppe du bâtiment | PLIALU', desc: 'Solutions métalliques enveloppe bâtiment : bardage, ITE, cassettes, précadres. Profilés aluminium sur mesure, thermolaquage QUALICOAT inclus.' },
   'solutions-temporaire': { path: '/solutions-temporaire', title: 'Solutions | PLIALU', desc: 'Catalogue B2B complet : enduit mince, étanchéité, bardages, ravalement, précadres, MOB/FOB, tôles prélaquées. Téléchargez ressources.', noindex: true },
@@ -84,9 +84,6 @@ const App: React.FC = () => {
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
   const [activeImage, setActiveImage] = useState<{ src: string; srcset?: string; alt?: string } | null>(null);
-  const [formSubmitting, setFormSubmitting] = useState(false);
-  const [formError, setFormError] = useState<string | null>(null);
-  const [formFileError, setFormFileError] = useState<string | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [solutionsAccordionOpen, setSolutionsAccordionOpen] = useState<string | null>(null);
   const [isSommaireSticky, setIsSommaireSticky] = useState(false);
@@ -195,7 +192,6 @@ const App: React.FC = () => {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  const contactFormRef = React.useRef<HTMLFormElement>(null);
   const teaserVideoRef = React.useRef<HTMLVideoElement>(null);
   const expertisesVideoRef = React.useRef<HTMLVideoElement>(null);
   const sommaireRef = useRef<HTMLDivElement>(null);
@@ -420,45 +416,6 @@ const App: React.FC = () => {
     navigator.clipboard.writeText(text);
     setCopiedKey(key);
     setTimeout(() => setCopiedKey(null), 2000);
-  };
-
-  const MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024; // 10 Mo
-  const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setFormError(null);
-    setFormFileError(null);
-    const form = contactFormRef.current;
-    if (!form) return;
-
-    const fileInput = form.querySelector<HTMLInputElement>('input[name="upload"]');
-    if (fileInput && fileInput.files && fileInput.files.length > 0) {
-      const file = fileInput.files[0];
-      if (file.size > MAX_FILE_SIZE_BYTES) {
-        setFormFileError("Fichier trop lourd (Max 10 Mo). Pour vos plans volumineux, utilisez un lien WeTransfer dans le message ou nous contacter par mail directement.");
-        return;
-      }
-    }
-
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
-
-    setFormSubmitting(true);
-    try {
-      const formData = new FormData(form);
-      const res = await fetch('https://formspree.io/f/mwvrvrqg', { method: 'POST', body: formData });
-      await res.json().catch(() => ({}));
-      if (res.ok) {
-        setCurrentPage('merci');
-      } else {
-        setFormError("Erreur lors de l'envoi. Vérifiez la taille du fichier (Max 10Mo) ou contactez-nous par téléphone.");
-      }
-    } catch {
-      setFormError("Erreur lors de l'envoi. Vérifiez la taille du fichier (Max 10Mo) ou contactez-nous par téléphone.");
-    } finally {
-      setFormSubmitting(false);
-    }
   };
 
   const solutions = [
@@ -3812,7 +3769,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 {/* Formulaire Web3Forms */}
                 <div id="contact-form" className="bg-white rounded-[32px] p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.03)] border border-zinc-100 scroll-mt-32">
                   <form
-                    action="https://formsubmit.co/clementbax@yahoo.com"
+                    action="https://formsubmit.co/commercial@plialu.fr"
                     method="POST"
                     encType="multipart/form-data"
                     className="space-y-6"
@@ -3820,7 +3777,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     {/* Champs cachés Formsubmit */}
                     <input type="hidden" name="_captcha" value="true" />
                     <input type="hidden" name="_subject" value="Nouvelle demande de devis — PLIALU" />
-                    <input type="hidden" name="_next" value="https://grey-wren-904418.hostingersite.com/merci.html" />
+                    <input type="hidden" name="_next" value="https://plialu.fr/merci" />
 
                     {/* Ligne 1 : Prénom / Nom */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
