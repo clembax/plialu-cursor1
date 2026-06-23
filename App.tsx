@@ -650,14 +650,14 @@ const App: React.FC = () => {
           {/* Left: Logo */}
           {!isMenuOpen && (
             <div className="flex-none">
-              <button onClick={() => setCurrentPage('home')} className="flex items-center gap-3 group outline-none h-12">
+              <button onClick={() => setCurrentPage('home')} className="flex items-center gap-3 group outline-none h-full">
                 <img 
                   src={headerTheme === 'dark' 
                     ? "https://res.cloudinary.com/dyiup6v5x/image/upload/v1771582466/Logo_Noir_Plialu_ywbl2o.svg" 
                     : "https://res.cloudinary.com/dyiup6v5x/image/upload/v1771582757/Logo_Blanc_Plialu_ssatk6.svg"
                   } 
                   alt="PLIALU" 
-                  className="h-6 md:h-7 transition-all duration-300 scale-[1.3] origin-left"
+                  className="h-6 md:h-7 transition-all duration-300 scale-[1.5] origin-left"
                 />
               </button>
             </div>
