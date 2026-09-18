@@ -3897,7 +3897,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 {/* Formulaire Web3Forms */}
                 <div id="contact-form" className="bg-white rounded-[32px] p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.03)] border border-zinc-100 scroll-mt-32">
                   <form
-                    action="https://formsubmit.co/commercial@plialu.fr"
+                    action="https://formsubmit.co/contact-form@plialu.fr"
                     method="POST"
                     encType="multipart/form-data"
                     className="space-y-6"
