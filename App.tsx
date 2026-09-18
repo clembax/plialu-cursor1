@@ -314,7 +314,7 @@ const App: React.FC = () => {
 
   const infinimetalLinkClass = 'cursor-pointer text-[#E2FD48] hover:underline transition-colors';
 
-  // Header Theme: 'dark' = light header bar (dark logo/menu) for contrast on light backgrounds (Expertises, Solutions, Ressources, Contact, Articles, Merci)
+  // Header Theme: 'dark' = light header bar (dark logo/menu) for contrast on light backgrounds (Expertises, Solutions, Ressources, Contact, Articles)
   const headerTheme =
     currentPage === 'expertises' ||
     currentPage === 'solutions' ||
@@ -327,8 +327,7 @@ const App: React.FC = () => {
     currentPage === 'ressource-1' ||
     currentPage === 'ressource-2' ||
     currentPage === 'ressource-3' ||
-    currentPage === 'contact' ||
-    currentPage === 'merci'
+    currentPage === 'contact'
       ? 'dark'
       : 'light';
 

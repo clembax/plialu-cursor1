@@ -9,14 +9,6 @@ const Success: React.FC<SuccessProps> = ({ onBackHome }) => {
     <div className="animate-fade-up min-h-screen flex flex-col justify-center section--dark" style={{ background: 'linear-gradient(to bottom, #071318 0%, #0b1e26 100%)' }}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="max-w-4xl text-center space-y-8">
-          {/* Logo Plialu */}
-          <div className="flex justify-center">
-            <img
-              src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1771582757/Logo_Blanc_Plialu_ssatk6.svg"
-              alt="PLIALU"
-              className="h-8 md:h-9"
-            />
-          </div>
           <span className="inline-block text-[10px] font-extrabold tracking-[0.4em] text-[#E2FD48] uppercase">
             Demande envoyée
           </span>
@@ -24,7 +16,7 @@ const Success: React.FC<SuccessProps> = ({ onBackHome }) => {
             Merci !
           </h1>
           <p className="text-lg md:text-xl text-white/90 leading-relaxed font-medium">
-            Demande de devis transmise ! Notre bureau d’études technique vous recontactera sous 48h.
+            Votre demande a bien été prise en compte. Nous vous recontacterons dans les plus brefs délais.
           </p>
           <button
             type="button"
