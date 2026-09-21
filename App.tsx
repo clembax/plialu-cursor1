@@ -31,28 +31,42 @@ const SEO_CONFIG: Record<string, { path: string; title: string; desc: string; no
   'home': { path: '/', title: 'PLIALU | Façonnage métallique sur-mesure en Rhône-Alpes', desc: 'Spécialiste du façonnage métallique en Rhône-Alpes depuis 20 ans. Solutions sur-mesure pour architectes, bureaux d\'études et façadiers. Devis sous 48h.' },
   'expertises': { path: '/expertises', title: 'Process industriel & Fabrication métallique sur mesure | PLIALU', desc: 'Bureau d\'études, déroulage, thermolaquage, pliage, assemblage. Chaîne de production intégrée pour façonnage métal haute précision.' },
   'solutions': { path: '/solutions', title: 'Solutions métalliques pour l\'enveloppe du bâtiment | PLIALU', desc: 'Solutions métalliques enveloppe bâtiment : bardage, ITE, cassettes, précadres. Profilés aluminium sur mesure, thermolaquage QUALICOAT inclus.' },
-  'solutions-temporaire': { path: '/solutions-temporaire', title: 'Solutions | PLIALU', desc: 'Catalogue B2B complet : enduit mince, étanchéité, bardages, ravalement, précadres, MOB/FOB, tôles prélaquées. Téléchargez ressources.', noindex: true },
+  'solutions-temporaire': { path: '/solutions-temporaire', title: 'Solutions | PLIALU', desc: 'Catalogue B2B complet : enduit mince, étanchéité, bardages, ravalement, précadres, MOB/FOB, tôles prélaquées. Téléchargez ressources.' },
   'etancheite': {
     path: '/solutions/etancheite',
     title: 'Solutions d’Étanchéité Métallique',
     desc: 'Couvertines, bavettes et protections d’ouvrage pour toits plats. Fabrication sur mesure en métal prélaqué avec finitions durables pour une étanchéité parfaite des bâtiments industriels et collectifs.',
+    noindex: true,
   },
   'projects': { path: '/portfolio', title: 'Nos réalisations — Façades aluminium et enveloppe bâtiment | PLIALU', desc: 'Projets façonnage métal réalisés : architectes, bureaux d\'études, façadiers. Références bardages, ravalement, ITE. Voir nos réalisations.' },
   'a-propos': { path: '/a-propos', title: 'PLIALU — Entreprise de façonnage métallique en Rhône-Alpes', desc: 'PLIALU : PME façonnage métal Rhône-Alpes, 20 ans d\'expertise. Usine intégrée, 7 000 m², process certifiés Qualicoat. Devis gratuit.' },
-  'ressources': { path: '/ressources', title: 'Ressources techniques — Enveloppe du bâtiment | PLIALU', desc: 'Dossiers techniques et guides pratiques PLIALU pour vos choix de matériaux et conceptions de façades métalliques.' },
-  'ressource-1': { path: '/ressources/choix-metal-facade', title: 'Quel métal choisir pour une façade extérieure ? | PLIALU', desc: 'Aluminium, acier ou inox pour une façade extérieure : comparatif technique, comportement aux UV, corrosion et contraintes chantier. Guide prescripteurs.' },
-  'ressource-2': { path: '/ressources/pliage-aluminium-tolerances', title: 'Pliage aluminium : limites et tolérances | PLIALU', desc: 'Pliage aluminium : épaisseurs, rayons mini, tolérances ±0,3 mm. Ce que votre fabricant doit maîtriser avant de démarrer la production.' },
-  'ressource-3': { path: '/ressources/thermolaquage-qualicoat', title: 'Thermolaquage certifié QUALICOAT : garanties | PLIALU', desc: 'Thermolaquage certifié QUALICOAT : protocoles de validation, classes de poudres, post-laquage après façonnage. Ce qu\'un prescripteur doit exiger.' },
+  'ressources': { path: '/ressources', title: 'Ressources techniques — Enveloppe du bâtiment | PLIALU', desc: 'Dossiers techniques et guides pratiques PLIALU pour vos choix de matériaux et conceptions de façades métalliques.', noindex: true },
+  'ressource-1': { path: '/ressources/choix-metal-facade', title: 'Quel métal choisir pour une façade extérieure ? | PLIALU', desc: 'Aluminium, acier ou inox pour une façade extérieure : comparatif technique, comportement aux UV, corrosion et contraintes chantier. Guide prescripteurs.', noindex: true },
+  'ressource-2': { path: '/ressources/pliage-aluminium-tolerances', title: 'Pliage aluminium : limites et tolérances | PLIALU', desc: 'Pliage aluminium : épaisseurs, rayons mini, tolérances ±0,3 mm. Ce que votre fabricant doit maîtriser avant de démarrer la production.', noindex: true },
+  'ressource-3': { path: '/ressources/thermolaquage-qualicoat', title: 'Thermolaquage certifié QUALICOAT : garanties | PLIALU', desc: 'Thermolaquage certifié QUALICOAT : protocoles de validation, classes de poudres, post-laquage après façonnage. Ce qu\'un prescripteur doit exiger.', noindex: true },
   'contact': { path: '/contact', title: 'Contact & Devis | PLIALU', desc: 'Contactez le bureau d\'études PLIALU pour votre projet de façonnage métallique sur mesure. Réponse sous 48h.', noindex: true },
   'mentions-legales': { path: '/mentions-legales', title: 'Mentions légales | PLIALU', desc: 'Mentions légales du site PLIALU — éditeur, directeur, hébergeur et responsabilité.', noindex: true },
   'politique-confidentialite': { path: '/politique-confidentialite', title: 'Politique de confidentialité | PLIALU', desc: 'Politique de confidentialité PLIALU — protection des données, RGPD, droits utilisateur.', noindex: true },
-  'solution-bardage': { path: '/solutions/bardages-cassettes', title: 'Bardages & Cassettes sur mesure | PLIALU', desc: 'Fabrication de bardages et cassettes métalliques pour habillage de façade.' },
-  'solution-enduit': { path: '/solutions/enduit-mince-isolant', title: 'Profilés pour Enduit Mince sur Isolant (ITE) | PLIALU', desc: 'Accessoires et profilés aluminium sur mesure pour systèmes d\'Isolation Thermique par l\'Extérieur (ITE).' },
-  'solution-precadres': { path: '/solutions/precadres', title: 'Précadres métalliques sur mesure | PLIALU', desc: 'Fabrication de précadres d\'habillage de baies sur mesure en aluminium et acier.' },
-  'solution-toles': { path: '/solutions/toles-prelaquees', title: 'Tôles prélaquées & Thermolaquage | PLIALU', desc: 'Tôles aluminium et acier prélaquées. Service de thermolaquage QUALICOAT intégré.' },
-  'solution-ravalement': { path: '/solutions/ravalement-facade', title: 'Solutions métalliques pour ravalement de façade | PLIALU', desc: 'Habillages et profilés métalliques sur mesure pour la rénovation et le ravalement de façades.' },
+  'solution-bardage': { path: '/solutions/bardages-cassettes', title: 'Bardages & Cassettes sur mesure | PLIALU', desc: 'Fabrication de bardages et cassettes métalliques pour habillage de façade.', noindex: true },
+  'solution-enduit': { path: '/solutions/enduit-mince-isolant', title: 'Profilés pour Enduit Mince sur Isolant (ITE) | PLIALU', desc: 'Accessoires et profilés aluminium sur mesure pour systèmes d\'Isolation Thermique par l\'Extérieur (ITE).', noindex: true },
+  'solution-precadres': { path: '/solutions/precadres', title: 'Précadres métalliques sur mesure | PLIALU', desc: 'Fabrication de précadres d\'habillage de baies sur mesure en aluminium et acier.', noindex: true },
+  'solution-toles': { path: '/solutions/toles-prelaquees', title: 'Tôles prélaquées & Thermolaquage | PLIALU', desc: 'Tôles aluminium et acier prélaquées. Service de thermolaquage QUALICOAT intégré.', noindex: true },
+  'solution-ravalement': { path: '/solutions/ravalement-facade', title: 'Solutions métalliques pour ravalement de façade | PLIALU', desc: 'Habillages et profilés métalliques sur mesure pour la rénovation et le ravalement de façades.', noindex: true },
   'merci': { path: '/merci', title: 'Demande envoyée | PLIALU', desc: 'Votre demande de devis a bien été envoyée à notre bureau d\'études.', noindex: true }
 };
+
+const BLOCKED_PAGE_KEYS = new Set([
+  'solution-bardage',
+  'solution-enduit',
+  'solution-precadres',
+  'solution-toles',
+  'solution-ravalement',
+  'etancheite',
+  'ressources',
+  'ressource-1',
+  'ressource-2',
+  'ressource-3',
+]);
 
 type ProjectGalleryImage = { src: string; srcset?: string; alt?: string };
 
@@ -134,6 +148,10 @@ const App: React.FC = () => {
   useEffect(() => {
     const currentPath = window.location.pathname;
     const matchingKey = Object.keys(SEO_CONFIG).find(key => SEO_CONFIG[key].path === currentPath);
+    if (matchingKey && BLOCKED_PAGE_KEYS.has(matchingKey)) {
+      window.history.replaceState(null, '', '/');
+      return;
+    }
     if (matchingKey && matchingKey !== currentPage) {
       setCurrentPage(matchingKey as any);
     }
@@ -223,6 +241,11 @@ const App: React.FC = () => {
     const handlePopState = () => {
       const currentPath = window.location.pathname;
       const matchingKey = Object.keys(SEO_CONFIG).find(key => SEO_CONFIG[key].path === currentPath);
+      if (matchingKey && BLOCKED_PAGE_KEYS.has(matchingKey)) {
+        window.history.replaceState(null, '', '/');
+        setCurrentPage('home');
+        return;
+      }
       if (matchingKey) {
         setCurrentPage(matchingKey as any);
       } else {
@@ -2050,7 +2073,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 {/* Carte 1: Bardage */}
                 <div
                   className="group relative flex flex-col overflow-hidden rounded-2xl bg-[#0E2A33] border border-white/10 h-[400px] cursor-pointer transition-all duration-300 hover:border-[#E2FD48] hover:shadow-[0_0_30px_rgba(226,253,72,0.15)]"
-                  onClick={() => setCurrentPage('solution-bardage')}
+                  onClick={() => setCurrentPage('home')}
                 >
                   <div className="relative w-full aspect-video bg-[#071318] border border-white/10 flex items-center justify-center overflow-hidden">
                     <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,rgba(226,253,72,0.35),transparent_60%)]" />
@@ -2072,7 +2095,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 {/* Carte 2: ITE (image réelle conservée) */}
                 <div
                   className="group relative flex flex-col overflow-hidden rounded-2xl bg-[#0E2A33] border border-white/10 h-[400px] cursor-pointer transition-all duration-300 hover:border-[#E2FD48] hover:shadow-[0_0_30px_rgba(226,253,72,0.15)]"
-                  onClick={() => setCurrentPage('solution-enduit')}
+                  onClick={() => setCurrentPage('home')}
                 >
                   <div className="relative w-full aspect-video bg-[#071318] overflow-hidden">
                     <img
@@ -2103,7 +2126,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 {/* Carte 3: Précadres */}
                 <div
                   className="group relative flex flex-col overflow-hidden rounded-2xl bg-[#0E2A33] border border-white/10 h-[400px] cursor-pointer transition-all duration-300 hover:border-[#E2FD48] hover:shadow-[0_0_30px_rgba(226,253,72,0.15)]"
-                  onClick={() => setCurrentPage('solution-precadres')}
+                  onClick={() => setCurrentPage('home')}
                 >
                   <div className="relative w-full aspect-video bg-[#071318] border border-white/10 flex items-center justify-center overflow-hidden">
                     <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,rgba(226,253,72,0.35),transparent_60%)]" />
@@ -2125,7 +2148,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 {/* Carte 4: Tôles prélaquées */}
                 <div
                   className="group relative flex flex-col overflow-hidden rounded-2xl bg-[#0E2A33] border border-white/10 h-[400px] cursor-pointer transition-all duration-300 hover:border-[#E2FD48] hover:shadow-[0_0_30px_rgba(226,253,72,0.15)]"
-                  onClick={() => setCurrentPage('solution-toles')}
+                  onClick={() => setCurrentPage('home')}
                 >
                   <div className="relative w-full aspect-video bg-[#071318] border border-white/10 flex items-center justify-center overflow-hidden">
                     <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,rgba(226,253,72,0.35),transparent_60%)]" />
@@ -2156,7 +2179,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 {/* Carte 5: Ravalement de façade */}
                 <div
                   className="group relative flex flex-col overflow-hidden rounded-2xl bg-[#0E2A33] border border-white/10 h-[400px] cursor-pointer transition-all duration-300 hover:border-[#E2FD48] hover:shadow-[0_0_30px_rgba(226,253,72,0.15)]"
-                  onClick={() => setCurrentPage('solution-ravalement')}
+                  onClick={() => setCurrentPage('home')}
                 >
                   <div className="relative w-full aspect-video bg-[#071318] border border-white/10 flex items-center justify-center overflow-hidden">
                     <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,rgba(226,253,72,0.35),transparent_60%)]" />
@@ -2178,7 +2201,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 {/* Carte 6: Solutions pour l&apos;étanchéité */}
                 <div
                   className="group relative flex flex-col overflow-hidden rounded-2xl bg-[#0E2A33] border border-white/10 h-[400px] cursor-pointer transition-all duration-300 hover:border-[#E2FD48] hover:shadow-[0_0_30px_rgba(226,253,72,0.15)]"
-                  onClick={() => setCurrentPage('etancheite')}
+                  onClick={() => setCurrentPage('home')}
                 >
                   <div className="relative w-full aspect-video overflow-hidden">
                     <img
@@ -2856,7 +2879,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   <article
                     key={article.id}
                     className="group bg-white rounded-[24px] p-8 flex flex-col border border-zinc-100 shadow-sm transition-all duration-200 ease-out hover:border-2 hover:border-[#E2FD48] hover:-translate-y-0.5 hover:shadow-md cursor-pointer"
-                    onClick={() => setCurrentPage(article.id as typeof currentPage)}
+                    onClick={() => setCurrentPage('home')}
                   >
                     <span className="text-[9px] font-black tracking-[0.3em] text-[#0E2A33]/40 uppercase mb-3">
                       {article.tag}
@@ -2902,7 +2925,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               <div className="w-full">
                 <button
                   type="button"
-                  onClick={() => setCurrentPage('ressources')}
+                  onClick={() => setCurrentPage('home')}
                   className="flex items-center gap-2 text-sm font-semibold text-[#0E2A33] hover:text-[#E2FD48] cursor-pointer mb-8 uppercase tracking-widest"
                 >
                   <span>← Retour aux ressources</span>
@@ -2948,7 +2971,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   d&apos;étude se traduit souvent par un surcoût en phase chantier&nbsp;: renforts ajoutés, reprises de calepinage ou retours usine
                   imprévus. Les tolérances de pliage
                   <button
-                    onClick={() => setCurrentPage('ressource-2')}
+                    onClick={() => setCurrentPage('home')}
                     className="underline underline-offset-4 decoration-[#6B7280] hover:decoration-[#0E2A33] font-semibold text-[#0E2A33] ml-1"
                   >
                     (précision géométrique du façonnage)
@@ -3078,7 +3101,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   protéger et teinter la pièce). L&apos;aluminium accepte les épaisseurs les plus fines, autour de 45&nbsp;microns, tandis que
                   l&apos;acier exige une préparation plus lourde pour éviter la corrosion sous film. La
                   <button
-                    onClick={() => setCurrentPage('ressource-3')}
+                    onClick={() => setCurrentPage('home')}
                     className="underline underline-offset-4 decoration-[#6B7280] hover:decoration-[#0E2A33] font-semibold text-[#0E2A33] mx-1"
                   >
                     certification QUALICOAT
@@ -3146,7 +3169,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               <div className="w-full">
                 <button
                   type="button"
-                  onClick={() => setCurrentPage('ressources')}
+                  onClick={() => setCurrentPage('home')}
                   className="flex items-center gap-2 text-sm font-semibold text-[#0E2A33] hover:text-[#E2FD48] cursor-pointer mb-8 uppercase tracking-widest"
                 >
                   <span>← RETOUR AUX RESSOURCES</span>
@@ -3194,7 +3217,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   du projet — un sujet que nous détaillons dans notre{' '}
                   <button
                     type="button"
-                    onClick={() => setCurrentPage('ressource-1')}
+                    onClick={() => setCurrentPage('home')}
                     className="underline underline-offset-4 decoration-[#6B7280] hover:decoration-[#0E2A33] font-semibold text-[#0E2A33]"
                   >
                     guide sur le choix du métal de façade
@@ -3333,7 +3356,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   QUALICOAT (label européen de qualité du thermolaquage) sur la pièce concernée. Découvrez{' '}
                   <button
                     type="button"
-                    onClick={() => setCurrentPage('ressource-3')}
+                    onClick={() => setCurrentPage('home')}
                     className="underline underline-offset-4 decoration-[#6B7280] hover:decoration-[#0E2A33] font-semibold text-[#0E2A33]"
                   >
                     les protocoles exacts que la certification QUALICOAT impose sur la préparation de surface
@@ -3404,7 +3427,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               <div className="w-full">
                 <button
                   type="button"
-                  onClick={() => setCurrentPage('ressources')}
+                  onClick={() => setCurrentPage('home')}
                   className="flex items-center gap-2 text-sm font-semibold text-[#0E2A33] hover:text-[#E2FD48] cursor-pointer mb-8 uppercase tracking-widest"
                 >
                   <span>← Retour aux ressources</span>
