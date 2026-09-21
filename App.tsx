@@ -110,6 +110,32 @@ const App: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [caeSlide, setCaeSlide] = useState(0);
   const [zentoSlide, setZentoSlide] = useState(0);
+  const getInitialPage = ():
+    | 'home'
+    | 'expertises'
+    | 'solutions'
+    | 'solutions-temporaire'
+    | 'etancheite'
+    | 'contact'
+    | 'projects'
+    | 'a-propos'
+    | 'ressources'
+    | 'ressource-1'
+    | 'ressource-2'
+    | 'ressource-3'
+    | 'solution-bardage'
+    | 'solution-enduit'
+    | 'solution-precadres'
+    | 'solution-toles'
+    | 'solution-ravalement'
+    | 'merci'
+    | 'mentions-legales'
+    | 'politique-confidentialite' => {
+    const currentPath = window.location.pathname;
+    const matchingKey = Object.keys(SEO_CONFIG).find(key => SEO_CONFIG[key].path === currentPath);
+    if (!matchingKey || BLOCKED_PAGE_KEYS.has(matchingKey)) return 'home';
+    return matchingKey as ReturnType<typeof getInitialPage>;
+  };
   const [currentPage, setCurrentPage] = useState<
     | 'home'
     | 'expertises'
@@ -131,7 +157,7 @@ const App: React.FC = () => {
     | 'merci'
     | 'mentions-legales'
     | 'politique-confidentialite'
-  >('home');
+  >(getInitialPage);
   const [hoveredStep, setHoveredStep] = useState<number | null>(null);
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
@@ -144,18 +170,14 @@ const App: React.FC = () => {
   const [solutionsAccordionOpen, setSolutionsAccordionOpen] = useState<string | null>(null);
   const [isSommaireSticky, setIsSommaireSticky] = useState(false);
 
-  // Initialisation au montage : lit l'URL pour afficher la bonne page si accès direct (ex: F5)
+  // Nettoie l'URL des pages bloquées (le contenu est déjà 'home' via getInitialPage)
   useEffect(() => {
     const currentPath = window.location.pathname;
     const matchingKey = Object.keys(SEO_CONFIG).find(key => SEO_CONFIG[key].path === currentPath);
     if (matchingKey && BLOCKED_PAGE_KEYS.has(matchingKey)) {
       window.history.replaceState(null, '', '/');
-      return;
     }
-    if (matchingKey && matchingKey !== currentPage) {
-      setCurrentPage(matchingKey as any);
-    }
-  }, []); // Exécuté une seule fois au montage
+  }, []);
 
   // Gère la mise à jour SEO et la fausse URL lors d'un changement de page
   useEffect(() => {
