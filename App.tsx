@@ -38,7 +38,7 @@ const SEO_CONFIG: Record<string, { path: string; title: string; desc: string; no
     desc: 'Couvertines, bavettes et protections d’ouvrage pour toits plats. Fabrication sur mesure en métal prélaqué avec finitions durables pour une étanchéité parfaite des bâtiments industriels et collectifs.',
   },
   'projects': { path: '/portfolio', title: 'Nos réalisations — Façades aluminium et enveloppe bâtiment | PLIALU', desc: 'Projets façonnage métal réalisés : architectes, bureaux d\'études, façadiers. Références bardages, ravalement, ITE. Voir nos réalisations.' },
-  'a-propos': { path: '/a-propos', title: 'PLIALU — Entreprise de façonnage métallique en Rhône-Alpes', desc: 'PLIALU : PME façonnage métal Rhône-Alpes, 20 ans d\'expertise. Usine intégrée, 5000 m², process certifiés Qualicoat. Devis gratuit.' },
+  'a-propos': { path: '/a-propos', title: 'PLIALU — Entreprise de façonnage métallique en Rhône-Alpes', desc: 'PLIALU : PME façonnage métal Rhône-Alpes, 20 ans d\'expertise. Usine intégrée, 7 000 m², process certifiés Qualicoat. Devis gratuit.' },
   'ressources': { path: '/ressources', title: 'Ressources techniques — Enveloppe du bâtiment | PLIALU', desc: 'Dossiers techniques et guides pratiques PLIALU pour vos choix de matériaux et conceptions de façades métalliques.' },
   'ressource-1': { path: '/ressources/choix-metal-facade', title: 'Quel métal choisir pour une façade extérieure ? | PLIALU', desc: 'Aluminium, acier ou inox pour une façade extérieure : comparatif technique, comportement aux UV, corrosion et contraintes chantier. Guide prescripteurs.' },
   'ressource-2': { path: '/ressources/pliage-aluminium-tolerances', title: 'Pliage aluminium : limites et tolérances | PLIALU', desc: 'Pliage aluminium : épaisseurs, rayons mini, tolérances ±0,3 mm. Ce que votre fabricant doit maîtriser avant de démarrer la production.' },
@@ -564,7 +564,7 @@ const App: React.FC = () => {
     },
     {
       title: "Accessoires & finitions",
-      text: "Profilés et pièces prêtes à poser en aluminium, acier galvanisé or inox pour sécuriser et accélérer la mise en œuvre.",
+      text: "Profilés et pièces prêtes à poser en aluminium, acier galvanisé ou inox pour sécuriser et accélérer la mise en œuvre.",
       img: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=2069",
       alt: "Profilés métalliques industriels en série",
       tag: "OPTIMISATION CHANTIER",
@@ -617,7 +617,7 @@ const App: React.FC = () => {
       id: "assemblage-finitions",
       title: "Assemblage",
       tag: "VALEUR AJOUTÉE",
-      text: "Rivetage haute résistance, collage structurel certifié et pose d'accessoires (joint, mousse). Nos livrons des ensembles complets prêts à poser pour accélérer vos cadences de montage sur site.",
+      text: "Rivetage haute résistance, collage structurel certifié et pose d'accessoires (joint, mousse). Nous livrons des ensembles complets prêts à poser pour accélérer vos cadences de montage sur site.",
       img: "https://images.unsplash.com/photo-1513828583688-c52646db42da?q=80&w=2070",
       alt: "Poste d'assemblage et de rivetage technique",
       materials: "",
@@ -627,7 +627,7 @@ const App: React.FC = () => {
       id: "logistique-expedition",
       title: "Logistique",
       tag: "SÉCURITÉ CHANTIER",
-      text: "Conditionnement rigoureux sur palettes sur-mesure pour prévenir toute de formation. Nous assurons la traçabilité et le respect des flux tendus pour livrer vos chantiers partout en Europe dans les délais convenus.",
+      text: "Conditionnement rigoureux sur palettes sur-mesure pour prévenir toute déformation. Nous assurons la traçabilité et le respect des flux tendus pour livrer vos chantiers partout en Europe dans les délais convenus.",
       img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070",
       alt: "Expédition sécurisée de panneaux métalliques protégés",
       materials: "",
@@ -920,7 +920,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     Découvrez nos lignes de production en action
                   </h3>
                   <p className="text-sm text-white/70 mt-3">
-                    2 minutes pour comprendre pourquoi nos clients nous font confiance depuis 20 ans.
+                    Visite d'usine : deux minutes pour voir les lignes de production.
                   </p>
                   <button
                     type="button"
@@ -1085,7 +1085,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   <span className="text-[10px] font-extrabold tracking-[0.3em] uppercase text-[#E2FD48]">À PROPOS</span>
                   <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">Votre entreprise de métallurgie en Rhône-Alpes</h2>
                   <p className="text-white/80 text-lg leading-relaxed">
-                    Depuis notre <strong>atelier lyonnais</strong>, nous assurons une réactivité optimale pour accompagner vos chantiers en <strong>Rhône-Alpes</strong> et en Europe. Une capacité de production appuyée par plus de 5 000 m² dédiés au façonnage métallique sur mesure.
+                    Depuis notre <strong>atelier lyonnais</strong>, nous assurons une réactivité optimale pour accompagner vos chantiers en <strong>Rhône-Alpes</strong> et en Europe. Une capacité de production appuyée par plus de 7 000 m² dédiés au façonnage métallique sur mesure.
                   </p>
                   <a href="/a-propos" onClick={(e) => { e.preventDefault(); setCurrentPage('a-propos'); }} className="flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-[#E2FD48] hover:text-white transition-all group">EN SAVOIR PLUS <iconify-icon icon="lucide:arrow-right" className="group-hover:translate-x-2 transition-transform"></iconify-icon></a>
                 </div>
@@ -1097,7 +1097,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           <section id="contact" className="py-48 section--light">
             <div className="relative z-10 max-w-4xl mx-auto px-6 text-center animate-fade-up">
               <span className="text-[10px] font-extrabold tracking-[0.3em] uppercase mb-8 inline-block text-[#0E2A33]/40">CONTACT</span>
-              <h2 className="mb-10 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">Étude technique, de faisabilité et chiffrage. Ou pour toute autre demande.</h2>
+              <h2 className="mb-10 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">Étude technique, faisabilité, chiffrage — ou toute autre demande.</h2>
               <p className="text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed font-medium text-[#0E2A33]/70">Nos équipes vous répondent rapidement avec une approche intégrant vos contraintes.</p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
                 <button onClick={() => setCurrentPage('contact')} className="w-full sm:w-auto px-12 py-4 bg-[#0E2A33] text-white text-sm font-extrabold rounded-full transition-all shadow-lg hover:shadow-2xl">Demander un devis</button>
@@ -1161,7 +1161,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </div>
                   <div className="flex-1">
                     <span className="block text-[8px] font-bold text-zinc-400 uppercase tracking-widest mb-0.5">Horaires</span>
-                    <p className="text-sm font-bold text-[#0E2A33] leading-tight">Du Lundi au Jeudi de 7h30 à 16h30 et le Vendredi de 7h30 à 12h</p>
+                    <p className="text-sm font-bold text-[#0E2A33] leading-tight">Du lundi au jeudi de 7h30 à 16h30, le vendredi de 7h30 à 12h.</p>
                   </div>
                 </div>
               </div>
@@ -1212,7 +1212,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </div>
                   <div className="text-zinc-500 text-base leading-relaxed max-w-lg space-y-6">
                     <p>
-                      PLIALU, c'est 20 ans de fabrication métallique intégrée en Rhône-Alpes. Des pièces standard comme sur mesure, une capacité industrielle complète capable de s'adapter aux contraintes de chaque projet.
+                      PLIALU, c'est 20 ans de fabrication métallique intégrée en Rhône-Alpes. Pièces standard et sur-mesure, une capacité industrielle complète capable de s'adapter aux contraintes de chaque projet.
                     </p>
                     <p>
                       De la première esquisse au chantier livré, nos équipes interviennent comme un partenaire technique : lecture de plans, conseil matière, optimisation des tolérances, respect des délais.
@@ -1268,7 +1268,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 <h2 className="text-3xl md:text-4xl font-black text-[#0E2A33]">Des techniciens impliqués, du début à la fin.</h2>
               </div>
               <p className="text-gray-700 text-lg leading-relaxed">
-                Techniciens, opérateurs, logisticiens. Nos équipes connaissent leur métier et s'impliquent dans chaque commande. Pas d'intermédiaire, pas de turn-over : les mêmes personnes suivent votre projet de la réception du plan à la livraison sur chantier.
+                Techniciens, opérateurs, logisticiens. Nos équipes connaissent leur métier et s'impliquent dans chaque commande. Un suivi interne et continu, sans sous-traitance, de la conception à la livraison.
               </p>
             </div>
           </section>
@@ -1280,7 +1280,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           >
             <div className="max-w-4xl mx-auto px-6 text-left">
               <div className="relative">
-                <div className="flex flex-col items-start space-y-5 pr-72">
+                <div className="flex flex-col items-start space-y-5 pr-0 md:pr-72">
                   <p className="text-[10px] font-extrabold tracking-[0.3em] uppercase text-[#E2FD48] mb-4 block">
                     THERMOLAQUAGE
                   </p>
@@ -1292,12 +1292,12 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   type="button"
                   onClick={scrollToInfinimetal}
                   aria-label="Infinimetal — thermolaquage certifié Qualicoat"
-                  className="absolute top-0 right-0 -mt-4 shrink-0 cursor-pointer border-0 bg-transparent p-0 outline-none ring-0 focus:outline-none focus:ring-0 transition-transform hover:scale-105"
+                  className="relative md:absolute md:top-0 md:right-0 md:-mt-4 shrink-0 cursor-pointer border-0 bg-transparent p-0 outline-none ring-0 focus:outline-none focus:ring-0 transition-transform hover:scale-105"
                 >
                   <img
                     src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1780589052/infini_blanc_zvlnn3.png"
                     alt="Logo Infinimetal"
-                    className="w-64 h-64 object-contain"
+                    className="w-32 h-32 md:w-64 md:h-64 object-contain"
                   />
                 </button>
               </div>
@@ -1306,7 +1306,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   Infinimetal est notre marque déposée spécialisée en thermolaquage certifié Qualicoat. Infinimetal dispose de deux lignes de thermolaquage complémentaires : une ligne à plat pour le laquage de tôles, et une ligne verticale dédiée au laquage post-formage à la main.
                 </p>
                 <p className="text-white/70 text-base md:text-lg leading-relaxed">
-                  Cette polyvalence de thermolaquage nous permet de répondre à tous les besoins de laquage des façadiers et professionnels du bâtiment, que les pièces soient brutes ou déjà façonnées. Chez Infinimetal, Qualicoat n'est pas une simple certification, c'est un standard. Une qualité de laquage maîtrisée, garantie, non-négociable.
+                  Cette polyvalence de thermolaquage nous permet de répondre à tous les besoins de laquage des façadiers et professionnels du bâtiment, que les pièces soient brutes ou déjà façonnées. Chez Infinimetal, Qualicoat est aujourd'hui le référentiel européen du thermolaquage pour les façades haut de gamme, appliqué sur nos deux lignes avec traçabilité de process.
                 </p>
               </div>
               <button
@@ -1363,9 +1363,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           <section className="py-24 bg-[#071318] text-center border-t border-white/5">
             <div className="max-w-3xl mx-auto px-6 space-y-8">
               <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">20 ans de façonnage métallique en Rhône-Alpes.</h2>
-              <p className="text-base md:text-lg text-white/50">Parlons de votre projet — nos techniciens répondent sous 48h.</p>
+              <p className="text-base md:text-lg text-white/50">Vos équipes techniques répondent sous 48 h.</p>
               <button onClick={() => setCurrentPage('contact')} className="px-10 py-4 md:px-12 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all shadow-xl hover:shadow-[#E2FD48]/20 hover:-translate-y-1">
-                Soumettre mon projet
+                Soumettre un projet
               </button>
             </div>
           </section>
@@ -1384,10 +1384,10 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   PORTFOLIO
                 </span>
                 <h1 className="text-4xl md:text-6xl tracking-tighter leading-[1.1] font-black uppercase text-white">
-                  Fiers de nos collaborations avec nos clients
+                  Collaborations avec maîtres d'œuvre, maîtres d'ouvrage et enveloppe.
                 </h1>
                 <p className="text-base md:text-lg text-white/70 max-w-2xl leading-relaxed font-medium">
-                  Une sélection de projets menés aux côtés de Maîtres d'oeuvre, Maîtres d'ouvrage, Cabinets d'architecture, Professionnels de l'enveloppe, Bureaux d'études.
+                  Une sélection de projets menés aux côtés de maîtres d'œuvre, Maîtres d'ouvrage, Cabinets d'architecture, Professionnels de l'enveloppe, Bureaux d'études.
                 </p>
                 <div className="flex flex-col sm:flex-row items-start gap-4">
                   <a
@@ -1598,7 +1598,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     city: "L'Isle-d'Abeau",
                     year: "2021",
                     tag: "INFRASTRUCTURE SCOLAIRE",
-                    context: "Cassettes architecturales poiçonnées sur-mesure\nAlu 20/10 RAL 9003",
+                    context: "Cassettes architecturales poinçonnées sur-mesure\nAlu 20/10 RAL 9003",
                     bullets: [],
                     figures: [],
                     mainImg: {
@@ -2042,7 +2042,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               <div className="mb-12">
                 <h2 className="mb-4 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">Nos Solutions Enveloppe</h2>
                 <p className="text-gray-400 max-w-2xl text-lg">
-                  Découvrez nos expertises en façonnage métallique sur mesure pour l'habillage technique et esthétique de vos façades.
+                  Découvrez nos expertises en façonnage métallique sur mesure pour l'habillage technique de façades.
                 </p>
               </div>
 
@@ -2503,7 +2503,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   FABRICATION DE PIÈCES MÉTALLIQUES SUR MESURE
                 </h1>
                 <p className="text-base md:text-lg text-[#0E2A33]/70 max-w-2xl leading-relaxed font-medium">
-                  De l'étude technique (DXF/DWG), au thermolaquage industriel, jusqu'au pliage, notre chaîne de valeur intégrée garantit précision, conformité et performance chantier.
+                  De l'étude technique (DXF/DWG) au thermolaquage industriel, jusqu'au pliage, notre chaîne de valeur intégrée garantit précision, conformité et performance chantier.
                 </p>
                 <div className="flex flex-col sm:flex-row items-start gap-4">
                   <a
@@ -2773,7 +2773,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">Vos contraintes techniques ont une réponse ici.</h2>
               <p className="text-base md:text-lg text-white/50">Chargés d'affaires disponibles pour analyser vos plans DXF et optimiser vos coûts avant production.</p>
               <button onClick={() => setCurrentPage('contact')} className="px-10 py-4 md:px-12 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all shadow-xl hover:shadow-[#E2FD48]/20 hover:-translate-y-1">
-                Soumettre mes plans
+                Envoyer des plans
               </button>
             </div>
           </section>
@@ -2883,10 +2883,10 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           </section>
           <section className="py-24 bg-[#071318] text-center border-t border-white/5">
             <div className="max-w-3xl mx-auto px-6 space-y-8">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">Prêt à passer à la fabrication ?</h2>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">Passer à la fabrication.</h2>
               <p className="text-base md:text-lg text-white/50">Nos techniciens prennent le relais — avec ou sans plans finalisés.</p>
               <button onClick={() => setCurrentPage('contact')} className="px-10 py-4 md:px-12 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all shadow-xl hover:shadow-[#E2FD48]/20 hover:-translate-y-1">
-                Lancer mon projet
+                Transmettre un dossier
               </button>
             </div>
           </section>
@@ -3873,7 +3873,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       </div>
                       <div className="flex-1">
                         <span className="block text-[9px] font-bold text-zinc-400 uppercase tracking-widest mb-1">Horaires d'ouverture</span>
-                        <p className="text-lg font-bold text-[#0E2A33] leading-tight max-w-xs">Du Lundi au Jeudi de 7h30 à 16h30 et le Vendredi de 7h30 à 12h</p>
+                        <p className="text-lg font-bold text-[#0E2A33] leading-tight max-w-xs">Du lundi au jeudi de 7h30 à 16h30, le vendredi de 7h30 à 12h.</p>
                       </div>
                     </div>
                   </div>
@@ -4042,7 +4042,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 <p><strong>Forme juridique :</strong> Société par Actions Simplifiée Unipersonnelle (S.A.S.U.)</p>
                 <p><strong>Capital social :</strong> 50 000 €</p>
                 <p><strong>SIRET :</strong> 498 363 001 00039</p>
-                <p><strong>Siège social :</strong> 150 route Copernic, Technoparc Saône Vallée, 01390 Civrieux, France</p>
+                <p><strong>Siège social :</strong> Technoparc Saône Vallée Ouest, 150, Route Copernic, 01390 Civrieux, France</p>
                 <p><strong>Contact :</strong> commercial@plialu.fr | 04 78 08 93 70</p>
 
                 <h2 className="text-2xl font-bold text-white mt-8 mb-4">2. Directeur de la publication</h2>
@@ -4054,7 +4054,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 <p><strong>Contact de l'hébergeur :</strong> <a href="https://www.hostinger.fr/contact" className="text-[#E2FD48] hover:underline">https://www.hostinger.fr/contact</a></p>
 
                 <h2 className="text-2xl font-bold text-white mt-8 mb-4">4. Propriété intellectuelle</h2>
-                <p>L'ensemble des éléments constituant ce site (textes, graphismes, logiciels, photographies, vidéos hébergées via Vimeo, images diffusées via Cloudinary, logos, marques) constitue une oeuvre de l'esprit protégée par les dispositions du Code de la Propriété Intellectuelle. Toute représentation, reproduction, modification ou exploitation commerciale, totale ou partielle, sans l'autorisation expresse et préalable de PLIALU, est strictement interdite et s'apparente à un délit de contrefaçon.</p>
+                <p>L'ensemble des éléments constituant ce site (textes, graphismes, logiciels, photographies, vidéos hébergées via Vimeo, images diffusées via Cloudinary, logos, marques) constitue une œuvre de l'esprit protégée par les dispositions du Code de la Propriété Intellectuelle. Toute représentation, reproduction, modification ou exploitation commerciale, totale ou partielle, sans l'autorisation expresse et préalable de PLIALU, est strictement interdite et s'apparente à un délit de contrefaçon.</p>
 
                 <h2 className="text-2xl font-bold text-white mt-8 mb-4">5. Limitation de responsabilité</h2>
                 <p>PLIALU s'efforce de fournir des informations fiables et actualisées sur ses capacités industrielles et techniques. Toutefois, l'entreprise ne saurait garantir l'exactitude absolue ni l'exhaustivité des données publiées. Dans un contexte B2B, il appartient à l'utilisateur (architecte, bureau d'études, acheteur technique) de valider la faisabilité technique de son projet en contactant directement nos équipes. PLIALU décline toute responsabilité quant aux dommages directs ou indirects pouvant résulter de l'accès au site ou de l'utilisation des informations qui y figurent.</p>
@@ -4086,8 +4086,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
                 <h2 className="text-2xl font-bold text-white mt-8 mb-4">2. Données collectées et méthodes de collecte</h2>
                 <p>Dans le cadre de notre relation B2B, nous collectons de manière loyale et transparente les données suivantes :</p>
-                <p><strong>Données d'identification professionnelles :</strong> Nom, prénom, fonction, entreprise, adresse e-mail professionnelle, numéro de téléphone. Ces données sont récoltées via nos formulaires de contact.</p>
-                <p><strong>Données techniques de navigation :</strong> Adresses IP, logs de connexion, statistiques de visionnage (via notre lecteur vidéo Vimeo).</p>
+                <p><strong>Données d'identification professionnelles :</strong> Nom, prénom, fonction, entreprise, adresse e-mail professionnelle, numéro de téléphone. Ces données sont collectées via le formulaire de contact.</p>
+                <p><strong>Données techniques de navigation :</strong> Adresses IP, logs de connexion, statistiques de visite (via Google Analytics), teaser vidéo et images (via Cloudinary), vidéo longue thermolaquage (via Vimeo).</p>
 
                 <h2 className="text-2xl font-bold text-white mt-8 mb-4">3. Finalités du traitement et base légale</h2>
                 <p>La collecte de ces données s'appuie sur deux bases légales principales (Art. 6 du RGPD) :</p>
@@ -4096,10 +4096,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
                 <h2 className="text-2xl font-bold text-white mt-8 mb-4">4. Destinataires des données et Sous-traitants</h2>
                 <p>Les données collectées sont strictement destinées au personnel habilité de PLIALU (direction, équipe commerciale, bureau d'études). Pour assurer le fonctionnement technique du site, nous nous appuyons sur des sous-traitants reconnus, en conformité avec le RGPD :</p>
-                <p><strong>Formsubmit.co :</strong> Routage sécurisé des données saisies dans nos formulaires de contact.</p>
-                <p><strong>Vimeo :</strong> Hébergement et diffusion de nos vidéos techniques de présentation.</p>
-                <p><strong>Cloudinary :</strong> Optimisation et diffusion sécurisée de nos ressources visuelles (images et schémas techniques).</p>
-                <p><strong>Hostinger :</strong> Hébergement global du site et des bases de données.</p>
+                <p><strong>Formsubmit.co :</strong> Formulaire de contact.</p>
+                <p><strong>Cloudinary :</strong> Teaser vidéo et images.</p>
+                <p><strong>Vimeo :</strong> Vidéo longue thermolaquage.</p>
+                <p><strong>Google Analytics :</strong> Statistiques de visite.</p>
+                <p><strong>Hostinger :</strong> Hébergement du site.</p>
 
                 <h2 className="text-2xl font-bold text-white mt-8 mb-4">5. Durée de conservation</h2>
                 <p>Conformément à la réglementation applicable en milieu B2B :</p>

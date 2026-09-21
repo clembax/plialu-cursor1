@@ -85,7 +85,7 @@ const Etancheite: React.FC<EtancheiteProps> = ({ setCurrentPage }) => {
               Solutions pour l'étanchéité
             </h1>
             <p className="text-gray-400 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
-              Couvertines, supports extrudés et éclisses de jonction fabriqués sur mesure. Étanchéité des acrotères et toits plats garantie sans soudure sur chantier — un seul interlocuteur pour tout le système.
+              Couvertines, supports extrudés et éclisses de jonction fabriqués sur mesure. Assemblage sans soudure sur chantier. — un seul interlocuteur pour tout le système.
             </p>
           </div>
           <div className="flex flex-col lg:flex-row gap-8 items-start">
