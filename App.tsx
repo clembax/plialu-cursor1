@@ -1429,7 +1429,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   PORTFOLIO
                 </span>
                 <h1 className="text-4xl md:text-6xl tracking-tighter leading-[1.1] font-black uppercase text-white">
-                  Collaborations avec maîtres d'œuvre, maîtres d'ouvrage et enveloppe.
+                  Découvrir nos projets en collaboration
                 </h1>
                 <p className="text-base md:text-lg text-white/70 max-w-2xl leading-relaxed font-medium">
                   Une sélection de projets menés aux côtés de maîtres d'œuvre, Maîtres d'ouvrage, Cabinets d'architecture, Professionnels de l'enveloppe, Bureaux d'études.
