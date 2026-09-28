@@ -4033,7 +4033,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       ></textarea>
                     </div>
 
-                    {/* Upload fichier */}
+                    {/* Upload fichier — désactivé temporairement
                     <div className="p-4 border-2 border-dashed border-[#0E2A33]/20 rounded-xl bg-[#F3F6F7]">
                       <label className="block text-sm font-bold mb-2 text-[#0E2A33]">
                         <span className="text-[#0E2A33]">Joindre vos documents</span> (PDF, DWG, DXF, JPG, etc.)
@@ -4046,6 +4046,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       />
                       <p className="mt-2 text-xs text-[#0E2A33]/50 text-center">Taille maximale : 100 Mo par fichier.</p>
                     </div>
+                    */}
+                    <p className="mt-2 text-xs text-[#0E2A33]/50 text-center">Vos plans ou fichiers : envoyez-les à <a href="mailto:commercial@plialu.fr" className="underline">commercial@plialu.fr</a> en précisant votre nom.</p>
 
                     {/* Bouton submit */}
                     <button
