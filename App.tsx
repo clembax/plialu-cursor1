@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { createPortal } from 'react-dom';
 import CookieBanner from './src/components/CookieBanner';
 
 // Fix: Use 'declare global' to augment the JSX namespace globally.
@@ -26,7 +25,9 @@ import TerritorialMap from './TerritorialMap';
 import Success from './Success';
 import EnduitMinceIsolant from './src/components/solutions/EnduitMinceIsolant';
 import Etancheite from './components/Etancheite';
-import { PROJECTS } from './projects';
+import { PROJECTS, getPortfolioOrder } from './projects';
+import PortfolioGrid from './PortfolioGrid';
+import PortfolioSheet from './PortfolioSheet';
 
 const SEO_CONFIG: Record<string, { path: string; title: string; desc: string; noindex?: boolean }> = {
   'home': { path: '/', title: 'PLIALU | Façonnage métallique sur-mesure en Rhône-Alpes', desc: 'Spécialiste du façonnage métallique en Rhône-Alpes depuis 20 ans. Solutions sur-mesure pour architectes, bureaux d\'études et façadiers. Devis sous 48h.' },
@@ -69,43 +70,10 @@ const BLOCKED_PAGE_KEYS = new Set([
   'ressource-3',
 ]);
 
-type ProjectGalleryImage = { src: string; srcset?: string; alt?: string };
-
-const ProjectImageGlassView: React.FC<{
-  image: ProjectGalleryImage;
-  transitionKey: string;
-  alt: string;
-  frameClassName?: string;
-  imageClassName?: string;
-}> = ({
-  image,
-  transitionKey,
-  alt,
-  frameClassName = 'w-full h-full',
-  imageClassName = 'w-full h-full object-contain animate-fade-in',
-}) => (
-  <div className={`relative overflow-hidden ${frameClassName}`}>
-    <img
-      key={`glass-bg-${transitionKey}`}
-      src={image.src}
-      srcSet={image.srcset}
-      alt=""
-      aria-hidden="true"
-      className="absolute inset-0 h-full w-full scale-110 object-cover blur-2xl opacity-70 animate-fade-in"
-    />
-    <div className="absolute inset-0 bg-black/20 backdrop-blur-xl" />
-    <img
-      key={`glass-fg-${transitionKey}`}
-      src={image.src}
-      srcSet={image.srcset}
-      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 800px"
-      alt={alt}
-      loading="lazy"
-      decoding="async"
-      className={`relative z-10 ${imageClassName}`}
-    />
-  </div>
-);
+const sheetHistoryId = (): string | null => {
+  const state = window.history.state as { plialuSheet?: unknown } | null;
+  return state && typeof state.plialuSheet === 'string' ? state.plialuSheet : null;
+};
 
 const App: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -161,12 +129,8 @@ const App: React.FC = () => {
   >(getInitialPage);
   const [hoveredStep, setHoveredStep] = useState<number | null>(null);
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
-  const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
-  const [projectImageIndex, setProjectImageIndex] = useState(0);
-  const [projectLightbox, setProjectLightbox] = useState<{
-    images: { src: string; srcset?: string; alt?: string }[];
-    index: number;
-  } | null>(null);
+  const [openProjectId, setOpenProjectId] = useState<string | null>(null);
+  const sheetOriginIdRef = useRef<string | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [solutionsAccordionOpen, setSolutionsAccordionOpen] = useState<string | null>(null);
   const [isSommaireSticky, setIsSommaireSticky] = useState(false);
@@ -179,6 +143,14 @@ const App: React.FC = () => {
       window.history.replaceState(null, '', '/');
     }
   }, []);
+
+  useEffect(() => {
+    if (currentPage === 'projects') return;
+    if (sheetHistoryId()) {
+      window.history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+    setOpenProjectId((prev) => (prev ? null : prev));
+  }, [currentPage]);
 
   // Gère la mise à jour SEO et la fausse URL lors d'un changement de page
   useEffect(() => {
@@ -262,6 +234,7 @@ const App: React.FC = () => {
   // Écoute le bouton "Retour/Avance" du navigateur
   useEffect(() => {
     const handlePopState = () => {
+      setOpenProjectId(sheetHistoryId());
       const currentPath = window.location.pathname;
       const matchingKey = Object.keys(SEO_CONFIG).find(key => SEO_CONFIG[key].path === currentPath);
       if (matchingKey && BLOCKED_PAGE_KEYS.has(matchingKey)) {
@@ -284,68 +257,6 @@ const App: React.FC = () => {
   const expertisesVideoRef = React.useRef<HTMLVideoElement>(null);
   const sommaireRef = useRef<HTMLDivElement>(null);
   const expertisesHeroRef = useRef<HTMLElement | null>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const isDownRef = useRef(false);
-  const startXRef = useRef(0);
-  const scrollLeftRef = useRef(0);
-  const [carouselIndex, setCarouselIndex] = useState(0);
-  const [carouselTotal, setCarouselTotal] = useState(0);
-  const carouselIndexRef = useRef(0);
-  const scrollSyncTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const pendingProjectOpenRef = useRef<string | null>(null);
-
-  const isCarouselCardCentered = (cardIndex: number) => {
-    const el = scrollRef.current;
-    if (!el?.children[cardIndex]) return false;
-    const card = el.children[cardIndex] as HTMLElement;
-    const viewportCenter = el.scrollLeft + el.clientWidth / 2;
-    const cardCenter = card.offsetLeft + card.offsetWidth / 2;
-    return Math.abs(viewportCenter - cardCenter) < 24;
-  };
-
-  const completePendingProjectOpen = () => {
-    const projectId = pendingProjectOpenRef.current;
-    if (!projectId) return;
-    pendingProjectOpenRef.current = null;
-    setProjectImageIndex(0);
-    setProjectLightbox(null);
-    setSelectedProjectId(projectId);
-  };
-
-  const handleProjectCardActivate = (projectId: string, cardIndex: number) => {
-    if (selectedProjectId === projectId) {
-      pendingProjectOpenRef.current = null;
-      setSelectedProjectId(null);
-      setProjectLightbox(null);
-      return;
-    }
-
-    if (isCarouselCardCentered(cardIndex)) {
-      pendingProjectOpenRef.current = null;
-      setProjectImageIndex(0);
-      setProjectLightbox(null);
-      setSelectedProjectId(projectId);
-      return;
-    }
-
-    pendingProjectOpenRef.current = projectId;
-    scrollToProject(cardIndex);
-  };
-
-  const scrollToProject = (index: number) => {
-    const el = scrollRef.current;
-    if (!el || el.children.length === 0) return;
-    const clamped = Math.max(0, Math.min(index, el.children.length - 1));
-    const card = el.children[clamped] as HTMLElement;
-    card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-    carouselIndexRef.current = clamped;
-    setCarouselIndex(clamped);
-  };
-
-  const navigateCarousel = (direction: 1 | -1) => {
-    scrollToProject(carouselIndexRef.current + direction);
-  };
-
   const scrollToInfinimetal = (e?: React.MouseEvent) => {
     e?.preventDefault();
     if (currentPage === 'a-propos') {
@@ -412,127 +323,6 @@ const App: React.FC = () => {
     };
   }, [currentPage]);
 
-  useEffect(() => {
-    setProjectImageIndex(0);
-    setProjectLightbox(null);
-  }, [selectedProjectId]);
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        if (projectLightbox) {
-          setProjectImageIndex(projectLightbox.index);
-          setProjectLightbox(null);
-        } else if (selectedProjectId) {
-          setSelectedProjectId(null);
-        }
-        return;
-      }
-      if (projectLightbox) {
-        const { images, index } = projectLightbox;
-        if (e.key === 'ArrowLeft' && images.length > 1) {
-          e.preventDefault();
-          setProjectLightbox({ images, index: (index - 1 + images.length) % images.length });
-        }
-        if (e.key === 'ArrowRight' && images.length > 1) {
-          e.preventDefault();
-          setProjectLightbox({ images, index: (index + 1) % images.length });
-        }
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [projectLightbox, selectedProjectId]);
-
-  useEffect(() => {
-    if (currentPage !== 'projects') return;
-
-    carouselIndexRef.current = 0;
-    setCarouselIndex(0);
-    pendingProjectOpenRef.current = null;
-    const el = scrollRef.current;
-    if (el) {
-      el.scrollLeft = 0;
-      setCarouselTotal(el.children.length);
-    }
-  }, [currentPage]);
-
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el || currentPage !== 'projects') return;
-
-    setCarouselTotal(el.children.length);
-
-    const syncCarouselIndex = () => {
-      const center = el.scrollLeft + el.clientWidth / 2;
-      let closest = 0;
-      let minDist = Infinity;
-      Array.from(el.children).forEach((child, i) => {
-        const card = child as HTMLElement;
-        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
-        const dist = Math.abs(center - cardCenter);
-        if (dist < minDist) {
-          minDist = dist;
-          closest = i;
-        }
-      });
-      carouselIndexRef.current = closest;
-      setCarouselIndex(closest);
-    };
-
-    const handleScroll = () => {
-      if (scrollSyncTimerRef.current) clearTimeout(scrollSyncTimerRef.current);
-      scrollSyncTimerRef.current = setTimeout(() => {
-        syncCarouselIndex();
-        if (pendingProjectOpenRef.current) {
-          completePendingProjectOpen();
-        }
-      }, 80);
-    };
-
-    const handleScrollEnd = () => {
-      syncCarouselIndex();
-      if (pendingProjectOpenRef.current) {
-        completePendingProjectOpen();
-      }
-    };
-
-    const handleMouseDown = (e: MouseEvent) => {
-      isDownRef.current = true;
-      startXRef.current = e.pageX - el.offsetLeft;
-      scrollLeftRef.current = el.scrollLeft;
-    };
-
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!isDownRef.current) return;
-      e.preventDefault();
-      const x = e.pageX - el.offsetLeft;
-      const walk = (x - startXRef.current) * 1.5;
-      el.scrollLeft = scrollLeftRef.current - walk;
-    };
-
-    const stopDragging = () => {
-      isDownRef.current = false;
-    };
-
-    el.addEventListener('mousedown', handleMouseDown);
-    el.addEventListener('mousemove', handleMouseMove);
-    el.addEventListener('mouseup', stopDragging);
-    el.addEventListener('mouseleave', stopDragging);
-    el.addEventListener('scroll', handleScroll, { passive: true });
-    el.addEventListener('scrollend', handleScrollEnd);
-
-    return () => {
-      el.removeEventListener('mousedown', handleMouseDown);
-      el.removeEventListener('mousemove', handleMouseMove);
-      el.removeEventListener('mouseup', stopDragging);
-      el.removeEventListener('mouseleave', stopDragging);
-      el.removeEventListener('scroll', handleScroll);
-      el.removeEventListener('scrollend', handleScrollEnd);
-      if (scrollSyncTimerRef.current) clearTimeout(scrollSyncTimerRef.current);
-    };
-  }, [currentPage]);
-
   // Vidéo Teaser / Expertises : lecture au scroll (Intersection Observer)
   useEffect(() => {
     const videoEl = currentPage === 'home' ? teaserVideoRef.current : currentPage === 'expertises' ? expertisesVideoRef.current : null;
@@ -577,15 +367,52 @@ const App: React.FC = () => {
     setTimeout(() => setCopiedKey(null), 2000);
   };
 
-  const closeProjectLightbox = () => {
-    if (projectLightbox) {
-      setProjectImageIndex(projectLightbox.index);
-    }
-    setProjectLightbox(null);
+  const portfolioOrder = getPortfolioOrder(PROJECTS, 'zento-grenoble');
+  const portfolioYears = PROJECTS.map((project) => Number(project.year));
+  const portfolioYearMin = Math.min(...portfolioYears);
+  const portfolioYearMax = Math.max(...portfolioYears);
+  const openPortfolioIndex = portfolioOrder.findIndex((project) => project.id === openProjectId);
+  const openPortfolioProject = openPortfolioIndex >= 0 ? portfolioOrder[openPortfolioIndex] : null;
+
+  const openProject = (id: string) => {
+    sheetOriginIdRef.current = id;
+    setOpenProjectId(id);
+    window.history.pushState({ plialuSheet: id }, '', window.location.href);
   };
 
-  const projectImageNavButtonClass =
-    'absolute top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-9 h-9 md:w-10 md:h-10 bg-[#E2FD48]/70 text-[#0E2A33] rounded-full opacity-70 hover:opacity-100 hover:scale-110 active:scale-95 transition-all duration-200 shadow-md';
+  const showProject = (id: string) => {
+    setOpenProjectId(id);
+    if (sheetHistoryId()) {
+      window.history.replaceState({ plialuSheet: id }, '', window.location.href);
+    }
+  };
+
+  const closeSheet = () => {
+    if (sheetHistoryId()) {
+      window.history.back();
+      return;
+    }
+    setOpenProjectId(null);
+  };
+
+  const requestQuoteFromSheet = () => {
+    if (sheetHistoryId()) {
+      window.history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+    setOpenProjectId(null);
+    setCurrentPage('contact');
+  };
+
+  useEffect(() => {
+    if (openProjectId) return;
+    const originId = sheetOriginIdRef.current;
+    if (!originId) return;
+    sheetOriginIdRef.current = null;
+    const frame = requestAnimationFrame(() => {
+      document.getElementById(`portfolio-card-${originId}`)?.focus();
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [openProjectId]);
 
   const solutions = [
     {
@@ -684,11 +511,11 @@ const App: React.FC = () => {
   return (
     <div className="font-manrope selection-brand min-h-screen">
       {/* Navigation */}
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${isScrolled ? 'h-20' : 'h-24'}`}>
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${(isScrolled || openProjectId) ? 'h-20' : 'h-24'}`}>
         <div 
           className={`absolute inset-0 border-b backdrop-blur-md pointer-events-none transition-opacity duration-500 
             ${headerTheme === 'dark' ? 'bg-[#F0F4F6]/90 border-zinc-200' : 'bg-[#050E12]/90 border-white/5'} 
-            ${isScrolled ? 'opacity-100' : 'opacity-0'}`}
+            ${(isScrolled || openProjectId) ? 'opacity-100' : 'opacity-0'}`}
         ></div>
         
         <div className="relative max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
@@ -1422,9 +1249,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
       {currentPage === 'projects' && (
         <div className="animate-fade-up">
           {/* Hero Réalisations */}
-          <section className="relative bg-[#071318] pt-48 md:pt-56 pb-24 overflow-hidden min-h-[70vh] flex flex-col justify-center">
+          <section className="relative bg-[#071318] pt-48 md:pt-56 pb-12 md:pb-16">
             <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-b from-[#0e2a33]/40 to-[#071318]"></div>
-            <div className="relative z-10 flex-1 flex flex-col justify-center max-w-7xl mx-auto px-6 w-full">
+            <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
               <div className="max-w-4xl space-y-8">
                 <span className="text-[10px] font-extrabold tracking-[0.4em] text-white/50 uppercase block">
                   PORTFOLIO
@@ -1462,183 +1289,28 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           </section>
 
           {/* Grille des Projets */}
-          <section id="projets-grille" className="py-24 bg-white scroll-mt-24">
-            <div className="w-full">
-              <div className="max-w-7xl mx-auto px-6 w-full mb-12 flex justify-between items-end">
-                <div>
-                  <h2 className="mb-3 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
-                    Des chantiers de référence
-                  </h2>
-                  <p className="text-base md:text-lg text-[#0E2A33]/70 max-w-2xl leading-relaxed font-medium">
-                    Chaque réalisation engage l'ensemble de nos équipes et implique une étroite collaboration avec nos clients. Confiance et partage d'expertises sont les maîtres mots d'un projet réussi
-                  </p>
-                </div>
-
-                <div className="flex items-center gap-2 text-[#0E2A33]/40 text-[10px] font-bold tracking-[0.3em] uppercase">
-                  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="6" y="2" width="12" height="20" rx="6"/>
-                    <path d="M12 6v4"/>
-                  </svg>
-                  Faire défiler
-                </div>
-              </div>
-              <div className="relative w-full">
-                <button
-                  type="button"
-                  aria-label="Projet précédent"
-                  onClick={() => navigateCarousel(-1)}
-                  disabled={carouselIndex === 0}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 bg-[#E2FD48]/70 text-[#0E2A33] border-2 border-[#0E2A33] rounded-full opacity-60 hover:opacity-100 hover:scale-110 active:scale-95 transition-all duration-200 disabled:opacity-30 disabled:pointer-events-none shadow-md"
-                >
-                  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor">
-                    <path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"/>
-                  </svg>
-                </button>
-                <button
-                  type="button"
-                  aria-label="Projet suivant"
-                  onClick={() => navigateCarousel(1)}
-                  disabled={carouselIndex >= carouselTotal - 1}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 bg-[#E2FD48]/70 text-[#0E2A33] border-2 border-[#0E2A33] rounded-full opacity-60 hover:opacity-100 hover:scale-110 active:scale-95 transition-all duration-200 disabled:opacity-30 disabled:pointer-events-none shadow-md"
-                >
-                  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor">
-                    <path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"/>
-                  </svg>
-                </button>
-                <div
-                  ref={scrollRef}
-                  className="flex overflow-x-auto gap-6 px-6 pb-12 snap-x snap-mandatory scroll-smooth no-scrollbar w-full cursor-grab active:cursor-grabbing"
-                >
-                {PROJECTS.map((project, cardIndex) => {
-                  const isOpen = selectedProjectId === project.id;
-                  const projectImages = [project.mainImg, ...project.gallery];
-                  const currentImageIndex = isOpen ? projectImageIndex : 0;
-                  const currentImage = projectImages[currentImageIndex];
-                  const technicalDescription =
-                    (project as { description?: string }).description ?? project.context;
-
-                  return (
-                    <article
-                      key={project.id}
-                      role="button"
-                      tabIndex={0}
-                      aria-label={`Ouvrir le projet ${project.title}`}
-                      className="snap-center shrink-0 w-[85vw] md:w-[600px] h-[75vh] relative group overflow-hidden rounded-none cursor-pointer"
-                      onClick={() => handleProjectCardActivate(project.id, cardIndex)}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                          e.preventDefault();
-                          handleProjectCardActivate(project.id, cardIndex);
-                        }
-                      }}
-                    >
-                      {!isOpen && (
-                        <>
-                          <img
-                            src={project.mainImg.src}
-                            srcset={project.mainImg.srcset}
-                            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 800px"
-                            alt={`${project.title} – ${project.tag}`}
-                            loading="lazy"
-                            decoding="async"
-                            className="w-full h-full object-cover rounded-none transition-transform duration-[1.5s] group-hover:scale-105"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-[#0E2A33]/80 via-transparent to-transparent"></div>
-                          <div className="absolute bottom-0 left-0 w-full p-8 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                            <span className="text-2xl font-black text-white uppercase tracking-tight whitespace-pre-line">{project.title}</span>
-                            <p className="text-white/60 text-sm mt-1">{project.city}</p>
-                            <p className="text-[#E2FD48] text-xs font-bold tracking-widest uppercase mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                              DÉTAILS →
-                            </p>
-                          </div>
-                        </>
-                      )}
-
-                      {isOpen && (
-                        <>
-                          <div className="w-full h-full relative overflow-hidden transition-all duration-500 ease-in-out">
-                            <div className="absolute inset-0 flex items-center justify-center">
-                              <button
-                                type="button"
-                                aria-label="Agrandir l'image en plein écran"
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  setProjectLightbox({ images: projectImages, index: currentImageIndex });
-                                }}
-                                className="relative w-full h-full flex items-center justify-center cursor-zoom-in border-0 bg-transparent p-0"
-                              >
-                                <ProjectImageGlassView
-                                  image={currentImage}
-                                  transitionKey={`${project.id}-${currentImageIndex}`}
-                                  alt={`${project.title} – Détail technique ${currentImageIndex + 1}`}
-                                />
-                              </button>
-
-                              {projectImages.length > 1 && (
-                                <>
-                                  <button
-                                    type="button"
-                                    aria-label="Photo précédente"
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      setProjectImageIndex((prev) => (prev - 1 + projectImages.length) % projectImages.length);
-                                    }}
-                                    className={`${projectImageNavButtonClass} left-3`}
-                                  >
-                                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 256 256" fill="currentColor">
-                                      <path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"/>
-                                    </svg>
-                                  </button>
-                                  <button
-                                    type="button"
-                                    aria-label="Photo suivante"
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      setProjectImageIndex((prev) => (prev + 1) % projectImages.length);
-                                    }}
-                                    className={`${projectImageNavButtonClass} right-3`}
-                                  >
-                                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 256 256" fill="currentColor">
-                                      <path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"/>
-                                    </svg>
-                                  </button>
-                                  <div className="absolute bottom-28 left-1/2 -translate-x-1/2 z-10 px-3 py-1 rounded-full bg-black/40 text-white/90 text-[11px] font-bold tracking-widest">
-                                    {currentImageIndex + 1} / {projectImages.length}
-                                  </div>
-                                </>
-                              )}
-                            </div>
-
-                            <div className={`absolute bottom-0 left-0 right-0 bg-black/50 backdrop-blur-md border-t border-white/10 px-6 py-5 flex items-start gap-6 transition-opacity duration-500 ease-in-out ${isOpen ? 'opacity-100' : 'opacity-0'}`}>
-                              <span className="text-[#E2FD48] text-xs font-bold tracking-widest uppercase shrink-0">{project.year}</span>
-                              <div className="w-px h-8 bg-white/20 shrink-0"></div>
-                              <h3 className="text-white font-black uppercase tracking-tight text-lg leading-tight">{project.title}</h3>
-                              <div className="w-px h-8 bg-white/20 shrink-0"></div>
-                              <p className="text-white/60 text-xs leading-relaxed">{technicalDescription}</p>
-                            </div>
-                          </div>
-
-                          <button
-                            type="button"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setProjectLightbox(null);
-                              setSelectedProjectId(null);
-                            }}
-                            aria-label="Fermer le projet"
-                            className="absolute top-4 right-4 z-20 w-8 h-8 bg-[#0E2A33]/80 rounded-full flex items-center justify-center text-white text-lg hover:bg-[#E2FD48] hover:text-[#0E2A33] transition-all"
-                          >
-                            ×
-                          </button>
-                        </>
-                      )}
-                    </article>
-                  );
-                })}
-                </div>
-              </div>
+          <section id="projets-grille" className="scroll-mt-24 bg-[#071318] py-16 md:py-24">
+            <div className="mx-auto max-w-7xl px-6">
+              <h2 className="sr-only">Nos réalisations</h2>
+              <p className="mb-8 text-[10px] font-extrabold uppercase tracking-[0.4em] text-white/50">
+                {PROJECTS.length} réalisations · {portfolioYearMin}–{portfolioYearMax}
+              </p>
+              <PortfolioGrid projects={portfolioOrder} onOpen={openProject} />
             </div>
           </section>
+
+          {openPortfolioProject && (
+            <PortfolioSheet
+              project={openPortfolioProject}
+              index={openPortfolioIndex}
+              total={portfolioOrder.length}
+              previous={portfolioOrder[(openPortfolioIndex - 1 + portfolioOrder.length) % portfolioOrder.length]}
+              next={portfolioOrder[(openPortfolioIndex + 1) % portfolioOrder.length]}
+              onClose={closeSheet}
+              onSelect={showProject}
+              onContact={requestQuoteFromSheet}
+            />
+          )}
 
           {/* CTA Final */}
           <section className="py-24 bg-[#071318] text-center border-t border-white/5">
@@ -1651,83 +1323,6 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             </div>
           </section>
 
-          {/* Image Lightbox Overlay */}
-          {projectLightbox && (
-            createPortal(
-              <div
-                className="fixed top-0 left-0 w-screen h-screen z-[200] flex items-center justify-center bg-black/70 backdrop-blur-sm"
-                onClick={closeProjectLightbox}
-              >
-                <div
-                  className="relative h-[90vh] w-[90vw] max-h-[90vh] max-w-[90vw]"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <ProjectImageGlassView
-                    image={projectLightbox.images[projectLightbox.index]}
-                    transitionKey={`lightbox-${projectLightbox.index}`}
-                    alt={projectLightbox.images[projectLightbox.index].alt ?? 'Réalisation PLIALU - Façonnage métallique et enveloppe du bâtiment'}
-                    frameClassName="h-full w-full"
-                    imageClassName="h-full w-full max-h-full max-w-full object-contain animate-fade-in"
-                  />
-                </div>
-
-                {projectLightbox.images.length > 1 && (
-                  <>
-                    <button
-                      type="button"
-                      aria-label="Photo précédente"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setProjectLightbox((prev) => {
-                          if (!prev) return prev;
-                          const len = prev.images.length;
-                          return { ...prev, index: (prev.index - 1 + len) % len };
-                        });
-                      }}
-                      className={`${projectImageNavButtonClass} left-4 md:left-8`}
-                    >
-                      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor">
-                        <path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"/>
-                      </svg>
-                    </button>
-                    <button
-                      type="button"
-                      aria-label="Photo suivante"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setProjectLightbox((prev) => {
-                          if (!prev) return prev;
-                          const len = prev.images.length;
-                          return { ...prev, index: (prev.index + 1) % len };
-                        });
-                      }}
-                      className={`${projectImageNavButtonClass} right-4 md:right-8`}
-                    >
-                      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="currentColor">
-                        <path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"/>
-                      </svg>
-                    </button>
-                    <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 px-4 py-1.5 rounded-full bg-black/50 text-white/90 text-xs font-bold tracking-widest">
-                      {projectLightbox.index + 1} / {projectLightbox.images.length}
-                    </div>
-                  </>
-                )}
-
-                <button
-                  type="button"
-                  aria-label="Fermer le plein écran"
-                  className="absolute top-6 right-6 text-white/70 hover:text-white text-4xl font-light"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    closeProjectLightbox();
-                  }}
-                >
-                  ×
-                </button>
-              </div>,
-              document.body
-            )
-          )}
         </div>
       )}
 

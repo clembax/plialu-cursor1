@@ -16,6 +16,7 @@ export type Project = {
   figures: unknown[];
   mainImg: ProjectImage;
   gallery: ProjectImage[];
+  focus?: string;
 };
 
 export const PROJECTS: Project[] = [
@@ -509,3 +510,10 @@ export const getProjectImages = (p: Project): ProjectImage[] => [p.mainImg, ...p
 
 export const getProjectImageAlt = (p: Project, index: number): string =>
   `${p.name} : ${p.system.toLowerCase()}, photo ${index + 1} sur ${getProjectImages(p).length}`;
+
+export function getPortfolioOrder(projects: Project[], featuredId: string): Project[] {
+  const featured = projects.find((project) => project.id === featuredId);
+  const rest = projects.filter((project) => project.id !== featuredId);
+  const byYearDesc = [...rest].sort((a, b) => Number(b.year) - Number(a.year));
+  return featured ? [featured, ...byYearDesc] : byYearDesc;
+}
