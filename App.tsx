@@ -3941,15 +3941,14 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 {/* Formulaire Web3Forms */}
                 <div id="contact-form" className="bg-white rounded-[32px] p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.03)] border border-zinc-100 scroll-mt-32">
                   <form
-                    action="https://formsubmit.co/clementbax@yahoo.com"
+                    action="https://usebasin.com/f/b0fa3eeb614b"
                     method="POST"
                     encType="multipart/form-data"
+                    acceptCharset="UTF-8"
                     className="space-y-6"
                   >
-                    {/* Champs cachés Formsubmit */}
-                    <input type="hidden" name="_captcha" value="true" />
-                    <input type="hidden" name="_subject" value="Nouvelle demande de devis — PLIALU" />
-                    <input type="hidden" name="_next" value="https://plialu.fr/merci" />
+                    {/* Champ anti-spam Basin */}
+                    <input type="hidden" name="_gotcha" />
 
                     {/* Ligne 1 : Prénom / Nom */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -4045,7 +4044,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                         accept=".pdf,.dwg,.dxf,.jpg,.jpeg"
                         className="block w-full text-sm text-[#0E2A33]/70 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#E2FD48] file:text-[#0E2A33] hover:file:bg-[#d4ed3f] cursor-pointer"
                       />
-                      <p className="mt-2 text-xs text-[#0E2A33]/50 text-center">Taille maximale : 10 Mo par envoi.</p>
+                      <p className="mt-2 text-xs text-[#0E2A33]/50 text-center">Taille maximale : 100 Mo par fichier.</p>
                     </div>
 
                     {/* Bouton submit */}
@@ -4141,7 +4140,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
                 <h2 className="text-2xl font-bold text-white mt-8 mb-4">4. Destinataires des données et Sous-traitants</h2>
                 <p>Les données collectées sont strictement destinées au personnel habilité de PLIALU (direction, équipe commerciale, bureau d'études). Pour assurer le fonctionnement technique du site, nous nous appuyons sur des sous-traitants reconnus, en conformité avec le RGPD :</p>
-                <p><strong>Formsubmit.co :</strong> Formulaire de contact.</p>
+                <p><strong>Basin (usebasin.com) :</strong> Formulaire de contact. Les messages et les pièces jointes transmis via le formulaire y sont stockés.</p>
                 <p><strong>Cloudinary :</strong> Teaser vidéo et images.</p>
                 <p><strong>Vimeo :</strong> Vidéo longue thermolaquage.</p>
                 <p><strong>Google Analytics :</strong> Statistiques de visite.</p>
