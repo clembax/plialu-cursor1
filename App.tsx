@@ -25,7 +25,7 @@ import TerritorialMap from './TerritorialMap';
 import Success from './Success';
 import EnduitMinceIsolant from './src/components/solutions/EnduitMinceIsolant';
 import Etancheite from './components/Etancheite';
-import { PROJECTS, getPortfolioOrder } from './projects';
+import { PROJECTS, getPortfolioOrder, buildPortfolioJsonLd } from './projects';
 import PortfolioGrid from './PortfolioGrid';
 import PortfolioSheet from './PortfolioSheet';
 
@@ -40,7 +40,7 @@ const SEO_CONFIG: Record<string, { path: string; title: string; desc: string; no
     desc: 'Couvertines, bavettes et protections d’ouvrage pour toits plats. Fabrication sur mesure en métal prélaqué avec finitions durables pour une étanchéité parfaite des bâtiments industriels et collectifs.',
     noindex: true,
   },
-  'projects': { path: '/portfolio', title: 'Nos réalisations — Façades aluminium et enveloppe bâtiment | PLIALU', desc: 'Projets façonnage métal réalisés : architectes, bureaux d\'études, façadiers. Références bardages, ravalement, ITE. Voir nos réalisations.' },
+  'projects': { path: '/portfolio', title: 'Nos réalisations — Façades aluminium et enveloppe bâtiment | PLIALU', desc: '13 réalisations de façades et d\'enveloppe de bâtiment à Grenoble, Lyon, Annecy et Meylan : cassettes aluminium, précadres, habillages. Références PLIALU.' },
   'a-propos': { path: '/a-propos', title: 'PLIALU — Entreprise de façonnage métallique en Rhône-Alpes', desc: 'PLIALU : PME façonnage métal Rhône-Alpes, 20 ans d\'expertise. Usine intégrée, 7 000 m², process certifiés Qualicoat. Devis gratuit.' },
   'ressources': { path: '/ressources', title: 'Ressources techniques — Enveloppe du bâtiment | PLIALU', desc: 'Dossiers techniques et guides pratiques PLIALU pour vos choix de matériaux et conceptions de façades métalliques.', noindex: true },
   'ressource-1': { path: '/ressources/choix-metal-facade', title: 'Quel métal choisir pour une façade extérieure ? | PLIALU', desc: 'Aluminium, acier ou inox pour une façade extérieure : comparatif technique, comportement aux UV, corrosion et contraintes chantier. Guide prescripteurs.', noindex: true },
@@ -223,6 +223,20 @@ const App: React.FC = () => {
         return el;
       });
       canonicalEl.setAttribute('href', currentUrl);
+
+      const existingLd = document.getElementById('ld-portfolio');
+      if (currentPage === 'projects') {
+        const payload = JSON.stringify(
+          buildPortfolioJsonLd(PROJECTS, window.location.origin, SEO_CONFIG.projects.title)
+        ).replace(/</g, '\\u003c');
+        const script = existingLd ?? document.createElement('script');
+        script.id = 'ld-portfolio';
+        script.setAttribute('type', 'application/ld+json');
+        script.textContent = payload;
+        if (!existingLd) document.head.appendChild(script);
+      } else if (existingLd) {
+        existingLd.remove();
+      }
 
       // Met à jour l'URL sans recharger la page
       if (window.location.pathname !== config.path) {

@@ -517,3 +517,31 @@ export function getPortfolioOrder(projects: Project[], featuredId: string): Proj
   const byYearDesc = [...rest].sort((a, b) => Number(b.year) - Number(a.year));
   return featured ? [featured, ...byYearDesc] : byYearDesc;
 }
+
+export function buildPortfolioJsonLd(projects: Project[], origin: string, title: string): object {
+  const ordered = getPortfolioOrder(projects, 'zento-grenoble');
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: title,
+    url: `${origin}/portfolio`,
+    inLanguage: 'fr',
+    isPartOf: { '@type': 'WebSite', name: 'PLIALU', url: origin },
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: ordered.length,
+      itemListElement: ordered.map((project, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        item: {
+          '@type': 'CreativeWork',
+          name: project.name,
+          description: `${project.system}, ${project.material}${project.finish ? `, ${project.finish}` : ''}`,
+          dateCreated: project.year,
+          locationCreated: { '@type': 'Place', name: project.city },
+          image: project.mainImg.src,
+        },
+      })),
+    },
+  };
+}
