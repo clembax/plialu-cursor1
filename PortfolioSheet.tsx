@@ -16,22 +16,12 @@ type PortfolioSheetProps = {
 const prefersReducedMotion = () =>
   window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-const isPortrait = (image: ProjectImage) =>
-  Boolean(image.width && image.height && image.height / image.width > 1.2);
-
 const SheetPhoto: React.FC<{ image: ProjectImage; alt: string; eager: boolean }> = ({ image, alt, eager }) => {
   const [loaded, setLoaded] = useState(false);
   const markLoaded = () => setLoaded(true);
-  const portrait = isPortrait(image);
-  const frame = portrait
-    ? 'flex justify-center rounded-2xl bg-[#0E2A33]'
-    : 'rounded-2xl bg-[#0E2A33]';
-  const photo = portrait
-    ? 'max-h-[85vh] w-auto max-w-full object-contain rounded-2xl'
-    : 'h-auto w-full rounded-2xl';
 
   return (
-    <div className={frame}>
+    <div className="rounded-2xl bg-[#0E2A33]">
       <img
         ref={(node) => {
           if (node?.complete && node.naturalWidth > 0) markLoaded();
@@ -46,11 +36,45 @@ const SheetPhoto: React.FC<{ image: ProjectImage; alt: string; eager: boolean }>
         loading={eager ? 'eager' : 'lazy'}
         onLoad={markLoaded}
         style={{ transition: 'opacity 300ms' }}
-        className={`${photo} ${loaded ? 'opacity-100' : 'opacity-0'}`}
+        className={`h-auto w-full rounded-2xl ${loaded ? 'opacity-100' : 'opacity-0'}`}
       />
     </div>
   );
 };
+
+const ProjectNavLink: React.FC<{
+  project: Project;
+  direction: 'previous' | 'next';
+  onSelect: (id: string) => void;
+}> = ({ project, direction, onSelect }) => (
+  <button
+    type="button"
+    onClick={() => onSelect(project.id)}
+    className="group -m-2 flex w-full items-center gap-3 rounded-2xl p-2 text-left hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E2FD48]"
+  >
+    <img
+      src={project.mainImg.src}
+      alt=""
+      loading="lazy"
+      className="h-14 w-14 shrink-0 rounded-xl object-cover"
+    />
+    <span className="min-w-0 flex-1">
+      <span className="block text-[10px] font-extrabold uppercase tracking-[0.3em] text-white/40">
+        {direction === 'previous' ? 'Projet précédent' : 'Projet suivant'}
+      </span>
+      <span className="mt-1 block truncate text-sm font-bold text-white">{project.name}</span>
+    </span>
+    <span
+      aria-hidden="true"
+      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/40 text-white transition-colors duration-300 [@media(hover:hover)]:group-hover:border-[#E2FD48] [@media(hover:hover)]:group-hover:bg-[#E2FD48] [@media(hover:hover)]:group-hover:text-[#0E2A33]"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={direction === 'previous' ? 'rotate-180' : undefined}>
+        <path d="M5 12h14" />
+        <path d="m13 6 6 6-6 6" />
+      </svg>
+    </span>
+  </button>
+);
 
 const PortfolioSheet: React.FC<PortfolioSheetProps> = ({
   project,
@@ -63,6 +87,7 @@ const PortfolioSheet: React.FC<PortfolioSheetProps> = ({
   onContact,
 }) => {
   const dialogRef = useRef<HTMLDivElement>(null);
+  const dialogScrollRef = useRef<HTMLDivElement>(null);
   const onCloseRef = useRef(onClose);
   const onSelectRef = useRef(onSelect);
   const previousIdRef = useRef(previous.id);
@@ -94,6 +119,10 @@ const PortfolioSheet: React.FC<PortfolioSheetProps> = ({
   useEffect(() => {
     dialogRef.current?.focus();
   }, []);
+
+  useEffect(() => {
+    dialogScrollRef.current?.scrollTo({ top: 0, behavior: 'instant' });
+  }, [project.id]);
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
@@ -137,7 +166,10 @@ const PortfolioSheet: React.FC<PortfolioSheetProps> = ({
 
   return createPortal(
     <div
-      ref={dialogRef}
+      ref={(node) => {
+        dialogRef.current = node;
+        dialogScrollRef.current = node;
+      }}
       role="dialog"
       aria-modal="true"
       aria-label={project.name}
@@ -180,12 +212,18 @@ const PortfolioSheet: React.FC<PortfolioSheetProps> = ({
             ))}
           </div>
 
+          <div className="order-3 mt-2 flex flex-col gap-3 border-t border-white/10 pt-6 lg:hidden">
+            <ProjectNavLink project={previous} direction="previous" onSelect={onSelect} />
+            <ProjectNavLink project={next} direction="next" onSelect={onSelect} />
+          </div>
+
           <aside className="relative order-1 mb-10 self-start lg:sticky lg:top-28 lg:order-2 lg:mb-0">
             <span aria-hidden="true" className="pointer-events-none absolute -left-2 -top-8 select-none text-[10rem] font-black leading-none text-white/5">
               {number}
             </span>
             <div className="relative">
               <p className="text-xs font-bold uppercase tracking-widest text-[#E2FD48]">{project.tag}</p>
+              <p className="mt-2 text-xs text-white/40">{number} / {total}</p>
               <h2 className="mt-3 text-3xl font-extrabold tracking-tighter text-white md:text-5xl">{project.name}</h2>
               <p className="mt-3 text-base text-white/70">{project.city} · {project.year}</p>
               <dl className="mt-8">
@@ -211,19 +249,11 @@ const PortfolioSheet: React.FC<PortfolioSheetProps> = ({
               >
                 Demander un devis
               </button>
-              <div className="mt-10 grid grid-cols-2 gap-4 border-t border-white/10 pt-6">
-                <button type="button" onClick={() => onSelect(previous.id)} className="min-h-[44px] text-left">
-                  <span className="block text-[10px] font-extrabold uppercase tracking-[0.2em] text-white/50">Projet précédent</span>
-                  <span className="mt-1 block text-sm font-bold text-white">{previous.name}</span>
-                </button>
-                <button type="button" onClick={() => onSelect(next.id)} className="min-h-[44px] text-right">
-                  <span className="block text-[10px] font-extrabold uppercase tracking-[0.2em] text-white/50">Projet suivant</span>
-                  <span className="mt-1 block text-sm font-bold text-white">{next.name}</span>
-                </button>
+              <div className="hidden lg:mt-10 lg:flex lg:flex-col lg:gap-3 lg:border-t lg:border-white/10 lg:pt-6">
+                <p className="text-[11px] text-white/40">Naviguer avec ← →</p>
+                <ProjectNavLink project={previous} direction="previous" onSelect={onSelect} />
+                <ProjectNavLink project={next} direction="next" onSelect={onSelect} />
               </div>
-              <p className="mt-4 text-center text-xs font-bold tabular-nums tracking-widest text-white/50">
-                {number} / {total}
-              </p>
             </div>
           </aside>
         </div>

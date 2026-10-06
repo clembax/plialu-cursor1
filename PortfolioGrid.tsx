@@ -141,13 +141,17 @@ const CoverImage: React.FC<{
   );
 };
 
+const frameClass = (size: CardSize, context: 'portfolio' | 'home') =>
+  context === 'home' ? FRAME[size].replace('aspect-[4/5]', 'aspect-[4/3]') : FRAME[size];
+
 const PortfolioCard: React.FC<{
   project: Project;
   index: number;
   size: CardSize;
   stagger: number;
   onOpen: (id: string) => void;
-}> = ({ project, index, size, stagger, onOpen }) => {
+  context: 'portfolio' | 'home';
+}> = ({ project, index, size, stagger, onOpen, context }) => {
   const frameRef = useRef<HTMLDivElement>(null);
   const reduceMotion = useRef(prefersReducedMotion()).current;
   const [visible, setVisible] = useState(reduceMotion);
@@ -175,7 +179,7 @@ const PortfolioCard: React.FC<{
   return (
     <div
       ref={frameRef}
-      className={`${FRAME[size]} transition duration-500 motion-reduce:transition-none ${visible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}
+      className={`${frameClass(size, context)} transition duration-500 motion-reduce:transition-none ${visible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}
       style={reduceMotion ? undefined : { transitionDelay: visible ? `${stagger}ms` : '0ms' }}
     >
       <article
@@ -188,7 +192,7 @@ const PortfolioCard: React.FC<{
           image={project.mainImg}
           alt={getProjectImageAlt(project, 0)}
           sizes={SIZES[size]}
-          eager={index === 0}
+          eager={context === 'portfolio' && index === 0}
           objectPosition={project.focus ?? 'center'}
           fadeIn
           className="[@media(hover:hover)]:group-hover:scale-[1.04]"
@@ -253,7 +257,8 @@ const PortfolioCard: React.FC<{
 const PortfolioGrid: React.FC<{
   projects: Project[];
   onOpen: (id: string) => void;
-}> = ({ projects, onOpen }) => {
+  context?: 'portfolio' | 'home';
+}> = ({ projects, onOpen, context = 'portfolio' }) => {
   const groups = groupProjects(projects);
 
   return (
@@ -268,6 +273,7 @@ const PortfolioGrid: React.FC<{
                 size={item.size}
                 stagger={Math.min(offset, 2) * 80}
                 onOpen={onOpen}
+                context={context}
               />
             </div>
           ))}

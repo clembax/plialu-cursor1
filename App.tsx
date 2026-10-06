@@ -21,13 +21,44 @@ declare global {
   }
 }
 
-import TerritorialMap from './TerritorialMap';
+import FranceDotMap from './FranceDotMap';
 import Success from './Success';
 import EnduitMinceIsolant from './src/components/solutions/EnduitMinceIsolant';
 import Etancheite from './components/Etancheite';
 import { PROJECTS, getPortfolioOrder, buildPortfolioJsonLd } from './projects';
 import PortfolioGrid from './PortfolioGrid';
 import PortfolioSheet from './PortfolioSheet';
+
+const SHOW_ZONE_KEY = true;
+const ZONE_HIGHLIGHT = true;
+
+type ZoneId = 'main' | 'secondary' | 'delivery';
+
+const ZONE_ROWS: { kind: ZoneId; name: string; detail: string }[] = [
+  { kind: 'main', name: 'Rhône-Alpes', detail: 'Zone principale' },
+  { kind: 'secondary', name: 'Île-de-France et Sud-Est', detail: 'Zones secondaires' },
+  { kind: 'delivery', name: 'France, Belgique, Suisse', detail: 'Livraison possible' },
+];
+
+const ZoneSwatch: React.FC<{ kind: ZoneId }> = ({ kind }) => {
+  const coords = [5, 12, 19];
+  return (
+    <span className="flex w-9 shrink-0 items-center">
+      <svg viewBox="0 0 24 24" className="h-6 w-6" aria-hidden="true">
+        {coords.flatMap((cy) => coords.map((cx) => {
+          if (kind === 'main') {
+            return <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r={cx === 12 && cy === 12 ? 2.6 : 2.1} fill="#E2FD48" />;
+          }
+          if (kind === 'secondary') {
+            return <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r={1.9} fill="#E2FD48" fillOpacity={0.55} />;
+          }
+          const east = cx === 19;
+          return <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r={1.9} fill={east ? '#7fb8c4' : '#ffffff'} fillOpacity={east ? 0.9 : 0.4} />;
+        }))}
+      </svg>
+    </span>
+  );
+};
 
 const SEO_CONFIG: Record<string, { path: string; title: string; desc: string; noindex?: boolean }> = {
   'home': { path: '/', title: 'PLIALU | Façonnage métallique sur-mesure en Rhône-Alpes', desc: 'Spécialiste du façonnage métallique en Rhône-Alpes depuis 20 ans. Solutions sur-mesure pour architectes, bureaux d\'études et façadiers. Devis sous 48h.' },
@@ -75,10 +106,15 @@ const sheetHistoryId = (): string | null => {
   return state && typeof state.plialuSheet === 'string' ? state.plialuSheet : null;
 };
 
+const HOME_PROJECT_IDS = ['zento-grenoble', 'le-binome-meylan', 'iut-lyon-1'];
+
+const homeProjects = HOME_PROJECT_IDS.flatMap((id) => {
+  const project = PROJECTS.find((item) => item.id === id);
+  return project ? [project] : [];
+});
+
 const App: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [caeSlide, setCaeSlide] = useState(0);
-  const [zentoSlide, setZentoSlide] = useState(0);
   const getInitialPage = ():
     | 'home'
     | 'expertises'
@@ -134,6 +170,8 @@ const App: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [solutionsAccordionOpen, setSolutionsAccordionOpen] = useState<string | null>(null);
   const [isSommaireSticky, setIsSommaireSticky] = useState(false);
+  const [zone, setZone] = useState<ZoneId | null>(null);
+  const zonePin = useRef<ZoneId | null>(null);
 
   // Nettoie l'URL des pages bloquées (le contenu est déjà 'home' via getInitialPage)
   useEffect(() => {
@@ -145,7 +183,7 @@ const App: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (currentPage === 'projects') return;
+    if (currentPage === 'projects' || currentPage === 'home') return;
     if (sheetHistoryId()) {
       window.history.replaceState(null, '', window.location.pathname + window.location.search);
     }
@@ -927,31 +965,26 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           </section>
 
           {/* 4. RÉALISATIONS (DARK) */}
-          <section id="projects" className="py-32 section--dark" style={{ background: 'linear-gradient(to bottom, #071318 0%, #0b1e26 100%)' }}>
+          <section id="projects" className="relative z-10 -mt-8 rounded-t-[2rem] md:rounded-t-[2.5rem] py-32 section--dark" style={{ background: 'linear-gradient(to bottom, #0b1e26 0%, #071318 100%)' }}>
             <div className="max-w-7xl mx-auto px-6">
-              <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
+              <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12 md:mb-16">
                 <div className="max-w-2xl space-y-4">
                   <span className="text-[10px] font-extrabold tracking-[0.3em] uppercase text-[#E2FD48]">PORTFOLIO COLLABORATIONS</span>
                   <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">Projets réalisés en collaboration</h2>
                 </div>
-                <a href="/portfolio" onClick={(e) => { e.preventDefault(); setCurrentPage('projects'); }} className="flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-[#E2FD48] hover:text-white transition-colors group">
-                  TOUTES NOS COLLABORATIONS
-                  <iconify-icon icon="lucide:arrow-up-right" width="18" className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></iconify-icon>
-                </a>
+                <p className="text-[10px] font-extrabold tracking-[0.4em] text-white/50 uppercase">
+                  {PROJECTS.length} réalisations · {portfolioYearMin}–{portfolioYearMax}
+                </p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <div className="group relative aspect-[16/10] overflow-hidden rounded-3xl border border-white/10 bg-[#07161C] cursor-pointer" onClick={() => setCaeSlide(prev => (prev === 0 ? 1 : 0))}>
-                  <img src={caeSlide === 0 ? "https://res.cloudinary.com/dyiup6v5x/image/upload/v1771517735/CAE-1200px_cdhouc.webp" : "https://res.cloudinary.com/dyiup6v5x/image/upload/v1771518042/CAE2-1200px_sr3dgl.webp"} className="w-full h-full object-cover transition-all duration-1000 grayscale opacity-60 group-hover:opacity-100 group-hover:grayscale-0" alt="Pièces métalliques sur mesure pour la façade du projet CAE à Lyon 3" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#050E12]/25 p-10 flex flex-col justify-end pointer-events-none">
-                    <h3 className="text-3xl text-white font-extrabold tracking-tighter">CAE – Lyon 3</h3>
-                  </div>
-                </div>
-                <div className="group relative aspect-[16/10] overflow-hidden rounded-3xl border border-white/10 bg-[#07161C] cursor-pointer md:mt-12" onClick={() => setZentoSlide(prev => (prev === 0 ? 1 : 0))}>
-                  <img src={zentoSlide === 0 ? "https://res.cloudinary.com/dyiup6v5x/image/upload/v1771521475/ZENTO1-1200px_w66src.webp" : "https://res.cloudinary.com/dyiup6v5x/image/upload/v1771521598/ZENTO2-1200px_qbazyy.webp"} className="w-full h-full object-cover transition-all duration-1000 grayscale opacity-60 group-hover:opacity-100 group-hover:grayscale-0" alt="Habillage métallique extérieur fourni pour le projet Zento à Grenoble" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#050E12]/25 p-10 flex flex-col justify-end pointer-events-none">
-                    <h3 className="text-3xl text-white font-extrabold tracking-tighter">ZENTO - Grenoble</h3>
-                  </div>
-                </div>
+              <PortfolioGrid projects={homeProjects} onOpen={openProject} context="home" />
+              <div className="text-center pt-12 md:pt-16">
+                <a
+                  href="/portfolio"
+                  onClick={(e) => { if (e.button === 0 && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) { e.preventDefault(); setCurrentPage('projects'); } }}
+                  className="px-10 py-4 md:px-12 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all shadow-xl hover:shadow-[#E2FD48]/20 hover:-translate-y-1"
+                >
+                  {`Voir les ${PROJECTS.length} réalisations`}
+                </a>
               </div>
             </div>
           </section>
@@ -1207,47 +1240,56 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             </div>
           </section>
 
-          {/* 3. CARTE TERRITORIALE (LIGHT) - BADGES EDITION */}
-          <section className="py-24 md:py-32 bg-[#F3F6F7] selection-brand border-t border-zinc-100 relative">
-            <div className="max-w-7xl mx-auto px-6 relative z-10">
-              
-              <div className="max-w-3xl mb-12 space-y-5 text-center mx-auto flex flex-col items-center">
-                <span className="text-[10px] font-extrabold tracking-[0.3em] uppercase text-[#0E2A33]/40 mb-4 block">
-                  ANCRAGE ET COUVERTURE
-                </span>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
-                  Notre rayonnement
+          <section className="relative selection-brand" style={{ background: 'linear-gradient(to bottom, #0b1e26 0%, #071318 100%)' }}>
+            <div className="mx-auto max-w-7xl px-6">
+              <div className="h-px bg-white/10" />
+              <p className="sr-only">PLIALU, atelier de façonnage métallique implanté en Rhône-Alpes, intervient sur toute la France, Corse comprise, ainsi qu'en Belgique et en Suisse.</p>
+              <div className="grid items-start gap-10 pb-0 pt-12 md:pt-16 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.3fr)] lg:grid-rows-[auto_1fr] lg:gap-x-16 lg:gap-y-10">
+                <h2 className="text-3xl font-extrabold leading-[1.08] tracking-tighter text-white [text-wrap:balance] md:text-4xl xl:text-[2.75rem] lg:col-start-1 lg:row-start-1">
+                  <span className="block">Un atelier à Lyon.</span>
+                  <span className="block">Des chantiers partout en France.</span>
                 </h2>
-                <div className="w-20 h-1 bg-[#E2FD48]"></div>
-                <p className="text-zinc-500 text-base leading-relaxed pt-2 max-w-2xl">
-                  Implantés en Rhône-Alpes depuis 20 ans, nous intervenons sur l'ensemble du territoire français et au-delà des frontières pour les projets les plus exigeants.
-                </p>
+                <FranceDotMap className="mx-auto w-full max-w-[640px] lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:max-w-none lg:-mr-[2.8%]" highlight={ZONE_HIGHLIGHT ? zone : null} />
+                {SHOW_ZONE_KEY && (
+                  <ul className="divide-y divide-white/10 border-y border-white/10 lg:col-start-1 lg:row-start-2 lg:self-end">
+                    {ZONE_ROWS.map((row) => (
+                      <li key={row.kind} className={ZONE_HIGHLIGHT ? undefined : 'flex items-center gap-4 py-4'}>
+                        {ZONE_HIGHLIGHT ? (
+                          <button
+                            type="button"
+                            className="flex w-full items-center gap-4 py-4 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#E2FD48]"
+                            onMouseEnter={() => setZone(row.kind)}
+                            onMouseLeave={() => setZone(zonePin.current)}
+                            onFocus={() => setZone(row.kind)}
+                            onBlur={() => setZone(zonePin.current)}
+                            onClick={() => {
+                              zonePin.current = zonePin.current === row.kind ? null : row.kind;
+                              setZone(zonePin.current);
+                            }}
+                          >
+                            <ZoneSwatch kind={row.kind} />
+                            <div>
+                              <div className="text-base font-semibold text-white">{row.name}</div>
+                              <div className="text-sm text-white/70">{row.detail}</div>
+                            </div>
+                          </button>
+                        ) : (
+                          <>
+                            <ZoneSwatch kind={row.kind} />
+                            <div>
+                              <div className="text-base font-semibold text-white">{row.name}</div>
+                              <div className="text-sm text-white/70">{row.detail}</div>
+                            </div>
+                          </>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
-
-              <div className="mb-10 p-4 md:p-6 border border-zinc-100 shadow-sm relative overflow-hidden max-w-5xl mx-auto">
-                <div className="relative z-10">
-                  <TerritorialMap />
-                </div>
-              </div>
-
-              {/* Badges compacts (Remplace les anciennes cartes géantes) */}
-              <div className="flex flex-wrap justify-center gap-3 md:gap-4 max-w-4xl mx-auto">
-                {[
-                  { region: 'Rhône-Alpes', color: 'bg-[#E2FD48]' },
-                  { region: 'France entière', color: 'bg-[#0E2A33]' },
-                  { region: 'Suisse', color: 'bg-[#0E2A33] opacity-60' },
-                  { region: 'Belgique', color: 'bg-[#0E2A33] opacity-60' }
-                ].map((item) => (
-                  <div key={item.region} className="border border-[#0E2A33]/20 rounded-full px-4 py-2 flex items-center gap-2 text-sm font-medium text-[#0E2A33]">
-                    <div className={`w-3 h-3 rounded-full flex-shrink-0 ${item.color}`}></div>
-                    <span>{item.region}</span>
-                  </div>
-                ))}
-              </div>
-
             </div>
           </section>
-          <section className="py-24 bg-[#071318] text-center border-t border-white/5">
+          <section className="py-24 bg-[#071318] text-center">
             <div className="max-w-3xl mx-auto px-6 space-y-8">
               <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">20 ans de façonnage métallique en Rhône-Alpes.</h2>
               <p className="text-base md:text-lg text-white/50">Vos équipes techniques répondent sous 48 h.</p>
@@ -1312,19 +1354,6 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               <PortfolioGrid projects={portfolioOrder} onOpen={openProject} />
             </div>
           </section>
-
-          {openPortfolioProject && (
-            <PortfolioSheet
-              project={openPortfolioProject}
-              index={openPortfolioIndex}
-              total={portfolioOrder.length}
-              previous={portfolioOrder[(openPortfolioIndex - 1 + portfolioOrder.length) % portfolioOrder.length]}
-              next={portfolioOrder[(openPortfolioIndex + 1) % portfolioOrder.length]}
-              onClose={closeSheet}
-              onSelect={showProject}
-              onContact={requestQuoteFromSheet}
-            />
-          )}
 
           {/* CTA Final */}
           <section className="py-24 bg-[#071318] text-center border-t border-white/5">
@@ -3441,6 +3470,19 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             </div>
           </section>
         </div>
+      )}
+
+      {openProjectId && (currentPage === 'projects' || currentPage === 'home') && openPortfolioProject && (
+        <PortfolioSheet
+          project={openPortfolioProject}
+          index={openPortfolioIndex}
+          total={portfolioOrder.length}
+          previous={portfolioOrder[(openPortfolioIndex - 1 + portfolioOrder.length) % portfolioOrder.length]}
+          next={portfolioOrder[(openPortfolioIndex + 1) % portfolioOrder.length]}
+          onClose={closeSheet}
+          onSelect={showProject}
+          onContact={requestQuoteFromSheet}
+        />
       )}
 
       {/* Premium Footer */}
