@@ -1210,8 +1210,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             className="bg-white py-24 md:py-32 border-t border-[#0E2A33]/[0.12] scroll-mt-24"
           >
             <div className="max-w-7xl mx-auto px-6">
-              <div className="flex flex-col items-start md:flex-row md:items-center md:justify-between">
-                <div>
+              <div className="relative flex items-center justify-between">
+                <div className="md:pr-72">
                   <p className={`mb-4 ${DS.EYEBROW_LIGHT}`}>
                     THERMOLAQUAGE
                   </p>
@@ -1222,21 +1222,21 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 <img
                   src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1780588809/infini_noir_f4v6lv.png"
                   alt="Logo Infinimetal"
-                  className="w-32 h-32 md:w-64 md:h-64 shrink-0 object-contain"
+                  className="pointer-events-none absolute right-0 top-1/2 w-32 h-32 -translate-y-1/2 object-contain md:w-64 md:h-64"
                 />
               </div>
-              <div className="mt-6 max-w-2xl space-y-6 mb-16">
-                <p className={DS.LEAD_LIGHT}>
-                  Infinimetal est notre marque déposée spécialisée en thermolaquage certifié Qualicoat. Infinimetal dispose de deux lignes de thermolaquage complémentaires : une ligne à plat pour le laquage de tôles, et une ligne verticale dédiée au laquage post-formage à la main.
-                </p>
-                <p className="text-[#0E2A33]/75 text-base md:text-lg leading-[1.65]">
-                  Cette polyvalence de thermolaquage nous permet de répondre à tous les besoins de laquage des façadiers et professionnels du bâtiment, que les pièces soient brutes ou déjà façonnées. Chez Infinimetal, Qualicoat est aujourd'hui le référentiel européen du thermolaquage pour les façades haut de gamme, appliqué sur nos deux lignes avec traçabilité de process.
-                </p>
+              <div className="md:pr-72">
+              <p className={`${DS.LEAD_LIGHT} mt-6`}>
+                Infinimetal est notre marque déposée spécialisée en thermolaquage certifié Qualicoat. Infinimetal dispose de deux lignes de thermolaquage complémentaires : une ligne à plat pour le laquage de tôles, et une ligne verticale dédiée au laquage post-formage à la main.
+              </p>
+              <p className="mt-5 max-w-2xl text-base leading-[1.65] text-[#0E2A33]/75 md:text-lg">
+                Cette polyvalence de thermolaquage nous permet de répondre à tous les besoins de laquage des façadiers et professionnels du bâtiment, que les pièces soient brutes ou déjà façonnées. Chez Infinimetal, Qualicoat est aujourd'hui le référentiel européen du thermolaquage pour les façades haut de gamme, appliqué sur nos deux lignes avec traçabilité de process.
+              </p>
               </div>
               <button
                 type="button"
                 onClick={() => setCurrentPage('solutions-temporaire')}
-                className={DS.BTN_PRIMARY}
+                className={`${DS.BTN_PRIMARY} mt-10`}
               >
                 Découvrir le Catalogue RAL
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12H19M19 12L13 6M19 12L13 18"/></svg>
