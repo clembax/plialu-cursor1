@@ -72,15 +72,15 @@ const SEO_CONFIG: Record<string, { path: string; title: string; desc: string; no
     desc: 'Couvertines, bavettes et protections d’ouvrage pour toits plats. Fabrication sur mesure en métal prélaqué avec finitions durables pour une étanchéité parfaite des bâtiments industriels et collectifs.',
     noindex: true,
   },
-  'projects': { path: '/portfolio', title: 'Nos réalisations — Façades aluminium et enveloppe bâtiment | PLIALU', desc: '13 réalisations de façades et d\'enveloppe de bâtiment à Grenoble, Lyon, Annecy et Meylan : cassettes aluminium, précadres, habillages. Références PLIALU.' },
-  'a-propos': { path: '/a-propos', title: 'PLIALU — Entreprise de façonnage métallique en Rhône-Alpes', desc: 'PLIALU : PME façonnage métal Rhône-Alpes, 20 ans d\'expertise. Usine intégrée, 7 000 m², process certifiés Qualicoat. Devis gratuit.' },
+  'projects': { path: '/portfolio', title: 'Nos réalisations : Façades aluminium et enveloppe bâtiment | PLIALU', desc: '13 réalisations de façades et d\'enveloppe de bâtiment à Grenoble, Lyon, Annecy et Meylan : cassettes aluminium, précadres, habillages. Références PLIALU.' },
+  'a-propos': { path: '/a-propos', title: 'PLIALU : Entreprise de façonnage métallique en Rhône-Alpes', desc: 'PLIALU : PME façonnage métal Rhône-Alpes, 20 ans d\'expertise. Usine intégrée, 7 000 m², process certifiés Qualicoat. Devis gratuit.' },
   'ressources': { path: '/ressources', title: 'Ressources techniques — Enveloppe du bâtiment | PLIALU', desc: 'Dossiers techniques et guides pratiques PLIALU pour vos choix de matériaux et conceptions de façades métalliques.', noindex: true },
   'ressource-1': { path: '/ressources/choix-metal-facade', title: 'Quel métal choisir pour une façade extérieure ? | PLIALU', desc: 'Aluminium, acier ou inox pour une façade extérieure : comparatif technique, comportement aux UV, corrosion et contraintes chantier. Guide prescripteurs.', noindex: true },
   'ressource-2': { path: '/ressources/pliage-aluminium-tolerances', title: 'Pliage aluminium : limites et tolérances | PLIALU', desc: 'Pliage aluminium : épaisseurs, rayons mini, tolérances ±0,3 mm. Ce que votre fabricant doit maîtriser avant de démarrer la production.', noindex: true },
   'ressource-3': { path: '/ressources/thermolaquage-qualicoat', title: 'Thermolaquage certifié QUALICOAT : garanties | PLIALU', desc: 'Thermolaquage certifié QUALICOAT : protocoles de validation, classes de poudres, post-laquage après façonnage. Ce qu\'un prescripteur doit exiger.', noindex: true },
   'contact': { path: '/contact', title: 'Contact & Devis | PLIALU', desc: 'Contactez le bureau d\'études PLIALU pour votre projet de façonnage métallique sur mesure. Réponse sous 48h.', noindex: true },
-  'mentions-legales': { path: '/mentions-legales', title: 'Mentions légales | PLIALU', desc: 'Mentions légales du site PLIALU — éditeur, directeur, hébergeur et responsabilité.', noindex: true },
-  'politique-confidentialite': { path: '/politique-confidentialite', title: 'Politique de confidentialité | PLIALU', desc: 'Politique de confidentialité PLIALU — protection des données, RGPD, droits utilisateur.', noindex: true },
+  'mentions-legales': { path: '/mentions-legales', title: 'Mentions légales | PLIALU', desc: 'Mentions légales du site PLIALU : éditeur, directeur, hébergeur et responsabilité.', noindex: true },
+  'politique-confidentialite': { path: '/politique-confidentialite', title: 'Politique de confidentialité | PLIALU', desc: 'Politique de confidentialité PLIALU : protection des données, RGPD, droits utilisateur.', noindex: true },
   'solution-bardage': { path: '/solutions/bardages-cassettes', title: 'Bardages & Cassettes sur mesure | PLIALU', desc: 'Fabrication de bardages et cassettes métalliques pour habillage de façade.', noindex: true },
   'solution-enduit': { path: '/solutions/enduit-mince-isolant', title: 'Profilés pour Enduit Mince sur Isolant (ITE) | PLIALU', desc: 'Accessoires et profilés aluminium sur mesure pour systèmes d\'Isolation Thermique par l\'Extérieur (ITE).', noindex: true },
   'solution-precadres': { path: '/solutions/precadres', title: 'Précadres métalliques sur mesure | PLIALU', desc: 'Fabrication de précadres d\'habillage de baies sur mesure en aluminium et acier.', noindex: true },
@@ -727,7 +727,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     <span className="block">SOLUTIONS MÉTALLIQUES <span className="whitespace-nowrap">SUR-MESURE</span></span>
                     <span className="block">pour l'enveloppe du bâtiment</span>
                   </h1>
-                  <p className={`${DS.LEAD_DARK} mt-6 border-l-2 border-[#E2FD48] pl-8`}>
+                  <p className={`${DS.LEAD_DARK} mt-6`}>
                     Notre expertise : conception, façonnage, pliage, thermolaquage de métal en feuilles. Process de production intégré et maîtrise de la qualité, des coûts et des délais pour chaque projet
                   </p>
                 </div>
@@ -739,21 +739,21 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </button>
                 </div>
                 <div className="mt-20 grid grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_1.5fr] border-t border-white/[0.12]">
-                  <div className="py-7 pr-6 border-b border-white/[0.08] lg:border-b-0 lg:border-r">
+                  <div className="py-7 pr-4 lg:px-8 lg:first:pl-0 lg:last:pr-0 border-b border-white/[0.08] lg:border-b-0 lg:border-r">
                     <span className={`${DS.STAT_NUMBER} text-white`}>20 <span className="text-lg font-semibold text-white/50 tracking-normal">ans</span></span>
                     <p className="mt-2.5 text-[13px] leading-snug text-white/50">d'expertise en façonnage métallique</p>
                   </div>
-                  <div className="py-7 pr-6 border-b border-white/[0.08] lg:border-b-0 lg:border-r">
+                  <div className="py-7 pr-4 lg:px-8 lg:first:pl-0 lg:last:pr-0 border-b border-white/[0.08] lg:border-b-0 lg:border-r">
                     <span className={`${DS.STAT_NUMBER} text-white`}>7 000 <span className="text-lg font-semibold text-white/50 tracking-normal">m²</span></span>
                     <p className="mt-2.5 text-[13px] leading-snug text-white/50">d'ateliers de production</p>
                   </div>
-                  <div className="py-7 pr-6 border-white/[0.08] max-lg:border-b-0 lg:border-r">
+                  <div className="py-7 pr-4 lg:px-8 lg:first:pl-0 lg:last:pr-0 border-white/[0.08] max-lg:border-b-0 lg:border-r">
                     <span className={`${DS.STAT_NUMBER} text-white`}>3 <span className="text-lg font-semibold text-white/50 tracking-normal">lignes intégrées</span></span>
                     <p className="mt-2.5 text-[13px] leading-snug text-white/50">Déroulage, thermolaquage, production</p>
                   </div>
-                  <div className="py-7 pr-6">
+                  <div className="py-7 pr-4 lg:px-8 lg:first:pl-0 lg:last:pr-0">
                     <div className="flex gap-4 items-center">
-                      <img src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1771500844/logo_qf_kzo395.png" alt="Logo Qualicoat" className="w-[46px] h-auto rounded-lg" />
+                      <img src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1771500844/logo_qf_kzo395.png" alt="Logo Qualicoat" className="w-16 h-auto brightness-0 invert" />
                       <div>
                         <p className={DS.EYEBROW_DARK}>Qualicoat certifié</p>
                         <p className="text-[13px] text-white/50 mt-1.5">Thermolaquage conforme aux exigences internationales</p>
@@ -766,7 +766,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           </section>
 
           {/* 2. NOS EXPERTISES (DARK) */}
-          <section id="expertise" className="py-24 md:py-32 section--dark" style={{ background: 'linear-gradient(to bottom, #071318 0%, #0b1e26 100%)' }}>
+          <section id="expertise" className="py-24 md:py-32 section--dark bg-[#071318]">
             <div className="max-w-7xl mx-auto px-6">
               <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-20 items-center">
                 <div>
@@ -791,7 +791,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   />
                 </div>
               </div>
-              <ol className="mt-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 list-none p-0">
+              <ol className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 list-none p-0">
                 {expertisesDetails.map((exp, idx) => {
                   const name = exp.id === 'bureau-etudes'
                     ? 'Bureau des méthodes'
@@ -811,11 +811,18 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                           }, 50);
                         }}
-                        className={`group relative flex h-full min-h-[150px] w-full flex-col text-left ${DS.CARD_DARK} px-5 pt-5 pb-6 transition-colors duration-150 hover:border-[#E2FD48]/50 hover:bg-white/[0.06]`}
+                        className={`group relative flex min-h-[220px] h-full w-full flex-col justify-between text-left ${DS.CARD_DARK} p-7 transition-colors duration-150 hover:border-[#E2FD48]/50 hover:bg-white/[0.06]`}
                       >
-                        <span className="font-display text-[13px] font-bold text-[#E2FD48]">{String(idx + 1).padStart(2, '0')}</span>
-                        <iconify-icon icon="lucide:arrow-up-right" width="14" className="absolute top-5 right-5 text-white/40 group-hover:text-[#E2FD48] transition-colors duration-150"></iconify-icon>
-                        <span className={`${DS.H3} mt-7 block text-white`}>{name}</span>
+                        <div className="flex items-start justify-between">
+                          <span className="font-display text-5xl font-semibold leading-none tracking-[-0.04em] text-[#E2FD48]">{String(idx + 1).padStart(2, '0')}</span>
+                          <span className="flex h-11 w-11 flex-none items-center justify-center rounded-full border border-white/20 text-white transition-colors duration-150 group-hover:border-[#E2FD48] group-hover:bg-[#E2FD48] group-hover:text-[#0E2A33]">
+                            <iconify-icon icon="lucide:arrow-up-right" width="16"></iconify-icon>
+                          </span>
+                        </div>
+                        <div>
+                          <span className="font-display text-2xl font-bold leading-tight text-white block">{name}</span>
+                          {exp.tag ? <span className="mt-2 block text-sm leading-snug text-white/50">{exp.tag}</span> : null}
+                        </div>
                       </button>
                     </li>
                   );
@@ -827,14 +834,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           {/* Section dédiée : vidéo Teaser (loop, muette, lecture au scroll) */}
           <section
             id="teaser-video"
-            className="relative py-24 md:py-32 border-t border-white/[0.06]"
-            style={{ background: 'linear-gradient(to bottom, #0b1e26 0%, #071318 100%)' }}
+            className="relative py-24 md:py-32 section--dark bg-[#0E2A33]"
+            style={{ backgroundColor: '#0E2A33' }}
           >
-            {/* Dégradé de transition avec la section Expertises */}
-            <div
-              className="absolute inset-0 z-0 pointer-events-none"
-              style={{ background: 'linear-gradient(to bottom, rgba(11,30,38,0) 0%, rgba(11,30,38,0.4) 8%, #0b1e26 20%)' }}
-            ></div>
             <div className="relative max-w-7xl mx-auto px-6 z-10">
               <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-10 lg:gap-16 items-center">
                 {/* Colonne gauche : vidéo teaser */}
@@ -886,7 +888,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   <p className={`${DS.EYEBROW_DARK} mb-4`}>Visite d'usine</p>
                   <h2 className={`${DS.H2} text-white lg:w-[calc(100%+8px)]`}>Nos lignes de production, en action</h2>
                   <p className={`${DS.BODY_DARK} mt-6`}>
-                    Visite d'usine : deux minutes pour voir les lignes de production.
+                    Deux minutes pour voir les lignes de production.
                   </p>
                   <button
                     type="button"
@@ -1016,7 +1018,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   <h2 className={`${DS.H2} text-white`}>Projets réalisés en collaboration</h2>
                 </div>
                 <p className="text-[10px] font-extrabold tracking-[0.4em] text-white/50 uppercase">
-                  {PROJECTS.length} réalisations · {portfolioYearMin}–{portfolioYearMax}
+                  {PROJECTS.length} réalisations · {portfolioYearMin} à {portfolioYearMax}
                 </p>
               </div>
               <PortfolioGrid projects={homeProjects} onOpen={openProject} context="home" />
@@ -1064,7 +1066,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-10 lg:gap-16 items-start">
                 <div>
                   <p className={`${DS.EYEBROW_LIGHT} mb-4`}>Contact</p>
-                  <h2 className={`${DS.H2} text-[#0E2A33]`}>Étude technique, faisabilité, chiffrage — ou toute autre demande.</h2>
+                  <h2 className={`${DS.H2} text-[#0E2A33]`}>Étude technique, faisabilité, chiffrage. Ou toute autre demande.</h2>
                   <p className={`${DS.LEAD_LIGHT} mt-6`}>Nos équipes vous répondent rapidement, en intégrant vos contraintes de chantier.</p>
                   <div className="flex flex-wrap gap-4 mt-10">
                     <button onClick={() => setCurrentPage('contact')} className={DS.BTN_PRIMARY}>Demander un devis</button>
@@ -1211,7 +1213,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 <button
                   type="button"
                   onClick={scrollToInfinimetal}
-                  aria-label="Infinimetal — thermolaquage certifié Qualicoat"
+                  aria-label="Infinimetal : thermolaquage certifié Qualicoat"
                   className="relative md:absolute md:top-0 md:right-0 md:-mt-4 shrink-0 cursor-pointer border-0 bg-transparent p-0 outline-none ring-0 focus:outline-none focus:ring-0 transition-transform hover:scale-105"
                 >
                   <img
@@ -1353,7 +1355,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             <div className="mx-auto max-w-7xl px-6">
               <h2 className="sr-only">Nos réalisations</h2>
               <p className="mb-8 text-[10px] font-extrabold uppercase tracking-[0.4em] text-white/50">
-                {PROJECTS.length} réalisations · {portfolioYearMin}–{portfolioYearMax}
+                {PROJECTS.length} réalisations · {portfolioYearMin} à {portfolioYearMax}
               </p>
               <PortfolioGrid projects={portfolioOrder} onOpen={openProject} />
             </div>
@@ -1440,7 +1442,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                         https://res.cloudinary.com/dyiup6v5x/image/upload/v1773850275/enduitminceisolant-1600px_y0zenz.webp 1600w
                       "
                       sizes="(max-width: 768px) 800px, (max-width: 1200px) 1200px, 1600px"
-                      alt="Enduit mince sur isolant — PLIALU"
+                      alt="Enduit mince sur isolant : PLIALU"
                       className={`absolute inset-0 w-full h-full object-cover ${DS.CARD_IMG_ZOOM}`}
                       loading="lazy"
                     />
@@ -1542,7 +1544,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       src="https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,w_800/v1777883039/plan-page-e%CC%81tanche%CC%81ite%CC%81-800px_kabn0m.webp"
                       srcSet="https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,w_800/v1777883039/plan-page-e%CC%81tanche%CC%81ite%CC%81-800px_kabn0m.webp 800w, https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,w_1200/v1777883039/plan-page-e%CC%81tanche%CC%81ite%CC%81-1200_g2nc7h.webp 1200w"
                       sizes="(max-width: 1024px) 100vw, 400px"
-                      alt="Schéma étanchéité toit plat — couvertines aluminium PLIALU"
+                      alt="Schéma étanchéité toit plat : couvertines aluminium PLIALU"
                       loading="lazy"
                       className={`w-full h-full object-cover object-center ${DS.CARD_IMG_ZOOM}`}
                     />
@@ -1565,7 +1567,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           <section className="py-16 md:py-24 bg-[#071318] text-center border-t border-white/5">
             <div className="max-w-3xl mx-auto px-6">
               <div className="mb-16">
-              <h2 className={`${DS.H2} text-white`}>Du profilé à la pose — tout se fabrique ici.</h2>
+              <h2 className={`${DS.H2} text-white`}>Du profilé à la pose : tout se fabrique ici.</h2>
               <p className={`${DS.LEAD_DARK} mt-6 mx-auto`}>Profilés aluminium, accessoires ITE, thermolaquage post-façonnage. Un seul interlocuteur pour tout le système.</p>
               </div>
               <button
@@ -1842,7 +1844,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             <div className="max-w-3xl mx-auto px-6">
               <div className="mb-16">
               <h2 className={`${DS.H2} text-white`}>Des solutions qui s'adaptent à votre métier.</h2>
-              <p className={`${DS.LEAD_DARK} mt-6 mx-auto`}>Parlons de vos contraintes métier — nos équipes répondent sous 48h.</p>
+              <p className={`${DS.LEAD_DARK} mt-6 mx-auto`}>Parlons de vos contraintes métier. Nos équipes répondent sous 48h.</p>
               </div>
               <button onClick={() => setCurrentPage('contact')} className={DS.BTN_PRIMARY}>
                 Présenter mon projet
@@ -3339,7 +3341,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                         required
                         className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-xl focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33]"
                       >
-                        <option value="">— Sélectionner une intention —</option>
+                        <option value="">Sélectionner une intention</option>
                         <option value="Demander un devis">Demander un devis</option>
                         <option value="Question / Info produit">Question / Info produit</option>
                         <option value="Postuler chez PLIALU">Postuler chez PLIALU</option>
@@ -3564,7 +3566,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
           {/* Bottom -- Legal Links */}
           <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-5">
-            <span className="text-[10px] text-white/30 font-bold uppercase tracking-[0.2em]">© 2025 PLIALU SAS — TOUS DROITS RÉSERVÉS</span>
+            <span className="text-[10px] text-white/30 font-bold uppercase tracking-[0.2em]">© 2025 PLIALU SAS. TOUS DROITS RÉSERVÉS</span>
             <div className="flex gap-6 text-[10px] text-white/30 font-bold uppercase tracking-[0.2em] flex-wrap justify-center md:justify-end">
               <button onClick={() => setCurrentPage('mentions-legales')} className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/50 hover:text-[#E2FD48] transition-colors duration-150 text-left">Mentions légales</button>
               <button onClick={() => setCurrentPage('politique-confidentialite')} className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/50 hover:text-[#E2FD48] transition-colors duration-150 text-left">Politique de confidentialité</button>
