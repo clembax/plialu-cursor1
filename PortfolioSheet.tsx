@@ -60,7 +60,7 @@ const ProjectNavLink: React.FC<{
       className="h-14 w-14 shrink-0 rounded-xl object-cover"
     />
     <span className="min-w-0 flex-1">
-      <span className="block text-[10px] font-extrabold uppercase tracking-[0.3em] text-white/40">
+      <span className="block text-[10px] font-extrabold uppercase tracking-[0.3em] text-white/50">
         {direction === 'previous' ? 'Projet précédent' : 'Projet suivant'}
       </span>
       <span className="mt-1 block truncate text-sm font-bold text-white">{project.name}</span>
@@ -183,7 +183,7 @@ const PortfolioSheet: React.FC<PortfolioSheetProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="inline-flex min-h-[44px] items-center gap-2 text-sm font-bold text-white"
+            className="inline-flex min-h-[44px] items-center gap-2 text-sm font-bold text-white/50"
           >
             <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M19 12H5" />
@@ -223,23 +223,23 @@ const PortfolioSheet: React.FC<PortfolioSheetProps> = ({
               {number}
             </span>
             <div className="relative">
-              <p className="text-xs font-bold uppercase tracking-widest text-[#E2FD48]">{project.tag}</p>
-              <p className="mt-2 text-xs text-white/40">{number} / {total}</p>
-              <h2 className="mt-3 text-3xl font-extrabold tracking-tighter text-white md:text-5xl">{project.name}</h2>
-              <p className="mt-3 text-base text-white/70">{project.city} · {project.year}</p>
+              <p className={`mb-4 ${DS.EYEBROW_DARK}`}>{project.tag}</p>
+              <p className="text-xs text-white/50">{number} / {total}</p>
+              <h2 className={`${DS.H2} text-white`}>{project.name}</h2>
+              <p className={`${DS.LEAD_DARK} mt-6`}>{project.city} · {project.year}</p>
               <dl className="mt-8">
                 <div className="flex items-baseline justify-between gap-6 border-t border-white/10 py-3 text-sm">
                   <dt className="text-white/50">Système</dt>
-                  <dd className="text-right text-white">{project.system}</dd>
+                  <dd className="text-right text-white/50">{project.system}</dd>
                 </div>
                 <div className="flex items-baseline justify-between gap-6 border-t border-white/10 py-3 text-sm">
                   <dt className="text-white/50">Matériau</dt>
-                  <dd className="text-right text-white">{project.material}</dd>
+                  <dd className="text-right text-white/50">{project.material}</dd>
                 </div>
                 {project.finish && (
                   <div className="flex items-baseline justify-between gap-6 border-t border-white/10 py-3 text-sm">
                     <dt className="text-white/50">Teinte</dt>
-                    <dd className="text-right text-white">{project.finish}</dd>
+                    <dd className="text-right text-white/50">{project.finish}</dd>
                   </div>
                 )}
               </dl>
@@ -251,7 +251,7 @@ const PortfolioSheet: React.FC<PortfolioSheetProps> = ({
                 Demander un devis
               </button>
               <div className="hidden lg:mt-10 lg:flex lg:flex-col lg:gap-3 lg:border-t lg:border-white/10 lg:pt-6">
-                <p className="text-[11px] text-white/40">Naviguer avec ← →</p>
+                <p className="text-[11px] text-white/50">Naviguer avec ← →</p>
                 <ProjectNavLink project={previous} direction="previous" onSelect={onSelect} />
                 <ProjectNavLink project={next} direction="next" onSelect={onSelect} />
               </div>

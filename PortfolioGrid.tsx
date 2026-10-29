@@ -221,11 +221,11 @@ const PortfolioCard: React.FC<{
               ))}
             </span>
           </div>
-          <div className="max-w-[85%] pr-12">
-            <p className="pointer-events-none text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#E2FD48]">
+          <div className="pr-12">
+            <p className={`pointer-events-none mb-4 ${DS.EYEBROW_DARK}`}>
               {project.tag}
             </p>
-            <h3 className="mt-2 text-xl font-extrabold tracking-tighter text-white md:text-2xl">
+            <h3 className={`${DS.H3} text-white`}>
               <button
                 type="button"
                 id={`portfolio-card-${project.id}`}
@@ -235,10 +235,10 @@ const PortfolioCard: React.FC<{
                 {project.name}
               </button>
             </h3>
-            <p className="pointer-events-none mt-1 text-sm text-white/80">
+            <p className="pointer-events-none mt-1 text-sm text-white/50">
               {project.city} · {project.year}
             </p>
-            <p className="pointer-events-none mt-1 line-clamp-2 text-sm text-white/70">{project.system}</p>
+            <p className="pointer-events-none mt-1 line-clamp-2 text-sm text-white/50">{project.system}</p>
           </div>
         </div>
         <span

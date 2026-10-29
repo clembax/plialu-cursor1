@@ -567,7 +567,7 @@ const App: React.FC = () => {
       <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${(isScrolled || openProjectId) ? 'h-20' : 'h-24'}`}>
         <div 
           className={`absolute inset-0 border-b backdrop-blur-md pointer-events-none transition-opacity duration-500 
-            ${headerTheme === 'dark' ? 'bg-[#F0F4F6]/90 border-zinc-200' : 'bg-[#050E12]/90 border-white/5'} 
+            ${headerTheme === 'dark' ? 'bg-[#F0F4F6]/90 border-[#0E2A33]/[0.12]' : 'bg-[#050E12]/90 border-white/10'} 
             ${(isScrolled || openProjectId) ? 'opacity-100' : 'opacity-0'}`}
         ></div>
         
@@ -596,7 +596,7 @@ const App: React.FC = () => {
               className={`whitespace-nowrap text-xs font-semibold px-5 py-2 rounded-full transition-all 
                 ${currentPage === 'home' 
                   ? (headerTheme === 'dark' ? 'text-[#0E2A33] bg-[#0E2A33]/10' : 'text-white bg-white/10')
-                  : (headerTheme === 'dark' ? 'text-[#0E2A33]/60 hover:text-[#0E2A33] hover:bg-black/5' : 'text-zinc-400 hover:text-white hover:bg-white/5')
+                  : (headerTheme === 'dark' ? 'text-[#0E2A33]/60 hover:text-[#0E2A33] hover:bg-black/5' : 'text-white/50 hover:text-white hover:bg-white/5')
                 }`}
             >
               Accueil
@@ -606,7 +606,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               className={`whitespace-nowrap text-xs font-semibold px-5 py-2 rounded-full transition-all
                 ${currentPage === 'expertises'
                   ? (headerTheme === 'dark' ? 'text-[#0E2A33] bg-[#0E2A33]/10' : 'text-white bg-white/10')
-                  : (headerTheme === 'dark' ? 'text-[#0E2A33]/60 hover:text-[#0E2A33] hover:bg-black/5' : 'text-zinc-400 hover:text-white hover:bg-white/5')
+                  : (headerTheme === 'dark' ? 'text-[#0E2A33]/60 hover:text-[#0E2A33] hover:bg-black/5' : 'text-white/50 hover:text-white hover:bg-white/5')
                 }`}
             >
               Expertises
@@ -621,7 +621,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       : 'text-white bg-white/10'
                     : headerTheme === 'dark'
                       ? 'text-[#0E2A33]/60 hover:text-[#0E2A33] hover:bg-black/5'
-                      : 'text-zinc-400 hover:text-white hover:bg-white/5'
+                      : 'text-white/50 hover:text-white hover:bg-white/5'
                 }`}
             >
               Solutions
@@ -631,7 +631,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               className={`whitespace-nowrap text-xs font-semibold px-5 py-2 rounded-full transition-all 
                 ${currentPage === 'projects' 
                   ? (headerTheme === 'dark' ? 'text-[#0E2A33] bg-[#0E2A33]/10' : 'text-white bg-white/10')
-                  : (headerTheme === 'dark' ? 'text-[#0E2A33]/60 hover:text-[#0E2A33] hover:bg-black/5' : 'text-zinc-400 hover:text-white hover:bg-white/5')
+                  : (headerTheme === 'dark' ? 'text-[#0E2A33]/60 hover:text-[#0E2A33] hover:bg-black/5' : 'text-white/50 hover:text-white hover:bg-white/5')
                 }`}
             >
               Portfolio
@@ -641,7 +641,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               className={`whitespace-nowrap text-xs font-semibold px-5 py-2 rounded-full transition-all
                 ${currentPage === 'a-propos'
                   ? (headerTheme === 'dark' ? 'text-[#0E2A33] bg-black/10' : 'text-white bg-white/10')
-                  : (headerTheme === 'dark' ? 'text-[#0E2A33]/60 hover:text-[#0E2A33] hover:bg-black/5' : 'text-zinc-400 hover:text-white hover:bg-white/5')
+                  : (headerTheme === 'dark' ? 'text-[#0E2A33]/60 hover:text-[#0E2A33] hover:bg-black/5' : 'text-white/50 hover:text-white hover:bg-white/5')
                 }`}
             >
               À propos
@@ -651,7 +651,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               className={`whitespace-nowrap text-xs font-semibold px-5 py-2 rounded-full transition-all
                 ${currentPage === 'contact' 
                   ? (headerTheme === 'dark' ? 'text-[#0E2A33] bg-[#0E2A33]/10' : 'text-white bg-white/10')
-                  : (headerTheme === 'dark' ? 'text-[#0E2A33]/60 hover:text-[#0E2A33] hover:bg-black/5' : 'text-zinc-400 hover:text-white hover:bg-white/5')
+                  : (headerTheme === 'dark' ? 'text-[#0E2A33]/60 hover:text-[#0E2A33] hover:bg-black/5' : 'text-white/50 hover:text-white hover:bg-white/5')
                 }`}
             >
               Contact
@@ -721,14 +721,16 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             </div>
             <div className="relative z-30 w-full max-w-7xl mx-auto px-6 py-20">
               <div className="max-w-7xl animate-fade-up">
-                <h1 className="text-3xl md:text-4xl lg:text-[clamp(1.8rem,4.62vw,4.18rem)] tracking-tighter leading-tight mb-12 font-black max-w-7xl text-white flex flex-col gap-8 md:gap-9">
-                  <span className="text-[#8E9BA4]">PME industrielle:</span>
-                  <span className="uppercase">SOLUTIONS MÉTALLIQUES SUR-MESURE</span>
-                  <span className="text-[#8E9BA4] -mt-2">pour l'enveloppe du bâtiment</span>
-                </h1>
-                <p className="text-base md:text-lg text-white/80 max-w-xl leading-relaxed border-l-2 border-[#E2FD48] pl-8 mb-16 font-medium">
-                  Notre expertise : conception, façonnage, pliage, thermolaquage de métal en feuilles. Process de production intégré et maîtrise de la qualité, des coûts et des délais pour chaque projet
-                </p>
+                <div className="mb-16">
+                  <h1 className={`${DS.H1} text-white`}>
+                    <span className={`block mb-4 ${DS.EYEBROW_DARK}`}>PME industrielle:</span>
+                    <span className="block">SOLUTIONS MÉTALLIQUES <span className="whitespace-nowrap">SUR-MESURE</span></span>
+                    <span className="block">pour l'enveloppe du bâtiment</span>
+                  </h1>
+                  <p className={`${DS.LEAD_DARK} mt-6 border-l-2 border-[#E2FD48] pl-8`}>
+                    Notre expertise : conception, façonnage, pliage, thermolaquage de métal en feuilles. Process de production intégré et maîtrise de la qualité, des coûts et des délais pour chaque projet
+                  </p>
+                </div>
                 <div className="space-y-8">
                   <div className="flex flex-col sm:flex-row items-center gap-4">
                     <button onClick={() => setCurrentPage('contact')} className={`${DS.BTN_PRIMARY} w-full sm:w-auto`}>Demander un devis</button>
@@ -743,7 +745,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     </div>
                     <div className="flex flex-col">
                       <span className="text-[11px] font-black text-[#E2FD48] tracking-[0.15em] uppercase leading-none">QUALICOAT CERTIFIÉ</span>
-                      <span className="text-[8px] font-medium text-white/40 uppercase tracking-wider mt-1.5">Thermolaquage conforme aux exigences internationales</span>
+                      <span className="text-[8px] font-medium text-white/50 uppercase tracking-wider mt-1.5">Thermolaquage conforme aux exigences internationales</span>
                     </div>
                   </div>
                 </div>
@@ -755,14 +757,14 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           <section id="expertise" className="pt-32 pb-10 section--dark" style={{ background: 'linear-gradient(to bottom, #071318 0%, #0b1e26 100%)' }}>
             <div className="max-w-7xl mx-auto px-6">
               <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-20 items-center">
-                <div className="space-y-8">
-                  <div className="space-y-4">
-                    <span className="text-[10px] font-extrabold tracking-[0.3em] uppercase text-[#E2FD48]">PROCESS INTÉGRÉ</span>
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">Fabrication de pièces métalliques sur mesure</h2>
-                  </div>
-                  <p className="text-white/90 text-lg leading-relaxed font-medium">
+                <div>
+                  <div className="mb-16">
+                    <span className={`block mb-4 ${DS.EYEBROW_DARK}`}>PROCESS INTÉGRÉ</span>
+                    <h2 className={`${DS.H2} text-white`}>Fabrication de pièces métalliques sur mesure</h2>
+                    <p className={`${DS.LEAD_DARK} mt-6`}>
                     De l'étude technique Bureau d'Études au pliage grande longueur, jusqu'au thermolaquage industriel certifié Qualicoat. Chaque étape de notre <strong>fabrication industrielle métal</strong> est maîtrisée en interne pour une qualité irréprochable.
-                  </p>
+                    </p>
+                  </div>
                   <button onClick={() => setCurrentPage('expertises')} className={DS.ACTION_DARK}>
                     Découvrir nos expertises
                     <iconify-icon icon="lucide:arrow-right" className={DS.ACTION_ARROW}></iconify-icon>
@@ -812,7 +814,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                           <span className="inline-flex items-center justify-center w-12 h-12 rounded-full border border-white/70 bg-black/60">
                             <iconify-icon icon="lucide:play" width="22" className="text-white"></iconify-icon>
                           </span>
-                          <span className="text-xs font-medium tracking-[0.2em] uppercase text-white/80">
+                          <span className="text-xs font-medium tracking-[0.2em] uppercase text-white/50">
                             Lire le teaser
                           </span>
                         </div>
@@ -838,20 +840,22 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 </div>
 
                 {/* Colonne droite : texte d'accroche */}
-                <div className="max-w-xs w-full md:w-auto text-left space-y-3">
-                  <span className="text-[10px] font-extrabold tracking-[0.3em] text-[#E2FD48] uppercase">
-                    VISITE D'USINE
-                  </span>
-                  <h3 className="text-2xl font-bold leading-tight text-white mt-3">
-                    Découvrez nos lignes de production en action
-                  </h3>
-                  <p className="text-sm text-white/70 mt-3">
-                    Visite d'usine : deux minutes pour voir les lignes de production.
-                  </p>
+                <div className="max-w-xs w-full md:w-auto text-left">
+                  <div className="mb-16">
+                    <span className={`block mb-4 ${DS.EYEBROW_DARK}`}>
+                      VISITE D'USINE
+                    </span>
+                    <h2 className={`${DS.H2} text-white`}>
+                      Découvrez nos lignes de production en action
+                    </h2>
+                    <p className={`${DS.LEAD_DARK} mt-6`}>
+                      Visite d'usine : deux minutes pour voir les lignes de production.
+                    </p>
+                  </div>
                   <button
                     type="button"
                     onClick={() => setCurrentPage('expertises')}
-                    className={`${DS.BTN_PRIMARY} mt-6`}
+                    className={DS.BTN_PRIMARY}
                   >
                     Voir la visite complète →
                   </button>
@@ -864,13 +868,15 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           <section id="solutions" className="bg-white pt-12 pb-24">
             <div className="max-w-7xl mx-auto px-6">
 
-              <p className="text-[10px] font-extrabold tracking-[0.3em] uppercase text-[#0E2A33]/50 mb-4">NOS SOLUTIONS</p>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33] mb-10">
+              <div className="mb-16">
+              <p className={`mb-4 ${DS.EYEBROW_LIGHT}`}>NOS SOLUTIONS</p>
+              <h2 className={`${DS.H2} text-[#0E2A33]`}>
                 Solutions métalliques pour l'enveloppe du bâtiment
               </h2>
-              <p className="text-[#0E2A33]/60 text-base max-w-2xl mb-16">
+              <p className={`${DS.LEAD_LIGHT} mt-6`}>
                 Vos métiers : le bardage, le ravalement de façade, l'isolation thermique... Découvrez nos solutions métalliques complètes, du façonnage à la finition.
               </p>
+              </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
 
@@ -879,9 +885,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 text-[#0E2A33] shrink-0" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                     </svg>
-                    <h3 className="text-[#0E2A33] font-bold">Enduit mince sur isolant</h3>
+                    <h3 className={`${DS.H3} text-[#0E2A33]`}>Enduit mince sur isolant</h3>
                   </div>
-                  <p className="text-[#0E2A33]/60 text-sm leading-relaxed">Profils pour systèmes d'isolation thermique par l'extérieur.</p>
+                  <p className="text-[#0E2A33]/[0.62] text-sm leading-relaxed">Profils pour systèmes d'isolation thermique par l'extérieur.</p>
                 </div>
 
                 <div className="bg-[#F5F5F3] border border-[#0E2A33]/20 rounded-lg p-6 hover:shadow-md hover:border-[#E2FD48]/50 transition-all">
@@ -889,9 +895,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" className="w-5 h-5 text-[#0E2A33] shrink-0" aria-hidden="true">
                       <path d="M53.92,34.62A8,8,0,1,0,42.08,45.38L64.72,70.29C48.32,95,40,119.78,40,144a88,88,0,0,0,149.21,63.22l12.87,14.16a8,8,0,1,0,11.84-10.76ZM128,216a72.08,72.08,0,0,1-72-72c0-19.93,6.68-40.57,19.86-61.46L178.43,195.36A71.84,71.84,0,0,1,128,216ZM90,50.51a8,8,0,0,1-.27-11.31A247.8,247.8,0,0,1,123.41,9.45a8,8,0,0,1,9.18,0C136,11.83,216,68.7,216,144a88.08,88.08,0,0,1-3.15,23.4,8,8,0,0,1-7.71,5.88A7.79,7.79,0,0,1,203,173a8,8,0,0,1-5.59-9.83A72.55,72.55,0,0,0,200,144c0-57.24-55.48-105-72-118a252.23,252.23,0,0,0-26.66,24.23A8,8,0,0,1,90,50.51Z" />
                     </svg>
-                    <h3 className="text-[#0E2A33] font-bold">Solutions pour l'étanchéité</h3>
+                    <h3 className={`${DS.H3} text-[#0E2A33]`}>Solutions pour l'étanchéité</h3>
                   </div>
-                  <p className="text-[#0E2A33]/60 text-sm leading-relaxed">Couvertines et accessoires pour l'étanchéité des façades.</p>
+                  <p className="text-[#0E2A33]/[0.62] text-sm leading-relaxed">Couvertines et accessoires pour l'étanchéité des façades.</p>
                 </div>
 
                 <div className="bg-[#F5F5F3] border border-[#0E2A33]/20 rounded-lg p-6 hover:shadow-md hover:border-[#E2FD48]/50 transition-all">
@@ -899,9 +905,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" className="w-5 h-5 text-[#0E2A33] shrink-0" aria-hidden="true">
                       <path d="M240,208h-8V72a8,8,0,0,0-8-8H184V40a8,8,0,0,0-8-8H80a8,8,0,0,0-8,8V96H32a8,8,0,0,0-8,8V208H16a8,8,0,0,0,0,16H240a8,8,0,0,0,0-16ZM40,112H80a8,8,0,0,0,8-8V48h80V72a8,8,0,0,0,8,8h40V208H152V168a8,8,0,0,0-8-8H112a8,8,0,0,0-8,8v40H40Zm96,96H120V176h16ZM112,72a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H120A8,8,0,0,1,112,72Zm0,32a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H120A8,8,0,0,1,112,104Zm56,0a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H176A8,8,0,0,1,168,104ZM88,136a8,8,0,0,1-8,8H64a8,8,0,0,1,0-16H80A8,8,0,0,1,88,136Zm0,32a8,8,0,0,1-8,8H64a8,8,0,0,1,0-16H80A8,8,0,0,1,88,168Zm24-32a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H120A8,8,0,0,1,112,136Zm56,0a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H176A8,8,0,0,1,168,136Zm0,32a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H176A8,8,0,0,1,168,168Z" />
                     </svg>
-                    <h3 className="text-[#0E2A33] font-bold">Bardages & Cassettes</h3>
+                    <h3 className={`${DS.H3} text-[#0E2A33]`}>Bardages & Cassettes</h3>
                   </div>
-                  <p className="text-[#0E2A33]/60 text-sm leading-relaxed">Bardages, cassettes et ossatures pour l'enveloppe du bâtiment.</p>
+                  <p className="text-[#0E2A33]/[0.62] text-sm leading-relaxed">Bardages, cassettes et ossatures pour l'enveloppe du bâtiment.</p>
                 </div>
 
                 <div className="bg-[#F5F5F3] border border-[#0E2A33]/20 rounded-lg p-6 hover:shadow-md hover:border-[#E2FD48]/50 transition-all">
@@ -909,9 +915,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" className="w-5 h-5 text-[#0E2A33] shrink-0" aria-hidden="true">
                       <path d="M226.76,69a8,8,0,0,0-12.84-2.88l-40.3,37.19-17.23-3.7-3.7-17.23,37.19-40.3A8,8,0,0,0,187,29.24,72,72,0,0,0,88,96,72.34,72.34,0,0,0,94,124.94L33.79,177c-.15.12-.29.26-.43.39a32,32,0,0,0,45.26,45.26c.13-.13.27-.28.39-.42L131.06,162A72,72,0,0,0,232,96,71.56,71.56,0,0,0,226.76,69ZM160,152a56.14,56.14,0,0,1-27.07-7,8,8,0,0,0-9.92,1.77L67.11,211.51a16,16,0,0,1-22.62-22.62L109.18,133a8,8,0,0,0,1.77-9.93,56,56,0,0,1,58.36-82.31l-31.2,33.81a8,8,0,0,0-1.94,7.1L141.83,108a8,8,0,0,0,6.14,6.14l26.35,5.66a8,8,0,0,0,7.1-1.94l33.81-31.2A56.06,56.06,0,0,1,160,152Z" />
                     </svg>
-                    <h3 className="text-[#0E2A33] font-bold">Ravalement de façade</h3>
+                    <h3 className={`${DS.H3} text-[#0E2A33]`}>Ravalement de façade</h3>
                   </div>
-                  <p className="text-[#0E2A33]/60 text-sm leading-relaxed">Profilés et accessoires pour le ravalement de façade.</p>
+                  <p className="text-[#0E2A33]/[0.62] text-sm leading-relaxed">Profilés et accessoires pour le ravalement de façade.</p>
                 </div>
 
                 <div className="bg-[#F5F5F3] border border-[#0E2A33]/20 rounded-lg p-6 hover:shadow-md hover:border-[#E2FD48]/50 transition-all">
@@ -919,9 +925,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" className="w-5 h-5 text-[#0E2A33] shrink-0" aria-hidden="true">
                       <path d="M200,80v32a8,8,0,0,1-16,0V88H160a8,8,0,0,1,0-16h32A8,8,0,0,1,200,80ZM96,168H72V144a8,8,0,0,0-16,0v32a8,8,0,0,0,8,8H96a8,8,0,0,0,0-16ZM232,56V200a16,16,0,0,1-16,16H40a16,16,0,0,1-16-16V56A16,16,0,0,1,40,40H216A16,16,0,0,1,232,56ZM216,200V56H40V200H216Z" />
                     </svg>
-                    <h3 className="text-[#0E2A33] font-bold">Précadres</h3>
+                    <h3 className={`${DS.H3} text-[#0E2A33]`}>Précadres</h3>
                   </div>
-                  <p className="text-[#0E2A33]/60 text-sm leading-relaxed">Précadres sur mesure pour portes et fenêtres.</p>
+                  <p className="text-[#0E2A33]/[0.62] text-sm leading-relaxed">Précadres sur mesure pour portes et fenêtres.</p>
                 </div>
 
                 <div className="bg-[#F5F5F3] border border-[#0E2A33]/20 rounded-lg p-6 hover:shadow-md hover:border-[#E2FD48]/50 transition-all">
@@ -929,9 +935,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" className="w-5 h-5 text-[#0E2A33] shrink-0" aria-hidden="true">
                       <path d="M212,136a12,12,0,1,1-12-12A12,12,0,0,1,212,136Zm36,0c0,40.37-21.08,72-48,72H56c-26.92,0-48-31.63-48-72S29.08,64,56,64H92.69l37.65-37.66A8,8,0,0,1,136,24h32a8,8,0,0,1,0,16H139.31l-24,24H200C226.92,64,248,95.63,248,136ZM56,192H169.51a73.46,73.46,0,0,1-12.67-24H80a8,8,0,0,1,0-16h73.16A110.63,110.63,0,0,1,152,136c0-22.86,6.76-42.9,17.51-56H56c-12.47,0-23.55,13.26-28.8,32H104a8,8,0,0,1,0,16H24.35q-.34,3.93-.35,8C24,166.36,38.65,192,56,192Zm176-56c0-30.36-14.65-56-32-56s-32,25.64-32,56,14.65,56,32,56S232,166.36,232,136Z" />
                     </svg>
-                    <h3 className="text-[#0E2A33] font-bold">MOB & FOB</h3>
+                    <h3 className={`${DS.H3} text-[#0E2A33]`}>MOB & FOB</h3>
                   </div>
-                  <p className="text-[#0E2A33]/60 text-sm leading-relaxed">Profils métalliques pour ossature bois (MOB et FOB).</p>
+                  <p className="text-[#0E2A33]/[0.62] text-sm leading-relaxed">Profils métalliques pour ossature bois (MOB et FOB).</p>
                 </div>
 
               </div>
@@ -944,9 +950,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     <path d="M21.145 18.38A3.34 3.34 0 0 1 20 16.5a3.3 3.3 0 0 1-1.145 1.88c-.575.46-.855 1.02-.855 1.595A2 2 0 0 0 20 22a2 2 0 0 0 2-2.025c0-.58-.285-1.13-.855-1.595"/>
                     <path d="m8.5 4.5 2.148-2.148a1.205 1.205 0 0 1 1.704 0l7.296 7.296a1.205 1.205 0 0 1 0 1.704l-7.592 7.592a3.615 3.615 0 0 1-5.112 0l-3.888-3.888a3.615 3.615 0 0 1 0-5.112L5.67 7.33"/>
                   </svg>
-                  <h3 className="text-[#0E2A33] font-bold">Tôles prélaquées</h3>
+                  <h3 className={`${DS.H3} text-[#0E2A33]`}>Tôles prélaquées</h3>
                 </div>
-                <p className="text-[#0E2A33]/60 text-sm leading-relaxed">Tôles aluminium en formats standards et sur-mesure. Gamme complète de teintes RAL. Expertise PLIALU associée à la qualité Infinimetal.</p>
+                <p className="text-[#0E2A33]/[0.62] text-sm leading-relaxed">Tôles aluminium en formats standards et sur-mesure. Gamme complète de teintes RAL. Expertise PLIALU associée à la qualité Infinimetal.</p>
                 <div className="absolute right-6 top-1/2 -translate-y-1/2 flex items-center pointer-events-none">
                   <img
                     src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1780588809/infini_noir_f4v6lv.png"
@@ -968,10 +974,10 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           {/* 4. RÉALISATIONS (DARK) */}
           <section id="projects" className="relative z-10 -mt-8 rounded-t-[2rem] md:rounded-t-[2.5rem] py-32 section--dark" style={{ background: 'linear-gradient(to bottom, #0b1e26 0%, #071318 100%)' }}>
             <div className="max-w-7xl mx-auto px-6">
-              <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12 md:mb-16">
-                <div className="max-w-2xl space-y-4">
-                  <span className="text-[10px] font-extrabold tracking-[0.3em] uppercase text-[#E2FD48]">PORTFOLIO COLLABORATIONS</span>
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">Projets réalisés en collaboration</h2>
+              <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+                <div className="max-w-2xl">
+                  <span className={`block mb-4 ${DS.EYEBROW_DARK}`}>PORTFOLIO COLLABORATIONS</span>
+                  <h2 className={`${DS.H2} text-white`}>Projets réalisés en collaboration</h2>
                 </div>
                 <p className="text-[10px] font-extrabold tracking-[0.4em] text-white/50 uppercase">
                   {PROJECTS.length} réalisations · {portfolioYearMin}–{portfolioYearMax}
@@ -1002,12 +1008,14 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     loading="lazy"
                   />
                 </div>
-                <div className="space-y-8 order-1 lg:order-2">
-                  <span className="text-[10px] font-extrabold tracking-[0.3em] uppercase text-[#E2FD48]">À PROPOS</span>
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">Votre entreprise de métallurgie en Rhône-Alpes</h2>
-                  <p className="text-white/80 text-lg leading-relaxed">
+                <div className="order-1 lg:order-2">
+                  <div className="mb-16">
+                  <span className={`block mb-4 ${DS.EYEBROW_DARK}`}>À PROPOS</span>
+                  <h2 className={`${DS.H2} text-white`}>Votre entreprise de métallurgie en <span className="whitespace-nowrap">Rhône-Alpes</span></h2>
+                  <p className={`${DS.LEAD_DARK} mt-6`}>
                     Depuis notre <strong>atelier lyonnais</strong>, nous assurons une réactivité optimale pour accompagner vos chantiers en <strong>Rhône-Alpes</strong> et en Europe. Une capacité de production appuyée par plus de 7 000 m² dédiés au façonnage métallique sur mesure.
                   </p>
+                  </div>
                   <a href="/a-propos" onClick={(e) => { e.preventDefault(); setCurrentPage('a-propos'); }} className={DS.ACTION_DARK}>EN SAVOIR PLUS <iconify-icon icon="lucide:arrow-right" className={DS.ACTION_ARROW}></iconify-icon></a>
                 </div>
               </div>
@@ -1017,9 +1025,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           {/* 7. CONTACT (LIGHT) */}
           <section id="contact" className="py-48 section--light">
             <div className="relative z-10 max-w-4xl mx-auto px-6 text-center animate-fade-up">
-              <span className="text-[10px] font-extrabold tracking-[0.3em] uppercase mb-8 inline-block text-[#0E2A33]/40">CONTACT</span>
-              <h2 className="mb-10 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">Étude technique, faisabilité, chiffrage — ou toute autre demande.</h2>
-              <p className="text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed font-medium text-[#0E2A33]/70">Nos équipes vous répondent rapidement avec une approche intégrant vos contraintes.</p>
+              <div className="mb-16">
+              <span className={`inline-block mb-4 ${DS.EYEBROW_LIGHT}`}>CONTACT</span>
+              <h2 className={`${DS.H2} text-[#0E2A33]`}>Étude technique, faisabilité, chiffrage — ou toute autre demande.</h2>
+              <p className={`${DS.LEAD_LIGHT} mt-6 mx-auto`}>Nos équipes vous répondent rapidement avec une approche intégrant vos contraintes.</p>
+              </div>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
                 <button onClick={() => setCurrentPage('contact')} className={`${DS.BTN_SECONDARY_LIGHT} w-full sm:w-auto`}>Demander un devis</button>
                 <button onClick={() => setCurrentPage('contact')} className={`${DS.BTN_SECONDARY_LIGHT} w-full sm:w-auto`}>Contacter un expert</button>
@@ -1033,11 +1043,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     <iconify-icon icon="lucide:phone" width="18"></iconify-icon>
                   </div>
                   <div className="flex-1">
-                    <span className="block text-[8px] font-bold text-zinc-400 uppercase tracking-widest mb-0.5">Téléphone</span>
+                    <span className="block text-[8px] font-bold text-[#0E2A33]/[0.62] uppercase tracking-widest mb-0.5">Téléphone</span>
                     <div className="flex items-center gap-2">
                       <a href="tel:0478089370" className="text-sm font-bold text-[#0E2A33] hover:underline">04 78 08 93 70</a>
                       <button onClick={() => handleCopy("04 78 08 93 70", "tel-home")} className="p-1 rounded-md hover:bg-black/5 transition-colors relative">
-                        <iconify-icon icon="lucide:copy" width="14" className="text-zinc-300 group-hover:text-zinc-400"></iconify-icon>
+                        <iconify-icon icon="lucide:copy" width="14" className="text-[#0E2A33]/[0.62] group-hover:text-[#0E2A33]"></iconify-icon>
                         {copiedKey === 'tel-home' && <span className="absolute -top-7 left-1/2 -translate-x-1/2 text-[9px] bg-[#0E2A33] text-white px-1.5 py-0.5 rounded">Copié</span>}
                       </button>
                     </div>
@@ -1049,11 +1059,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     <iconify-icon icon="lucide:mail" width="18"></iconify-icon>
                   </div>
                   <div className="flex-1">
-                    <span className="block text-[8px] font-bold text-zinc-400 uppercase tracking-widest mb-0.5">E-mail</span>
+                    <span className="block text-[8px] font-bold text-[#0E2A33]/[0.62] uppercase tracking-widest mb-0.5">E-mail</span>
                     <div className="flex items-center gap-2">
                       <a href="mailto:commercial@plialu.fr" className="text-sm font-bold text-[#0E2A33] hover:underline">commercial@plialu.fr</a>
                       <button onClick={() => handleCopy("commercial@plialu.fr", "mail-home")} className="p-1 rounded-md hover:bg-black/5 transition-colors relative">
-                        <iconify-icon icon="lucide:copy" width="14" className="text-zinc-300 group-hover:text-zinc-400"></iconify-icon>
+                        <iconify-icon icon="lucide:copy" width="14" className="text-[#0E2A33]/[0.62] group-hover:text-[#0E2A33]"></iconify-icon>
                         {copiedKey === 'mail-home' && <span className="absolute -top-7 left-1/2 -translate-x-1/2 text-[9px] bg-[#0E2A33] text-white px-1.5 py-0.5 rounded">Copié</span>}
                       </button>
                     </div>
@@ -1065,11 +1075,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     <iconify-icon icon="lucide:map-pin" width="18"></iconify-icon>
                   </div>
                   <div className="flex-1">
-                    <span className="block text-[8px] font-bold text-zinc-400 uppercase tracking-widest mb-0.5">Adresse</span>
+                    <span className="block text-[8px] font-bold text-[#0E2A33]/[0.62] uppercase tracking-widest mb-0.5">Adresse</span>
                     <div className="flex items-center gap-2">
                       <p className="text-sm font-bold text-[#0E2A33] leading-tight">Technoparc Saône Vallée Ouest, 150, Route Copernic, 01390 Civrieux</p>
                       <button onClick={() => handleCopy("Technoparc Saône Vallée Ouest, 150, Route Copernic, 01390 Civrieux", "addr-home")} className="p-1 rounded-md hover:bg-black/5 transition-colors relative">
-                        <iconify-icon icon="lucide:copy" width="14" className="text-zinc-300 group-hover:text-zinc-400"></iconify-icon>
+                        <iconify-icon icon="lucide:copy" width="14" className="text-[#0E2A33]/[0.62] group-hover:text-[#0E2A33]"></iconify-icon>
                         {copiedKey === 'addr-home' && <span className="absolute -top-7 left-1/2 -translate-x-1/2 text-[9px] bg-[#0E2A33] text-white px-1.5 py-0.5 rounded">Copié</span>}
                       </button>
                     </div>
@@ -1081,7 +1091,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     <iconify-icon icon="lucide:clock" width="18"></iconify-icon>
                   </div>
                   <div className="flex-1">
-                    <span className="block text-[8px] font-bold text-zinc-400 uppercase tracking-widest mb-0.5">Horaires</span>
+                    <span className="block text-[8px] font-bold text-[#0E2A33]/[0.62] uppercase tracking-widest mb-0.5">Horaires</span>
                     <p className="text-sm font-bold text-[#0E2A33] leading-tight">Du lundi au jeudi de 7h30 à 16h30, le vendredi de 7h30 à 12h.</p>
                   </div>
                 </div>
@@ -1098,16 +1108,18 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           <section className="relative bg-[#071318] pt-48 md:pt-56 pb-20 overflow-hidden min-h-[70vh] flex flex-col justify-center">
             <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-b from-[#0e2a33]/40 to-[#071318]"></div>
             <div className="relative z-10 flex-1 flex flex-col justify-center max-w-7xl mx-auto px-6 w-full">
-              <div className="max-w-4xl space-y-8">
-                <span className="text-[10px] font-extrabold tracking-[0.4em] text-white/50 uppercase block">
+              <div className="max-w-4xl">
+                <div className="mb-16">
+                <span className={`block mb-4 ${DS.EYEBROW_DARK}`}>
                   NOTRE IDENTITÉ INDUSTRIELLE
                 </span>
-                <h1 className="text-4xl md:text-6xl tracking-tighter leading-[1.1] font-black uppercase text-white">
-                  PLIALU, Entreprise de façonnage métal en Rhône-Alpes
+                <h1 className={`${DS.H1} text-white`}>
+                  PLIALU, Entreprise de façonnage métal en <span className="whitespace-nowrap">Rhône-Alpes</span>
                 </h1>
-                <p className="text-base md:text-lg text-white/70 max-w-2xl leading-relaxed font-medium">
+                <p className={`${DS.LEAD_DARK} mt-6`}>
                   Implantée en région lyonnaise, notre usine intégrée accompagne les professionnels de l'enveloppe du bâtiment dans la transformation industrielle et la fabrication sur mesure de pièces métalliques.
                 </p>
+                </div>
                 <a
                   href="#a-propos-contenu"
                   onClick={() => { setCurrentPage('contact'); }}
@@ -1125,13 +1137,13 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
                 <div className="lg:col-span-6 space-y-10 py-10">
-                  <div className="space-y-6">
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
+                  <div className="mb-16">
+                    <h2 className={`${DS.H2} text-[#0E2A33]`}>
                       Notre ADN
                     </h2>
-                    <div className="w-20 h-1.5 bg-[#E2FD48]"></div>
+                    <div className="w-20 h-1.5 bg-[#E2FD48] mt-6"></div>
                   </div>
-                  <div className="text-zinc-500 text-base leading-relaxed max-w-lg space-y-6">
+                  <div className="text-[#0E2A33]/75 text-base leading-[1.65] max-w-lg space-y-6">
                     <p>
                       PLIALU, c'est 20 ans de fabrication métallique intégrée en Rhône-Alpes. Pièces standard et sur-mesure, une capacité industrielle complète capable de s'adapter aux contraintes de chaque projet.
                     </p>
@@ -1148,7 +1160,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 </div>
 
                 <div className="lg:col-span-6">
-                  <div className="relative p-2 bg-white rounded-3xl border border-zinc-200 shadow-2xl shadow-[#0E2A33]/5 aspect-[4/3] group">
+                  <div className="relative p-2 bg-white rounded-3xl border border-[#0E2A33]/[0.12] shadow-2xl shadow-[#0E2A33]/5 aspect-[4/3] group">
                     <img src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1771522416/APROPOS-1200px_wkguv2.webp" className="w-full h-full object-cover rounded-xl relative z-10 filter contrast-[1.05]" alt="Atelier de production Plialu à Lyon" loading="lazy" />
                   </div>
                 </div>
@@ -1162,7 +1174,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             style={{ background: 'linear-gradient(to bottom, #071318 0%, #0b1e26 100%)' }}
           >
             <div className="max-w-7xl mx-auto px-6">
-              <h3 className="text-[10px] font-extrabold tracking-[0.3em] uppercase text-[#E2FD48] mb-8">CE QUE VOUS Y GAGNEZ</h3>
+              <div className="mb-16">
+                <p className={DS.EYEBROW_DARK}>CE QUE VOUS Y GAGNEZ</p>
+              </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {[
                   { expert: 'Délais maîtrisés', desc: 'Engagements tenus, même sur les séries courtes.', icon: <svg className="w-8 h-8 text-[#E2FD48]" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256"><path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Zm-96-88v64a8,8,0,0,1-16,0V132.94l-4.42,2.22a8,8,0,0,1-7.16-14.32l16-8A8,8,0,0,1,112,120Zm59.16,30.45L152,176h16a8,8,0,0,1,0,16H136a8,8,0,0,1-6.4-12.8l28.78-38.37A8,8,0,1,0,145.07,132a8,8,0,1,1-13.85-8A24,24,0,0,1,176,136,23.76,23.76,0,0,1,171.16,150.45Z"></path></svg> },
@@ -1173,8 +1187,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   <div key={item.expert} className="bg-transparent border border-white/10 rounded-lg p-6 md:p-8 flex flex-col justify-between min-h-[220px]">
                     <div className="mb-6">{item.icon}</div>
                     <div>
-                      <span className="block text-white font-black text-xl tracking-tight mb-2">{item.expert}</span>
-                      <span className="text-white/70 font-medium text-sm leading-relaxed">{item.desc}</span>
+                      <span className={`block mb-2 ${DS.H3} text-white`}>{item.expert}</span>
+                      <span className="text-white/50 font-medium text-sm leading-relaxed">{item.desc}</span>
                     </div>
                   </div>
                 ))}
@@ -1184,13 +1198,13 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
           <section className="bg-white py-20 px-6">
             <div className="max-w-2xl mx-auto text-center">
-              <div className="flex flex-col items-center space-y-5 mb-6">
-                <p className="text-[10px] font-extrabold tracking-[0.3em] uppercase text-[#0E2A33]/40 mb-4 block">NOS ÉQUIPES</p>
-                <h2 className="text-3xl md:text-4xl font-black text-[#0E2A33]">Des techniciens impliqués, du début à la fin.</h2>
-              </div>
-              <p className="text-gray-700 text-lg leading-relaxed">
+              <div className="mb-16">
+                <p className={`mb-4 ${DS.EYEBROW_LIGHT}`}>NOS ÉQUIPES</p>
+                <h2 className={`${DS.H2} text-[#0E2A33]`}>Des techniciens impliqués, du début à la fin.</h2>
+                <p className={`${DS.LEAD_LIGHT} mt-6 mx-auto`}>
                 Techniciens, opérateurs, logisticiens. Nos équipes connaissent leur métier et s'impliquent dans chaque commande. Un suivi interne et continu, sans sous-traitance, de la conception à la livraison.
               </p>
+              </div>
             </div>
           </section>
 
@@ -1201,11 +1215,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           >
             <div className="max-w-4xl mx-auto px-6 text-left">
               <div className="relative">
-                <div className="flex flex-col items-start space-y-5 pr-0 md:pr-72">
-                  <p className="text-[10px] font-extrabold tracking-[0.3em] uppercase text-[#E2FD48] mb-4 block">
+                <div className="flex flex-col items-start pr-0 md:pr-72">
+                  <p className={`mb-4 ${DS.EYEBROW_LIGHT}`}>
                     THERMOLAQUAGE
                   </p>
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">
+                  <h2 className={`${DS.H2} text-[#0E2A33]`}>
                     Nos lignes de thermolaquage
                   </h2>
                 </div>
@@ -1222,18 +1236,18 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   />
                 </button>
               </div>
-              <div className="mt-8 space-y-6 w-full">
-                <p className="text-white/70 text-base md:text-lg leading-relaxed">
+              <div className="mt-6 space-y-6 w-full mb-16">
+                <p className={DS.LEAD_LIGHT}>
                   Infinimetal est notre marque déposée spécialisée en thermolaquage certifié Qualicoat. Infinimetal dispose de deux lignes de thermolaquage complémentaires : une ligne à plat pour le laquage de tôles, et une ligne verticale dédiée au laquage post-formage à la main.
                 </p>
-                <p className="text-white/70 text-base md:text-lg leading-relaxed">
+                <p className="text-[#0E2A33]/75 text-base md:text-lg leading-[1.65]">
                   Cette polyvalence de thermolaquage nous permet de répondre à tous les besoins de laquage des façadiers et professionnels du bâtiment, que les pièces soient brutes ou déjà façonnées. Chez Infinimetal, Qualicoat est aujourd'hui le référentiel européen du thermolaquage pour les façades haut de gamme, appliqué sur nos deux lignes avec traçabilité de process.
                 </p>
               </div>
               <button
                 type="button"
                 onClick={() => setCurrentPage('solutions-temporaire')}
-                className={`${DS.BTN_PRIMARY} mt-12`}
+                className={DS.BTN_PRIMARY}
               >
                 Découvrir le Catalogue RAL
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12H19M19 12L13 6M19 12L13 18"/></svg>
@@ -1246,7 +1260,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               <div className="h-px bg-white/10" />
               <p className="sr-only">PLIALU, atelier de façonnage métallique implanté en Rhône-Alpes, intervient sur toute la France, Corse comprise, ainsi qu'en Belgique et en Suisse.</p>
               <div className="grid items-start gap-10 pb-0 pt-12 md:pt-16 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.3fr)] lg:grid-rows-[auto_1fr] lg:gap-x-16 lg:gap-y-10">
-                <h2 className="text-3xl font-extrabold leading-[1.08] tracking-tighter text-white [text-wrap:balance] md:text-4xl xl:text-[2.75rem] lg:col-start-1 lg:row-start-1">
+                <h2 className={`${DS.H2} text-white [text-wrap:balance] lg:col-start-1 lg:row-start-1`}>
                   <span className="block">Un atelier à Lyon.</span>
                   <span className="block">Des chantiers partout en France.</span>
                 </h2>
@@ -1271,7 +1285,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                             <ZoneSwatch kind={row.kind} />
                             <div>
                               <div className="text-base font-semibold text-white">{row.name}</div>
-                              <div className="text-sm text-white/70">{row.detail}</div>
+                              <div className="text-sm text-white/50">{row.detail}</div>
                             </div>
                           </button>
                         ) : (
@@ -1279,7 +1293,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                             <ZoneSwatch kind={row.kind} />
                             <div>
                               <div className="text-base font-semibold text-white">{row.name}</div>
-                              <div className="text-sm text-white/70">{row.detail}</div>
+                              <div className="text-sm text-white/50">{row.detail}</div>
                             </div>
                           </>
                         )}
@@ -1291,9 +1305,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             </div>
           </section>
           <section className="py-24 bg-[#071318] text-center">
-            <div className="max-w-3xl mx-auto px-6 space-y-8">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">20 ans de façonnage métallique en Rhône-Alpes.</h2>
-              <p className="text-base md:text-lg text-white/50">Vos équipes techniques répondent sous 48 h.</p>
+            <div className="max-w-3xl mx-auto px-6">
+              <div className="mb-16">
+              <h2 className={`${DS.H2} text-white`}>20 ans de façonnage métallique en <span className="whitespace-nowrap">Rhône-Alpes.</span></h2>
+              <p className={`${DS.LEAD_DARK} mt-6 mx-auto`}>Vos équipes techniques répondent sous 48 h.</p>
+              </div>
               <button onClick={() => setCurrentPage('contact')} className={DS.BTN_PRIMARY}>
                 Soumettre un projet
               </button>
@@ -1309,16 +1325,18 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           <section className="relative bg-[#071318] pt-48 md:pt-56 pb-12 md:pb-16">
             <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-b from-[#0e2a33]/40 to-[#071318]"></div>
             <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
-              <div className="max-w-4xl space-y-8">
-                <span className="text-[10px] font-extrabold tracking-[0.4em] text-white/50 uppercase block">
+              <div className="max-w-4xl">
+                <div className="mb-16">
+                <span className={`block mb-4 ${DS.EYEBROW_DARK}`}>
                   PORTFOLIO
                 </span>
-                <h1 className="text-4xl md:text-6xl tracking-tighter leading-[1.1] font-black uppercase text-white">
+                <h1 className={`${DS.H1} text-white`}>
                   Découvrir nos projets en collaboration
                 </h1>
-                <p className="text-base md:text-lg text-white/70 max-w-2xl leading-relaxed font-medium">
+                <p className={`${DS.LEAD_DARK} mt-6`}>
                   Une sélection de projets menés aux côtés de maîtres d'œuvre, Maîtres d'ouvrage, Cabinets d'architecture, Professionnels de l'enveloppe, Bureaux d'études.
                 </p>
+                </div>
                 <div className="flex flex-col sm:flex-row items-start gap-4">
                   <a
                     href="/documents/Portfolio_Plialu.pdf"
@@ -1358,9 +1376,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
           {/* CTA Final */}
           <section className="py-24 bg-[#071318] text-center border-t border-white/5">
-            <div className="max-w-3xl mx-auto px-6 space-y-8">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">Confiez-nous vos projets</h2>
-              <p className="text-base md:text-lg text-white/50">Nos équipes vous accompagnent dans la recherche de solutions pour vos projets</p>
+            <div className="max-w-3xl mx-auto px-6">
+              <div className="mb-16">
+              <h2 className={`${DS.H2} text-white`}>Confiez-nous vos projets</h2>
+              <p className={`${DS.LEAD_DARK} mt-6 mx-auto`}>Nos équipes vous accompagnent dans la recherche de solutions pour vos projets</p>
+              </div>
               <button onClick={() => setCurrentPage('contact')} className={DS.BTN_PRIMARY}>
                 Soumettre mon projet
               </button>
@@ -1376,12 +1396,12 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           {/* Hero Solutions */}
           <section className="bg-white pt-48 md:pt-56 pb-20 min-h-[70vh] flex flex-col justify-center">
             <div className="flex-1 flex flex-col justify-center max-w-7xl mx-auto px-6 w-full">
-              <div className="max-w-4xl space-y-8">
-                <span className="text-[10px] font-extrabold tracking-[0.4em] text-zinc-400 uppercase block">CATALOGUE B2B</span>
-                <h1 className="text-4xl md:text-6xl tracking-tighter leading-[1.1] font-black uppercase text-[#0E2A33]">
+              <div className="max-w-4xl">
+                <span className={`block mb-4 ${DS.EYEBROW_LIGHT}`}>CATALOGUE B2B</span>
+                <h1 className={`${DS.H1} text-[#0E2A33]`}>
                   Solutions métalliques enveloppe du bâtiment
                 </h1>
-                <p className="text-base md:text-lg text-[#0E2A33]/70 max-w-2xl leading-relaxed font-medium">
+                <p className={`${DS.LEAD_LIGHT} mt-6`}>
                   Enduit mince sur isolant, ravalement de façade, bardages et cassettes, précadres, tôles prélaquées. Découvrez nos gammes aluminium et acier pour l'enveloppe du bâtiment.
                 </p>
               </div>
@@ -1391,9 +1411,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           {/* --- BENTO GRID : 6 FAMILLES DE PRODUITS --- */}
           <section className="py-20 bg-[#0a1f26]">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="mb-12">
-                <h2 className="mb-4 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">Nos Solutions Enveloppe</h2>
-                <p className="text-gray-400 max-w-2xl text-lg">
+              <div className="mb-16">
+                <h2 className={`${DS.H2} text-white`}>Nos Solutions Enveloppe</h2>
+                <p className={`${DS.LEAD_DARK} mt-6`}>
                   Découvrez nos expertises en façonnage métallique sur mesure pour l'habillage technique de façades.
                 </p>
               </div>
@@ -1406,16 +1426,16 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 >
                   <div className="relative w-full aspect-video bg-[#071318] border border-white/10 flex items-center justify-center overflow-hidden">
                     <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,rgba(226,253,72,0.35),transparent_60%)]" />
-                    <span className="relative text-[#0E2A33] opacity-80 text-sm font-semibold">
+                    <span className="relative text-white/50 text-sm font-semibold">
                       Visualisation 3D en cours
                     </span>
                   </div>
 
                   <div className="mt-auto p-6 w-full flex flex-col">
-                    <h3 className="text-2xl font-bold text-white group-hover:text-[#E2FD48] transition-colors duration-300">
+                    <h3 className={`${DS.H3} text-white`}>
                       Bardages &amp; Cassettes
                     </h3>
-                    <p className="mt-2 text-gray-300">
+                    <p className="mt-2 text-white/[0.78] leading-[1.65]">
                       Systèmes de fixation invisible et habillages grandes dimensions.
                     </p>
                   </div>
@@ -1443,10 +1463,10 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </div>
 
                   <div className="mt-auto p-6 w-full flex flex-col">
-                    <h3 className="text-2xl font-bold text-white group-hover:text-[#E2FD48] transition-colors duration-300">
+                    <h3 className={`${DS.H3} text-white`}>
                       Enduit mince sur isolant
                     </h3>
-                    <p className="mt-2 text-gray-300">
+                    <p className="mt-2 text-white/[0.78] leading-[1.65]">
                       Profils de départ, d&apos;angle et d&apos;arrêt pour systèmes ITE.
                     </p>
                   </div>
@@ -1459,16 +1479,16 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 >
                   <div className="relative w-full aspect-video bg-[#071318] border border-white/10 flex items-center justify-center overflow-hidden">
                     <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,rgba(226,253,72,0.35),transparent_60%)]" />
-                    <span className="relative text-[#0E2A33] opacity-80 text-sm font-semibold">
+                    <span className="relative text-white/50 text-sm font-semibold">
                       Visualisation 3D en cours
                     </span>
                   </div>
 
                   <div className="mt-auto p-6 w-full flex flex-col">
-                    <h3 className="text-2xl font-bold text-white group-hover:text-[#E2FD48] transition-colors duration-300">
+                    <h3 className={`${DS.H3} text-white`}>
                       Précadres
                     </h3>
-                    <p className="mt-2 text-gray-300">
+                    <p className="mt-2 text-white/[0.78] leading-[1.65]">
                       Encadrements de baies soudés ou en kit pour une finition étanche et esthétique.
                     </p>
                   </div>
@@ -1481,17 +1501,17 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 >
                   <div className="relative w-full aspect-video bg-[#071318] border border-white/10 flex items-center justify-center overflow-hidden">
                     <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,rgba(226,253,72,0.35),transparent_60%)]" />
-                    <span className="relative text-[#0E2A33] opacity-80 text-sm font-semibold">
+                    <span className="relative text-white/50 text-sm font-semibold">
                       Visualisation 3D en cours
                     </span>
                   </div>
 
                   <div className="mt-auto p-6 w-full flex flex-col">
                     <div className="flex items-center justify-between">
-                      <h3 className="text-2xl font-bold text-white group-hover:text-[#E2FD48] transition-colors duration-300">
+                      <h3 className={`${DS.H3} text-white`}>
                         Tôles prélaquées
                       </h3>
-                      <div className="flex items-center gap-2 px-3 py-1 bg-gray-50 rounded-full border border-gray-200 shadow-sm w-fit">
+                      <div className="flex items-center gap-2 px-3 py-1 bg-gray-50 rounded-full border border-[#0E2A33]/[0.12] shadow-sm w-fit">
                         <img
                           src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773322881/INFINI_Noir_ompn2i.png"
                           alt="Logo Infinimetal"
@@ -1499,7 +1519,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                         />
                       </div>
                     </div>
-                    <p className="mt-2 text-gray-300">
+                    <p className="mt-2 text-white/[0.78] leading-[1.65]">
                       Vente de tôles prélaquées, RAL standards, déroulage sur mesure ou dimensions standards.
                     </p>
                   </div>
@@ -1512,16 +1532,16 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 >
                   <div className="relative w-full aspect-video bg-[#071318] border border-white/10 flex items-center justify-center overflow-hidden">
                     <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,rgba(226,253,72,0.35),transparent_60%)]" />
-                    <span className="relative text-[#0E2A33] opacity-80 text-sm font-semibold">
+                    <span className="relative text-white/50 text-sm font-semibold">
                       Visualisation 3D en cours
                     </span>
                   </div>
 
                   <div className="mt-auto p-6 w-full flex flex-col">
-                    <h3 className="text-2xl font-bold text-white group-hover:text-[#E2FD48] transition-colors duration-300">
+                    <h3 className={`${DS.H3} text-white`}>
                       Ravalement de façade
                     </h3>
-                    <p className="mt-2 text-gray-300">
+                    <p className="mt-2 text-white/[0.78] leading-[1.65]">
                       Profils de finition, nez de dalles et goutte d'eau pour la rénovation des bâtiments.
                     </p>
                   </div>
@@ -1544,10 +1564,10 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </div>
 
                   <div className="mt-auto p-6 w-full flex flex-col">
-                    <h3 className="text-2xl font-bold text-white group-hover:text-[#E2FD48] transition-colors duration-300">
+                    <h3 className={`${DS.H3} text-white`}>
                       Solutions pour l&apos;étanchéité
                     </h3>
-                    <p className="mt-2 text-gray-300">
+                    <p className="mt-2 text-white/[0.78] leading-[1.65]">
                       Modèle d&apos;étanchéité sur toit plat
                     </p>
                   </div>
@@ -1558,9 +1578,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
           {/* Section conversion vers le contact */}
           <section className="py-24 bg-[#071318] text-center border-t border-white/5">
-            <div className="max-w-3xl mx-auto px-6 space-y-8">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">Du profilé à la pose — tout se fabrique ici.</h2>
-              <p className="text-base md:text-lg text-white/50">Profilés aluminium, accessoires ITE, thermolaquage post-façonnage. Un seul interlocuteur pour tout le système.</p>
+            <div className="max-w-3xl mx-auto px-6">
+              <div className="mb-16">
+              <h2 className={`${DS.H2} text-white`}>Du profilé à la pose — tout se fabrique ici.</h2>
+              <p className={`${DS.LEAD_DARK} mt-6 mx-auto`}>Profilés aluminium, accessoires ITE, thermolaquage post-façonnage. Un seul interlocuteur pour tout le système.</p>
+              </div>
               <button
                 onClick={() => setCurrentPage('contact')}
                 className={DS.BTN_PRIMARY}
@@ -1579,13 +1601,13 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           <section className="bg-white pt-48 md:pt-56 pb-20 min-h-[70vh] flex flex-col justify-center">
             <div className="relative z-30 w-full max-w-7xl mx-auto px-6 py-20">
               <div className="max-w-5xl">
-                <span className="inline-block text-xs md:text-sm font-bold uppercase tracking-widest text-[#0E2A33] mb-4">
+                <span className={`inline-block mb-4 ${DS.EYEBROW_LIGHT}`}>
                   CATALOGUE B2B
                 </span>
-                <h1 className="text-4xl md:text-6xl tracking-tighter leading-[1.1] font-black uppercase text-[#0E2A33] mb-6 md:mb-8">
+                <h1 className={`${DS.H1} text-[#0E2A33]`}>
                   Solutions métalliques enveloppe du bâtiment
                 </h1>
-                <p className="text-base md:text-lg text-[#0E2A33]/80 leading-relaxed mb-8">
+                <p className={`${DS.LEAD_LIGHT} mt-6`}>
                   Découvrez l'ensemble de nos solutions pour l'enveloppe du bâtiment. Des systèmes d'isolation thermique au ravalement de façade, en passant par les bardages, précadres et tôles prélaquées, nous couvrons vos besoins métalliques complets.
                 </p>
               </div>
@@ -1598,7 +1620,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               <div className="space-y-16">
                 {/* En-tête section */}
                 <div>
-                  <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+                  <h2 className={`${DS.H2} text-white`}>
                     Nos Solutions
                   </h2>
                   <div className="w-16 h-1 bg-gradient-to-r from-[#E2FD48] to-transparent rounded-full"></div>
@@ -1613,11 +1635,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 text-[#E2FD48]">
                         <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                       </svg>
-                      <h3 className="text-xl font-bold text-white">
+                      <h3 className={`${DS.H3} text-white`}>
                         Enduit mince sur isolant
                       </h3>
                     </div>
-                    <p className="text-white/70 text-sm leading-relaxed relative z-10">
+                    <p className="text-white/50 text-sm leading-relaxed relative z-10">
                       Profils de départ, d'angle et d'arrêt pour systèmes ITE. Solutions complètes pour l'isolation thermique par l'extérieur.
                     </p>
                   </div>
@@ -1629,11 +1651,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="w-6 h-6 text-[#E2FD48]">
                         <path d="M53.92,34.62A8,8,0,1,0,42.08,45.38L64.72,70.29C48.32,95,40,119.78,40,144a88,88,0,0,0,149.21,63.22l12.87,14.16a8,8,0,1,0,11.84-10.76ZM128,216a72.08,72.08,0,0,1-72-72c0-19.93,6.68-40.57,19.86-61.46L178.43,195.36A71.84,71.84,0,0,1,128,216ZM90,50.51a8,8,0,0,1-.27-11.31A247.8,247.8,0,0,1,123.41,9.45a8,8,0,0,1,9.18,0C136,11.83,216,68.7,216,144a88.08,88.08,0,0,1-3.15,23.4,8,8,0,0,1-7.71,5.88A7.79,7.79,0,0,1,203,173a8,8,0,0,1-5.59-9.83A72.55,72.55,0,0,0,200,144c0-57.24-55.48-105-72-118a252.23,252.23,0,0,0-26.66,24.23A8,8,0,0,1,90,50.51Z" />
                       </svg>
-                      <h3 className="text-xl font-bold text-white">
+                      <h3 className={`${DS.H3} text-white`}>
                         Solutions pour l'étanchéité
                       </h3>
                     </div>
-                    <p className="text-white/70 text-sm leading-relaxed relative z-10">
+                    <p className="text-white/50 text-sm leading-relaxed relative z-10">
                       Couvertines, supports, éclisses et accessoires pour l'étanchéité des façades. Gammes standards et sur-mesure.
                     </p>
                   </div>
@@ -1645,11 +1667,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="w-6 h-6 text-[#E2FD48]">
                         <path d="M240,208h-8V72a8,8,0,0,0-8-8H184V40a8,8,0,0,0-8-8H80a8,8,0,0,0-8,8V96H32a8,8,0,0,0-8,8V208H16a8,8,0,0,0,0,16H240a8,8,0,0,0,0-16ZM40,112H80a8,8,0,0,0,8-8V48h80V72a8,8,0,0,0,8,8h40V208H152V168a8,8,0,0,0-8-8H112a8,8,0,0,0-8,8v40H40Zm96,96H120V176h16ZM112,72a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H120A8,8,0,0,1,112,72Zm0,32a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H120A8,8,0,0,1,112,104Zm56,0a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H176A8,8,0,0,1,168,104ZM88,136a8,8,0,0,1-8,8H64a8,8,0,0,1,0-16H80A8,8,0,0,1,88,136Zm0,32a8,8,0,0,1-8,8H64a8,8,0,0,1,0-16H80A8,8,0,0,1,88,168Zm24-32a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H120A8,8,0,0,1,112,136Zm56,0a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H176A8,8,0,0,1,168,136Zm0,32a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H176A8,8,0,0,1,168,168Z" />
                       </svg>
-                      <h3 className="text-xl font-bold text-white">
+                      <h3 className={`${DS.H3} text-white`}>
                         Bardages & Cassettes
                       </h3>
                     </div>
-                    <p className="text-white/70 text-sm leading-relaxed relative z-10">
+                    <p className="text-white/50 text-sm leading-relaxed relative z-10">
                       Bardages, cassettes et ossatures. Solutions structurantes pour l'enveloppe du bâtiment.
                     </p>
                   </div>
@@ -1661,11 +1683,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="w-6 h-6 text-[#E2FD48]">
                         <path d="M226.76,69a8,8,0,0,0-12.84-2.88l-40.3,37.19-17.23-3.7-3.7-17.23,37.19-40.3A8,8,0,0,0,187,29.24,72,72,0,0,0,88,96,72.34,72.34,0,0,0,94,124.94L33.79,177c-.15.12-.29.26-.43.39a32,32,0,0,0,45.26,45.26c.13-.13.27-.28.39-.42L131.06,162A72,72,0,0,0,232,96,71.56,71.56,0,0,0,226.76,69ZM160,152a56.14,56.14,0,0,1-27.07-7,8,8,0,0,0-9.92,1.77L67.11,211.51a16,16,0,0,1-22.62-22.62L109.18,133a8,8,0,0,0,1.77-9.93,56,56,0,0,1,58.36-82.31l-31.2,33.81a8,8,0,0,0-1.94,7.1L141.83,108a8,8,0,0,0,6.14,6.14l26.35,5.66a8,8,0,0,0,7.1-1.94l33.81-31.2A56.06,56.06,0,0,1,160,152Z" />
                       </svg>
-                      <h3 className="text-xl font-bold text-white">
+                      <h3 className={`${DS.H3} text-white`}>
                         Ravalement de façade
                       </h3>
                     </div>
-                    <p className="text-white/70 text-sm leading-relaxed relative z-10">
+                    <p className="text-white/50 text-sm leading-relaxed relative z-10">
                       Profilés et accessoires pour le ravalement de façade. Finitions durables et esthétiques.
                     </p>
                   </div>
@@ -1677,11 +1699,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="w-6 h-6 text-[#E2FD48]">
                         <path d="M200,80v32a8,8,0,0,1-16,0V88H160a8,8,0,0,1,0-16h32A8,8,0,0,1,200,80ZM96,168H72V144a8,8,0,0,0-16,0v32a8,8,0,0,0,8,8H96a8,8,0,0,0,0-16ZM232,56V200a16,16,0,0,1-16,16H40a16,16,0,0,1-16-16V56A16,16,0,0,1,40,40H216A16,16,0,0,1,232,56ZM216,200V56H40V200H216Z" />
                       </svg>
-                      <h3 className="text-xl font-bold text-white">
+                      <h3 className={`${DS.H3} text-white`}>
                         Précadres
                       </h3>
                     </div>
-                    <p className="text-white/70 text-sm leading-relaxed relative z-10">
+                    <p className="text-white/50 text-sm leading-relaxed relative z-10">
                       Précadres pour portes et fenêtres. Pose simplifiée, qualité intégrée.
                     </p>
                   </div>
@@ -1693,11 +1715,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="text-[#E2FD48]">
                         <path d="M212,136a12,12,0,1,1-12-12A12,12,0,0,1,212,136Zm36,0c0,40.37-21.08,72-48,72H56c-26.92,0-48-31.63-48-72S29.08,64,56,64H92.69l37.65-37.66A8,8,0,0,1,136,24h32a8,8,0,0,1,0,16H139.31l-24,24H200C226.92,64,248,95.63,248,136ZM56,192H169.51a73.46,73.46,0,0,1-12.67-24H80a8,8,0,0,1,0-16h73.16A110.63,110.63,0,0,1,152,136c0-22.86,6.76-42.9,17.51-56H56c-12.47,0-23.55,13.26-28.8,32H104a8,8,0,0,1,0,16H24.35q-.34,3.93-.35,8C24,166.36,38.65,192,56,192Zm176-56c0-30.36-14.65-56-32-56s-32,25.64-32,56,14.65,56,32,56S232,166.36,232,136Z" />
                       </svg>
-                      <h3 className="text-xl font-bold text-white">
+                      <h3 className={`${DS.H3} text-white`}>
                         MOB & FOB
                       </h3>
                     </div>
-                    <p className="text-white/70 text-sm leading-relaxed relative z-10">
+                    <p className="text-white/50 text-sm leading-relaxed relative z-10">
                       Solutions métalliques spécifiques pour l'ossature bois. Profils, étanchéité et finitions complètes.
                     </p>
                   </div>
@@ -1723,11 +1745,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       <path d="M21.145 18.38A3.34 3.34 0 0 1 20 16.5a3.3 3.3 0 0 1-1.145 1.88c-.575.46-.855 1.02-.855 1.595A2 2 0 0 0 20 22a2 2 0 0 0 2-2.025c0-.58-.285-1.13-.855-1.595"/>
                       <path d="m8.5 4.5 2.148-2.148a1.205 1.205 0 0 1 1.704 0l7.296 7.296a1.205 1.205 0 0 1 0 1.704l-7.592 7.592a3.615 3.615 0 0 1-5.112 0l-3.888-3.888a3.615 3.615 0 0 1 0-5.112L5.67 7.33"/>
                     </svg>
-                    <h3 className="text-xl font-bold text-white">
+                    <h3 className={`${DS.H3} text-white`}>
                       Tôles prélaquées
                     </h3>
                   </div>
-                  <p className="text-white/70 text-sm leading-relaxed relative z-10 max-w-3xl pr-44">
+                  <p className="text-white/50 text-sm leading-relaxed relative z-10 max-w-3xl pr-44">
                     Tôles aluminium en formats standards et sur-mesure. Gamme complète de teintes RAL. Expertise PLIALU associée à la qualité{' '}
                     <button
                       type="button"
@@ -1751,9 +1773,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
           {/* Télécharger les documents */}
           <section className="py-16 md:py-24 bg-white">
-                <div className="max-w-7xl mx-auto px-6 space-y-6">
-                  <h2 className="text-3xl font-bold text-[#0E2A33] mb-8">Téléchargez nos ressources</h2>
-                  <p className="text-base text-[#0E2A33]/60 mb-8">Tous les documents pour optimiser vos projets.</p>
+                <div className="max-w-7xl mx-auto px-6">
+                  <div className="mb-16">
+                  <h2 className={`${DS.H2} text-[#0E2A33]`}>Téléchargez nos ressources</h2>
+                  <p className={`${DS.LEAD_LIGHT} mt-6`}>Tous les documents pour optimiser vos projets.</p>
+                  </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 
@@ -1762,9 +1786,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                         <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 text-[#0E2A33]">
                           <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
                         </svg>
-                        <h3 className="text-xl font-bold">Fiches techniques</h3>
+                        <h3 className={`${DS.H3} text-[#0E2A33]`}>Fiches techniques</h3>
                       </div>
-                      <p className="text-[#0E2A33]/60 text-sm mb-4">Découvrez nos fiches techniques détaillées pour chaque domaine de solution.</p>
+                      <p className="text-[#0E2A33]/[0.62] text-sm mb-4">Découvrez nos fiches techniques détaillées pour chaque domaine de solution.</p>
                       <a href="/documents/Fiches_techniques.pdf" download="Fiches_techniques_PLIALU.pdf" className={DS.BTN_PRIMARY}>
                         <span className="flex items-center gap-2">
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
@@ -1778,9 +1802,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                         <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="w-6 h-6 text-[#0E2A33]">
                           <path d="M235.32,73.37,182.63,20.69a16,16,0,0,0-22.63,0L20.68,160a16,16,0,0,0,0,22.63l52.69,52.68a16,16,0,0,0,22.63,0L235.32,96A16,16,0,0,0,235.32,73.37ZM84.68,224,32,171.31l32-32,26.34,26.35a8,8,0,0,0,11.32-11.32L75.31,128,96,107.31l26.34,26.35a8,8,0,0,0,11.32-11.32L107.31,96,128,75.31l26.34,26.35a8,8,0,0,0,11.32-11.32L139.31,64l32-32L224,84.69Z" />
                         </svg>
-                        <h3 className="text-xl font-bold">Déroulage</h3>
+                        <h3 className={`${DS.H3} text-[#0E2A33]`}>Déroulage</h3>
                       </div>
-                      <p className="text-[#0E2A33]/60 text-sm mb-4">Consultez notre document déroulage pour optimiser vos formats et réduire vos chutes.</p>
+                      <p className="text-[#0E2A33]/[0.62] text-sm mb-4">Consultez notre document déroulage pour optimiser vos formats et réduire vos chutes.</p>
                       <a href="/documents/Deroulage.pdf" download="Deroulage_PLIALU.pdf" className={DS.BTN_PRIMARY}>
                         <span className="flex items-center gap-2">
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
@@ -1794,9 +1818,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                         <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 text-[#0E2A33]">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M4.098 19.902a3.75 3.75 0 0 0 5.304 0l6.401-6.402M6.75 21A3.75 3.75 0 0 1 3 17.25V4.125C3 3.504 3.504 3 4.125 3h5.25c.621 0 1.125.504 1.125 1.125v4.072M6.75 21a3.75 3.75 0 0 0 3.75-3.75V8.197M6.75 21h13.125c.621 0 1.125-.504 1.125-1.125v-5.25c0-.621-.504-1.125-1.125-1.125h-4.072M10.5 8.197l2.88-2.88c.438-.439 1.15-.439 1.59 0l3.712 3.713c.44.44.44 1.152 0 1.59l-2.879 2.88M6.75 17.25h.008v.008H6.75v-.008Z" />
                         </svg>
-                        <h3 className="text-xl font-bold">Catalogue RAL</h3>
+                        <h3 className={`${DS.H3} text-[#0E2A33]`}>Catalogue RAL</h3>
                       </div>
-                      <p className="text-[#0E2A33]/60 text-sm mb-4">Accédez à notre gamme complète de teintes RAL disponibles en finition brillante et mate.</p>
+                      <p className="text-[#0E2A33]/[0.62] text-sm mb-4">Accédez à notre gamme complète de teintes RAL disponibles en finition brillante et mate.</p>
                       <a href="/documents/Catalogue_RAL.pdf" download="Catalogue_RAL_PLIALU.pdf" className={DS.BTN_PRIMARY}>
                         <span className="flex items-center gap-2">
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
@@ -1813,9 +1837,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                           <circle cx="13" cy="7" r="1" fill="currentColor"/>
                           <rect x="8" y="2" width="14" height="14" rx="2"/>
                         </svg>
-                        <h3 className="text-xl font-bold">Portfolio</h3>
+                        <h3 className={`${DS.H3} text-[#0E2A33]`}>Portfolio</h3>
                       </div>
-                      <p className="text-[#0E2A33]/60 text-sm mb-4">Découvrez nos réalisations et chantiers emblématiques.</p>
+                      <p className="text-[#0E2A33]/[0.62] text-sm mb-4">Découvrez nos réalisations et chantiers emblématiques.</p>
                       <a href="/documents/Portfolio_Plialu.pdf" download target="_blank" rel="noopener noreferrer" className={`${DS.BTN_PRIMARY} mt-auto`}>
                         <span className="flex items-center gap-2">
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
@@ -1830,9 +1854,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
           {/* CTA section */}
           <section className="py-24 bg-[#071318] text-center border-t border-white/5">
-            <div className="max-w-3xl mx-auto px-6 space-y-8">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">Des solutions qui s'adaptent à votre métier.</h2>
-              <p className="text-base md:text-lg text-white/50">Parlons de vos contraintes métier — nos équipes répondent sous 48h.</p>
+            <div className="max-w-3xl mx-auto px-6">
+              <div className="mb-16">
+              <h2 className={`${DS.H2} text-white`}>Des solutions qui s'adaptent à votre métier.</h2>
+              <p className={`${DS.LEAD_DARK} mt-6 mx-auto`}>Parlons de vos contraintes métier — nos équipes répondent sous 48h.</p>
+              </div>
               <button onClick={() => setCurrentPage('contact')} className={DS.BTN_PRIMARY}>
                 Présenter mon projet
               </button>
@@ -1847,16 +1873,18 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           {/* Hero Expertises (contient le sommaire en bas, au-dessus de la ligne de flottaison) */}
           <section ref={expertisesHeroRef} className="bg-white pt-48 md:pt-56 pb-0 min-h-[70vh] flex flex-col">
             <div className="flex-1 flex flex-col justify-center max-w-7xl mx-auto px-6 w-full">
-              <div className="max-w-4xl space-y-8">
-                <span className="text-[10px] font-extrabold tracking-[0.4em] text-zinc-400 uppercase block">
+              <div className="max-w-4xl">
+                <div className="mb-16">
+                <span className={`block mb-4 ${DS.EYEBROW_LIGHT}`}>
                   PROCESS INDUSTRIEL INTÉGRÉ
                 </span>
-                <h1 className="text-4xl md:text-6xl tracking-tighter leading-[1.1] font-black uppercase text-[#0E2A33]">
+                <h1 className={`${DS.H1} text-[#0E2A33]`}>
                   FABRICATION DE PIÈCES MÉTALLIQUES SUR MESURE
                 </h1>
-                <p className="text-base md:text-lg text-[#0E2A33]/70 max-w-2xl leading-relaxed font-medium">
+                <p className={`${DS.LEAD_LIGHT} mt-6`}>
                   De l'étude technique (DXF/DWG) au thermolaquage industriel, jusqu'au pliage, notre chaîne de valeur intégrée garantit précision, conformité et performance chantier.
                 </p>
+                </div>
                 <div className="flex flex-col sm:flex-row items-start gap-4">
                   <a
                     href="#expertises-sommaire"
@@ -1885,8 +1913,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             ref={sommaireRef}
             className={`hidden md:block sticky top-16 z-30 scroll-mt-24 shrink-0 ${
               isSommaireSticky
-                ? 'bg-white/70 backdrop-blur-md border-t border-zinc-100/50'
-                : 'bg-white border-t border-zinc-100'
+                ? 'bg-white/70 backdrop-blur-md border-t border-[#0E2A33]/[0.12]'
+                : 'bg-white border-t border-[#0E2A33]/[0.12]'
             }`}
           >
             <div className="max-w-7xl mx-auto px-6">
@@ -1939,22 +1967,22 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             <div className="max-w-7xl mx-auto px-6">
               <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-16 md:gap-8 text-center">
                 <div className="flex-1 relative md:after:content-[''] md:after:absolute md:after:-right-4 md:after:top-1/2 md:after:-translate-y-1/2 md:after:h-[60%] md:after:w-px md:after:bg-white/[0.12] last:after:hidden">
-                  <div className="text-3xl md:text-5xl font-black text-[#E2FD48] mb-3">
+                  <div className={`${DS.STAT_NUMBER} text-[#E2FD48] mb-3`}>
                     <strong>7 000 m²</strong>
                   </div>
-                  <p className="text-[9px] font-extrabold tracking-widest text-white/40 uppercase">Atelier de production intégré</p>
+                  <p className="text-[9px] font-extrabold tracking-widest text-white/50 uppercase">Atelier de production intégré</p>
                 </div>
                 <div className="flex-1 relative md:after:content-[''] md:after:absolute md:after:-right-4 md:after:top-1/2 md:after:-translate-y-1/2 md:after:h-[60%] md:after:w-px md:after:bg-white/[0.12] last:after:hidden">
-                  <div className="text-3xl md:text-5xl font-black text-[#E2FD48] mb-3">
+                  <div className={`${DS.STAT_NUMBER} text-[#E2FD48] mb-3`}>
                     <strong>4 m</strong>
                   </div>
-                  <p className="text-[9px] font-extrabold tracking-widest text-white/40 uppercase">Longueur maximale</p>
+                  <p className="text-[9px] font-extrabold tracking-widest text-white/50 uppercase">Longueur maximale</p>
                 </div>
                 <div className="flex-1 relative md:after:content-[''] md:after:absolute md:after:-right-4 md:after:top-1/2 md:after:-translate-y-1/2 md:after:h-[60%] md:after:w-px md:after:bg-white/[0.12] last:after:hidden">
-                  <div className="text-2xl md:text-4xl lg:text-5xl font-black text-[#E2FD48] mb-3 text-balance leading-tight">
+                  <div className={`${DS.STAT_NUMBER} text-[#E2FD48] mb-3 text-balance`}>
                     <strong>3 lignes intégrées</strong>
                   </div>
-                  <p className="text-[9px] font-extrabold tracking-widest text-white/40 uppercase">Déroulage, Thermolaquage, Production</p>
+                  <p className="text-[9px] font-extrabold tracking-widest text-white/50 uppercase">Déroulage, Thermolaquage, Production</p>
                 </div>
               </div>
             </div>
@@ -1979,19 +2007,19 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     <div className={`grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center`}>
                       <div className={`space-y-6 ${idx % 2 !== 0 ? 'lg:order-2' : ''}`}>
                         <div className="space-y-3">
-                          <span className="text-[10px] font-extrabold tracking-[0.3em] text-[#0E2A33]/40 uppercase block">
+                          <span className={`block mb-4 ${DS.EYEBROW_LIGHT}`}>
                             {exp.tag}
                           </span>
                           {exp.id === 'thermolaquage-plat' ? (
-                            <div className="flex flex-wrap items-center gap-4 mb-6 mt-2">
-                              <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
+                            <div className="flex flex-wrap items-center gap-4">
+                              <h2 className={`${DS.H2} text-[#0E2A33]`}>
                                 Thermolaquage
                               </h2>
                               <button
                                 type="button"
                                 onClick={scrollToInfinimetal}
                                 aria-label="En savoir plus sur Infinimetal"
-                                className="flex items-center gap-3 px-5 py-2 bg-gray-50 rounded-full border border-gray-200 shadow-sm mt-1 cursor-pointer hover:border-[#E2FD48]/50 transition-colors"
+                                className="flex items-center gap-3 px-5 py-2 bg-gray-50 rounded-full border border-[#0E2A33]/[0.12] shadow-sm mt-1 cursor-pointer hover:border-[#E2FD48]/50 transition-colors"
                               >
                                 <img
                                   src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773322881/INFINI_Noir_ompn2i.png"
@@ -2001,24 +2029,24 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                               </button>
                             </div>
                           ) : (
-                            <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
+                            <h2 className={`${DS.H2} text-[#0E2A33]`}>
                               {exp.id === 'bureau-etudes' ? 'Bureau des méthodes' : exp.id === 'assemblage-finitions' ? 'Soudure & Assemblage' : exp.title}
                             </h2>
                           )}
                         </div>
                         {exp.id === 'bureau-etudes' ? (
-                          <p className="text-base md:text-lg leading-relaxed font-medium text-[#0E2A33]/70">
+                          <p className={`${DS.LEAD_LIGHT} mt-6`}>
                             En collaboration avec les équipes commerciales et de production, nos techniciens analysent vos plans et cahiers des charges, avec optimisation des formats, validation des contraintes techniques pour une gamme de production sur mesure adaptée à chaque dossier, du plus simple au plus complexe
                           </p>
                         ) : exp.id === 'deroulage-mise-format' ? (
                           <>
-                            <p className="text-base md:text-lg leading-relaxed font-medium text-[#0E2A33]/70">
+                            <p className={`${DS.LEAD_LIGHT} mt-6`}>
                               Déroulage de bobines : redressage - découpe de formats à plat et optimisation par dossier. Une étape clé de la fabrication et de la maîtrise des coûts
                             </p>
                           </>
                         ) : exp.id === 'thermolaquage-plat' ? (
                           <>
-                            <p className="text-base md:text-lg leading-relaxed font-medium text-[#0E2A33]/70">
+                            <p className={`${DS.LEAD_LIGHT} mt-6`}>
                               Deux lignes de production certifiées Qualicoat via notre marque{' '}
                               <button type="button" onClick={scrollToInfinimetal} className="cursor-pointer text-[#0E2A33] font-bold hover:underline transition-colors">
                                 Infinimetal
@@ -2028,12 +2056,12 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                           </>
                         ) : exp.id === 'pliage-automatise' ? (
                           <>
-                            <p className="text-base md:text-lg leading-relaxed font-medium text-[#0E2A33]/70">
+                            <p className={`${DS.LEAD_LIGHT} mt-6`}>
                               Du pliage traditionnel sur presse plieuse à CNC ou grâce à notre ligne de production automatisée : découpe, poinçonnage, panneautage, nous maîtrisons le pliage de A à Z
                             </p>
                           </>
                         ) : (
-                          <p className="text-base md:text-lg leading-relaxed font-medium text-[#0E2A33]/70">
+                          <p className={`${DS.LEAD_LIGHT} mt-6`}>
                             {exp.text}
                           </p>
                         )}
@@ -2121,9 +2149,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
           {/* CTA Final */}
           <section className="py-24 bg-[#071318] text-center border-t border-white/5">
-            <div className="max-w-3xl mx-auto px-6 space-y-8">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">Vos contraintes techniques ont une réponse ici.</h2>
-              <p className="text-base md:text-lg text-white/50">Chargés d'affaires disponibles pour analyser vos plans DXF et optimiser vos coûts avant production.</p>
+            <div className="max-w-3xl mx-auto px-6">
+              <div className="mb-16">
+              <h2 className={`${DS.H2} text-white`}>Vos contraintes techniques ont une réponse ici.</h2>
+              <p className={`${DS.LEAD_DARK} mt-6 mx-auto`}>Chargés d'affaires disponibles pour analyser vos plans DXF et optimiser vos coûts avant production.</p>
+              </div>
               <button onClick={() => setCurrentPage('contact')} className={DS.BTN_PRIMARY}>
                 Envoyer des plans
               </button>
@@ -3138,16 +3168,18 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           {/* Hero Contact (White background, Dark header logic) */}
           <section className="bg-white pt-48 md:pt-56 pb-20 min-h-[70vh] flex flex-col justify-center">
             <div className="flex-1 flex flex-col justify-center max-w-7xl mx-auto px-6 w-full">
-              <div className="max-w-4xl space-y-8">
-                <span className="text-[10px] font-extrabold tracking-[0.4em] text-zinc-400 uppercase block">
+              <div className="max-w-4xl">
+                <div className="mb-16">
+                <span className={`block mb-4 ${DS.EYEBROW_LIGHT}`}>
                   ÉCHANGER SUR VOTRE PROJET
                 </span>
-                <h1 className="text-4xl md:text-6xl tracking-tighter leading-[1.1] font-black uppercase text-[#0E2A33]">
+                <h1 className={`${DS.H1} text-[#0E2A33]`}>
                   Contact
                 </h1>
-                <p className="text-base md:text-lg text-[#0E2A33]/70 max-w-2xl leading-relaxed font-medium">
+                <p className={`${DS.LEAD_LIGHT} mt-6`}>
                   Pour une étude technique, un chiffrage ou une demande de faisabilité, nos équipes vous répondent rapidement avec une approche orientée contraintes chantier (plans DXF/DWG, métrés, finitions, délais).
                 </p>
+                </div>
                 <a href="#contact-form" className={DS.BTN_SECONDARY_LIGHT}>
                   Envoyer une demande
                 </a>
@@ -3161,23 +3193,23 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-12 lg:gap-20">
                 {/* Coordonnées */}
                 <div className="space-y-12">
-                  <div className="space-y-4">
-                    <span className="text-[10px] font-extrabold tracking-[0.3em] text-[#0E2A33]/40 uppercase">COORDONNÉES</span>
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">Où nous trouver ?</h2>
+                  <div className="mb-16">
+                    <span className={`block mb-4 ${DS.EYEBROW_LIGHT}`}>COORDONNÉES</span>
+                    <h2 className={`${DS.H2} text-[#0E2A33]`}>Où nous trouver ?</h2>
                   </div>
                   
                   <div className="space-y-8">
                     {/* Phone */}
                     <div className="flex items-center gap-6 group">
-                      <div className="w-12 h-12 rounded-xl bg-white border border-zinc-200 flex items-center justify-center text-[#0E2A33]/40 group-hover:text-[#0E2A33] group-hover:border-[#0E2A33]/20 transition-all">
+                      <div className="w-12 h-12 rounded-xl bg-white border border-[#0E2A33]/[0.12] flex items-center justify-center text-[#0E2A33]/40 group-hover:text-[#0E2A33] group-hover:border-[#0E2A33]/20 transition-all">
                         <iconify-icon icon="lucide:phone" width="20"></iconify-icon>
                       </div>
                       <div className="flex-1">
-                        <span className="block text-[9px] font-bold text-zinc-400 uppercase tracking-widest mb-1">Téléphone</span>
+                        <span className="block text-[9px] font-bold text-[#0E2A33]/[0.62] uppercase tracking-widest mb-1">Téléphone</span>
                         <div className="flex items-center gap-3">
                           <a href="tel:0478089370" className="text-lg font-bold text-[#0E2A33]">04 78 08 93 70</a>
                           <button onClick={() => handleCopy("04 78 08 93 70", "tel")} className="p-1.5 rounded-md hover:bg-black/5 transition-colors relative">
-                            <iconify-icon icon="lucide:copy" width="16" className="text-zinc-400"></iconify-icon>
+                            <iconify-icon icon="lucide:copy" width="16" className="text-[#0E2A33]/[0.62]"></iconify-icon>
                             {copiedKey === 'tel' && <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-[10px] bg-[#0E2A33] text-white px-2 py-1 rounded shadow-sm">Copié</span>}
                           </button>
                         </div>
@@ -3186,15 +3218,15 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
                     {/* Email */}
                     <div className="flex items-center gap-6 group">
-                      <div className="w-12 h-12 rounded-xl bg-white border border-zinc-200 flex items-center justify-center text-[#0E2A33]/40 group-hover:text-[#0E2A33] group-hover:border-[#0E2A33]/20 transition-all">
+                      <div className="w-12 h-12 rounded-xl bg-white border border-[#0E2A33]/[0.12] flex items-center justify-center text-[#0E2A33]/40 group-hover:text-[#0E2A33] group-hover:border-[#0E2A33]/20 transition-all">
                         <iconify-icon icon="lucide:mail" width="20"></iconify-icon>
                       </div>
                       <div className="flex-1">
-                        <span className="block text-[9px] font-bold text-zinc-400 uppercase tracking-widest mb-1">E-mail</span>
+                        <span className="block text-[9px] font-bold text-[#0E2A33]/[0.62] uppercase tracking-widest mb-1">E-mail</span>
                         <div className="flex items-center gap-3">
                           <a href="mailto:commercial@plialu.fr" className="text-lg font-bold text-[#0E2A33]">commercial@plialu.fr</a>
                           <button onClick={() => handleCopy("commercial@plialu.fr", "mail")} className="p-1.5 rounded-md hover:bg-black/5 transition-colors relative">
-                            <iconify-icon icon="lucide:copy" width="16" className="text-zinc-400"></iconify-icon>
+                            <iconify-icon icon="lucide:copy" width="16" className="text-[#0E2A33]/[0.62]"></iconify-icon>
                             {copiedKey === 'mail' && <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-[10px] bg-[#0E2A33] text-white px-2 py-1 rounded shadow-sm">Copié</span>}
                           </button>
                         </div>
@@ -3203,15 +3235,15 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
                     {/* Address */}
                     <div className="flex items-center gap-6 group">
-                      <div className="w-12 h-12 rounded-xl bg-white border border-zinc-200 flex items-center justify-center text-[#0E2A33]/40 group-hover:text-[#0E2A33] group-hover:border-[#0E2A33]/20 transition-all">
+                      <div className="w-12 h-12 rounded-xl bg-white border border-[#0E2A33]/[0.12] flex items-center justify-center text-[#0E2A33]/40 group-hover:text-[#0E2A33] group-hover:border-[#0E2A33]/20 transition-all">
                         <iconify-icon icon="lucide:map-pin" width="20"></iconify-icon>
                       </div>
                       <div className="flex-1">
-                        <span className="block text-[9px] font-bold text-zinc-400 uppercase tracking-widest mb-1">Siège & Atelier</span>
+                        <span className="block text-[9px] font-bold text-[#0E2A33]/[0.62] uppercase tracking-widest mb-1">Siège & Atelier</span>
                         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
                           <p className="text-lg font-bold text-[#0E2A33] leading-tight max-w-xs">Technoparc Saône Vallée Ouest, 150, Route Copernic, 01390 Civrieux</p>
                           <button onClick={() => handleCopy("Technoparc Saône Vallée Ouest, 150, Route Copernic, 01390 Civrieux", "addr")} className="p-1.5 rounded-md hover:bg-black/5 transition-colors relative">
-                            <iconify-icon icon="lucide:copy" width="16" className="text-zinc-400"></iconify-icon>
+                            <iconify-icon icon="lucide:copy" width="16" className="text-[#0E2A33]/[0.62]"></iconify-icon>
                             {copiedKey === 'addr' && <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-[10px] bg-[#0E2A33] text-white px-2 py-1 rounded shadow-sm">Copié</span>}
                           </button>
                         </div>
@@ -3220,11 +3252,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
                     {/* Horaires */}
                     <div className="flex items-center gap-6 group">
-                      <div className="w-12 h-12 rounded-xl bg-white border border-zinc-200 flex items-center justify-center text-[#0E2A33]/40 group-hover:text-[#0E2A33] group-hover:border-[#0E2A33]/20 transition-all">
+                      <div className="w-12 h-12 rounded-xl bg-white border border-[#0E2A33]/[0.12] flex items-center justify-center text-[#0E2A33]/40 group-hover:text-[#0E2A33] group-hover:border-[#0E2A33]/20 transition-all">
                         <iconify-icon icon="lucide:clock" width="20"></iconify-icon>
                       </div>
                       <div className="flex-1">
-                        <span className="block text-[9px] font-bold text-zinc-400 uppercase tracking-widest mb-1">Horaires d'ouverture</span>
+                        <span className="block text-[9px] font-bold text-[#0E2A33]/[0.62] uppercase tracking-widest mb-1">Horaires d'ouverture</span>
                         <p className="text-lg font-bold text-[#0E2A33] leading-tight max-w-xs">Du lundi au jeudi de 7h30 à 16h30, le vendredi de 7h30 à 12h.</p>
                       </div>
                     </div>
@@ -3232,8 +3264,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
                   {/* Localisation */}
                   <div className="space-y-4">
-                    <span className="text-[10px] font-extrabold tracking-[0.3em] text-[#0E2A33]/40 uppercase">LOCALISATION</span>
-                    <div className="w-full h-[320px] md:h-[380px] rounded-2xl overflow-hidden border border-zinc-200 shadow-sm bg-white">
+                    <span className={`block mb-4 ${DS.EYEBROW_LIGHT}`}>LOCALISATION</span>
+                    <div className="w-full h-[320px] md:h-[380px] rounded-2xl overflow-hidden border border-[#0E2A33]/[0.12] shadow-sm bg-white">
                       <iframe
                         src="https://www.google.com/maps?q=Plialu%2C%20Technoparc%20Sa%C3%B4ne%20Vall%C3%A9e%2C%20150%20Route%20de%20Copernic%2C%2001390%20Civrieux&z=9&output=embed"
                         className="w-full h-full border-0"
@@ -3246,7 +3278,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 </div>
 
                 {/* Formulaire Web3Forms */}
-                <div id="contact-form" className="bg-white rounded-[32px] p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.03)] border border-zinc-100 scroll-mt-32">
+                <div id="contact-form" className="bg-white rounded-[32px] p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.03)] border border-[#0E2A33]/[0.12] scroll-mt-32">
                   <form
                     action="https://usebasin.com/f/b0fa3eeb614b"
                     method="POST"
@@ -3260,7 +3292,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     {/* Ligne 1 : Prénom / Nom */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-sm font-medium mb-1 text-[#0E2A33]">Prénom <span className="text-red-500">*</span></label>
+                        <label className="block text-sm font-medium mb-1 text-[#0E2A33]/[0.62]">Prénom <span className="text-red-500">*</span></label>
                         <input
                           type="text"
                           name="firstname"
@@ -3270,7 +3302,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium mb-1 text-[#0E2A33]">Nom <span className="text-red-500">*</span></label>
+                        <label className="block text-sm font-medium mb-1 text-[#0E2A33]/[0.62]">Nom <span className="text-red-500">*</span></label>
                         <input
                           type="text"
                           name="lastname"
@@ -3284,7 +3316,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     {/* Ligne 2 : Email / Téléphone */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-sm font-medium mb-1 text-[#0E2A33]">Email professionnel <span className="text-red-500">*</span></label>
+                        <label className="block text-sm font-medium mb-1 text-[#0E2A33]/[0.62]">Email professionnel <span className="text-red-500">*</span></label>
                         <input
                           type="email"
                           name="email"
@@ -3294,7 +3326,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium mb-1 text-[#0E2A33]">Téléphone</label>
+                        <label className="block text-sm font-medium mb-1 text-[#0E2A33]/[0.62]">Téléphone</label>
                         <input
                           type="tel"
                           name="phone"
@@ -3306,7 +3338,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
                     {/* Entreprise */}
                     <div>
-                      <label className="block text-sm font-medium mb-1 text-[#0E2A33]">Entreprise / Cabinet</label>
+                      <label className="block text-sm font-medium mb-1 text-[#0E2A33]/[0.62]">Entreprise / Cabinet</label>
                       <input
                         type="text"
                         name="company"
@@ -3316,7 +3348,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium mb-1 text-[#0E2A33]">Intention de contact <span className="text-red-500">*</span></label>
+                      <label className="block text-sm font-medium mb-1 text-[#0E2A33]/[0.62]">Intention de contact <span className="text-red-500">*</span></label>
                       <select
                         name="intention"
                         required
@@ -3331,7 +3363,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
                     {/* Description du projet */}
                     <div>
-                      <label className="block text-sm font-medium mb-1 text-[#0E2A33]">Description du projet</label>
+                      <label className="block text-sm font-medium mb-1 text-[#0E2A33]/[0.62]">Description du projet</label>
                       <textarea
                         name="message"
                         rows={4}
@@ -3359,9 +3391,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     {/* Bouton submit */}
                     <button
                       type="submit"
-                      className="w-full py-4 bg-[#E2FD48] text-[#0E2A33] font-bold rounded-lg hover:bg-[#d4ed3f] transition-colors uppercase tracking-wider shadow-[0_0_30px_rgba(226,253,72,0.2)]"
+                      className={`${DS.BTN_PRIMARY} w-full`}
                     >
-                      ENVOYER MA DEMANDE DE DEVIS TECHNIQUE
+                      Envoyer ma demande de devis technique
                     </button>
                   </form>
                 </div>
@@ -3388,9 +3420,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               >
                 &larr; RETOUR À L'ACCUEIL
               </button>
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-8">Mentions légales</h1>
-              <div className="prose prose-invert max-w-none text-white/80">
-                <h2 className="text-2xl font-bold text-white mt-8 mb-4">1. Éditeur du site</h2>
+              <h1 className={`${DS.H1_DETAIL} text-white`}>Mentions légales</h1>
+              <div className="prose prose-invert max-w-none text-white/[0.78] leading-[1.65]">
+                <h2 className="font-display text-2xl font-bold tracking-tight text-white mt-8 mb-4">1. Éditeur du site</h2>
                 <p>Le site www.plialu.fr est édité par la société PLIALU, spécialisée dans le façonnage métallique industriel.</p>
                 <p><strong>Forme juridique :</strong> Société par Actions Simplifiée Unipersonnelle (S.A.S.U.)</p>
                 <p><strong>Capital social :</strong> 50 000 €</p>
@@ -3398,21 +3430,21 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 <p><strong>Siège social :</strong> Technoparc Saône Vallée Ouest, 150, Route Copernic, 01390 Civrieux, France</p>
                 <p><strong>Contact :</strong> commercial@plialu.fr | 04 78 08 93 70</p>
 
-                <h2 className="text-2xl font-bold text-white mt-8 mb-4">2. Directeur de la publication</h2>
+                <h2 className="font-display text-2xl font-bold tracking-tight text-white mt-8 mb-4">2. Directeur de la publication</h2>
                 <p>Le Directeur de la publication est Jean-Pierre Bax, en sa qualité de dirigeant de la société PLIALU.</p>
 
-                <h2 className="text-2xl font-bold text-white mt-8 mb-4">3. Hébergement</h2>
+                <h2 className="font-display text-2xl font-bold tracking-tight text-white mt-8 mb-4">3. Hébergement</h2>
                 <p>L'hébergement du site est assuré par Hostinger.</p>
                 <p><strong>Adresse de l'hébergeur :</strong> Hostinger International Ltd., 61 Lordou Vironos Street, 6023 Larnaca, Chypre.</p>
                 <p><strong>Contact de l'hébergeur :</strong> <a href="https://www.hostinger.fr/contact" className="text-[#E2FD48] hover:underline">https://www.hostinger.fr/contact</a></p>
 
-                <h2 className="text-2xl font-bold text-white mt-8 mb-4">4. Propriété intellectuelle</h2>
+                <h2 className="font-display text-2xl font-bold tracking-tight text-white mt-8 mb-4">4. Propriété intellectuelle</h2>
                 <p>L'ensemble des éléments constituant ce site (textes, graphismes, logiciels, photographies, vidéos hébergées via Vimeo, images diffusées via Cloudinary, logos, marques) constitue une œuvre de l'esprit protégée par les dispositions du Code de la Propriété Intellectuelle. Toute représentation, reproduction, modification ou exploitation commerciale, totale ou partielle, sans l'autorisation expresse et préalable de PLIALU, est strictement interdite et s'apparente à un délit de contrefaçon.</p>
 
-                <h2 className="text-2xl font-bold text-white mt-8 mb-4">5. Limitation de responsabilité</h2>
+                <h2 className="font-display text-2xl font-bold tracking-tight text-white mt-8 mb-4">5. Limitation de responsabilité</h2>
                 <p>PLIALU s'efforce de fournir des informations fiables et actualisées sur ses capacités industrielles et techniques. Toutefois, l'entreprise ne saurait garantir l'exactitude absolue ni l'exhaustivité des données publiées. Dans un contexte B2B, il appartient à l'utilisateur (architecte, bureau d'études, acheteur technique) de valider la faisabilité technique de son projet en contactant directement nos équipes. PLIALU décline toute responsabilité quant aux dommages directs ou indirects pouvant résulter de l'accès au site ou de l'utilisation des informations qui y figurent.</p>
 
-                <h2 className="text-2xl font-bold text-white mt-8 mb-4">6. Liens hypertextes</h2>
+                <h2 className="font-display text-2xl font-bold tracking-tight text-white mt-8 mb-4">6. Liens hypertextes</h2>
                 <p>Le site peut contenir des liens vers des sites partenaires ou des ressources externes. PLIALU n'exerçant aucun contrôle sur ces plateformes tierces, l'entreprise décline toute responsabilité quant à leur contenu, leur disponibilité ou leurs pratiques en matière de protection des données.</p>
               </div>
             </div>
@@ -3432,22 +3464,22 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               >
                 &larr; RETOUR À L'ACCUEIL
               </button>
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-8">Politique de confidentialité</h1>
-              <div className="prose prose-invert max-w-none text-white/80">
-                <h2 className="text-2xl font-bold text-white mt-8 mb-4">1. Responsable du traitement</h2>
+              <h1 className={`${DS.H1_DETAIL} text-white`}>Politique de confidentialité</h1>
+              <div className="prose prose-invert max-w-none text-white/[0.78] leading-[1.65]">
+                <h2 className="font-display text-2xl font-bold tracking-tight text-white mt-8 mb-4">1. Responsable du traitement</h2>
                 <p>Le responsable du traitement des données à caractère personnel collectées sur ce site est la société PLIALU, représentée par Jean-Pierre Bax.</p>
 
-                <h2 className="text-2xl font-bold text-white mt-8 mb-4">2. Données collectées et méthodes de collecte</h2>
+                <h2 className="font-display text-2xl font-bold tracking-tight text-white mt-8 mb-4">2. Données collectées et méthodes de collecte</h2>
                 <p>Dans le cadre de notre relation B2B, nous collectons de manière loyale et transparente les données suivantes :</p>
                 <p><strong>Données d'identification professionnelles :</strong> Nom, prénom, fonction, entreprise, adresse e-mail professionnelle, numéro de téléphone. Ces données sont collectées via le formulaire de contact.</p>
                 <p><strong>Données techniques de navigation :</strong> Adresses IP, logs de connexion, statistiques de visite (via Google Analytics), teaser vidéo et images (via Cloudinary), vidéo longue thermolaquage (via Vimeo).</p>
 
-                <h2 className="text-2xl font-bold text-white mt-8 mb-4">3. Finalités du traitement et base légale</h2>
+                <h2 className="font-display text-2xl font-bold tracking-tight text-white mt-8 mb-4">3. Finalités du traitement et base légale</h2>
                 <p>La collecte de ces données s'appuie sur deux bases légales principales (Art. 6 du RGPD) :</p>
                 <p><strong>L'exécution de mesures précontractuelles :</strong> Traitement de vos demandes de devis, analyse de plans techniques (fichiers joints), et réponses à vos interrogations commerciales ou industrielles.</p>
                 <p><strong>L'intérêt légitime de PLIALU :</strong> Prospection B2B, suivi commercial, et amélioration de la sécurité et de la performance de notre infrastructure web.</p>
 
-                <h2 className="text-2xl font-bold text-white mt-8 mb-4">4. Destinataires des données et Sous-traitants</h2>
+                <h2 className="font-display text-2xl font-bold tracking-tight text-white mt-8 mb-4">4. Destinataires des données et Sous-traitants</h2>
                 <p>Les données collectées sont strictement destinées au personnel habilité de PLIALU (direction, équipe commerciale, bureau d'études). Pour assurer le fonctionnement technique du site, nous nous appuyons sur des sous-traitants reconnus, en conformité avec le RGPD :</p>
                 <p><strong>Basin (usebasin.com) :</strong> Formulaire de contact. Les messages et les pièces jointes transmis via le formulaire y sont stockés.</p>
                 <p><strong>Cloudinary :</strong> Teaser vidéo et images.</p>
@@ -3455,12 +3487,12 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 <p><strong>Google Analytics :</strong> Statistiques de visite.</p>
                 <p><strong>Hostinger :</strong> Hébergement du site.</p>
 
-                <h2 className="text-2xl font-bold text-white mt-8 mb-4">5. Durée de conservation</h2>
+                <h2 className="font-display text-2xl font-bold tracking-tight text-white mt-8 mb-4">5. Durée de conservation</h2>
                 <p>Conformément à la réglementation applicable en milieu B2B :</p>
                 <p><strong>Données de prospects :</strong> Conservées 3 ans à compter de leur collecte ou du dernier contact émanant du prospect (ex: demande de devis non aboutie).</p>
                 <p><strong>Données de clients :</strong> Conservées pendant toute la durée de la relation commerciale, puis archivées pendant 10 ans pour répondre à nos obligations comptables et légales.</p>
 
-                <h2 className="text-2xl font-bold text-white mt-8 mb-4">6. Vos droits (RGPD)</h2>
+                <h2 className="font-display text-2xl font-bold tracking-tight text-white mt-8 mb-4">6. Vos droits (RGPD)</h2>
                 <p>Vous disposez d'un contrôle total sur vos données personnelles. Vous pouvez exercer à tout moment :</p>
                 <p>Un droit d'accès et de rectification.</p>
                 <p>Un droit à l'effacement (droit à l'oubli).</p>
@@ -3503,7 +3535,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
             {/* Column 2 -- Products & Services */}
             <div>
-              <h3 className="text-white text-[10px] font-extrabold uppercase tracking-[0.3em] mb-5">Navigation</h3>
+              <h3 className="font-display text-[10px] font-bold uppercase tracking-[0.3em] text-white mb-5">Navigation</h3>
               <ul className="space-y-4">
                 {['Expertises'].map((link) => (
                   <li key={link}>
@@ -3525,7 +3557,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
             {/* Column 3 -- Company */}
             <div>
-              <h3 className="text-white text-[10px] font-extrabold uppercase tracking-[0.3em] mb-5">Société</h3>
+              <h3 className="font-display text-[10px] font-bold uppercase tracking-[0.3em] text-white mb-5">Société</h3>
               <ul className="space-y-4">
                 {['À propos', 'Portfolio', 'Contact'].map((link) => (
                   <li key={link}>

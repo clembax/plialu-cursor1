@@ -40,7 +40,7 @@ const CookieBanner: React.FC<CookieBannerProps> = ({ onOpenPrivacy }) => {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
           <div className="flex-1">
-            <p className="text-sm text-white/80 leading-relaxed">
+            <p className="text-sm text-white/50 leading-relaxed">
               Nous utilisons des cookies pour améliorer votre expérience. En continuant, vous acceptez notre{' '}
               <button
                 onClick={onOpenPrivacy}
