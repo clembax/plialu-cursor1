@@ -766,7 +766,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           </section>
 
           {/* 2. NOS EXPERTISES (DARK) */}
-          <section id="expertise" className="py-24 md:py-32 section--dark bg-[#071318]">
+          <section id="expertise" className="py-24 md:py-32 section--dark bg-gradient-to-b from-[#071318] to-[#0b1e26]">
             <div className="max-w-7xl mx-auto px-6">
               <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-20 items-center">
                 <div>
@@ -791,7 +791,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   />
                 </div>
               </div>
-              <ol className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 list-none p-0">
+              <ol className="mt-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6 gap-4 lg:gap-5 xl:gap-4 list-none p-0">
                 {expertisesDetails.map((exp, idx) => {
                   const name = exp.id === 'bureau-etudes'
                     ? 'Bureau des méthodes'
@@ -811,17 +811,17 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                           }, 50);
                         }}
-                        className={`group relative flex min-h-[220px] h-full w-full flex-col justify-between text-left ${DS.CARD_DARK} p-7 transition-colors duration-150 hover:border-[#E2FD48]/50 hover:bg-white/[0.06]`}
+                        className={`group relative flex min-h-[200px] h-full w-full flex-col justify-between text-left ${DS.CARD_DARK} p-5 transition-colors duration-150 hover:border-[#E2FD48]/50 hover:bg-white/[0.06]`}
                       >
                         <div className="flex items-start justify-between">
-                          <span className="font-display text-5xl font-semibold leading-none tracking-[-0.04em] text-[#E2FD48]">{String(idx + 1).padStart(2, '0')}</span>
-                          <span className="flex h-11 w-11 flex-none items-center justify-center rounded-full border border-white/20 text-white transition-colors duration-150 group-hover:border-[#E2FD48] group-hover:bg-[#E2FD48] group-hover:text-[#0E2A33]">
-                            <iconify-icon icon="lucide:arrow-up-right" width="16"></iconify-icon>
+                          <span className="font-display text-4xl font-semibold leading-none tracking-[-0.04em] text-[#E2FD48]">{String(idx + 1).padStart(2, '0')}</span>
+                          <span className="flex h-9 w-9 flex-none items-center justify-center rounded-full border border-white/20 text-white transition-colors duration-150 group-hover:border-[#E2FD48] group-hover:bg-[#E2FD48] group-hover:text-[#0E2A33]">
+                            <iconify-icon icon="lucide:arrow-up-right" width="14"></iconify-icon>
                           </span>
                         </div>
                         <div>
-                          <span className="font-display text-2xl font-bold leading-tight text-white block">{name}</span>
-                          {exp.tag ? <span className="mt-2 block text-sm leading-snug text-white/50">{exp.tag}</span> : null}
+                          <span className="font-display text-xl font-bold leading-tight text-white block">{name}</span>
+                          {exp.tag ? <span className="mt-2 block text-xs leading-snug text-white/50">{exp.tag}</span> : null}
                         </div>
                       </button>
                     </li>
@@ -834,8 +834,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           {/* Section dédiée : vidéo Teaser (loop, muette, lecture au scroll) */}
           <section
             id="teaser-video"
-            className="relative py-24 md:py-32 section--dark bg-[#0E2A33]"
-            style={{ backgroundColor: '#0E2A33' }}
+            className="relative py-24 md:py-32 section--dark bg-gradient-to-b from-[#0b1e26] to-[#0d2630]"
           >
             <div className="relative max-w-7xl mx-auto px-6 z-10">
               <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-10 lg:gap-16 items-center">
