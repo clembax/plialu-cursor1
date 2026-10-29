@@ -718,7 +718,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
       {currentPage === 'home' && (
         <>
           {/* 1. HERO SECTION (DARK) */}
-          <section className="relative w-full overflow-hidden flex items-center" style={{ minHeight: 'calc(100vh + clamp(80px, 10vh, 140px))' }}>
+          <section className="relative w-full overflow-hidden flex items-center" style={{ minHeight: '100vh' }}>
             <div className="absolute inset-0 z-0">
               <picture>
                 <source media="(max-width: 800px)" srcSet="https://res.cloudinary.com/dyiup6v5x/image/upload/v1771414327/Hero-800px_emwjxr.webp" />
@@ -728,7 +728,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#0e2a33]/70 to-[#071318]/90"></div>
               <div className="absolute inset-x-0 bottom-0 h-full z-20 pointer-events-none" style={{ background: 'linear-gradient(180deg, rgba(7, 19, 24, 0) 0%, rgba(7, 19, 24, 0.10) 60%, rgba(7, 19, 24, 0.55) 85%, #071318 100%)' }}></div>
             </div>
-            <div className="relative z-30 w-full max-w-7xl mx-auto px-6 py-20">
+            <div className="relative z-30 w-full max-w-7xl mx-auto px-6 pt-24 pb-16">
               <div className="max-w-7xl animate-fade-up">
                 <div className="mb-16">
                   <h1 className={`${DS.H1} text-white`}>
@@ -775,9 +775,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           </section>
 
           {/* 2. NOS EXPERTISES (DARK) */}
-          <section id="expertise" className="py-24 md:py-32 section--dark" style={{ background: 'linear-gradient(180deg, #071318 0%, #0D2630 80%, #0C242D 100%)' }}>
+          <section id="expertise" className="pt-16 md:pt-20 pb-12 md:pb-16 section--dark" style={{ background: 'linear-gradient(180deg, #071318 0%, #0D2630 80%, #0C242D 100%)' }}>
             <div className="max-w-7xl mx-auto px-6">
-              <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-20 items-center">
+              <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-20 items-start">
                 <div>
                   <div className="mb-16">
                     <span className={`block mb-4 ${DS.EYEBROW_DARK}`}>PROCESS INTÉGRÉ</span>
@@ -843,7 +843,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           {/* Section dédiée : vidéo Teaser (loop, muette, lecture au scroll) */}
           <section
             id="teaser-video"
-            className="relative py-24 md:py-32 section--dark"
+            className="relative pt-12 md:pt-16 pb-24 md:pb-32 section--dark"
             style={{ background: 'linear-gradient(180deg, #0C242D 0%, #071318 100%)' }}
           >
             <div className="relative max-w-7xl mx-auto px-6 z-10">
@@ -858,7 +858,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       // Basculer sur la page Expertises
                       setCurrentPage('expertises');
                     }}
-                    className="group w-full text-left focus:outline-none"
+                    className="group block w-full text-left focus:outline-none"
                   >
                     <div className="relative rounded-[20px] overflow-hidden border border-white/10 bg-black/40 aspect-video cursor-pointer">
                       {/* Overlay de survol */}
