@@ -731,21 +731,33 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     Notre expertise : conception, façonnage, pliage, thermolaquage de métal en feuilles. Process de production intégré et maîtrise de la qualité, des coûts et des délais pour chaque projet
                   </p>
                 </div>
-                <div className="space-y-8">
-                  <div className="flex flex-col sm:flex-row items-center gap-4">
-                    <button onClick={() => setCurrentPage('contact')} className={`${DS.BTN_PRIMARY} w-full sm:w-auto`}>Demander un devis</button>
-                    <button onClick={() => setCurrentPage('expertises')} className={`${DS.BTN_SECONDARY_DARK} w-full sm:w-auto group`}>
-                      Découvrir nos expertises
-                      <iconify-icon icon="lucide:arrow-right" className="group-hover:translate-x-1 transition-transform"></iconify-icon>
-                    </button>
+                <div className="flex flex-col sm:flex-row items-center gap-4">
+                  <button onClick={() => setCurrentPage('contact')} className={`${DS.BTN_PRIMARY} w-full sm:w-auto`}>Demander un devis</button>
+                  <button onClick={() => setCurrentPage('expertises')} className={`${DS.BTN_SECONDARY_DARK} w-full sm:w-auto group`}>
+                    Découvrir nos expertises
+                    <iconify-icon icon="lucide:arrow-right" className="group-hover:translate-x-1 transition-transform"></iconify-icon>
+                  </button>
+                </div>
+                <div className="mt-20 grid grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_1.5fr] border-t border-white/[0.12]">
+                  <div className="py-7 pr-6 border-b border-white/[0.08] lg:border-b-0 lg:border-r">
+                    <span className={`${DS.STAT_NUMBER} text-white`}>20 <span className="text-lg font-semibold text-white/50 tracking-normal">ans</span></span>
+                    <p className="mt-2.5 text-[13px] leading-snug text-white/50">d'expertise en façonnage métallique</p>
                   </div>
-                  <div className="inline-flex items-center gap-5 px-5 py-3 border border-white/10 rounded-[20px] bg-white/[0.02]">
-                    <div className="w-8 h-8 flex items-center justify-center shrink-0">
-                       <img src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1771500844/logo_qf_kzo395.png" alt="Logo Qualicoat" className="max-w-full max-h-full object-contain brightness-0 invert opacity-80" />
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-[11px] font-black text-[#E2FD48] tracking-[0.15em] uppercase leading-none">QUALICOAT CERTIFIÉ</span>
-                      <span className="text-[8px] font-medium text-white/50 uppercase tracking-wider mt-1.5">Thermolaquage conforme aux exigences internationales</span>
+                  <div className="py-7 pr-6 border-b border-white/[0.08] lg:border-b-0 lg:border-r">
+                    <span className={`${DS.STAT_NUMBER} text-white`}>7 000 <span className="text-lg font-semibold text-white/50 tracking-normal">m²</span></span>
+                    <p className="mt-2.5 text-[13px] leading-snug text-white/50">d'ateliers de production</p>
+                  </div>
+                  <div className="py-7 pr-6 border-white/[0.08] max-lg:border-b-0 lg:border-r">
+                    <span className={`${DS.STAT_NUMBER} text-white`}>3 <span className="text-lg font-semibold text-white/50 tracking-normal">lignes intégrées</span></span>
+                    <p className="mt-2.5 text-[13px] leading-snug text-white/50">Déroulage, thermolaquage, production</p>
+                  </div>
+                  <div className="py-7 pr-6">
+                    <div className="flex gap-4 items-center">
+                      <img src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1771500844/logo_qf_kzo395.png" alt="Logo Qualicoat" className="w-[46px] h-auto rounded-lg" />
+                      <div>
+                        <p className={DS.EYEBROW_DARK}>Qualicoat certifié</p>
+                        <p className="text-[13px] text-white/50 mt-1.5">Thermolaquage conforme aux exigences internationales</p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -754,7 +766,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           </section>
 
           {/* 2. NOS EXPERTISES (DARK) */}
-          <section id="expertise" className="pt-32 pb-10 section--dark" style={{ background: 'linear-gradient(to bottom, #071318 0%, #0b1e26 100%)' }}>
+          <section id="expertise" className="py-24 md:py-32 section--dark" style={{ background: 'linear-gradient(to bottom, #071318 0%, #0b1e26 100%)' }}>
             <div className="max-w-7xl mx-auto px-6">
               <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-20 items-center">
                 <div>
@@ -779,13 +791,43 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   />
                 </div>
               </div>
+              <ol className="mt-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 list-none p-0">
+                {expertisesDetails.map((exp, idx) => {
+                  const name = exp.id === 'bureau-etudes'
+                    ? 'Bureau des méthodes'
+                    : exp.id === 'assemblage-finitions'
+                      ? 'Soudure & Assemblage'
+                      : exp.title;
+                  return (
+                    <li key={exp.id} className="min-w-0">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setCurrentPage('expertises');
+                          window.setTimeout(() => {
+                            const target = document.getElementById(exp.id);
+                            if (!target) return;
+                            window.history.replaceState(null, '', `/expertises#${exp.id}`);
+                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                          }, 50);
+                        }}
+                        className={`group relative flex h-full min-h-[150px] w-full flex-col text-left ${DS.CARD_DARK} px-5 pt-5 pb-6 transition-colors duration-150 hover:border-[#E2FD48]/50 hover:bg-white/[0.06]`}
+                      >
+                        <span className="font-display text-[13px] font-bold text-[#E2FD48]">{String(idx + 1).padStart(2, '0')}</span>
+                        <iconify-icon icon="lucide:arrow-up-right" width="14" className="absolute top-5 right-5 text-white/40 group-hover:text-[#E2FD48] transition-colors duration-150"></iconify-icon>
+                        <span className={`${DS.H3} mt-7 block text-white`}>{name}</span>
+                      </button>
+                    </li>
+                  );
+                })}
+              </ol>
             </div>
           </section>
 
           {/* Section dédiée : vidéo Teaser (loop, muette, lecture au scroll) */}
           <section
             id="teaser-video"
-            className="relative py-20"
+            className="relative py-24 md:py-32 border-t border-white/[0.06]"
             style={{ background: 'linear-gradient(to bottom, #0b1e26 0%, #071318 100%)' }}
           >
             {/* Dégradé de transition avec la section Expertises */}
@@ -794,9 +836,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               style={{ background: 'linear-gradient(to bottom, rgba(11,30,38,0) 0%, rgba(11,30,38,0.4) 8%, #0b1e26 20%)' }}
             ></div>
             <div className="relative max-w-7xl mx-auto px-6 z-10">
-              <div className="flex flex-col md:flex-row items-center gap-12">
+              <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-10 lg:gap-16 items-center">
                 {/* Colonne gauche : vidéo teaser */}
-                <div className="flex-1 w-full">
+                <div className="w-full">
                   <button
                     type="button"
                     onClick={() => {
@@ -840,24 +882,18 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 </div>
 
                 {/* Colonne droite : texte d'accroche */}
-                <div className="max-w-xs w-full md:w-auto text-left">
-                  <div className="mb-16">
-                    <span className={`block mb-4 ${DS.EYEBROW_DARK}`}>
-                      VISITE D'USINE
-                    </span>
-                    <h2 className={`${DS.H2} text-white`}>
-                      Découvrez nos lignes de production en action
-                    </h2>
-                    <p className={`${DS.LEAD_DARK} mt-6`}>
-                      Visite d'usine : deux minutes pour voir les lignes de production.
-                    </p>
-                  </div>
+                <div>
+                  <p className={`${DS.EYEBROW_DARK} mb-4`}>Visite d'usine</p>
+                  <h2 className={`${DS.H2} text-white lg:w-[calc(100%+8px)]`}>Nos lignes de production, en action</h2>
+                  <p className={`${DS.BODY_DARK} mt-6`}>
+                    Visite d'usine : deux minutes pour voir les lignes de production.
+                  </p>
                   <button
                     type="button"
                     onClick={() => setCurrentPage('expertises')}
-                    className={DS.BTN_PRIMARY}
+                    className={`${DS.BTN_PRIMARY} mt-8`}
                   >
-                    Voir la visite complète →
+                    Voir la visite complète
                   </button>
                 </div>
               </div>
@@ -972,7 +1008,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           </section>
 
           {/* 4. RÉALISATIONS (DARK) */}
-          <section id="projects" className="relative z-10 -mt-8 rounded-t-[2rem] md:rounded-t-[2.5rem] py-24 md:py-32 section--dark" style={{ background: 'linear-gradient(to bottom, #0b1e26 0%, #071318 100%)' }}>
+          <section id="projects" className="relative z-10 py-24 md:py-32 section--dark" style={{ background: 'linear-gradient(to bottom, #0b1e26 0%, #071318 100%)' }}>
             <div className="max-w-7xl mx-auto px-6">
               <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
                 <div className="max-w-2xl">
@@ -984,13 +1020,13 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 </p>
               </div>
               <PortfolioGrid projects={homeProjects} onOpen={openProject} context="home" />
-              <div className="text-center pt-12 md:pt-16">
+              <div className="mt-12 flex justify-center">
                 <a
                   href="/portfolio"
                   onClick={(e) => { if (e.button === 0 && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) { e.preventDefault(); setCurrentPage('projects'); } }}
                   className={DS.BTN_PRIMARY}
                 >
-                  {`Voir les ${PROJECTS.length} réalisations`}
+                  Voir les projets
                 </a>
               </div>
             </div>
@@ -1023,76 +1059,57 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           </section>
 
           {/* 7. CONTACT (LIGHT) */}
-          <section id="contact" className="py-48 section--light">
-            <div className="relative z-10 max-w-4xl mx-auto px-6 text-center animate-fade-up">
-              <div className="mb-16">
-              <span className={`inline-block mb-4 ${DS.EYEBROW_LIGHT}`}>CONTACT</span>
-              <h2 className={`${DS.H2} text-[#0E2A33]`}>Étude technique, faisabilité, chiffrage — ou toute autre demande.</h2>
-              <p className={`${DS.LEAD_LIGHT} mt-6 mx-auto`}>Nos équipes vous répondent rapidement avec une approche intégrant vos contraintes.</p>
-              </div>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-                <button onClick={() => setCurrentPage('contact')} className={`${DS.BTN_SECONDARY_LIGHT} w-full sm:w-auto`}>Demander un devis</button>
-                <button onClick={() => setCurrentPage('contact')} className={`${DS.BTN_SECONDARY_LIGHT} w-full sm:w-auto`}>Contacter un expert</button>
-              </div>
-
-              {/* Bloc Coordonnées interactif */}
-              <div className="max-w-3xl mx-auto pt-12 border-t border-[#0E2A33]/5 grid grid-cols-1 md:grid-cols-2 gap-y-8 gap-x-12 text-left">
-                {/* Phone */}
-                <div className="flex items-center gap-4 group">
-                  <div className="w-10 h-10 rounded-xl bg-[#0E2A33]/5 flex items-center justify-center text-[#0E2A33]/40 transition-colors group-hover:text-[#0E2A33]">
-                    <iconify-icon icon="lucide:phone" width="18"></iconify-icon>
-                  </div>
-                  <div className="flex-1">
-                    <span className="block text-[8px] font-bold text-[#0E2A33]/[0.62] uppercase tracking-widest mb-0.5">Téléphone</span>
-                    <div className="flex items-center gap-2">
-                      <a href="tel:0478089370" className="text-sm font-bold text-[#0E2A33] hover:underline">04 78 08 93 70</a>
-                      <button onClick={() => handleCopy("04 78 08 93 70", "tel-home")} className="p-1 rounded-md hover:bg-black/5 transition-colors relative">
-                        <iconify-icon icon="lucide:copy" width="14" className="text-[#0E2A33]/[0.62] group-hover:text-[#0E2A33]"></iconify-icon>
-                        {copiedKey === 'tel-home' && <span className="absolute -top-7 left-1/2 -translate-x-1/2 text-[9px] bg-[#0E2A33] text-white px-1.5 py-0.5 rounded">Copié</span>}
-                      </button>
-                    </div>
+          <section id="contact" className="bg-[#F3F6F7] py-24 md:py-32 section--light">
+            <div className="relative z-10 max-w-7xl mx-auto px-6">
+              <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-10 lg:gap-16 items-start">
+                <div>
+                  <p className={`${DS.EYEBROW_LIGHT} mb-4`}>Contact</p>
+                  <h2 className={`${DS.H2} text-[#0E2A33]`}>Étude technique, faisabilité, chiffrage — ou toute autre demande.</h2>
+                  <p className={`${DS.LEAD_LIGHT} mt-6`}>Nos équipes vous répondent rapidement, en intégrant vos contraintes de chantier.</p>
+                  <div className="flex flex-wrap gap-4 mt-10">
+                    <button onClick={() => setCurrentPage('contact')} className={DS.BTN_PRIMARY}>Demander un devis</button>
+                    <a href="tel:0478089370" className={DS.BTN_SECONDARY_LIGHT}>
+                      <iconify-icon icon="lucide:phone" width="16"></iconify-icon>
+                      Appeler un expert
+                    </a>
                   </div>
                 </div>
-                {/* Email */}
-                <div className="flex items-center gap-4 group">
-                  <div className="w-10 h-10 rounded-xl bg-[#0E2A33]/5 flex items-center justify-center text-[#0E2A33]/40 transition-colors group-hover:text-[#0E2A33]">
-                    <iconify-icon icon="lucide:mail" width="18"></iconify-icon>
-                  </div>
-                  <div className="flex-1">
-                    <span className="block text-[8px] font-bold text-[#0E2A33]/[0.62] uppercase tracking-widest mb-0.5">E-mail</span>
-                    <div className="flex items-center gap-2">
-                      <a href="mailto:commercial@plialu.fr" className="text-sm font-bold text-[#0E2A33] hover:underline">commercial@plialu.fr</a>
-                      <button onClick={() => handleCopy("commercial@plialu.fr", "mail-home")} className="p-1 rounded-md hover:bg-black/5 transition-colors relative">
-                        <iconify-icon icon="lucide:copy" width="14" className="text-[#0E2A33]/[0.62] group-hover:text-[#0E2A33]"></iconify-icon>
-                        {copiedKey === 'mail-home' && <span className="absolute -top-7 left-1/2 -translate-x-1/2 text-[9px] bg-[#0E2A33] text-white px-1.5 py-0.5 rounded">Copié</span>}
-                      </button>
+                <div className="grid gap-3">
+                  <div className="flex items-start gap-4 rounded-[20px] bg-white px-6 py-[22px]">
+                    <div className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-[#F3F6F7] text-[#0E2A33]">
+                      <iconify-icon icon="lucide:phone" width="18"></iconify-icon>
+                    </div>
+                    <div>
+                      <p className={DS.EYEBROW_LIGHT}>Téléphone</p>
+                      <p className="mt-1.5 text-base font-bold leading-snug text-[#0E2A33]"><a href="tel:0478089370">04 78 08 93 70</a></p>
                     </div>
                   </div>
-                </div>
-                {/* Address */}
-                <div className="flex items-center gap-4 group">
-                  <div className="w-10 h-10 rounded-xl bg-[#0E2A33]/5 flex items-center justify-center text-[#0E2A33]/40 transition-colors group-hover:text-[#0E2A33]">
-                    <iconify-icon icon="lucide:map-pin" width="18"></iconify-icon>
-                  </div>
-                  <div className="flex-1">
-                    <span className="block text-[8px] font-bold text-[#0E2A33]/[0.62] uppercase tracking-widest mb-0.5">Adresse</span>
-                    <div className="flex items-center gap-2">
-                      <p className="text-sm font-bold text-[#0E2A33] leading-tight">Technoparc Saône Vallée Ouest, 150, Route Copernic, 01390 Civrieux</p>
-                      <button onClick={() => handleCopy("Technoparc Saône Vallée Ouest, 150, Route Copernic, 01390 Civrieux", "addr-home")} className="p-1 rounded-md hover:bg-black/5 transition-colors relative">
-                        <iconify-icon icon="lucide:copy" width="14" className="text-[#0E2A33]/[0.62] group-hover:text-[#0E2A33]"></iconify-icon>
-                        {copiedKey === 'addr-home' && <span className="absolute -top-7 left-1/2 -translate-x-1/2 text-[9px] bg-[#0E2A33] text-white px-1.5 py-0.5 rounded">Copié</span>}
-                      </button>
+                  <div className="flex items-start gap-4 rounded-[20px] bg-white px-6 py-[22px]">
+                    <div className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-[#F3F6F7] text-[#0E2A33]">
+                      <iconify-icon icon="lucide:mail" width="18"></iconify-icon>
+                    </div>
+                    <div>
+                      <p className={DS.EYEBROW_LIGHT}>E-mail</p>
+                      <p className="mt-1.5 text-base font-bold leading-snug text-[#0E2A33]"><a href="mailto:commercial@plialu.fr">commercial@plialu.fr</a></p>
                     </div>
                   </div>
-                </div>
-                {/* Hours */}
-                <div className="flex items-center gap-4 group">
-                  <div className="w-10 h-10 rounded-xl bg-[#0E2A33]/5 flex items-center justify-center text-[#0E2A33]/40 transition-colors group-hover:text-[#0E2A33]">
-                    <iconify-icon icon="lucide:clock" width="18"></iconify-icon>
+                  <div className="flex items-start gap-4 rounded-[20px] bg-white px-6 py-[22px]">
+                    <div className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-[#F3F6F7] text-[#0E2A33]">
+                      <iconify-icon icon="lucide:map-pin" width="18"></iconify-icon>
+                    </div>
+                    <div>
+                      <p className={DS.EYEBROW_LIGHT}>Adresse</p>
+                      <p className="mt-1.5 text-base font-bold leading-snug text-[#0E2A33]">Technoparc Saône Vallée Ouest, 150, Route Copernic, 01390 Civrieux</p>
+                    </div>
                   </div>
-                  <div className="flex-1">
-                    <span className="block text-[8px] font-bold text-[#0E2A33]/[0.62] uppercase tracking-widest mb-0.5">Horaires</span>
-                    <p className="text-sm font-bold text-[#0E2A33] leading-tight">Du lundi au jeudi de 7h30 à 16h30, le vendredi de 7h30 à 12h.</p>
+                  <div className="flex items-start gap-4 rounded-[20px] bg-white px-6 py-[22px]">
+                    <div className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-[#F3F6F7] text-[#0E2A33]">
+                      <iconify-icon icon="lucide:clock" width="18"></iconify-icon>
+                    </div>
+                    <div>
+                      <p className={DS.EYEBROW_LIGHT}>Horaires</p>
+                      <p className="mt-1.5 text-base font-bold leading-snug text-[#0E2A33]">Du lundi au jeudi de 7h30 à 16h30, le vendredi de 7h30 à 12h.</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1132,40 +1149,21 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           </section>
 
           {/* 2. POSITIONNEMENT (LIGHT) - MACHINED PERFECTION V2 (FIXED BACKGROUND) */}
-          <section id="a-propos-contenu" className="py-24 md:py-32 bg-white selection-brand relative">
-            <div className="max-w-7xl mx-auto px-6 relative z-10">
-              
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
-                <div className="lg:col-span-6 space-y-10 py-10">
-                  <div className="mb-16">
-                    <h2 className={`${DS.H2} text-[#0E2A33]`}>
-                      Notre ADN
-                    </h2>
-                    <div className="w-20 h-1.5 bg-[#E2FD48] mt-6"></div>
-                  </div>
-                  <div className="text-[#0E2A33]/75 text-base leading-[1.65] max-w-lg space-y-6">
-                    <p>
-                      PLIALU, c'est 20 ans de fabrication métallique intégrée en Rhône-Alpes. Pièces standard et sur-mesure, une capacité industrielle complète capable de s'adapter aux contraintes de chaque projet.
-                    </p>
-                    <p>
-                      De la première esquisse au chantier livré, nos équipes interviennent comme un partenaire technique : lecture de plans, conseil matière, optimisation des tolérances, respect des délais.
-                    </p>
-                  </div>
-                  <div className="pt-4">
-                    <button onClick={() => setCurrentPage('contact')} className={`${DS.BTN_PRIMARY} group`}>
-                      <span>Échanger sur votre projet</span>
-                      <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12H19M19 12L13 6M19 12L13 18"/></svg>
-                    </button>
-                  </div>
+          <section id="a-propos-contenu" className="bg-white py-24 md:py-32">
+            <div className="max-w-7xl mx-auto px-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-[72px] items-center">
+                <div>
+                  <p className={`${DS.EYEBROW_LIGHT} mb-4`}>Notre ADN</p>
+                  <h2 className={`${DS.H2} text-[#0E2A33]`}>Un partenaire technique, de l'esquisse au chantier livré</h2>
+                  <p className={`${DS.LEAD_LIGHT} mt-6`}>PLIALU, c'est 20 ans de fabrication métallique intégrée en Rhône-Alpes. Pièces standard et sur-mesure, avec une capacité industrielle complète qui s'adapte aux contraintes de chaque projet.</p>
+                  <p className={`${DS.LEAD_LIGHT} mt-5`}>Nos équipes interviennent à chaque étape : lecture de plans, conseil matière, optimisation des tolérances, respect des délais.</p>
+                  <button onClick={() => setCurrentPage('contact')} className={`${DS.BTN_PRIMARY} mt-10`}>
+                    Échanger sur votre projet
+                    <iconify-icon icon="lucide:arrow-right" width="16"></iconify-icon>
+                  </button>
                 </div>
-
-                <div className="lg:col-span-6">
-                  <div className="relative p-2 bg-white rounded-[20px] border border-[#0E2A33]/[0.12] shadow-2xl shadow-[#0E2A33]/5 aspect-[4/3] group overflow-hidden">
-                    <img src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1771522416/APROPOS-1200px_wkguv2.webp" className={`w-full h-full object-cover rounded-[20px] relative z-10 filter contrast-[1.05] ${DS.CARD_IMG_ZOOM}`} alt="Atelier de production Plialu à Lyon" loading="lazy" />
-                  </div>
-                </div>
-            </div>
-
+                <img src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1771522416/APROPOS-1200px_wkguv2.webp" className="w-full aspect-[4/3] object-cover rounded-[20px]" alt="Atelier de production Plialu à Lyon" loading="lazy" />
+              </div>
             </div>
           </section>
 
