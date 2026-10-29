@@ -567,7 +567,7 @@ const App: React.FC = () => {
       <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${(isScrolled || openProjectId) ? 'h-20' : 'h-24'}`}>
         <div 
           className={`absolute inset-0 border-b backdrop-blur-md pointer-events-none transition-opacity duration-500 
-            ${headerTheme === 'dark' ? 'bg-[#F0F4F6]/90 border-[#0E2A33]/[0.12]' : 'bg-[#050E12]/90 border-white/10'} 
+            ${headerTheme === 'dark' ? 'bg-[#F3F6F7]/90 border-[#0E2A33]/[0.12]' : 'bg-[#071318]/90 border-white/10'} 
             ${(isScrolled || openProjectId) ? 'opacity-100' : 'opacity-0'}`}
         ></div>
         
@@ -667,7 +667,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               type="button"
               aria-label="Ouvrir le menu"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`fixed top-4 right-4 z-50 lg:hidden p-2 rounded-lg border-0 outline-none focus:outline-none focus:ring-0 transition-all
+              className={`fixed top-4 right-4 z-50 lg:hidden p-2 rounded-xl border-0 outline-none focus:outline-none focus:ring-0 transition-all
                 ${headerTheme === 'dark' ? 'text-[#0E2A33] bg-black/5' : 'text-white bg-white/5'}`}
             >
               <iconify-icon icon="lucide:menu" width="24" stroke-width="1.5"></iconify-icon>
@@ -739,7 +739,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       <iconify-icon icon="lucide:arrow-right" className="group-hover:translate-x-1 transition-transform"></iconify-icon>
                     </button>
                   </div>
-                  <div className="inline-flex items-center gap-5 px-5 py-3 border border-white/10 rounded-2xl bg-white/[0.02]">
+                  <div className="inline-flex items-center gap-5 px-5 py-3 border border-white/10 rounded-[20px] bg-white/[0.02]">
                     <div className="w-8 h-8 flex items-center justify-center shrink-0">
                        <img src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1771500844/logo_qf_kzo395.png" alt="Logo Qualicoat" className="max-w-full max-h-full object-contain brightness-0 invert opacity-80" />
                     </div>
@@ -770,10 +770,10 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     <iconify-icon icon="lucide:arrow-right" className={DS.ACTION_ARROW}></iconify-icon>
                   </button>
                 </div>
-                <div className="relative aspect-square md:aspect-video lg:aspect-square overflow-hidden rounded-3xl border border-white/10 bg-[#07161C] group">
+                <div className="relative aspect-square md:aspect-video lg:aspect-square overflow-hidden rounded-[20px] border border-white/10 bg-[#071318] group">
                   <img
                     src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1771508868/Expertise-1200_rb2ubu.webp"
-                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    className={`w-full h-full object-cover ${DS.CARD_IMG_ZOOM}`}
                     alt="Opérateur réalisant la fabrication de pièces métalliques sur mesure sur presse plieuse"
                     loading="lazy"
                   />
@@ -807,7 +807,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     }}
                     className="group w-full text-left focus:outline-none"
                   >
-                    <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-black/40 aspect-video transition-transform duration-300 group-hover:scale-[1.02] cursor-pointer">
+                    <div className="relative rounded-[20px] overflow-hidden border border-white/10 bg-black/40 aspect-video cursor-pointer">
                       {/* Overlay de survol */}
                       <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                         <div className="flex flex-col items-center gap-2">
@@ -823,7 +823,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       {/* Vidéo */}
                       <video
                         ref={teaserVideoRef}
-                        className="absolute inset-0 w-full h-full object-cover"
+                        className={`absolute inset-0 w-full h-full object-cover ${DS.CARD_IMG_ZOOM}`}
                         loop
                         muted
                         playsInline
@@ -865,7 +865,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           </section>
 
           {/* Section Solutions */}
-          <section id="solutions" className="bg-white pt-12 pb-24">
+          <section id="solutions" className="bg-white py-24 md:py-32">
             <div className="max-w-7xl mx-auto px-6">
 
               <div className="mb-16">
@@ -880,7 +880,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
 
-                <div className="bg-[#F5F5F3] border border-[#0E2A33]/20 rounded-lg p-6 hover:shadow-md hover:border-[#E2FD48]/50 transition-all">
+                <div className="bg-[#F5F5F3] border border-[#0E2A33]/20 rounded-[20px] p-6 hover:border-[#E2FD48]/50 transition-colors">
                   <div className="flex items-center gap-3 mb-3">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 text-[#0E2A33] shrink-0" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
@@ -890,7 +890,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   <p className="text-[#0E2A33]/[0.62] text-sm leading-relaxed">Profils pour systèmes d'isolation thermique par l'extérieur.</p>
                 </div>
 
-                <div className="bg-[#F5F5F3] border border-[#0E2A33]/20 rounded-lg p-6 hover:shadow-md hover:border-[#E2FD48]/50 transition-all">
+                <div className="bg-[#F5F5F3] border border-[#0E2A33]/20 rounded-[20px] p-6 hover:border-[#E2FD48]/50 transition-colors">
                   <div className="flex items-center gap-3 mb-3">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" className="w-5 h-5 text-[#0E2A33] shrink-0" aria-hidden="true">
                       <path d="M53.92,34.62A8,8,0,1,0,42.08,45.38L64.72,70.29C48.32,95,40,119.78,40,144a88,88,0,0,0,149.21,63.22l12.87,14.16a8,8,0,1,0,11.84-10.76ZM128,216a72.08,72.08,0,0,1-72-72c0-19.93,6.68-40.57,19.86-61.46L178.43,195.36A71.84,71.84,0,0,1,128,216ZM90,50.51a8,8,0,0,1-.27-11.31A247.8,247.8,0,0,1,123.41,9.45a8,8,0,0,1,9.18,0C136,11.83,216,68.7,216,144a88.08,88.08,0,0,1-3.15,23.4,8,8,0,0,1-7.71,5.88A7.79,7.79,0,0,1,203,173a8,8,0,0,1-5.59-9.83A72.55,72.55,0,0,0,200,144c0-57.24-55.48-105-72-118a252.23,252.23,0,0,0-26.66,24.23A8,8,0,0,1,90,50.51Z" />
@@ -900,7 +900,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   <p className="text-[#0E2A33]/[0.62] text-sm leading-relaxed">Couvertines et accessoires pour l'étanchéité des façades.</p>
                 </div>
 
-                <div className="bg-[#F5F5F3] border border-[#0E2A33]/20 rounded-lg p-6 hover:shadow-md hover:border-[#E2FD48]/50 transition-all">
+                <div className="bg-[#F5F5F3] border border-[#0E2A33]/20 rounded-[20px] p-6 hover:border-[#E2FD48]/50 transition-colors">
                   <div className="flex items-center gap-3 mb-3">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" className="w-5 h-5 text-[#0E2A33] shrink-0" aria-hidden="true">
                       <path d="M240,208h-8V72a8,8,0,0,0-8-8H184V40a8,8,0,0,0-8-8H80a8,8,0,0,0-8,8V96H32a8,8,0,0,0-8,8V208H16a8,8,0,0,0,0,16H240a8,8,0,0,0,0-16ZM40,112H80a8,8,0,0,0,8-8V48h80V72a8,8,0,0,0,8,8h40V208H152V168a8,8,0,0,0-8-8H112a8,8,0,0,0-8,8v40H40Zm96,96H120V176h16ZM112,72a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H120A8,8,0,0,1,112,72Zm0,32a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H120A8,8,0,0,1,112,104Zm56,0a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H176A8,8,0,0,1,168,104ZM88,136a8,8,0,0,1-8,8H64a8,8,0,0,1,0-16H80A8,8,0,0,1,88,136Zm0,32a8,8,0,0,1-8,8H64a8,8,0,0,1,0-16H80A8,8,0,0,1,88,168Zm24-32a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H120A8,8,0,0,1,112,136Zm56,0a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H176A8,8,0,0,1,168,136Zm0,32a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H176A8,8,0,0,1,168,168Z" />
@@ -910,7 +910,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   <p className="text-[#0E2A33]/[0.62] text-sm leading-relaxed">Bardages, cassettes et ossatures pour l'enveloppe du bâtiment.</p>
                 </div>
 
-                <div className="bg-[#F5F5F3] border border-[#0E2A33]/20 rounded-lg p-6 hover:shadow-md hover:border-[#E2FD48]/50 transition-all">
+                <div className="bg-[#F5F5F3] border border-[#0E2A33]/20 rounded-[20px] p-6 hover:border-[#E2FD48]/50 transition-colors">
                   <div className="flex items-center gap-3 mb-3">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" className="w-5 h-5 text-[#0E2A33] shrink-0" aria-hidden="true">
                       <path d="M226.76,69a8,8,0,0,0-12.84-2.88l-40.3,37.19-17.23-3.7-3.7-17.23,37.19-40.3A8,8,0,0,0,187,29.24,72,72,0,0,0,88,96,72.34,72.34,0,0,0,94,124.94L33.79,177c-.15.12-.29.26-.43.39a32,32,0,0,0,45.26,45.26c.13-.13.27-.28.39-.42L131.06,162A72,72,0,0,0,232,96,71.56,71.56,0,0,0,226.76,69ZM160,152a56.14,56.14,0,0,1-27.07-7,8,8,0,0,0-9.92,1.77L67.11,211.51a16,16,0,0,1-22.62-22.62L109.18,133a8,8,0,0,0,1.77-9.93,56,56,0,0,1,58.36-82.31l-31.2,33.81a8,8,0,0,0-1.94,7.1L141.83,108a8,8,0,0,0,6.14,6.14l26.35,5.66a8,8,0,0,0,7.1-1.94l33.81-31.2A56.06,56.06,0,0,1,160,152Z" />
@@ -920,7 +920,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   <p className="text-[#0E2A33]/[0.62] text-sm leading-relaxed">Profilés et accessoires pour le ravalement de façade.</p>
                 </div>
 
-                <div className="bg-[#F5F5F3] border border-[#0E2A33]/20 rounded-lg p-6 hover:shadow-md hover:border-[#E2FD48]/50 transition-all">
+                <div className="bg-[#F5F5F3] border border-[#0E2A33]/20 rounded-[20px] p-6 hover:border-[#E2FD48]/50 transition-colors">
                   <div className="flex items-center gap-3 mb-3">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" className="w-5 h-5 text-[#0E2A33] shrink-0" aria-hidden="true">
                       <path d="M200,80v32a8,8,0,0,1-16,0V88H160a8,8,0,0,1,0-16h32A8,8,0,0,1,200,80ZM96,168H72V144a8,8,0,0,0-16,0v32a8,8,0,0,0,8,8H96a8,8,0,0,0,0-16ZM232,56V200a16,16,0,0,1-16,16H40a16,16,0,0,1-16-16V56A16,16,0,0,1,40,40H216A16,16,0,0,1,232,56ZM216,200V56H40V200H216Z" />
@@ -930,7 +930,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   <p className="text-[#0E2A33]/[0.62] text-sm leading-relaxed">Précadres sur mesure pour portes et fenêtres.</p>
                 </div>
 
-                <div className="bg-[#F5F5F3] border border-[#0E2A33]/20 rounded-lg p-6 hover:shadow-md hover:border-[#E2FD48]/50 transition-all">
+                <div className="bg-[#F5F5F3] border border-[#0E2A33]/20 rounded-[20px] p-6 hover:border-[#E2FD48]/50 transition-colors">
                   <div className="flex items-center gap-3 mb-3">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" className="w-5 h-5 text-[#0E2A33] shrink-0" aria-hidden="true">
                       <path d="M212,136a12,12,0,1,1-12-12A12,12,0,0,1,212,136Zm36,0c0,40.37-21.08,72-48,72H56c-26.92,0-48-31.63-48-72S29.08,64,56,64H92.69l37.65-37.66A8,8,0,0,1,136,24h32a8,8,0,0,1,0,16H139.31l-24,24H200C226.92,64,248,95.63,248,136ZM56,192H169.51a73.46,73.46,0,0,1-12.67-24H80a8,8,0,0,1,0-16h73.16A110.63,110.63,0,0,1,152,136c0-22.86,6.76-42.9,17.51-56H56c-12.47,0-23.55,13.26-28.8,32H104a8,8,0,0,1,0,16H24.35q-.34,3.93-.35,8C24,166.36,38.65,192,56,192Zm176-56c0-30.36-14.65-56-32-56s-32,25.64-32,56,14.65,56,32,56S232,166.36,232,136Z" />
@@ -942,7 +942,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
               </div>
 
-              <div className="relative bg-[#F5F5F3] border border-[#0E2A33]/20 rounded-lg p-6 hover:shadow-md hover:border-[#E2FD48]/50 transition-all w-full mb-12">
+              <div className="relative bg-[#F5F5F3] border border-[#0E2A33]/20 rounded-[20px] p-6 hover:border-[#E2FD48]/50 transition-colors w-full mb-12">
                 <div className="flex items-center gap-3 mb-3">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-[#0E2A33] shrink-0" aria-hidden="true">
                     <path d="M11 7 6 2"/>
@@ -972,7 +972,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           </section>
 
           {/* 4. RÉALISATIONS (DARK) */}
-          <section id="projects" className="relative z-10 -mt-8 rounded-t-[2rem] md:rounded-t-[2.5rem] py-32 section--dark" style={{ background: 'linear-gradient(to bottom, #0b1e26 0%, #071318 100%)' }}>
+          <section id="projects" className="relative z-10 -mt-8 rounded-t-[2rem] md:rounded-t-[2.5rem] py-24 md:py-32 section--dark" style={{ background: 'linear-gradient(to bottom, #0b1e26 0%, #071318 100%)' }}>
             <div className="max-w-7xl mx-auto px-6">
               <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
                 <div className="max-w-2xl">
@@ -997,13 +997,13 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           </section>
 
           {/* 6. À PROPOS (DARK) */}
-          <section id="propos" className="py-32 section--dark overflow-hidden" style={{ background: 'linear-gradient(to bottom, #071318 0%, #0b1e26 100%)' }}>
+          <section id="propos" className="py-24 md:py-32 section--dark overflow-hidden" style={{ background: 'linear-gradient(to bottom, #071318 0%, #0b1e26 100%)' }}>
             <div className="max-w-7xl mx-auto px-6 relative z-10">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-                <div className="relative rounded-3xl overflow-hidden aspect-[4/3] border border-white/10 bg-[#07161C] order-2 lg:order-1 shadow-2xl">
+                <div className="group relative rounded-[20px] overflow-hidden aspect-[4/3] border border-white/10 bg-[#071318] order-2 lg:order-1 shadow-2xl">
                   <img
                     src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1771522416/APROPOS-1200px_wkguv2.webp"
-                    className="w-full h-full object-cover opacity-80"
+                    className={`w-full h-full object-cover opacity-80 ${DS.CARD_IMG_ZOOM}`}
                     alt="Vue extérieure de l'usine Plialu, entreprise de métallurgie et façonnage en Rhône-Alpes"
                     loading="lazy"
                   />
@@ -1039,7 +1039,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               <div className="max-w-3xl mx-auto pt-12 border-t border-[#0E2A33]/5 grid grid-cols-1 md:grid-cols-2 gap-y-8 gap-x-12 text-left">
                 {/* Phone */}
                 <div className="flex items-center gap-4 group">
-                  <div className="w-10 h-10 rounded-lg bg-[#0E2A33]/5 flex items-center justify-center text-[#0E2A33]/40 transition-colors group-hover:text-[#0E2A33]">
+                  <div className="w-10 h-10 rounded-xl bg-[#0E2A33]/5 flex items-center justify-center text-[#0E2A33]/40 transition-colors group-hover:text-[#0E2A33]">
                     <iconify-icon icon="lucide:phone" width="18"></iconify-icon>
                   </div>
                   <div className="flex-1">
@@ -1055,7 +1055,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 </div>
                 {/* Email */}
                 <div className="flex items-center gap-4 group">
-                  <div className="w-10 h-10 rounded-lg bg-[#0E2A33]/5 flex items-center justify-center text-[#0E2A33]/40 transition-colors group-hover:text-[#0E2A33]">
+                  <div className="w-10 h-10 rounded-xl bg-[#0E2A33]/5 flex items-center justify-center text-[#0E2A33]/40 transition-colors group-hover:text-[#0E2A33]">
                     <iconify-icon icon="lucide:mail" width="18"></iconify-icon>
                   </div>
                   <div className="flex-1">
@@ -1071,7 +1071,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 </div>
                 {/* Address */}
                 <div className="flex items-center gap-4 group">
-                  <div className="w-10 h-10 rounded-lg bg-[#0E2A33]/5 flex items-center justify-center text-[#0E2A33]/40 transition-colors group-hover:text-[#0E2A33]">
+                  <div className="w-10 h-10 rounded-xl bg-[#0E2A33]/5 flex items-center justify-center text-[#0E2A33]/40 transition-colors group-hover:text-[#0E2A33]">
                     <iconify-icon icon="lucide:map-pin" width="18"></iconify-icon>
                   </div>
                   <div className="flex-1">
@@ -1087,7 +1087,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 </div>
                 {/* Hours */}
                 <div className="flex items-center gap-4 group">
-                  <div className="w-10 h-10 rounded-lg bg-[#0E2A33]/5 flex items-center justify-center text-[#0E2A33]/40 transition-colors group-hover:text-[#0E2A33]">
+                  <div className="w-10 h-10 rounded-xl bg-[#0E2A33]/5 flex items-center justify-center text-[#0E2A33]/40 transition-colors group-hover:text-[#0E2A33]">
                     <iconify-icon icon="lucide:clock" width="18"></iconify-icon>
                   </div>
                   <div className="flex-1">
@@ -1160,8 +1160,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 </div>
 
                 <div className="lg:col-span-6">
-                  <div className="relative p-2 bg-white rounded-3xl border border-[#0E2A33]/[0.12] shadow-2xl shadow-[#0E2A33]/5 aspect-[4/3] group">
-                    <img src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1771522416/APROPOS-1200px_wkguv2.webp" className="w-full h-full object-cover rounded-xl relative z-10 filter contrast-[1.05]" alt="Atelier de production Plialu à Lyon" loading="lazy" />
+                  <div className="relative p-2 bg-white rounded-[20px] border border-[#0E2A33]/[0.12] shadow-2xl shadow-[#0E2A33]/5 aspect-[4/3] group overflow-hidden">
+                    <img src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1771522416/APROPOS-1200px_wkguv2.webp" className={`w-full h-full object-cover rounded-[20px] relative z-10 filter contrast-[1.05] ${DS.CARD_IMG_ZOOM}`} alt="Atelier de production Plialu à Lyon" loading="lazy" />
                   </div>
                 </div>
             </div>
@@ -1184,7 +1184,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   { expert: 'Réactivité technique', desc: 'Un interlocuteur qui connaît votre dossier de bout en bout.', icon: <svg className="w-8 h-8 text-[#E2FD48]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8Z" strokeLinecap="round" strokeLinejoin="round"/></svg> },
                   { expert: 'Traçabilité totale', desc: 'Norme QUALICOAT, contrôle qualité à chaque étape de production.', icon: <svg className="w-8 h-8 text-[#E2FD48]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 15a7 7 0 1 0 0-14 7 7 0 0 0 0 14Z" strokeLinecap="round" strokeLinejoin="round"/><path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.11" strokeLinecap="round" strokeLinejoin="round"/></svg> }
                 ].map((item) => (
-                  <div key={item.expert} className="bg-transparent border border-white/10 rounded-lg p-6 md:p-8 flex flex-col justify-between min-h-[220px]">
+                  <div key={item.expert} className="bg-white/[0.03] border border-white/10 rounded-[20px] p-6 md:p-8 flex flex-col justify-between min-h-[220px]">
                     <div className="mb-6">{item.icon}</div>
                     <div>
                       <span className={`block mb-2 ${DS.H3} text-white`}>{item.expert}</span>
@@ -1196,22 +1196,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             </div>
           </section>
 
-          <section className="bg-white py-20 px-6">
-            <div className="max-w-2xl mx-auto text-center">
-              <div className="mb-16">
-                <p className={`mb-4 ${DS.EYEBROW_LIGHT}`}>NOS ÉQUIPES</p>
-                <h2 className={`${DS.H2} text-[#0E2A33]`}>Des techniciens impliqués, du début à la fin.</h2>
-                <p className={`${DS.LEAD_LIGHT} mt-6 mx-auto`}>
-                Techniciens, opérateurs, logisticiens. Nos équipes connaissent leur métier et s'impliquent dans chaque commande. Un suivi interne et continu, sans sous-traitance, de la conception à la livraison.
-              </p>
-              </div>
-            </div>
-          </section>
-
           <section
             id="infinimetal"
-            className="py-32 md:py-40 section--dark border-t border-white/20 scroll-mt-24"
-            style={{ background: 'linear-gradient(to bottom, #071318 0%, #0b1e26 100%)' }}
+            className="bg-white py-24 md:py-32 border-t border-[#0E2A33]/[0.12] scroll-mt-24"
           >
             <div className="max-w-4xl mx-auto px-6 text-left">
               <div className="relative">
@@ -1230,7 +1217,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   className="relative md:absolute md:top-0 md:right-0 md:-mt-4 shrink-0 cursor-pointer border-0 bg-transparent p-0 outline-none ring-0 focus:outline-none focus:ring-0 transition-transform hover:scale-105"
                 >
                   <img
-                    src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1780589052/infini_blanc_zvlnn3.png"
+                    src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1780588809/infini_noir_f4v6lv.png"
                     alt="Logo Infinimetal"
                     className="w-32 h-32 md:w-64 md:h-64 object-contain"
                   />
@@ -1255,11 +1242,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             </div>
           </section>
 
-          <section className="relative selection-brand" style={{ background: 'linear-gradient(to bottom, #0b1e26 0%, #071318 100%)' }}>
+          <section className="relative selection-brand py-24 md:py-32" style={{ background: 'linear-gradient(to bottom, #0b1e26 0%, #071318 100%)' }}>
             <div className="mx-auto max-w-7xl px-6">
               <div className="h-px bg-white/10" />
               <p className="sr-only">PLIALU, atelier de façonnage métallique implanté en Rhône-Alpes, intervient sur toute la France, Corse comprise, ainsi qu'en Belgique et en Suisse.</p>
-              <div className="grid items-start gap-10 pb-0 pt-12 md:pt-16 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.3fr)] lg:grid-rows-[auto_1fr] lg:gap-x-16 lg:gap-y-10">
+              <div className="grid items-start gap-10 pb-0 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.3fr)] lg:grid-rows-[auto_1fr] lg:gap-x-16 lg:gap-y-10">
                 <h2 className={`${DS.H2} text-white [text-wrap:balance] lg:col-start-1 lg:row-start-1`}>
                   <span className="block">Un atelier à Lyon.</span>
                   <span className="block">Des chantiers partout en France.</span>
@@ -1304,7 +1291,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               </div>
             </div>
           </section>
-          <section className="py-24 bg-[#071318] text-center">
+          <section className="py-16 md:py-24 bg-[#071318] text-center">
             <div className="max-w-3xl mx-auto px-6">
               <div className="mb-16">
               <h2 className={`${DS.H2} text-white`}>20 ans de façonnage métallique en <span className="whitespace-nowrap">Rhône-Alpes.</span></h2>
@@ -1375,7 +1362,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           </section>
 
           {/* CTA Final */}
-          <section className="py-24 bg-[#071318] text-center border-t border-white/5">
+          <section className="py-16 md:py-24 bg-[#071318] text-center border-t border-white/5">
             <div className="max-w-3xl mx-auto px-6">
               <div className="mb-16">
               <h2 className={`${DS.H2} text-white`}>Confiez-nous vos projets</h2>
@@ -1409,7 +1396,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           </section>
 
           {/* --- BENTO GRID : 6 FAMILLES DE PRODUITS --- */}
-          <section className="py-20 bg-[#0a1f26]">
+          <section className="py-24 md:py-32 section--dark bg-gradient-to-b from-[#071318] to-[#0b1e26]">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="mb-16">
                 <h2 className={`${DS.H2} text-white`}>Nos Solutions Enveloppe</h2>
@@ -1418,10 +1405,10 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {/* Carte 1: Bardage */}
                 <div
-                  className="group relative flex flex-col overflow-hidden rounded-2xl bg-[#0E2A33] border border-white/10 h-[400px] cursor-pointer transition-all duration-300 hover:border-[#E2FD48] hover:shadow-[0_0_30px_rgba(226,253,72,0.15)]"
+                  className="group relative flex flex-col overflow-hidden rounded-[20px] bg-white/[0.03] border border-white/10 h-[400px] cursor-pointer transition-colors duration-300 hover:border-[#E2FD48]"
                   onClick={() => setCurrentPage('home')}
                 >
                   <div className="relative w-full aspect-video bg-[#071318] border border-white/10 flex items-center justify-center overflow-hidden">
@@ -1443,7 +1430,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
                 {/* Carte 2: ITE (image réelle conservée) */}
                 <div
-                  className="group relative flex flex-col overflow-hidden rounded-2xl bg-[#0E2A33] border border-white/10 h-[400px] cursor-pointer transition-all duration-300 hover:border-[#E2FD48] hover:shadow-[0_0_30px_rgba(226,253,72,0.15)]"
+                  className="group relative flex flex-col overflow-hidden rounded-[20px] bg-white/[0.03] border border-white/10 h-[400px] cursor-pointer transition-colors duration-300 hover:border-[#E2FD48]"
                   onClick={() => setCurrentPage('home')}
                 >
                   <div className="relative w-full aspect-video bg-[#071318] overflow-hidden">
@@ -1456,7 +1443,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       "
                       sizes="(max-width: 768px) 800px, (max-width: 1200px) 1200px, 1600px"
                       alt="Enduit mince sur isolant — PLIALU"
-                      className="absolute inset-0 w-full h-full object-cover"
+                      className={`absolute inset-0 w-full h-full object-cover ${DS.CARD_IMG_ZOOM}`}
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0E2A33] via-[#0E2A33]/40 to-transparent opacity-90" />
@@ -1474,7 +1461,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
                 {/* Carte 3: Précadres */}
                 <div
-                  className="group relative flex flex-col overflow-hidden rounded-2xl bg-[#0E2A33] border border-white/10 h-[400px] cursor-pointer transition-all duration-300 hover:border-[#E2FD48] hover:shadow-[0_0_30px_rgba(226,253,72,0.15)]"
+                  className="group relative flex flex-col overflow-hidden rounded-[20px] bg-white/[0.03] border border-white/10 h-[400px] cursor-pointer transition-colors duration-300 hover:border-[#E2FD48]"
                   onClick={() => setCurrentPage('home')}
                 >
                   <div className="relative w-full aspect-video bg-[#071318] border border-white/10 flex items-center justify-center overflow-hidden">
@@ -1496,7 +1483,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
                 {/* Carte 4: Tôles prélaquées */}
                 <div
-                  className="group relative flex flex-col overflow-hidden rounded-2xl bg-[#0E2A33] border border-white/10 h-[400px] cursor-pointer transition-all duration-300 hover:border-[#E2FD48] hover:shadow-[0_0_30px_rgba(226,253,72,0.15)]"
+                  className="group relative flex flex-col overflow-hidden rounded-[20px] bg-white/[0.03] border border-white/10 h-[400px] cursor-pointer transition-colors duration-300 hover:border-[#E2FD48]"
                   onClick={() => setCurrentPage('home')}
                 >
                   <div className="relative w-full aspect-video bg-[#071318] border border-white/10 flex items-center justify-center overflow-hidden">
@@ -1527,7 +1514,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
                 {/* Carte 5: Ravalement de façade */}
                 <div
-                  className="group relative flex flex-col overflow-hidden rounded-2xl bg-[#0E2A33] border border-white/10 h-[400px] cursor-pointer transition-all duration-300 hover:border-[#E2FD48] hover:shadow-[0_0_30px_rgba(226,253,72,0.15)]"
+                  className="group relative flex flex-col overflow-hidden rounded-[20px] bg-white/[0.03] border border-white/10 h-[400px] cursor-pointer transition-colors duration-300 hover:border-[#E2FD48]"
                   onClick={() => setCurrentPage('home')}
                 >
                   <div className="relative w-full aspect-video bg-[#071318] border border-white/10 flex items-center justify-center overflow-hidden">
@@ -1549,7 +1536,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
                 {/* Carte 6: Solutions pour l&apos;étanchéité */}
                 <div
-                  className="group relative flex flex-col overflow-hidden rounded-2xl bg-[#0E2A33] border border-white/10 h-[400px] cursor-pointer transition-all duration-300 hover:border-[#E2FD48] hover:shadow-[0_0_30px_rgba(226,253,72,0.15)]"
+                  className="group relative flex flex-col overflow-hidden rounded-[20px] bg-white/[0.03] border border-white/10 h-[400px] cursor-pointer transition-colors duration-300 hover:border-[#E2FD48]"
                   onClick={() => setCurrentPage('home')}
                 >
                   <div className="relative w-full aspect-video overflow-hidden">
@@ -1559,7 +1546,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       sizes="(max-width: 1024px) 100vw, 400px"
                       alt="Schéma étanchéité toit plat — couvertines aluminium PLIALU"
                       loading="lazy"
-                      className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                      className={`w-full h-full object-cover object-center ${DS.CARD_IMG_ZOOM}`}
                     />
                   </div>
 
@@ -1577,7 +1564,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           </section>
 
           {/* Section conversion vers le contact */}
-          <section className="py-24 bg-[#071318] text-center border-t border-white/5">
+          <section className="py-16 md:py-24 bg-[#071318] text-center border-t border-white/5">
             <div className="max-w-3xl mx-auto px-6">
               <div className="mb-16">
               <h2 className={`${DS.H2} text-white`}>Du profilé à la pose — tout se fabrique ici.</h2>
@@ -1615,7 +1602,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           </section>
 
           {/* Domaines section */}
-          <section className="bg-[#0a1f26] py-20">
+          <section className="section--dark bg-gradient-to-b from-[#071318] to-[#0b1e26] py-24 md:py-32">
             <div className="relative z-30 w-full max-w-7xl mx-auto px-6">
               <div className="space-y-16">
                 {/* En-tête section */}
@@ -1629,7 +1616,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 {/* Grille 6 domaines */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {/* 1. Enduit mince */}
-                  <div className="group relative overflow-hidden rounded-xl bg-white/5 bg-gradient-to-br from-[#0E2A33]/50 to-[#0E2A33]/20 border border-[#0E2A33]/50 p-8 hover:shadow-md hover:border-[#E2FD48]/50 hover:from-[#0E2A33]/70 transition-all duration-300">
+                  <div className="group relative overflow-hidden rounded-[20px] bg-white/[0.03] border border-white/10 p-8 hover:border-[#E2FD48]/50 transition-colors duration-300">
                     <div className="absolute -right-20 -top-20 w-40 h-40 bg-[#0E2A33]/20 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
                     <div className="flex items-center gap-2 mb-4 relative z-10">
                       <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 text-[#E2FD48]">
@@ -1645,7 +1632,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </div>
 
                   {/* 2. Étanchéité */}
-                  <div className="group relative overflow-hidden rounded-xl bg-white/5 bg-gradient-to-br from-[#0E2A33]/50 to-[#0E2A33]/20 border border-[#0E2A33]/50 p-8 hover:shadow-md hover:border-[#E2FD48]/50 hover:from-[#0E2A33]/70 transition-all duration-300">
+                  <div className="group relative overflow-hidden rounded-[20px] bg-white/[0.03] border border-white/10 p-8 hover:border-[#E2FD48]/50 transition-colors duration-300">
                     <div className="absolute -right-20 -top-20 w-40 h-40 bg-[#0E2A33]/20 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
                     <div className="flex items-center gap-2 mb-4 relative z-10">
                       <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="w-6 h-6 text-[#E2FD48]">
@@ -1661,7 +1648,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </div>
 
                   {/* 3. Bardages */}
-                  <div className="group relative overflow-hidden rounded-xl bg-white/5 bg-gradient-to-br from-[#0E2A33]/50 to-[#0E2A33]/20 border border-[#0E2A33]/50 p-8 hover:shadow-md hover:border-[#E2FD48]/50 hover:from-[#0E2A33]/70 transition-all duration-300">
+                  <div className="group relative overflow-hidden rounded-[20px] bg-white/[0.03] border border-white/10 p-8 hover:border-[#E2FD48]/50 transition-colors duration-300">
                     <div className="absolute -right-20 -top-20 w-40 h-40 bg-[#0E2A33]/20 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
                     <div className="flex items-center gap-2 mb-4 relative z-10">
                       <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="w-6 h-6 text-[#E2FD48]">
@@ -1677,7 +1664,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </div>
 
                   {/* 4. Ravalement */}
-                  <div className="group relative overflow-hidden rounded-xl bg-white/5 bg-gradient-to-br from-[#0E2A33]/50 to-[#0E2A33]/20 border border-[#0E2A33]/50 p-8 hover:shadow-md hover:border-[#E2FD48]/50 hover:from-[#0E2A33]/70 transition-all duration-300">
+                  <div className="group relative overflow-hidden rounded-[20px] bg-white/[0.03] border border-white/10 p-8 hover:border-[#E2FD48]/50 transition-colors duration-300">
                     <div className="absolute -right-20 -top-20 w-40 h-40 bg-[#0E2A33]/20 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
                     <div className="flex items-center gap-2 mb-4 relative z-10">
                       <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="w-6 h-6 text-[#E2FD48]">
@@ -1693,7 +1680,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </div>
 
                   {/* 5. Précadres */}
-                  <div className="group relative overflow-hidden rounded-xl bg-white/5 bg-gradient-to-br from-[#0E2A33]/50 to-[#0E2A33]/20 border border-[#0E2A33]/50 p-8 hover:shadow-md hover:border-[#E2FD48]/50 hover:from-[#0E2A33]/70 transition-all duration-300">
+                  <div className="group relative overflow-hidden rounded-[20px] bg-white/[0.03] border border-white/10 p-8 hover:border-[#E2FD48]/50 transition-colors duration-300">
                     <div className="absolute -right-20 -top-20 w-40 h-40 bg-[#0E2A33]/20 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
                     <div className="flex items-center gap-2 mb-4 relative z-10">
                       <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="w-6 h-6 text-[#E2FD48]">
@@ -1709,7 +1696,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </div>
 
                   {/* 6. MOB & FOB */}
-                  <div className="group relative overflow-hidden rounded-xl bg-white/5 bg-gradient-to-br from-[#0E2A33]/50 to-[#0E2A33]/20 border border-[#0E2A33]/50 p-8 hover:shadow-md hover:border-[#E2FD48]/50 hover:from-[#0E2A33]/70 transition-all duration-300">
+                  <div className="group relative overflow-hidden rounded-[20px] bg-white/[0.03] border border-white/10 p-8 hover:border-[#E2FD48]/50 transition-colors duration-300">
                     <div className="absolute -right-20 -top-20 w-40 h-40 bg-[#0E2A33]/20 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-300"></div>
                     <div className="flex items-center gap-2 mb-4 relative z-10">
                       <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="text-[#E2FD48]">
@@ -1736,7 +1723,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       scrollToInfinimetal();
                     }
                   }}
-                  className="relative overflow-hidden rounded-xl bg-white/10 border border-[#E2FD48]/30 p-6 w-full hover:shadow-md hover:border-[#E2FD48]/50 transition-all duration-300 cursor-pointer"
+                  className="group relative overflow-hidden rounded-[20px] bg-white/[0.03] border border-white/10 p-6 w-full hover:border-[#E2FD48]/50 transition-colors duration-300 cursor-pointer"
                 >
                   <div className="flex items-center gap-2 mb-3 relative z-10">
                     <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 text-[#E2FD48] shrink-0">
@@ -1763,7 +1750,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   <img
                     src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1780589052/infini_blanc_zvlnn3.png"
                     alt="Logo Infinimetal"
-                    className="absolute right-6 top-1/2 -translate-y-1/2 w-36 h-auto object-contain pointer-events-none"
+                    className={`absolute right-6 top-1/2 -translate-y-1/2 w-36 h-auto object-contain pointer-events-none ${DS.CARD_IMG_ZOOM}`}
                   />
                 </div>
 
@@ -1772,16 +1759,16 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           </section>
 
           {/* Télécharger les documents */}
-          <section className="py-16 md:py-24 bg-white">
+          <section className="py-24 md:py-32 bg-white">
                 <div className="max-w-7xl mx-auto px-6">
                   <div className="mb-16">
                   <h2 className={`${DS.H2} text-[#0E2A33]`}>Téléchargez nos ressources</h2>
                   <p className={`${DS.LEAD_LIGHT} mt-6`}>Tous les documents pour optimiser vos projets.</p>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
-                    <div className="bg-[#F5F5F3] text-[#0E2A33] border border-[#0E2A33]/50 rounded-lg p-6 hover:shadow-lg hover:border-[#E2FD48]/50 transition-all">
+                    <div className="bg-[#F5F5F3] text-[#0E2A33] border border-[#0E2A33]/20 rounded-[20px] p-6 hover:border-[#E2FD48]/50 transition-colors">
                       <div className="flex items-center gap-3 mb-4">
                         <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 text-[#0E2A33]">
                           <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
@@ -1797,7 +1784,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       </a>
                     </div>
 
-                    <div className="bg-[#F5F5F3] text-[#0E2A33] border border-[#0E2A33]/50 rounded-lg p-6 hover:shadow-lg hover:border-[#E2FD48]/50 transition-all">
+                    <div className="bg-[#F5F5F3] text-[#0E2A33] border border-[#0E2A33]/20 rounded-[20px] p-6 hover:border-[#E2FD48]/50 transition-colors">
                       <div className="flex items-center gap-3 mb-4">
                         <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="w-6 h-6 text-[#0E2A33]">
                           <path d="M235.32,73.37,182.63,20.69a16,16,0,0,0-22.63,0L20.68,160a16,16,0,0,0,0,22.63l52.69,52.68a16,16,0,0,0,22.63,0L235.32,96A16,16,0,0,0,235.32,73.37ZM84.68,224,32,171.31l32-32,26.34,26.35a8,8,0,0,0,11.32-11.32L75.31,128,96,107.31l26.34,26.35a8,8,0,0,0,11.32-11.32L107.31,96,128,75.31l26.34,26.35a8,8,0,0,0,11.32-11.32L139.31,64l32-32L224,84.69Z" />
@@ -1813,7 +1800,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       </a>
                     </div>
 
-                    <div className="bg-[#F5F5F3] text-[#0E2A33] border border-[#0E2A33]/50 rounded-lg p-6 hover:shadow-lg hover:border-[#E2FD48]/50 transition-all">
+                    <div className="bg-[#F5F5F3] text-[#0E2A33] border border-[#0E2A33]/20 rounded-[20px] p-6 hover:border-[#E2FD48]/50 transition-colors">
                       <div className="flex items-center gap-3 mb-4">
                         <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 text-[#0E2A33]">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M4.098 19.902a3.75 3.75 0 0 0 5.304 0l6.401-6.402M6.75 21A3.75 3.75 0 0 1 3 17.25V4.125C3 3.504 3.504 3 4.125 3h5.25c.621 0 1.125.504 1.125 1.125v4.072M6.75 21a3.75 3.75 0 0 0 3.75-3.75V8.197M6.75 21h13.125c.621 0 1.125-.504 1.125-1.125v-5.25c0-.621-.504-1.125-1.125-1.125h-4.072M10.5 8.197l2.88-2.88c.438-.439 1.15-.439 1.59 0l3.712 3.713c.44.44.44 1.152 0 1.59l-2.879 2.88M6.75 17.25h.008v.008H6.75v-.008Z" />
@@ -1829,7 +1816,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       </a>
                     </div>
 
-                    <div className="bg-[#F5F5F3] text-[#0E2A33] border border-[#0E2A33]/50 rounded-lg p-6 hover:shadow-lg hover:border-[#E2FD48]/50 transition-all flex flex-col h-full">
+                    <div className="bg-[#F5F5F3] text-[#0E2A33] border border-[#0E2A33]/20 rounded-[20px] p-6 hover:border-[#E2FD48]/50 transition-colors flex flex-col h-full">
                       <div className="flex items-center gap-3 mb-4">
                         <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 text-[#0E2A33]">
                           <path d="m22 11-1.296-1.296a2.4 2.4 0 0 0-3.408 0L11 16"/>
@@ -1853,7 +1840,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           </section>
 
           {/* CTA section */}
-          <section className="py-24 bg-[#071318] text-center border-t border-white/5">
+          <section className="py-16 md:py-24 bg-[#071318] text-center border-t border-white/5">
             <div className="max-w-3xl mx-auto px-6">
               <div className="mb-16">
               <h2 className={`${DS.H2} text-white`}>Des solutions qui s'adaptent à votre métier.</h2>
@@ -1948,9 +1935,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           </div>
 
           {/* Vidéo complète – lecteur Vimeo */}
-          <section id="video-complete" className="section--dark py-24 scroll-mt-24" style={{ background: '#071318' }}>
+          <section id="video-complete" className="section--dark py-24 md:py-32 scroll-mt-24" style={{ background: '#071318' }}>
             <div className="max-w-6xl mx-auto px-6">
-              <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-black/40 aspect-video">
+              <div className="relative rounded-[20px] overflow-hidden border border-white/10 bg-black/40 aspect-video">
                 <iframe
                   src="https://player.vimeo.com/video/1172884207?title=0&byline=0&portrait=0"
                   title="Vidéo complète du process PLIALU"
@@ -2073,7 +2060,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                         )}
                       </div>
                       
-                      <div className={`relative overflow-hidden rounded-xl shadow-lg ${exp.id === 'thermolaquage-plat' ? 'h-[400px] md:h-[600px]' : 'h-[320px] md:h-[500px]'} ${idx % 2 !== 0 ? 'lg:order-1' : ''} group bg-zinc-50`}>
+                      <div className={`relative overflow-hidden rounded-[20px] shadow-lg ${exp.id === 'thermolaquage-plat' ? 'h-[400px] md:h-[600px]' : 'h-[320px] md:h-[500px]'} ${idx % 2 !== 0 ? 'lg:order-1' : ''} group bg-zinc-50`}>
                         {exp.id === 'bureau-etudes' ? (
                           <img
                             src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773074223/BE-1200px_nzpfpj.webp"
@@ -2082,7 +2069,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                             alt="Ingénieur bureau d'études analysant des plans CAO pour la fabrication de pièces métalliques sur mesure"
                             loading="lazy"
                             decoding="async"
-                            className="w-full h-full object-cover rounded-2xl shadow-lg transition-transform duration-1000 group-hover:scale-105"
+                            className={`w-full h-full object-cover ${DS.CARD_IMG_ZOOM}`}
                           />
                         ) : exp.id === 'deroulage-mise-format' ? (
                           <img
@@ -2091,7 +2078,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                             src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773075246/De%CC%81roulage-1200px_e0hd8r.webp"
                             alt="Stockage de bobines de métal industrielles lourdes dans l'atelier Plialu pour l'étape de déroulage et préparation matière"
                             loading="lazy"
-                            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                            className={`w-full h-full object-cover ${DS.CARD_IMG_ZOOM}`}
                           />
                         ) : exp.id === 'thermolaquage-plat' ? (
                           <img
@@ -2099,7 +2086,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                             srcSet="https://res.cloudinary.com/dyiup6v5x/image/upload/v1780322264/Thermolaquage-800px_rgjdmf.webp 800w, https://res.cloudinary.com/dyiup6v5x/image/upload/v1780322264/Thermolaquage-1200px_hu9ira.webp 1200w, https://res.cloudinary.com/dyiup6v5x/image/upload/v1780322264/Thermolaquage-1600px_vautk7.webp 1600w"
                             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 60vw"
                             alt="Chaîne de thermolaquage industrielle certifiée Qualicoat"
-                            className="w-full h-full object-cover rounded-lg"
+                            className={`w-full h-full object-cover ${DS.CARD_IMG_ZOOM}`}
                             loading="lazy"
                           />
                         ) : exp.id === 'assemblage-finitions' ? (
@@ -2109,7 +2096,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                             sizes="(max-width: 1024px) 100vw, 50vw"
                             alt="Atelier d'assemblage et préparation des pièces métalliques avant livraison"
                             loading="lazy"
-                            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                            className={`w-full h-full object-cover ${DS.CARD_IMG_ZOOM}`}
                           />
                         ) : exp.id === 'logistique-expedition' ? (
                           <img
@@ -2118,7 +2105,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                             sizes="(max-width: 1024px) 100vw, 50vw"
                             alt="Préparation et expédition sécurisée des commandes en logistique"
                             loading="lazy"
-                            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                            className={`w-full h-full object-cover ${DS.CARD_IMG_ZOOM}`}
                           />
                         ) : exp.id === 'pliage-automatise' ? (
                           <img
@@ -2127,12 +2114,12 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                             src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773149127/Pliage-1200px_bl5tzv.webp"
                             alt="Pliage aluminium sur presse plieuse Amada"
                             loading="lazy"
-                            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                            className={`w-full h-full object-cover ${DS.CARD_IMG_ZOOM}`}
                           />
                         ) : (
                           <img
                             src={exp.img}
-                            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                            className={`w-full h-full object-cover ${DS.CARD_IMG_ZOOM}`}
                             alt={exp.alt}
                             loading="lazy"
                             decoding="async"
@@ -2148,7 +2135,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           </div>
 
           {/* CTA Final */}
-          <section className="py-24 bg-[#071318] text-center border-t border-white/5">
+          <section className="py-16 md:py-24 bg-[#071318] text-center border-t border-white/5">
             <div className="max-w-3xl mx-auto px-6">
               <div className="mb-16">
               <h2 className={`${DS.H2} text-white`}>Vos contraintes techniques ont une réponse ici.</h2>
@@ -3188,7 +3175,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           </section>
 
           {/* Coordonnées & Info (Light section) */}
-          <section className="py-12 md:py-24 bg-[#F3F6F7]">
+          <section className="py-24 md:py-32 bg-[#F3F6F7]">
             <div className="max-w-7xl mx-auto px-4 sm:px-6">
               <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-12 lg:gap-20">
                 {/* Coordonnées */}
@@ -3265,7 +3252,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   {/* Localisation */}
                   <div className="space-y-4">
                     <span className={`block mb-4 ${DS.EYEBROW_LIGHT}`}>LOCALISATION</span>
-                    <div className="w-full h-[320px] md:h-[380px] rounded-2xl overflow-hidden border border-[#0E2A33]/[0.12] shadow-sm bg-white">
+                    <div className="w-full h-[320px] md:h-[380px] rounded-[20px] overflow-hidden border border-[#0E2A33]/[0.12] shadow-sm bg-white">
                       <iframe
                         src="https://www.google.com/maps?q=Plialu%2C%20Technoparc%20Sa%C3%B4ne%20Vall%C3%A9e%2C%20150%20Route%20de%20Copernic%2C%2001390%20Civrieux&z=9&output=embed"
                         className="w-full h-full border-0"
@@ -3278,7 +3265,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 </div>
 
                 {/* Formulaire Web3Forms */}
-                <div id="contact-form" className="bg-white rounded-[32px] p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.03)] border border-[#0E2A33]/[0.12] scroll-mt-32">
+                <div id="contact-form" className="bg-white rounded-[20px] p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.03)] border border-[#0E2A33]/[0.12] scroll-mt-32">
                   <form
                     action="https://usebasin.com/f/b0fa3eeb614b"
                     method="POST"
@@ -3297,7 +3284,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                           type="text"
                           name="firstname"
                           required
-                          className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-lg focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33]"
+                          className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-xl focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33]"
                           placeholder="Jean"
                         />
                       </div>
@@ -3307,7 +3294,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                           type="text"
                           name="lastname"
                           required
-                          className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-lg focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33]"
+                          className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-xl focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33]"
                           placeholder="Dupont"
                         />
                       </div>
@@ -3321,7 +3308,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                           type="email"
                           name="email"
                           required
-                          className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-lg focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33]"
+                          className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-xl focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33]"
                           placeholder="contact@entreprise.com"
                         />
                       </div>
@@ -3330,7 +3317,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                         <input
                           type="tel"
                           name="phone"
-                          className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-lg focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33]"
+                          className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-xl focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33]"
                           placeholder="06 00 00 00 00"
                         />
                       </div>
@@ -3342,7 +3329,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       <input
                         type="text"
                         name="company"
-                        className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-lg focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33]"
+                        className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-xl focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33]"
                         placeholder="Nom de votre société"
                       />
                     </div>
@@ -3352,7 +3339,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       <select
                         name="intention"
                         required
-                        className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-lg focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33]"
+                        className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-xl focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33]"
                       >
                         <option value="">— Sélectionner une intention —</option>
                         <option value="Demander un devis">Demander un devis</option>
@@ -3367,7 +3354,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       <textarea
                         name="message"
                         rows={4}
-                        className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-lg focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33] resize-none"
+                        className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-xl focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33] resize-none"
                         placeholder="Détaillez vos besoins techniques..."
                       ></textarea>
                     </div>
@@ -3411,7 +3398,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
       {/* --- MENTIONS LÉGALES PAGE --- */}
       {currentPage === 'mentions-legales' && (
         <div className="animate-fade-up">
-          <section className="relative bg-[#071318] pt-48 md:pt-56 pb-24 overflow-hidden min-h-screen flex flex-col justify-center">
+          <section className="relative bg-[#071318] pt-32 md:pt-40 pb-24 overflow-hidden min-h-screen flex flex-col justify-center">
             <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-b from-[#0e2a33]/40 to-[#071318]"></div>
             <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 w-full">
               <button
@@ -3455,7 +3442,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
       {/* --- POLITIQUE DE CONFIDENTIALITÉ PAGE --- */}
       {currentPage === 'politique-confidentialite' && (
         <div className="animate-fade-up">
-          <section className="relative bg-[#071318] pt-48 md:pt-56 pb-24 overflow-hidden min-h-screen flex flex-col justify-center">
+          <section className="relative bg-[#071318] pt-32 md:pt-40 pb-24 overflow-hidden min-h-screen flex flex-col justify-center">
             <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-b from-[#0e2a33]/40 to-[#071318]"></div>
             <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 w-full">
               <button

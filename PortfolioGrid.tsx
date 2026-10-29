@@ -184,7 +184,7 @@ const PortfolioCard: React.FC<{
       style={reduceMotion ? undefined : { transitionDelay: visible ? `${stagger}ms` : '0ms' }}
     >
       <article
-        className="group relative h-full overflow-hidden rounded-3xl bg-[#0E2A33] ring-1 ring-white/10 has-[button:focus-visible]:ring-2 has-[button:focus-visible]:ring-[#E2FD48]"
+        className="group relative h-full overflow-hidden rounded-[20px] bg-[#0E2A33] ring-1 ring-white/10 has-[button:focus-visible]:ring-2 has-[button:focus-visible]:ring-[#E2FD48]"
         onMouseEnter={() => {
           if (preview) setPreviewReady(true);
         }}

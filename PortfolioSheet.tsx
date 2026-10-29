@@ -22,7 +22,7 @@ const SheetPhoto: React.FC<{ image: ProjectImage; alt: string; eager: boolean }>
   const markLoaded = () => setLoaded(true);
 
   return (
-    <div className="rounded-2xl bg-[#0E2A33]">
+    <div className="rounded-[20px] bg-[#0E2A33]">
       <img
         ref={(node) => {
           if (node?.complete && node.naturalWidth > 0) markLoaded();
@@ -37,7 +37,7 @@ const SheetPhoto: React.FC<{ image: ProjectImage; alt: string; eager: boolean }>
         loading={eager ? 'eager' : 'lazy'}
         onLoad={markLoaded}
         style={{ transition: 'opacity 300ms' }}
-        className={`h-auto w-full rounded-2xl ${loaded ? 'opacity-100' : 'opacity-0'}`}
+        className={`h-auto w-full rounded-[20px] ${loaded ? 'opacity-100' : 'opacity-0'}`}
       />
     </div>
   );
@@ -51,13 +51,13 @@ const ProjectNavLink: React.FC<{
   <button
     type="button"
     onClick={() => onSelect(project.id)}
-    className="group -m-2 flex w-full items-center gap-3 rounded-2xl p-2 text-left hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E2FD48]"
+    className="group -m-2 flex w-full items-center gap-3 rounded-[20px] p-2 text-left hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E2FD48]"
   >
     <img
       src={project.mainImg.src}
       alt=""
       loading="lazy"
-      className="h-14 w-14 shrink-0 rounded-xl object-cover"
+      className="h-14 w-14 shrink-0 rounded-[20px] object-cover"
     />
     <span className="min-w-0 flex-1">
       <span className="block text-[10px] font-extrabold uppercase tracking-[0.3em] text-white/50">
