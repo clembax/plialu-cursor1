@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import * as DS from './src/components/ds/ds';
 import { createPortal } from 'react-dom';
 import { getProjectImageAlt, getProjectImages, type Project, type ProjectImage } from './projects';
 
@@ -245,7 +246,7 @@ const PortfolioSheet: React.FC<PortfolioSheetProps> = ({
               <button
                 type="button"
                 onClick={onContact}
-                className="mt-8 px-10 py-4 text-sm font-extrabold text-[#0E2A33] rounded-full bg-[#E2FD48] shadow-xl transition-all hover:-translate-y-1 hover:shadow-[#E2FD48]/20 md:px-12 md:py-5"
+                className={`${DS.BTN_PRIMARY} mt-8`}
               >
                 Demander un devis
               </button>

@@ -21,6 +21,7 @@ declare global {
   }
 }
 
+import * as DS from './src/components/ds/ds';
 import FranceDotMap from './FranceDotMap';
 import Success from './Success';
 import EnduitMinceIsolant from './src/components/solutions/EnduitMinceIsolant';
@@ -588,11 +589,11 @@ const App: React.FC = () => {
           )}
 
           {/* Center: Navigation Menu */}
-          <div className="absolute left-1/2 -translate-x-1/2 hidden md:flex items-center gap-1 p-1.5 rounded-full border transition-all duration-300
+          <div className="absolute left-1/2 -translate-x-1/2 hidden lg:flex items-center gap-1 p-1.5 rounded-full border transition-all duration-300
             ${headerTheme === 'dark' ? 'bg-[#0E2A33]/5 border-black/10' : 'bg-white/5 border-white/5'}">
             <button 
               onClick={() => setCurrentPage('home')} 
-              className={`text-xs font-semibold px-5 py-2 rounded-full transition-all 
+              className={`whitespace-nowrap text-xs font-semibold px-5 py-2 rounded-full transition-all 
                 ${currentPage === 'home' 
                   ? (headerTheme === 'dark' ? 'text-[#0E2A33] bg-[#0E2A33]/10' : 'text-white bg-white/10')
                   : (headerTheme === 'dark' ? 'text-[#0E2A33]/60 hover:text-[#0E2A33] hover:bg-black/5' : 'text-zinc-400 hover:text-white hover:bg-white/5')
@@ -602,7 +603,7 @@ const App: React.FC = () => {
             </button>
             <button 
 onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.history.replaceState(null, '', window.location.pathname + window.location.search || '#'); }}
-              className={`text-xs font-semibold px-5 py-2 rounded-full transition-all
+              className={`whitespace-nowrap text-xs font-semibold px-5 py-2 rounded-full transition-all
                 ${currentPage === 'expertises'
                   ? (headerTheme === 'dark' ? 'text-[#0E2A33] bg-[#0E2A33]/10' : 'text-white bg-white/10')
                   : (headerTheme === 'dark' ? 'text-[#0E2A33]/60 hover:text-[#0E2A33] hover:bg-black/5' : 'text-zinc-400 hover:text-white hover:bg-white/5')
@@ -612,7 +613,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             </button>
             <button
               onClick={() => setCurrentPage('solutions-temporaire')}
-              className={`text-xs font-semibold px-5 py-2 rounded-full transition-all
+              className={`whitespace-nowrap text-xs font-semibold px-5 py-2 rounded-full transition-all
                 ${
                   currentPage === 'solutions-temporaire'
                     ? headerTheme === 'dark'
@@ -627,7 +628,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             </button>
             <button 
               onClick={() => setCurrentPage('projects')} 
-              className={`text-xs font-semibold px-5 py-2 rounded-full transition-all 
+              className={`whitespace-nowrap text-xs font-semibold px-5 py-2 rounded-full transition-all 
                 ${currentPage === 'projects' 
                   ? (headerTheme === 'dark' ? 'text-[#0E2A33] bg-[#0E2A33]/10' : 'text-white bg-white/10')
                   : (headerTheme === 'dark' ? 'text-[#0E2A33]/60 hover:text-[#0E2A33] hover:bg-black/5' : 'text-zinc-400 hover:text-white hover:bg-white/5')
@@ -637,7 +638,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             </button>
             <button 
               onClick={() => setCurrentPage('a-propos')} 
-              className={`text-xs font-semibold px-5 py-2 rounded-full transition-all
+              className={`whitespace-nowrap text-xs font-semibold px-5 py-2 rounded-full transition-all
                 ${currentPage === 'a-propos'
                   ? (headerTheme === 'dark' ? 'text-[#0E2A33] bg-black/10' : 'text-white bg-white/10')
                   : (headerTheme === 'dark' ? 'text-[#0E2A33]/60 hover:text-[#0E2A33] hover:bg-black/5' : 'text-zinc-400 hover:text-white hover:bg-white/5')
@@ -647,7 +648,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             </button>
             <button 
               onClick={() => setCurrentPage('contact')} 
-              className={`text-xs font-semibold px-5 py-2 rounded-full transition-all
+              className={`whitespace-nowrap text-xs font-semibold px-5 py-2 rounded-full transition-all
                 ${currentPage === 'contact' 
                   ? (headerTheme === 'dark' ? 'text-[#0E2A33] bg-[#0E2A33]/10' : 'text-white bg-white/10')
                   : (headerTheme === 'dark' ? 'text-[#0E2A33]/60 hover:text-[#0E2A33] hover:bg-black/5' : 'text-zinc-400 hover:text-white hover:bg-white/5')
@@ -659,14 +660,14 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
           {/* Right: CTA Button */}
           <div className="flex-none flex items-center gap-4">
-            <button onClick={() => currentPage !== 'contact' && setCurrentPage('contact')} className="hidden md:flex text-xs font-bold bg-[#E2FD48] text-black px-6 py-3 rounded-full hover:bg-[#d4ed3f] transition-all tracking-tight shadow-[0_0_30px_rgba(226,253,72,0.15)]">
+            <button onClick={() => currentPage !== 'contact' && setCurrentPage('contact')} className={`${DS.BTN_COMPACT} max-lg:hidden`}>
               Demander un devis
             </button>
             <button
               type="button"
               aria-label="Ouvrir le menu"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`fixed top-4 right-4 z-50 md:hidden p-2 rounded-lg border-0 outline-none focus:outline-none focus:ring-0 transition-all
+              className={`fixed top-4 right-4 z-50 lg:hidden p-2 rounded-lg border-0 outline-none focus:outline-none focus:ring-0 transition-all
                 ${headerTheme === 'dark' ? 'text-[#0E2A33] bg-black/5' : 'text-white bg-white/5'}`}
             >
               <iconify-icon icon="lucide:menu" width="24" stroke-width="1.5"></iconify-icon>
@@ -677,7 +678,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
       {/* Menu mobile (panneau coulissant) */}
       <div
-        className={`fixed inset-0 z-40 md:hidden transition-opacity duration-300 ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+        className={`fixed inset-0 z-40 lg:hidden transition-opacity duration-300 ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
         aria-hidden={!isMenuOpen}
       >
         <button
@@ -699,7 +700,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             <button onClick={() => { setCurrentPage('projects'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Portfolio</button>
             <button onClick={() => { setCurrentPage('a-propos'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">À propos</button>
             <button onClick={() => { setCurrentPage('contact'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Contact</button>
-            <button onClick={() => { setCurrentPage('contact'); setIsMenuOpen(false); }} className="mt-4 py-3 px-4 rounded-xl bg-[#E2FD48] text-[#0E2A33] font-bold text-center hover:bg-[#d4ed3f] transition-colors">Demander un devis</button>
+            <button onClick={() => { setCurrentPage('contact'); setIsMenuOpen(false); }} className={`${DS.BTN_PRIMARY} mt-4 w-full justify-center`}>Demander un devis</button>
           </nav>
         </div>
       </div>
@@ -730,8 +731,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 </p>
                 <div className="space-y-8">
                   <div className="flex flex-col sm:flex-row items-center gap-4">
-                    <button onClick={() => setCurrentPage('contact')} className="w-full sm:w-auto px-10 py-4 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full hover:bg-white transition-all tracking-tight shadow-[0_20px_40px_rgba(226,253,72,0.15)]">Demander un devis</button>
-                    <button onClick={() => setCurrentPage('expertises')} className="w-full sm:w-auto px-10 py-4 bg-transparent border border-white/20 text-white text-sm font-bold rounded-full hover:bg-white/10 transition-all tracking-tight flex items-center justify-center gap-2 group">
+                    <button onClick={() => setCurrentPage('contact')} className={`${DS.BTN_PRIMARY} w-full sm:w-auto`}>Demander un devis</button>
+                    <button onClick={() => setCurrentPage('expertises')} className={`${DS.BTN_SECONDARY_DARK} w-full sm:w-auto group`}>
                       Découvrir nos expertises
                       <iconify-icon icon="lucide:arrow-right" className="group-hover:translate-x-1 transition-transform"></iconify-icon>
                     </button>
@@ -762,9 +763,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   <p className="text-white/90 text-lg leading-relaxed font-medium">
                     De l'étude technique Bureau d'Études au pliage grande longueur, jusqu'au thermolaquage industriel certifié Qualicoat. Chaque étape de notre <strong>fabrication industrielle métal</strong> est maîtrisée en interne pour une qualité irréprochable.
                   </p>
-                  <button onClick={() => setCurrentPage('expertises')} className="inline-flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-[#E2FD48] hover:text-white transition-all group">
+                  <button onClick={() => setCurrentPage('expertises')} className={DS.ACTION_DARK}>
                     Découvrir nos expertises
-                    <iconify-icon icon="lucide:arrow-right" className="group-hover:translate-x-2 transition-transform"></iconify-icon>
+                    <iconify-icon icon="lucide:arrow-right" className={DS.ACTION_ARROW}></iconify-icon>
                   </button>
                 </div>
                 <div className="relative aspect-square md:aspect-video lg:aspect-square overflow-hidden rounded-3xl border border-white/10 bg-[#07161C] group">
@@ -850,7 +851,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   <button
                     type="button"
                     onClick={() => setCurrentPage('expertises')}
-                    className="inline-flex items-center justify-center bg-[#E2FD48] text-[#0E2A33] font-bold px-5 py-3 rounded-full mt-6 text-sm"
+                    className={`${DS.BTN_PRIMARY} mt-6`}
                   >
                     Voir la visite complète →
                   </button>
@@ -956,7 +957,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               </div>
 
               <div className="text-center">
-                <button onClick={() => setCurrentPage('solutions-temporaire')} className="px-10 py-4 md:px-12 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all shadow-xl hover:shadow-[#E2FD48]/20 hover:-translate-y-1">
+                <button onClick={() => setCurrentPage('solutions-temporaire')} className={DS.BTN_PRIMARY}>
                   Découvrir toutes nos solutions
                 </button>
               </div>
@@ -981,7 +982,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 <a
                   href="/portfolio"
                   onClick={(e) => { if (e.button === 0 && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) { e.preventDefault(); setCurrentPage('projects'); } }}
-                  className="px-10 py-4 md:px-12 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all shadow-xl hover:shadow-[#E2FD48]/20 hover:-translate-y-1"
+                  className={DS.BTN_PRIMARY}
                 >
                   {`Voir les ${PROJECTS.length} réalisations`}
                 </a>
@@ -1007,7 +1008,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   <p className="text-white/80 text-lg leading-relaxed">
                     Depuis notre <strong>atelier lyonnais</strong>, nous assurons une réactivité optimale pour accompagner vos chantiers en <strong>Rhône-Alpes</strong> et en Europe. Une capacité de production appuyée par plus de 7 000 m² dédiés au façonnage métallique sur mesure.
                   </p>
-                  <a href="/a-propos" onClick={(e) => { e.preventDefault(); setCurrentPage('a-propos'); }} className="flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-[#E2FD48] hover:text-white transition-all group">EN SAVOIR PLUS <iconify-icon icon="lucide:arrow-right" className="group-hover:translate-x-2 transition-transform"></iconify-icon></a>
+                  <a href="/a-propos" onClick={(e) => { e.preventDefault(); setCurrentPage('a-propos'); }} className={DS.ACTION_DARK}>EN SAVOIR PLUS <iconify-icon icon="lucide:arrow-right" className={DS.ACTION_ARROW}></iconify-icon></a>
                 </div>
               </div>
             </div>
@@ -1020,8 +1021,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               <h2 className="mb-10 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">Étude technique, faisabilité, chiffrage — ou toute autre demande.</h2>
               <p className="text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed font-medium text-[#0E2A33]/70">Nos équipes vous répondent rapidement avec une approche intégrant vos contraintes.</p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-                <button onClick={() => setCurrentPage('contact')} className="w-full sm:w-auto px-12 py-4 bg-[#0E2A33] text-white text-sm font-extrabold rounded-full transition-all shadow-lg hover:shadow-2xl">Demander un devis</button>
-                <button onClick={() => setCurrentPage('contact')} className="w-full sm:w-auto px-12 py-4 border border-[#0E2A33] text-[#0E2A33] text-sm font-bold rounded-full transition-all hover:bg-[#0E2A33] hover:text-white">Contacter un expert</button>
+                <button onClick={() => setCurrentPage('contact')} className={`${DS.BTN_SECONDARY_LIGHT} w-full sm:w-auto`}>Demander un devis</button>
+                <button onClick={() => setCurrentPage('contact')} className={`${DS.BTN_SECONDARY_LIGHT} w-full sm:w-auto`}>Contacter un expert</button>
               </div>
 
               {/* Bloc Coordonnées interactif */}
@@ -1110,7 +1111,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 <a
                   href="#a-propos-contenu"
                   onClick={() => { setCurrentPage('contact'); }}
-                  className="inline-flex items-center gap-2 px-10 py-4 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full hover:bg-white transition-all tracking-tight shadow-[0_20px_40px_rgba(226,253,72,0.15)]"
+                  className={DS.BTN_PRIMARY}
                 >
                   Demander un devis
                 </a>
@@ -1139,7 +1140,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     </p>
                   </div>
                   <div className="pt-4">
-                    <button onClick={() => setCurrentPage('contact')} className="inline-flex items-center justify-center gap-3 group px-10 py-4 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm md:text-base font-extrabold rounded-full transition-all tracking-tight shadow-[0_15px_30px_rgba(226,253,72,0.2)] hover:shadow-[#E2FD48]/40 hover:-translate-y-1">
+                    <button onClick={() => setCurrentPage('contact')} className={`${DS.BTN_PRIMARY} group`}>
                       <span>Échanger sur votre projet</span>
                       <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12H19M19 12L13 6M19 12L13 18"/></svg>
                     </button>
@@ -1232,7 +1233,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               <button
                 type="button"
                 onClick={() => setCurrentPage('solutions-temporaire')}
-                className="mt-12 inline-flex items-center justify-center gap-3 px-10 py-4 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all tracking-tight shadow-[0_15px_30px_rgba(226,253,72,0.2)] hover:shadow-[#E2FD48]/40 hover:-translate-y-1"
+                className={`${DS.BTN_PRIMARY} mt-12`}
               >
                 Découvrir le Catalogue RAL
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12H19M19 12L13 6M19 12L13 18"/></svg>
@@ -1293,7 +1294,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             <div className="max-w-3xl mx-auto px-6 space-y-8">
               <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">20 ans de façonnage métallique en Rhône-Alpes.</h2>
               <p className="text-base md:text-lg text-white/50">Vos équipes techniques répondent sous 48 h.</p>
-              <button onClick={() => setCurrentPage('contact')} className="px-10 py-4 md:px-12 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all shadow-xl hover:shadow-[#E2FD48]/20 hover:-translate-y-1">
+              <button onClick={() => setCurrentPage('contact')} className={DS.BTN_PRIMARY}>
                 Soumettre un projet
               </button>
             </div>
@@ -1324,7 +1325,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     download
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block bg-[#E2FD48] text-[#0E2A33] font-extrabold px-8 py-3 rounded-full text-sm hover:bg-[#E2FD48]/90 hover:shadow-lg hover:-translate-y-1 transition-all"
+                    className={DS.BTN_PRIMARY}
                   >
                     <span className="flex items-center gap-2">
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
@@ -1334,7 +1335,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   <a
                     href="#projets-grille"
                     onClick={(e) => { e.preventDefault(); document.getElementById('projets-grille')?.scrollIntoView({ behavior: 'smooth' }); }}
-                    className="inline-flex items-center gap-2 px-10 py-4 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full hover:bg-white transition-all tracking-tight shadow-[0_20px_40px_rgba(226,253,72,0.15)]"
+                    className={DS.BTN_PRIMARY}
                   >
                     Voir nos collaborations
                     <iconify-icon icon="lucide:arrow-down" width="18"></iconify-icon>
@@ -1360,7 +1361,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             <div className="max-w-3xl mx-auto px-6 space-y-8">
               <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">Confiez-nous vos projets</h2>
               <p className="text-base md:text-lg text-white/50">Nos équipes vous accompagnent dans la recherche de solutions pour vos projets</p>
-              <button onClick={() => setCurrentPage('contact')} className="px-10 py-4 md:px-12 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all shadow-xl hover:shadow-[#E2FD48]/20 hover:-translate-y-1">
+              <button onClick={() => setCurrentPage('contact')} className={DS.BTN_PRIMARY}>
                 Soumettre mon projet
               </button>
             </div>
@@ -1562,7 +1563,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               <p className="text-base md:text-lg text-white/50">Profilés aluminium, accessoires ITE, thermolaquage post-façonnage. Un seul interlocuteur pour tout le système.</p>
               <button
                 onClick={() => setCurrentPage('contact')}
-                className="px-10 py-4 md:px-12 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all shadow-xl hover:shadow-[#E2FD48]/20 hover:-translate-y-1"
+                className={DS.BTN_PRIMARY}
               >
                 Chiffrer mon projet
               </button>
@@ -1764,7 +1765,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                         <h3 className="text-xl font-bold">Fiches techniques</h3>
                       </div>
                       <p className="text-[#0E2A33]/60 text-sm mb-4">Découvrez nos fiches techniques détaillées pour chaque domaine de solution.</p>
-                      <a href="/documents/Fiches_techniques.pdf" download="Fiches_techniques_PLIALU.pdf" className="inline-block bg-[#E2FD48] text-[#0E2A33] font-bold px-8 py-3 rounded-full text-sm hover:bg-[#E2FD48]/90 hover:shadow-lg hover:-translate-y-1 transition-all">
+                      <a href="/documents/Fiches_techniques.pdf" download="Fiches_techniques_PLIALU.pdf" className={DS.BTN_PRIMARY}>
                         <span className="flex items-center gap-2">
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
                           Télécharger PDF
@@ -1780,7 +1781,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                         <h3 className="text-xl font-bold">Déroulage</h3>
                       </div>
                       <p className="text-[#0E2A33]/60 text-sm mb-4">Consultez notre document déroulage pour optimiser vos formats et réduire vos chutes.</p>
-                      <a href="/documents/Deroulage.pdf" download="Deroulage_PLIALU.pdf" className="inline-block bg-[#E2FD48] text-[#0E2A33] font-bold px-8 py-3 rounded-full text-sm hover:bg-[#E2FD48]/90 hover:shadow-lg hover:-translate-y-1 transition-all">
+                      <a href="/documents/Deroulage.pdf" download="Deroulage_PLIALU.pdf" className={DS.BTN_PRIMARY}>
                         <span className="flex items-center gap-2">
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
                           Télécharger PDF
@@ -1796,7 +1797,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                         <h3 className="text-xl font-bold">Catalogue RAL</h3>
                       </div>
                       <p className="text-[#0E2A33]/60 text-sm mb-4">Accédez à notre gamme complète de teintes RAL disponibles en finition brillante et mate.</p>
-                      <a href="/documents/Catalogue_RAL.pdf" download="Catalogue_RAL_PLIALU.pdf" className="inline-block bg-[#E2FD48] text-[#0E2A33] font-bold px-8 py-3 rounded-full text-sm hover:bg-[#E2FD48]/90 hover:shadow-lg hover:-translate-y-1 transition-all">
+                      <a href="/documents/Catalogue_RAL.pdf" download="Catalogue_RAL_PLIALU.pdf" className={DS.BTN_PRIMARY}>
                         <span className="flex items-center gap-2">
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
                           Télécharger PDF
@@ -1815,7 +1816,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                         <h3 className="text-xl font-bold">Portfolio</h3>
                       </div>
                       <p className="text-[#0E2A33]/60 text-sm mb-4">Découvrez nos réalisations et chantiers emblématiques.</p>
-                      <a href="/documents/Portfolio_Plialu.pdf" download target="_blank" rel="noopener noreferrer" className="mt-auto inline-block bg-[#E2FD48] text-[#0E2A33] font-bold px-8 py-3 rounded-full text-sm hover:bg-[#E2FD48]/90 hover:shadow-lg hover:-translate-y-1 transition-all">
+                      <a href="/documents/Portfolio_Plialu.pdf" download target="_blank" rel="noopener noreferrer" className={`${DS.BTN_PRIMARY} mt-auto`}>
                         <span className="flex items-center gap-2">
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
                           Télécharger PDF
@@ -1832,7 +1833,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             <div className="max-w-3xl mx-auto px-6 space-y-8">
               <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">Des solutions qui s'adaptent à votre métier.</h2>
               <p className="text-base md:text-lg text-white/50">Parlons de vos contraintes métier — nos équipes répondent sous 48h.</p>
-              <button onClick={() => setCurrentPage('contact')} className="px-10 py-4 md:px-12 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all shadow-xl hover:shadow-[#E2FD48]/20 hover:-translate-y-1">
+              <button onClick={() => setCurrentPage('contact')} className={DS.BTN_PRIMARY}>
                 Présenter mon projet
               </button>
             </div>
@@ -1860,7 +1861,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   <a
                     href="#expertises-sommaire"
                     onClick={(e) => { e.preventDefault(); document.getElementById('expertises-sommaire')?.scrollIntoView({ behavior: 'smooth' }); }}
-                    className="inline-flex items-center gap-2 w-full sm:w-auto px-12 py-4 bg-[#0E2A33] text-white text-sm font-extrabold rounded-full transition-all shadow-lg hover:shadow-2xl"
+                    className={`${DS.BTN_SECONDARY_LIGHT} w-full sm:w-auto`}
                   >
                     Découvrir notre process
                     <iconify-icon icon="lucide:arrow-down" width="18"></iconify-icon>
@@ -1868,7 +1869,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   <a
                     href="#video-complete"
                     onClick={(e) => { e.preventDefault(); document.getElementById('video-complete')?.scrollIntoView({ behavior: 'smooth' }); }}
-                    className="inline-flex items-center gap-2 w-full sm:w-auto px-12 py-4 border border-[#0E2A33] text-[#0E2A33] text-sm font-bold rounded-full transition-all hover:bg-[#0E2A33] hover:text-white"
+                    className={`${DS.BTN_SECONDARY_LIGHT} w-full sm:w-auto`}
                   >
                     Voir la vidéo complète
                     <iconify-icon icon="lucide:play" width="18"></iconify-icon>
@@ -2123,7 +2124,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             <div className="max-w-3xl mx-auto px-6 space-y-8">
               <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">Vos contraintes techniques ont une réponse ici.</h2>
               <p className="text-base md:text-lg text-white/50">Chargés d'affaires disponibles pour analyser vos plans DXF et optimiser vos coûts avant production.</p>
-              <button onClick={() => setCurrentPage('contact')} className="px-10 py-4 md:px-12 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all shadow-xl hover:shadow-[#E2FD48]/20 hover:-translate-y-1">
+              <button onClick={() => setCurrentPage('contact')} className={DS.BTN_PRIMARY}>
                 Envoyer des plans
               </button>
             </div>
@@ -3147,7 +3148,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 <p className="text-base md:text-lg text-[#0E2A33]/70 max-w-2xl leading-relaxed font-medium">
                   Pour une étude technique, un chiffrage ou une demande de faisabilité, nos équipes vous répondent rapidement avec une approche orientée contraintes chantier (plans DXF/DWG, métrés, finitions, délais).
                 </p>
-                <a href="#contact-form" className="inline-block px-10 py-4 md:px-12 md:py-5 bg-[#0E2A33] text-white text-sm font-extrabold rounded-full transition-all shadow-xl hover:-translate-y-1">
+                <a href="#contact-form" className={DS.BTN_SECONDARY_LIGHT}>
                   Envoyer une demande
                 </a>
               </div>
@@ -3383,7 +3384,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 w-full">
               <button
                 onClick={() => setCurrentPage('home')}
-                className="text-[#E2FD48] hover:opacity-70 transition-opacity font-medium text-xs uppercase tracking-widest flex items-center gap-2 mb-14"
+                className={`${DS.ACTION_DARK} mb-14`}
               >
                 &larr; RETOUR À L'ACCUEIL
               </button>
@@ -3427,7 +3428,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 w-full">
               <button
                 onClick={() => setCurrentPage('home')}
-                className="text-[#E2FD48] hover:opacity-70 transition-opacity font-medium text-xs uppercase tracking-widest flex items-center gap-2 mb-14"
+                className={`${DS.ACTION_DARK} mb-14`}
               >
                 &larr; RETOUR À L'ACCUEIL
               </button>
@@ -3510,14 +3511,14 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       onClick={() => {
                         if (link === 'Expertises') setCurrentPage('expertises');
                       }}
-                      className="text-white/40 hover:text-[#E2FD48] transition-colors text-sm font-medium text-left"
+                      className={`${DS.LINK_DARK} text-left`}
                     >
                       {link}
                     </button>
                   </li>
                 ))}
                 <li>
-                  <a href="#" onClick={(e) => { e.preventDefault(); setCurrentPage('solutions-temporaire'); }} className="text-white/40 hover:text-[#E2FD48] transition-colors text-sm font-medium text-left">Solutions</a>
+                  <a href="#" onClick={(e) => { e.preventDefault(); setCurrentPage('solutions-temporaire'); }} className={`${DS.LINK_DARK} text-left`}>Solutions</a>
                 </li>
               </ul>
             </div>
@@ -3534,7 +3535,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                         else if (link === 'Portfolio') setCurrentPage('projects');
                         else if (link === 'Contact') setCurrentPage('contact');
                       }}
-                      className="text-white/40 hover:text-[#E2FD48] transition-colors text-sm font-medium text-left"
+                      className={`${DS.LINK_DARK} text-left`}
                     >
                       {link}
                     </button>
@@ -3548,8 +3549,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-5">
             <span className="text-[10px] text-white/30 font-bold uppercase tracking-[0.2em]">© 2025 PLIALU SAS — TOUS DROITS RÉSERVÉS</span>
             <div className="flex gap-6 text-[10px] text-white/30 font-bold uppercase tracking-[0.2em] flex-wrap justify-center md:justify-end">
-              <button onClick={() => setCurrentPage('mentions-legales')} className="hover:text-white transition-colors text-left">Mentions légales</button>
-              <button onClick={() => setCurrentPage('politique-confidentialite')} className="hover:text-white transition-colors text-left">Politique de confidentialité</button>
+              <button onClick={() => setCurrentPage('mentions-legales')} className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/50 hover:text-[#E2FD48] transition-colors duration-150 text-left">Mentions légales</button>
+              <button onClick={() => setCurrentPage('politique-confidentialite')} className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/50 hover:text-[#E2FD48] transition-colors duration-150 text-left">Politique de confidentialité</button>
             </div>
           </div>
         </div>

@@ -1,12 +1,12 @@
 const btnBase = 'inline-flex items-center justify-center gap-2.5 rounded-full px-10 py-4 text-sm leading-5 font-sans whitespace-nowrap transition-[background-color,color,border-color,transform] duration-150';
 
-export const BTN_PRIMARY = `${btnBase} bg-[#E2FD48] text-[#0E2A33] font-extrabold tracking-tight shadow-[0_0_30px_rgba(226,253,72,0.15)] hover:-translate-y-1 hover:bg-[#D4ED3F]`;
-export const BTN_SECONDARY_LIGHT = `${btnBase} bg-transparent border border-[#0E2A33] text-[#0E2A33] font-bold hover:bg-[#0E2A33] hover:text-white hover:border-transparent`;
-export const BTN_SECONDARY_DARK = `${btnBase} bg-transparent border border-white text-white font-bold hover:bg-white hover:text-[#0E2A33] hover:border-transparent`;
-export const BTN_COMPACT = 'inline-flex items-center rounded-full px-5 py-2 text-xs leading-4 font-sans font-extrabold bg-[#E2FD48] text-[#0E2A33] shadow-[0_0_30px_rgba(226,253,72,0.15)] transition-colors duration-150 hover:bg-[#D4ED3F]';
+export const BTN_PRIMARY = `${btnBase} bg-[#E2FD48] text-[#0E2A33] font-semibold tracking-tight shadow-[0_0_30px_rgba(226,253,72,0.15)] hover:-translate-y-1 hover:bg-[#D4ED3F]`;
+export const BTN_SECONDARY_LIGHT = `${btnBase} bg-transparent border border-[#0E2A33] text-[#0E2A33] font-semibold hover:bg-[#0E2A33] hover:text-white hover:border-transparent`;
+export const BTN_SECONDARY_DARK = `${btnBase} bg-transparent border border-white text-white font-semibold hover:bg-white hover:text-[#0E2A33] hover:border-transparent`;
+export const BTN_COMPACT = 'inline-flex items-center rounded-full px-5 py-2 text-xs leading-4 font-sans font-semibold bg-[#E2FD48] text-[#0E2A33] shadow-[0_0_30px_rgba(226,253,72,0.15)] transition-colors duration-150 hover:bg-[#D4ED3F]';
 
-export const ACTION_DARK = 'group inline-flex items-center gap-3 font-sans text-xs font-bold uppercase tracking-widest text-[#E2FD48] hover:text-white transition-colors duration-150';
-export const ACTION_LIGHT = 'group inline-flex items-center gap-3 font-sans text-xs font-bold uppercase tracking-widest text-[#0E2A33] transition-colors duration-150';
+export const ACTION_DARK = 'group inline-flex items-center gap-3 font-sans text-xs font-semibold uppercase tracking-widest text-[#E2FD48] hover:text-white transition-colors duration-150';
+export const ACTION_LIGHT = 'group inline-flex items-center gap-3 font-sans text-xs font-semibold uppercase tracking-widest text-[#0E2A33] transition-colors duration-150';
 export const ACTION_ARROW = 'transition-transform duration-150 group-hover:translate-x-2';
 
 export const LINK_DARK = 'text-sm font-medium text-white/50 hover:text-[#E2FD48] transition-colors duration-150';
@@ -25,7 +25,7 @@ export const LEAD_LIGHT = 'max-w-2xl font-sans text-base md:text-lg font-medium 
 export const BODY_DARK = 'font-sans text-base leading-[1.65] text-white/[0.78]';
 export const BODY_LIGHT = 'font-sans text-base leading-[1.65] text-[#0E2A33]/75';
 
-export const STAT_NUMBER = 'font-display text-[40px] font-bold leading-none tracking-[-0.04em]';
+export const STAT_NUMBER = 'font-display text-3xl md:text-[40px] font-semibold leading-none tracking-[-0.04em]';
 
 export const CONTAINER = 'max-w-7xl mx-auto px-6';
 export const SECTION = 'py-24 md:py-32';

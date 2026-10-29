@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import * as DS from './ds/ds';
 
 interface CookieBannerProps {
   onOpenPrivacy?: () => void;
@@ -53,13 +54,13 @@ const CookieBanner: React.FC<CookieBannerProps> = ({ onOpenPrivacy }) => {
           <div className="flex gap-3 flex-shrink-0">
             <button
               onClick={handleReject}
-              className="px-6 py-3 bg-white/10 text-white rounded-full text-sm font-semibold hover:bg-white/20 transition-colors whitespace-nowrap"
+              className="inline-flex items-center rounded-full px-5 py-2 text-xs leading-4 font-semibold bg-transparent border border-white text-white hover:bg-white hover:text-[#0E2A33] hover:border-transparent transition-colors duration-150"
             >
               Refuser
             </button>
             <button
               onClick={handleAccept}
-              className="px-6 py-3 bg-[#E2FD48] text-[#0E2A33] rounded-full text-sm font-semibold hover:bg-[#E2FD48]/90 transition-colors whitespace-nowrap"
+              className={`${DS.BTN_COMPACT} whitespace-nowrap`}
             >
               Accepter
             </button>

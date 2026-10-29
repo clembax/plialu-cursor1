@@ -1,4 +1,5 @@
 import React from 'react';
+import * as DS from './src/components/ds/ds';
 
 interface SuccessProps {
   onBackHome: () => void;
@@ -21,7 +22,7 @@ const Success: React.FC<SuccessProps> = ({ onBackHome }) => {
           <button
             type="button"
             onClick={onBackHome}
-            className="inline-flex items-center gap-2 px-10 py-4 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full hover:bg-[#d4ed3f] transition-all tracking-tight shadow-[0_20px_40px_rgba(226,253,72,0.2)]"
+            className={DS.BTN_PRIMARY}
           >
             Retour à l’accueil
             <iconify-icon icon="lucide:arrow-right" width="18"></iconify-icon>

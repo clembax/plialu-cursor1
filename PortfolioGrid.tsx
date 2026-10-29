@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import * as DS from './src/components/ds/ds';
 import { getProjectImageAlt, getProjectImages, type Project, type ProjectImage } from './projects';
 
 type Layout = 'left' | 'trio' | 'right' | 'pair' | 'single';
