@@ -222,9 +222,6 @@ const PortfolioCard: React.FC<{
             </span>
           </div>
           <div className="pr-12">
-            <p className={`pointer-events-none mb-4 ${DS.EYEBROW_DARK}`}>
-              {project.tag}
-            </p>
             <h3 className={`${DS.H3} text-white`}>
               <button
                 type="button"

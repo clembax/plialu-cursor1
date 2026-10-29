@@ -223,7 +223,6 @@ const PortfolioSheet: React.FC<PortfolioSheetProps> = ({
               {number}
             </span>
             <div className="relative">
-              <p className={`mb-4 ${DS.EYEBROW_DARK}`}>{project.tag}</p>
               <p className="text-xs text-white/50">{number} / {total}</p>
               <h2 className={`${DS.H2} text-white`}>{project.name}</h2>
               <p className={`${DS.LEAD_DARK} mt-6`}>{project.city} · {project.year}</p>
