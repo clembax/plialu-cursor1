@@ -728,11 +728,11 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#0e2a33]/70 to-[#071318]/90"></div>
               <div className="absolute inset-x-0 bottom-0 h-full z-20 pointer-events-none" style={{ background: 'linear-gradient(180deg, rgba(7, 19, 24, 0) 0%, rgba(7, 19, 24, 0.10) 60%, rgba(7, 19, 24, 0.55) 85%, #071318 100%)' }}></div>
             </div>
-            <div className="relative z-30 w-full max-w-7xl mx-auto px-6 pt-24 pb-16">
+            <div className="relative z-30 w-full max-w-7xl mx-auto px-6 pt-32 md:pt-36 [@media(min-width:768px)_and_(max-height:780px)]:!pt-[120px] [@media(min-width:768px)_and_(min-height:860px)]:!pt-[194px] pb-16">
               <div className="max-w-7xl animate-fade-up">
                 <div className="mb-16">
                   <h1 className={`${DS.H1} text-white`}>
-                    <span className={`block mb-4 ${DS.EYEBROW_DARK}`}>PME industrielle:</span>
+                    <span className={`block mb-4 ${DS.EYEBROW_DARK}`}>PME industrielle</span>
                     <span className="block">SOLUTIONS MÉTALLIQUES <span className="whitespace-nowrap">SUR-MESURE</span></span>
                     <span className="block">pour l'enveloppe du bâtiment</span>
                   </h1>
@@ -747,7 +747,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     <iconify-icon icon="lucide:arrow-right" className="group-hover:translate-x-1 transition-transform"></iconify-icon>
                   </button>
                 </div>
-                <div className="mt-20 grid grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_1.5fr] border-t border-white/[0.12]">
+                <div className="mt-20 grid grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_1.5fr] border-t border-b border-white/[0.12] max-lg:[&>*:nth-last-child(-n+2)]:border-b-0">
                   <div className="py-7 pr-4 lg:px-8 lg:first:pl-0 lg:last:pr-0 border-b border-white/[0.08] lg:border-b-0 lg:border-r">
                     <span className={`${DS.STAT_NUMBER} text-white`}>20 <span className="text-lg font-semibold text-white/50 tracking-normal">ans</span></span>
                     <p className="mt-2.5 text-[13px] leading-snug text-white/50">d'expertise en façonnage métallique</p>
@@ -777,7 +777,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           {/* 2. NOS EXPERTISES (DARK) */}
           <section id="expertise" className="pt-16 md:pt-20 pb-12 md:pb-16 section--dark" style={{ background: 'linear-gradient(180deg, #071318 0%, #0D2630 80%, #0C242D 100%)' }}>
             <div className="max-w-7xl mx-auto px-6">
-              <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-20 items-start">
+              <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-20 items-center">
                 <div>
                   <div className="mb-16">
                     <span className={`block mb-4 ${DS.EYEBROW_DARK}`}>PROCESS INTÉGRÉ</span>
@@ -820,7 +820,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                           }, 50);
                         }}
-                        className={`group relative flex min-h-[200px] h-full w-full flex-col text-left ${DS.CARD_DARK} p-5 transition-colors duration-150 hover:border-[#E2FD48]/50 hover:bg-white/[0.06]`}
+                        className={`group relative flex min-h-[168px] h-full w-full flex-col text-left ${DS.CARD_DARK} p-5 transition-colors duration-150 hover:border-[#E2FD48]/50 hover:bg-white/[0.06]`}
                       >
                         <div className="flex items-start justify-between">
                           <span className="font-display text-4xl font-semibold leading-none tracking-[-0.04em] text-[#E2FD48]">{String(idx + 1).padStart(2, '0')}</span>
@@ -828,7 +828,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                             <iconify-icon icon="lucide:arrow-up-right" width="14"></iconify-icon>
                           </span>
                         </div>
-                        <div className="mt-10">
+                        <div className="mt-7">
                           <span className="font-display text-xl font-bold leading-tight text-white block min-h-[2.5em]">{name}</span>
                           <span className="mt-2 block text-xs leading-relaxed text-white/50">{processCardDescriptions[idx]}</span>
                         </div>
