@@ -561,6 +561,15 @@ const App: React.FC = () => {
     }
   ];
 
+  const processCardDescriptions = [
+    "Analyse, optimisation, faisabilité et création des plans 2D et 3D.",
+    "Déroulage de bobines acier et aluminium, et optimisation de la matière première.",
+    "Pré-laquage et post-laquage.",
+    "Cisaillage au format, poinçonnage et pliage manuel ou automatisé.",
+    "Finition des pièces : collage, soudure, rivetage ou clinchage.",
+    "Transport de vos commandes en toute sécurité jusqu'à vos chantiers.",
+  ];
+
   return (
     <div className="font-manrope selection-brand min-h-screen">
       {/* Navigation */}
@@ -766,7 +775,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           </section>
 
           {/* 2. NOS EXPERTISES (DARK) */}
-          <section id="expertise" className="py-24 md:py-32 section--dark bg-gradient-to-b from-[#071318] to-[#0b1e26]">
+          <section id="expertise" className="py-24 md:py-32 section--dark" style={{ background: 'linear-gradient(180deg, #071318 0%, #0D2630 80%, #0C242D 100%)' }}>
             <div className="max-w-7xl mx-auto px-6">
               <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-20 items-center">
                 <div>
@@ -811,7 +820,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                           }, 50);
                         }}
-                        className={`group relative flex min-h-[200px] h-full w-full flex-col justify-between text-left ${DS.CARD_DARK} p-5 transition-colors duration-150 hover:border-[#E2FD48]/50 hover:bg-white/[0.06]`}
+                        className={`group relative flex min-h-[200px] h-full w-full flex-col text-left ${DS.CARD_DARK} p-5 transition-colors duration-150 hover:border-[#E2FD48]/50 hover:bg-white/[0.06]`}
                       >
                         <div className="flex items-start justify-between">
                           <span className="font-display text-4xl font-semibold leading-none tracking-[-0.04em] text-[#E2FD48]">{String(idx + 1).padStart(2, '0')}</span>
@@ -819,9 +828,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                             <iconify-icon icon="lucide:arrow-up-right" width="14"></iconify-icon>
                           </span>
                         </div>
-                        <div>
-                          <span className="font-display text-xl font-bold leading-tight text-white block">{name}</span>
-                          {exp.tag ? <span className="mt-2 block text-xs leading-snug text-white/50">{exp.tag}</span> : null}
+                        <div className="mt-10">
+                          <span className="font-display text-xl font-bold leading-tight text-white block min-h-[2.5em]">{name}</span>
+                          <span className="mt-2 block text-xs leading-relaxed text-white/50">{processCardDescriptions[idx]}</span>
                         </div>
                       </button>
                     </li>
@@ -834,7 +843,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           {/* Section dédiée : vidéo Teaser (loop, muette, lecture au scroll) */}
           <section
             id="teaser-video"
-            className="relative py-24 md:py-32 section--dark bg-gradient-to-b from-[#0b1e26] to-[#0d2630]"
+            className="relative py-24 md:py-32 section--dark"
+            style={{ background: 'linear-gradient(180deg, #0C242D 0%, #071318 100%)' }}
           >
             <div className="relative max-w-7xl mx-auto px-6 z-10">
               <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-10 lg:gap-16 items-center">
