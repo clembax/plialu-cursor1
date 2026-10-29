@@ -1209,9 +1209,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             id="infinimetal"
             className="bg-white py-24 md:py-32 border-t border-[#0E2A33]/[0.12] scroll-mt-24"
           >
-            <div className="max-w-4xl mx-auto px-6 text-left">
-              <div className="relative">
-                <div className="flex flex-col items-start pr-0 md:pr-72">
+            <div className="max-w-7xl mx-auto px-6">
+              <div className="flex flex-col items-start md:flex-row md:items-center md:justify-between">
+                <div>
                   <p className={`mb-4 ${DS.EYEBROW_LIGHT}`}>
                     THERMOLAQUAGE
                   </p>
@@ -1219,20 +1219,13 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     Nos lignes de thermolaquage
                   </h2>
                 </div>
-                <button
-                  type="button"
-                  onClick={scrollToInfinimetal}
-                  aria-label="Infinimetal : thermolaquage certifié Qualicoat"
-                  className="relative md:absolute md:top-0 md:right-0 md:-mt-4 shrink-0 cursor-pointer border-0 bg-transparent p-0 outline-none ring-0 focus:outline-none focus:ring-0 transition-transform hover:scale-105"
-                >
-                  <img
-                    src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1780588809/infini_noir_f4v6lv.png"
-                    alt="Logo Infinimetal"
-                    className="w-32 h-32 md:w-64 md:h-64 object-contain"
-                  />
-                </button>
+                <img
+                  src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1780588809/infini_noir_f4v6lv.png"
+                  alt="Logo Infinimetal"
+                  className="w-32 h-32 md:w-64 md:h-64 shrink-0 object-contain"
+                />
               </div>
-              <div className="mt-6 space-y-6 w-full mb-16">
+              <div className="mt-6 max-w-2xl space-y-6 mb-16">
                 <p className={DS.LEAD_LIGHT}>
                   Infinimetal est notre marque déposée spécialisée en thermolaquage certifié Qualicoat. Infinimetal dispose de deux lignes de thermolaquage complémentaires : une ligne à plat pour le laquage de tôles, et une ligne verticale dédiée au laquage post-formage à la main.
                 </p>
