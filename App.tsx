@@ -1599,6 +1599,19 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 <p className={`${DS.LEAD_LIGHT} mt-6`}>
                   Découvrez l'ensemble de nos solutions pour l'enveloppe du bâtiment. Des systèmes d'isolation thermique au ravalement de façade, en passant par les bardages, précadres et tôles prélaquées, nous couvrons vos besoins métalliques complets.
                 </p>
+                <div className="flex flex-wrap gap-4 mt-10">
+                  <button type="button" onClick={() => setCurrentPage('contact')} className={DS.BTN_PRIMARY}>
+                    Demander un devis
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => document.getElementById('ressources')?.scrollIntoView({ behavior: 'smooth' })}
+                    className={DS.BTN_SECONDARY_LIGHT}
+                  >
+                    Télécharger nos ressources
+                    <iconify-icon icon="lucide:arrow-down" width="16"></iconify-icon>
+                  </button>
+                </div>
               </div>
             </div>
           </section>
@@ -1609,10 +1622,10 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               <div className="space-y-16">
                 {/* En-tête section */}
                 <div>
+                  <p className={`${DS.EYEBROW_DARK} mb-4`}>Gammes</p>
                   <h2 className={`${DS.H2} text-white`}>
-                    Nos Solutions
+                    Nos solutions
                   </h2>
-                  <div className="w-16 h-1 bg-gradient-to-r from-[#E2FD48] to-transparent rounded-full"></div>
                 </div>
 
                 {/* Grille 6 domaines */}
@@ -1761,7 +1774,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           </section>
 
           {/* Télécharger les documents */}
-          <section className="py-24 md:py-32 bg-white">
+          <section id="ressources" className="py-24 md:py-32 bg-white scroll-mt-28">
                 <div className="max-w-7xl mx-auto px-6">
                   <div className="mb-16">
                   <h2 className={`${DS.H2} text-[#0E2A33]`}>Téléchargez nos ressources</h2>
