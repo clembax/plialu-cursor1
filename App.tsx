@@ -26,6 +26,7 @@ import FranceDotMap from './FranceDotMap';
 import Success from './Success';
 import EnduitMinceIsolant from './src/components/solutions/EnduitMinceIsolant';
 import Etancheite from './components/Etancheite';
+import GoutteEauExtrudee from './src/components/GoutteEauExtrudee';
 import { PROJECTS, getPortfolioOrder, buildPortfolioJsonLd } from './projects';
 import PortfolioGrid from './PortfolioGrid';
 import PortfolioSheet from './PortfolioSheet';
@@ -71,6 +72,11 @@ const SEO_CONFIG: Record<string, { path: string; title: string; desc: string; no
     title: 'Solutions d’Étanchéité Métallique',
     desc: 'Couvertines, bavettes et protections d’ouvrage pour toits plats. Fabrication sur mesure en métal prélaqué avec finitions durables pour une étanchéité parfaite des bâtiments industriels et collectifs.',
     noindex: true,
+  },
+  'goutte-eau-extrudee': {
+    path: '/goutte-eau-extrudee',
+    title: "Goutte d'eau extrudée pour nez de dalle | PLIALU",
+    desc: "Goutte d'eau en aluminium extrudé pour nez de dalle et rive de balcon. Angles monoblocs, éclisses, laquage RAL dans nos ateliers. Demande de commande en ligne.",
   },
   'projects': { path: '/portfolio', title: 'Nos réalisations : Façades aluminium et enveloppe bâtiment | PLIALU', desc: '13 réalisations de façades et d\'enveloppe de bâtiment à Grenoble, Lyon, Annecy et Meylan : cassettes aluminium, précadres, habillages. Références PLIALU.' },
   'a-propos': { path: '/a-propos', title: 'PLIALU : Entreprise de façonnage métallique en Rhône-Alpes', desc: 'PLIALU : PME façonnage métal Rhône-Alpes, 20 ans d\'expertise. Usine intégrée, 7 000 m², process certifiés Qualicoat. Devis gratuit.' },
@@ -122,6 +128,7 @@ const App: React.FC = () => {
     | 'solutions'
     | 'solutions-temporaire'
     | 'etancheite'
+    | 'goutte-eau-extrudee'
     | 'contact'
     | 'projects'
     | 'a-propos'
@@ -148,6 +155,7 @@ const App: React.FC = () => {
     | 'solutions'
     | 'solutions-temporaire'
     | 'etancheite'
+    | 'goutte-eau-extrudee'
     | 'contact'
     | 'projects'
     | 'a-propos'
@@ -669,7 +677,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
           {/* Right: CTA Button */}
           <div className="flex-none flex items-center gap-4">
-            <button onClick={() => currentPage !== 'contact' && setCurrentPage('contact')} className={`${DS.BTN_COMPACT} max-lg:hidden`}>
+            <button onClick={() => currentPage !== 'contact' && setCurrentPage('contact')} className={`${DS.BTN_PRIMARY} max-lg:hidden lg:px-5 xl:px-10`}>
               Demander un devis
             </button>
             <button
@@ -3163,6 +3171,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
       {/* --- SOLUTIONS ÉTANCHÉITÉ --- */}
       {currentPage === 'etancheite' && <Etancheite setCurrentPage={setCurrentPage} />}
+      {currentPage === 'goutte-eau-extrudee' && <GoutteEauExtrudee setCurrentPage={setCurrentPage} />}
 
       {/* --- CONTACT PAGE CONTENT --- */}
       {currentPage === 'contact' && (
