@@ -676,18 +676,26 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                         Goutte d'eau extrudée
                       </button>
                       <div className={`mx-3 my-1 h-px ${headerTheme === 'dark' ? 'bg-[#0E2A33]/10' : 'bg-white/10'}`} />
-                      <a href="/documents/Fiches_techniques.pdf" target="_blank" rel="noopener noreferrer" onClick={close} className={item}>
-                        Fiches techniques<span className={pdf}>PDF</span>
-                      </a>
-                      <a href="/documents/Deroulage.pdf" target="_blank" rel="noopener noreferrer" onClick={close} className={item}>
-                        Déroulage<span className={pdf}>PDF</span>
-                      </a>
-                      <a href="/documents/Catalogue_RAL.pdf" target="_blank" rel="noopener noreferrer" onClick={close} className={item}>
-                        Catalogue RAL<span className={pdf}>PDF</span>
-                      </a>
-                      <a href="/documents/Portfolio_Plialu.pdf" target="_blank" rel="noopener noreferrer" onClick={close} className={item}>
-                        Portfolio<span className={pdf}>PDF</span>
-                      </a>
+                      {[
+                        ['Portfolio', 'res-book'],
+                        ['Catalogue RAL', 'res-ral'],
+                        ['Fiches techniques', 'res-fiches'],
+                        ['Déroulage', 'res-deroulage'],
+                      ].map(([label, anchor]) => (
+                        <button
+                          key={anchor}
+                          type="button"
+                          onClick={() => {
+                            setCurrentPage('solutions-temporaire');
+                            close();
+                            window.setTimeout(() => document.getElementById(anchor)?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 150);
+                          }}
+                          className={`${item} text-left`}
+                        >
+                          {label}
+                          <span className={pdf}>PDF</span>
+                        </button>
+                      ))}
                     </>
                   );
                 })()}
@@ -1851,84 +1859,117 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           </section>
 
           {/* Télécharger les documents */}
-          <section id="ressources" className="py-24 md:py-32 bg-white scroll-mt-28">
-                <div className="max-w-7xl mx-auto px-6">
-                  <div className="mb-16">
+          <section id="ressources" className={`${DS.SECTION} bg-white scroll-mt-28`}>
+            <div className={DS.CONTAINER}>
+              <div className="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between md:gap-10">
+                <div className="max-w-3xl">
+                  <p className={`${DS.EYEBROW_LIGHT} mb-4`}>Ressources</p>
                   <h2 className={`${DS.H2} text-[#0E2A33]`}>Téléchargez nos ressources</h2>
                   <p className={`${DS.LEAD_LIGHT} mt-6`}>Tous les documents pour optimiser vos projets.</p>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-
-                    <div className="bg-[#F5F5F3] text-[#0E2A33] border border-[#0E2A33]/20 rounded-[20px] p-6 hover:border-[#E2FD48]/50 transition-colors">
-                      <div className="flex items-center gap-3 mb-4">
-                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 text-[#0E2A33]">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
-                        </svg>
-                        <h3 className={`${DS.H3} text-[#0E2A33]`}>Fiches techniques</h3>
-                      </div>
-                      <p className="text-[#0E2A33]/[0.62] text-sm mb-4">Découvrez nos fiches techniques détaillées pour chaque domaine de solution.</p>
-                      <a href="/documents/Fiches_techniques.pdf" download="Fiches_techniques_PLIALU.pdf" className={DS.BTN_PRIMARY}>
-                        <span className="flex items-center gap-2">
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-                          Télécharger PDF
-                        </span>
-                      </a>
-                    </div>
-
-                    <div className="bg-[#F5F5F3] text-[#0E2A33] border border-[#0E2A33]/20 rounded-[20px] p-6 hover:border-[#E2FD48]/50 transition-colors">
-                      <div className="flex items-center gap-3 mb-4">
-                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" className="w-6 h-6 text-[#0E2A33]">
-                          <path d="M235.32,73.37,182.63,20.69a16,16,0,0,0-22.63,0L20.68,160a16,16,0,0,0,0,22.63l52.69,52.68a16,16,0,0,0,22.63,0L235.32,96A16,16,0,0,0,235.32,73.37ZM84.68,224,32,171.31l32-32,26.34,26.35a8,8,0,0,0,11.32-11.32L75.31,128,96,107.31l26.34,26.35a8,8,0,0,0,11.32-11.32L107.31,96,128,75.31l26.34,26.35a8,8,0,0,0,11.32-11.32L139.31,64l32-32L224,84.69Z" />
-                        </svg>
-                        <h3 className={`${DS.H3} text-[#0E2A33]`}>Déroulage</h3>
-                      </div>
-                      <p className="text-[#0E2A33]/[0.62] text-sm mb-4">Consultez notre document déroulage pour optimiser vos formats et réduire vos chutes.</p>
-                      <a href="/documents/Deroulage.pdf" download="Deroulage_PLIALU.pdf" className={DS.BTN_PRIMARY}>
-                        <span className="flex items-center gap-2">
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-                          Télécharger PDF
-                        </span>
-                      </a>
-                    </div>
-
-                    <div className="bg-[#F5F5F3] text-[#0E2A33] border border-[#0E2A33]/20 rounded-[20px] p-6 hover:border-[#E2FD48]/50 transition-colors">
-                      <div className="flex items-center gap-3 mb-4">
-                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 text-[#0E2A33]">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M4.098 19.902a3.75 3.75 0 0 0 5.304 0l6.401-6.402M6.75 21A3.75 3.75 0 0 1 3 17.25V4.125C3 3.504 3.504 3 4.125 3h5.25c.621 0 1.125.504 1.125 1.125v4.072M6.75 21a3.75 3.75 0 0 0 3.75-3.75V8.197M6.75 21h13.125c.621 0 1.125-.504 1.125-1.125v-5.25c0-.621-.504-1.125-1.125-1.125h-4.072M10.5 8.197l2.88-2.88c.438-.439 1.15-.439 1.59 0l3.712 3.713c.44.44.44 1.152 0 1.59l-2.879 2.88M6.75 17.25h.008v.008H6.75v-.008Z" />
-                        </svg>
-                        <h3 className={`${DS.H3} text-[#0E2A33]`}>Catalogue RAL</h3>
-                      </div>
-                      <p className="text-[#0E2A33]/[0.62] text-sm mb-4">Accédez à notre gamme complète de teintes RAL disponibles en finition brillante et mate.</p>
-                      <a href="/documents/Catalogue_RAL.pdf" download="Catalogue_RAL_PLIALU.pdf" className={DS.BTN_PRIMARY}>
-                        <span className="flex items-center gap-2">
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-                          Télécharger PDF
-                        </span>
-                      </a>
-                    </div>
-
-                    <div className="bg-[#F5F5F3] text-[#0E2A33] border border-[#0E2A33]/20 rounded-[20px] p-6 hover:border-[#E2FD48]/50 transition-colors flex flex-col h-full">
-                      <div className="flex items-center gap-3 mb-4">
-                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 text-[#0E2A33]">
-                          <path d="m22 11-1.296-1.296a2.4 2.4 0 0 0-3.408 0L11 16"/>
-                          <path d="M4 8a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2"/>
-                          <circle cx="13" cy="7" r="1" fill="currentColor"/>
-                          <rect x="8" y="2" width="14" height="14" rx="2"/>
-                        </svg>
-                        <h3 className={`${DS.H3} text-[#0E2A33]`}>Portfolio</h3>
-                      </div>
-                      <p className="text-[#0E2A33]/[0.62] text-sm mb-4">Découvrez nos réalisations et chantiers emblématiques.</p>
-                      <a href="/documents/Portfolio_Plialu.pdf" download target="_blank" rel="noopener noreferrer" className={`${DS.BTN_PRIMARY} mt-auto`}>
-                        <span className="flex items-center gap-2">
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-                          Télécharger PDF
-                        </span>
-                      </a>
-                    </div>
-
-                  </div>
                 </div>
+                <p className="text-sm leading-[1.55] text-[#0E2A33]/[0.62] md:text-right">
+                  5 documents PDF
+                  <br />
+                  En téléchargement direct
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                {(() => {
+                  const CLD = 'https://res.cloudinary.com/dyiup6v5x/image/upload';
+                  const cld = (img: string, w: number) => `${CLD}/f_auto,q_auto,c_limit,w_${w}/${img}`;
+                  const docs = [
+                    { id: 'res-book', file: 'Portfolio_Plialu.pdf', dl: 'Portfolio_PLIALU.pdf', title: 'Portfolio', text: 'Découvrez nos réalisations et chantiers emblématiques.', img: 'v1794303276/Portfolio_Plialu_mockup_1_nk5hfv.webp', alt: 'Couverture et pages du portfolio PLIALU' },
+                    { id: 'res-ral', file: 'Catalogue_RAL.pdf', dl: 'Catalogue_RAL_PLIALU.pdf', title: 'Catalogue RAL', text: 'Accédez à notre gamme complète de teintes RAL disponibles en finition brillante et mate.', img: 'v1794303276/Catalogue_RAL_mockup_1_cvsdji.webp', alt: 'Pages du catalogue RAL Infinimetal' },
+                    { id: 'res-fiches', file: 'Fiches_techniques.pdf', dl: 'Fiches_techniques_PLIALU.pdf', title: 'Fiches techniques', text: 'Découvrez nos fiches techniques détaillées pour chaque domaine de solution.', img: 'v1794303276/Fiches_techniques_mockup_1_iz09yh.webp', alt: 'Fiches techniques enduit mince, bardage et étanchéité' },
+                    { id: 'res-deroulage', file: 'Deroulage.pdf', dl: 'Deroulage_PLIALU.pdf', title: 'Déroulage', text: 'Consultez notre document déroulage pour optimiser vos formats et réduire vos chutes.', img: 'v1794303276/Deroulage_mockup_1_cjqecr.webp', alt: 'Pages du document déroulage aluminium' },
+                    { id: 'res-goutte', file: 'Fiche_Goutte_eau_extrudee.pdf', dl: 'Fiche_Goutte_eau_extrudee_PLIALU.pdf', title: "Goutte d'eau extrudée", text: "Rejet d'eau pour nez de dalle : plan de coupe, accessoires, mise en œuvre et finitions.", img: 'v1794240588/Fiche_Goutte_eau_mockup_k6behd.webp', alt: "Pages de la fiche technique Goutte d'eau extrudée", product: true },
+                  ];
+                  const dlIcon = (size: number) => (
+                    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M12 4v12M6 10l6 6 6-6M5 20h14" />
+                    </svg>
+                  );
+                  return docs.map((d, i) => {
+                    const feat = i === 0;
+                    const href = `/documents/${d.file}`;
+                    const cardCls = `${DS.CARD_LIGHT} group flex scroll-mt-32 flex-col text-[#0E2A33] transition-colors duration-150 hover:border-[#0E2A33]/45 ${feat ? 'md:col-span-2 md:flex-row' : ''}`;
+                    const mockCls = `relative block aspect-[16/10] overflow-hidden border-b border-[#0E2A33]/10 bg-[#E8EDEF] ${feat ? 'md:w-[58%] md:flex-none md:border-b-0 md:border-r' : ''}`;
+                    const img = (
+                      <img
+                        src={cld(d.img, feat ? 1200 : 800)}
+                        srcSet={`${cld(d.img, 800)} 800w, ${cld(d.img, 1200)} 1200w, ${cld(d.img, 1600)} 1600w`}
+                        sizes={feat ? '(max-width: 768px) 100vw, 740px' : '(max-width: 768px) 100vw, 620px'}
+                        alt={d.alt}
+                        loading="lazy"
+                        className={`absolute inset-0 h-full w-full object-cover ${DS.CARD_IMG_ZOOM}`}
+                      />
+                    );
+                    const head = (
+                      <>
+                        <div className="flex items-center justify-between gap-4">
+                          <span className={DS.EYEBROW_LIGHT}>PDF · 0{i + 1}</span>
+                          {d.product ? (
+                            <span className="whitespace-nowrap rounded-full bg-[#0E2A33] px-2.5 py-1 text-[11px] font-bold text-[#E2FD48]">Fiche produit</span>
+                          ) : (
+                            <span className="text-xs text-[#0E2A33]/45">{d.file}</span>
+                          )}
+                        </div>
+                        <h3 className={`mt-3.5 font-display font-bold text-[#0E2A33] ${feat ? 'text-xl md:text-[28px]' : 'text-xl'}`}>{d.title}</h3>
+                        <p className="mt-2 max-w-[440px] text-sm leading-relaxed text-[#0E2A33]/75">{d.text}</p>
+                      </>
+                    );
+
+                    if (d.product) {
+                      return (
+                        <div key={d.id} id={d.id} className={cardCls}>
+                          <a href={href} download={d.dl} aria-label={`Télécharger ${d.title} (PDF)`} className={mockCls}>
+                            {img}
+                          </a>
+                          <div className="flex flex-1 flex-col p-7">
+                            {head}
+                            <div className="mt-auto flex flex-wrap items-center justify-between gap-4 pt-6">
+                              <a href={href} download={d.dl} className="inline-flex items-center gap-2 text-sm font-semibold text-[#0E2A33] underline-offset-4 hover:underline">
+                                Télécharger le PDF
+                                {dlIcon(14)}
+                              </a>
+                              <button
+                                type="button"
+                                onClick={() => setCurrentPage('goutte-eau-extrudee')}
+                                className="group/prod inline-flex items-center gap-2.5 rounded-full bg-[#E2FD48] px-[22px] py-3 text-sm font-bold text-[#0E2A33] transition-[background-color,transform] duration-150 hover:-translate-y-0.5 hover:bg-[#D4ED3F]"
+                              >
+                                Voir la page produit
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="transition-transform duration-150 group-hover/prod:translate-x-1">
+                                  <path d="M5 12h14M13 6l6 6-6 6" />
+                                </svg>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    return (
+                      <a key={d.id} id={d.id} href={href} download={d.dl} aria-label={`Télécharger ${d.title} (PDF)`} className={cardCls}>
+                        <div className={mockCls}>{img}</div>
+                        <div className={`flex flex-1 flex-col p-7 ${feat ? 'md:justify-center md:p-10' : ''}`}>
+                          {head}
+                          <div className={`mt-auto flex items-center justify-between gap-4 pt-6 ${feat ? 'md:mt-8 md:pt-0' : ''}`}>
+                            <span className="inline-flex items-center gap-2 text-sm font-semibold text-[#0E2A33]">
+                              Télécharger le PDF
+                              {dlIcon(14)}
+                            </span>
+                            <span className="flex h-11 w-11 items-center justify-center rounded-full border border-[#0E2A33]/20 transition-colors duration-150 group-hover:border-[#E2FD48] group-hover:bg-[#E2FD48]">
+                              {dlIcon(16)}
+                            </span>
+                          </div>
+                        </div>
+                      </a>
+                    );
+                  });
+                })()}
+              </div>
+            </div>
           </section>
 
           {/* CTA section */}
