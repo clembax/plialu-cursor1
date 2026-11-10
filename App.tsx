@@ -1232,13 +1232,14 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           <section className="relative bg-[#071318] pt-48 md:pt-56 pb-20 overflow-hidden min-h-[70vh] flex flex-col justify-center">
             <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-b from-[#0e2a33]/40 to-[#071318]"></div>
             <div className="relative z-10 flex-1 flex flex-col justify-center max-w-7xl mx-auto px-6 w-full">
-              <div className="max-w-4xl">
+              <div className="max-w-6xl">
                 <div className="mb-16">
                 <span className={`block mb-4 ${DS.EYEBROW_DARK}`}>
                   NOTRE IDENTITÉ INDUSTRIELLE
                 </span>
                 <h1 className={`${DS.H1} text-white`}>
-                  PLIALU, Entreprise de façonnage métal en <span className="whitespace-nowrap">Rhône-Alpes</span>
+                  PLIALU, Entreprise de<br />
+                  façonnage métal en <span className="whitespace-nowrap">Rhône-Alpes</span>
                 </h1>
                 <p className={`${DS.LEAD_DARK} mt-6`}>
                   Implantée en région lyonnaise, notre usine intégrée accompagne les professionnels de l'enveloppe du bâtiment dans la transformation industrielle et la fabrication sur mesure de pièces métalliques.
