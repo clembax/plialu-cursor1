@@ -332,6 +332,20 @@ const App: React.FC = () => {
 
   const infinimetalLinkClass = 'cursor-pointer text-[#E2FD48] hover:underline transition-colors';
 
+  const [contactPrefill, setContactPrefill] = useState<{ intention?: string; domaine?: string }>({});
+
+  const goDevis = (domaine: string) => {
+    setContactPrefill({ intention: 'Demander un devis', domaine });
+    setCurrentPage('contact');
+  };
+
+  const goSolution = (anchor: string) => {
+    setCurrentPage('solutions-temporaire');
+    window.setTimeout(() => document.getElementById(anchor)?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 150);
+  };
+
+  const RAL_APERCU = ['#E8E4D8', '#C9C3B3', '#9AA3A6', '#6E7A7F', '#3E4A4F', '#1F2A2E', '#7C2D2A', '#2F4F3E', '#24476B', '#383E42'];
+
   // Header Theme: 'dark' = light header bar (dark logo/menu) for contrast on light backgrounds (Expertises, Solutions, Ressources, Contact, Articles)
   const headerTheme =
     currentPage === 'expertises' ||
@@ -984,109 +998,119 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           </section>
 
           {/* Section Solutions */}
-          <section id="solutions" className="bg-white py-24 md:py-32">
-            <div className="max-w-7xl mx-auto px-6">
-
-              <div className="mb-16">
-              <p className={`mb-4 ${DS.EYEBROW_LIGHT}`}>NOS SOLUTIONS</p>
-              <h2 className={`${DS.H2} text-[#0E2A33]`}>
-                Solutions métalliques pour l'enveloppe du bâtiment
-              </h2>
-              <p className={`${DS.LEAD_LIGHT} mt-6`}>
-                Vos métiers : le bardage, le ravalement de façade, l'isolation thermique... Découvrez nos solutions métalliques complètes, du façonnage à la finition.
-              </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-
-                <div className="bg-[#F5F5F3] border border-[#0E2A33]/20 rounded-[20px] p-6 hover:border-[#E2FD48]/50 transition-colors">
-                  <div className="flex items-center gap-3 mb-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 text-[#0E2A33] shrink-0" aria-hidden="true">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-                    </svg>
-                    <h3 className={`${DS.H3} text-[#0E2A33]`}>Enduit mince sur isolant</h3>
-                  </div>
-                  <p className="text-[#0E2A33]/[0.62] text-sm leading-relaxed">Profils pour systèmes d'isolation thermique par l'extérieur.</p>
+          <section id="solutions" className={`${DS.SECTION} bg-white`}>
+            <div className={DS.CONTAINER}>
+              <div className="mb-14 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+                <div className="max-w-3xl">
+                  <p className={`mb-4 ${DS.EYEBROW_LIGHT}`}>NOS SOLUTIONS</p>
+                  <h2 className={`${DS.H2} text-[#0E2A33]`}>Solutions métalliques pour l'enveloppe du bâtiment</h2>
+                  <p className={`${DS.LEAD_LIGHT} mt-6`}>Six domaines pour l'enveloppe du bâtiment, façonnés et laqués dans nos ateliers.</p>
                 </div>
-
-                <div className="bg-[#F5F5F3] border border-[#0E2A33]/20 rounded-[20px] p-6 hover:border-[#E2FD48]/50 transition-colors">
-                  <div className="flex items-center gap-3 mb-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" className="w-5 h-5 text-[#0E2A33] shrink-0" aria-hidden="true">
-                      <path d="M53.92,34.62A8,8,0,1,0,42.08,45.38L64.72,70.29C48.32,95,40,119.78,40,144a88,88,0,0,0,149.21,63.22l12.87,14.16a8,8,0,1,0,11.84-10.76ZM128,216a72.08,72.08,0,0,1-72-72c0-19.93,6.68-40.57,19.86-61.46L178.43,195.36A71.84,71.84,0,0,1,128,216ZM90,50.51a8,8,0,0,1-.27-11.31A247.8,247.8,0,0,1,123.41,9.45a8,8,0,0,1,9.18,0C136,11.83,216,68.7,216,144a88.08,88.08,0,0,1-3.15,23.4,8,8,0,0,1-7.71,5.88A7.79,7.79,0,0,1,203,173a8,8,0,0,1-5.59-9.83A72.55,72.55,0,0,0,200,144c0-57.24-55.48-105-72-118a252.23,252.23,0,0,0-26.66,24.23A8,8,0,0,1,90,50.51Z" />
-                    </svg>
-                    <h3 className={`${DS.H3} text-[#0E2A33]`}>Solutions pour l'étanchéité</h3>
-                  </div>
-                  <p className="text-[#0E2A33]/[0.62] text-sm leading-relaxed">Couvertines et accessoires pour l'étanchéité des façades.</p>
-                </div>
-
-                <div className="bg-[#F5F5F3] border border-[#0E2A33]/20 rounded-[20px] p-6 hover:border-[#E2FD48]/50 transition-colors">
-                  <div className="flex items-center gap-3 mb-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" className="w-5 h-5 text-[#0E2A33] shrink-0" aria-hidden="true">
-                      <path d="M240,208h-8V72a8,8,0,0,0-8-8H184V40a8,8,0,0,0-8-8H80a8,8,0,0,0-8,8V96H32a8,8,0,0,0-8,8V208H16a8,8,0,0,0,0,16H240a8,8,0,0,0,0-16ZM40,112H80a8,8,0,0,0,8-8V48h80V72a8,8,0,0,0,8,8h40V208H152V168a8,8,0,0,0-8-8H112a8,8,0,0,0-8,8v40H40Zm96,96H120V176h16ZM112,72a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H120A8,8,0,0,1,112,72Zm0,32a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H120A8,8,0,0,1,112,104Zm56,0a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H176A8,8,0,0,1,168,104ZM88,136a8,8,0,0,1-8,8H64a8,8,0,0,1,0-16H80A8,8,0,0,1,88,136Zm0,32a8,8,0,0,1-8,8H64a8,8,0,0,1,0-16H80A8,8,0,0,1,88,168Zm24-32a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H120A8,8,0,0,1,112,136Zm56,0a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H176A8,8,0,0,1,168,136Zm0,32a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H176A8,8,0,0,1,168,168Z" />
-                    </svg>
-                    <h3 className={`${DS.H3} text-[#0E2A33]`}>Bardages & Cassettes</h3>
-                  </div>
-                  <p className="text-[#0E2A33]/[0.62] text-sm leading-relaxed">Bardages, cassettes et ossatures pour l'enveloppe du bâtiment.</p>
-                </div>
-
-                <div className="bg-[#F5F5F3] border border-[#0E2A33]/20 rounded-[20px] p-6 hover:border-[#E2FD48]/50 transition-colors">
-                  <div className="flex items-center gap-3 mb-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" className="w-5 h-5 text-[#0E2A33] shrink-0" aria-hidden="true">
-                      <path d="M226.76,69a8,8,0,0,0-12.84-2.88l-40.3,37.19-17.23-3.7-3.7-17.23,37.19-40.3A8,8,0,0,0,187,29.24,72,72,0,0,0,88,96,72.34,72.34,0,0,0,94,124.94L33.79,177c-.15.12-.29.26-.43.39a32,32,0,0,0,45.26,45.26c.13-.13.27-.28.39-.42L131.06,162A72,72,0,0,0,232,96,71.56,71.56,0,0,0,226.76,69ZM160,152a56.14,56.14,0,0,1-27.07-7,8,8,0,0,0-9.92,1.77L67.11,211.51a16,16,0,0,1-22.62-22.62L109.18,133a8,8,0,0,0,1.77-9.93,56,56,0,0,1,58.36-82.31l-31.2,33.81a8,8,0,0,0-1.94,7.1L141.83,108a8,8,0,0,0,6.14,6.14l26.35,5.66a8,8,0,0,0,7.1-1.94l33.81-31.2A56.06,56.06,0,0,1,160,152Z" />
-                    </svg>
-                    <h3 className={`${DS.H3} text-[#0E2A33]`}>Ravalement de façade</h3>
-                  </div>
-                  <p className="text-[#0E2A33]/[0.62] text-sm leading-relaxed">Profilés et accessoires pour le ravalement de façade.</p>
-                </div>
-
-                <div className="bg-[#F5F5F3] border border-[#0E2A33]/20 rounded-[20px] p-6 hover:border-[#E2FD48]/50 transition-colors">
-                  <div className="flex items-center gap-3 mb-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" className="w-5 h-5 text-[#0E2A33] shrink-0" aria-hidden="true">
-                      <path d="M200,80v32a8,8,0,0,1-16,0V88H160a8,8,0,0,1,0-16h32A8,8,0,0,1,200,80ZM96,168H72V144a8,8,0,0,0-16,0v32a8,8,0,0,0,8,8H96a8,8,0,0,0,0-16ZM232,56V200a16,16,0,0,1-16,16H40a16,16,0,0,1-16-16V56A16,16,0,0,1,40,40H216A16,16,0,0,1,232,56ZM216,200V56H40V200H216Z" />
-                    </svg>
-                    <h3 className={`${DS.H3} text-[#0E2A33]`}>Précadres</h3>
-                  </div>
-                  <p className="text-[#0E2A33]/[0.62] text-sm leading-relaxed">Précadres sur mesure pour portes et fenêtres.</p>
-                </div>
-
-                <div className="bg-[#F5F5F3] border border-[#0E2A33]/20 rounded-[20px] p-6 hover:border-[#E2FD48]/50 transition-colors">
-                  <div className="flex items-center gap-3 mb-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" className="w-5 h-5 text-[#0E2A33] shrink-0" aria-hidden="true">
-                      <path d="M212,136a12,12,0,1,1-12-12A12,12,0,0,1,212,136Zm36,0c0,40.37-21.08,72-48,72H56c-26.92,0-48-31.63-48-72S29.08,64,56,64H92.69l37.65-37.66A8,8,0,0,1,136,24h32a8,8,0,0,1,0,16H139.31l-24,24H200C226.92,64,248,95.63,248,136ZM56,192H169.51a73.46,73.46,0,0,1-12.67-24H80a8,8,0,0,1,0-16h73.16A110.63,110.63,0,0,1,152,136c0-22.86,6.76-42.9,17.51-56H56c-12.47,0-23.55,13.26-28.8,32H104a8,8,0,0,1,0,16H24.35q-.34,3.93-.35,8C24,166.36,38.65,192,56,192Zm176-56c0-30.36-14.65-56-32-56s-32,25.64-32,56,14.65,56,32,56S232,166.36,232,136Z" />
-                    </svg>
-                    <h3 className={`${DS.H3} text-[#0E2A33]`}>MOB & FOB</h3>
-                  </div>
-                  <p className="text-[#0E2A33]/[0.62] text-sm leading-relaxed">Profils métalliques pour ossature bois (MOB et FOB).</p>
-                </div>
-
-              </div>
-
-              <div className="relative bg-[#F5F5F3] border border-[#0E2A33]/20 rounded-[20px] p-6 hover:border-[#E2FD48]/50 transition-colors w-full mb-12">
-                <div className="flex items-center gap-3 mb-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-[#0E2A33] shrink-0" aria-hidden="true">
-                    <path d="M11 7 6 2"/>
-                    <path d="M18.992 12H2.041"/>
-                    <path d="M21.145 18.38A3.34 3.34 0 0 1 20 16.5a3.3 3.3 0 0 1-1.145 1.88c-.575.46-.855 1.02-.855 1.595A2 2 0 0 0 20 22a2 2 0 0 0 2-2.025c0-.58-.285-1.13-.855-1.595"/>
-                    <path d="m8.5 4.5 2.148-2.148a1.205 1.205 0 0 1 1.704 0l7.296 7.296a1.205 1.205 0 0 1 0 1.704l-7.592 7.592a3.615 3.615 0 0 1-5.112 0l-3.888-3.888a3.615 3.615 0 0 1 0-5.112L5.67 7.33"/>
-                  </svg>
-                  <h3 className={`${DS.H3} text-[#0E2A33]`}>Tôles prélaquées</h3>
-                </div>
-                <p className="text-[#0E2A33]/[0.62] text-sm leading-relaxed">Tôles aluminium en formats standards et sur-mesure. Gamme complète de teintes RAL. Expertise PLIALU associée à la qualité Infinimetal.</p>
-                <div className="absolute right-6 top-1/2 -translate-y-1/2 flex items-center pointer-events-none">
-                  <img
-                    src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1780588809/infini_noir_f4v6lv.png"
-                    alt="Logo Infinimetal"
-                    className="w-36 h-auto object-contain"
-                  />
-                </div>
-              </div>
-
-              <div className="text-center">
-                <button onClick={() => setCurrentPage('solutions-temporaire')} className={DS.BTN_PRIMARY}>
-                  Découvrir toutes nos solutions
+                <button type="button" onClick={() => setCurrentPage('solutions-temporaire')} className={`${DS.BTN_SECONDARY_LIGHT} shrink-0 self-start md:self-auto`}>
+                  Toutes nos solutions
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
                 </button>
               </div>
 
+              {(() => {
+                const CLD = 'https://res.cloudinary.com/dyiup6v5x/image/upload';
+                const arrow = (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+                );
+                const tuiles = [
+                  { n: '01', anchor: 'enduit-mince', title: 'Enduit mince sur isolant', img: 'f_auto,q_auto/v1794308485/Solutions_enduit_mince_ITE_nhj3ul.webp', alt: 'Enduit mince sur isolant : façade ITE avec tableaux et bavettes de fenêtres en aluminium laqué' },
+                  { n: '02', anchor: 'bardage', title: 'Bardage, cassettes & clins', img: 'f_auto,q_auto,c_limit,w_800/v1794305547/Image_site_bardage_eam6np.webp', alt: 'Bardage en cassettes de façade aluminium : joint en croix et fixations' },
+                  { n: '03', anchor: 'ravalement', title: 'Ravalement de façade', img: 'f_auto,q_auto,c_limit,w_800/v1794235010/9cd7d856-180e-4fc2-bf46-7c3f938dfa8f_dj4zga.webp', alt: "Ravalement de façade : nez de dalle équipé d'une goutte d'eau extrudée en aluminium" },
+                  { n: '04', anchor: 'precadres', title: 'Précadres, portes ou fenêtres', img: 'f_auto,q_auto,c_limit,w_800/v1794305764/20201001_141101_resized_bddixg.webp', alt: "Précadre aluminium monobloc soudé dans l'atelier PLIALU, vue de dessus" },
+                  { n: '05', anchor: 'etancheite', title: 'Étanchéité', img: 'f_auto,q_auto,c_limit,w_800/v1794308485/Solutions_etancheite_couvertine_nofleh.webp', alt: 'Étanchéité de toiture-terrasse : couvertine aluminium posée sur acrotère avec son support' },
+                  { n: '06', anchor: 'mob-fob', title: 'MOB, FOB & murs-rideaux', img: 'f_auto,q_auto,c_limit,w_800/v1772021847/Welink-1200px_mu1jnb.webp', alt: 'Murs-rideaux et façade métallique du bâtiment WeLink à Lyon 7' },
+                ];
+                return (
+                  <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+                    {/* Carte Goutte d'eau extrudée */}
+                    <button
+                      type="button"
+                      onClick={() => setCurrentPage('goutte-eau-extrudee')}
+                      className="group relative flex min-h-[300px] flex-col overflow-hidden rounded-[20px] bg-[linear-gradient(135deg,#0E2A33_0%,#071318_100%)] text-left text-white md:col-span-2"
+                    >
+                      <div className="relative z-10 flex flex-1 flex-col justify-between gap-7 p-9 md:w-[56%]">
+                        <div className="flex flex-wrap items-center gap-2.5">
+                          <span className="rounded-full bg-[#E2FD48] px-2.5 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.12em] text-[#0E2A33]">Fiche produit</span>
+                          <span className="font-display text-[10px] font-bold uppercase tracking-[0.3em] text-white/55">Ravalement de façade</span>
+                        </div>
+                        <div>
+                          <h3 className="mb-3 font-display text-[26px] font-bold leading-tight tracking-tight">Goutte d'eau extrudée</h3>
+                          <p className="max-w-[300px] text-[15px] leading-relaxed text-white/70">Finition de nez de dalle en aluminium extrudé, laquée dans nos ateliers et livrée en 3 mètres.</p>
+                        </div>
+                        <span className={`${DS.ACTION_DARK}`}>
+                          Voir la fiche produit
+                          <span className={DS.ACTION_ARROW}>{arrow}</span>
+                        </span>
+                      </div>
+                      <img
+                        src={`${CLD}/c_crop,x_0,y_233,w_2247,h_2025/a_hflip/f_auto,q_auto,c_limit,w_1000/v1794245866/profil_piyucu.webp`}
+                        alt="Profil goutte d'eau extrudée en aluminium laqué, rendu 3D"
+                        loading="lazy"
+                        className="h-[220px] w-full object-contain object-right transition-transform duration-700 ease-out group-hover:scale-[1.04] md:absolute md:right-0 md:top-1/2 md:h-[88%] md:w-[58%] md:-translate-y-1/2"
+                      />
+                    </button>
+
+                    {/* 6 domaines : photo + titre, le détail est sur la page Solutions */}
+                    {tuiles.map((t) => (
+                      <button
+                        key={t.n}
+                        type="button"
+                        onClick={() => goSolution(t.anchor)}
+                        className="group relative flex min-h-[300px] flex-col justify-end overflow-hidden rounded-[20px] bg-[#0E2A33] text-left text-white"
+                      >
+                        <img
+                          src={`${CLD}/${t.img}`}
+                          alt={t.alt}
+                          loading="lazy"
+                          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,19,24,0)_30%,rgba(7,19,24,0.88)_100%)]" aria-hidden="true" />
+                        <div className="relative p-[22px]">
+                          <span className="block font-display text-xs font-bold tracking-[0.1em] text-[#E2FD48]">{t.n}</span>
+                          <span className="mt-2 flex items-end justify-between gap-3">
+                            <h3 className="font-display text-lg font-bold leading-snug text-white">{t.title}</h3>
+                            <span className="flex h-10 w-10 flex-none items-center justify-center rounded-full border border-white/35 transition-colors duration-200 group-hover:border-[#E2FD48] group-hover:bg-[#E2FD48] group-hover:text-[#0E2A33]">
+                              {arrow}
+                            </span>
+                          </span>
+                        </div>
+                      </button>
+                    ))}
+
+                    {/* Aperçu Tôles prélaquées (renvoie à la carte complète de la page Solutions) */}
+                    <button
+                      type="button"
+                      onClick={() => goSolution('toles-prelaquees')}
+                      className="group grid grid-cols-1 items-center gap-6 rounded-[20px] bg-[linear-gradient(135deg,#0E2A33_0%,#071318_100%)] p-7 text-left text-white md:col-span-2 md:grid-cols-[1.6fr_1fr] md:gap-10 md:px-10 md:py-9 lg:col-span-4"
+                    >
+                      <div>
+                        <div className="mb-3 flex flex-wrap items-center gap-3">
+                          <h3 className="font-display text-[22px] font-bold tracking-tight">Tôles prélaquées</h3>
+                          <span className="rounded-full border border-[#E2FD48]/35 px-3 py-1.5 text-[11px] font-bold text-[#E2FD48]">Usine intégrée</span>
+                        </div>
+                        <p className="text-[15px] leading-relaxed text-white/70">Feuilles aluminium prélaquées, certifiées Qualicoat et filmées.</p>
+                        <div className="mt-5 flex flex-wrap gap-2" role="img" aria-label="Aperçu de teintes RAL disponibles">
+                          {RAL_APERCU.map((c) => (
+                            <i key={c} className="block h-10 w-10 rounded-[10px] border border-white/[0.12]" style={{ background: c }} />
+                          ))}
+                        </div>
+                      </div>
+                      <div className="flex flex-col items-start gap-6 md:items-end">
+                        <img src="https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,w_520/v1780589052/infini_blanc_zvlnn3.png" alt="Logo Infinimetal Laquage Solutions" loading="lazy" className="h-auto w-40 md:w-[200px]" />
+                        <span className={DS.ACTION_DARK}>
+                          Voir les tôles prélaquées
+                          <span className={DS.ACTION_ARROW}>{arrow}</span>
+                        </span>
+                      </div>
+                    </button>
+                  </div>
+                );
+              })()}
             </div>
           </section>
 
@@ -1709,6 +1733,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     const domaines = [
                       {
                         n: '01',
+                        anchor: 'enduit-mince',
                         title: 'Enduit mince sur isolant',
                         text: 'Profils ITE : départs, arrêts latéraux, couronnements, cornières entoilées, joints de dilatation PVC entoilés, et tous les pliages associés en aluminium laqué.',
                         img: 'v1794308485/Solutions_enduit_mince_ITE_nhj3ul.webp',
@@ -1721,6 +1746,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       },
                       {
                         n: '02',
+                        anchor: 'bardage',
                         title: 'Bardage, cassettes & clins',
                         text: "Cassettes de façade et clins en aluminium ou en acier, habillages d'embrasures : bavettes, tableaux, linteaux et épingles. Ossatures galvanisées pour le bardage et grilles anti-rongeurs.",
                         img: 'v1794305547/Image_site_bardage_eam6np.webp',
@@ -1733,6 +1759,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       },
                       {
                         n: '03',
+                        anchor: 'ravalement',
                         title: 'Ravalement de façade',
                         text: "Bavettes droites ou rayonnées, avec relevés droits ou rayonnés. Gouttes d'eau extrudées, couvre-joints extrudés ou pliés, habillages de nez de dalle.",
                         img: 'v1794235010/9cd7d856-180e-4fc2-bf46-7c3f938dfa8f_dj4zga.webp',
@@ -1746,6 +1773,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       },
                       {
                         n: '04',
+                        anchor: 'precadres',
                         title: 'Précadres, portes ou fenêtres',
                         text: 'Précadres étanches en aluminium ou en acier, monoblocs, soudés et post-laqués. Livrés prêts à poser, pour une finition optimale.',
                         img: 'v1794305764/20201001_141101_resized_bddixg.webp',
@@ -1758,6 +1786,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       },
                       {
                         n: '05',
+                        anchor: 'etancheite',
                         title: 'Étanchéité',
                         text: 'Couvertines, angles, pattes drainantes, éclisses et bandes de rive.',
                         img: 'v1794308485/Solutions_etancheite_couvertine_nofleh.webp',
@@ -1770,6 +1799,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       },
                       {
                         n: '06',
+                        anchor: 'mob-fob',
                         title: 'MOB, FOB & murs-rideaux',
                         text: 'Murs et façades à ossature bois, murs-rideaux : pièces techniques et spécifiques regroupant les cinq domaines précédents.',
                         img: 'v1772021847/Welink-1200px_mu1jnb.webp',
@@ -1782,7 +1812,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       },
                     ];
                     return domaines.map((d) => (
-                      <article key={d.n} className={`${DS.CARD_DARK} group flex flex-col transition-colors duration-300 hover:border-[#E2FD48]/50`}>
+                      <article key={d.n} id={d.anchor} className={`${DS.CARD_DARK} group flex flex-col scroll-mt-32 transition-colors duration-300 hover:border-[#E2FD48]/50`}>
                         <div className="relative h-[180px] overflow-hidden border-b border-white/10">
                           <img
                             src={`${CLD}/f_auto,q_auto,c_limit,w_800/${d.img}`}
@@ -1800,21 +1830,29 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                             <h3 className={`${DS.H3} text-white`}>{d.title}</h3>
                           </div>
                           <p className="mb-5 text-sm leading-relaxed text-white/60">{d.text}</p>
-                          {d.product && (
-                            <button
-                              type="button"
-                              onClick={() => setCurrentPage('goutte-eau-extrudee')}
-                              className="group/link mt-auto flex w-full items-center gap-2.5 border-t border-white/10 pt-5 text-left"
-                            >
-                              <span className="whitespace-nowrap rounded-full border border-[#E2FD48]/35 px-2.5 py-1 text-[11px] font-bold text-[#E2FD48]">
-                                Fiche produit
-                              </span>
-                              <span className="flex-1 text-sm font-semibold text-white">Goutte d'eau extrudée</span>
-                              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="text-[#E2FD48] transition-transform duration-150 group-hover/link:translate-x-2">
+                          <div className="mt-auto flex flex-col gap-5 border-t border-white/10 pt-5">
+                            {d.product && (
+                              <button
+                                type="button"
+                                onClick={() => setCurrentPage('goutte-eau-extrudee')}
+                                className="group/link flex w-full items-center gap-2.5 text-left"
+                              >
+                                <span className="whitespace-nowrap rounded-full border border-[#E2FD48]/35 px-2.5 py-1 text-[11px] font-bold text-[#E2FD48]">
+                                  Fiche produit
+                                </span>
+                                <span className="flex-1 text-sm font-semibold text-white">Goutte d'eau extrudée</span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="text-[#E2FD48] transition-transform duration-150 group-hover/link:translate-x-2">
+                                  <path d="M5 12h14M13 6l6 6-6 6" />
+                                </svg>
+                              </button>
+                            )}
+                            <button type="button" onClick={() => goDevis(d.title)} className="group/devis inline-flex items-center gap-3 self-start font-sans text-xs font-semibold uppercase tracking-widest text-[#E2FD48] transition-colors duration-150 hover:text-white">
+                              Demander un devis
+                              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="transition-transform duration-150 group-hover/devis:translate-x-2">
                                 <path d="M5 12h14M13 6l6 6-6 6" />
                               </svg>
                             </button>
-                          )}
+                          </div>
                         </div>
                       </article>
                     ));
@@ -1823,44 +1861,54 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
                 {/* Tôles prélaquées — fullwidth */}
                 <div
-                  role="button"
-                  tabIndex={0}
-                  onClick={scrollToInfinimetal}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      scrollToInfinimetal();
-                    }
-                  }}
-                  className="group relative overflow-hidden rounded-[20px] bg-white/[0.03] border border-white/10 p-6 w-full hover:border-[#E2FD48]/50 transition-colors duration-300 cursor-pointer"
+                  id="toles-prelaquees"
+                  className="grid scroll-mt-32 grid-cols-1 items-center gap-7 rounded-[20px] border border-white/10 bg-[linear-gradient(135deg,#0E2A33_0%,#071318_100%)] p-7 md:grid-cols-[1.5fr_1fr] md:gap-12 md:p-11"
                 >
-                  <div className="flex items-center gap-2 mb-3 relative z-10">
-                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 text-[#E2FD48] shrink-0">
-                      <path d="M11 7 6 2"/>
-                      <path d="M18.992 12H2.041"/>
-                      <path d="M21.145 18.38A3.34 3.34 0 0 1 20 16.5a3.3 3.3 0 0 1-1.145 1.88c-.575.46-.855 1.02-.855 1.595A2 2 0 0 0 20 22a2 2 0 0 0 2-2.025c0-.58-.285-1.13-.855-1.595"/>
-                      <path d="m8.5 4.5 2.148-2.148a1.205 1.205 0 0 1 1.704 0l7.296 7.296a1.205 1.205 0 0 1 0 1.704l-7.592 7.592a3.615 3.615 0 0 1-5.112 0l-3.888-3.888a3.615 3.615 0 0 1 0-5.112L5.67 7.33"/>
-                    </svg>
-                    <h3 className={`${DS.H3} text-white`}>
-                      Tôles prélaquées
-                    </h3>
+                  <div>
+                    <div className="mb-4 flex flex-wrap items-center gap-3">
+                      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 shrink-0 text-[#E2FD48]">
+                        <path d="M11 7 6 2" />
+                        <path d="M18.992 12H2.041" />
+                        <path d="M21.145 18.38A3.34 3.34 0 0 1 20 16.5a3.3 3.3 0 0 1-1.145 1.88c-.575.46-.855 1.02-.855 1.595A2 2 0 0 0 20 22a2 2 0 0 0 2-2.025c0-.58-.285-1.13-.855-1.595" />
+                        <path d="m8.5 4.5 2.148-2.148a1.205 1.205 0 0 1 1.704 0l7.296 7.296a1.205 1.205 0 0 1 0 1.704l-7.592 7.592a3.615 3.615 0 0 1-5.112 0l-3.888-3.888a3.615 3.615 0 0 1 0-5.112L5.67 7.33" />
+                      </svg>
+                      <h3 className="font-display text-[26px] font-bold tracking-tight text-white">Tôles prélaquées</h3>
+                      <span className="rounded-full border border-[#E2FD48]/35 px-3 py-1.5 text-[11px] font-bold text-[#E2FD48]">Usine intégrée</span>
+                    </div>
+                    <p className="max-w-[540px] text-base leading-[1.65] text-white/70">
+                      Feuilles aluminium prélaquées, certifiées Qualicoat et filmées. Déroulées dans nos ateliers. L'expertise PLIALU associée à la qualité{' '}
+                      <button type="button" onClick={scrollToInfinimetal} className={infinimetalLinkClass}>
+                        Infinimetal
+                      </button>
+                      .
+                    </p>
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      {['Certifiées Qualicoat', 'Filmées', 'Déroulage intégré'].map((f) => (
+                        <span key={f} className="rounded-full border border-white/[0.16] px-3 py-1.5 text-xs font-semibold text-white/80">{f}</span>
+                      ))}
+                    </div>
+                    <div className="mt-6 flex flex-wrap gap-2" role="img" aria-label="Aperçu de teintes RAL disponibles">
+                      {RAL_APERCU.map((c) => (
+                        <i key={c} className="block h-10 w-10 rounded-[10px] border border-white/[0.12]" style={{ background: c }} />
+                      ))}
+                    </div>
+                    <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
+                      <button type="button" onClick={() => document.getElementById('res-ral')?.scrollIntoView({ behavior: 'smooth', block: 'start' })} className={DS.ACTION_DARK}>
+                        Catalogue RAL
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={DS.ACTION_ARROW}><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+                      </button>
+                      <button type="button" onClick={() => document.getElementById('res-deroulage')?.scrollIntoView({ behavior: 'smooth', block: 'start' })} className={DS.ACTION_DARK}>
+                        Document déroulage
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={DS.ACTION_ARROW}><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+                      </button>
+                      <button type="button" onClick={() => goDevis('Tôles prélaquées')} className={DS.BTN_PRIMARY}>
+                        Demander un devis
+                      </button>
+                    </div>
                   </div>
-                  <p className="text-white/50 text-sm leading-relaxed relative z-10 max-w-3xl pr-44">
-                    Tôles aluminium en formats standards et sur-mesure. Gamme complète de teintes RAL. Expertise PLIALU associée à la qualité{' '}
-                    <button
-                      type="button"
-                      onClick={(e) => { e.stopPropagation(); scrollToInfinimetal(e); }}
-                      className={infinimetalLinkClass}
-                    >
-                      Infinimetal
-                    </button>
-                    .
-                  </p>
-                  <img
-                    src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1780589052/infini_blanc_zvlnn3.png"
-                    alt="Logo Infinimetal"
-                    className={`absolute right-6 top-1/2 -translate-y-1/2 w-36 h-auto object-contain pointer-events-none ${DS.CARD_IMG_ZOOM}`}
-                  />
+                  <div className="flex justify-start md:justify-center">
+                    <img src="https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,w_520/v1780589052/infini_blanc_zvlnn3.png" alt="Logo Infinimetal Laquage Solutions" loading="lazy" className="h-auto w-44 md:w-[260px]" />
+                  </div>
                 </div>
 
               </div>
@@ -3480,7 +3528,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     <div>
                       <label className="block text-sm font-medium mb-1 text-[#0E2A33]/[0.62]">Intention de contact <span className="text-red-500">*</span></label>
                       <select
+                        key={`intention-${contactPrefill.intention ?? ''}`}
                         name="intention"
+                        defaultValue={contactPrefill.intention ?? ''}
                         required
                         className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-xl focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33]"
                       >
@@ -3488,6 +3538,27 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                         <option value="Demander un devis">Demander un devis</option>
                         <option value="Question / Info produit">Question / Info produit</option>
                         <option value="Postuler chez PLIALU">Postuler chez PLIALU</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label htmlFor="contact-domaine" className="block text-sm font-medium mb-1 text-[#0E2A33]/[0.62]">Domaine concerné</label>
+                      <select
+                        id="contact-domaine"
+                        key={`domaine-${contactPrefill.domaine ?? ''}`}
+                        name="domaine"
+                        defaultValue={contactPrefill.domaine ?? ''}
+                        className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-xl focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33]"
+                      >
+                        <option value="">Non précisé</option>
+                        <option value="Enduit mince sur isolant">Enduit mince sur isolant</option>
+                        <option value="Bardage, cassettes & clins">Bardage, cassettes &amp; clins</option>
+                        <option value="Ravalement de façade">Ravalement de façade</option>
+                        <option value="Précadres, portes ou fenêtres">Précadres, portes ou fenêtres</option>
+                        <option value="Étanchéité">Étanchéité</option>
+                        <option value="MOB, FOB & murs-rideaux">MOB, FOB &amp; murs-rideaux</option>
+                        <option value="Tôles prélaquées">Tôles prélaquées</option>
+                        <option value="Autre">Autre</option>
                       </select>
                     </div>
 

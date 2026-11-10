@@ -248,7 +248,7 @@ export const GoutteEauExtrudee: React.FC<Props> = ({ setCurrentPage }) => {
               Solutions
             </button>
             <span aria-hidden="true">›</span>
-            <span>Étanchéité</span>
+            <span>Ravalement de façade</span>
             <span aria-hidden="true">›</span>
             <span aria-current="page" className="font-semibold text-white">
               Goutte d'eau extrudée
@@ -258,7 +258,7 @@ export const GoutteEauExtrudee: React.FC<Props> = ({ setCurrentPage }) => {
           <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_1fr] lg:gap-14">
             <div>
               <div className="mb-7 flex flex-wrap items-center gap-3.5">
-                <span className={DS.EYEBROW_DARK}>Solutions pour l'étanchéité</span>
+                <span className={DS.EYEBROW_DARK}>Solutions pour le ravalement de façade</span>
               </div>
               <h1 className={`${DS.H1_DETAIL} mb-6 text-white`}>
                 <span className="block">Goutte d'eau</span>
