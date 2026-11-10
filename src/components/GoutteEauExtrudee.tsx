@@ -179,6 +179,8 @@ export const GoutteEauExtrudee: React.FC<Props> = ({ setCurrentPage }) => {
   const [finish, setFinish] = useState<FinishId>('brut');
   const [ral, setRal] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [sending, setSending] = useState(false);
+  const sendingRef = useRef(false);
 
   const setQtyValue = (key: QtyKey, raw: number | string) => {
     const n = typeof raw === 'number' ? raw : parseInt(raw, 10);
@@ -200,8 +202,9 @@ export const GoutteEauExtrudee: React.FC<Props> = ({ setCurrentPage }) => {
     (qty.profils > 0 ? `${plural(qty.profils, 'profil', 'profils')} · ${qty.profils * 3} m` : 'Aucun profil') +
     ` · ${finishLabel}`;
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    const fd = new FormData(e.currentTarget);
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const form = e.currentTarget;
+    const fd = new FormData(form);
     const get = (k: string) => String(fd.get(k) ?? '').trim();
     const next: Record<string, string> = {};
     if (qty.profils < 1) next.profils = 'Ajoutez au moins un profil pour envoyer la demande.';
@@ -224,6 +227,10 @@ export const GoutteEauExtrudee: React.FC<Props> = ({ setCurrentPage }) => {
       setErrors({ form: "Le formulaire n'est pas encore relié à Basin (BASIN_COMMANDE_URL)." });
       return;
     }
+    if (sendingRef.current) {
+      e.preventDefault();
+      return;
+    }
     setErrors({});
     track('generate_lead', {
       form_id: 'commande_goutte_eau',
@@ -231,6 +238,26 @@ export const GoutteEauExtrudee: React.FC<Props> = ({ setCurrentPage }) => {
       finition: finish,
       transport_type: 'beacon',
     });
+    e.preventDefault();
+    sendingRef.current = true;
+    setSending(true);
+    try {
+      const res = await fetch(BASIN_COMMANDE_URL, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+      if (res.ok) {
+        setCurrentPage('merci');
+        return;
+      }
+      setErrors({ form: "L'envoi a échoué. Réessayez ou écrivez-nous à commercial@plialu.fr." });
+    } catch {
+      setErrors({ form: "L'envoi a échoué. Réessayez ou écrivez-nous à commercial@plialu.fr." });
+    } finally {
+      sendingRef.current = false;
+      setSending(false);
+    }
   };
 
   return (
@@ -793,8 +820,8 @@ export const GoutteEauExtrudee: React.FC<Props> = ({ setCurrentPage }) => {
               </fieldset>
 
               <div className="pt-2">
-                <button type="submit" className={`${DS.BTN_PRIMARY} w-full max-w-[420px]`}>
-                  Envoyer ma demande de commande
+                <button type="submit" disabled={sending} className={`${DS.BTN_PRIMARY} w-full max-w-[420px] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0`}>
+                  {sending ? 'Envoi en cours…' : 'Envoyer ma demande de commande'}
                 </button>
                 {errors.form && (
                   <p role="alert" className="mt-3.5 text-[13px] font-semibold text-[#B4232A]">
@@ -823,8 +850,8 @@ export const GoutteEauExtrudee: React.FC<Props> = ({ setCurrentPage }) => {
                   <span className="block font-display text-[10px] font-bold uppercase tracking-[0.3em] text-[#E2FD48]">Votre demande</span>
                   <span className="mt-[3px] block truncate text-[13px] font-semibold">{barText}</span>
                 </div>
-                <button type="submit" className="flex-none rounded-full bg-[#E2FD48] px-4 py-3 text-xs font-extrabold text-[#0E2A33]">
-                  Envoyer
+                <button type="submit" disabled={sending} className="flex-none rounded-full bg-[#E2FD48] px-4 py-3 text-xs font-extrabold text-[#0E2A33] disabled:cursor-not-allowed disabled:opacity-60">
+                  {sending ? 'Envoi en cours…' : 'Envoyer'}
                 </button>
               </div>
             </form>

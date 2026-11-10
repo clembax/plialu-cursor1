@@ -318,6 +318,9 @@ const App: React.FC = () => {
 
   const [contactPrefill, setContactPrefill] = useState<{ intention?: string; domaine?: string }>({});
   const [contactIntention, setContactIntention] = useState('');
+  const [contactSending, setContactSending] = useState(false);
+  const [contactSendError, setContactSendError] = useState(false);
+  const contactSendingRef = useRef(false);
   useEffect(() => {
     setContactIntention(contactPrefill.intention ?? '');
   }, [contactPrefill]);
@@ -326,6 +329,34 @@ const App: React.FC = () => {
   const goContactForm = () => {
     if (currentPage !== 'contact') setCurrentPage('contact');
     window.setTimeout(() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 150);
+  };
+
+  const onContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (contactSendingRef.current) return;
+    const form = e.currentTarget;
+    contactSendingRef.current = true;
+    setContactSending(true);
+    setContactSendError(false);
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+      if (res.ok) {
+        form.reset();
+        setContactIntention('');
+        setCurrentPage('merci');
+        return;
+      }
+      setContactSendError(true);
+    } catch {
+      setContactSendError(true);
+    } finally {
+      contactSendingRef.current = false;
+      setContactSending(false);
+    }
   };
 
   const goDevis = (domaine: string) => {
@@ -3326,6 +3357,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     encType="multipart/form-data"
                     acceptCharset="UTF-8"
                     className="space-y-6"
+                    onSubmit={onContactSubmit}
                   >
                     {/* Champ anti-spam Basin */}
                     <input type="hidden" name="_gotcha" />
@@ -3459,10 +3491,16 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     {/* Bouton submit */}
                     <button
                       type="submit"
-                      className={`${DS.BTN_PRIMARY} w-full`}
+                      disabled={contactSending}
+                      className={`${DS.BTN_PRIMARY} w-full disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0`}
                     >
-                      Envoyer ma demande
+                      {contactSending ? 'Envoi en cours…' : 'Envoyer ma demande'}
                     </button>
+                    {contactSendError && (
+                      <p role="alert" className="text-sm text-red-600">
+                        L'envoi a échoué. Réessayez ou écrivez-nous à commercial@plialu.fr.
+                      </p>
+                    )}
                   </form>
               </div>
             </div>
