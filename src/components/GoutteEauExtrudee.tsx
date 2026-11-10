@@ -237,9 +237,9 @@ export const GoutteEauExtrudee: React.FC<Props> = ({ setCurrentPage }) => {
   return (
     <main>
       {/* ============================ 1. HERO ============================ */}
-      <section className={`${GRADIENT_DARK} relative overflow-hidden pt-32 text-white md:pt-40`}>
+      <section className={`${GRADIENT_DARK} relative overflow-hidden text-white pt-28 md:pt-32`}>
         <div className={DS.CONTAINER}>
-          <nav aria-label="Fil d'Ariane" className="mb-10 flex flex-wrap gap-2.5 text-[13px] text-white/50">
+          <nav aria-label="Fil d'Ariane" className="mb-6 flex flex-wrap gap-2.5 text-[13px] text-white/50">
             <button
               type="button"
               onClick={() => setCurrentPage('solutions-temporaire')}
@@ -277,7 +277,7 @@ export const GoutteEauExtrudee: React.FC<Props> = ({ setCurrentPage }) => {
               </div>
             </div>
 
-            <div className="relative lg:h-[560px]">
+            <div className="relative lg:h-[min(520px,calc(100vh-200px))]">
               <img
                 src={cld(IMG.profilHero, 1200)}
                 srcSet={srcSetOf(IMG.profilHero)}

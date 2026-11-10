@@ -32,6 +32,7 @@ export const SECTION = 'py-24 md:py-32';
 export const SECTION_COMPACT = 'py-16 md:py-24';
 export const HERO_MAIN = 'pt-48 md:pt-56 pb-20';
 export const HERO_DETAIL = 'pt-32 md:pt-40 pb-20';
+export const HERO_TOP = 'pt-48 md:pt-60';
 
 export const RADIUS_BLOCK = 'rounded-[20px]';
 export const CARD_LIGHT = 'rounded-[20px] overflow-hidden bg-[#F5F5F3] border border-[#0E2A33]/20';

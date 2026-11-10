@@ -2,6 +2,9 @@
   RewriteEngine On
   RewriteBase /
 
+  # Ancienne URL de la page Solutions
+  RewriteRule ^solutions-temporaire/?$ /solutions [R=301,L]
+
   # Ne pas réécrire si le fichier ou dossier demandé existe réellement
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d

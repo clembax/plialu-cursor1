@@ -64,10 +64,10 @@ const ZoneSwatch: React.FC<{ kind: ZoneId }> = ({ kind }) => {
 };
 
 const SEO_CONFIG: Record<string, { path: string; title: string; desc: string; noindex?: boolean }> = {
-  'home': { path: '/', title: 'PLIALU | Façonnage métallique sur-mesure en Rhône-Alpes', desc: 'Spécialiste du façonnage métallique en Rhône-Alpes depuis 20 ans. Solutions sur-mesure pour architectes, bureaux d\'études et façadiers. Devis sous 48h.' },
-  'expertises': { path: '/expertises', title: 'Process industriel & Fabrication métallique sur mesure | PLIALU', desc: 'Bureau d\'études, déroulage, thermolaquage, pliage, assemblage. Chaîne de production intégrée pour façonnage métal haute précision.' },
-  'solutions': { path: '/solutions', title: 'Solutions métalliques pour l\'enveloppe du bâtiment | PLIALU', desc: 'Solutions métalliques enveloppe bâtiment : bardage, ITE, cassettes, précadres. Profilés aluminium sur mesure, thermolaquage QUALICOAT inclus.' },
-  'solutions-temporaire': { path: '/solutions-temporaire', title: 'Solutions | PLIALU', desc: 'Catalogue B2B complet : enduit mince, étanchéité, bardages, ravalement, précadres, MOB/FOB, tôles prélaquées. Téléchargez ressources.' },
+  'home': { path: '/', title: "Solutions métalliques sur mesure pour l'enveloppe du bâtiment", desc: "Solutions métalliques sur mesure pour l'enveloppe du bâtiment : pliage, thermolaquage Qualicoat et assemblage près de Lyon, pour architectes et façadiers." },
+  'expertises': { path: '/expertises', title: 'Fabrication de pièces métalliques sur mesure | PLIALU', desc: "Fabrication de pièces métalliques sur mesure : bureau d'études, déroulage, thermolaquage Qualicoat, pliage et assemblage dans nos ateliers près de Lyon." },
+  'solutions': { path: '/solutions-hub', title: 'Solutions métalliques pour l\'enveloppe du bâtiment | PLIALU', desc: 'Solutions métalliques enveloppe bâtiment : bardage, ITE, cassettes, précadres. Profilés aluminium sur mesure, thermolaquage QUALICOAT inclus.', noindex: true },
+  'solutions-temporaire': { path: '/solutions', title: 'Profilés et accessoires aluminium pour façade | PLIALU', desc: 'Profilés et accessoires aluminium pour façade : enduit mince sur isolant, bardage, ravalement, précadres, étanchéité, MOB. Fiches techniques en PDF.' },
   'etancheite': {
     path: '/solutions/etancheite',
     title: 'Solutions d’Étanchéité Métallique',
@@ -79,8 +79,8 @@ const SEO_CONFIG: Record<string, { path: string; title: string; desc: string; no
     title: "Goutte d'eau extrudée pour nez de dalle | PLIALU",
     desc: "Goutte d'eau en aluminium extrudé pour nez de dalle et rive de balcon. Angles monoblocs, éclisses, laquage RAL dans nos ateliers. Demande de commande en ligne.",
   },
-  'projects': { path: '/portfolio', title: 'Nos réalisations : Façades aluminium et enveloppe bâtiment | PLIALU', desc: '13 réalisations de façades et d\'enveloppe de bâtiment à Grenoble, Lyon, Annecy et Meylan : cassettes aluminium, précadres, habillages. Références PLIALU.' },
-  'a-propos': { path: '/a-propos', title: 'PLIALU : Entreprise de façonnage métallique en Rhône-Alpes', desc: 'PLIALU : PME façonnage métal Rhône-Alpes, 20 ans d\'expertise. Usine intégrée, 7 000 m², process certifiés Qualicoat. Devis gratuit.' },
+  'projects': { path: '/portfolio', title: 'Réalisations de façades en aluminium | PLIALU', desc: `${PROJECTS.length} réalisations de façades en aluminium à Grenoble, Lyon, Annecy et Meylan : cassettes, précadres, habillages. Projets menés avec architectes et façadiers.` },
+  'a-propos': { path: '/a-propos', title: 'Façonnage métallique près de Lyon | PLIALU', desc: "PLIALU, entreprise de façonnage métallique près de Lyon : usine intégrée de 7 000 m², 20 ans d'expertise en Rhône-Alpes, thermolaquage certifié Qualicoat." },
   'ressources': { path: '/ressources', title: 'Ressources techniques — Enveloppe du bâtiment | PLIALU', desc: 'Dossiers techniques et guides pratiques PLIALU pour vos choix de matériaux et conceptions de façades métalliques.', noindex: true },
   'ressource-1': { path: '/ressources/choix-metal-facade', title: 'Quel métal choisir pour une façade extérieure ? | PLIALU', desc: 'Aluminium, acier ou inox pour une façade extérieure : comparatif technique, comportement aux UV, corrosion et contraintes chantier. Guide prescripteurs.', noindex: true },
   'ressource-2': { path: '/ressources/pliage-aluminium-tolerances', title: 'Pliage aluminium : limites et tolérances | PLIALU', desc: 'Pliage aluminium : épaisseurs, rayons mini, tolérances ±0,3 mm. Ce que votre fabricant doit maîtriser avant de démarrer la production.', noindex: true },
@@ -103,6 +103,7 @@ const BLOCKED_PAGE_KEYS = new Set([
   'solution-toles',
   'solution-ravalement',
   'etancheite',
+  'solutions',
   'ressources',
   'ressource-1',
   'ressource-2',
@@ -805,7 +806,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
       {currentPage === 'home' && (
         <>
           {/* 1. HERO SECTION (DARK) */}
-          <section className="relative w-full overflow-hidden flex items-center" style={{ minHeight: '100vh' }}>
+          <section className="relative w-full overflow-hidden" style={{ minHeight: '100vh' }}>
             <div className="absolute inset-0 z-0">
               <picture>
                 <source media="(max-width: 800px)" srcSet="https://res.cloudinary.com/dyiup6v5x/image/upload/v1771414327/Hero-800px_emwjxr.webp" />
@@ -815,11 +816,10 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#0e2a33]/70 to-[#071318]/90"></div>
               <div className="absolute inset-x-0 bottom-0 h-full z-20 pointer-events-none" style={{ background: 'linear-gradient(180deg, rgba(7, 19, 24, 0) 0%, rgba(7, 19, 24, 0.10) 60%, rgba(7, 19, 24, 0.55) 85%, #071318 100%)' }}></div>
             </div>
-            <div className="relative z-30 w-full max-w-7xl mx-auto px-6 pt-32 md:pt-36 [@media(min-width:768px)_and_(max-height:780px)]:!pt-[120px] [@media(min-width:768px)_and_(min-height:860px)]:!pt-[194px] pb-16">
+            <div className={`relative z-30 w-full max-w-7xl mx-auto px-6 ${DS.HERO_TOP} pb-16`}>
               <div className="max-w-7xl animate-fade-up">
                 <div className="mb-16">
                   <h1 className={`${DS.H1} text-white`}>
-                    <span className={`block mb-4 ${DS.EYEBROW_DARK}`}>PME industrielle</span>
                     <span className="block">SOLUTIONS MÉTALLIQUES <span className="whitespace-nowrap">SUR-MESURE</span></span>
                     <span className="block">pour l'enveloppe du bâtiment</span>
                   </h1>
@@ -834,32 +834,37 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     <iconify-icon icon="lucide:arrow-right" className="group-hover:translate-x-1 transition-transform"></iconify-icon>
                   </button>
                 </div>
-                <div className="mt-20 grid grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_1.5fr] border-t border-b border-white/[0.12] max-lg:[&>*:nth-last-child(-n+2)]:border-b-0">
-                  <div className="py-7 pr-4 lg:px-8 lg:first:pl-0 lg:last:pr-0 border-b border-white/[0.08] lg:border-b-0 lg:border-r">
-                    <span className={`${DS.STAT_NUMBER} text-white`}>20 <span className="text-lg font-semibold text-white/50 tracking-normal">ans</span></span>
-                    <p className="mt-2.5 text-[13px] leading-snug text-white/50">d'expertise en façonnage métallique</p>
-                  </div>
-                  <div className="py-7 pr-4 lg:px-8 lg:first:pl-0 lg:last:pr-0 border-b border-white/[0.08] lg:border-b-0 lg:border-r">
-                    <span className={`${DS.STAT_NUMBER} text-white`}>7 000 <span className="text-lg font-semibold text-white/50 tracking-normal">m²</span></span>
-                    <p className="mt-2.5 text-[13px] leading-snug text-white/50">d'ateliers de production</p>
-                  </div>
-                  <div className="py-7 pr-4 lg:px-8 lg:first:pl-0 lg:last:pr-0 border-white/[0.08] max-lg:border-b-0 lg:border-r">
-                    <span className={`${DS.STAT_NUMBER} text-white`}>3 <span className="text-lg font-semibold text-white/50 tracking-normal">lignes intégrées</span></span>
-                    <p className="mt-2.5 text-[13px] leading-snug text-white/50">Déroulage, thermolaquage, production</p>
-                  </div>
-                  <div className="py-7 pr-4 lg:px-8 lg:first:pl-0 lg:last:pr-0">
-                    <div className="flex gap-4 items-center">
-                      <img src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1771500844/logo_qf_kzo395.png" alt="Logo Qualicoat" className="w-16 h-auto brightness-0 invert" />
-                      <div>
-                        <p className={DS.EYEBROW_DARK}>Qualicoat certifié</p>
-                        <p className="text-[13px] text-white/50 mt-1.5">Thermolaquage conforme aux exigences internationales</p>
-                      </div>
+              </div>
+            </div>
+          </section>
+
+          <div className="bg-[#071318]">
+            <div className="max-w-7xl mx-auto px-6">
+              <div className="mt-0 grid grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_1.5fr] border-t border-b border-white/[0.12] max-lg:[&>*:nth-last-child(-n+2)]:border-b-0">
+                <div className="py-7 pr-4 lg:px-8 lg:first:pl-0 lg:last:pr-0 border-b border-white/[0.08] lg:border-b-0 lg:border-r">
+                  <span className={`${DS.STAT_NUMBER} text-white`}>20 <span className="text-lg font-semibold text-white/50 tracking-normal">ans</span></span>
+                  <p className="mt-2.5 text-[13px] leading-snug text-white/50">d'expertise en façonnage métallique</p>
+                </div>
+                <div className="py-7 pr-4 lg:px-8 lg:first:pl-0 lg:last:pr-0 border-b border-white/[0.08] lg:border-b-0 lg:border-r">
+                  <span className={`${DS.STAT_NUMBER} text-white`}>7 000 <span className="text-lg font-semibold text-white/50 tracking-normal">m²</span></span>
+                  <p className="mt-2.5 text-[13px] leading-snug text-white/50">d'ateliers de production</p>
+                </div>
+                <div className="py-7 pr-4 lg:px-8 lg:first:pl-0 lg:last:pr-0 border-white/[0.08] max-lg:border-b-0 lg:border-r">
+                  <span className={`${DS.STAT_NUMBER} text-white`}>3 <span className="text-lg font-semibold text-white/50 tracking-normal">lignes intégrées</span></span>
+                  <p className="mt-2.5 text-[13px] leading-snug text-white/50">Déroulage, thermolaquage, production</p>
+                </div>
+                <div className="py-7 pr-4 lg:px-8 lg:first:pl-0 lg:last:pr-0">
+                  <div className="flex gap-4 items-center">
+                    <img src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1771500844/logo_qf_kzo395.png" alt="Logo Qualicoat" className="w-16 h-auto brightness-0 invert" />
+                    <div>
+                      <p className={DS.EYEBROW_DARK}>Qualicoat certifié</p>
+                      <p className="text-[13px] text-white/50 mt-1.5">Thermolaquage conforme aux exigences internationales</p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </section>
+          </div>
 
           {/* 2. NOS EXPERTISES (DARK) */}
           <section id="expertise" className="pt-16 md:pt-20 pb-12 md:pb-16 section--dark" style={{ background: 'linear-gradient(180deg, #071318 0%, #0D2630 80%, #0C242D 100%)' }}>
@@ -868,7 +873,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 <div>
                   <div className="mb-16">
                     <span className={`block mb-4 ${DS.EYEBROW_DARK}`}>PROCESS INTÉGRÉ</span>
-                    <h2 className={`${DS.H2} text-white`}>Fabrication de pièces métalliques sur mesure</h2>
+                    <h2 className={`${DS.H2} text-white`}>Toute la chaîne de production sous le même toit</h2>
                     <p className={`${DS.LEAD_DARK} mt-6`}>
                     De l'étude technique Bureau d'Études au pliage grande longueur, jusqu'au thermolaquage industriel certifié Qualicoat. Chaque étape de notre <strong>fabrication industrielle métal</strong> est maîtrisée en interne pour une qualité irréprochable.
                     </p>
@@ -1234,9 +1239,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
       {currentPage === 'a-propos' && (
         <div className="animate-fade-up">
           {/* 1. HERO SECTION (DARK) */}
-          <section className="relative bg-[#071318] pt-48 md:pt-56 pb-20 overflow-hidden min-h-[70vh] flex flex-col justify-center">
+          <section className={`relative bg-[#071318] ${DS.HERO_TOP} pb-20 overflow-hidden min-h-[70vh] flex flex-col`}>
             <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-b from-[#0e2a33]/40 to-[#071318]"></div>
-            <div className="relative z-10 flex-1 flex flex-col justify-center max-w-7xl mx-auto px-6 w-full">
+            <div className="relative z-10 flex-1 flex flex-col max-w-7xl mx-auto px-6 w-full">
               <div className="max-w-6xl">
                 <div className="mb-16">
                 <span className={`block mb-4 ${DS.EYEBROW_DARK}`}>
@@ -1244,7 +1249,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 </span>
                 <h1 className={`${DS.H1} text-white`}>
                   PLIALU, Entreprise de<br />
-                  façonnage métal en <span className="whitespace-nowrap">Rhône-Alpes</span>
+                  façonnage métal <span className="whitespace-nowrap">près de Lyon</span>
                 </h1>
                 <p className={`${DS.LEAD_DARK} mt-6`}>
                   Implantée près de Lyon, notre usine de façonnage métallique accompagne les professionnels de l'enveloppe du bâtiment en Rhône-Alpes, de la transformation industrielle à la fabrication sur mesure de pièces métalliques.
@@ -1388,7 +1393,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
       {currentPage === 'projects' && (
         <div className="animate-fade-up">
           {/* Hero Réalisations */}
-          <section className="relative bg-[#071318] pt-48 md:pt-56 pb-12 md:pb-16">
+          <section className={`relative bg-[#071318] ${DS.HERO_TOP} pb-12 md:pb-16`}>
             <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-b from-[#0e2a33]/40 to-[#071318]"></div>
             <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
               <div className="max-w-4xl">
@@ -1397,10 +1402,10 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   PORTFOLIO
                 </span>
                 <h1 className={`${DS.H1} text-white`}>
-                  Découvrir nos projets en collaboration
+                  Nos réalisations de façades en aluminium
                 </h1>
                 <p className={`${DS.LEAD_DARK} mt-6`}>
-                  Une sélection de projets menés aux côtés de maîtres d'œuvre, Maîtres d'ouvrage, Cabinets d'architecture, Professionnels de l'enveloppe, Bureaux d'études.
+                  Une sélection de façades en aluminium réalisées aux côtés de maîtres d'œuvre, maîtres d'ouvrage, cabinets d'architecture, professionnels de l'enveloppe et bureaux d'études.
                 </p>
                 </div>
                 <div className="flex flex-col sm:flex-row items-start gap-4">
@@ -1432,7 +1437,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           {/* Grille des Projets */}
           <section id="projets-grille" className="scroll-mt-24 bg-[#071318] py-16 md:py-24">
             <div className="mx-auto max-w-7xl px-6">
-              <h2 className="sr-only">Nos réalisations</h2>
+              <h2 className="sr-only">Tous nos chantiers</h2>
               <p className="mb-8 text-[10px] font-extrabold uppercase tracking-[0.4em] text-white/50">
                 {PROJECTS.length} réalisations · {portfolioYearMin} à {portfolioYearMax}
               </p>
@@ -1664,17 +1669,17 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
       {currentPage === 'solutions-temporaire' && (
         <div className="animate-fade-up">
           {/* Hero section */}
-          <section className="bg-white pt-48 md:pt-56 pb-20 min-h-[70vh] flex flex-col justify-center">
-            <div className="relative z-30 w-full max-w-7xl mx-auto px-6 py-20">
+          <section className={`bg-white ${DS.HERO_TOP} pb-20 min-h-[70vh] flex flex-col`}>
+            <div className="relative z-30 w-full max-w-7xl mx-auto px-6">
               <div className="max-w-5xl">
                 <span className={`inline-block mb-4 ${DS.EYEBROW_LIGHT}`}>
                   CATALOGUE B2B
                 </span>
                 <h1 className={`${DS.H1} text-[#0E2A33]`}>
-                  Solutions métalliques enveloppe du bâtiment
+                  Profilés et accessoires aluminium pour façade
                 </h1>
                 <p className={`${DS.LEAD_LIGHT} mt-6`}>
-                  Découvrez l'ensemble de nos solutions pour l'enveloppe du bâtiment. Des systèmes d'isolation thermique au ravalement de façade, en passant par les bardages, précadres et tôles prélaquées, nous couvrons vos besoins métalliques complets.
+                  Profilés, pliages et accessoires aluminium pour l'enveloppe du bâtiment. Des systèmes d'isolation thermique au ravalement de façade, en passant par les bardages, précadres et tôles prélaquées, nous couvrons vos besoins métalliques complets.
                 </p>
                 <div className="flex flex-wrap gap-4 mt-10">
                   <button type="button" onClick={() => setCurrentPage('contact')} className={DS.BTN_PRIMARY}>
@@ -1701,9 +1706,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 <div>
                   <p className={`${DS.EYEBROW_DARK} mb-4`}>Gammes</p>
                   <h2 className={`${DS.H2} text-white`}>
-                    Nos solutions
+                    Six domaines pour l'enveloppe du bâtiment
                   </h2>
-                  <p className={`${DS.LEAD_DARK} mt-6`}>Six domaines de solutions pour l'enveloppe du bâtiment, fabriqués dans nos ateliers.</p>
+                  <p className={`${DS.LEAD_DARK} mt-6`}>Façonnés et laqués dans nos ateliers près de Lyon.</p>
                 </div>
 
                 {/* Grille 6 domaines (textes de la plaquette) */}
@@ -2029,8 +2034,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
       {currentPage === 'expertises' && (
         <div className="animate-fade-in">
           {/* Hero Expertises (contient le sommaire en bas, au-dessus de la ligne de flottaison) */}
-          <section ref={expertisesHeroRef} className="bg-white pt-48 md:pt-56 pb-0 min-h-[70vh] flex flex-col">
-            <div className="flex-1 flex flex-col justify-center max-w-7xl mx-auto px-6 w-full">
+          <section ref={expertisesHeroRef} className={`bg-white ${DS.HERO_TOP} pb-0 min-h-[70vh] flex flex-col`}>
+            <div className="flex-1 flex flex-col max-w-7xl mx-auto px-6 w-full">
               <div className="max-w-4xl">
                 <div className="mb-16">
                 <span className={`block mb-4 ${DS.EYEBROW_LIGHT}`}>
@@ -2040,7 +2045,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   FABRICATION DE PIÈCES MÉTALLIQUES SUR MESURE
                 </h1>
                 <p className={`${DS.LEAD_LIGHT} mt-6`}>
-                  De l'étude technique (DXF/DWG) au thermolaquage industriel, jusqu'au pliage, notre chaîne de valeur intégrée garantit précision, conformité et performance chantier.
+                  De l'étude technique (DXF/DWG) au thermolaquage industriel, jusqu'au pliage, notre chaîne intégrée de fabrication de pièces métalliques sur mesure garantit précision, conformité et performance chantier.
                 </p>
                 </div>
                 <div className="flex flex-col sm:flex-row items-start gap-4">
@@ -3325,8 +3330,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
       {currentPage === 'contact' && (
         <div className="animate-fade-up">
           {/* Hero Contact (White background, Dark header logic) */}
-          <section className="bg-white pt-48 md:pt-56 pb-20 min-h-[70vh] flex flex-col justify-center">
-            <div className="flex-1 flex flex-col justify-center max-w-7xl mx-auto px-6 w-full">
+          <section className={`bg-white ${DS.HERO_TOP} pb-20 min-h-[70vh] flex flex-col`}>
+            <div className="flex-1 flex flex-col max-w-7xl mx-auto px-6 w-full">
               <div className="max-w-4xl">
                 <div className="mb-16">
                 <span className={`block mb-4 ${DS.EYEBROW_LIGHT}`}>
