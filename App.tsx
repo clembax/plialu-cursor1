@@ -1018,12 +1018,12 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
                 );
                 const tuiles = [
-                  { n: '01', anchor: 'enduit-mince', title: 'Enduit mince sur isolant', img: 'f_auto,q_auto/v1794308485/Solutions_enduit_mince_ITE_nhj3ul.webp', alt: 'Enduit mince sur isolant : façade ITE avec tableaux et bavettes de fenêtres en aluminium laqué' },
-                  { n: '02', anchor: 'bardage', title: 'Bardage, cassettes & clins', img: 'f_auto,q_auto,c_limit,w_800/v1794305547/Image_site_bardage_eam6np.webp', alt: 'Bardage en cassettes de façade aluminium : joint en croix et fixations' },
-                  { n: '03', anchor: 'ravalement', title: 'Ravalement de façade', img: 'f_auto,q_auto,c_limit,w_800/v1794235010/9cd7d856-180e-4fc2-bf46-7c3f938dfa8f_dj4zga.webp', alt: "Ravalement de façade : nez de dalle équipé d'une goutte d'eau extrudée en aluminium" },
-                  { n: '04', anchor: 'precadres', title: 'Précadres, portes ou fenêtres', img: 'f_auto,q_auto,c_limit,w_800/v1794305764/20201001_141101_resized_bddixg.webp', alt: "Précadre aluminium monobloc soudé dans l'atelier PLIALU, vue de dessus" },
-                  { n: '05', anchor: 'etancheite', title: 'Étanchéité', img: 'f_auto,q_auto,c_limit,w_800/v1794308485/Solutions_etancheite_couvertine_nofleh.webp', alt: 'Étanchéité de toiture-terrasse : couvertine aluminium posée sur acrotère avec son support' },
-                  { n: '06', anchor: 'mob-fob', title: 'MOB, FOB & murs-rideaux', img: 'f_auto,q_auto,c_limit,w_800/v1772021847/Welink-1200px_mu1jnb.webp', alt: 'Murs-rideaux et façade métallique du bâtiment WeLink à Lyon 7' },
+                  { n: '01', anchor: 'enduit-mince', title: 'Enduit mince sur isolant', img: 'v1794308485/Solutions_enduit_mince_ITE_nhj3ul.webp', alt: 'Enduit mince sur isolant : façade ITE avec tableaux et bavettes de fenêtres en aluminium laqué' },
+                  { n: '02', anchor: 'bardage', title: 'Bardage, cassettes & clins', img: 'v1794305547/Image_site_bardage_eam6np.webp', alt: 'Bardage en cassettes de façade aluminium : joint en croix et fixations' },
+                  { n: '03', anchor: 'ravalement', title: 'Ravalement de façade', img: 'v1794235010/9cd7d856-180e-4fc2-bf46-7c3f938dfa8f_dj4zga.webp', alt: "Ravalement de façade : nez de dalle équipé d'une goutte d'eau extrudée en aluminium" },
+                  { n: '04', anchor: 'precadres', title: 'Précadres, portes ou fenêtres', img: 'v1794305764/20201001_141101_resized_bddixg.webp', alt: "Précadre aluminium monobloc soudé dans l'atelier PLIALU, vue de dessus" },
+                  { n: '05', anchor: 'etancheite', title: 'Étanchéité', img: 'v1794308485/Solutions_etancheite_couvertine_nofleh.webp', alt: 'Étanchéité de toiture-terrasse : couvertine aluminium posée sur acrotère avec son support' },
+                  { n: '06', anchor: 'mob-fob', title: 'MOB, FOB & murs-rideaux', img: 'v1772021847/Welink-1200px_mu1jnb.webp', alt: 'Murs-rideaux et façade métallique du bâtiment WeLink à Lyon 7' },
                 ];
                 return (
                   <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -1049,6 +1049,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       </div>
                       <img
                         src={`${CLD}/c_crop,x_0,y_233,w_2247,h_2025/a_hflip/f_auto,q_auto,c_limit,w_1000/v1794245866/profil_piyucu.webp`}
+                        srcSet={`${CLD}/c_crop,x_0,y_233,w_2247,h_2025/a_hflip/f_auto,q_auto,c_limit,w_500/v1794245866/profil_piyucu.webp 500w, ${CLD}/c_crop,x_0,y_233,w_2247,h_2025/a_hflip/f_auto,q_auto,c_limit,w_1000/v1794245866/profil_piyucu.webp 1000w`}
+                        sizes="(max-width: 768px) 100vw, 360px"
                         alt="Profil goutte d'eau extrudée en aluminium laqué, rendu 3D"
                         loading="lazy"
                         className="h-[220px] w-full object-contain object-right transition-transform duration-700 ease-out group-hover:scale-[1.04] md:absolute md:right-0 md:top-1/2 md:h-[88%] md:w-[58%] md:-translate-y-1/2"
@@ -1064,7 +1066,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                         className="group relative flex min-h-[300px] flex-col justify-end overflow-hidden rounded-[20px] bg-[#0E2A33] text-left text-white"
                       >
                         <img
-                          src={`${CLD}/${t.img}`}
+                          src={`${CLD}/f_auto,q_auto,c_limit,w_800/${t.img}`}
+                          srcSet={`${CLD}/f_auto,q_auto,c_limit,w_400/${t.img} 400w, ${CLD}/f_auto,q_auto,c_limit,w_800/${t.img} 800w, ${CLD}/f_auto,q_auto,c_limit,w_1200/${t.img} 1200w`}
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 300px"
                           alt={t.alt}
                           loading="lazy"
                           className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
