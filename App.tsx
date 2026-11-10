@@ -628,21 +628,71 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             >
               Expertises
             </button>
-            <button
-              onClick={() => setCurrentPage('solutions-temporaire')}
-              className={`whitespace-nowrap text-xs font-semibold px-5 py-2 rounded-full transition-all
-                ${
-                  currentPage === 'solutions-temporaire'
-                    ? headerTheme === 'dark'
-                      ? 'text-[#0E2A33] bg-[#0E2A33]/10'
-                      : 'text-white bg-white/10'
-                    : headerTheme === 'dark'
-                      ? 'text-[#0E2A33]/60 hover:text-[#0E2A33] hover:bg-black/5'
-                      : 'text-white/50 hover:text-white hover:bg-white/5'
+            <div className="group relative">
+              <button
+                onClick={() => setCurrentPage('solutions-temporaire')}
+                aria-haspopup="true"
+                className={`inline-flex items-center gap-1.5 whitespace-nowrap text-xs font-semibold px-5 py-2 rounded-full transition-all
+                  ${
+                    ['solutions-temporaire', 'etancheite', 'goutte-eau-extrudee'].includes(currentPage)
+                      ? headerTheme === 'dark'
+                        ? 'text-[#0E2A33] bg-[#0E2A33]/10'
+                        : 'text-white bg-white/10'
+                      : headerTheme === 'dark'
+                        ? 'text-[#0E2A33]/60 hover:text-[#0E2A33] hover:bg-black/5'
+                        : 'text-white/50 hover:text-white hover:bg-white/5'
+                  }`}
+              >
+                Solutions
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="transition-transform duration-200 group-hover:rotate-180">
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </button>
+
+              <div
+                className={`invisible absolute left-1/2 top-[calc(100%+14px)] z-50 flex min-w-[240px] -translate-x-1/2 translate-y-1.5 flex-col gap-0.5 rounded-[20px] border p-1.5 opacity-0 transition-all duration-200 before:absolute before:inset-x-0 before:-top-4 before:h-4 before:content-[''] group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 ${
+                  headerTheme === 'dark'
+                    ? 'border-[#0E2A33]/10 bg-[#F3F4F5]'
+                    : 'border-white/[0.12] bg-[#071318]/[0.92] shadow-[0_12px_32px_rgba(0,0,0,0.3)] backdrop-blur'
                 }`}
-            >
-              Solutions
-            </button>
+              >
+                {(() => {
+                  const item = `flex items-center justify-between gap-4 whitespace-nowrap rounded-full px-4 py-[9px] text-xs font-semibold transition-colors duration-150 ${
+                    headerTheme === 'dark'
+                      ? 'text-[#0E2A33]/60 hover:bg-[#0E2A33]/[0.07] hover:text-[#0E2A33]'
+                      : 'text-white/70 hover:bg-white/[0.06] hover:text-white'
+                  }`;
+                  const pdf = `rounded-full border px-[7px] py-0.5 text-[10px] font-semibold tracking-[0.05em] ${
+                    headerTheme === 'dark' ? 'border-[#0E2A33]/15 text-[#0E2A33]/50' : 'border-white/20 text-white/50'
+                  }`;
+                  const close = () => (document.activeElement as HTMLElement | null)?.blur();
+                  return (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() => { setCurrentPage('goutte-eau-extrudee'); close(); }}
+                        className={`${item} text-left`}
+                      >
+                        Goutte d'eau extrudée
+                      </button>
+                      <div className={`mx-3 my-1 h-px ${headerTheme === 'dark' ? 'bg-[#0E2A33]/10' : 'bg-white/10'}`} />
+                      <a href="/documents/Fiches_techniques.pdf" target="_blank" rel="noopener noreferrer" onClick={close} className={item}>
+                        Fiches techniques<span className={pdf}>PDF</span>
+                      </a>
+                      <a href="/documents/Deroulage.pdf" target="_blank" rel="noopener noreferrer" onClick={close} className={item}>
+                        Déroulage<span className={pdf}>PDF</span>
+                      </a>
+                      <a href="/documents/Catalogue_RAL.pdf" target="_blank" rel="noopener noreferrer" onClick={close} className={item}>
+                        Catalogue RAL<span className={pdf}>PDF</span>
+                      </a>
+                      <a href="/documents/Portfolio_Plialu.pdf" target="_blank" rel="noopener noreferrer" onClick={close} className={item}>
+                        Portfolio<span className={pdf}>PDF</span>
+                      </a>
+                    </>
+                  );
+                })()}
+              </div>
+            </div>
             <button 
               onClick={() => setCurrentPage('projects')} 
               className={`whitespace-nowrap text-xs font-semibold px-5 py-2 rounded-full transition-all 
@@ -714,6 +764,12 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             <button onClick={() => { setCurrentPage('home'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Accueil</button>
             <button onClick={() => { setCurrentPage('expertises'); setIsMenuOpen(false); if (window.location.hash) window.history.replaceState(null, '', window.location.pathname + window.location.search || '#'); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Expertises</button>
             <button onClick={() => { setCurrentPage('solutions-temporaire'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Solutions</button>
+            <button
+              onClick={() => { setCurrentPage('goutte-eau-extrudee'); setIsMenuOpen(false); }}
+              className="text-left py-2.5 pl-8 pr-4 rounded-xl text-sm text-white/70 font-medium hover:bg-white/10 hover:text-white transition-colors"
+            >
+              Goutte d'eau extrudée
+            </button>
             <button onClick={() => { setCurrentPage('projects'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Portfolio</button>
             <button onClick={() => { setCurrentPage('a-propos'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">À propos</button>
             <button onClick={() => { setCurrentPage('contact'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Contact</button>
@@ -1668,6 +1724,19 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     <p className="text-white/50 text-sm leading-relaxed relative z-10">
                       Couvertines, supports, éclisses et accessoires pour l'étanchéité des façades. Gammes standards et sur-mesure.
                     </p>
+                    <button
+                      type="button"
+                      onClick={() => setCurrentPage('goutte-eau-extrudee')}
+                      className="group/link relative z-10 mt-5 flex w-full items-center gap-2.5 border-t border-white/10 pt-5 text-left"
+                    >
+                      <span className="whitespace-nowrap rounded-full border border-[#E2FD48]/35 px-2.5 py-1 text-[11px] font-bold text-[#E2FD48]">
+                        Fiche produit
+                      </span>
+                      <span className="flex-1 text-sm font-semibold text-white">Goutte d'eau extrudée</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="text-[#E2FD48] transition-transform duration-150 group-hover/link:translate-x-2">
+                        <path d="M5 12h14M13 6l6 6-6 6" />
+                      </svg>
+                    </button>
                   </div>
 
                   {/* 3. Bardages */}
