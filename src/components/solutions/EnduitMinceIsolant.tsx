@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { X } from 'lucide-react';
 import { iteProfiles, schemaImages } from '../../config/schemaConfig';
 
 interface EnduitMinceIsolantProps {
@@ -324,7 +325,7 @@ const EnduitMinceIsolant: React.FC<EnduitMinceIsolantProps> = ({ setCurrentPage 
               onClick={() => setZoomedImage(null)}
               className="absolute -top-12 right-0 md:-top-14 p-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-colors"
             >
-              <iconify-icon icon="lucide:x" width="22"></iconify-icon>
+              <X aria-hidden="true" size={22} />
             </button>
             <img
               src={zoomedImage.src}

@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #071318;
+    color: rgba(255, 255, 255, 0.78);
+}
+
+/* --- Font Override for Titles --- */
+h1, h2, h3 {
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+/* --- Section System (Sharp Transitions) --- */
+.section--dark {
+    position: relative;
+    background-color: #071318;
+}
+
+.section--light {
+    position: relative;
+    background-color: #F3F6F7;
+    color: #0E2A33;
+    /* Suble depth shadow to make light sections appear "below" dark ones */
+    box-shadow: 
+        inset 0 15px 25px -20px rgba(0, 0, 0, 0.15),
+        inset 0 -15px 25px -20px rgba(0, 0, 0, 0.15);
+}
+
+/* --- Nested Elements Overrides for LIGHT sections --- */
+.section--light h1, .section--light h2, .section--light h3, .section--light h4 {
+    color: #0E2A33;
+}
+.section--light p {
+    color: rgba(14, 42, 51, 0.75);
+}
+
+.text-shadow {
+    text-shadow: 0 2px 20px rgba(0,0,0,0.6);
+}
+
+@keyframes fadeInOnly {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+.animate-fade-in {
+    animation: fadeInOnly 0.3s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up {
+    animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.selection-brand::selection {
+    background-color: rgba(226, 253, 72, 0.3);
+    color: white;
+}
+
+/* Utility for horizontal process summary */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.scroll-snap-x {
+    scroll-snap-type: x mandatory;
+}
+.scroll-snap-align-start {
+    scroll-snap-align: start;
+}
+
+:focus-visible { outline: 2px solid #0E2A33; outline-offset: 3px; }
+.section--dark :focus-visible, .bg-\[\#071318\] :focus-visible { outline-color: #FFFFFF; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+
+@keyframes plialuScrollCue { 0%, 100% { transform: translateY(0); opacity: 1; } 50% { transform: translateY(7px); opacity: .7; } }
+.plialu-scroll-cue { animation: plialuScrollCue 3.2s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .plialu-scroll-cue { animation: none; } }

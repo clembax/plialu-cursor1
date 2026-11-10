@@ -1,4 +1,5 @@
 import React from 'react';
+import { ArrowRight } from 'lucide-react';
 import * as DS from './src/components/ds/ds';
 
 interface SuccessProps {
@@ -27,7 +28,7 @@ const Success: React.FC<SuccessProps> = ({ onBackHome }) => {
             className={DS.BTN_PRIMARY}
           >
             Retour à l’accueil
-            <iconify-icon icon="lucide:arrow-right" width="18"></iconify-icon>
+            <ArrowRight aria-hidden="true" size={18} />
           </button>
         </div>
       </div>

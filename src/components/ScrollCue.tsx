@@ -23,11 +23,6 @@ export const ScrollCue: React.FC<Props> = ({ tone = 'dark' }) => {
         hidden ? 'opacity-0' : 'opacity-100'
       } ${tone === 'dark' ? 'text-white/60' : 'text-[#0E2A33]/50'}`}
     >
-      <style>{`
-        @keyframes plialuScrollCue { 0%, 100% { transform: translateY(0); opacity: 1; } 50% { transform: translateY(7px); opacity: .7; } }
-        .plialu-scroll-cue { animation: plialuScrollCue 3.2s ease-in-out infinite; }
-        @media (prefers-reduced-motion: reduce) { .plialu-scroll-cue { animation: none; } }
-      `}</style>
       <svg className="plialu-scroll-cue" width="40" height="14" viewBox="0 0 40 14" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round">
         <path d="M1 1.5 20 12.5 39 1.5" />
       </svg>

@@ -1,25 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { ArrowDown, ArrowRight, ArrowUpRight, Clock, Copy, Mail, MapPin, Menu, Phone, Play } from 'lucide-react';
 import CookieBanner from './src/components/CookieBanner';
-
-// Fix: Use 'declare global' to augment the JSX namespace globally.
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'iconify-icon': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement> & {
-        icon?: string;
-        width?: string | number;
-        height?: string | number;
-        flip?: string;
-        rotate?: string | number;
-        mode?: string;
-        inline?: boolean;
-        stroke?: string;
-        'stroke-width'?: string | number;
-      }, HTMLElement>;
-      [key: string]: any;
-    }
-  }
-}
 
 import * as DS from './src/components/ds/ds';
 import FranceDotMap from './FranceDotMap';
@@ -502,37 +483,6 @@ const App: React.FC = () => {
     return () => cancelAnimationFrame(frame);
   }, [openProjectId]);
 
-  const solutions = [
-    {
-      title: "Enveloppe & habillage de façade",
-      text: "Façonnage métallique pour l’enveloppe bâtiment : cassettes, couvertines et habillages en aluminium thermolaqué, acier galvanisé ou inox.",
-      img: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1771515763/Solutions-enveloppe-1200px_guufmy.webp",
-      srcset: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1771515763/Solutions-enveloppe-800px_ryxzuy.webp 800w, https://res.cloudinary.com/dyiup6v5x/image/upload/v1771515763/Solutions-enveloppe-1200px_guufmy.webp 1200w, https://res.cloudinary.com/dyiup6v5x/image/upload/v1771515763/Solutions-enveloppe-1600px_s0cwua.webp 1600w",
-      sizes: "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px",
-      alt: "Bavettes et habillage métallique de façade",
-      tag: "ENVELOPPE BÂTIMENT",
-      materials: "Aluminium thermolaqué • Acier galvanisé • Inox"
-    },
-    {
-      title: "Supports & structures métalliques",
-      text: "Structures et supports en acier galvanisé conçus pour assurer la stabilité, la précision de fixation et la compatibilité avec l’enveloppe.",
-      img: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1771515264/Solutions2-1200px_cqiecv.webp",
-      srcset: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1771515264/Solutions2-800px_sk5bjv.webp 800w, https://res.cloudinary.com/dyiup6v5x/image/upload/v1771515264/Solutions2-1200px_cqiecv.webp 1200w, https://res.cloudinary.com/dyiup6v5x/image/upload/v1771515264/Solutions2-1600px_xrns19.webp 1600w",
-      sizes: "(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 600px",
-      alt: "Support métallique de couvertine façonné sur mesure en atelier",
-      tag: "INFRASTRUCTURE",
-      materials: "Acier galvanisé • Acier structurel • Inox"
-    },
-    {
-      title: "Accessoires & finitions",
-      text: "Profilés et pièces prêtes à poser en aluminium, acier galvanisé ou inox pour sécuriser et accélérer la mise en œuvre.",
-      img: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=2069",
-      alt: "Profilés métalliques industriels en série",
-      tag: "OPTIMISATION CHANTIER",
-      materials: "Aluminium • Acier galvanisé • Inox"
-    }
-  ];
-
   const expertisesDetails = [
     {
       id: "bureau-etudes",
@@ -549,7 +499,7 @@ const App: React.FC = () => {
       title: "Déroulage",
       tag: "AU CŒUR DE LA MATIÈRE PREMIÈRE",
       text: "Déroulage de bobines : redressage - découpe de formats à plat et optimisation par dossier. Une étape clé de la fabrication et de la maîtrise des coûts",
-      img: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?q=80&w=2070",
+      img: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1773075246/De%CC%81roulage-1200px_e0hd8r.webp",
       alt: "Stock de bobines et centre de déroulage industriel",
       materials: "Acier • Aluminium",
       light: false
@@ -559,7 +509,7 @@ const App: React.FC = () => {
       title: "Thermolaquage",
       tag: "TRAITEMENT DE SURFACE",
       text: "Deux lignes de production certifiées Qualicoat pour une flexibilité dans le choix de la gamme de production, nous travaillons à partir de feuilles d'aluminium prélaquées ou bien nous laquons après façonnage",
-      img: "https://images.unsplash.com/photo-1534398079244-67c8ad85931b?q=80&w=2070",
+      img: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1780322264/Thermolaquage-1200px_hu9ira.webp",
       alt: "Ligne de thermolaquage automatisée pour panneaux métalliques",
       materials: "Thermolaquage à plat • Thermolaquage post formage • Label Qualicoat",
       light: true
@@ -569,7 +519,7 @@ const App: React.FC = () => {
       title: "Pliage",
       tag: "FAÇONNAGE ET PLIAGE",
       text: "Du pliage traditionnel sur presse plieuse à CNC ou grâce à notre ligne de production automatisée : découpe, poinçonnage, panneautage, nous maîtrisons le pliage de A à Z",
-      img: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=2070",
+      img: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1773149127/Pliage-1200px_bl5tzv.webp",
       alt: "Presse plieuse numérique grande longueur en action",
       materials: "Répétabilité • Profils complexes • Longueurs jusqu'à 4m",
       light: false
@@ -579,7 +529,7 @@ const App: React.FC = () => {
       title: "Assemblage",
       tag: "VALEUR AJOUTÉE",
       text: "Rivetage haute résistance, collage structurel certifié et pose d'accessoires (joint, mousse). Nous livrons des ensembles complets prêts à poser pour accélérer vos cadences de montage sur site.",
-      img: "https://images.unsplash.com/photo-1513828583688-c52646db42da?q=80&w=2070",
+      img: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1780324806/Assemblage-1200px_de0amf.webp",
       alt: "Poste d'assemblage et de rivetage technique",
       materials: "",
       light: true
@@ -589,7 +539,7 @@ const App: React.FC = () => {
       title: "Logistique",
       tag: "SÉCURITÉ CHANTIER",
       text: "Conditionnement rigoureux sur palettes sur-mesure pour prévenir toute déformation. Nous assurons la traçabilité et le respect des flux tendus pour livrer vos chantiers partout en Europe dans les délais convenus.",
-      img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070",
+      img: "https://res.cloudinary.com/dyiup6v5x/image/upload/v1780325092/Logistique-1200px_evnw9s.webp",
       alt: "Expédition sécurisée de panneaux métalliques protégés",
       materials: "",
       light: false
@@ -772,7 +722,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               className={`fixed top-4 right-4 z-50 lg:hidden p-2 rounded-xl border-0 outline-none focus:outline-none focus:ring-0 transition-all
                 ${headerTheme === 'dark' ? 'text-[#0E2A33] bg-black/5' : 'text-white bg-white/5'}`}
             >
-              <iconify-icon icon="lucide:menu" width="24" stroke-width="1.5"></iconify-icon>
+              <Menu aria-hidden="true" size={24} strokeWidth={1.5} />
             </button>
           </div>
         </div>
@@ -842,7 +792,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   <button onClick={goContactForm} className={`${DS.BTN_PRIMARY} w-full sm:w-auto`}>Demander un devis</button>
                   <button onClick={() => setCurrentPage('expertises')} className={`${DS.BTN_SECONDARY_DARK} w-full sm:w-auto group`}>
                     Découvrir nos expertises
-                    <iconify-icon icon="lucide:arrow-right" className="group-hover:translate-x-1 transition-transform"></iconify-icon>
+                    <ArrowRight aria-hidden="true" size="1em" className="group-hover:translate-x-1 transition-transform" />
                   </button>
                 </div>
               </div>
@@ -892,7 +842,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </div>
                   <button onClick={() => setCurrentPage('expertises')} className={DS.ACTION_DARK}>
                     Découvrir nos expertises
-                    <iconify-icon icon="lucide:arrow-right" className={DS.ACTION_ARROW}></iconify-icon>
+                    <ArrowRight aria-hidden="true" size="1em" className={DS.ACTION_ARROW} />
                   </button>
                 </div>
                 <div className="relative aspect-square md:aspect-video lg:aspect-square overflow-hidden rounded-[20px] border border-white/10 bg-[#071318] group">
@@ -929,7 +879,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                         <div className="flex items-start justify-between">
                           <span className="font-display text-4xl font-semibold leading-none tracking-[-0.04em] text-[#E2FD48]">{String(idx + 1).padStart(2, '0')}</span>
                           <span className="flex h-9 w-9 flex-none items-center justify-center rounded-full border border-white/20 text-white transition-colors duration-150 group-hover:border-[#E2FD48] group-hover:bg-[#E2FD48] group-hover:text-[#0E2A33]">
-                            <iconify-icon icon="lucide:arrow-up-right" width="14"></iconify-icon>
+                            <ArrowUpRight aria-hidden="true" size={14} />
                           </span>
                         </div>
                         <div className="mt-7">
@@ -969,7 +919,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                         <div className="flex flex-col items-center gap-2">
                           <span className="inline-flex items-center justify-center w-12 h-12 rounded-full border border-white/70 bg-black/60">
-                            <iconify-icon icon="lucide:play" width="22" className="text-white"></iconify-icon>
+                            <Play aria-hidden="true" size={22} className="text-white" />
                           </span>
                           <span className="text-xs font-medium tracking-[0.2em] uppercase text-white/50">
                             Lire le teaser
@@ -1181,7 +1131,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     Depuis notre <strong>atelier lyonnais</strong>, nous assurons une réactivité optimale pour accompagner vos chantiers en <strong>Rhône-Alpes</strong> et en Europe. Une capacité de production appuyée par plus de 7 000 m² dédiés au façonnage métallique sur mesure.
                   </p>
                   </div>
-                  <a href="/a-propos" onClick={(e) => { e.preventDefault(); setCurrentPage('a-propos'); }} className={DS.ACTION_DARK}>EN SAVOIR PLUS <iconify-icon icon="lucide:arrow-right" className={DS.ACTION_ARROW}></iconify-icon></a>
+                  <a href="/a-propos" onClick={(e) => { e.preventDefault(); setCurrentPage('a-propos'); }} className={DS.ACTION_DARK}>EN SAVOIR PLUS <ArrowRight aria-hidden="true" size="1em" className={DS.ACTION_ARROW} /></a>
                 </div>
               </div>
             </div>
@@ -1198,7 +1148,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   <div className="flex flex-wrap gap-4 mt-10">
                     <button onClick={goContactForm} className={DS.BTN_PRIMARY}>Demander un devis</button>
                     <a href="tel:0478089370" className={DS.BTN_SECONDARY_LIGHT}>
-                      <iconify-icon icon="lucide:phone" width="16"></iconify-icon>
+                      <Phone aria-hidden="true" size={16} />
                       Appeler un expert
                     </a>
                   </div>
@@ -1206,7 +1156,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 <div className="grid gap-3">
                   <div className="flex items-start gap-4 rounded-[20px] bg-white px-6 py-[22px]">
                     <div className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-[#F3F6F7] text-[#0E2A33]">
-                      <iconify-icon icon="lucide:phone" width="18"></iconify-icon>
+                      <Phone aria-hidden="true" size={18} />
                     </div>
                     <div>
                       <p className={DS.EYEBROW_LIGHT}>Téléphone</p>
@@ -1215,7 +1165,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </div>
                   <div className="flex items-start gap-4 rounded-[20px] bg-white px-6 py-[22px]">
                     <div className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-[#F3F6F7] text-[#0E2A33]">
-                      <iconify-icon icon="lucide:mail" width="18"></iconify-icon>
+                      <Mail aria-hidden="true" size={18} />
                     </div>
                     <div>
                       <p className={DS.EYEBROW_LIGHT}>E-mail</p>
@@ -1224,7 +1174,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </div>
                   <div className="flex items-start gap-4 rounded-[20px] bg-white px-6 py-[22px]">
                     <div className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-[#F3F6F7] text-[#0E2A33]">
-                      <iconify-icon icon="lucide:map-pin" width="18"></iconify-icon>
+                      <MapPin aria-hidden="true" size={18} />
                     </div>
                     <div>
                       <p className={DS.EYEBROW_LIGHT}>Adresse</p>
@@ -1233,7 +1183,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </div>
                   <div className="flex items-start gap-4 rounded-[20px] bg-white px-6 py-[22px]">
                     <div className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-[#F3F6F7] text-[#0E2A33]">
-                      <iconify-icon icon="lucide:clock" width="18"></iconify-icon>
+                      <Clock aria-hidden="true" size={18} />
                     </div>
                     <div>
                       <p className={DS.EYEBROW_LIGHT}>Horaires</p>
@@ -1286,7 +1236,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   <p className={`${DS.LEAD_LIGHT} mt-5`}>Nos équipes interviennent à chaque étape : lecture de plans, conseil matière, optimisation des tolérances, respect des délais.</p>
                   <button onClick={goContactForm} className={`${DS.BTN_PRIMARY} mt-10`}>
                     Échanger sur votre projet
-                    <iconify-icon icon="lucide:arrow-right" width="16"></iconify-icon>
+                    <ArrowRight aria-hidden="true" size={16} />
                   </button>
                 </div>
                 <img src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1771522416/APROPOS-1200px_wkguv2.webp" className="w-full aspect-[4/3] object-cover rounded-[20px]" alt="Atelier de production Plialu à Lyon" loading="lazy" />
@@ -1436,7 +1386,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     className={DS.BTN_PRIMARY}
                   >
                     Voir nos collaborations
-                    <iconify-icon icon="lucide:arrow-down" width="18"></iconify-icon>
+                    <ArrowDown aria-hidden="true" size={18} />
                   </a>
                 </div>
               </div>
@@ -1701,7 +1651,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     className={DS.BTN_SECONDARY_LIGHT}
                   >
                     Télécharger nos ressources
-                    <iconify-icon icon="lucide:arrow-down" width="16"></iconify-icon>
+                    <ArrowDown aria-hidden="true" size={16} />
                   </button>
                 </div>
               </div>
@@ -2066,7 +2016,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     className={`${DS.BTN_SECONDARY_LIGHT} w-full sm:w-auto`}
                   >
                     Découvrir notre process
-                    <iconify-icon icon="lucide:arrow-down" width="18"></iconify-icon>
+                    <ArrowDown aria-hidden="true" size={18} />
                   </a>
                   <a
                     href="#video-complete"
@@ -2074,7 +2024,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     className={`${DS.BTN_SECONDARY_LIGHT} w-full sm:w-auto`}
                   >
                     Voir la vidéo complète
-                    <iconify-icon icon="lucide:play" width="18"></iconify-icon>
+                    <Play aria-hidden="true" size={18} />
                   </a>
                 </div>
               </div>
@@ -2360,7 +2310,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   className="inline-flex items-center gap-2 w-full sm:w-auto px-12 py-4 bg-[#0E2A33] text-white text-sm font-extrabold rounded-full transition-all shadow-lg hover:shadow-2xl"
                 >
                   Accéder aux dossiers complets
-                  <iconify-icon icon="lucide:arrow-down" width="18"></iconify-icon>
+                  <ArrowDown aria-hidden="true" size={18} />
                 </a>
               </div>
             </div>
@@ -2430,7 +2380,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       </span>
                       <div className="flex items-center gap-2 text-[#0E2A33]/30 group-hover:text-[#0E2A33] transition-colors">
                         <span className="text-[10px] font-bold tracking-[0.18em] uppercase">Lire l’article</span>
-                        <iconify-icon icon="lucide:arrow-right" width="18"></iconify-icon>
+                        <ArrowRight aria-hidden="true" size={18} />
                       </div>
                     </div>
                   </article>
@@ -3530,14 +3480,14 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     {/* Phone */}
                     <div className="flex items-center gap-6 group">
                       <div className="w-12 h-12 rounded-xl bg-white border border-[#0E2A33]/[0.12] flex items-center justify-center text-[#0E2A33]/40 group-hover:text-[#0E2A33] group-hover:border-[#0E2A33]/20 transition-all">
-                        <iconify-icon icon="lucide:phone" width="20"></iconify-icon>
+                        <Phone aria-hidden="true" size={20} />
                       </div>
                       <div className="flex-1">
                         <span className="block text-[9px] font-bold text-[#0E2A33]/[0.62] uppercase tracking-widest mb-1">Téléphone</span>
                         <div className="flex items-center gap-3">
                           <a href="tel:0478089370" className="text-lg font-bold text-[#0E2A33]">04 78 08 93 70</a>
                           <button onClick={() => handleCopy("04 78 08 93 70", "tel")} className="p-1.5 rounded-md hover:bg-black/5 transition-colors relative">
-                            <iconify-icon icon="lucide:copy" width="16" className="text-[#0E2A33]/[0.62]"></iconify-icon>
+                            <Copy aria-hidden="true" size={16} className="text-[#0E2A33]/[0.62]" />
                             {copiedKey === 'tel' && <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-[10px] bg-[#0E2A33] text-white px-2 py-1 rounded shadow-sm">Copié</span>}
                           </button>
                         </div>
@@ -3547,14 +3497,14 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     {/* Email */}
                     <div className="flex items-center gap-6 group">
                       <div className="w-12 h-12 rounded-xl bg-white border border-[#0E2A33]/[0.12] flex items-center justify-center text-[#0E2A33]/40 group-hover:text-[#0E2A33] group-hover:border-[#0E2A33]/20 transition-all">
-                        <iconify-icon icon="lucide:mail" width="20"></iconify-icon>
+                        <Mail aria-hidden="true" size={20} />
                       </div>
                       <div className="flex-1">
                         <span className="block text-[9px] font-bold text-[#0E2A33]/[0.62] uppercase tracking-widest mb-1">E-mail</span>
                         <div className="flex items-center gap-3">
                           <a href="mailto:commercial@plialu.fr" className="text-lg font-bold text-[#0E2A33]">commercial@plialu.fr</a>
                           <button onClick={() => handleCopy("commercial@plialu.fr", "mail")} className="p-1.5 rounded-md hover:bg-black/5 transition-colors relative">
-                            <iconify-icon icon="lucide:copy" width="16" className="text-[#0E2A33]/[0.62]"></iconify-icon>
+                            <Copy aria-hidden="true" size={16} className="text-[#0E2A33]/[0.62]" />
                             {copiedKey === 'mail' && <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-[10px] bg-[#0E2A33] text-white px-2 py-1 rounded shadow-sm">Copié</span>}
                           </button>
                         </div>
@@ -3564,14 +3514,14 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     {/* Address */}
                     <div className="flex items-center gap-6 group">
                       <div className="w-12 h-12 rounded-xl bg-white border border-[#0E2A33]/[0.12] flex items-center justify-center text-[#0E2A33]/40 group-hover:text-[#0E2A33] group-hover:border-[#0E2A33]/20 transition-all">
-                        <iconify-icon icon="lucide:map-pin" width="20"></iconify-icon>
+                        <MapPin aria-hidden="true" size={20} />
                       </div>
                       <div className="flex-1">
                         <span className="block text-[9px] font-bold text-[#0E2A33]/[0.62] uppercase tracking-widest mb-1">Siège & Atelier</span>
                         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
                           <p className="text-lg font-bold text-[#0E2A33] leading-tight max-w-xs">Technoparc Saône Vallée Ouest, 150, Route Copernic, 01390 Civrieux</p>
                           <button onClick={() => handleCopy("Technoparc Saône Vallée Ouest, 150, Route Copernic, 01390 Civrieux", "addr")} className="p-1.5 rounded-md hover:bg-black/5 transition-colors relative">
-                            <iconify-icon icon="lucide:copy" width="16" className="text-[#0E2A33]/[0.62]"></iconify-icon>
+                            <Copy aria-hidden="true" size={16} className="text-[#0E2A33]/[0.62]" />
                             {copiedKey === 'addr' && <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-[10px] bg-[#0E2A33] text-white px-2 py-1 rounded shadow-sm">Copié</span>}
                           </button>
                         </div>
@@ -3581,7 +3531,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     {/* Horaires */}
                     <div className="flex items-center gap-6 group">
                       <div className="w-12 h-12 rounded-xl bg-white border border-[#0E2A33]/[0.12] flex items-center justify-center text-[#0E2A33]/40 group-hover:text-[#0E2A33] group-hover:border-[#0E2A33]/20 transition-all">
-                        <iconify-icon icon="lucide:clock" width="20"></iconify-icon>
+                        <Clock aria-hidden="true" size={20} />
                       </div>
                       <div className="flex-1">
                         <span className="block text-[9px] font-bold text-[#0E2A33]/[0.62] uppercase tracking-widest mb-1">Horaires d'ouverture</span>
@@ -3729,7 +3679,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               <p className="text-white/50 text-sm leading-relaxed max-w-xs">PME industrielle : solutions métalliques sur-mesure pour l'enveloppe du bâtiment</p>
               <div className="flex items-center gap-4 pt-3">
                 <a href="https://www.linkedin.com/company/plialu" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-[#E2FD48] hover:border-[#E2FD48] transition-all">
-                  <iconify-icon icon="line-md:linkedin" width="20"></iconify-icon>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg>
                 </a>
               </div>
             </div>

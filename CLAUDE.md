@@ -1,46 +1,23 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
-## Commands
+## Commandes
 
 ```bash
-npm run dev       # Start dev server on port 3000
-npm run build     # Production build
-npm run lint      # TypeScript type checking (tsc --noEmit)
-npm run preview   # Preview production build
+npm run dev    # Serveur de développement, port 3000
+npm run build  # Build de production
+npm run lint   # Vérification TypeScript (tsc --noEmit)
 ```
 
 ## Architecture
 
-This is a **single-page React + TypeScript + Vite** application with no external routing library. All pages are rendered conditionally from `App.tsx` based on a `currentPage` state string.
+SPA React + TypeScript + Vite, sans routeur. La page courante est l'état `currentPage` dans `App.tsx`. Les URL, titres et descriptions viennent de `SEO_CONFIG`. `BLOCKED_PAGE_KEYS` renvoie certaines URL vers l'accueil.
 
-### Routing
+## Styles et icônes
 
-Navigation is entirely state-based. To navigate between pages, call `setCurrentPage('page-name')`. Page names include: `home`, `expertises`, `solutions`, `contact`, `a-propos`, `ressources`, `ressource-1/2/3`, `solution-bardage/enduit/precadres/toles/ravalement`, `merci`.
+Tailwind est compilé en local : `tailwind.config.js` et `index.css`. Les icônes viennent de `lucide-react`. Le design system de `src/components/ds/ds.ts` est obligatoire pour les nouveaux écrans.
 
-The header theme (`headerTheme: 'light' | 'dark'`) is also set per-page to control logo color and nav styling.
+## Contenus et services
 
-### Key Files
+Le formulaire part vers Basin. Les images sont hébergées sur Cloudinary, avec `srcset` et un `alt` rédigé pour le SEO. Aucun texte du site ne contient de tiret cadratin ni de tiret demi-cadratin.
 
-- **`App.tsx`** (~2800 lines) — monolithic component containing all pages, navigation, and UI logic
-- **`TerritorialMap.tsx`** — D3.js SVG map of France intervention zones
-- **`Success.tsx` / `MerciPage.tsx`** — post-form-submission thank you pages
-- **`index.html`** — CDN imports (Tailwind CSS, Iconify icons, Google Fonts), custom CSS animations, and theme variables
-
-### Styling
-
-- Tailwind CSS loaded via CDN (not PostCSS)
-- Global custom CSS lives in `index.html`'s `<style>` tag
-- Sections alternate between `.section--dark` (`#071318`) and `.section--light` (`#F0F4F6`) classes
-- Dynamic theming uses inline styles for gradients; Tailwind utility classes for everything else
-
-### External Services
-
-- **Formspree** (`https://formspree.io/f/mwvrvrqg`) — contact form submission with file upload (PDF/DWG/DXF/JPG/PNG, max 10MB)
-- **Cloudinary** (`https://res.cloudinary.com/dyiup6v5x/`) — all images hosted here with responsive `srcset`
-- **D3 GeoJSON** — fetched from GitHub for the map component
-
-### Environment Variables
-
-`GEMINI_API_KEY` is referenced in `vite.config.ts` but not used in the current codebase.
+Toute nouvelle ressource externe doit être ajoutée à la politique de sécurité du contenu dans `public/.htaccess`.
