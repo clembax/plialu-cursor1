@@ -7,10 +7,9 @@ import * as DS from './ds/ds';
 /*  cookies restent gérés par App.tsx.                                         */
 /* -------------------------------------------------------------------------- */
 
-/* Formulaire Basin dédié aux demandes de commande (distinct du formulaire de
-   contact). A REMPLACER par l'URL du nouveau formulaire Basin. Tant que la
-   valeur contient "REMPLACER", l'envoi est bloqué pour ne perdre aucune demande. */
-const BASIN_COMMANDE_URL = 'https://usebasin.com/f/REMPLACER_PAR_LE_NOUVEAU_FORMULAIRE';
+/* Formulaire Basin partagé avec Contact. Les demandes sont identifiées par le
+   champ intention. Tant que l'URL contient "REMPLACER", l'envoi est bloqué. */
+const BASIN_COMMANDE_URL = 'https://usebasin.com/f/b0fa3eeb614b';
 const FORM_READY = !BASIN_COMMANDE_URL.includes('REMPLACER');
 
 const PDF_URL = '/documents/Fiche_Goutte_eau_extrudee.pdf';
@@ -634,6 +633,8 @@ export const GoutteEauExtrudee: React.FC<Props> = ({ setCurrentPage }) => {
               onSubmit={onSubmit}
             >
               <input type="hidden" name="_gotcha" />
+              <input type="hidden" name="intention" value="Commande Goutte d'eau" />
+              <input type="hidden" name="domaine" value="Ravalement de façade" />
               <input type="hidden" name="recapitulatif" value={recapText} />
               <input type="hidden" name="metres_lineaires" value={qty.profils * 3} />
               <input type="hidden" name="finition" value={finish} />
