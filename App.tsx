@@ -658,7 +658,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               </button>
 
               <div
-                className={`invisible absolute left-1/2 top-[calc(100%+14px)] z-50 flex min-w-[240px] -translate-x-1/2 translate-y-1.5 flex-col gap-0.5 rounded-[20px] border p-1.5 opacity-0 transition-all duration-200 before:absolute before:inset-x-0 before:-top-4 before:h-4 before:content-[''] group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 ${
+                className={`invisible absolute left-1/2 top-[calc(100%+14px)] z-50 flex min-w-[240px] -translate-x-1/2 translate-y-1.5 flex-col gap-0.5 rounded-[20px] border p-1.5 opacity-0 transition-all duration-200 before:absolute before:inset-x-0 before:-top-4 before:h-4 before:content-[''] group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-has-[:focus-visible]:visible group-has-[:focus-visible]:translate-y-0 group-has-[:focus-visible]:opacity-100 ${
                   headerTheme === 'dark'
                     ? 'border-[#0E2A33]/10 bg-[#F3F4F5]'
                     : 'border-white/[0.12] bg-[#071318]/[0.92] shadow-[0_12px_32px_rgba(0,0,0,0.3)] backdrop-blur'
