@@ -28,6 +28,7 @@ import EnduitMinceIsolant from './src/components/solutions/EnduitMinceIsolant';
 import Etancheite from './components/Etancheite';
 import GoutteEauExtrudee from './src/components/GoutteEauExtrudee';
 import AproposGains from './src/components/AproposGains';
+import ScrollCue from './src/components/ScrollCue';
 import { PROJECTS, getPortfolioOrder, buildPortfolioJsonLd } from './projects';
 import PortfolioGrid from './PortfolioGrid';
 import PortfolioSheet from './PortfolioSheet';
@@ -806,7 +807,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
       {currentPage === 'home' && (
         <>
           {/* 1. HERO SECTION (DARK) */}
-          <section className="relative w-full overflow-hidden" style={{ minHeight: '100vh' }}>
+          <section className="relative w-full overflow-hidden" style={{ minHeight: '100svh' }}>
             <div className="absolute inset-0 z-0">
               <picture>
                 <source media="(max-width: 800px)" srcSet="https://res.cloudinary.com/dyiup6v5x/image/upload/v1771414327/Hero-800px_emwjxr.webp" />
@@ -836,6 +837,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 </div>
               </div>
             </div>
+            <ScrollCue tone="dark" />
           </section>
 
           <div className="bg-[#071318]">
@@ -1239,7 +1241,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
       {currentPage === 'a-propos' && (
         <div className="animate-fade-up">
           {/* 1. HERO SECTION (DARK) */}
-          <section className={`relative bg-[#071318] ${DS.HERO_TOP} pb-20 overflow-hidden min-h-[70vh] flex flex-col`}>
+          <section className={`relative bg-[#071318] ${DS.HERO_TOP} pb-20 overflow-hidden min-h-[100svh] flex flex-col`}>
             <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-b from-[#0e2a33]/40 to-[#071318]"></div>
             <div className="relative z-10 flex-1 flex flex-col max-w-7xl mx-auto px-6 w-full">
               <div className="max-w-6xl">
@@ -1264,6 +1266,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 </a>
               </div>
             </div>
+            <ScrollCue tone="dark" />
           </section>
 
           {/* 2. POSITIONNEMENT (LIGHT) - MACHINED PERFECTION V2 (FIXED BACKGROUND) */}
@@ -1393,7 +1396,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
       {currentPage === 'projects' && (
         <div className="animate-fade-up">
           {/* Hero Réalisations */}
-          <section className={`relative bg-[#071318] ${DS.HERO_TOP} pb-12 md:pb-16`}>
+          <section className={`relative bg-[#071318] ${DS.HERO_TOP} pb-12 md:pb-16 min-h-[100svh]`}>
             <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-b from-[#0e2a33]/40 to-[#071318]"></div>
             <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
               <div className="max-w-4xl">
@@ -1432,6 +1435,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 </div>
               </div>
             </div>
+            <ScrollCue tone="dark" />
           </section>
 
           {/* Grille des Projets */}
@@ -1669,7 +1673,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
       {currentPage === 'solutions-temporaire' && (
         <div className="animate-fade-up">
           {/* Hero section */}
-          <section className={`bg-white ${DS.HERO_TOP} pb-20 min-h-[70vh] flex flex-col`}>
+          <section className={`relative bg-white ${DS.HERO_TOP} pb-20 min-h-[100svh] flex flex-col`}>
             <div className="relative z-30 w-full max-w-7xl mx-auto px-6">
               <div className="max-w-5xl">
                 <span className={`inline-block mb-4 ${DS.EYEBROW_LIGHT}`}>
@@ -1696,6 +1700,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 </div>
               </div>
             </div>
+            <ScrollCue tone="light" />
           </section>
 
           {/* Domaines section */}
@@ -2034,7 +2039,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
       {currentPage === 'expertises' && (
         <div className="animate-fade-in">
           {/* Hero Expertises (contient le sommaire en bas, au-dessus de la ligne de flottaison) */}
-          <section ref={expertisesHeroRef} className={`bg-white ${DS.HERO_TOP} pb-0 min-h-[70vh] flex flex-col`}>
+          <section ref={expertisesHeroRef} className={`relative bg-white ${DS.HERO_TOP} pb-0 min-h-[100svh] flex flex-col`}>
             <div className="flex-1 flex flex-col max-w-7xl mx-auto px-6 w-full">
               <div className="max-w-4xl">
                 <div className="mb-16">
@@ -2068,6 +2073,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 </div>
               </div>
             </div>
+            <ScrollCue tone="light" />
           </section>
 
           {/* Mini Sommaire : sticky sous le header */}
