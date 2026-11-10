@@ -336,10 +336,20 @@ const App: React.FC = () => {
   const infinimetalLinkClass = 'cursor-pointer text-[#E2FD48] hover:underline transition-colors';
 
   const [contactPrefill, setContactPrefill] = useState<{ intention?: string; domaine?: string }>({});
+  const [contactIntention, setContactIntention] = useState('');
+  useEffect(() => {
+    setContactIntention(contactPrefill.intention ?? '');
+  }, [contactPrefill]);
+  const isCandidature = contactIntention === 'Postuler chez PLIALU';
+
+  const goContactForm = () => {
+    if (currentPage !== 'contact') setCurrentPage('contact');
+    window.setTimeout(() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 150);
+  };
 
   const goDevis = (domaine: string) => {
     setContactPrefill({ intention: 'Demander un devis', domaine });
-    setCurrentPage('contact');
+    goContactForm();
   };
 
   const goSolution = (anchor: string) => {
@@ -478,7 +488,7 @@ const App: React.FC = () => {
       window.history.replaceState(null, '', window.location.pathname + window.location.search);
     }
     setOpenProjectId(null);
-    setCurrentPage('contact');
+    goContactForm();
   };
 
   useEffect(() => {
@@ -752,7 +762,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
           {/* Right: CTA Button */}
           <div className="flex-none flex items-center gap-4">
-            <button onClick={() => currentPage !== 'contact' && setCurrentPage('contact')} className={`${DS.BTN_PRIMARY} max-lg:hidden lg:px-5 xl:px-10`}>
+            <button onClick={goContactForm} className={`${DS.BTN_PRIMARY} max-lg:hidden lg:px-5 xl:px-10`}>
               Demander un devis
             </button>
             <button
@@ -798,7 +808,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             <button onClick={() => { setCurrentPage('projects'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Portfolio</button>
             <button onClick={() => { setCurrentPage('a-propos'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">À propos</button>
             <button onClick={() => { setCurrentPage('contact'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Contact</button>
-            <button onClick={() => { setCurrentPage('contact'); setIsMenuOpen(false); }} className={`${DS.BTN_PRIMARY} mt-4 w-full justify-center`}>Demander un devis</button>
+            <button onClick={() => { goContactForm(); setIsMenuOpen(false); }} className={`${DS.BTN_PRIMARY} mt-4 w-full justify-center`}>Demander un devis</button>
           </nav>
         </div>
       </div>
@@ -829,7 +839,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   </p>
                 </div>
                 <div className="flex flex-col sm:flex-row items-center gap-4">
-                  <button onClick={() => setCurrentPage('contact')} className={`${DS.BTN_PRIMARY} w-full sm:w-auto`}>Demander un devis</button>
+                  <button onClick={goContactForm} className={`${DS.BTN_PRIMARY} w-full sm:w-auto`}>Demander un devis</button>
                   <button onClick={() => setCurrentPage('expertises')} className={`${DS.BTN_SECONDARY_DARK} w-full sm:w-auto group`}>
                     Découvrir nos expertises
                     <iconify-icon icon="lucide:arrow-right" className="group-hover:translate-x-1 transition-transform"></iconify-icon>
@@ -1186,7 +1196,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   <h2 className={`${DS.H2} text-[#0E2A33]`}>Étude technique, faisabilité, chiffrage. Ou toute autre demande.</h2>
                   <p className={`${DS.LEAD_LIGHT} mt-6`}>Nos équipes vous répondent rapidement, en intégrant vos contraintes de chantier.</p>
                   <div className="flex flex-wrap gap-4 mt-10">
-                    <button onClick={() => setCurrentPage('contact')} className={DS.BTN_PRIMARY}>Demander un devis</button>
+                    <button onClick={goContactForm} className={DS.BTN_PRIMARY}>Demander un devis</button>
                     <a href="tel:0478089370" className={DS.BTN_SECONDARY_LIGHT}>
                       <iconify-icon icon="lucide:phone" width="16"></iconify-icon>
                       Appeler un expert
@@ -1257,13 +1267,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   Implantée près de Lyon, notre usine de façonnage métallique accompagne les professionnels de l'enveloppe du bâtiment en Rhône-Alpes, de la transformation industrielle à la fabrication sur mesure de pièces métalliques.
                 </p>
                 </div>
-                <a
-                  href="#a-propos-contenu"
-                  onClick={() => { setCurrentPage('contact'); }}
-                  className={DS.BTN_PRIMARY}
-                >
+                <button type="button" onClick={goContactForm} className={DS.BTN_PRIMARY}>
                   Demander un devis
-                </a>
+                </button>
               </div>
             </div>
             <ScrollCue tone="dark" />
@@ -1278,7 +1284,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   <h2 className={`${DS.H2} text-[#0E2A33]`}>Votre partenaire en façonnage métallique, de l'esquisse au chantier livré</h2>
                   <p className={`${DS.LEAD_LIGHT} mt-6`}>PLIALU, c'est 20 ans de fabrication métallique intégrée en Rhône-Alpes. Pièces standard et sur-mesure, avec une capacité industrielle complète qui s'adapte aux contraintes de chaque projet.</p>
                   <p className={`${DS.LEAD_LIGHT} mt-5`}>Nos équipes interviennent à chaque étape : lecture de plans, conseil matière, optimisation des tolérances, respect des délais.</p>
-                  <button onClick={() => setCurrentPage('contact')} className={`${DS.BTN_PRIMARY} mt-10`}>
+                  <button onClick={goContactForm} className={`${DS.BTN_PRIMARY} mt-10`}>
                     Échanger sur votre projet
                     <iconify-icon icon="lucide:arrow-right" width="16"></iconify-icon>
                   </button>
@@ -1384,7 +1390,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               <h2 className={`${DS.H2} text-white`}>20 ans de façonnage métallique en <span className="whitespace-nowrap">Rhône-Alpes.</span></h2>
               <p className={`${DS.LEAD_DARK} mt-6 mx-auto`}>Vos équipes techniques répondent sous 48 h.</p>
               </div>
-              <button onClick={() => setCurrentPage('contact')} className={DS.BTN_PRIMARY}>
+              <button onClick={goContactForm} className={DS.BTN_PRIMARY}>
                 Soumettre un projet
               </button>
             </div>
@@ -1456,7 +1462,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               <h2 className={`${DS.H2} text-white`}>Confiez-nous vos projets</h2>
               <p className={`${DS.LEAD_DARK} mt-6 mx-auto`}>Nos équipes vous accompagnent dans la recherche de solutions pour vos projets</p>
               </div>
-              <button onClick={() => setCurrentPage('contact')} className={DS.BTN_PRIMARY}>
+              <button onClick={goContactForm} className={DS.BTN_PRIMARY}>
                 Soumettre mon projet
               </button>
             </div>
@@ -1659,7 +1665,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               <p className={`${DS.LEAD_DARK} mt-6 mx-auto`}>Profilés aluminium, accessoires ITE, thermolaquage post-façonnage. Un seul interlocuteur pour tout le système.</p>
               </div>
               <button
-                onClick={() => setCurrentPage('contact')}
+                onClick={goContactForm}
                 className={DS.BTN_PRIMARY}
               >
                 Chiffrer mon projet
@@ -1686,7 +1692,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   Profilés, pliages et accessoires aluminium pour l'enveloppe du bâtiment. Des systèmes d'isolation thermique au ravalement de façade, en passant par les bardages, précadres et tôles prélaquées, nous couvrons vos besoins métalliques complets.
                 </p>
                 <div className="flex flex-wrap gap-4 mt-10">
-                  <button type="button" onClick={() => setCurrentPage('contact')} className={DS.BTN_PRIMARY}>
+                  <button type="button" onClick={goContactForm} className={DS.BTN_PRIMARY}>
                     Demander un devis
                   </button>
                   <button
@@ -2027,7 +2033,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               <h2 className={`${DS.H2} text-white`}>Des solutions qui s'adaptent à votre métier.</h2>
               <p className={`${DS.LEAD_DARK} mt-6 mx-auto`}>Parlons de vos contraintes métier. Nos équipes répondent sous 48h.</p>
               </div>
-              <button onClick={() => setCurrentPage('contact')} className={DS.BTN_PRIMARY}>
+              <button onClick={goContactForm} className={DS.BTN_PRIMARY}>
                 Présenter mon projet
               </button>
             </div>
@@ -2055,8 +2061,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 </div>
                 <div className="flex flex-col sm:flex-row items-start gap-4">
                   <a
-                    href="#expertises-sommaire"
-                    onClick={(e) => { e.preventDefault(); document.getElementById('expertises-sommaire')?.scrollIntoView({ behavior: 'smooth' }); }}
+                    href="#bureau-etudes"
+                    onClick={(e) => { e.preventDefault(); document.getElementById('bureau-etudes')?.scrollIntoView({ behavior: 'smooth' }); }}
                     className={`${DS.BTN_SECONDARY_LIGHT} w-full sm:w-auto`}
                   >
                     Découvrir notre process
@@ -2323,7 +2329,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               <h2 className={`${DS.H2} text-white`}>Vos contraintes techniques ont une réponse ici.</h2>
               <p className={`${DS.LEAD_DARK} mt-6 mx-auto`}>Chargés d'affaires disponibles pour analyser vos plans DXF et optimiser vos coûts avant production.</p>
               </div>
-              <button onClick={() => setCurrentPage('contact')} className={DS.BTN_PRIMARY}>
+              <button onClick={goContactForm} className={DS.BTN_PRIMARY}>
                 Envoyer des plans
               </button>
             </div>
@@ -2436,7 +2442,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             <div className="max-w-3xl mx-auto px-6 space-y-8">
               <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">Passer à la fabrication.</h2>
               <p className="text-base md:text-lg text-white/50">Nos techniciens prennent le relais — avec ou sans plans finalisés.</p>
-              <button onClick={() => setCurrentPage('contact')} className="px-10 py-4 md:px-12 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all shadow-xl hover:shadow-[#E2FD48]/20 hover:-translate-y-1">
+              <button onClick={goContactForm} className="px-10 py-4 md:px-12 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all shadow-xl hover:shadow-[#E2FD48]/20 hover:-translate-y-1">
                 Transmettre un dossier
               </button>
             </div>
@@ -2678,7 +2684,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 Nos techniciens optimisent vos profils et vos coûts dès réception des plans.
               </p>
               <button
-                onClick={() => setCurrentPage('contact')}
+                onClick={goContactForm}
                 className="px-10 py-4 md:px-12 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all shadow-xl hover:shadow-[#E2FD48]/20 hover:-translate-y-1"
               >
                 Demander un chiffrage
@@ -2936,7 +2942,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 Presse plieuse CNC étalonnée quotidiennement. Contrôle dimensionnel systématique avant expédition.
               </p>
               <button
-                onClick={() => setCurrentPage('contact')}
+                onClick={goContactForm}
                 className="px-10 py-4 md:px-12 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all shadow-xl hover:shadow-[#E2FD48]/20 hover:-translate-y-1"
               >
                 Soumettre mes plans
@@ -3253,7 +3259,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 Post-laquage après façonnage, traçabilité par lot, certificats disponibles sur demande.
               </p>
               <button
-                onClick={() => setCurrentPage('contact')}
+                onClick={goContactForm}
                 className="px-10 py-4 md:px-12 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all shadow-xl hover:shadow-[#E2FD48]/20 hover:-translate-y-1"
               >
                 Demander un devis
@@ -3336,8 +3342,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
       {currentPage === 'contact' && (
         <div className="animate-fade-up">
           {/* Hero Contact (White background, Dark header logic) */}
-          <section className={`bg-white ${DS.HERO_TOP} pb-20 min-h-[70vh] flex flex-col`}>
-            <div className="flex-1 flex flex-col max-w-7xl mx-auto px-6 w-full">
+          <section className={`bg-white ${DS.HERO_TOP} pb-20`}>
+            <div className="max-w-7xl mx-auto px-6 w-full">
               <div className="max-w-4xl">
                 <div className="mb-16">
                 <span className={`block mb-4 ${DS.EYEBROW_LIGHT}`}>
@@ -3350,25 +3356,177 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   Pour une étude technique, un chiffrage ou une demande de faisabilité, nos équipes vous répondent rapidement avec une approche orientée contraintes chantier (plans DXF/DWG, métrés, finitions, délais).
                 </p>
                 </div>
-                <a href="#contact-form" className={DS.BTN_SECONDARY_LIGHT}>
-                  Envoyer une demande
-                </a>
+                <button type="button" onClick={goContactForm} className={DS.BTN_SECONDARY_LIGHT}>Envoyer une demande</button>
               </div>
             </div>
           </section>
 
-          {/* Coordonnées & Info (Light section) */}
-          <section className="py-24 md:py-32 bg-[#F3F6F7]">
+          {/* Formulaire */}
+          <section id="contact-form" className="bg-[#F3F6F7] py-24 md:py-32">
+            <div className="max-w-3xl mx-auto px-4 sm:px-6">
+              <div className="mb-12 text-center">
+                <span className={`block mb-4 ${DS.EYEBROW_LIGHT}`}>CONTACT</span>
+                <h2 className={`${DS.H2} text-[#0E2A33]`}>Votre demande</h2>
+                <p className={`${DS.LEAD_LIGHT} mt-6 mx-auto`}>Devis, question technique ou candidature : nos équipes vous répondent sous 48 h.</p>
+              </div>
+              <div className="bg-white rounded-[20px] p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.03)] border border-[#0E2A33]/[0.12]">
+                  <form
+                    action="https://usebasin.com/f/b0fa3eeb614b"
+                    method="POST"
+                    encType="multipart/form-data"
+                    acceptCharset="UTF-8"
+                    className="space-y-6"
+                  >
+                    {/* Champ anti-spam Basin */}
+                    <input type="hidden" name="_gotcha" />
+
+                    <div>
+                      <label className="block text-sm font-medium mb-1 text-[#0E2A33]/[0.62]">Intention de contact <span className="text-red-500">*</span></label>
+                      <select
+                        name="intention"
+                        value={contactIntention}
+                        onChange={(e) => setContactIntention(e.target.value)}
+                        required
+                        className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-xl focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33]"
+                      >
+                        <option value="">Sélectionner une intention</option>
+                        <option value="Demander un devis">Demander un devis</option>
+                        <option value="Question / Info produit">Question / Info produit</option>
+                        <option value="Postuler chez PLIALU">Postuler chez PLIALU</option>
+                      </select>
+                    </div>
+
+                    {!isCandidature && (
+                    <div>
+                      <label htmlFor="contact-domaine" className="block text-sm font-medium mb-1 text-[#0E2A33]/[0.62]">Domaine concerné</label>
+                      <select
+                        id="contact-domaine"
+                        key={`domaine-${contactPrefill.domaine ?? ''}`}
+                        name="domaine"
+                        defaultValue={contactPrefill.domaine ?? ''}
+                        className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-xl focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33]"
+                      >
+                        <option value="">Non précisé</option>
+                        <option value="Enduit mince sur isolant">Enduit mince sur isolant</option>
+                        <option value="Bardage, cassettes & clins">Bardage, cassettes &amp; clins</option>
+                        <option value="Ravalement de façade">Ravalement de façade</option>
+                        <option value="Précadres, portes ou fenêtres">Précadres, portes ou fenêtres</option>
+                        <option value="Étanchéité">Étanchéité</option>
+                        <option value="MOB, FOB & murs-rideaux">MOB, FOB &amp; murs-rideaux</option>
+                        <option value="Tôles prélaquées">Tôles prélaquées</option>
+                        <option value="Autre">Autre</option>
+                      </select>
+                    </div>
+                    )}
+
+                    {/* Ligne 1 : Prénom / Nom */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium mb-1 text-[#0E2A33]/[0.62]">Prénom <span className="text-red-500">*</span></label>
+                        <input
+                          type="text"
+                          name="firstname"
+                          required
+                          className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-xl focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33]"
+                          placeholder="Jean"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-1 text-[#0E2A33]/[0.62]">Nom <span className="text-red-500">*</span></label>
+                        <input
+                          type="text"
+                          name="lastname"
+                          required
+                          className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-xl focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33]"
+                          placeholder="Dupont"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Ligne 2 : Email / Téléphone */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium mb-1 text-[#0E2A33]/[0.62]">Email professionnel <span className="text-red-500">*</span></label>
+                        <input
+                          type="email"
+                          name="email"
+                          required
+                          className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-xl focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33]"
+                          placeholder="contact@entreprise.com"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-1 text-[#0E2A33]/[0.62]">Téléphone</label>
+                        <input
+                          type="tel"
+                          name="phone"
+                          className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-xl focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33]"
+                          placeholder="06 00 00 00 00"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Entreprise */}
+                    {!isCandidature && (
+                    <div>
+                      <label className="block text-sm font-medium mb-1 text-[#0E2A33]/[0.62]">Entreprise / Cabinet</label>
+                      <input
+                        type="text"
+                        name="company"
+                        className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-xl focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33]"
+                        placeholder="Nom de votre société"
+                      />
+                    </div>
+                    )}
+
+                    {/* Description du projet */}
+                    <div>
+                      <label className="block text-sm font-medium mb-1 text-[#0E2A33]/[0.62]">{isCandidature ? 'Votre candidature' : 'Description du projet'}</label>
+                      <textarea
+                        name="message"
+                        rows={4}
+                        className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-xl focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33] resize-none"
+                        placeholder={isCandidature ? 'Présentez votre profil et le poste qui vous intéresse…' : 'Détaillez vos besoins techniques...'}
+                      ></textarea>
+                    </div>
+
+                    {/* Upload fichier — désactivé temporairement
+                    <div className="p-4 border-2 border-dashed border-[#0E2A33]/20 rounded-xl bg-[#F3F6F7]">
+                      <label className="block text-sm font-bold mb-2 text-[#0E2A33]">
+                        <span className="text-[#0E2A33]">Joindre vos documents</span> (PDF, DWG, DXF, JPG, etc.)
+                      </label>
+                      <input
+                        type="file"
+                        name="attachment"
+                        accept=".pdf,.dwg,.dxf,.jpg,.jpeg"
+                        className="block w-full text-sm text-[#0E2A33]/70 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#E2FD48] file:text-[#0E2A33] hover:file:bg-[#d4ed3f] cursor-pointer"
+                      />
+                      <p className="mt-2 text-xs text-[#0E2A33]/50 text-center">Taille maximale : 100 Mo par fichier.</p>
+                    </div>
+                    */}
+                    <p className="mt-2 text-xs text-[#0E2A33]/50 text-center">{isCandidature ? 'Votre CV : envoyez-le à ' : 'Vos plans ou fichiers : envoyez-les à '}<a href="mailto:commercial@plialu.fr" className="underline">commercial@plialu.fr</a> en précisant votre nom.</p>
+
+                    {/* Bouton submit */}
+                    <button
+                      type="submit"
+                      className={`${DS.BTN_PRIMARY} w-full`}
+                    >
+                      Envoyer ma demande
+                    </button>
+                  </form>
+              </div>
+            </div>
+          </section>
+
+          {/* Coordonnées & localisation */}
+          <section className="bg-white py-24 md:py-32">
             <div className="max-w-7xl mx-auto px-4 sm:px-6">
-              <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-12 lg:gap-20">
-                {/* Coordonnées */}
-                <div className="space-y-12">
-                  <div className="mb-16">
-                    <span className={`block mb-4 ${DS.EYEBROW_LIGHT}`}>COORDONNÉES</span>
-                    <h2 className={`${DS.H2} text-[#0E2A33]`}>Où nous trouver ?</h2>
-                  </div>
-                  
-                  <div className="space-y-8">
+              <div className="mb-16">
+                <span className={`block mb-4 ${DS.EYEBROW_LIGHT}`}>COORDONNÉES</span>
+                <h2 className={`${DS.H2} text-[#0E2A33]`}>Où nous trouver ?</h2>
+              </div>
+              <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-12 lg:gap-20 items-start">
+                <div className="space-y-8">
                     {/* Phone */}
                     <div className="flex items-center gap-6 group">
                       <div className="w-12 h-12 rounded-xl bg-white border border-[#0E2A33]/[0.12] flex items-center justify-center text-[#0E2A33]/40 group-hover:text-[#0E2A33] group-hover:border-[#0E2A33]/20 transition-all">
@@ -3430,12 +3588,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                         <p className="text-lg font-bold text-[#0E2A33] leading-tight max-w-xs">Du lundi au jeudi de 7h30 à 16h30, le vendredi de 7h30 à 12h.</p>
                       </div>
                     </div>
-                  </div>
-
-                  {/* Localisation */}
-                  <div className="space-y-4">
-                    <span className={`block mb-4 ${DS.EYEBROW_LIGHT}`}>LOCALISATION</span>
-                    <div className="w-full h-[320px] md:h-[380px] rounded-[20px] overflow-hidden border border-[#0E2A33]/[0.12] shadow-sm bg-white">
+                </div>
+                <div className="w-full h-[320px] md:h-[440px] rounded-[20px] overflow-hidden border border-[#0E2A33]/[0.12] shadow-sm bg-white">
                       <iframe
                         src="https://www.google.com/maps?q=Plialu%2C%20Technoparc%20Sa%C3%B4ne%20Vall%C3%A9e%2C%20150%20Route%20de%20Copernic%2C%2001390%20Civrieux&z=9&output=embed"
                         className="w-full h-full border-0"
@@ -3443,152 +3597,6 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                         referrerPolicy="no-referrer-when-downgrade"
                         allowFullScreen
                       ></iframe>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Formulaire Web3Forms */}
-                <div id="contact-form" className="bg-white rounded-[20px] p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.03)] border border-[#0E2A33]/[0.12] scroll-mt-32">
-                  <form
-                    action="https://usebasin.com/f/b0fa3eeb614b"
-                    method="POST"
-                    encType="multipart/form-data"
-                    acceptCharset="UTF-8"
-                    className="space-y-6"
-                  >
-                    {/* Champ anti-spam Basin */}
-                    <input type="hidden" name="_gotcha" />
-
-                    {/* Ligne 1 : Prénom / Nom */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-sm font-medium mb-1 text-[#0E2A33]/[0.62]">Prénom <span className="text-red-500">*</span></label>
-                        <input
-                          type="text"
-                          name="firstname"
-                          required
-                          className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-xl focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33]"
-                          placeholder="Jean"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium mb-1 text-[#0E2A33]/[0.62]">Nom <span className="text-red-500">*</span></label>
-                        <input
-                          type="text"
-                          name="lastname"
-                          required
-                          className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-xl focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33]"
-                          placeholder="Dupont"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Ligne 2 : Email / Téléphone */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-sm font-medium mb-1 text-[#0E2A33]/[0.62]">Email professionnel <span className="text-red-500">*</span></label>
-                        <input
-                          type="email"
-                          name="email"
-                          required
-                          className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-xl focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33]"
-                          placeholder="contact@entreprise.com"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium mb-1 text-[#0E2A33]/[0.62]">Téléphone</label>
-                        <input
-                          type="tel"
-                          name="phone"
-                          className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-xl focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33]"
-                          placeholder="06 00 00 00 00"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Entreprise */}
-                    <div>
-                      <label className="block text-sm font-medium mb-1 text-[#0E2A33]/[0.62]">Entreprise / Cabinet</label>
-                      <input
-                        type="text"
-                        name="company"
-                        className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-xl focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33]"
-                        placeholder="Nom de votre société"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium mb-1 text-[#0E2A33]/[0.62]">Intention de contact <span className="text-red-500">*</span></label>
-                      <select
-                        key={`intention-${contactPrefill.intention ?? ''}`}
-                        name="intention"
-                        defaultValue={contactPrefill.intention ?? ''}
-                        required
-                        className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-xl focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33]"
-                      >
-                        <option value="">Sélectionner une intention</option>
-                        <option value="Demander un devis">Demander un devis</option>
-                        <option value="Question / Info produit">Question / Info produit</option>
-                        <option value="Postuler chez PLIALU">Postuler chez PLIALU</option>
-                      </select>
-                    </div>
-
-                    <div>
-                      <label htmlFor="contact-domaine" className="block text-sm font-medium mb-1 text-[#0E2A33]/[0.62]">Domaine concerné</label>
-                      <select
-                        id="contact-domaine"
-                        key={`domaine-${contactPrefill.domaine ?? ''}`}
-                        name="domaine"
-                        defaultValue={contactPrefill.domaine ?? ''}
-                        className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-xl focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33]"
-                      >
-                        <option value="">Non précisé</option>
-                        <option value="Enduit mince sur isolant">Enduit mince sur isolant</option>
-                        <option value="Bardage, cassettes & clins">Bardage, cassettes &amp; clins</option>
-                        <option value="Ravalement de façade">Ravalement de façade</option>
-                        <option value="Précadres, portes ou fenêtres">Précadres, portes ou fenêtres</option>
-                        <option value="Étanchéité">Étanchéité</option>
-                        <option value="MOB, FOB & murs-rideaux">MOB, FOB &amp; murs-rideaux</option>
-                        <option value="Tôles prélaquées">Tôles prélaquées</option>
-                        <option value="Autre">Autre</option>
-                      </select>
-                    </div>
-
-                    {/* Description du projet */}
-                    <div>
-                      <label className="block text-sm font-medium mb-1 text-[#0E2A33]/[0.62]">Description du projet</label>
-                      <textarea
-                        name="message"
-                        rows={4}
-                        className="w-full p-3 bg-[#F3F6F7] border border-[#0E2A33]/20 rounded-xl focus:border-[#0E2A33] focus:ring-2 focus:ring-[#0E2A33]/40 outline-none text-[#0E2A33] resize-none"
-                        placeholder="Détaillez vos besoins techniques..."
-                      ></textarea>
-                    </div>
-
-                    {/* Upload fichier — désactivé temporairement
-                    <div className="p-4 border-2 border-dashed border-[#0E2A33]/20 rounded-xl bg-[#F3F6F7]">
-                      <label className="block text-sm font-bold mb-2 text-[#0E2A33]">
-                        <span className="text-[#0E2A33]">Joindre vos documents</span> (PDF, DWG, DXF, JPG, etc.)
-                      </label>
-                      <input
-                        type="file"
-                        name="attachment"
-                        accept=".pdf,.dwg,.dxf,.jpg,.jpeg"
-                        className="block w-full text-sm text-[#0E2A33]/70 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#E2FD48] file:text-[#0E2A33] hover:file:bg-[#d4ed3f] cursor-pointer"
-                      />
-                      <p className="mt-2 text-xs text-[#0E2A33]/50 text-center">Taille maximale : 100 Mo par fichier.</p>
-                    </div>
-                    */}
-                    <p className="mt-2 text-xs text-[#0E2A33]/50 text-center">Vos plans ou fichiers : envoyez-les à <a href="mailto:commercial@plialu.fr" className="underline">commercial@plialu.fr</a> en précisant votre nom.</p>
-
-                    {/* Bouton submit */}
-                    <button
-                      type="submit"
-                      className={`${DS.BTN_PRIMARY} w-full`}
-                    >
-                      Envoyer ma demande de devis technique
-                    </button>
-                  </form>
                 </div>
               </div>
             </div>
