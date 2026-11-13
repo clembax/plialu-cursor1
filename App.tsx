@@ -3683,6 +3683,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 <p><strong>Google Analytics :</strong> Statistiques de visite.</p>
                 <p><strong>Hostinger :</strong> Hébergement du site.</p>
 
+                <h2 className="font-display text-2xl font-bold tracking-tight text-white mt-8 mb-4">Transferts hors Union européenne</h2>
+                <p>Les messages envoyés depuis nos formulaires transitent par le service FormSubmit, qui est exploité depuis les États-Unis, avant de nous être transmis par e-mail. Ce transfert est limité à ce qui est nécessaire pour vous répondre : les informations saisies dans le formulaire et, le cas échéant, la pièce jointe. FormSubmit n'est pas un lieu de stockage prévu pour conserver vos messages. Pour toute question sur ce transfert ou pour exercer vos droits, écrivez-nous à commercial@plialu.fr.</p>
+
                 <h2 className="font-display text-2xl font-bold tracking-tight text-white mt-8 mb-4">5. Durée de conservation</h2>
                 <p>Conformément à la réglementation applicable en milieu B2B :</p>
                 <p><strong>Données de prospects :</strong> Conservées 3 ans à compter de leur collecte ou du dernier contact émanant du prospect (ex: demande de devis non aboutie).</p>
