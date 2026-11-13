@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as DS from './ds/ds';
+import { FORMSUBMIT_URL } from '../config/forms';
 
 /* -------------------------------------------------------------------------- */
 /*  Page produit : Goutte d'eau extrudée (URL /goutte-eau-extrudee)           */
@@ -7,10 +8,8 @@ import * as DS from './ds/ds';
 /*  cookies restent gérés par App.tsx.                                         */
 /* -------------------------------------------------------------------------- */
 
-/* Formulaire Basin partagé avec Contact. Les demandes sont identifiées par le
-   champ intention. Tant que l'URL contient "REMPLACER", l'envoi est bloqué. */
-const BASIN_COMMANDE_URL = 'https://usebasin.com/f/b0fa3eeb614b';
-const FORM_READY = !BASIN_COMMANDE_URL.includes('REMPLACER');
+/* Même boîte que le formulaire Contact. Les demandes sont identifiées par le
+   champ intention. */
 
 const PDF_URL = '/documents/Fiche_Goutte_eau_extrudee.pdf';
 const PDF_DOWNLOAD_NAME = 'Fiche_Goutte_eau_extrudee_PLIALU.pdf';
@@ -202,7 +201,7 @@ export const GoutteEauExtrudee: React.FC<Props> = ({ setCurrentPage }) => {
     (qty.profils > 0 ? `${plural(qty.profils, 'profil', 'profils')} · ${qty.profils * 3} m` : 'Aucun profil') +
     ` · ${finishLabel}`;
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     const form = e.currentTarget;
     const fd = new FormData(form);
     const get = (k: string) => String(fd.get(k) ?? '').trim();
@@ -222,11 +221,6 @@ export const GoutteEauExtrudee: React.FC<Props> = ({ setCurrentPage }) => {
       document.getElementById(`cmd-${firstKey}`)?.focus();
       return;
     }
-    if (!FORM_READY) {
-      e.preventDefault();
-      setErrors({ form: "Le formulaire n'est pas encore relié à Basin (BASIN_COMMANDE_URL)." });
-      return;
-    }
     if (sendingRef.current) {
       e.preventDefault();
       return;
@@ -238,26 +232,8 @@ export const GoutteEauExtrudee: React.FC<Props> = ({ setCurrentPage }) => {
       finition: finish,
       transport_type: 'beacon',
     });
-    e.preventDefault();
     sendingRef.current = true;
     setSending(true);
-    try {
-      const res = await fetch(BASIN_COMMANDE_URL, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { Accept: 'application/json' },
-      });
-      if (res.ok) {
-        setCurrentPage('merci');
-        return;
-      }
-      setErrors({ form: "L'envoi a échoué. Réessayez ou écrivez-nous à commercial@plialu.fr." });
-    } catch {
-      setErrors({ form: "L'envoi a échoué. Réessayez ou écrivez-nous à commercial@plialu.fr." });
-    } finally {
-      sendingRef.current = false;
-      setSending(false);
-    }
   };
 
   return (
@@ -652,14 +628,18 @@ export const GoutteEauExtrudee: React.FC<Props> = ({ setCurrentPage }) => {
 
           <div className="grid items-start gap-14 lg:grid-cols-[3fr_2fr]">
             <form
-              action={BASIN_COMMANDE_URL}
+              action={FORMSUBMIT_URL}
               method="POST"
               encType="multipart/form-data"
               acceptCharset="UTF-8"
               noValidate
               onSubmit={onSubmit}
             >
-              <input type="hidden" name="_gotcha" />
+              <input type="hidden" name="_next" value="https://plialu.fr/merci" />
+              <input type="hidden" name="_subject" value="Nouvelle demande de commande Goutte d'eau" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="text" name="_honey" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ display: 'none' }} />
               <input type="hidden" name="intention" value="Commande Goutte d'eau" />
               <input type="hidden" name="domaine" value="Ravalement de façade" />
               <input type="hidden" name="recapitulatif" value={recapText} />

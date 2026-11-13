@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ArrowDown, ArrowRight, ArrowUpRight, Clock, Copy, Mail, MapPin, Menu, Phone, Play } from 'lucide-react';
 import CookieBanner from './src/components/CookieBanner';
+import ConsentEmbed from './src/components/ConsentEmbed';
+import { openCookieSettings } from './src/consent';
+import { FORMSUBMIT_URL } from './src/config/forms';
 
 import * as DS from './src/components/ds/ds';
 import FranceDotMap from './FranceDotMap';
@@ -319,8 +322,12 @@ const App: React.FC = () => {
   const [contactPrefill, setContactPrefill] = useState<{ intention?: string; domaine?: string }>({});
   const [contactIntention, setContactIntention] = useState('');
   const [contactSending, setContactSending] = useState(false);
-  const [contactSendError, setContactSendError] = useState(false);
+  const [attachmentTooLarge, setAttachmentTooLarge] = useState(false);
   const contactSendingRef = useRef(false);
+  const MAX_ATTACHMENT_BYTES = 10 * 1024 * 1024;
+
+  const filesTooLarge = (files: FileList | null | undefined) =>
+    [...(files ?? [])].reduce((sum, file) => sum + file.size, 0) > MAX_ATTACHMENT_BYTES;
   useEffect(() => {
     setContactIntention(contactPrefill.intention ?? '');
   }, [contactPrefill]);
@@ -331,32 +338,21 @@ const App: React.FC = () => {
     window.setTimeout(() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 150);
   };
 
-  const onContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (contactSendingRef.current) return;
+  const onContactSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    if (contactSendingRef.current) {
+      e.preventDefault();
+      return;
+    }
     const form = e.currentTarget;
+    const files = form.querySelector<HTMLInputElement>('input[name="attachment"]')?.files;
+    if (filesTooLarge(files)) {
+      e.preventDefault();
+      setAttachmentTooLarge(true);
+      return;
+    }
+    setAttachmentTooLarge(false);
     contactSendingRef.current = true;
     setContactSending(true);
-    setContactSendError(false);
-    try {
-      const res = await fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { Accept: 'application/json' },
-      });
-      if (res.ok) {
-        form.reset();
-        setContactIntention('');
-        setCurrentPage('merci');
-        return;
-      }
-      setContactSendError(true);
-    } catch {
-      setContactSendError(true);
-    } finally {
-      contactSendingRef.current = false;
-      setContactSending(false);
-    }
   };
 
   const goDevis = (domaine: string) => {
@@ -367,6 +363,11 @@ const App: React.FC = () => {
   const goSolution = (anchor: string) => {
     setCurrentPage('solutions-temporaire');
     window.setTimeout(() => document.getElementById(anchor)?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 150);
+  };
+
+  const openCookiePolicy = () => {
+    setCurrentPage('politique-confidentialite');
+    window.setTimeout(() => document.getElementById('cookies')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 150);
   };
 
   const RAL_APERCU = ['#E8E4D8', '#C9C3B3', '#9AA3A6', '#6E7A7F', '#3E4A4F', '#1F2A2E', '#7C2D2A', '#2F4F3E', '#24476B', '#383E42'];
@@ -2107,13 +2108,15 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
           <section id="video-complete" className="section--dark py-24 md:py-32 scroll-mt-24" style={{ background: '#071318' }}>
             <div className="max-w-6xl mx-auto px-6">
               <div className="relative rounded-[20px] overflow-hidden border border-white/10 bg-black/40 aspect-video">
-                <iframe
-                  src="https://player.vimeo.com/video/1172884207?title=0&byline=0&portrait=0"
-                  title="Vidéo complète du process PLIALU"
-                  className="absolute inset-0 w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                />
+                <ConsentEmbed kind="vimeo" tone="dark" onOpenCookiePolicy={openCookiePolicy}>
+                  <iframe
+                    src="https://player.vimeo.com/video/1172884207?title=0&byline=0&portrait=0&dnt=1"
+                    title="Vidéo complète du process PLIALU"
+                    className="absolute inset-0 w-full h-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  />
+                </ConsentEmbed>
               </div>
             </div>
           </section>
@@ -3352,15 +3355,18 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
               </div>
               <div className="bg-white rounded-[20px] p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.03)] border border-[#0E2A33]/[0.12]">
                   <form
-                    action="https://usebasin.com/f/b0fa3eeb614b"
+                    action={FORMSUBMIT_URL}
                     method="POST"
                     encType="multipart/form-data"
                     acceptCharset="UTF-8"
                     className="space-y-6"
                     onSubmit={onContactSubmit}
                   >
-                    {/* Champ anti-spam Basin */}
-                    <input type="hidden" name="_gotcha" />
+                    <input type="hidden" name="_next" value="https://plialu.fr/merci" />
+                    <input type="hidden" name="_subject" value="Nouvelle demande de contact plialu.fr" />
+                    <input type="hidden" name="_template" value="table" />
+                    <input type="hidden" name="_captcha" value="false" />
+                    <input type="text" name="_honey" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ display: 'none' }} />
 
                     <div>
                       <label className="block text-sm font-medium mb-1 text-[#0E2A33]/[0.62]">Intention de contact <span className="text-red-500">*</span></label>
@@ -3472,21 +3478,25 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       ></textarea>
                     </div>
 
-                    {/* Upload fichier — désactivé temporairement
                     <div className="p-4 border-2 border-dashed border-[#0E2A33]/20 rounded-xl bg-[#F3F6F7]">
-                      <label className="block text-sm font-bold mb-2 text-[#0E2A33]">
-                        <span className="text-[#0E2A33]">Joindre vos documents</span> (PDF, DWG, DXF, JPG, etc.)
+                      <label htmlFor="contact-attachment" className="block text-sm font-bold mb-2 text-[#0E2A33]">
+                        <span className="text-[#0E2A33]">Joindre vos documents</span> (PDF, DWG, DXF, JPG, etc.) 10 Mo maximum
                       </label>
                       <input
+                        id="contact-attachment"
                         type="file"
                         name="attachment"
+                        multiple
                         accept=".pdf,.dwg,.dxf,.jpg,.jpeg"
+                        onChange={(e) => setAttachmentTooLarge(filesTooLarge(e.target.files))}
                         className="block w-full text-sm text-[#0E2A33]/70 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#E2FD48] file:text-[#0E2A33] hover:file:bg-[#d4ed3f] cursor-pointer"
                       />
-                      <p className="mt-2 text-xs text-[#0E2A33]/50 text-center">Taille maximale : 100 Mo par fichier.</p>
+                      {attachmentTooLarge && (
+                        <p role="alert" className="mt-2 text-sm text-red-600">
+                          Fichier trop lourd (10 Mo maximum). Envoyez vos plans à commercial@plialu.fr.
+                        </p>
+                      )}
                     </div>
-                    */}
-                    <p className="mt-2 text-xs text-[#0E2A33]/50 text-center">{isCandidature ? 'Votre CV : envoyez-le à ' : 'Vos plans ou fichiers : envoyez-les à '}<a href="mailto:commercial@plialu.fr" className="underline">commercial@plialu.fr</a> en précisant votre nom.</p>
 
                     {/* Bouton submit */}
                     <button
@@ -3496,11 +3506,6 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     >
                       {contactSending ? 'Envoi en cours…' : 'Envoyer ma demande'}
                     </button>
-                    {contactSendError && (
-                      <p role="alert" className="text-sm text-red-600">
-                        L'envoi a échoué. Réessayez ou écrivez-nous à commercial@plialu.fr.
-                      </p>
-                    )}
                   </form>
               </div>
             </div>
@@ -3577,7 +3582,8 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                       </div>
                     </div>
                 </div>
-                <div className="w-full h-[320px] md:h-[440px] rounded-[20px] overflow-hidden border border-[#0E2A33]/[0.12] shadow-sm bg-white">
+                <div className="relative w-full h-[320px] md:h-[440px] rounded-[20px] overflow-hidden border border-[#0E2A33]/[0.12] shadow-sm bg-white">
+                  <ConsentEmbed kind="maps" tone="light" onOpenCookiePolicy={openCookiePolicy}>
                       <iframe
                         src="https://www.google.com/maps?q=Plialu%2C%20Technoparc%20Sa%C3%B4ne%20Vall%C3%A9e%2C%20150%20Route%20de%20Copernic%2C%2001390%20Civrieux&z=9&output=embed"
                         className="w-full h-full border-0"
@@ -3585,6 +3591,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                         referrerPolicy="no-referrer-when-downgrade"
                         allowFullScreen
                       ></iframe>
+                  </ConsentEmbed>
                 </div>
               </div>
             </div>
@@ -3658,7 +3665,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 <h2 className="font-display text-2xl font-bold tracking-tight text-white mt-8 mb-4">1. Responsable du traitement</h2>
                 <p>Le responsable du traitement des données à caractère personnel collectées sur ce site est la société PLIALU, représentée par Jean-Pierre Bax.</p>
 
-                <h2 className="font-display text-2xl font-bold tracking-tight text-white mt-8 mb-4">2. Données collectées et méthodes de collecte</h2>
+                <h2 id="cookies" className="font-display text-2xl font-bold tracking-tight text-white mt-8 mb-4 scroll-mt-28">2. Données collectées et méthodes de collecte</h2>
                 <p>Dans le cadre de notre relation B2B, nous collectons de manière loyale et transparente les données suivantes :</p>
                 <p><strong>Données d'identification professionnelles :</strong> Nom, prénom, fonction, entreprise, adresse e-mail professionnelle, numéro de téléphone. Ces données sont collectées via le formulaire de contact.</p>
                 <p><strong>Données techniques de navigation :</strong> Adresses IP, logs de connexion, statistiques de visite (via Google Analytics), teaser vidéo et images (via Cloudinary), vidéo longue thermolaquage (via Vimeo).</p>
@@ -3670,7 +3677,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
 
                 <h2 className="font-display text-2xl font-bold tracking-tight text-white mt-8 mb-4">4. Destinataires des données et Sous-traitants</h2>
                 <p>Les données collectées sont strictement destinées au personnel habilité de PLIALU (direction, équipe commerciale, bureau d'études). Pour assurer le fonctionnement technique du site, nous nous appuyons sur des sous-traitants reconnus, en conformité avec le RGPD :</p>
-                <p><strong>Basin (usebasin.com) :</strong> Formulaire de contact. Les messages et les pièces jointes transmis via le formulaire y sont stockés.</p>
+                <p><strong>FormSubmit (formsubmit.co) :</strong> transmission des messages envoyés par les formulaires vers notre boîte de réception.</p>
                 <p><strong>Cloudinary :</strong> Teaser vidéo et images.</p>
                 <p><strong>Vimeo :</strong> Vidéo longue thermolaquage.</p>
                 <p><strong>Google Analytics :</strong> Statistiques de visite.</p>
@@ -3680,6 +3687,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 <p>Conformément à la réglementation applicable en milieu B2B :</p>
                 <p><strong>Données de prospects :</strong> Conservées 3 ans à compter de leur collecte ou du dernier contact émanant du prospect (ex: demande de devis non aboutie).</p>
                 <p><strong>Données de clients :</strong> Conservées pendant toute la durée de la relation commerciale, puis archivées pendant 10 ans pour répondre à nos obligations comptables et légales.</p>
+                <p>Ces durées s'appliquent aux messages reçus par e-mail.</p>
 
                 <h2 className="font-display text-2xl font-bold tracking-tight text-white mt-8 mb-4">6. Vos droits (RGPD)</h2>
                 <p>Vous disposez d'un contrôle total sur vos données personnelles. Vous pouvez exercer à tout moment :</p>
@@ -3772,11 +3780,12 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             <div className="flex gap-6 text-[10px] text-white/30 font-bold uppercase tracking-[0.2em] flex-wrap justify-center md:justify-end">
               <button onClick={() => setCurrentPage('mentions-legales')} className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/50 hover:text-[#E2FD48] transition-colors duration-150 text-left">Mentions légales</button>
               <button onClick={() => setCurrentPage('politique-confidentialite')} className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/50 hover:text-[#E2FD48] transition-colors duration-150 text-left">Politique de confidentialité</button>
+              <button onClick={openCookieSettings} className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/50 hover:text-[#E2FD48] transition-colors duration-150 text-left">Gérer les cookies</button>
             </div>
           </div>
         </div>
       </footer>
-      <CookieBanner onOpenPrivacy={() => setCurrentPage('politique-confidentialite')} />
+      <CookieBanner onOpenCookiePolicy={openCookiePolicy} />
     </div>
   );
 };

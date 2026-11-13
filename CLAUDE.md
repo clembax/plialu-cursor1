@@ -18,6 +18,6 @@ Tailwind est compilé en local : `tailwind.config.js` et `index.css`. Les icône
 
 ## Contenus et services
 
-Le formulaire part vers Basin. Les images sont hébergées sur Cloudinary, avec `srcset` et un `alt` rédigé pour le SEO. Aucun texte du site ne contient de tiret cadratin ni de tiret demi-cadratin.
+Les formulaires partent vers commercial@plialu.fr via FormSubmit. Les images sont hébergées sur Cloudinary, avec `srcset` et un `alt` rédigé pour le SEO. Aucun texte du site ne contient de tiret cadratin ni de tiret demi-cadratin.
 
 Toute nouvelle ressource externe doit être ajoutée à la politique de sécurité du contenu dans `public/.htaccess`.
