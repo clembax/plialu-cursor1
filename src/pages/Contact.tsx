@@ -1,14 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router';
 import { Clock, Copy, Mail, MapPin, Phone } from 'lucide-react';
 import * as DS from '../components/ds/ds';
 import ConsentEmbed from '../components/ConsentEmbed';
 import { FORMSUBMIT_URL } from '../config/forms';
-import type { PageKey } from '../seo/seoConfig';
 
 export function ContactPage(props: {
-  setCurrentPage: React.Dispatch<React.SetStateAction<PageKey>>;
   goContactForm: () => void;
-  openCookiePolicy: () => void;
   handleCopy: (text: string, key: string) => void;
   copiedKey: string | null;
   contactPrefill: { intention?: string; domaine?: string };
@@ -21,7 +19,7 @@ export function ContactPage(props: {
   setAttachmentTooLarge: React.Dispatch<React.SetStateAction<boolean>>;
   filesTooLarge: (files: FileList | null | undefined) => boolean;
 }) {
-  const { setCurrentPage, goContactForm, openCookiePolicy, handleCopy, copiedKey, contactPrefill, contactIntention, setContactIntention, isCandidature, contactSending, onContactSubmit, attachmentTooLarge, setAttachmentTooLarge, filesTooLarge } = props;
+  const { goContactForm, handleCopy, copiedKey, contactPrefill, contactIntention, setContactIntention, isCandidature, contactSending, onContactSubmit, attachmentTooLarge, setAttachmentTooLarge, filesTooLarge } = props;
   return (
         <div className="animate-fade-up">
           {/* Hero Contact (White background, Dark header logic) */}
@@ -207,13 +205,12 @@ export function ContactPage(props: {
                     </button>
                     <p className="text-xs leading-relaxed text-[#0E2A33]/[0.62]">
                       Vos informations servent uniquement à traiter votre demande. Elles sont transmises par e-mail via notre prestataire FormSubmit et ne sont jamais cédées. Pour en savoir plus et exercer vos droits, consultez notre{' '}
-                      <button
-                        type="button"
-                        onClick={() => setCurrentPage('politique-confidentialite')}
+                      <Link
+                        to="/politique-confidentialite"
                         className="underline underline-offset-2 text-[#0E2A33]/75 hover:text-[#0E2A33]"
                       >
                         politique de confidentialité
-                      </button>
+                      </Link>
                       .
                     </p>
                   </form>
@@ -293,7 +290,7 @@ export function ContactPage(props: {
                     </div>
                 </div>
                 <div className="relative w-full h-[320px] md:h-[440px] rounded-[20px] overflow-hidden border border-[#0E2A33]/[0.12] shadow-sm bg-white">
-                  <ConsentEmbed kind="maps" tone="light" onOpenCookiePolicy={openCookiePolicy}>
+                  <ConsentEmbed kind="maps" tone="light">
                       <iframe
                         src="https://www.google.com/maps?q=Plialu%2C%20Technoparc%20Sa%C3%B4ne%20Vall%C3%A9e%2C%20150%20Route%20de%20Copernic%2C%2001390%20Civrieux&z=9&output=embed"
                         className="w-full h-full border-0"

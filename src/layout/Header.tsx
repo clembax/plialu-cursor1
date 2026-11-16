@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router';
 import { Menu } from 'lucide-react';
 import * as DS from '../components/ds/ds';
 import type { PageKey } from '../seo/seoConfig';
 
 export function Header(props: {
-  setCurrentPage: React.Dispatch<React.SetStateAction<PageKey>>;
   currentPage: PageKey;
   goContactForm: () => void;
   openProjectId: string | null;
   isMenuOpen: boolean;
   setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
-  const { setCurrentPage, currentPage, goContactForm, openProjectId, isMenuOpen, setIsMenuOpen } = props;
+  const { currentPage, goContactForm, openProjectId, isMenuOpen, setIsMenuOpen } = props;
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export function Header(props: {
           {/* Left: Logo */}
           {!isMenuOpen && (
             <div className="flex-none">
-              <button onClick={() => setCurrentPage('home')} className="flex items-center gap-3 group outline-none h-full">
+              <Link to="/" className="flex items-center gap-3 group outline-none h-full">
                 <img 
                   src={headerTheme === 'dark' 
                     ? "https://res.cloudinary.com/dyiup6v5x/image/upload/v1771582466/Logo_Noir_Plialu_ywbl2o.svg" 
@@ -61,15 +61,15 @@ export function Header(props: {
                   alt="PLIALU" 
                   className="h-6 md:h-7 transition-all duration-300 scale-[1.5] origin-left"
                 />
-              </button>
+              </Link>
             </div>
           )}
 
           {/* Center: Navigation Menu */}
           <div className="absolute left-1/2 -translate-x-1/2 hidden lg:flex items-center gap-1 p-1.5 rounded-full border transition-all duration-300
             ${headerTheme === 'dark' ? 'bg-[#0E2A33]/5 border-black/10' : 'bg-white/5 border-white/5'}">
-            <button 
-              onClick={() => setCurrentPage('home')} 
+            <Link 
+              to="/" 
               className={`whitespace-nowrap text-xs font-semibold px-5 py-2 rounded-full transition-all 
                 ${currentPage === 'home' 
                   ? (headerTheme === 'dark' ? 'text-[#0E2A33] bg-[#0E2A33]/10' : 'text-white bg-white/10')
@@ -77,9 +77,9 @@ export function Header(props: {
                 }`}
             >
               Accueil
-            </button>
-            <button 
-onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.history.replaceState(null, '', window.location.pathname + window.location.search || '#'); }}
+            </Link>
+            <Link 
+              to="/expertises"
               className={`whitespace-nowrap text-xs font-semibold px-5 py-2 rounded-full transition-all
                 ${currentPage === 'expertises'
                   ? (headerTheme === 'dark' ? 'text-[#0E2A33] bg-[#0E2A33]/10' : 'text-white bg-white/10')
@@ -87,10 +87,10 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 }`}
             >
               Expertises
-            </button>
+            </Link>
             <div className="group relative">
-              <button
-                onClick={() => setCurrentPage('solutions-temporaire')}
+              <Link
+                to="/solutions"
                 aria-haspopup="true"
                 className={`inline-flex items-center gap-1.5 whitespace-nowrap text-xs font-semibold px-5 py-2 rounded-full transition-all
                   ${
@@ -107,7 +107,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="transition-transform duration-200 group-hover:rotate-180">
                   <path d="M6 9l6 6 6-6" />
                 </svg>
-              </button>
+              </Link>
 
               <div
                 className={`invisible absolute left-1/2 top-[calc(100%+14px)] z-50 flex min-w-[240px] -translate-x-1/2 translate-y-1.5 flex-col gap-0.5 rounded-[20px] border p-1.5 opacity-0 transition-all duration-200 before:absolute before:inset-x-0 before:-top-4 before:h-4 before:content-[''] group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-has-[:focus-visible]:visible group-has-[:focus-visible]:translate-y-0 group-has-[:focus-visible]:opacity-100 ${
@@ -128,13 +128,13 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                   const close = () => (document.activeElement as HTMLElement | null)?.blur();
                   return (
                     <>
-                      <button
-                        type="button"
-                        onClick={() => { setCurrentPage('goutte-eau-extrudee'); close(); }}
+                      <Link
+                        to="/goutte-eau-extrudee"
+                        onClick={() => { close(); }}
                         className={`${item} text-left`}
                       >
                         Goutte d'eau extrudée
-                      </button>
+                      </Link>
                       <div className={`mx-3 my-1 h-px ${headerTheme === 'dark' ? 'bg-[#0E2A33]/10' : 'bg-white/10'}`} />
                       {[
                         ['Portfolio', 'res-book'],
@@ -142,27 +142,23 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                         ['Fiches techniques', 'res-fiches'],
                         ['Déroulage', 'res-deroulage'],
                       ].map(([label, anchor]) => (
-                        <button
+                        <Link
                           key={anchor}
-                          type="button"
-                          onClick={() => {
-                            setCurrentPage('solutions-temporaire');
-                            close();
-                            window.setTimeout(() => document.getElementById(anchor)?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 150);
-                          }}
+                          to={`/solutions#${anchor}`}
+                          onClick={() => { close(); }}
                           className={`${item} text-left`}
                         >
                           {label}
                           <span className={pdf}>PDF</span>
-                        </button>
+                        </Link>
                       ))}
                     </>
                   );
                 })()}
               </div>
             </div>
-            <button 
-              onClick={() => setCurrentPage('projects')} 
+            <Link 
+              to="/portfolio" 
               className={`whitespace-nowrap text-xs font-semibold px-5 py-2 rounded-full transition-all 
                 ${currentPage === 'projects' 
                   ? (headerTheme === 'dark' ? 'text-[#0E2A33] bg-[#0E2A33]/10' : 'text-white bg-white/10')
@@ -170,9 +166,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 }`}
             >
               Portfolio
-            </button>
-            <button 
-              onClick={() => setCurrentPage('a-propos')} 
+            </Link>
+            <Link 
+              to="/a-propos" 
               className={`whitespace-nowrap text-xs font-semibold px-5 py-2 rounded-full transition-all
                 ${currentPage === 'a-propos'
                   ? (headerTheme === 'dark' ? 'text-[#0E2A33] bg-black/10' : 'text-white bg-white/10')
@@ -180,9 +176,9 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 }`}
             >
               À propos
-            </button>
-            <button 
-              onClick={() => setCurrentPage('contact')} 
+            </Link>
+            <Link 
+              to="/contact" 
               className={`whitespace-nowrap text-xs font-semibold px-5 py-2 rounded-full transition-all
                 ${currentPage === 'contact' 
                   ? (headerTheme === 'dark' ? 'text-[#0E2A33] bg-[#0E2A33]/10' : 'text-white bg-white/10')
@@ -190,7 +186,7 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                 }`}
             >
               Contact
-            </button>
+            </Link>
           </div>
 
           {/* Right: CTA Button */}
@@ -229,18 +225,19 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
             <span className="text-[10px] font-extrabold tracking-widest text-[#E2FD48] uppercase">Menu</span>
           </div>
           <nav className="flex flex-col p-6 gap-1 overflow-y-auto">
-            <button onClick={() => { setCurrentPage('home'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Accueil</button>
-            <button onClick={() => { setCurrentPage('expertises'); setIsMenuOpen(false); if (window.location.hash) window.history.replaceState(null, '', window.location.pathname + window.location.search || '#'); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Expertises</button>
-            <button onClick={() => { setCurrentPage('solutions-temporaire'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Solutions</button>
-            <button
-              onClick={() => { setCurrentPage('goutte-eau-extrudee'); setIsMenuOpen(false); }}
+            <Link to="/" onClick={() => setIsMenuOpen(false)} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Accueil</Link>
+            <Link to="/expertises" onClick={() => setIsMenuOpen(false)} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Expertises</Link>
+            <Link to="/solutions" onClick={() => setIsMenuOpen(false)} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Solutions</Link>
+            <Link
+              to="/goutte-eau-extrudee"
+              onClick={() => setIsMenuOpen(false)}
               className="text-left py-2.5 pl-8 pr-4 rounded-xl text-sm text-white/70 font-medium hover:bg-white/10 hover:text-white transition-colors"
             >
               Goutte d'eau extrudée
-            </button>
-            <button onClick={() => { setCurrentPage('projects'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Portfolio</button>
-            <button onClick={() => { setCurrentPage('a-propos'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">À propos</button>
-            <button onClick={() => { setCurrentPage('contact'); setIsMenuOpen(false); }} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Contact</button>
+            </Link>
+            <Link to="/portfolio" onClick={() => setIsMenuOpen(false)} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Portfolio</Link>
+            <Link to="/a-propos" onClick={() => setIsMenuOpen(false)} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">À propos</Link>
+            <Link to="/contact" onClick={() => setIsMenuOpen(false)} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Contact</Link>
             <button onClick={() => { goContactForm(); setIsMenuOpen(false); }} className={`${DS.BTN_PRIMARY} mt-4 w-full justify-center`}>Demander un devis</button>
           </nav>
         </div>

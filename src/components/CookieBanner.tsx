@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router';
 import { getConsent, isAnalyticsLoaded, loadAnalytics, setConsent, withdrawAnalytics } from '../consent';
-
-interface CookieBannerProps {
-  onOpenCookiePolicy: () => void;
-}
 
 const CHOICE_BUTTON =
   'inline-flex w-full items-center justify-center rounded-full border border-white bg-transparent px-5 py-2 text-xs font-semibold leading-4 text-white transition-colors duration-150 hover:border-transparent hover:bg-white hover:text-[#0E2A33]';
 
-const CookieBanner: React.FC<CookieBannerProps> = ({ onOpenCookiePolicy }) => {
+const CookieBanner: React.FC = () => {
   const [showBanner, setShowBanner] = useState(() => getConsent() === null);
 
   useEffect(() => {
@@ -45,13 +42,12 @@ const CookieBanner: React.FC<CookieBannerProps> = ({ onOpenCookiePolicy }) => {
       <div className="mx-auto flex max-w-7xl flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
         <p className="flex-1 text-sm leading-relaxed text-white/80">
           Nous utilisons Google Analytics pour mesurer l'audience du site. Accepter active aussi l'affichage direct de la vidéo Vimeo et de la carte Google Maps. Refuser n'empêche pas de consulter le site : ces deux contenus restent disponibles sur demande. Plus d'informations dans notre{' '}
-          <button
-            type="button"
-            onClick={onOpenCookiePolicy}
+          <Link
+            to="/politique-confidentialite#cookies"
             className="font-medium text-[#E2FD48] underline underline-offset-2 transition-colors hover:text-white"
           >
             politique de cookies
-          </button>
+          </Link>
           .
         </p>
         <div className="grid w-full shrink-0 grid-cols-2 gap-3 sm:w-64">

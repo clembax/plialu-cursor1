@@ -1,24 +1,22 @@
+import { Link } from 'react-router';
 import React from 'react';
-import type { PageKey } from '../seo/seoConfig';
 
 export function RessourceThermolaquagePage(props: {
-  setCurrentPage: React.Dispatch<React.SetStateAction<PageKey>>;
   goContactForm: () => void;
 }) {
-  const { setCurrentPage, goContactForm } = props;
+  const { goContactForm } = props;
   return (
         <div className="animate-fade-up bg-white" style={{ backgroundColor: '#FFFFFF' }}>
           {/* HERO ARTICLE */}
           <section className="pt-32 md:pt-40 pb-12 bg-white" style={{ backgroundColor: '#FFFFFF' }}>
             <div className="max-w-5xl mx-auto px-6">
               <div className="w-full">
-                <button
-                  type="button"
-                  onClick={() => setCurrentPage('home')}
+                <Link to="/"
+                  
                   className="flex items-center gap-2 text-sm font-semibold text-[#0E2A33] hover:text-[#E2FD48] cursor-pointer mb-8 uppercase tracking-widest"
                 >
                   <span>← Retour aux ressources</span>
-                </button>
+                </Link>
 
                 <h1 className="text-4xl md:text-5xl font-black text-[#0E2A33] leading-tight mt-20 max-w-3xl mx-auto text-center">
                   Thermolaquage certifié Qualicoat : garanties

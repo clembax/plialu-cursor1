@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router';
 import CookieBanner from './src/components/CookieBanner';
 import GoutteEauExtrudee from './src/components/GoutteEauExtrudee';
 import { PROJECTS, getPortfolioOrder, buildPortfolioJsonLd } from './projects';
 import PortfolioSheet from './PortfolioSheet';
-import { SEO_CONFIG, BLOCKED_PAGE_KEYS, type PageKey } from './src/seo/seoConfig';
+import { SEO_CONFIG, BLOCKED_PAGE_KEYS, pathToPageKey, type PageKey } from './src/seo/seoConfig';
 import type { ZoneId } from './src/data/zones';
 import { Header } from './src/layout/Header';
 import { Footer } from './src/layout/Footer';
@@ -27,46 +28,31 @@ import { ContactPage } from './src/pages/Contact';
 import { MerciPage } from './src/pages/Merci';
 import { MentionsLegalesPage } from './src/pages/MentionsLegales';
 import { PolitiqueConfidentialitePage } from './src/pages/PolitiqueConfidentialite';
+import { NotFound } from './src/pages/NotFound';
 
-const sheetHistoryId = (): string | null => {
-  const state = window.history.state as { plialuSheet?: unknown } | null;
-  return state && typeof state.plialuSheet === 'string' ? state.plialuSheet : null;
+type LocationState = { plialuSheet?: unknown; intention?: string; domaine?: string } | null;
+
+const readSheetId = (state: unknown): string | null => {
+  if (!state || typeof state !== 'object' || !('plialuSheet' in state)) return null;
+  const id = (state as { plialuSheet?: unknown }).plialuSheet;
+  return typeof id === 'string' ? id : null;
 };
 
 const App: React.FC = () => {
-  const getInitialPage = (): PageKey => {
-    const currentPath = window.location.pathname;
-    const matchingKey = Object.keys(SEO_CONFIG).find(key => SEO_CONFIG[key].path === currentPath);
-    if (!matchingKey || BLOCKED_PAGE_KEYS.has(matchingKey)) return 'home';
-    return matchingKey as PageKey;
+  const location = useLocation();
+  const navigate = useNavigate();
+  const currentPage = pathToPageKey(location.pathname) ?? 'not-found';
+  const goTo = (key: PageKey) => {
+    navigate(SEO_CONFIG[key].path);
   };
-  const [currentPage, setCurrentPage] = useState<PageKey>(getInitialPage);
   const [hoveredStep, setHoveredStep] = useState<number | null>(null);
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
-  const [openProjectId, setOpenProjectId] = useState<string | null>(null);
   const sheetOriginIdRef = useRef<string | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [solutionsAccordionOpen, setSolutionsAccordionOpen] = useState<string | null>(null);
   const [isSommaireSticky, setIsSommaireSticky] = useState(false);
   const [zone, setZone] = useState<ZoneId | null>(null);
   const zonePin = useRef<ZoneId | null>(null);
-
-  // Nettoie l'URL des pages bloquées (le contenu est déjà 'home' via getInitialPage)
-  useEffect(() => {
-    const currentPath = window.location.pathname;
-    const matchingKey = Object.keys(SEO_CONFIG).find(key => SEO_CONFIG[key].path === currentPath);
-    if (matchingKey && BLOCKED_PAGE_KEYS.has(matchingKey)) {
-      window.history.replaceState(null, '', '/');
-    }
-  }, []);
-
-  useEffect(() => {
-    if (currentPage === 'projects' || currentPage === 'home') return;
-    if (sheetHistoryId()) {
-      window.history.replaceState(null, '', window.location.pathname + window.location.search);
-    }
-    setOpenProjectId((prev) => (prev ? null : prev));
-  }, [currentPage]);
+  const openProjectId = (currentPage === 'projects' || currentPage === 'home') ? readSheetId(location.state) : null;
 
   // Gère la mise à jour SEO et la fausse URL lors d'un changement de page
   useEffect(() => {
@@ -153,55 +139,18 @@ const App: React.FC = () => {
       } else if (existingLd) {
         existingLd.remove();
       }
-
-      // Met à jour l'URL sans recharger la page
-      if (window.location.pathname !== config.path) {
-        window.history.pushState(null, '', config.path);
-      }
     }
   }, [currentPage]);
 
-  // Écoute le bouton "Retour/Avance" du navigateur
-  useEffect(() => {
-    const handlePopState = () => {
-      setOpenProjectId(sheetHistoryId());
-      const currentPath = window.location.pathname;
-      const matchingKey = Object.keys(SEO_CONFIG).find(key => SEO_CONFIG[key].path === currentPath);
-      if (matchingKey && BLOCKED_PAGE_KEYS.has(matchingKey)) {
-        window.history.replaceState(null, '', '/');
-        setCurrentPage('home');
-        return;
-      }
-      if (matchingKey) {
-        setCurrentPage(matchingKey as PageKey);
-      } else {
-        setCurrentPage('home');
-      }
-    };
-
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
-  }, []);
-
   const teaserVideoRef = React.useRef<HTMLVideoElement>(null);
-  const expertisesVideoRef = React.useRef<HTMLVideoElement>(null);
   const sommaireRef = useRef<HTMLDivElement>(null);
   const expertisesHeroRef = useRef<HTMLElement | null>(null);
-  const scrollToInfinimetal = (e?: React.MouseEvent) => {
-    e?.preventDefault();
-    if (currentPage === 'a-propos') {
-      document.getElementById('infinimetal')?.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      setCurrentPage('a-propos');
-      setTimeout(() => {
-        document.getElementById('infinimetal')?.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
-    }
+
+  const navState = location.state as LocationState;
+  const contactPrefill = {
+    intention: typeof navState?.intention === 'string' ? navState.intention : undefined,
+    domaine: typeof navState?.domaine === 'string' ? navState.domaine : undefined,
   };
-
-  const infinimetalLinkClass = 'cursor-pointer text-[#E2FD48] hover:underline transition-colors';
-
-  const [contactPrefill, setContactPrefill] = useState<{ intention?: string; domaine?: string }>({});
   const [contactIntention, setContactIntention] = useState('');
   const [contactSending, setContactSending] = useState(false);
   const [attachmentTooLarge, setAttachmentTooLarge] = useState(false);
@@ -211,13 +160,17 @@ const App: React.FC = () => {
   const filesTooLarge = (files: FileList | null | undefined) =>
     [...(files ?? [])].reduce((sum, file) => sum + file.size, 0) > MAX_ATTACHMENT_BYTES;
   useEffect(() => {
+    if (location.pathname !== '/contact') return;
     setContactIntention(contactPrefill.intention ?? '');
-  }, [contactPrefill]);
+  }, [location.key, location.pathname, contactPrefill.intention]);
   const isCandidature = contactIntention === 'Postuler chez PLIALU';
 
   const goContactForm = () => {
-    if (currentPage !== 'contact') setCurrentPage('contact');
-    window.setTimeout(() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 150);
+    if (location.pathname === '/contact' && location.hash === '#contact-form') {
+      document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+    navigate('/contact#contact-form');
   };
 
   const onContactSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -238,33 +191,25 @@ const App: React.FC = () => {
   };
 
   const goDevis = (domaine: string) => {
-    setContactPrefill({ intention: 'Demander un devis', domaine });
-    goContactForm();
+    navigate('/contact#contact-form', { state: { intention: 'Demander un devis', domaine } });
   };
-
-  const goSolution = (anchor: string) => {
-    setCurrentPage('solutions-temporaire');
-    window.setTimeout(() => document.getElementById(anchor)?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 150);
-  };
-
-  const openCookiePolicy = () => {
-    setCurrentPage('politique-confidentialite');
-    window.setTimeout(() => document.getElementById('cookies')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 150);
-  };
-
 
   useEffect(() => {
     setIsMenuOpen(false);
-    if (currentPage) {
-      window.scrollTo(0, 0);
-    }
-    if (window.location.hash) {
-      const element = document.querySelector(window.location.hash);
+    const hash = location.hash;
+    if (hash) {
+      const element = document.getElementById(decodeURIComponent(hash.slice(1)));
       if (element) {
         element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        window.scrollTo(0, 0);
       }
+    } else {
+      window.scrollTo(0, 0);
     }
+  }, [location.pathname, location.hash]);
 
+  useEffect(() => {
     // Livre Blanc: force body light background on the 3 resource article pages only
     const isArticlePage = currentPage === 'ressource-1' || currentPage === 'ressource-2' || currentPage === 'ressource-3';
     if (isArticlePage) {
@@ -280,9 +225,9 @@ const App: React.FC = () => {
     };
   }, [currentPage]);
 
-  // Vidéo Teaser / Expertises : lecture au scroll (Intersection Observer)
+  // Vidéo Teaser : lecture au scroll (Intersection Observer)
   useEffect(() => {
-    const videoEl = currentPage === 'home' ? teaserVideoRef.current : currentPage === 'expertises' ? expertisesVideoRef.current : null;
+    const videoEl = currentPage === 'home' ? teaserVideoRef.current : null;
     if (!videoEl) return;
     const observer = new IntersectionObserver(
       (entries) => {
@@ -333,31 +278,22 @@ const App: React.FC = () => {
 
   const openProject = (id: string) => {
     sheetOriginIdRef.current = id;
-    setOpenProjectId(id);
-    window.history.pushState({ plialuSheet: id }, '', window.location.href);
+    navigate({ pathname: location.pathname, search: location.search }, { state: { plialuSheet: id } });
   };
 
   const showProject = (id: string) => {
-    setOpenProjectId(id);
-    if (sheetHistoryId()) {
-      window.history.replaceState({ plialuSheet: id }, '', window.location.href);
-    }
+    navigate({ pathname: location.pathname, search: location.search }, { replace: true, state: { plialuSheet: id } });
   };
 
   const closeSheet = () => {
-    if (sheetHistoryId()) {
-      window.history.back();
-      return;
+    if (readSheetId(location.state)) {
+      navigate(-1);
     }
-    setOpenProjectId(null);
   };
 
   const requestQuoteFromSheet = () => {
-    if (sheetHistoryId()) {
-      window.history.replaceState(null, '', window.location.pathname + window.location.search);
-    }
-    setOpenProjectId(null);
-    goContactForm();
+    navigate({ pathname: location.pathname, search: location.search }, { replace: true, state: null });
+    navigate('/contact#contact-form');
   };
 
   useEffect(() => {
@@ -376,141 +312,99 @@ const App: React.FC = () => {
     <div className="font-manrope selection-brand min-h-screen">
       <Header
         currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
         goContactForm={goContactForm}
         openProjectId={openProjectId}
         isMenuOpen={isMenuOpen}
         setIsMenuOpen={setIsMenuOpen}
       />
 
-      {currentPage === 'home' && (
-        <HomePage
-          setCurrentPage={setCurrentPage}
-          goContactForm={goContactForm}
-          goSolution={goSolution}
-          openProject={openProject}
-          teaserVideoRef={teaserVideoRef}
-          portfolioYearMin={portfolioYearMin}
-          portfolioYearMax={portfolioYearMax}
-        />
-      )}
-
-      {currentPage === 'a-propos' && (
-        <AProposPage
-          setCurrentPage={setCurrentPage}
-          goContactForm={goContactForm}
-          zone={zone}
-          setZone={setZone}
-          zonePin={zonePin}
-        />
-      )}
-
-      {currentPage === 'projects' && (
-        <PortfolioPage
-          goContactForm={goContactForm}
-          openProject={openProject}
-          portfolioYearMin={portfolioYearMin}
-          portfolioYearMax={portfolioYearMax}
-          portfolioOrder={portfolioOrder}
-        />
-      )}
-
-      {currentPage === 'solutions' && (
-        <SolutionsHubPage setCurrentPage={setCurrentPage} goContactForm={goContactForm} />
-      )}
-
-      {currentPage === 'solutions-temporaire' && (
-        <SolutionsPage
-          setCurrentPage={setCurrentPage}
-          goContactForm={goContactForm}
-          goDevis={goDevis}
-          scrollToInfinimetal={scrollToInfinimetal}
-          infinimetalLinkClass={infinimetalLinkClass}
-        />
-      )}
-
-      {currentPage === 'expertises' && (
-        <ExpertisesPage
-          goContactForm={goContactForm}
-          openCookiePolicy={openCookiePolicy}
-          hoveredStep={hoveredStep}
-          setHoveredStep={setHoveredStep}
-          isSommaireSticky={isSommaireSticky}
-          expertisesHeroRef={expertisesHeroRef}
-          sommaireRef={sommaireRef}
-          scrollToInfinimetal={scrollToInfinimetal}
-        />
-      )}
-
-      {currentPage === 'ressources' && (
-        <RessourcesPage setCurrentPage={setCurrentPage} goContactForm={goContactForm} />
-      )}
-
-      {currentPage === 'ressource-1' && (
-        <RessourceChoixMetalPage setCurrentPage={setCurrentPage} goContactForm={goContactForm} />
-      )}
-
-      {currentPage === 'ressource-2' && (
-        <RessourcePliagePage setCurrentPage={setCurrentPage} goContactForm={goContactForm} />
-      )}
-
-      {currentPage === 'ressource-3' && (
-        <RessourceThermolaquagePage setCurrentPage={setCurrentPage} goContactForm={goContactForm} />
-      )}
-
-      {currentPage === 'solution-bardage' && (
-        <SolutionBardagePage setCurrentPage={setCurrentPage} />
-      )}
-
-      {currentPage === 'solution-enduit' && (
-        <SolutionEnduitPage setCurrentPage={setCurrentPage} />
-      )}
-
-      {currentPage === 'solution-precadres' && (
-        <SolutionPrecadresPage setCurrentPage={setCurrentPage} />
-      )}
-
-      {currentPage === 'solution-toles' && (
-        <SolutionTolesPage setCurrentPage={setCurrentPage} />
-      )}
-
-      {currentPage === 'solution-ravalement' && (
-        <SolutionRavalementPage setCurrentPage={setCurrentPage} />
-      )}
-
-      {currentPage === 'etancheite' && <EtancheitePage setCurrentPage={setCurrentPage} />}
-      {currentPage === 'goutte-eau-extrudee' && <GoutteEauExtrudee setCurrentPage={setCurrentPage} />}
-
-      {currentPage === 'contact' && (
-        <ContactPage
-          setCurrentPage={setCurrentPage}
-          goContactForm={goContactForm}
-          openCookiePolicy={openCookiePolicy}
-          handleCopy={handleCopy}
-          copiedKey={copiedKey}
-          contactPrefill={contactPrefill}
-          contactIntention={contactIntention}
-          setContactIntention={setContactIntention}
-          isCandidature={isCandidature}
-          contactSending={contactSending}
-          onContactSubmit={onContactSubmit}
-          attachmentTooLarge={attachmentTooLarge}
-          setAttachmentTooLarge={setAttachmentTooLarge}
-          filesTooLarge={filesTooLarge}
-        />
-      )}
-
-      {currentPage === 'merci' && (
-        <MerciPage setCurrentPage={setCurrentPage} />
-      )}
-
-      {currentPage === 'mentions-legales' && (
-        <MentionsLegalesPage setCurrentPage={setCurrentPage} />
-      )}
-
-      {currentPage === 'politique-confidentialite' && (
-        <PolitiqueConfidentialitePage setCurrentPage={setCurrentPage} />
-      )}
+      <Routes>
+        <Route path="*" element={
+          currentPage !== 'not-found' && BLOCKED_PAGE_KEYS.has(currentPage) ? <Navigate to="/" replace /> :
+          currentPage === 'home' ? (
+            <HomePage
+              goContactForm={goContactForm}
+              openProject={openProject}
+              teaserVideoRef={teaserVideoRef}
+              portfolioYearMin={portfolioYearMin}
+              portfolioYearMax={portfolioYearMax}
+            />
+          ) : currentPage === 'a-propos' ? (
+            <AProposPage
+              goContactForm={goContactForm}
+              zone={zone}
+              setZone={setZone}
+              zonePin={zonePin}
+            />
+          ) : currentPage === 'projects' ? (
+            <PortfolioPage
+              goContactForm={goContactForm}
+              openProject={openProject}
+              portfolioYearMin={portfolioYearMin}
+              portfolioYearMax={portfolioYearMax}
+              portfolioOrder={portfolioOrder}
+            />
+          ) : currentPage === 'solutions' ? (
+            <SolutionsHubPage goContactForm={goContactForm} />
+          ) : currentPage === 'solutions-temporaire' ? (
+            <SolutionsPage goContactForm={goContactForm} goDevis={goDevis} />
+          ) : currentPage === 'expertises' ? (
+            <ExpertisesPage
+              goContactForm={goContactForm}
+              hoveredStep={hoveredStep}
+              setHoveredStep={setHoveredStep}
+              isSommaireSticky={isSommaireSticky}
+              expertisesHeroRef={expertisesHeroRef}
+              sommaireRef={sommaireRef}
+            />
+          ) : currentPage === 'ressources' ? (
+            <RessourcesPage goContactForm={goContactForm} />
+          ) : currentPage === 'ressource-1' ? (
+            <RessourceChoixMetalPage goContactForm={goContactForm} />
+          ) : currentPage === 'ressource-2' ? (
+            <RessourcePliagePage goContactForm={goContactForm} />
+          ) : currentPage === 'ressource-3' ? (
+            <RessourceThermolaquagePage goContactForm={goContactForm} />
+          ) : currentPage === 'solution-bardage' ? (
+            <SolutionBardagePage />
+          ) : currentPage === 'solution-enduit' ? (
+            <SolutionEnduitPage />
+          ) : currentPage === 'solution-precadres' ? (
+            <SolutionPrecadresPage />
+          ) : currentPage === 'solution-toles' ? (
+            <SolutionTolesPage />
+          ) : currentPage === 'solution-ravalement' ? (
+            <SolutionRavalementPage />
+          ) : currentPage === 'etancheite' ? (
+            <EtancheitePage />
+          ) : currentPage === 'goutte-eau-extrudee' ? (
+            <GoutteEauExtrudee />
+          ) : currentPage === 'contact' ? (
+            <ContactPage
+              goContactForm={goContactForm}
+              handleCopy={handleCopy}
+              copiedKey={copiedKey}
+              contactPrefill={contactPrefill}
+              contactIntention={contactIntention}
+              setContactIntention={setContactIntention}
+              isCandidature={isCandidature}
+              contactSending={contactSending}
+              onContactSubmit={onContactSubmit}
+              attachmentTooLarge={attachmentTooLarge}
+              setAttachmentTooLarge={setAttachmentTooLarge}
+              filesTooLarge={filesTooLarge}
+            />
+          ) : currentPage === 'merci' ? (
+            <MerciPage />
+          ) : currentPage === 'mentions-legales' ? (
+            <MentionsLegalesPage />
+          ) : currentPage === 'politique-confidentialite' ? (
+            <PolitiqueConfidentialitePage />
+          ) : (
+            <NotFound />
+          )
+        } />
+      </Routes>
 
       {openProjectId && (currentPage === 'projects' || currentPage === 'home') && openPortfolioProject && (
         <PortfolioSheet
@@ -524,8 +418,8 @@ const App: React.FC = () => {
           onContact={requestQuoteFromSheet}
         />
       )}
-      <Footer setCurrentPage={setCurrentPage} />
-      <CookieBanner onOpenCookiePolicy={openCookiePolicy} />
+      <Footer />
+      <CookieBanner />
     </div>
   );
 };

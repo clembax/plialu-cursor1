@@ -1,12 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router';
 import * as DS from '../components/ds/ds';
-import type { PageKey } from '../seo/seoConfig';
 
 export function SolutionsHubPage(props: {
-  setCurrentPage: React.Dispatch<React.SetStateAction<PageKey>>;
   goContactForm: () => void;
 }) {
-  const { setCurrentPage, goContactForm } = props;
+  const { goContactForm } = props;
   return (
         <div className="animate-fade-up">
           {/* Hero Solutions */}
@@ -36,9 +35,9 @@ export function SolutionsHubPage(props: {
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {/* Carte 1: Bardage */}
-                <div
+                <Link
+                  to="/"
                   className="group relative flex flex-col overflow-hidden rounded-[20px] bg-white/[0.03] border border-white/10 h-[400px] cursor-pointer transition-colors duration-300 hover:border-[#E2FD48]"
-                  onClick={() => setCurrentPage('home')}
                 >
                   <div className="relative w-full aspect-video bg-[#071318] border border-white/10 flex items-center justify-center overflow-hidden">
                     <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,rgba(226,253,72,0.35),transparent_60%)]" />
@@ -55,12 +54,12 @@ export function SolutionsHubPage(props: {
                       Systèmes de fixation invisible et habillages grandes dimensions.
                     </p>
                   </div>
-                </div>
+                </Link>
 
                 {/* Carte 2: ITE (image réelle conservée) */}
-                <div
+                <Link
+                  to="/"
                   className="group relative flex flex-col overflow-hidden rounded-[20px] bg-white/[0.03] border border-white/10 h-[400px] cursor-pointer transition-colors duration-300 hover:border-[#E2FD48]"
-                  onClick={() => setCurrentPage('home')}
                 >
                   <div className="relative w-full aspect-video bg-[#071318] overflow-hidden">
                     <img
@@ -86,12 +85,12 @@ export function SolutionsHubPage(props: {
                       Profils de départ, d&apos;angle et d&apos;arrêt pour systèmes ITE.
                     </p>
                   </div>
-                </div>
+                </Link>
 
                 {/* Carte 3: Précadres */}
-                <div
+                <Link
+                  to="/"
                   className="group relative flex flex-col overflow-hidden rounded-[20px] bg-white/[0.03] border border-white/10 h-[400px] cursor-pointer transition-colors duration-300 hover:border-[#E2FD48]"
-                  onClick={() => setCurrentPage('home')}
                 >
                   <div className="relative w-full aspect-video bg-[#071318] border border-white/10 flex items-center justify-center overflow-hidden">
                     <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,rgba(226,253,72,0.35),transparent_60%)]" />
@@ -108,12 +107,12 @@ export function SolutionsHubPage(props: {
                       Encadrements de baies soudés ou en kit pour une finition étanche et esthétique.
                     </p>
                   </div>
-                </div>
+                </Link>
 
                 {/* Carte 4: Tôles prélaquées */}
-                <div
+                <Link
+                  to="/"
                   className="group relative flex flex-col overflow-hidden rounded-[20px] bg-white/[0.03] border border-white/10 h-[400px] cursor-pointer transition-colors duration-300 hover:border-[#E2FD48]"
-                  onClick={() => setCurrentPage('home')}
                 >
                   <div className="relative w-full aspect-video bg-[#071318] border border-white/10 flex items-center justify-center overflow-hidden">
                     <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,rgba(226,253,72,0.35),transparent_60%)]" />
@@ -139,12 +138,12 @@ export function SolutionsHubPage(props: {
                       Vente de tôles prélaquées, RAL standards, déroulage sur mesure ou dimensions standards.
                     </p>
                   </div>
-                </div>
+                </Link>
 
                 {/* Carte 5: Ravalement de façade */}
-                <div
+                <Link
+                  to="/"
                   className="group relative flex flex-col overflow-hidden rounded-[20px] bg-white/[0.03] border border-white/10 h-[400px] cursor-pointer transition-colors duration-300 hover:border-[#E2FD48]"
-                  onClick={() => setCurrentPage('home')}
                 >
                   <div className="relative w-full aspect-video bg-[#071318] border border-white/10 flex items-center justify-center overflow-hidden">
                     <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,rgba(226,253,72,0.35),transparent_60%)]" />
@@ -161,12 +160,12 @@ export function SolutionsHubPage(props: {
                       Profils de finition, nez de dalles et goutte d'eau pour la rénovation des bâtiments.
                     </p>
                   </div>
-                </div>
+                </Link>
 
                 {/* Carte 6: Solutions pour l&apos;étanchéité */}
-                <div
+                <Link
+                  to="/"
                   className="group relative flex flex-col overflow-hidden rounded-[20px] bg-white/[0.03] border border-white/10 h-[400px] cursor-pointer transition-colors duration-300 hover:border-[#E2FD48]"
-                  onClick={() => setCurrentPage('home')}
                 >
                   <div className="relative w-full aspect-video overflow-hidden">
                     <img
@@ -187,7 +186,7 @@ export function SolutionsHubPage(props: {
                       Modèle d&apos;étanchéité sur toit plat
                     </p>
                   </div>
-                </div>
+                </Link>
               </div>
             </div>
           </section>

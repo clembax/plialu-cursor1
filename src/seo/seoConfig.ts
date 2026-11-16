@@ -21,7 +21,8 @@ export type PageKey =
   | 'solution-ravalement'
   | 'merci'
   | 'mentions-legales'
-  | 'politique-confidentialite';
+  | 'politique-confidentialite'
+  | 'not-found';
 
 export const SEO_CONFIG: Record<PageKey, { path: string; title: string; desc: string; noindex?: boolean }> = {
   'home': { path: '/', title: "Solutions métalliques sur mesure pour l'enveloppe du bâtiment", desc: "Solutions métalliques sur mesure pour l'enveloppe du bâtiment : pliage, thermolaquage Qualicoat et assemblage près de Lyon, pour architectes et façadiers." },
@@ -53,8 +54,17 @@ export const SEO_CONFIG: Record<PageKey, { path: string; title: string; desc: st
   'solution-precadres': { path: '/solutions/precadres', title: 'Précadres métalliques sur mesure | PLIALU', desc: 'Fabrication de précadres d\'habillage de baies sur mesure en aluminium et acier.', noindex: true },
   'solution-toles': { path: '/solutions/toles-prelaquees', title: 'Tôles prélaquées & Thermolaquage | PLIALU', desc: 'Tôles aluminium et acier prélaquées. Service de thermolaquage QUALICOAT intégré.', noindex: true },
   'solution-ravalement': { path: '/solutions/ravalement-facade', title: 'Solutions métalliques pour ravalement de façade | PLIALU', desc: 'Habillages et profilés métalliques sur mesure pour la rénovation et le ravalement de façades.', noindex: true },
-  'merci': { path: '/merci', title: 'Demande envoyée | PLIALU', desc: 'Votre demande de devis a bien été envoyée à notre bureau d\'études.', noindex: true }
+  'merci': { path: '/merci', title: 'Demande envoyée | PLIALU', desc: 'Votre demande de devis a bien été envoyée à notre bureau d\'études.', noindex: true },
+  'not-found': { path: '/404', title: 'Page introuvable | PLIALU', desc: 'Cette adresse ne correspond à aucune page du site PLIALU.', noindex: true }
 };
+
+export function pathToPageKey(pathname: string): PageKey | null {
+  const normalized = pathname.length > 1 && pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
+  const match = (Object.keys(SEO_CONFIG) as PageKey[]).find(
+    (key) => key !== 'not-found' && SEO_CONFIG[key].path === normalized
+  );
+  return match ?? null;
+}
 
 export const BLOCKED_PAGE_KEYS = new Set([
   'solution-bardage',

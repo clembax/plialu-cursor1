@@ -1,12 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router';
 import { ArrowDown, ArrowRight } from 'lucide-react';
-import type { PageKey } from '../seo/seoConfig';
 
 export function RessourcesPage(props: {
-  setCurrentPage: React.Dispatch<React.SetStateAction<PageKey>>;
   goContactForm: () => void;
 }) {
-  const { setCurrentPage, goContactForm } = props;
+  const { goContactForm } = props;
   return (
         <div className="animate-fade-up">
           {/* Hero Ressources */}
@@ -79,10 +78,10 @@ export function RessourcesPage(props: {
                     showQualicoatLogo: true
                   }
                 ].map((article) => (
-                  <article
+                  <Link
                     key={article.id}
+                    to="/"
                     className="group bg-white rounded-[24px] p-8 flex flex-col border border-zinc-100 shadow-sm transition-all duration-200 ease-out hover:border-2 hover:border-[#E2FD48] hover:-translate-y-0.5 hover:shadow-md cursor-pointer"
-                    onClick={() => setCurrentPage('home')}
                   >
                     <span className="text-[9px] font-black tracking-[0.3em] text-[#0E2A33]/40 uppercase mb-3">
                       {article.tag}
@@ -102,7 +101,7 @@ export function RessourcesPage(props: {
                         <ArrowRight aria-hidden="true" size={18} />
                       </div>
                     </div>
-                  </article>
+                  </Link>
                 ))}
               </div>
             </div>

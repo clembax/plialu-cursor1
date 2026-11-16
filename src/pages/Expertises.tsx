@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import { ArrowDown, Play } from 'lucide-react';
 import * as DS from '../components/ds/ds';
 import ConsentEmbed from '../components/ConsentEmbed';
@@ -7,15 +8,13 @@ import { expertisesDetails, processCardDescriptions } from '../data/expertises';
 
 export function ExpertisesPage(props: {
   goContactForm: () => void;
-  openCookiePolicy: () => void;
   hoveredStep: number | null;
   setHoveredStep: React.Dispatch<React.SetStateAction<number | null>>;
   isSommaireSticky: boolean;
   expertisesHeroRef: React.RefObject<HTMLElement | null>;
   sommaireRef: React.RefObject<HTMLDivElement | null>;
-  scrollToInfinimetal: (e?: React.MouseEvent) => void;
 }) {
-  const { goContactForm, openCookiePolicy, hoveredStep, setHoveredStep, isSommaireSticky, expertisesHeroRef, sommaireRef, scrollToInfinimetal } = props;
+  const { goContactForm, hoveredStep, setHoveredStep, isSommaireSticky, expertisesHeroRef, sommaireRef } = props;
   return (
         <div className="animate-fade-in">
           {/* Hero Expertises (contient le sommaire en bas, au-dessus de la ligne de flottaison) */}
@@ -100,7 +99,7 @@ export function ExpertisesPage(props: {
           <section id="video-complete" className="section--dark py-24 md:py-32 scroll-mt-24" style={{ background: '#071318' }}>
             <div className="max-w-6xl mx-auto px-6">
               <div className="relative rounded-[20px] overflow-hidden border border-white/10 bg-black/40 aspect-video">
-                <ConsentEmbed kind="vimeo" tone="dark" onOpenCookiePolicy={openCookiePolicy}>
+                <ConsentEmbed kind="vimeo" tone="dark">
                   <iframe
                     src="https://player.vimeo.com/video/1172884207?title=0&byline=0&portrait=0&dnt=1"
                     title="Vidéo complète du process PLIALU"
@@ -166,9 +165,8 @@ export function ExpertisesPage(props: {
                               <h2 className={`${DS.H2} text-[#0E2A33]`}>
                                 Thermolaquage
                               </h2>
-                              <button
-                                type="button"
-                                onClick={scrollToInfinimetal}
+                              <Link
+                                to="/a-propos#infinimetal"
                                 aria-label="En savoir plus sur Infinimetal"
                                 className="flex items-center gap-3 px-5 py-2 bg-gray-50 rounded-full border border-[#0E2A33]/[0.12] shadow-sm mt-1 cursor-pointer hover:border-[#E2FD48]/50 transition-colors"
                               >
@@ -177,7 +175,7 @@ export function ExpertisesPage(props: {
                                   alt="Logo Infinimetal"
                                   className="h-7 w-auto object-contain opacity-80"
                                 />
-                              </button>
+                              </Link>
                             </div>
                           ) : (
                             <h2 className={`${DS.H2} text-[#0E2A33]`}>
@@ -199,9 +197,9 @@ export function ExpertisesPage(props: {
                           <>
                             <p className={`${DS.LEAD_LIGHT} mt-6`}>
                               Deux lignes de production certifiées Qualicoat via notre marque{' '}
-                              <button type="button" onClick={scrollToInfinimetal} className="cursor-pointer text-[#0E2A33] font-bold hover:underline transition-colors">
+                              <Link to="/a-propos#infinimetal" className="cursor-pointer text-[#0E2A33] font-bold hover:underline transition-colors">
                                 Infinimetal
-                              </button>
+                              </Link>
                               {' '}pour une flexibilité dans le choix de la gamme de production : nous travaillons à partir de feuilles d'aluminium prélaquées ou bien nous laquons après façonnage.
                             </p>
                           </>

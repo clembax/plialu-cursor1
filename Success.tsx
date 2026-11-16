@@ -1,12 +1,8 @@
-import React from 'react';
+import { Link } from 'react-router';
 import { ArrowRight } from 'lucide-react';
 import * as DS from './src/components/ds/ds';
 
-interface SuccessProps {
-  onBackHome: () => void;
-}
-
-const Success: React.FC<SuccessProps> = ({ onBackHome }) => {
+function Success() {
   return (
     <div className="animate-fade-up min-h-screen flex flex-col justify-center section--dark" style={{ background: 'linear-gradient(to bottom, #071318 0%, #0b1e26 100%)' }}>
       <div className="max-w-7xl mx-auto px-6">
@@ -22,18 +18,17 @@ const Success: React.FC<SuccessProps> = ({ onBackHome }) => {
             Votre demande a bien été prise en compte. Nous vous recontacterons dans les plus brefs délais.
           </p>
           </div>
-          <button
-            type="button"
-            onClick={onBackHome}
+          <Link
+            to="/"
             className={DS.BTN_PRIMARY}
           >
             Retour à l’accueil
             <ArrowRight aria-hidden="true" size={18} />
-          </button>
+          </Link>
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default Success;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import { ArrowRight } from 'lucide-react';
 import * as DS from '../components/ds/ds';
 import ScrollCue from '../components/ScrollCue';
@@ -6,17 +7,15 @@ import AproposGains from '../components/AproposGains';
 import FranceDotMap from '../../FranceDotMap';
 import { ZoneSwatch } from '../components/ZoneSwatch';
 import { SHOW_ZONE_KEY, ZONE_HIGHLIGHT, ZONE_ROWS } from '../data/zones';
-import type { PageKey } from '../seo/seoConfig';
 import type { ZoneId } from '../data/zones';
 
 export function AProposPage(props: {
-  setCurrentPage: React.Dispatch<React.SetStateAction<PageKey>>;
   goContactForm: () => void;
   zone: ZoneId | null;
   setZone: React.Dispatch<React.SetStateAction<ZoneId | null>>;
   zonePin: React.RefObject<ZoneId | null>;
 }) {
-  const { setCurrentPage, goContactForm, zone, setZone, zonePin } = props;
+  const { goContactForm, zone, setZone, zonePin } = props;
   return (
         <div className="animate-fade-up">
           {/* 1. HERO SECTION (DARK) */}
@@ -93,14 +92,13 @@ export function AProposPage(props: {
                 Cette polyvalence de thermolaquage nous permet de répondre à tous les besoins de laquage des façadiers et professionnels du bâtiment, que les pièces soient brutes ou déjà façonnées. Chez Infinimetal, Qualicoat est aujourd'hui le référentiel européen du thermolaquage pour les façades haut de gamme, appliqué sur nos deux lignes avec traçabilité de process.
               </p>
               </div>
-              <button
-                type="button"
-                onClick={() => setCurrentPage('solutions-temporaire')}
+              <Link
+                to="/solutions"
                 className={`${DS.BTN_PRIMARY} mt-10`}
               >
                 Découvrir le Catalogue RAL
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12H19M19 12L13 6M19 12L13 18"/></svg>
-              </button>
+              </Link>
             </div>
           </section>
 

@@ -1,22 +1,19 @@
+import { Link } from 'react-router';
 import React from 'react';
 import * as DS from '../components/ds/ds';
-import type { PageKey } from '../seo/seoConfig';
 
-export function PolitiqueConfidentialitePage(props: {
-  setCurrentPage: React.Dispatch<React.SetStateAction<PageKey>>;
-}) {
-  const { setCurrentPage } = props;
+export function PolitiqueConfidentialitePage() {
   return (
         <div className="animate-fade-up">
           <section className="relative bg-[#071318] pt-32 md:pt-40 pb-24 overflow-hidden min-h-screen flex flex-col justify-center">
             <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-b from-[#0e2a33]/40 to-[#071318]"></div>
             <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 w-full">
-              <button
-                onClick={() => setCurrentPage('home')}
+              <Link to="/"
+                
                 className={`${DS.ACTION_DARK} mb-14`}
               >
                 &larr; RETOUR À L'ACCUEIL
-              </button>
+              </Link>
               <h1 className={`${DS.H1_DETAIL} text-white`}>Politique de confidentialité</h1>
               <div className="prose prose-invert max-w-none text-white/[0.78] leading-[1.65]">
                 <h2 className="font-display text-2xl font-bold tracking-tight text-white mt-8 mb-4">1. Responsable du traitement</h2>

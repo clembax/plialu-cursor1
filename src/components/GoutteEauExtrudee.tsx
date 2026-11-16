@@ -1,3 +1,4 @@
+import { Link } from 'react-router';
 import React, { useEffect, useRef, useState } from 'react';
 import * as DS from './ds/ds';
 import { FORMSUBMIT_URL } from '../config/forms';
@@ -129,9 +130,7 @@ const Field: React.FC<{
 );
 
 /* ========================================================================== */
-type Props = { setCurrentPage: (page: any) => void };
-
-export const GoutteEauExtrudee: React.FC<Props> = ({ setCurrentPage }) => {
+export const GoutteEauExtrudee: React.FC = () => {
   const [split, setSplit] = useState(50);
 
   const [touched, setTouched] = useState(false);
@@ -242,13 +241,12 @@ export const GoutteEauExtrudee: React.FC<Props> = ({ setCurrentPage }) => {
       <section className={`${GRADIENT_DARK} relative overflow-hidden text-white pt-28 md:pt-32`}>
         <div className={DS.CONTAINER}>
           <nav aria-label="Fil d'Ariane" className="mb-6 flex flex-wrap gap-2.5 text-[13px] text-white/50">
-            <button
-              type="button"
-              onClick={() => setCurrentPage('solutions-temporaire')}
+            <Link to="/solutions"
+              
               className="font-semibold text-white/80 transition-colors duration-150 hover:text-white"
             >
               Solutions
-            </button>
+            </Link>
             <span aria-hidden="true">›</span>
             <span>Ravalement de façade</span>
             <span aria-hidden="true">›</span>
@@ -805,13 +803,12 @@ export const GoutteEauExtrudee: React.FC<Props> = ({ setCurrentPage }) => {
                 </button>
                 <p className="mt-3.5 max-w-[560px] text-xs leading-relaxed text-[#0E2A33]/[0.62]">
                   Vos informations servent uniquement à traiter votre demande. Elles sont transmises par e-mail via notre prestataire FormSubmit et ne sont jamais cédées. Pour en savoir plus et exercer vos droits, consultez notre{' '}
-                  <button
-                    type="button"
-                    onClick={() => setCurrentPage('politique-confidentialite')}
+                  <Link to="/politique-confidentialite"
+                    
                     className="underline underline-offset-2 text-[#0E2A33]/75 hover:text-[#0E2A33]"
                   >
                     politique de confidentialité
-                  </button>
+                  </Link>
                   .
                 </p>
                 {errors.form && (
@@ -824,13 +821,12 @@ export const GoutteEauExtrudee: React.FC<Props> = ({ setCurrentPage }) => {
                 </p>
                 <p className="mt-2.5 max-w-[560px] text-xs leading-relaxed text-[#0E2A33]/[0.62]">
                   Vos coordonnées servent uniquement à traiter cette demande.{' '}
-                  <button
-                    type="button"
-                    onClick={() => setCurrentPage('politique-confidentialite')}
+                  <Link to="/politique-confidentialite"
+                    
                     className="text-[#0E2A33]/75 underline underline-offset-2 hover:text-[#0E2A33]"
                   >
                     Politique de confidentialité
-                  </button>
+                  </Link>
                   .
                 </p>
               </div>

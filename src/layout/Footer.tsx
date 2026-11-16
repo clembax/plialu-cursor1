@@ -1,12 +1,8 @@
-import React from 'react';
+import { Link } from 'react-router';
 import { openCookieSettings } from '../consent';
 import * as DS from '../components/ds/ds';
-import type { PageKey } from '../seo/seoConfig';
 
-export function Footer(props: {
-  setCurrentPage: React.Dispatch<React.SetStateAction<PageKey>>;
-}) {
-  const { setCurrentPage } = props;
+export function Footer() {
   return (
     <>
       {/* Premium Footer */}
@@ -15,7 +11,7 @@ export function Footer(props: {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-8 mb-12">
             {/* Column 1 -- Brand */}
             <div className="space-y-5">
-              <button onClick={() => setCurrentPage('home')} className="text-2xl font-black tracking-tighter text-white uppercase block">PLIALU.</button>
+              <Link to="/" className="text-2xl font-black tracking-tighter text-white uppercase block">PLIALU.</Link>
               <p className="text-white/50 text-sm leading-relaxed max-w-xs">PME industrielle : solutions métalliques sur-mesure pour l'enveloppe du bâtiment</p>
               <div className="flex items-center gap-4 pt-3">
                 <a href="https://www.linkedin.com/company/plialu" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-[#E2FD48] hover:border-[#E2FD48] transition-all">
@@ -30,18 +26,16 @@ export function Footer(props: {
               <ul className="space-y-4">
                 {['Expertises'].map((link) => (
                   <li key={link}>
-                    <button
-                      onClick={() => {
-                        if (link === 'Expertises') setCurrentPage('expertises');
-                      }}
+                    <Link
+                      to="/expertises"
                       className={`${DS.LINK_DARK} text-left`}
                     >
                       {link}
-                    </button>
+                    </Link>
                   </li>
                 ))}
                 <li>
-                  <a href="#" onClick={(e) => { e.preventDefault(); setCurrentPage('solutions-temporaire'); }} className={`${DS.LINK_DARK} text-left`}>Solutions</a>
+                  <Link to="/solutions" className={`${DS.LINK_DARK} text-left`}>Solutions</Link>
                 </li>
               </ul>
             </div>
@@ -52,16 +46,12 @@ export function Footer(props: {
               <ul className="space-y-4">
                 {['À propos', 'Portfolio', 'Contact'].map((link) => (
                   <li key={link}>
-                    <button
-                      onClick={() => {
-                        if (link === 'À propos') setCurrentPage('a-propos');
-                        else if (link === 'Portfolio') setCurrentPage('projects');
-                        else if (link === 'Contact') setCurrentPage('contact');
-                      }}
+                    <Link
+                      to={link === 'À propos' ? '/a-propos' : link === 'Portfolio' ? '/portfolio' : '/contact'}
                       className={`${DS.LINK_DARK} text-left`}
                     >
                       {link}
-                    </button>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -72,8 +62,8 @@ export function Footer(props: {
           <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-5">
             <span className="text-[10px] text-white/30 font-bold uppercase tracking-[0.2em]">© 2025 PLIALU SAS. TOUS DROITS RÉSERVÉS</span>
             <div className="flex gap-6 text-[10px] text-white/30 font-bold uppercase tracking-[0.2em] flex-wrap justify-center md:justify-end">
-              <button onClick={() => setCurrentPage('mentions-legales')} className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/50 hover:text-[#E2FD48] transition-colors duration-150 text-left">Mentions légales</button>
-              <button onClick={() => setCurrentPage('politique-confidentialite')} className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/50 hover:text-[#E2FD48] transition-colors duration-150 text-left">Politique de confidentialité</button>
+              <Link to="/mentions-legales" className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/50 hover:text-[#E2FD48] transition-colors duration-150 text-left">Mentions légales</Link>
+              <Link to="/politique-confidentialite" className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/50 hover:text-[#E2FD48] transition-colors duration-150 text-left">Politique de confidentialité</Link>
               <button onClick={openCookieSettings} className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/50 hover:text-[#E2FD48] transition-colors duration-150 text-left">Gérer les cookies</button>
             </div>
           </div>

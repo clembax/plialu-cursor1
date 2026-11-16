@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import { ArrowRight, ArrowUpRight, Clock, Mail, MapPin, Phone, Play } from 'lucide-react';
 import * as DS from '../components/ds/ds';
 import ScrollCue from '../components/ScrollCue';
@@ -7,18 +8,15 @@ import { PROJECTS } from '../../projects';
 import { expertisesDetails, processCardDescriptions } from '../data/expertises';
 import { homeProjects } from '../data/homeProjects';
 import { RAL_APERCU } from '../data/ral';
-import type { PageKey } from '../seo/seoConfig';
 
 export function HomePage(props: {
-  setCurrentPage: React.Dispatch<React.SetStateAction<PageKey>>;
   goContactForm: () => void;
-  goSolution: (anchor: string) => void;
   openProject: (id: string) => void;
   teaserVideoRef: React.RefObject<HTMLVideoElement | null>;
   portfolioYearMin: number;
   portfolioYearMax: number;
 }) {
-  const { setCurrentPage, goContactForm, goSolution, openProject, teaserVideoRef, portfolioYearMin, portfolioYearMax } = props;
+  const { goContactForm, openProject, teaserVideoRef, portfolioYearMin, portfolioYearMax } = props;
   return (
         <>
           {/* 1. HERO SECTION (DARK) */}
@@ -45,10 +43,10 @@ export function HomePage(props: {
                 </div>
                 <div className="flex flex-col sm:flex-row items-center gap-4">
                   <button onClick={goContactForm} className={`${DS.BTN_PRIMARY} w-full sm:w-auto`}>Demander un devis</button>
-                  <button onClick={() => setCurrentPage('expertises')} className={`${DS.BTN_SECONDARY_DARK} w-full sm:w-auto group`}>
+                  <Link to="/expertises" className={`${DS.BTN_SECONDARY_DARK} w-full sm:w-auto group`}>
                     Découvrir nos expertises
                     <ArrowRight aria-hidden="true" size="1em" className="group-hover:translate-x-1 transition-transform" />
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -95,10 +93,10 @@ export function HomePage(props: {
                     De l'étude technique Bureau d'Études au pliage grande longueur, jusqu'au thermolaquage industriel certifié Qualicoat. Chaque étape de notre <strong>fabrication industrielle métal</strong> est maîtrisée en interne pour une qualité irréprochable.
                     </p>
                   </div>
-                  <button onClick={() => setCurrentPage('expertises')} className={DS.ACTION_DARK}>
+                  <Link to="/expertises" className={DS.ACTION_DARK}>
                     Découvrir nos expertises
                     <ArrowRight aria-hidden="true" size="1em" className={DS.ACTION_ARROW} />
-                  </button>
+                  </Link>
                 </div>
                 <div className="relative aspect-square md:aspect-video lg:aspect-square overflow-hidden rounded-[20px] border border-white/10 bg-[#071318] group">
                   <img
@@ -118,17 +116,8 @@ export function HomePage(props: {
                       : exp.title;
                   return (
                     <li key={exp.id} className="min-w-0">
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setCurrentPage('expertises');
-                          window.setTimeout(() => {
-                            const target = document.getElementById(exp.id);
-                            if (!target) return;
-                            window.history.replaceState(null, '', `/expertises#${exp.id}`);
-                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                          }, 50);
-                        }}
+                      <Link
+                        to={`/expertises#${exp.id}`}
                         className={`group relative flex min-h-[168px] h-full w-full flex-col text-left ${DS.CARD_DARK} p-5 transition-colors duration-150 hover:border-[#E2FD48]/50 hover:bg-white/[0.06]`}
                       >
                         <div className="flex items-start justify-between">
@@ -141,7 +130,7 @@ export function HomePage(props: {
                           <span className="font-display text-xl font-bold leading-tight text-white block min-h-[2.5em]">{name}</span>
                           <span className="mt-2 block text-xs leading-relaxed text-white/50">{processCardDescriptions[idx]}</span>
                         </div>
-                      </button>
+                      </Link>
                     </li>
                   );
                 })}
@@ -159,14 +148,8 @@ export function HomePage(props: {
               <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-10 lg:gap-16 items-center">
                 {/* Colonne gauche : vidéo teaser */}
                 <div className="w-full">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      // Définir l'ancre pour le scroll automatique sur la page Expertises
-                      window.location.hash = '#video-complete';
-                      // Basculer sur la page Expertises
-                      setCurrentPage('expertises');
-                    }}
+                  <Link
+                    to="/expertises#video-complete"
                     className="group block w-full text-left focus:outline-none"
                   >
                     <div className="relative rounded-[20px] overflow-hidden border border-white/10 bg-black/40 aspect-video cursor-pointer">
@@ -198,7 +181,7 @@ export function HomePage(props: {
                         Votre navigateur ne supporte pas la lecture de vidéos.
                       </video>
                     </div>
-                  </button>
+                  </Link>
                 </div>
 
                 {/* Colonne droite : texte d'accroche */}
@@ -208,13 +191,12 @@ export function HomePage(props: {
                   <p className={`${DS.BODY_DARK} mt-6`}>
                     Deux minutes pour voir les lignes de production.
                   </p>
-                  <button
-                    type="button"
-                    onClick={() => setCurrentPage('expertises')}
+                  <Link
+                    to="/expertises"
                     className={`${DS.BTN_PRIMARY} mt-8`}
                   >
                     Voir la visite complète
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -229,10 +211,10 @@ export function HomePage(props: {
                   <h2 className={`${DS.H2} text-[#0E2A33]`}>Solutions métalliques pour l'enveloppe du bâtiment</h2>
                   <p className={`${DS.LEAD_LIGHT} mt-6`}>Six domaines pour l'enveloppe du bâtiment, façonnés et laqués dans nos ateliers.</p>
                 </div>
-                <button type="button" onClick={() => setCurrentPage('solutions-temporaire')} className={`${DS.BTN_SECONDARY_LIGHT} shrink-0 self-start md:self-auto`}>
+                <Link to="/solutions" className={`${DS.BTN_SECONDARY_LIGHT} shrink-0 self-start md:self-auto`}>
                   Toutes nos solutions
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
-                </button>
+                </Link>
               </div>
 
               {(() => {
@@ -251,9 +233,8 @@ export function HomePage(props: {
                 return (
                   <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
                     {/* Carte Goutte d'eau extrudée */}
-                    <button
-                      type="button"
-                      onClick={() => setCurrentPage('goutte-eau-extrudee')}
+                    <Link
+                      to="/goutte-eau-extrudee"
                       className="group relative flex min-h-[300px] flex-col overflow-hidden rounded-[20px] bg-[linear-gradient(135deg,#0E2A33_0%,#071318_100%)] text-left text-white md:col-span-2"
                     >
                       <div className="relative z-10 flex flex-1 flex-col justify-between gap-7 p-9 md:w-[56%]">
@@ -278,14 +259,13 @@ export function HomePage(props: {
                         loading="lazy"
                         className="h-[220px] w-full object-contain object-right transition-transform duration-700 ease-out group-hover:scale-[1.04] md:absolute md:right-0 md:top-1/2 md:h-[88%] md:w-[58%] md:-translate-y-1/2"
                       />
-                    </button>
+                    </Link>
 
                     {/* 6 domaines : photo + titre, le détail est sur la page Solutions */}
                     {tuiles.map((t) => (
-                      <button
+                      <Link
                         key={t.n}
-                        type="button"
-                        onClick={() => goSolution(t.anchor)}
+                        to={`/solutions#${t.anchor}`}
                         className="group relative flex min-h-[300px] flex-col justify-end overflow-hidden rounded-[20px] bg-[#0E2A33] text-left text-white"
                       >
                         <img
@@ -306,13 +286,12 @@ export function HomePage(props: {
                             </span>
                           </span>
                         </div>
-                      </button>
+                      </Link>
                     ))}
 
                     {/* Aperçu Tôles prélaquées (renvoie à la carte complète de la page Solutions) */}
-                    <button
-                      type="button"
-                      onClick={() => goSolution('toles-prelaquees')}
+                    <Link
+                      to="/solutions#toles-prelaquees"
                       className="group grid grid-cols-1 items-center gap-6 rounded-[20px] bg-[linear-gradient(135deg,#0E2A33_0%,#071318_100%)] p-7 text-left text-white md:col-span-2 md:grid-cols-[1.6fr_1fr] md:gap-10 md:px-10 md:py-9 lg:col-span-4"
                     >
                       <div>
@@ -334,7 +313,7 @@ export function HomePage(props: {
                           <span className={DS.ACTION_ARROW}>{arrow}</span>
                         </span>
                       </div>
-                    </button>
+                    </Link>
                   </div>
                 );
               })()}
@@ -355,13 +334,12 @@ export function HomePage(props: {
               </div>
               <PortfolioGrid projects={homeProjects} onOpen={openProject} context="home" />
               <div className="mt-12 flex justify-center">
-                <a
-                  href="/portfolio"
-                  onClick={(e) => { if (e.button === 0 && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) { e.preventDefault(); setCurrentPage('projects'); } }}
+                <Link
+                  to="/portfolio"
                   className={DS.BTN_PRIMARY}
                 >
                   Voir les projets
-                </a>
+                </Link>
               </div>
             </div>
           </section>
@@ -386,7 +364,7 @@ export function HomePage(props: {
                     Depuis notre <strong>atelier lyonnais</strong>, nous assurons une réactivité optimale pour accompagner vos chantiers en <strong>Rhône-Alpes</strong> et en Europe. Une capacité de production appuyée par plus de 7 000 m² dédiés au façonnage métallique sur mesure.
                   </p>
                   </div>
-                  <a href="/a-propos" onClick={(e) => { e.preventDefault(); setCurrentPage('a-propos'); }} className={DS.ACTION_DARK}>EN SAVOIR PLUS <ArrowRight aria-hidden="true" size="1em" className={DS.ACTION_ARROW} /></a>
+                  <Link to="/a-propos" className={DS.ACTION_DARK}>EN SAVOIR PLUS <ArrowRight aria-hidden="true" size="1em" className={DS.ACTION_ARROW} /></Link>
                 </div>
               </div>
             </div>

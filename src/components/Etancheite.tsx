@@ -1,11 +1,9 @@
+import { Link } from 'react-router';
 import React, { useEffect, useRef, useState } from 'react';
 import { etancheiteProfiles, etancheiteSchemaImages } from '../config/schemaConfig';
 
-interface EtancheiteProps {
-  setCurrentPage: (page: any) => void;
-}
 
-const Etancheite: React.FC<EtancheiteProps> = ({ setCurrentPage }) => {
+const Etancheite: React.FC = () => {
   const [activeProfile, setActiveProfile] = useState<number | null>(null);
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
@@ -74,12 +72,12 @@ const Etancheite: React.FC<EtancheiteProps> = ({ setCurrentPage }) => {
       <div className="relative bg-[#071318] overflow-hidden pt-32 md:pt-40">
         <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#0e2a33]/40 to-[#071318]"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <button
-            onClick={() => setCurrentPage('solutions')}
+          <Link to="/solutions-hub"
+            
             className="text-[#E2FD48] hover:opacity-70 transition-opacity font-medium text-xs uppercase tracking-widest flex items-center gap-2 mb-14"
           >
             &larr; RETOUR AUX SOLUTIONS
-          </button>
+          </Link>
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
               Solutions pour l'étanchéité
@@ -205,12 +203,12 @@ const Etancheite: React.FC<EtancheiteProps> = ({ setCurrentPage }) => {
             Nos équipes dimensionnent couvertines et accessoires d'étanchéité adaptés à votre chantier.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button
-              onClick={() => setCurrentPage('contact')}
+            <Link to="/contact"
+              
               className="w-full sm:w-auto bg-[#0E2A33] text-white rounded-full px-8 py-4 text-sm font-extrabold transition-all shadow-lg hover:shadow-2xl"
             >
               Demander un chiffrage
-            </button>
+            </Link>
           </div>
         </div>
       </section>

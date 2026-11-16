@@ -1,24 +1,22 @@
+import { Link } from 'react-router';
 import React from 'react';
-import type { PageKey } from '../seo/seoConfig';
 
 export function RessourcePliagePage(props: {
-  setCurrentPage: React.Dispatch<React.SetStateAction<PageKey>>;
   goContactForm: () => void;
 }) {
-  const { setCurrentPage, goContactForm } = props;
+  const { goContactForm } = props;
   return (
         <div className="animate-fade-up bg-white" style={{ backgroundColor: '#FFFFFF' }}>
           {/* HERO ARTICLE */}
           <section className="pt-32 md:pt-40 pb-12 bg-white" style={{ backgroundColor: '#FFFFFF' }}>
             <div className="max-w-5xl mx-auto px-6">
               <div className="w-full">
-                <button
-                  type="button"
-                  onClick={() => setCurrentPage('home')}
+                <Link to="/"
+                  
                   className="flex items-center gap-2 text-sm font-semibold text-[#0E2A33] hover:text-[#E2FD48] cursor-pointer mb-8 uppercase tracking-widest"
                 >
                   <span>← RETOUR AUX RESSOURCES</span>
-                </button>
+                </Link>
 
                 <h1 className="text-4xl md:text-5xl font-black text-[#0E2A33] leading-tight mt-20 max-w-3xl mx-auto text-center">
                   Pliage aluminium : limites et tolérances
@@ -60,13 +58,12 @@ export function RessourcePliagePage(props: {
                   du bâtiment. Attention&nbsp;: toutes les nuances d&apos;aluminium ne se comportent pas de la même façon au pliage — la nuance
                   1050 est plus souple, la 5754 plus rigide et résistante en milieu marin. Le choix de la nuance dépend aussi du contexte
                   du projet — un sujet que nous détaillons dans notre{' '}
-                  <button
-                    type="button"
-                    onClick={() => setCurrentPage('home')}
+                  <Link to="/"
+                    
                     className="underline underline-offset-4 decoration-[#6B7280] hover:decoration-[#0E2A33] font-semibold text-[#0E2A33]"
                   >
                     guide sur le choix du métal de façade
-                  </button>
+                  </Link>
                   .
                 </p>
               </div>
@@ -199,21 +196,19 @@ export function RessourcePliagePage(props: {
                   Une surface craquelée ou géométriquement imprécise ne permet pas une accroche homogène de la poudre polymérisée.
                   Résultat&nbsp;: décollements locaux, taches d&apos;oxydation sous revêtement, et impossibilité d&apos;obtenir la certification
                   QUALICOAT (label européen de qualité du thermolaquage) sur la pièce concernée. Découvrez{' '}
-                  <button
-                    type="button"
-                    onClick={() => setCurrentPage('home')}
+                  <Link to="/"
+                    
                     className="underline underline-offset-4 decoration-[#6B7280] hover:decoration-[#0E2A33] font-semibold text-[#0E2A33]"
                   >
                     les protocoles exacts que la certification QUALICOAT impose sur la préparation de surface
-                  </button>
+                  </Link>
                   , et comment s&apos;inscrit{' '}
-                  <button
-                    type="button"
-                    onClick={() => setCurrentPage('expertises')}
+                  <Link to="/expertises"
+                    
                     className="underline underline-offset-4 decoration-[#6B7280] hover:decoration-[#0E2A33] font-semibold text-[#0E2A33]"
                   >
                     notre process de thermolaquage intégré en atelier
-                  </button>
+                  </Link>
                   .
                 </p>
               </div>

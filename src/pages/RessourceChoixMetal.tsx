@@ -1,24 +1,22 @@
+import { Link } from 'react-router';
 import React from 'react';
-import type { PageKey } from '../seo/seoConfig';
 
 export function RessourceChoixMetalPage(props: {
-  setCurrentPage: React.Dispatch<React.SetStateAction<PageKey>>;
   goContactForm: () => void;
 }) {
-  const { setCurrentPage, goContactForm } = props;
+  const { goContactForm } = props;
   return (
         <div className="animate-fade-up bg-white" style={{ backgroundColor: '#FFFFFF' }}>
           {/* HERO ARTICLE */}
           <section className="pt-32 md:pt-40 pb-12 bg-white" style={{ backgroundColor: '#FFFFFF' }}>
             <div className="max-w-5xl mx-auto px-6">
               <div className="w-full">
-                <button
-                  type="button"
-                  onClick={() => setCurrentPage('home')}
+                <Link to="/"
+                  
                   className="flex items-center gap-2 text-sm font-semibold text-[#0E2A33] hover:text-[#E2FD48] cursor-pointer mb-8 uppercase tracking-widest"
                 >
                   <span>← Retour aux ressources</span>
-                </button>
+                </Link>
                 <h1 className="text-4xl md:text-5xl font-black text-[#0E2A33] leading-tight mt-20 text-center max-w-3xl mx-auto">
                   Choisir le bon métal pour une façade extérieure
                 </h1>
@@ -59,12 +57,12 @@ export function RessourceChoixMetalPage(props: {
                   alors qu&apos;un matériau mal adapté au climat accélère la corrosion et les désordres esthétiques. Un mauvais choix en phase
                   d&apos;étude se traduit souvent par un surcoût en phase chantier&nbsp;: renforts ajoutés, reprises de calepinage ou retours usine
                   imprévus. Les tolérances de pliage
-                  <button
-                    onClick={() => setCurrentPage('home')}
+                  <Link to="/"
+                    
                     className="underline underline-offset-4 decoration-[#6B7280] hover:decoration-[#0E2A33] font-semibold text-[#0E2A33] ml-1"
                   >
                     (précision géométrique du façonnage)
-                  </button>
+                  </Link>
                   varient elles aussi selon la dureté du substrat choisi.
                 </p>
               </div>
@@ -189,20 +187,20 @@ export function RessourceChoixMetalPage(props: {
                   Le substrat choisi conditionne directement le process de thermolaquage (application d&apos;une poudre polymérisée pour
                   protéger et teinter la pièce). L&apos;aluminium accepte les épaisseurs les plus fines, autour de 45&nbsp;microns, tandis que
                   l&apos;acier exige une préparation plus lourde pour éviter la corrosion sous film. La
-                  <button
-                    onClick={() => setCurrentPage('home')}
+                  <Link to="/"
+                    
                     className="underline underline-offset-4 decoration-[#6B7280] hover:decoration-[#0E2A33] font-semibold text-[#0E2A33] mx-1"
                   >
                     certification QUALICOAT
-                  </button>
+                  </Link>
                   (label européen de qualité du thermolaquage) impose des protocoles différents selon le métal de base, un process
                   industriel que vous pouvez observer en détail sur notre{' '}
-                  <button
-                    onClick={() => setCurrentPage('expertises')}
+                  <Link to="/expertises"
+                    
                     className="underline underline-offset-4 decoration-[#6B7280] hover:decoration-[#0E2A33] font-semibold text-[#0E2A33]"
                   >
                     page Expertises
-                  </button>
+                  </Link>
                   .
                 </p>
               </div>
