@@ -803,6 +803,17 @@ export const GoutteEauExtrudee: React.FC<Props> = ({ setCurrentPage }) => {
                 <button type="submit" disabled={sending} className={`${DS.BTN_PRIMARY} w-full max-w-[420px] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0`}>
                   {sending ? 'Envoi en cours…' : 'Envoyer ma demande de commande'}
                 </button>
+                <p className="mt-3.5 max-w-[560px] text-xs leading-relaxed text-[#0E2A33]/[0.62]">
+                  Vos informations servent uniquement à traiter votre demande. Elles sont transmises par e-mail via notre prestataire FormSubmit et ne sont jamais cédées. Pour en savoir plus et exercer vos droits, consultez notre{' '}
+                  <button
+                    type="button"
+                    onClick={() => setCurrentPage('politique-confidentialite')}
+                    className="underline underline-offset-2 text-[#0E2A33]/75 hover:text-[#0E2A33]"
+                  >
+                    politique de confidentialité
+                  </button>
+                  .
+                </p>
                 {errors.form && (
                   <p role="alert" className="mt-3.5 text-[13px] font-semibold text-[#B4232A]">
                     {errors.form}

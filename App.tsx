@@ -3506,6 +3506,17 @@ onClick={() => { setCurrentPage('expertises'); if (window.location.hash) window.
                     >
                       {contactSending ? 'Envoi en cours…' : 'Envoyer ma demande'}
                     </button>
+                    <p className="text-xs leading-relaxed text-[#0E2A33]/[0.62]">
+                      Vos informations servent uniquement à traiter votre demande. Elles sont transmises par e-mail via notre prestataire FormSubmit et ne sont jamais cédées. Pour en savoir plus et exercer vos droits, consultez notre{' '}
+                      <button
+                        type="button"
+                        onClick={() => setCurrentPage('politique-confidentialite')}
+                        className="underline underline-offset-2 text-[#0E2A33]/75 hover:text-[#0E2A33]"
+                      >
+                        politique de confidentialité
+                      </button>
+                      .
+                    </p>
                   </form>
               </div>
             </div>
