@@ -62,8 +62,8 @@ export function PortfolioPage(props: {
           {/* Grille des Projets */}
           <section id="projets-grille" className="scroll-mt-24 bg-[#071318] py-16 md:py-24">
             <div className="mx-auto max-w-7xl px-6">
-              <h2 className="sr-only">Tous nos chantiers</h2>
-              <p className="mb-8 text-[10px] font-extrabold uppercase tracking-[0.4em] text-white/50">
+              <h2 className={`${DS.H2} text-white`}>Façades en aluminium de référence, de Lyon à Grenoble</h2>
+              <p className="mb-8 mt-6 text-[10px] font-extrabold uppercase tracking-[0.4em] text-white/50">
                 {PROJECTS.length} réalisations · {portfolioYearMin} à {portfolioYearMax}
               </p>
               <PortfolioGrid projects={portfolioOrder} onOpen={openProject} />

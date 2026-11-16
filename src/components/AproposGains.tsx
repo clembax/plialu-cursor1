@@ -84,7 +84,7 @@ export const AproposGains: React.FC = () => {
       <div className={DS.CONTAINER}>
         <div className="mb-14 max-w-3xl">
           <p className={`${DS.EYEBROW_DARK} mb-4`}>Ce que vous y gagnez</p>
-          <h2 className={`${DS.H2} text-white`}>Un seul interlocuteur, de l'étude à la livraison</h2>
+          <h2 className={`${DS.H2} text-white`}>Pourquoi choisir une usine intégrée ?</h2>
         </div>
 
         <div className="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12">

@@ -28,11 +28,11 @@ export function AProposPage(props: {
                   NOTRE IDENTITÉ INDUSTRIELLE
                 </span>
                 <h1 className={`${DS.H1} text-white`}>
-                  PLIALU, Entreprise de<br />
-                  façonnage métal <span className="whitespace-nowrap">près de Lyon</span>
+                  PLIALU, entreprise de<br />
+                  pliage et thermolaquage <span className="whitespace-nowrap">près de Lyon</span>
                 </h1>
                 <p className={`${DS.LEAD_DARK} mt-6`}>
-                  Implantée près de Lyon, notre usine de façonnage métallique accompagne les professionnels de l'enveloppe du bâtiment en Rhône-Alpes, de la transformation industrielle à la fabrication sur mesure de pièces métalliques.
+                  PLIALU est une entreprise de pliage et thermolaquage près de Lyon, installée à Civrieux (Ain). Son usine plie et laque sur mesure la tôle aluminium et acier des professionnels de l'enveloppe du bâtiment en Auvergne-Rhône-Alpes, de la transformation industrielle à la fabrication de pièces métalliques.
                 </p>
                 </div>
                 <button type="button" onClick={goContactForm} className={DS.BTN_PRIMARY}>
@@ -49,8 +49,8 @@ export function AProposPage(props: {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-[72px] items-center">
                 <div>
                   <p className={`${DS.EYEBROW_LIGHT} mb-4`}>Notre ADN</p>
-                  <h2 className={`${DS.H2} text-[#0E2A33]`}>Votre partenaire en façonnage métallique, de l'esquisse au chantier livré</h2>
-                  <p className={`${DS.LEAD_LIGHT} mt-6`}>PLIALU, c'est 20 ans de fabrication métallique intégrée en Rhône-Alpes. Pièces standard et sur-mesure, avec une capacité industrielle complète qui s'adapte aux contraintes de chaque projet.</p>
+                  <h2 className={`${DS.H2} text-[#0E2A33]`}>Votre partenaire en pliage et thermolaquage</h2>
+                  <p className={`${DS.LEAD_LIGHT} mt-6`}>PLIALU fabrique depuis 20 ans les pièces métalliques de l'enveloppe du bâtiment : cassettes, bardages, précadres, profilés ITE, couvertines et habillages de façade. Son usine intégrée de 7 000 m² près de Lyon réunit le déroulage, le pliage jusqu'à 4 m et le thermolaquage certifié Qualicoat. Pièces standard et sur mesure, pour les façadiers, architectes et bureaux d'études.</p>
                   <p className={`${DS.LEAD_LIGHT} mt-5`}>Nos équipes interviennent à chaque étape : lecture de plans, conseil matière, optimisation des tolérances, respect des délais.</p>
                   <button onClick={goContactForm} className={`${DS.BTN_PRIMARY} mt-10`}>
                     Échanger sur votre projet
@@ -75,7 +75,7 @@ export function AProposPage(props: {
                     THERMOLAQUAGE
                   </p>
                   <h2 className={`${DS.H2} text-[#0E2A33]`}>
-                    Nos lignes de thermolaquage
+                    Infinimetal, le thermolaquage Qualicoat de PLIALU
                   </h2>
                 </div>
                 <img
@@ -86,10 +86,10 @@ export function AProposPage(props: {
               </div>
               <div className="md:pr-72">
               <p className={`${DS.LEAD_LIGHT} mt-6`}>
-                Infinimetal est notre marque déposée spécialisée en thermolaquage certifié Qualicoat. Infinimetal dispose de deux lignes de thermolaquage complémentaires : une ligne à plat pour le laquage de tôles, et une ligne verticale dédiée au laquage post-formage à la main.
+                Infinimetal est la marque de thermolaquage de PLIALU : notre usine de laquage certifiée Qualicoat, près de Lyon, en Auvergne-Rhône-Alpes. Elle dispose de deux lignes complémentaires : une ligne à plat pour laquer les tôles avant pliage, et une ligne verticale dédiée au laquage des pièces après pliage ou assemblage.
               </p>
               <p className="mt-5 max-w-2xl text-base leading-[1.65] text-[#0E2A33]/75 md:text-lg">
-                Cette polyvalence de thermolaquage nous permet de répondre à tous les besoins de laquage des façadiers et professionnels du bâtiment, que les pièces soient brutes ou déjà façonnées. Chez Infinimetal, Qualicoat est aujourd'hui le référentiel européen du thermolaquage pour les façades haut de gamme, appliqué sur nos deux lignes avec traçabilité de process.
+                Nos commandes sont laquées en interne, avant ou après pliage. Le label Qualicoat, référentiel européen du thermolaquage de l'aluminium en architecture, encadre nos deux lignes : préparation de surface, épaisseur de poudre et contrôles, avec traçabilité de process. Il ne concerne que l'aluminium. L'acier peut aussi être laqué chez Infinimetal, sans cette certification.
               </p>
               </div>
               <Link
@@ -108,8 +108,8 @@ export function AProposPage(props: {
               <p className="sr-only">PLIALU, atelier de façonnage métallique implanté en Rhône-Alpes, intervient sur toute la France, Corse comprise, ainsi qu'en Belgique et en Suisse.</p>
               <div className="grid items-start gap-10 pb-0 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.3fr)] lg:grid-rows-[auto_1fr] lg:gap-x-16 lg:gap-y-10">
                 <h2 className={`${DS.H2} text-white [text-wrap:balance] lg:col-start-1 lg:row-start-1`}>
-                  <span className="block">Un atelier à Lyon.</span>
-                  <span className="block">Des chantiers partout en France.</span>
+                  <span className="block">Pliage et thermolaquage près de Lyon,</span>
+                  <span className="block">chantiers partout en France</span>
                 </h2>
                 <FranceDotMap className="mx-auto w-full max-w-[640px] lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:max-w-none lg:-mr-[2.8%]" highlight={ZONE_HIGHLIGHT ? zone : null} />
                 {SHOW_ZONE_KEY && (

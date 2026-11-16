@@ -38,7 +38,7 @@ export function HomePage(props: {
                     <span className="block">pour l'enveloppe du bâtiment</span>
                   </h1>
                   <p className={`${DS.LEAD_DARK} mt-6`}>
-                    Notre expertise : conception, façonnage, pliage, thermolaquage de métal en feuilles. Process de production intégré et maîtrise de la qualité, des coûts et des délais pour chaque projet
+                    PLIALU conçoit, plie et thermolaque sur mesure les pièces en aluminium et en acier de l'enveloppe du bâtiment, dans son usine intégrée près de Lyon. Qualité, coûts et délais sont maîtrisés de bout en bout, pour chaque projet.
                   </p>
                 </div>
                 <div className="flex flex-col sm:flex-row items-center gap-4">
@@ -88,9 +88,9 @@ export function HomePage(props: {
                 <div>
                   <div className="mb-16">
                     <span className={`block mb-4 ${DS.EYEBROW_DARK}`}>PROCESS INTÉGRÉ</span>
-                    <h2 className={`${DS.H2} text-white`}>Toute la chaîne de production sous le même toit</h2>
+                    <h2 className={`${DS.H2} text-white`}>Déroulage, pliage et thermolaquage sous le même toit</h2>
                     <p className={`${DS.LEAD_DARK} mt-6`}>
-                    De l'étude technique Bureau d'Études au pliage grande longueur, jusqu'au thermolaquage industriel certifié Qualicoat. Chaque étape de notre <strong>fabrication industrielle métal</strong> est maîtrisée en interne pour une qualité irréprochable.
+                    Chez PLIALU, le déroulage, le pliage et le thermolaquage se font dans la même usine, à Civrieux près de Lyon. Du bureau des méthodes à la livraison, avec un thermolaquage certifié Qualicoat et un pliage jusqu'à 4 m, chaque étape est réalisée en interne, sans sous-traitant entre deux opérations.
                     </p>
                   </div>
                   <Link to="/expertises" className={DS.ACTION_DARK}>
@@ -187,7 +187,7 @@ export function HomePage(props: {
                 {/* Colonne droite : texte d'accroche */}
                 <div>
                   <p className={`${DS.EYEBROW_DARK} mb-4`}>Visite d'usine</p>
-                  <h2 className={`${DS.H2} text-white lg:w-[calc(100%+8px)]`}>Nos lignes de production, en action</h2>
+                  <h2 className={`${DS.H2} text-white lg:w-[calc(100%+8px)]`}>Nos lignes de déroulage, pliage et thermolaquage en vidéo</h2>
                   <p className={`${DS.BODY_DARK} mt-6`}>
                     Deux minutes pour voir les lignes de production.
                   </p>
@@ -208,8 +208,8 @@ export function HomePage(props: {
               <div className="mb-14 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
                 <div className="max-w-3xl">
                   <p className={`mb-4 ${DS.EYEBROW_LIGHT}`}>NOS SOLUTIONS</p>
-                  <h2 className={`${DS.H2} text-[#0E2A33]`}>Solutions métalliques pour l'enveloppe du bâtiment</h2>
-                  <p className={`${DS.LEAD_LIGHT} mt-6`}>Six domaines pour l'enveloppe du bâtiment, façonnés et laqués dans nos ateliers.</p>
+                  <h2 className={`${DS.H2} text-[#0E2A33]`}>Six domaines d'application pour l'enveloppe du bâtiment</h2>
+                  <p className={`${DS.LEAD_LIGHT} mt-6`}>Enduit, bardage, ravalement, précadres, étanchéité et MOB : pliés et laqués par PLIALU près de Lyon.</p>
                 </div>
                 <Link to="/solutions" className={`${DS.BTN_SECONDARY_LIGHT} shrink-0 self-start md:self-auto`}>
                   Toutes nos solutions
@@ -299,7 +299,7 @@ export function HomePage(props: {
                           <h3 className="font-display text-[22px] font-bold tracking-tight">Tôles prélaquées</h3>
                           <span className="rounded-full border border-[#E2FD48]/35 px-3 py-1.5 text-[11px] font-bold text-[#E2FD48]">Usine intégrée</span>
                         </div>
-                        <p className="text-[15px] leading-relaxed text-white/70">Feuilles aluminium prélaquées, certifiées Qualicoat et filmées.</p>
+                        <p className="text-[15px] leading-relaxed text-white/70">Tôles aluminium prélaquées au format, certifiées Qualicoat et filmées.</p>
                         <div className="mt-5 flex flex-wrap gap-2" role="img" aria-label="Aperçu de teintes RAL disponibles">
                           {RAL_APERCU.map((c) => (
                             <i key={c} className="block h-10 w-10 rounded-[10px] border border-white/[0.12]" style={{ background: c }} />
@@ -326,7 +326,7 @@ export function HomePage(props: {
               <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
                 <div className="max-w-2xl">
                   <span className={`block mb-4 ${DS.EYEBROW_DARK}`}>PORTFOLIO COLLABORATIONS</span>
-                  <h2 className={`${DS.H2} text-white`}>Projets réalisés en collaboration</h2>
+                  <h2 className={`${DS.H2} text-white`}>Façades en aluminium réalisées avec nos clients</h2>
                 </div>
                 <p className="text-[10px] font-extrabold tracking-[0.4em] text-white/50 uppercase">
                   {PROJECTS.length} réalisations · {portfolioYearMin} à {portfolioYearMax}
@@ -359,9 +359,9 @@ export function HomePage(props: {
                 <div className="order-1 lg:order-2">
                   <div className="mb-16">
                   <span className={`block mb-4 ${DS.EYEBROW_DARK}`}>À PROPOS</span>
-                  <h2 className={`${DS.H2} text-white`}>Votre entreprise de métallurgie en <span className="whitespace-nowrap">Rhône-Alpes</span></h2>
+                  <h2 className={`${DS.H2} text-white`}>Votre partenaire en pliage et thermolaquage près de Lyon</h2>
                   <p className={`${DS.LEAD_DARK} mt-6`}>
-                    Depuis notre <strong>atelier lyonnais</strong>, nous assurons une réactivité optimale pour accompagner vos chantiers en <strong>Rhône-Alpes</strong> et en Europe. Une capacité de production appuyée par plus de 7 000 m² dédiés au façonnage métallique sur mesure.
+                    PLIALU fabrique les pièces pliées et laquées des façadiers, des entreprises de MOB et des entreprises du bâtiment. Depuis <strong>son usine près de Lyon</strong>, elle accompagne vos chantiers en <strong>Auvergne-Rhône-Alpes</strong>, partout en France, en Belgique et en Suisse, avec 7 000 m² dédiés au pliage et au thermolaquage sur mesure.
                   </p>
                   </div>
                   <Link to="/a-propos" className={DS.ACTION_DARK}>EN SAVOIR PLUS <ArrowRight aria-hidden="true" size="1em" className={DS.ACTION_ARROW} /></Link>

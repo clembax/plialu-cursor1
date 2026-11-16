@@ -163,7 +163,7 @@ export function ExpertisesPage(props: {
                           {exp.id === 'thermolaquage-plat' ? (
                             <div className="flex flex-wrap items-center gap-4">
                               <h2 className={`${DS.H2} text-[#0E2A33]`}>
-                                Thermolaquage
+                                Thermolaquage Qualicoat, avant ou après pliage
                               </h2>
                               <Link
                                 to="/a-propos#infinimetal"
@@ -179,7 +179,17 @@ export function ExpertisesPage(props: {
                             </div>
                           ) : (
                             <h2 className={`${DS.H2} text-[#0E2A33]`}>
-                              {exp.id === 'bureau-etudes' ? 'Bureau des méthodes' : exp.id === 'assemblage-finitions' ? 'Soudure & Assemblage' : exp.title}
+                              {exp.id === 'bureau-etudes'
+                                ? 'Bureau des méthodes : des plans validés avant fabrication'
+                                : exp.id === 'deroulage-mise-format'
+                                  ? 'Déroulage : des formats optimisés, moins de chutes'
+                                  : exp.id === 'pliage-automatise'
+                                    ? "Pliage aluminium et acier jusqu'à 4 m"
+                                    : exp.id === 'assemblage-finitions'
+                                      ? 'Soudure et assemblage : des ensembles prêts à poser'
+                                      : exp.id === 'logistique-expedition'
+                                        ? 'Logistique : vos commandes livrées conformes et dans les délais'
+                                        : exp.title}
                             </h2>
                           )}
                         </div>
@@ -196,17 +206,17 @@ export function ExpertisesPage(props: {
                         ) : exp.id === 'thermolaquage-plat' ? (
                           <>
                             <p className={`${DS.LEAD_LIGHT} mt-6`}>
-                              Deux lignes de production certifiées Qualicoat via notre marque{' '}
+                              Prélaquage ou post-laquage : nos deux lignes certifiées Qualicoat, sous la marque{' '}
                               <Link to="/a-propos#infinimetal" className="cursor-pointer text-[#0E2A33] font-bold hover:underline transition-colors">
                                 Infinimetal
                               </Link>
-                              {' '}pour une flexibilité dans le choix de la gamme de production : nous travaillons à partir de feuilles d'aluminium prélaquées ou bien nous laquons après façonnage.
+                              , permettent les deux. En prélaquage, les tôles d'aluminium sont laquées à plat puis pliées, pour les cassettes, clins et bavettes. En post-laquage, les pièces sont pliées, soudées ou assemblées puis laquées : la solution pour les précadres soudés et les pièces complexes.
                             </p>
                           </>
                         ) : exp.id === 'pliage-automatise' ? (
                           <>
                             <p className={`${DS.LEAD_LIGHT} mt-6`}>
-                              Du pliage traditionnel sur presse plieuse à CNC ou grâce à notre ligne de production automatisée : découpe, poinçonnage, panneautage, nous maîtrisons le pliage de A à Z
+                              PLIALU plie l'aluminium et l'acier jusqu'à 4 m, en pliage traditionnel sur presse plieuse à commande numérique ou sur sa ligne de pliage automatisée. Découpe, poinçonnage et panneautage complètent l'étape.
                             </p>
                           </>
                         ) : (
@@ -300,7 +310,7 @@ export function ExpertisesPage(props: {
           <section className="py-16 md:py-24 bg-[#071318] text-center border-t border-white/5">
             <div className="max-w-3xl mx-auto px-6">
               <div className="mb-16">
-              <h2 className={`${DS.H2} text-white`}>Vos contraintes techniques ont une réponse ici.</h2>
+              <h2 className={`${DS.H2} text-white`}>Un projet de pièces métalliques sur mesure ?</h2>
               <p className={`${DS.LEAD_DARK} mt-6 mx-auto`}>Chargés d'affaires disponibles pour analyser vos plans DXF et optimiser vos coûts avant production.</p>
               </div>
               <button onClick={goContactForm} className={DS.BTN_PRIMARY}>

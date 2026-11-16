@@ -62,7 +62,7 @@ export const SEO_CONFIG: Record<PageKey, SeoEntry> = {
     lastmod: LASTMOD,
   },
   'projects': { path: '/portfolio', title: 'Réalisations de façades en aluminium | PLIALU', desc: `${PROJECTS.length} réalisations de façades en aluminium à Grenoble, Lyon, Annecy et Meylan : cassettes, précadres, habillages. Projets menés avec architectes et façadiers.`, lastmod: LASTMOD },
-  'a-propos': { path: '/a-propos', title: 'Façonnage métallique près de Lyon | PLIALU', desc: "PLIALU, entreprise de façonnage métallique près de Lyon : usine intégrée de 7 000 m², 20 ans d'expertise en Rhône-Alpes, thermolaquage certifié Qualicoat.", lastmod: LASTMOD },
+  'a-propos': { path: '/a-propos', title: 'Pliage et thermolaquage près de Lyon | PLIALU', desc: "PLIALU, entreprise de pliage et thermolaquage près de Lyon : usine intégrée de 7 000 m², 20 ans d'expertise en Auvergne-Rhône-Alpes, laquage certifié Qualicoat.", lastmod: LASTMOD },
   'ressources': { path: '/ressources', title: 'Ressources techniques — Enveloppe du bâtiment | PLIALU', desc: 'Dossiers techniques et guides pratiques PLIALU pour vos choix de matériaux et conceptions de façades métalliques.', noindex: true },
   'ressource-1': { path: '/ressources/choix-metal-facade', title: 'Quel métal choisir pour une façade extérieure ? | PLIALU', desc: 'Aluminium, acier ou inox pour une façade extérieure : comparatif technique, comportement aux UV, corrosion et contraintes chantier. Guide prescripteurs.', noindex: true },
   'ressource-2': { path: '/ressources/pliage-aluminium-tolerances', title: 'Pliage aluminium : limites et tolérances | PLIALU', desc: 'Pliage aluminium : épaisseurs, rayons mini, tolérances ±0,3 mm. Ce que votre fabricant doit maîtriser avant de démarrer la production.', noindex: true },
