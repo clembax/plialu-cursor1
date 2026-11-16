@@ -2,9 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router';
 import CookieBanner from './src/components/CookieBanner';
 import GoutteEauExtrudee from './src/components/GoutteEauExtrudee';
-import { PROJECTS, getPortfolioOrder, buildPortfolioJsonLd } from './projects';
+import { PROJECTS, getPortfolioOrder } from './projects';
 import PortfolioSheet from './PortfolioSheet';
-import { SEO_CONFIG, BLOCKED_PAGE_KEYS, pathToPageKey, type PageKey } from './src/seo/seoConfig';
+import { SEO_CONFIG, BLOCKED_PAGE_KEYS, pathToPageKey, pageHead, jsonLdPayload, type PageKey } from './src/seo/seoConfig';
 import type { ZoneId } from './src/data/zones';
 import { Header } from './src/layout/Header';
 import { Footer } from './src/layout/Footer';
@@ -54,91 +54,50 @@ const App: React.FC = () => {
   const zonePin = useRef<ZoneId | null>(null);
   const openProjectId = (currentPage === 'projects' || currentPage === 'home') ? readSheetId(location.state) : null;
 
-  // Gère la mise à jour SEO et la fausse URL lors d'un changement de page
   useEffect(() => {
-    const config = SEO_CONFIG[currentPage];
-    if (config) {
-      document.title = config.title;
-      
-      const metaDesc = document.querySelector('meta[name="description"]');
-      if (metaDesc) metaDesc.setAttribute('content', config.desc);
-      const ogImageMeta = document.querySelector('meta[property="og:image"]');
-      if (ogImageMeta) {
-        ogImageMeta.setAttribute('content', 'https://res.cloudinary.com/dyiup6v5x/image/upload/v1771414327/Hero-1200px_vuuw2q.webp');
-      } else {
-        const meta = document.createElement('meta');
-        meta.setAttribute('property', 'og:image');
-        meta.setAttribute('content', 'https://res.cloudinary.com/dyiup6v5x/image/upload/v1771414327/Hero-1200px_vuuw2q.webp');
-        document.head.appendChild(meta);
+    const tags = pageHead(currentPage, SEO_CONFIG[currentPage].path);
+    const jsonIds = new Set<string>();
+
+    for (const tag of tags) {
+      if (tag.kind === 'title') {
+        document.title = tag.text;
+        continue;
       }
-      const ogImageWidthMeta = document.querySelector('meta[property="og:image:width"]') || (() => { const m = document.createElement('meta'); m.setAttribute('property', 'og:image:width'); m.setAttribute('content', '1200'); document.head.appendChild(m); return m; })();
-      ogImageWidthMeta.setAttribute('content', '1200');
-
-      const ogImageHeightMeta = document.querySelector('meta[property="og:image:height"]') || (() => { const m = document.createElement('meta'); m.setAttribute('property', 'og:image:height'); m.setAttribute('content', '630'); document.head.appendChild(m); return m; })();
-      ogImageHeightMeta.setAttribute('content', '630');
-
-      const metaRobots = document.querySelector('meta[name="robots"]');
-      if (metaRobots) metaRobots.setAttribute('content', config.noindex ? 'noindex, follow' : 'index, follow');
-
-      const updateOrCreateTag = (selector: string, createNode: () => HTMLElement) => {
-        let el = document.querySelector(selector) as HTMLElement | null;
+      if (tag.kind === 'meta') {
+        const selector = tag.name
+          ? `meta[name="${tag.name}"]`
+          : `meta[property="${tag.property}"]`;
+        let el = document.querySelector(selector);
         if (!el) {
-          el = createNode();
+          el = document.createElement('meta');
+          if (tag.name) el.setAttribute('name', tag.name);
+          if (tag.property) el.setAttribute('property', tag.property);
           document.head.appendChild(el);
         }
-        return el;
-      };
-
-      const currentUrl = window.location.origin + config.path;
-
-      const ogTitleEl = updateOrCreateTag('meta[property="og:title"]', () => {
-        const el = document.createElement('meta');
-        el.setAttribute('property', 'og:title');
-        return el;
-      });
-      ogTitleEl.setAttribute('content', config.title);
-
-      const ogDescEl = updateOrCreateTag('meta[property="og:description"]', () => {
-        const el = document.createElement('meta');
-        el.setAttribute('property', 'og:description');
-        return el;
-      });
-      ogDescEl.setAttribute('content', config.desc);
-
-      const ogTypeEl = updateOrCreateTag('meta[property="og:type"]', () => {
-        const el = document.createElement('meta');
-        el.setAttribute('property', 'og:type');
-        return el;
-      });
-      ogTypeEl.setAttribute('content', 'website');
-
-      const ogUrlEl = updateOrCreateTag('meta[property="og:url"]', () => {
-        const el = document.createElement('meta');
-        el.setAttribute('property', 'og:url');
-        return el;
-      });
-      ogUrlEl.setAttribute('content', currentUrl);
-
-      const canonicalEl = updateOrCreateTag('link[rel="canonical"]', () => {
-        const el = document.createElement('link');
-        el.setAttribute('rel', 'canonical');
-        return el;
-      });
-      canonicalEl.setAttribute('href', currentUrl);
-
-      const existingLd = document.getElementById('ld-portfolio');
-      if (currentPage === 'projects') {
-        const payload = JSON.stringify(
-          buildPortfolioJsonLd(PROJECTS, window.location.origin, SEO_CONFIG.projects.title)
-        ).replace(/</g, '\\u003c');
-        const script = existingLd ?? document.createElement('script');
-        script.id = 'ld-portfolio';
-        script.setAttribute('type', 'application/ld+json');
-        script.textContent = payload;
-        if (!existingLd) document.head.appendChild(script);
-      } else if (existingLd) {
-        existingLd.remove();
+        el.setAttribute('content', tag.content);
+        continue;
       }
+      if (tag.kind === 'link') {
+        let el = document.querySelector(`link[rel="${tag.rel}"]`);
+        if (!el) {
+          el = document.createElement('link');
+          el.setAttribute('rel', tag.rel);
+          document.head.appendChild(el);
+        }
+        el.setAttribute('href', tag.href);
+        continue;
+      }
+      jsonIds.add(tag.id);
+      const existing = document.getElementById(tag.id);
+      const script = existing ?? document.createElement('script');
+      script.id = tag.id;
+      script.setAttribute('type', 'application/ld+json');
+      script.textContent = jsonLdPayload(tag.json);
+      if (!existing) document.head.appendChild(script);
+    }
+
+    for (const id of ['ld-org', 'ld-portfolio']) {
+      if (!jsonIds.has(id)) document.getElementById(id)?.remove();
     }
   }, [currentPage]);
 
