@@ -20,6 +20,7 @@ function isConsentStatus(value: unknown): value is ConsentStatus {
 }
 
 export function getConsent(): ConsentStatus | null {
+  if (typeof window === 'undefined') return null;
   try {
     const raw = localStorage.getItem(CONSENT_KEY);
     if (!raw) return null;
@@ -93,9 +94,10 @@ export function openCookieSettings(): void {
 }
 
 export function useConsent(): ConsentStatus | null {
-  const [status, setStatus] = useState<ConsentStatus | null>(getConsent);
+  const [status, setStatus] = useState<ConsentStatus | null>(null);
 
   useEffect(() => {
+    setStatus(getConsent());
     const sync = () => setStatus(getConsent());
     window.addEventListener('plialu:consent', sync);
     return () => window.removeEventListener('plialu:consent', sync);

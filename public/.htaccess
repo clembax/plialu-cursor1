@@ -20,10 +20,27 @@
   # Ancienne URL de la page Solutions
   RewriteRule ^solutions-temporaire/?$ /solutions [R=301,L]
 
-  # Ne pas réécrire si le fichier ou dossier demandé existe réellement
+  RewriteRule ^index(\.html)?$ / [R=301,L]
+
+  # Retire la barre oblique finale, sauf à la racine
+  RewriteCond %{REQUEST_URI} !^/$
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.+)/$ /$1 [R=301,L]
+
+  # Retire .html de l'URL demandée, sans boucler sur la réécriture interne
+  RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
+  RewriteRule ^ /%1 [R=301,L]
+
+  # Pages retirées, redirection temporaire vers l'accueil
+  RewriteRule ^solutions-hub/?$ / [R=302,L]
+  RewriteRule ^solutions/.+ / [R=302,L]
+  RewriteRule ^ressources(/.*)?$ / [R=302,L]
+
+  # Sert le HTML pré-rendu sans changer l'URL
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-
-  # Toutes les autres routes renvoient vers index.html
-  RewriteRule ^ index.html [L]
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.+?)/?$ $1.html [L]
 </IfModule>
+
+ErrorDocument 404 /404.html

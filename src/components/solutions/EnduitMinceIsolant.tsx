@@ -1,12 +1,9 @@
+import { Link } from 'react-router';
 import React, { useEffect, useRef, useState } from 'react';
 import { X } from 'lucide-react';
 import { iteProfiles, schemaImages } from '../../config/schemaConfig';
 
-interface EnduitMinceIsolantProps {
-  setCurrentPage: (page: any) => void;
-}
-
-const EnduitMinceIsolant: React.FC<EnduitMinceIsolantProps> = ({ setCurrentPage }) => {
+const EnduitMinceIsolant: React.FC = () => {
   const [activeProfile, setActiveProfile] = useState<number | null>(null);
   const [zoomedImage, setZoomedImage] = useState<null | { src: string; srcSet: string; alt: string }>(null);
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
@@ -105,12 +102,12 @@ const EnduitMinceIsolant: React.FC<EnduitMinceIsolantProps> = ({ setCurrentPage 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
 
         {/* Retour */}
-        <button
-          onClick={() => setCurrentPage('solutions')}
+        <Link to="/solutions-hub"
+          
           className="text-[#E2FD48] hover:opacity-70 transition-opacity font-medium text-xs uppercase tracking-widest flex items-center gap-2 mb-14"
         >
           &larr; RETOUR AUX SOLUTIONS
-        </button>
+        </Link>
 
         {/* Header */}
         <div className="text-center mb-16">
@@ -279,12 +276,12 @@ const EnduitMinceIsolant: React.FC<EnduitMinceIsolantProps> = ({ setCurrentPage 
             Nos équipes dimensionnent les profils et accessoires adaptés à votre chantier.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button
-              onClick={() => setCurrentPage('contact')}
+            <Link to="/contact"
+              
               className="w-full sm:w-auto bg-[#0E2A33] text-white rounded-full px-8 py-4 text-sm font-extrabold transition-all shadow-lg hover:shadow-2xl"
             >
               Demander un chiffrage
-            </button>
+            </Link>
           </div>
         </div>
       </section>

@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router';
 import * as DS from './ds/ds';
 import { useConsent } from '../consent';
 
 interface ConsentEmbedProps {
   kind: 'vimeo' | 'maps';
   tone: 'dark' | 'light';
-  onOpenCookiePolicy: () => void;
   children: React.ReactNode;
 }
 
 const MAPS_URL =
   'https://www.google.com/maps/search/?api=1&query=Plialu+Technoparc+Saône+Vallée+150+route+Copernic+01390+Civrieux';
 
-const ConsentEmbed: React.FC<ConsentEmbedProps> = ({ kind, tone, onOpenCookiePolicy, children }) => {
+const ConsentEmbed: React.FC<ConsentEmbedProps> = ({ kind, tone, children }) => {
   const consent = useConsent();
   const [revealed, setRevealed] = useState(false);
 
@@ -40,13 +40,12 @@ const ConsentEmbed: React.FC<ConsentEmbedProps> = ({ kind, tone, onOpenCookiePol
           Ouvrir dans Google Maps
         </a>
       )}
-      <button
-        type="button"
-        onClick={onOpenCookiePolicy}
+      <Link
+        to="/politique-confidentialite#cookies"
         className="text-xs underline underline-offset-2 opacity-60 transition-opacity hover:opacity-100"
       >
         politique de cookies
-      </button>
+      </Link>
     </div>
   );
 };

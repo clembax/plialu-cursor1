@@ -154,12 +154,18 @@ const PortfolioCard: React.FC<{
   context: 'portfolio' | 'home';
 }> = ({ project, index, size, stagger, onOpen, context }) => {
   const frameRef = useRef<HTMLDivElement>(null);
-  const reduceMotion = useRef(prefersReducedMotion()).current;
-  const [visible, setVisible] = useState(reduceMotion);
+  const [reduceMotion, setReduceMotion] = useState(false);
+  const [visible, setVisible] = useState(false);
   const [previewReady, setPreviewReady] = useState(false);
   const preview = project.gallery[0];
   const photoCount = getProjectImages(project).length;
   const label = String(index + 1).padStart(2, '0');
+
+  useEffect(() => {
+    if (!prefersReducedMotion()) return;
+    setReduceMotion(true);
+    setVisible(true);
+  }, []);
 
   useEffect(() => {
     if (reduceMotion) return;
