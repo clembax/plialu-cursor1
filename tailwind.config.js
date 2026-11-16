@@ -4,7 +4,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Poppins', 'system-ui', 'sans-serif'],
-        display: ['"Space Grotesk"', 'Poppins', 'sans-serif']
+        display: ['"Space Grotesk Variable"', 'Poppins', 'sans-serif']
       },
       colors: {
         navy: '#0E2A33',
