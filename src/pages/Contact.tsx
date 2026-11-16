@@ -48,7 +48,7 @@ export function ContactPage(props: {
               <div className="mb-12 text-center">
                 <span className={`block mb-4 ${DS.EYEBROW_LIGHT}`}>CONTACT</span>
                 <h2 className={`${DS.H2} text-[#0E2A33]`}>Votre demande</h2>
-                <p className={`${DS.LEAD_LIGHT} mt-6 mx-auto`}>Devis, question technique ou candidature : nos équipes vous répondent sous 48 h.</p>
+                <p className={`${DS.LEAD_LIGHT} mt-6 mx-auto`}>Devis, question technique ou candidature&nbsp;: nos équipes vous répondent sous 48 h.</p>
               </div>
               <div className="bg-white rounded-[20px] p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.03)] border border-[#0E2A33]/[0.12]">
                   <form
@@ -223,7 +223,7 @@ export function ContactPage(props: {
             <div className="max-w-7xl mx-auto px-4 sm:px-6">
               <div className="mb-16">
                 <span className={`block mb-4 ${DS.EYEBROW_LIGHT}`}>COORDONNÉES</span>
-                <h2 className={`${DS.H2} text-[#0E2A33]`}>Où nous trouver ?</h2>
+                <h2 className={`${DS.H2} text-[#0E2A33]`}>Où nous trouver&nbsp;?</h2>
               </div>
               <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-12 lg:gap-20 items-start">
                 <div className="space-y-8">

@@ -49,9 +49,9 @@ export function AProposPage(props: {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-[72px] items-center">
                 <div>
                   <p className={`${DS.EYEBROW_LIGHT} mb-4`}>Notre ADN</p>
-                  <h2 className={`${DS.H2} text-[#0E2A33]`}>Votre partenaire en pliage et thermolaquage</h2>
-                  <p className={`${DS.LEAD_LIGHT} mt-6`}>PLIALU fabrique depuis 20 ans les pièces métalliques de l'enveloppe du bâtiment : cassettes, bardages, précadres, profilés ITE, couvertines et habillages de façade. Son usine intégrée de 7 000 m² près de Lyon réunit le déroulage, le pliage jusqu'à 4 m et le thermolaquage certifié Qualicoat. Pièces standard et sur mesure, pour les façadiers, architectes et bureaux d'études.</p>
-                  <p className={`${DS.LEAD_LIGHT} mt-5`}>Nos équipes interviennent à chaque étape : lecture de plans, conseil matière, optimisation des tolérances, respect des délais.</p>
+                  <h2 className={`${DS.H2} text-[#0E2A33]`}>Pliage et thermolaquage près de Lyon</h2>
+                  <p className={`${DS.LEAD_LIGHT} mt-6`}>PLIALU fabrique depuis 20 ans les pièces métalliques de l'enveloppe du bâtiment&nbsp;: cassettes, bardages, précadres, profilés ITE, couvertines et habillages de façade. Son usine intégrée de 7 000 m² près de Lyon réunit le déroulage, le pliage jusqu'à 4 m et le thermolaquage certifié Qualicoat. Pièces standard et sur mesure, pour les façadiers, architectes et bureaux d'études.</p>
+                  <p className={`${DS.LEAD_LIGHT} mt-5`}>Nos équipes interviennent à chaque étape&nbsp;: lecture de plans, conseil matière, optimisation des tolérances, respect des délais.</p>
                   <button onClick={goContactForm} className={`${DS.BTN_PRIMARY} mt-10`}>
                     Échanger sur votre projet
                     <ArrowRight aria-hidden="true" size={16} />
@@ -86,10 +86,10 @@ export function AProposPage(props: {
               </div>
               <div className="md:pr-72">
               <p className={`${DS.LEAD_LIGHT} mt-6`}>
-                Infinimetal est la marque de thermolaquage de PLIALU : notre usine de laquage certifiée Qualicoat, près de Lyon, en Auvergne-Rhône-Alpes. Elle dispose de deux lignes complémentaires : une ligne à plat pour laquer les tôles avant pliage, et une ligne verticale dédiée au laquage des pièces après pliage ou assemblage.
+                Infinimetal est la marque de thermolaquage de PLIALU&nbsp;: notre usine de laquage certifiée Qualicoat, près de Lyon, en Auvergne-Rhône-Alpes. Elle dispose de deux lignes complémentaires&nbsp;: une ligne à plat pour laquer les tôles avant pliage, et une ligne verticale dédiée au laquage des pièces après pliage ou assemblage.
               </p>
               <p className="mt-5 max-w-2xl text-base leading-[1.65] text-[#0E2A33]/75 md:text-lg">
-                Nos commandes sont laquées en interne, avant ou après pliage. Le label Qualicoat, référentiel européen du thermolaquage de l'aluminium en architecture, encadre nos deux lignes : préparation de surface, épaisseur de poudre et contrôles, avec traçabilité de process. Il ne concerne que l'aluminium. L'acier peut aussi être laqué chez Infinimetal, sans cette certification.
+                Nos commandes sont laquées en interne, avant ou après pliage. Le label Qualicoat, référentiel européen du thermolaquage de l'aluminium en architecture, encadre nos deux lignes&nbsp;: préparation de surface, épaisseur de poudre et contrôles, avec traçabilité de process. Il ne concerne que l'aluminium. L'acier peut aussi être laqué chez Infinimetal, sans cette certification.
               </p>
               </div>
               <Link
@@ -108,8 +108,7 @@ export function AProposPage(props: {
               <p className="sr-only">PLIALU, atelier de façonnage métallique implanté en Rhône-Alpes, intervient sur toute la France, Corse comprise, ainsi qu'en Belgique et en Suisse.</p>
               <div className="grid items-start gap-10 pb-0 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.3fr)] lg:grid-rows-[auto_1fr] lg:gap-x-16 lg:gap-y-10">
                 <h2 className={`${DS.H2} text-white [text-wrap:balance] lg:col-start-1 lg:row-start-1`}>
-                  <span className="block">Pliage et thermolaquage près de Lyon,</span>
-                  <span className="block">chantiers partout en France</span>
+                  Des chantiers partout en France
                 </h2>
                 <FranceDotMap className="mx-auto w-full max-w-[640px] lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:max-w-none lg:-mr-[2.8%]" highlight={ZONE_HIGHLIGHT ? zone : null} />
                 {SHOW_ZONE_KEY && (
@@ -154,8 +153,8 @@ export function AProposPage(props: {
           <section className="py-16 md:py-24 bg-[#071318] text-center">
             <div className="max-w-3xl mx-auto px-6">
               <div className="mb-16">
-              <h2 className={`${DS.H2} text-white`}>20 ans de façonnage métallique en <span className="whitespace-nowrap">Rhône-Alpes.</span></h2>
-              <p className={`${DS.LEAD_DARK} mt-6 mx-auto`}>Vos équipes techniques répondent sous 48 h.</p>
+              <h2 className={`${DS.H2} text-white`}>Et si PLIALU devenait votre partenaire&nbsp;?</h2>
+              <p className={`${DS.LEAD_DARK} mt-6 mx-auto`}>Envoyez vos plans&nbsp;: nos équipes techniques vous répondent sous 48 h.</p>
               </div>
               <button onClick={goContactForm} className={DS.BTN_PRIMARY}>
                 Soumettre un projet

@@ -18,7 +18,7 @@ export function RessourceThermolaquagePage(props: {
                   <span>← Retour aux ressources</span>
                 </Link>
 
-                <h1 className="text-4xl md:text-5xl font-black text-[#0E2A33] leading-tight mt-20 max-w-3xl mx-auto text-center">
+                <h1 className="text-4xl md:text-5xl font-black text-[#0E2A33] leading-tight mt-20 max-w-3xl mx-auto text-center text-balance">
                   Thermolaquage certifié Qualicoat : garanties
                 </h1>
 
@@ -58,7 +58,7 @@ export function RessourceThermolaquagePage(props: {
           <section className="pt-8 pb-20 bg-white" style={{ backgroundColor: '#FFFFFF' }}>
             <div className="max-w-3xl mx-auto px-6 text-gray-700 leading-relaxed space-y-12">
               <div className="pt-8 mt-8 border-t border-gray-100">
-                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">Pourquoi la certification QUALICOAT change tout</h2>
+                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33] text-balance">Pourquoi la certification QUALICOAT change tout</h2>
                 <p className="text-base mb-6">
                   QUALICOAT est un label de qualité délivré par une association internationale indépendante, basée en Suisse, qui certifie
                   les laqueurs industriels sur aluminium et alliages légers. Le périmètre de certification ne se limite pas à un contrôle
@@ -79,7 +79,7 @@ export function RessourceThermolaquagePage(props: {
               </div>
 
               <div className="pt-8 mt-20 border-t border-gray-100">
-                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">Post-laquage vs pré-laquage : l'argument PLIALU</h2>
+                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33] text-balance">Post-laquage vs pré-laquage : l'argument PLIALU</h2>
                 <p className="text-base mb-6">
                   Dans l'industrie du façonnage métallique, deux approches coexistent pour le laquage des pièces de façade.
                 </p>
@@ -116,7 +116,7 @@ export function RessourceThermolaquagePage(props: {
               </div>
 
               <div className="pt-8 mt-20 border-t border-gray-100">
-                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">Le processus QUALICOAT : ingénierie de surface</h2>
+                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33] text-balance">Le processus QUALICOAT : ingénierie de surface</h2>
                 <p className="text-base mb-6">
                   Le thermolaquage certifié QUALICOAT est une séquence industrielle en trois phases, où chaque étape conditionne la
                   performance de la suivante.
@@ -151,7 +151,7 @@ export function RessourceThermolaquagePage(props: {
               </div>
 
               <div className="pt-8 mt-20 border-t border-gray-100">
-                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">Les protocoles de validation</h2>
+                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33] text-balance">Les protocoles de validation</h2>
                 <p className="text-base mb-6">
                   La certification QUALICOAT repose sur des tests normalisés réalisés sur chaque lot de production. Ces protocoles qualifient
                   le comportement physico-chimique du système complet substrat-conversion-peinture.
@@ -203,7 +203,7 @@ export function RessourceThermolaquagePage(props: {
               </div>
 
               <div className="pt-8 mt-20 border-t border-gray-100">
-                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">Classes de poudres : durabilité UV</h2>
+                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33] text-balance">Classes de poudres : durabilité UV</h2>
                 <p className="text-base mb-6">
                   Le choix de la classe de poudre détermine la stabilité colorimétrique (maintien de la teinte RAL d'origine) et la
                   rétention de brillance sur la durée d'exposition aux UV. C'est un paramètre à intégrer dès la rédaction du CCTP (Cahier
@@ -255,7 +255,7 @@ export function RessourceThermolaquagePage(props: {
               </div>
 
               <div className="pt-8 mt-20 border-t border-gray-100">
-                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">Ce qu'un prescripteur doit exiger</h2>
+                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33] text-balance">Ce qu'un prescripteur doit exiger</h2>
                 <p className="text-base mb-6">Quatre points à verrouiller dans le cahier des charges.</p>
                 <p className="text-base mb-6">
                   <strong>Exiger des poudres de Classe 2 minimum sur toutes les façades sollicitées par les UV.</strong> La Classe 1 peut
@@ -303,7 +303,7 @@ export function RessourceThermolaquagePage(props: {
           {/* SECTION CONTACT BAS DE PAGE */}
           <section className="py-24 bg-[#071318] text-center border-t border-white/5">
             <div className="max-w-3xl mx-auto px-6 space-y-8">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white text-balance">
                 Votre prochain projet. Thermolaquage certifié QUALICOAT inclus.
               </h2>
               <p className="text-base md:text-lg text-white/50">

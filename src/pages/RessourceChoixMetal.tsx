@@ -17,7 +17,7 @@ export function RessourceChoixMetalPage(props: {
                 >
                   <span>← Retour aux ressources</span>
                 </Link>
-                <h1 className="text-4xl md:text-5xl font-black text-[#0E2A33] leading-tight mt-20 text-center max-w-3xl mx-auto">
+                <h1 className="text-4xl md:text-5xl font-black text-[#0E2A33] leading-tight mt-20 text-center max-w-3xl mx-auto text-balance">
                   Choisir le bon métal pour une façade extérieure
                 </h1>
                 <p className="text-lg text-gray-600 mt-6 max-w-2xl mx-auto text-center">
@@ -48,7 +48,7 @@ export function RessourceChoixMetalPage(props: {
             <div className="max-w-3xl mx-auto px-6 text-gray-700 leading-relaxed space-y-12">
               {/* Section 1 */}
               <div className="pt-4 mt-8 border-t border-gray-100">
-                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
+                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33] text-balance">
                   Pourquoi le choix du substrat est déterminant
                 </h2>
                 <p className="text-base mb-12">
@@ -69,7 +69,7 @@ export function RessourceChoixMetalPage(props: {
 
               {/* Section 2 */}
               <div className="pt-8 mt-24 border-t border-gray-100">
-                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
+                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33] text-balance">
                   Aluminium, acier galvanisé, inox&nbsp;: comparatif technique
                 </h2>
                 <p className="text-base mb-12">
@@ -132,7 +132,7 @@ export function RessourceChoixMetalPage(props: {
 
               {/* Section 3 */}
               <div className="pt-8 mt-24 border-t border-gray-100">
-                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
+                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33] text-balance">
                   3 contextes, 3 choix différents
                 </h2>
                 <div className="flex flex-col md:flex-row gap-6">
@@ -180,7 +180,7 @@ export function RessourceChoixMetalPage(props: {
 
               {/* Section 4 */}
               <div className="pt-8 mt-24 border-t border-gray-100">
-                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
+                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33] text-balance">
                   Ce que ça change sur le traitement de surface
                 </h2>
                 <p className="text-base mb-12">
@@ -230,7 +230,7 @@ export function RessourceChoixMetalPage(props: {
           {/* SECTION CONTACT BAS DE PAGE */}
           <section className="py-24 bg-[#071318] text-center border-t border-white/5">
             <div className="max-w-3xl mx-auto px-6 space-y-8">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white text-balance">
                 Votre métal est choisi. Place au façonnage.
               </h2>
               <p className="text-base md:text-lg text-white/50">

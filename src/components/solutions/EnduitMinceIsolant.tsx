@@ -111,7 +111,7 @@ const EnduitMinceIsolant: React.FC = () => {
 
         {/* Header */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 text-balance">
             Enduit Mince sur Isolant
           </h1>
           <p className="text-gray-400 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
@@ -269,7 +269,7 @@ const EnduitMinceIsolant: React.FC = () => {
           <span className="text-sm font-extrabold tracking-widest uppercase mb-8 inline-block text-gray-500">
             VOTRE PROJET ITE
           </span>
-          <h2 className="mb-10 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
+          <h2 className="mb-10 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33] text-balance">
             Un projet ITE ?
           </h2>
           <p className="text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed font-medium text-gray-600">

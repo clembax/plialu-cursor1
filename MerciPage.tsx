@@ -12,7 +12,7 @@ const MerciPage: React.FC<MerciPageProps> = ({ onBackHome }) => {
         <span className="inline-block text-[10px] font-extrabold tracking-[0.4em] text-[#E2FD48] uppercase">
           Demande envoyée
         </span>
-        <h1 className="text-4xl md:text-5xl lg:text-6xl tracking-tighter leading-[1.1] font-black text-white uppercase">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl tracking-tighter leading-[1.1] font-black text-white uppercase text-balance">
           Merci !
         </h1>
         <p className="text-lg md:text-xl text-white/90 leading-relaxed font-medium">

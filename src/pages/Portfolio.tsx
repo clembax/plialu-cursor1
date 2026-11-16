@@ -74,8 +74,8 @@ export function PortfolioPage(props: {
           <section className="py-16 md:py-24 bg-[#071318] text-center border-t border-white/5">
             <div className="max-w-3xl mx-auto px-6">
               <div className="mb-16">
-              <h2 className={`${DS.H2} text-white`}>Confiez-nous vos projets</h2>
-              <p className={`${DS.LEAD_DARK} mt-6 mx-auto`}>Nos équipes vous accompagnent dans la recherche de solutions pour vos projets</p>
+              <h2 className={`${DS.H2} text-white`}>Votre façade sera notre prochaine référence</h2>
+              <p className={`${DS.LEAD_DARK} mt-6 mx-auto`}>Cassettes, précadres, habillages&nbsp;: PLIALU fabrique les pièces de votre chantier, des plans à la livraison.</p>
               </div>
               <button onClick={goContactForm} className={DS.BTN_PRIMARY}>
                 Soumettre mon projet

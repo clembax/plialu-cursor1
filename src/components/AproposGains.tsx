@@ -38,7 +38,7 @@ const ENGAGEMENTS = [
     tab: 'Délais maîtrisés',
     short: 'Engagements tenus, même sur les séries courtes.',
     title: 'Tout est fabriqué sous le même toit',
-    text: "Déroulage, thermolaquage, pliage et assemblage se font dans nos ateliers. Aucune étape ne dépend d'un sous-traitant : pas de délai caché entre deux prestataires.",
+    text: "Déroulage, thermolaquage, pliage et assemblage se font dans nos ateliers. Aucune étape ne dépend d'un sous-traitant\u00A0: pas de délai caché entre deux prestataires.",
     chips: ['Process intégré', 'Sans sous-traitance'],
     img: { v: 'v1773075246', s800: 'De%CC%81roulage-800px_qz2nnx.webp', s1200: 'De%CC%81roulage-1200px_e0hd8r.webp', s1600: 'De%CC%81roulage-1600px_plmy5l.webp' },
     alt: "Bobines de métal stockées dans l'atelier PLIALU avant déroulage, façonnage métallique intégré en Rhône-Alpes",
@@ -84,7 +84,7 @@ export const AproposGains: React.FC = () => {
       <div className={DS.CONTAINER}>
         <div className="mb-14 max-w-3xl">
           <p className={`${DS.EYEBROW_DARK} mb-4`}>Ce que vous y gagnez</p>
-          <h2 className={`${DS.H2} text-white`}>Pourquoi choisir une usine intégrée ?</h2>
+          <h2 className={`${DS.H2} text-white`}>Pourquoi choisir une usine intégrée&nbsp;?</h2>
         </div>
 
         <div className="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12">

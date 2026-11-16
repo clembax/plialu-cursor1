@@ -88,7 +88,7 @@ export function HomePage(props: {
                 <div>
                   <div className="mb-16">
                     <span className={`block mb-4 ${DS.EYEBROW_DARK}`}>PROCESS INTÉGRÉ</span>
-                    <h2 className={`${DS.H2} text-white`}>Déroulage, pliage et thermolaquage sous le même toit</h2>
+                    <h2 className={`${DS.H2} text-white`}>Trois métiers sous le même toit</h2>
                     <p className={`${DS.LEAD_DARK} mt-6`}>
                     Chez PLIALU, le déroulage, le pliage et le thermolaquage se font dans la même usine, à Civrieux près de Lyon. Du bureau des méthodes à la livraison, avec un thermolaquage certifié Qualicoat et un pliage jusqu'à 4 m, chaque étape est réalisée en interne, sans sous-traitant entre deux opérations.
                     </p>
@@ -187,9 +187,9 @@ export function HomePage(props: {
                 {/* Colonne droite : texte d'accroche */}
                 <div>
                   <p className={`${DS.EYEBROW_DARK} mb-4`}>Visite d'usine</p>
-                  <h2 className={`${DS.H2} text-white lg:w-[calc(100%+8px)]`}>Nos lignes de déroulage, pliage et thermolaquage en vidéo</h2>
+                  <h2 className={`${DS.H2} text-white lg:w-[calc(100%+8px)]`}>L'usine PLIALU en vidéo</h2>
                   <p className={`${DS.BODY_DARK} mt-6`}>
-                    Deux minutes pour voir les lignes de production.
+                    Deux minutes pour voir nos lignes de déroulage, pliage et thermolaquage.
                   </p>
                   <Link
                     to="/expertises"
@@ -209,7 +209,7 @@ export function HomePage(props: {
                 <div className="max-w-3xl">
                   <p className={`mb-4 ${DS.EYEBROW_LIGHT}`}>NOS SOLUTIONS</p>
                   <h2 className={`${DS.H2} text-[#0E2A33]`}>Six domaines d'application pour l'enveloppe du bâtiment</h2>
-                  <p className={`${DS.LEAD_LIGHT} mt-6`}>Enduit, bardage, ravalement, précadres, étanchéité et MOB : pliés et laqués par PLIALU près de Lyon.</p>
+                  <p className={`${DS.LEAD_LIGHT} mt-6`}>Enduit, bardage, ravalement, précadres, étanchéité et MOB&nbsp;: pliés et laqués par PLIALU près de Lyon.</p>
                 </div>
                 <Link to="/solutions" className={`${DS.BTN_SECONDARY_LIGHT} shrink-0 self-start md:self-auto`}>
                   Toutes nos solutions
@@ -223,11 +223,11 @@ export function HomePage(props: {
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
                 );
                 const tuiles = [
-                  { n: '01', anchor: 'enduit-mince', title: 'Enduit mince sur isolant', img: 'v1794308485/Solutions_enduit_mince_ITE_nhj3ul.webp', alt: 'Enduit mince sur isolant : façade ITE avec tableaux et bavettes de fenêtres en aluminium laqué' },
-                  { n: '02', anchor: 'bardage', title: 'Bardage, cassettes & clins', img: 'v1794305547/Image_site_bardage_eam6np.webp', alt: 'Bardage en cassettes de façade aluminium : joint en croix et fixations' },
-                  { n: '03', anchor: 'ravalement', title: 'Ravalement de façade', img: 'v1794235010/9cd7d856-180e-4fc2-bf46-7c3f938dfa8f_dj4zga.webp', alt: "Ravalement de façade : nez de dalle équipé d'une goutte d'eau extrudée en aluminium" },
+                  { n: '01', anchor: 'enduit-mince', title: 'Enduit mince sur isolant', img: 'v1794308485/Solutions_enduit_mince_ITE_nhj3ul.webp', alt: 'Enduit mince sur isolant\u00A0: façade ITE avec tableaux et bavettes de fenêtres en aluminium laqué' },
+                  { n: '02', anchor: 'bardage', title: 'Bardage, cassettes & clins', img: 'v1794305547/Image_site_bardage_eam6np.webp', alt: 'Bardage en cassettes de façade aluminium\u00A0: joint en croix et fixations' },
+                  { n: '03', anchor: 'ravalement', title: 'Ravalement de façade', img: 'v1794235010/9cd7d856-180e-4fc2-bf46-7c3f938dfa8f_dj4zga.webp', alt: "Ravalement de façade\u00A0: nez de dalle équipé d'une goutte d'eau extrudée en aluminium" },
                   { n: '04', anchor: 'precadres', title: 'Précadres, portes ou fenêtres', img: 'v1794305764/20201001_141101_resized_bddixg.webp', alt: "Précadre aluminium monobloc soudé dans l'atelier PLIALU, vue de dessus" },
-                  { n: '05', anchor: 'etancheite', title: 'Étanchéité', img: 'v1794308485/Solutions_etancheite_couvertine_nofleh.webp', alt: 'Étanchéité de toiture-terrasse : couvertine aluminium posée sur acrotère avec son support' },
+                  { n: '05', anchor: 'etancheite', title: 'Étanchéité', img: 'v1794308485/Solutions_etancheite_couvertine_nofleh.webp', alt: 'Étanchéité de toiture-terrasse\u00A0: couvertine aluminium posée sur acrotère avec son support' },
                   { n: '06', anchor: 'mob-fob', title: 'MOB, FOB & murs-rideaux', img: 'v1772021847/Welink-1200px_mu1jnb.webp', alt: 'Murs-rideaux et façade métallique du bâtiment WeLink à Lyon 7' },
                 ];
                 return (
@@ -359,7 +359,7 @@ export function HomePage(props: {
                 <div className="order-1 lg:order-2">
                   <div className="mb-16">
                   <span className={`block mb-4 ${DS.EYEBROW_DARK}`}>À PROPOS</span>
-                  <h2 className={`${DS.H2} text-white`}>Votre partenaire en pliage et thermolaquage près de Lyon</h2>
+                  <h2 className={`${DS.H2} text-white`}>Votre partenaire en pliage et thermolaquage</h2>
                   <p className={`${DS.LEAD_DARK} mt-6`}>
                     PLIALU fabrique les pièces pliées et laquées des façadiers, des entreprises de MOB et des entreprises du bâtiment. Depuis <strong>son usine près de Lyon</strong>, elle accompagne vos chantiers en <strong>Auvergne-Rhône-Alpes</strong>, partout en France, en Belgique et en Suisse, avec 7 000 m² dédiés au pliage et au thermolaquage sur mesure.
                   </p>
@@ -376,8 +376,8 @@ export function HomePage(props: {
               <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-10 lg:gap-16 items-start">
                 <div>
                   <p className={`${DS.EYEBROW_LIGHT} mb-4`}>Contact</p>
-                  <h2 className={`${DS.H2} text-[#0E2A33]`}>Étude technique, faisabilité, chiffrage. Ou toute autre demande.</h2>
-                  <p className={`${DS.LEAD_LIGHT} mt-6`}>Nos équipes vous répondent rapidement, en intégrant vos contraintes de chantier.</p>
+                  <h2 className={`${DS.H2} text-[#0E2A33]`}>Un projet pour l'enveloppe du bâtiment&nbsp;?</h2>
+                  <p className={`${DS.LEAD_LIGHT} mt-6`}>Plans, métrés ou simple question&nbsp;: l'équipe PLIALU vous répond sous 48 h, avec vos contraintes de chantier en tête.</p>
                   <div className="flex flex-wrap gap-4 mt-10">
                     <button onClick={goContactForm} className={DS.BTN_PRIMARY}>Demander un devis</button>
                     <a href="tel:0478089370" className={DS.BTN_SECONDARY_LIGHT}>

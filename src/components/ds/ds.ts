@@ -15,10 +15,10 @@ export const LINK_LIGHT = 'text-sm font-medium text-[#0E2A33]/75 hover:text-[#0E
 export const EYEBROW_DARK = 'font-display text-[10px] font-bold uppercase tracking-[0.3em] text-[#E2FD48]';
 export const EYEBROW_LIGHT = 'font-display text-[10px] font-bold uppercase tracking-[0.3em] text-[#0E2A33]/[0.62]';
 
-export const H1 = 'font-display text-4xl md:text-6xl font-bold uppercase tracking-tighter leading-[1.1]';
-export const H1_DETAIL = 'font-display text-4xl md:text-5xl font-bold uppercase tracking-tighter leading-[1.1]';
-export const H2 = 'font-display text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter leading-tight';
-export const H3 = 'font-display text-xl font-bold';
+export const H1 = 'font-display text-4xl md:text-6xl font-bold uppercase tracking-tighter leading-[1.1] text-balance';
+export const H1_DETAIL = 'font-display text-4xl md:text-5xl font-bold uppercase tracking-tighter leading-[1.1] text-balance';
+export const H2 = 'font-display text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter leading-tight text-balance';
+export const H3 = 'font-display text-xl font-bold text-balance';
 
 export const LEAD_DARK = 'max-w-2xl font-sans text-base md:text-lg font-medium leading-[1.65] text-white/70';
 export const LEAD_LIGHT = 'max-w-2xl font-sans text-base md:text-lg font-medium leading-[1.65] text-[#0E2A33]/75';

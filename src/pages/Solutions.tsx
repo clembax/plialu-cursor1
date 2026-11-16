@@ -25,7 +25,7 @@ export function SolutionsPage(props: {
                   Profilés et accessoires aluminium pour façade
                 </h1>
                 <p className={`${DS.LEAD_LIGHT} mt-6`}>
-                  PLIALU fabrique sur mesure les profilés et accessoires aluminium pour façade : habillages, pliages et pièces techniques de l'enveloppe du bâtiment. De l'isolation thermique par l'extérieur au ravalement, en passant par les bardages, précadres et tôles prélaquées, tout est plié et laqué dans notre usine près de Lyon.
+                  PLIALU fabrique sur mesure les profilés et accessoires aluminium pour façade&nbsp;: habillages, pliages et pièces techniques de l'enveloppe du bâtiment. De l'isolation thermique par l'extérieur au ravalement, en passant par les bardages, précadres et tôles prélaquées, tout est plié et laqué dans notre usine près de Lyon.
                 </p>
                 <div className="flex flex-wrap gap-4 mt-10">
                   <button type="button" onClick={goContactForm} className={DS.BTN_PRIMARY}>
@@ -68,9 +68,9 @@ export function SolutionsPage(props: {
                         n: '01',
                         anchor: 'enduit-mince',
                         title: 'Enduit mince sur isolant',
-                        text: "Profilés ITE sur mesure, y compris hors standard, pour les points singuliers de l'isolation par l'extérieur : départs, arrêts latéraux, couronnements, cornières entoilées, joints de dilatation PVC entoilés, et tous les pliages associés en aluminium laqué.",
+                        text: "Profilés ITE sur mesure, y compris hors standard, pour les points singuliers de l'isolation par l'extérieur\u00A0: départs, arrêts latéraux, couronnements, cornières entoilées, joints de dilatation PVC entoilés, et tous les pliages associés en aluminium laqué.",
                         img: 'v1794308485/Solutions_enduit_mince_ITE_nhj3ul.webp',
-                        alt: 'Enduit mince sur isolant : façade ITE avec tableaux et bavettes de fenêtres en aluminium laqué',
+                        alt: 'Enduit mince sur isolant\u00A0: façade ITE avec tableaux et bavettes de fenêtres en aluminium laqué',
                         icon: (
                           <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className={ic}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
@@ -81,9 +81,9 @@ export function SolutionsPage(props: {
                         n: '02',
                         anchor: 'bardage',
                         title: 'Bardage, cassettes & clins',
-                        text: "Cassettes de façade et clins sur mesure, en aluminium ou en acier, laqués dans nos ateliers. Habillage des fenêtres : bavettes, tableaux, linteaux et épingles d'embrasure. Ossatures galvanisées pour le bardage et grilles anti-rongeurs.",
+                        text: "Cassettes de façade et clins sur mesure, en aluminium ou en acier, laqués dans nos ateliers. Habillage des fenêtres\u00A0: bavettes, tableaux, linteaux et épingles d'embrasure. Ossatures galvanisées pour le bardage et grilles anti-rongeurs.",
                         img: 'v1794305547/Image_site_bardage_eam6np.webp',
-                        alt: 'Bardage en cassettes de façade aluminium : joint en croix et fixations',
+                        alt: 'Bardage en cassettes de façade aluminium\u00A0: joint en croix et fixations',
                         icon: (
                           <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" className={ic}>
                             <path d="M240,208h-8V72a8,8,0,0,0-8-8H184V40a8,8,0,0,0-8-8H80a8,8,0,0,0-8,8V96H32a8,8,0,0,0-8,8V208H16a8,8,0,0,0,0,16H240a8,8,0,0,0,0-16ZM40,112H80a8,8,0,0,0,8-8V48h80V72a8,8,0,0,0,8,8h40V208H152V168a8,8,0,0,0-8-8H112a8,8,0,0,0-8,8v40H40Zm96,96H120V176h16ZM112,72a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H120A8,8,0,0,1,112,72Zm0,32a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H120A8,8,0,0,1,112,104Zm56,0a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H176A8,8,0,0,1,168,104ZM88,136a8,8,0,0,1-8,8H64a8,8,0,0,1,0-16H80A8,8,0,0,1,88,136Zm0,32a8,8,0,0,1-8,8H64a8,8,0,0,1,0-16H80A8,8,0,0,1,88,168Zm24-32a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H120A8,8,0,0,1,112,136Zm56,0a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H176A8,8,0,0,1,168,136Zm0,32a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H176A8,8,0,0,1,168,168Z" />
@@ -96,7 +96,7 @@ export function SolutionsPage(props: {
                         title: 'Ravalement de façade',
                         text: "Bavettes droites ou rayonnées, avec relevés droits ou rayonnés. Gouttes d'eau extrudées, couvre-joints extrudés ou pliés, habillages de nez de dalle.",
                         img: 'v1794235010/9cd7d856-180e-4fc2-bf46-7c3f938dfa8f_dj4zga.webp',
-                        alt: "Ravalement de façade : nez de dalle équipé d'une goutte d'eau extrudée en aluminium",
+                        alt: "Ravalement de façade\u00A0: nez de dalle équipé d'une goutte d'eau extrudée en aluminium",
                         product: true,
                         icon: (
                           <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" className={ic}>
@@ -108,7 +108,7 @@ export function SolutionsPage(props: {
                         n: '04',
                         anchor: 'precadres',
                         title: 'Précadres, portes ou fenêtres',
-                        text: 'Précadres de fenêtres et de portes sur mesure, en aluminium ou en acier : étanches, monoblocs, soudés puis laqués. Livrés prêts à poser sur chantier.',
+                        text: 'Précadres de fenêtres et de portes sur mesure, en aluminium ou en acier\u00A0: étanches, monoblocs, soudés puis laqués. Livrés prêts à poser sur chantier.',
                         img: 'v1794305764/20201001_141101_resized_bddixg.webp',
                         alt: "Précadre aluminium monobloc soudé dans l'atelier PLIALU, vue de dessus",
                         icon: (
@@ -123,7 +123,7 @@ export function SolutionsPage(props: {
                         title: 'Étanchéité',
                         text: "Couvertines d'acrotère sur mesure, laquées dans la teinte RAL de votre choix, avec angles, éclisses et pattes drainantes. Bandes de rive pour toitures-terrasses.",
                         img: 'v1794308485/Solutions_etancheite_couvertine_nofleh.webp',
-                        alt: 'Étanchéité de toiture-terrasse : couvertine aluminium posée sur acrotère avec son support',
+                        alt: 'Étanchéité de toiture-terrasse\u00A0: couvertine aluminium posée sur acrotère avec son support',
                         icon: (
                           <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" className={ic}>
                             <path d="M53.92,34.62A8,8,0,1,0,42.08,45.38L64.72,70.29C48.32,95,40,119.78,40,144a88,88,0,0,0,149.21,63.22l12.87,14.16a8,8,0,1,0,11.84-10.76ZM128,216a72.08,72.08,0,0,1-72-72c0-19.93,6.68-40.57,19.86-61.46L178.43,195.36A71.84,71.84,0,0,1,128,216ZM90,50.51a8,8,0,0,1-.27-11.31A247.8,247.8,0,0,1,123.41,9.45a8,8,0,0,1,9.18,0C136,11.83,216,68.7,216,144a88.08,88.08,0,0,1-3.15,23.4,8,8,0,0,1-7.71,5.88A7.79,7.79,0,0,1,203,173a8,8,0,0,1-5.59-9.83A72.55,72.55,0,0,0,200,144c0-57.24-55.48-105-72-118a252.23,252.23,0,0,0-26.66,24.23A8,8,0,0,1,90,50.51Z" />
@@ -134,7 +134,7 @@ export function SolutionsPage(props: {
                         n: '06',
                         anchor: 'mob-fob',
                         title: 'MOB, FOB & murs-rideaux',
-                        text: 'Murs et façades à ossature bois, murs-rideaux : pièces techniques et spécifiques regroupant les cinq domaines précédents.',
+                        text: 'Murs et façades à ossature bois, murs-rideaux\u00A0: pièces techniques et spécifiques regroupant les cinq domaines précédents.',
                         img: 'v1772021847/Welink-1200px_mu1jnb.webp',
                         alt: 'Murs-rideaux et façade métallique du bâtiment WeLink à Lyon 7',
                         icon: (
@@ -254,7 +254,7 @@ export function SolutionsPage(props: {
                 <div className="max-w-3xl">
                   <p className={`${DS.EYEBROW_LIGHT} mb-4`}>Ressources</p>
                   <h2 className={`${DS.H2} text-[#0E2A33]`}>Fiches techniques et catalogue RAL à télécharger</h2>
-                  <p className={`${DS.LEAD_LIGHT} mt-6`}>Les documents PDF de PLIALU : catalogue des teintes RAL, fiches techniques par domaine, guide du déroulage, fiche de la goutte d'eau extrudée et portfolio.</p>
+                  <p className={`${DS.LEAD_LIGHT} mt-6`}>Les documents PDF de PLIALU&nbsp;: catalogue des teintes RAL, fiches techniques par domaine, guide du déroulage, fiche de la goutte d'eau extrudée et portfolio.</p>
                 </div>
                 <p className="text-sm leading-[1.55] text-[#0E2A33]/[0.62] md:text-right">
                   5 documents PDF
@@ -270,9 +270,9 @@ export function SolutionsPage(props: {
                   const docs = [
                     { id: 'res-book', file: 'Portfolio_Plialu.pdf', dl: 'Portfolio_PLIALU.pdf', title: 'Portfolio', text: 'Découvrez nos réalisations et chantiers emblématiques.', img: 'v1794303276/Portfolio_Plialu_mockup_1_nk5hfv.webp', alt: 'Couverture et pages du portfolio PLIALU' },
                     { id: 'res-ral', file: 'Catalogue_RAL.pdf', dl: 'Catalogue_RAL_PLIALU.pdf', title: 'Catalogue des teintes RAL', text: 'Toutes les teintes RAL proposées par PLIALU pour le thermolaquage, en finition brillante et mate.', img: 'v1794303276/Catalogue_RAL_mockup_1_cvsdji.webp', alt: 'Pages du catalogue RAL Infinimetal' },
-                    { id: 'res-fiches', file: 'Fiches_techniques.pdf', dl: 'Fiches_techniques_PLIALU.pdf', title: 'Fiches techniques par domaine', text: 'Les fiches techniques PLIALU pour chaque domaine : enduit, bardage, ravalement, précadres, étanchéité et MOB.', img: 'v1794303276/Fiches_techniques_mockup_1_iz09yh.webp', alt: 'Fiches techniques enduit mince, bardage et étanchéité' },
+                    { id: 'res-fiches', file: 'Fiches_techniques.pdf', dl: 'Fiches_techniques_PLIALU.pdf', title: 'Fiches techniques par domaine', text: 'Les fiches techniques PLIALU pour chaque domaine\u00A0: enduit, bardage, ravalement, précadres, étanchéité et MOB.', img: 'v1794303276/Fiches_techniques_mockup_1_iz09yh.webp', alt: 'Fiches techniques enduit mince, bardage et étanchéité' },
                     { id: 'res-deroulage', file: 'Deroulage.pdf', dl: 'Deroulage_PLIALU.pdf', title: 'Guide du déroulage', text: 'Le guide du déroulage PLIALU, pour optimiser vos formats et réduire vos chutes.', img: 'v1794306327/Deroulage_mockup_1_cmo86g.webp', alt: 'Pages du document déroulage aluminium' },
-                    { id: 'res-goutte', file: 'Fiche_Goutte_eau_extrudee.pdf', dl: 'Fiche_Goutte_eau_extrudee_PLIALU.pdf', title: "Fiche technique goutte d'eau extrudée", text: "Rejet d'eau pour nez de dalle : plan de coupe, accessoires, mise en œuvre et finitions.", img: 'v1794240588/Fiche_Goutte_eau_mockup_k6behd.webp', alt: "Pages de la fiche technique Goutte d'eau extrudée", product: true },
+                    { id: 'res-goutte', file: 'Fiche_Goutte_eau_extrudee.pdf', dl: 'Fiche_Goutte_eau_extrudee_PLIALU.pdf', title: "Fiche technique goutte d'eau extrudée", text: "Rejet d'eau pour nez de dalle\u00A0: plan de coupe, accessoires, mise en œuvre et finitions.", img: 'v1794240588/Fiche_Goutte_eau_mockup_k6behd.webp', alt: "Pages de la fiche technique Goutte d'eau extrudée", product: true },
                   ];
                   const dlIcon = (size: number) => (
                     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -364,8 +364,8 @@ export function SolutionsPage(props: {
           <section className="py-16 md:py-24 bg-[#071318] text-center border-t border-white/5">
             <div className="max-w-3xl mx-auto px-6">
               <div className="mb-16">
-              <h2 className={`${DS.H2} text-white`}>Des solutions qui s'adaptent à votre métier.</h2>
-              <p className={`${DS.LEAD_DARK} mt-6 mx-auto`}>Parlons de vos contraintes métier. Nos équipes répondent sous 48h.</p>
+              <h2 className={`${DS.H2} text-white`}>Votre pièce n'entre dans aucun domaine&nbsp;?</h2>
+              <p className={`${DS.LEAD_DARK} mt-6 mx-auto`}>Envoyez vos plans ou une simple esquisse&nbsp;: PLIALU étudie votre pièce sur mesure et vous répond sous 48 h.</p>
               </div>
               <button onClick={goContactForm} className={DS.BTN_PRIMARY}>
                 Présenter mon projet

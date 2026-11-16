@@ -42,7 +42,7 @@ const CookieBanner: React.FC = () => {
     >
       <div className="mx-auto flex max-w-7xl flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
         <p className="flex-1 text-sm leading-relaxed text-white/80">
-          Nous utilisons Google Analytics pour mesurer l'audience du site. Accepter active aussi l'affichage direct de la vidéo Vimeo et de la carte Google Maps. Refuser n'empêche pas de consulter le site : ces deux contenus restent disponibles sur demande. Plus d'informations dans notre{' '}
+          Nous utilisons Google Analytics pour mesurer l'audience du site. Accepter active aussi l'affichage direct de la vidéo Vimeo et de la carte Google Maps. Refuser n'empêche pas de consulter le site&nbsp;: ces deux contenus restent disponibles sur demande. Plus d'informations dans notre{' '}
           <Link
             to="/politique-confidentialite#cookies"
             className="font-medium text-[#E2FD48] underline underline-offset-2 transition-colors hover:text-white"

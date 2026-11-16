@@ -195,7 +195,7 @@ export const GoutteEauExtrudee: React.FC = () => {
   const ralClean = ral.trim();
   const finishLabel =
     finish === 'brut' ? 'Brute' : finish === 'anodise' ? 'Anodisée' : `Laquée ${ralClean || '(RAL à préciser)'}`;
-  const recapText = [...recapLines, `Finition : ${finishLabel}`].join(' · ');
+  const recapText = [...recapLines, `Finition\u00A0: ${finishLabel}`].join(' · ');
   const barText =
     (qty.profils > 0 ? `${plural(qty.profils, 'profil', 'profils')} · ${qty.profils * 3} m` : 'Aucun profil') +
     ` · ${finishLabel}`;
@@ -322,7 +322,7 @@ export const GoutteEauExtrudee: React.FC = () => {
                 src={cld(IMG.avec, 1200)}
                 srcSet={srcSetOf(IMG.avec)}
                 sizes="(max-width: 1280px) 100vw, 1232px"
-                alt="Nez de dalle équipé du profil : l'eau est écartée de la façade"
+                alt="Nez de dalle équipé du profil&nbsp;: l'eau est écartée de la façade"
                 loading="lazy"
                 draggable={false}
                 className="absolute inset-0 h-full w-full object-cover"
@@ -331,7 +331,7 @@ export const GoutteEauExtrudee: React.FC = () => {
                 src={cld(IMG.sans, 1200)}
                 srcSet={srcSetOf(IMG.sans)}
                 sizes="(max-width: 1280px) 100vw, 1232px"
-                alt="Illustration du même nez de dalle sans profil : l'eau ruisselle"
+                alt="Illustration du même nez de dalle sans profil&nbsp;: l'eau ruisselle"
                 loading="lazy"
                 draggable={false}
                 className={`absolute inset-0 h-full w-full object-cover ${demo ? 'transition-[clip-path] duration-1000 ease-in-out' : ''}`}
@@ -401,7 +401,7 @@ export const GoutteEauExtrudee: React.FC = () => {
                 src={cld(IMG.sans, 800)}
                 srcSet={srcSetOf(IMG.sans)}
                 sizes="100vw"
-                alt="Illustration du nez de dalle sans profil : l'eau ruisselle"
+                alt="Illustration du nez de dalle sans profil&nbsp;: l'eau ruisselle"
                 loading="lazy"
                 className="block aspect-[4/3] w-full rounded-[20px] object-cover"
               />
@@ -416,7 +416,7 @@ export const GoutteEauExtrudee: React.FC = () => {
                 src={cld(IMG.avec, 800)}
                 srcSet={srcSetOf(IMG.avec)}
                 sizes="100vw"
-                alt="Nez de dalle équipé du profil : l'eau est écartée de la façade"
+                alt="Nez de dalle équipé du profil&nbsp;: l'eau est écartée de la façade"
                 loading="lazy"
                 className="block aspect-[4/3] w-full rounded-[20px] object-cover"
               />
@@ -503,7 +503,7 @@ export const GoutteEauExtrudee: React.FC = () => {
                 src={cld(IMG.plan, 1200)}
                 srcSet={srcSetOf(IMG.plan)}
                 sizes="(max-width: 1024px) 100vw, 640px"
-                alt="Plan de coupe coté du profil : 45 mm de haut, 22 mm de profondeur, joint, éclisse de jonction, trous Ø6"
+                alt="Plan de coupe coté du profil&nbsp;: 45 mm de haut, 22 mm de profondeur, joint, éclisse de jonction, trous Ø6"
                 loading="lazy"
                 className="block h-full w-full scale-[1.7] object-contain"
               />
@@ -668,7 +668,7 @@ export const GoutteEauExtrudee: React.FC = () => {
                         <div className="flex flex-none items-center gap-1.5">
                           <button
                             type="button"
-                            aria-label={`Retirer : ${it.name}`}
+                            aria-label={`Retirer\u00A0: ${it.name}`}
                             onClick={() => setQtyValue(it.key, qty[it.key] - 1)}
                             className={STEP_BTN}
                           >
@@ -689,7 +689,7 @@ export const GoutteEauExtrudee: React.FC = () => {
                           />
                           <button
                             type="button"
-                            aria-label={`Ajouter : ${it.name}`}
+                            aria-label={`Ajouter\u00A0: ${it.name}`}
                             onClick={() => setQtyValue(it.key, qty[it.key] + 1)}
                             className={STEP_BTN}
                           >
@@ -860,14 +860,14 @@ export const GoutteEauExtrudee: React.FC = () => {
                   ))}
                   <li className="flex gap-3 py-3 text-[15px] leading-[1.45]">
                     <span className="mt-[7px] h-2 w-2 flex-none rounded-sm bg-[#E2FD48]" aria-hidden="true" />
-                    Finition : {finishLabel}
+                    Finition&nbsp;: {finishLabel}
                   </li>
                 </ul>
               ) : (
-                <p className={DS.BODY_DARK}>Indiquez vos quantités : le récapitulatif se remplit ici.</p>
+                <p className={DS.BODY_DARK}>Indiquez vos quantités&nbsp;: le récapitulatif se remplit ici.</p>
               )}
               <p className="mt-6 border-t border-white/10 pt-[18px] text-[13px] leading-relaxed text-white/50">
-                Ni devis ni commande ferme : nous revenons vers vous avec le prix et le délai.
+                Ni devis ni commande ferme&nbsp;: nous revenons vers vous avec le prix et le délai.
               </p>
             </aside>
           </div>

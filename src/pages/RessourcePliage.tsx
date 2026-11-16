@@ -18,7 +18,7 @@ export function RessourcePliagePage(props: {
                   <span>← RETOUR AUX RESSOURCES</span>
                 </Link>
 
-                <h1 className="text-4xl md:text-5xl font-black text-[#0E2A33] leading-tight mt-20 max-w-3xl mx-auto text-center">
+                <h1 className="text-4xl md:text-5xl font-black text-[#0E2A33] leading-tight mt-20 max-w-3xl mx-auto text-center text-balance">
                   Pliage aluminium : limites et tolérances
                 </h1>
 
@@ -49,7 +49,7 @@ export function RessourcePliagePage(props: {
             <div className="max-w-3xl mx-auto px-6 text-gray-700 leading-relaxed space-y-12">
               {/* Section 1 */}
               <div className="pt-8 mt-8 border-t border-gray-100">
-                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
+                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33] text-balance">
                   Pourquoi l&apos;aluminium est le métal de référence en pliage
                 </h2>
                 <p className="text-base mb-12">
@@ -70,7 +70,7 @@ export function RessourcePliagePage(props: {
 
               {/* Section 2 */}
               <div className="pt-8 mt-20 border-t border-gray-100">
-                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
+                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33] text-balance">
                   Les 3 paramètres techniques d&apos;un pliage réussi
                 </h2>
                 <p className="text-base mb-12">
@@ -133,7 +133,7 @@ export function RessourcePliagePage(props: {
 
               {/* Section 3 */}
               <div className="pt-8 mt-20 border-t border-gray-100">
-                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
+                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33] text-balance">
                   Tolérance ±0,3 mm : ce que ça change sur chantier
                 </h2>
                 <p className="text-base mb-12">
@@ -148,7 +148,7 @@ export function RessourcePliagePage(props: {
 
               {/* Section 4 */}
               <div className="pt-8 mt-20 border-t border-gray-100">
-                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
+                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33] text-balance">
                   3 limites techniques à anticiper en phase d&apos;étude
                 </h2>
                 <div className="flex flex-col md:flex-row gap-6">
@@ -189,7 +189,7 @@ export function RessourcePliagePage(props: {
 
               {/* Section 5 */}
               <div className="pt-8 mt-20 border-t border-gray-100">
-                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
+                <h2 className="mt-0 mb-6 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33] text-balance">
                   Comment la qualité du pliage conditionne le thermolaquage
                 </h2>
                 <p className="text-base mb-12">
@@ -241,7 +241,7 @@ export function RessourcePliagePage(props: {
           {/* SECTION CONTACT BAS DE PAGE */}
           <section className="py-24 bg-[#071318] text-center border-t border-white/5">
             <div className="max-w-3xl mx-auto px-6 space-y-8">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white text-balance">
                 ±0,3 mm garanti. Sur votre prochaine commande aussi.
               </h2>
               <p className="text-base md:text-lg text-white/50">

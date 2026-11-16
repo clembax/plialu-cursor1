@@ -15,7 +15,7 @@ export function RessourcesPage(props: {
                 <span className="text-[10px] font-extrabold tracking-[0.4em] text-zinc-400 uppercase block">
                   RESSOURCES TECHNIQUES
                 </span>
-                <h1 className="text-4xl md:text-6xl tracking-tighter leading-[1.1] font-black uppercase text-[#0E2A33]">
+                <h1 className="text-4xl md:text-6xl tracking-tighter leading-[1.1] font-black uppercase text-[#0E2A33] text-balance">
                   Centre de ressources PLIALU
                 </h1>
                 <p className="text-base md:text-lg text-[#0E2A33]/70 max-w-2xl leading-relaxed font-medium">
@@ -41,7 +41,7 @@ export function RessourcesPage(props: {
                 <span className="text-[10px] font-extrabold tracking-[0.3em] text-[#0E2A33]/40 uppercase mb-4 block">
                   DOSSIERS TECHNIQUES
                 </span>
-                <h2 className="mb-4 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
+                <h2 className="mb-4 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33] text-balance">
                   3 articles pour structurer vos choix techniques
                 </h2>
                 <p className="text-base md:text-lg text-[#0E2A33]/70 leading-relaxed font-medium">
@@ -108,7 +108,7 @@ export function RessourcesPage(props: {
           </section>
           <section className="py-24 bg-[#071318] text-center border-t border-white/5">
             <div className="max-w-3xl mx-auto px-6 space-y-8">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white">Passer à la fabrication.</h2>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-white text-balance">Passer à la fabrication.</h2>
               <p className="text-base md:text-lg text-white/50">Nos techniciens prennent le relais — avec ou sans plans finalisés.</p>
               <button onClick={goContactForm} className="px-10 py-4 md:px-12 md:py-5 bg-[#E2FD48] text-[#0E2A33] text-sm font-extrabold rounded-full transition-all shadow-xl hover:shadow-[#E2FD48]/20 hover:-translate-y-1">
                 Transmettre un dossier

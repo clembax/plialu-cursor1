@@ -79,7 +79,7 @@ const Etancheite: React.FC = () => {
             &larr; RETOUR AUX SOLUTIONS
           </Link>
           <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 text-balance">
               Solutions pour l'étanchéité
             </h1>
             <p className="text-gray-400 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
@@ -196,7 +196,7 @@ const Etancheite: React.FC = () => {
           <span className="text-sm font-extrabold tracking-widest uppercase mb-8 inline-block text-gray-500">
             VOTRE PROJET ÉTANCHÉITÉ
           </span>
-          <h2 className="mb-10 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33]">
+          <h2 className="mb-10 text-3xl md:text-4xl lg:text-5xl tracking-tighter font-extrabold leading-tight text-[#0E2A33] text-balance">
             Un projet étanchéité ?
           </h2>
           <p className="text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed font-medium text-gray-600">

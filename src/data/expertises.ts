@@ -66,6 +66,6 @@
     "Déroulage de bobines acier et aluminium, et optimisation de la matière première.",
     "Pré-laquage et post-laquage.",
     "Cisaillage au format, poinçonnage et pliage manuel ou automatisé.",
-    "Finition des pièces : collage, soudure, rivetage ou clinchage.",
+    "Finition des pièces\u00A0: collage, soudure, rivetage ou clinchage.",
     "Transport de vos commandes en toute sécurité jusqu'à vos chantiers.",
   ];

@@ -180,15 +180,15 @@ export function ExpertisesPage(props: {
                           ) : (
                             <h2 className={`${DS.H2} text-[#0E2A33]`}>
                               {exp.id === 'bureau-etudes'
-                                ? 'Bureau des méthodes : des plans validés avant fabrication'
+                                ? 'Bureau des méthodes\u00A0: des plans validés'
                                 : exp.id === 'deroulage-mise-format'
-                                  ? 'Déroulage : des formats optimisés, moins de chutes'
+                                  ? 'Déroulage\u00A0: des formats optimisés'
                                   : exp.id === 'pliage-automatise'
                                     ? "Pliage aluminium et acier jusqu'à 4 m"
                                     : exp.id === 'assemblage-finitions'
-                                      ? 'Soudure et assemblage : des ensembles prêts à poser'
+                                      ? 'Assemblage\u00A0: des ensembles prêts à poser'
                                       : exp.id === 'logistique-expedition'
-                                        ? 'Logistique : vos commandes livrées conformes et dans les délais'
+                                        ? 'Logistique\u00A0: livré conforme et à temps'
                                         : exp.title}
                             </h2>
                           )}
@@ -200,17 +200,17 @@ export function ExpertisesPage(props: {
                         ) : exp.id === 'deroulage-mise-format' ? (
                           <>
                             <p className={`${DS.LEAD_LIGHT} mt-6`}>
-                              Déroulage de bobines : redressage - découpe de formats à plat et optimisation par dossier. Une étape clé de la fabrication et de la maîtrise des coûts
+                              Déroulage de bobines&nbsp;: redressage - découpe de formats à plat et optimisation par dossier. Une étape clé de la fabrication et de la maîtrise des coûts
                             </p>
                           </>
                         ) : exp.id === 'thermolaquage-plat' ? (
                           <>
                             <p className={`${DS.LEAD_LIGHT} mt-6`}>
-                              Prélaquage ou post-laquage : nos deux lignes certifiées Qualicoat, sous la marque{' '}
+                              Prélaquage ou post-laquage&nbsp;: nos deux lignes certifiées Qualicoat, sous la marque{' '}
                               <Link to="/a-propos#infinimetal" className="cursor-pointer text-[#0E2A33] font-bold hover:underline transition-colors">
                                 Infinimetal
                               </Link>
-                              , permettent les deux. En prélaquage, les tôles d'aluminium sont laquées à plat puis pliées, pour les cassettes, clins et bavettes. En post-laquage, les pièces sont pliées, soudées ou assemblées puis laquées : la solution pour les précadres soudés et les pièces complexes.
+                              , permettent les deux. En prélaquage, les tôles d'aluminium sont laquées à plat puis pliées, pour les cassettes, clins et bavettes. En post-laquage, les pièces sont pliées, soudées ou assemblées puis laquées&nbsp;: la solution pour les précadres soudés et les pièces complexes.
                             </p>
                           </>
                         ) : exp.id === 'pliage-automatise' ? (
@@ -310,7 +310,7 @@ export function ExpertisesPage(props: {
           <section className="py-16 md:py-24 bg-[#071318] text-center border-t border-white/5">
             <div className="max-w-3xl mx-auto px-6">
               <div className="mb-16">
-              <h2 className={`${DS.H2} text-white`}>Un projet de pièces métalliques sur mesure ?</h2>
+              <h2 className={`${DS.H2} text-white`}>Un projet de pièces métalliques sur mesure&nbsp;?</h2>
               <p className={`${DS.LEAD_DARK} mt-6 mx-auto`}>Chargés d'affaires disponibles pour analyser vos plans DXF et optimiser vos coûts avant production.</p>
               </div>
               <button onClick={goContactForm} className={DS.BTN_PRIMARY}>
