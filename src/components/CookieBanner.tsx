@@ -6,9 +6,10 @@ const CHOICE_BUTTON =
   'inline-flex w-full items-center justify-center rounded-full border border-white bg-transparent px-5 py-2 text-xs font-semibold leading-4 text-white transition-colors duration-150 hover:border-transparent hover:bg-white hover:text-[#0E2A33]';
 
 const CookieBanner: React.FC = () => {
-  const [showBanner, setShowBanner] = useState(() => getConsent() === null);
+  const [showBanner, setShowBanner] = useState(false);
 
   useEffect(() => {
+    setShowBanner(getConsent() === null);
     const open = () => setShowBanner(true);
     window.addEventListener('plialu:open-cookies', open);
     return () => window.removeEventListener('plialu:open-cookies', open);

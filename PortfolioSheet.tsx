@@ -15,7 +15,7 @@ type PortfolioSheetProps = {
 };
 
 const prefersReducedMotion = () =>
-  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const SheetPhoto: React.FC<{ image: ProjectImage; alt: string; eager: boolean }> = ({ image, alt, eager }) => {
   const [loaded, setLoaded] = useState(false);
@@ -93,8 +93,9 @@ const PortfolioSheet: React.FC<PortfolioSheetProps> = ({
   const onSelectRef = useRef(onSelect);
   const previousIdRef = useRef(previous.id);
   const nextIdRef = useRef(next.id);
-  const reduceMotion = useRef(prefersReducedMotion()).current;
-  const [shown, setShown] = useState(reduceMotion);
+  const [mounted, setMounted] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(false);
+  const [shown, setShown] = useState(false);
   const images = getProjectImages(project);
   const number = String(index + 1).padStart(2, '0');
 
@@ -104,26 +105,32 @@ const PortfolioSheet: React.FC<PortfolioSheetProps> = ({
   nextIdRef.current = next.id;
 
   useEffect(() => {
+    const reduced = prefersReducedMotion();
+    setMounted(true);
+    setReduceMotion(reduced);
+    if (reduced) setShown(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     return () => {
       document.body.style.overflow = previousOverflow;
     };
-  }, []);
+  }, [mounted]);
 
   useEffect(() => {
-    if (reduceMotion) return;
+    if (!mounted || reduceMotion) return;
     const frame = requestAnimationFrame(() => setShown(true));
     return () => cancelAnimationFrame(frame);
-  }, [reduceMotion]);
+  }, [mounted, reduceMotion]);
 
   useEffect(() => {
+    if (!mounted) return;
     dialogRef.current?.focus();
-  }, []);
-
-  useEffect(() => {
     dialogScrollRef.current?.scrollTo({ top: 0, behavior: 'instant' });
-  }, [project.id]);
+  }, [mounted, project.id]);
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
@@ -164,6 +171,8 @@ const PortfolioSheet: React.FC<PortfolioSheetProps> = ({
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, []);
+
+  if (!mounted) return null;
 
   return createPortal(
     <div
