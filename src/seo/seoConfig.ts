@@ -27,10 +27,10 @@ export type PageKey =
 export const SITE_ORIGIN = 'https://plialu.fr';
 
 export const DEFAULT_OG_IMAGE =
-  'https://res.cloudinary.com/dyiup6v5x/image/upload/c_fill,w_1200,h_630,f_jpg,q_auto/v1771414327/Hero-1200px_vuuw2q.webp';
+  'https://res.cloudinary.com/dyiup6v5x/image/upload/c_fill,w_1200,h_630,f_jpg,q_auto/v1771414327/Hero-1200px_vuuw2q.jpg';
 
 const GOUTTE_OG_IMAGE =
-  'https://res.cloudinary.com/dyiup6v5x/image/upload/c_crop,x_0,y_233,w_2247,h_2025/a_hflip/c_fill,w_1200,h_630,f_jpg,q_auto/v1794245866/profil_piyucu.webp';
+  'https://res.cloudinary.com/dyiup6v5x/image/upload/c_crop,x_0,y_233,w_2247,h_2025/a_hflip/c_fill,w_1200,h_630,f_jpg,q_auto/v1794245866/profil_piyucu.jpg';
 
 const LASTMOD = '2026-11-16';
 
@@ -145,7 +145,7 @@ function localBusinessJsonLd() {
     name: 'PLIALU',
     legalName: 'PLIALU',
     url: SITE_ORIGIN,
-    logo: 'https://res.cloudinary.com/dyiup6v5x/image/upload/f_png,w_512/v1771582466/Logo_Noir_Plialu_ywbl2o.svg',
+    logo: 'https://res.cloudinary.com/dyiup6v5x/image/upload/f_png,w_512/v1771582466/Logo_Noir_Plialu_ywbl2o.png',
     image: DEFAULT_OG_IMAGE,
     telephone: '+33 4 78 08 93 70',
     email: 'commercial@plialu.fr',
@@ -186,10 +186,18 @@ export function pageHead(pageKey: PageKey, pathname: string): HeadTag[] {
     { kind: 'title', text: config.title },
     { kind: 'meta', name: 'description', content: config.desc },
     { kind: 'meta', name: 'robots', content: config.noindex ? 'noindex, follow' : 'index, follow' },
-    { kind: 'link', rel: 'canonical', href: url },
+  ];
+  if (pageKey !== 'not-found') {
+    tags.push({ kind: 'link', rel: 'canonical', href: url });
+  }
+  tags.push(
     { kind: 'meta', property: 'og:title', content: config.title },
     { kind: 'meta', property: 'og:description', content: config.desc },
-    { kind: 'meta', property: 'og:url', content: url },
+  );
+  if (pageKey !== 'not-found') {
+    tags.push({ kind: 'meta', property: 'og:url', content: url });
+  }
+  tags.push(
     { kind: 'meta', property: 'og:type', content: 'website' },
     { kind: 'meta', property: 'og:locale', content: 'fr_FR' },
     { kind: 'meta', property: 'og:site_name', content: 'PLIALU' },
@@ -197,7 +205,7 @@ export function pageHead(pageKey: PageKey, pathname: string): HeadTag[] {
     { kind: 'meta', property: 'og:image:width', content: '1200' },
     { kind: 'meta', property: 'og:image:height', content: '630' },
     { kind: 'meta', name: 'twitter:card', content: 'summary_large_image' },
-  ];
+  );
 
   if (ORG_PAGES.has(pageKey)) {
     tags.push({ kind: 'jsonld', id: 'ld-org', json: localBusinessJsonLd() });

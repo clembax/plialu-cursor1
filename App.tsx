@@ -99,6 +99,12 @@ const App: React.FC = () => {
     for (const id of ['ld-org', 'ld-portfolio']) {
       if (!jsonIds.has(id)) document.getElementById(id)?.remove();
     }
+
+    const hasCanonical = tags.some((tag) => tag.kind === 'link' && tag.rel === 'canonical');
+    if (!hasCanonical) document.querySelector('link[rel="canonical"]')?.remove();
+
+    const hasOgUrl = tags.some((tag) => tag.kind === 'meta' && tag.property === 'og:url');
+    if (!hasOgUrl) document.querySelector('meta[property="og:url"]')?.remove();
   }, [currentPage]);
 
   const teaserVideoRef = React.useRef<HTMLVideoElement>(null);

@@ -20,6 +20,8 @@
   # Ancienne URL de la page Solutions
   RewriteRule ^solutions-temporaire/?$ /solutions [R=301,L]
 
+  RewriteRule ^index(\.html)?$ / [R=301,L]
+
   # Retire la barre oblique finale, sauf à la racine
   RewriteCond %{REQUEST_URI} !^/$
   RewriteCond %{REQUEST_FILENAME} !-d
