@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { Link } from 'react-router';
 import { Menu } from 'lucide-react';
 import * as DS from '../components/ds/ds';
+import { getSnapshot, subscribe } from '../heroCtaStore';
 import type { PageKey } from '../seo/seoConfig';
 
 export function Header(props: {
@@ -12,7 +13,38 @@ export function Header(props: {
   setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const { currentPage, goContactForm, openProjectId, isMenuOpen, setIsMenuOpen } = props;
+  const heroCtaVisible = useSyncExternalStore(subscribe, getSnapshot, () => true);
+  const hideCta = currentPage === 'home' && heroCtaVisible;
   const [isScrolled, setIsScrolled] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
+  const [ctaShift, setCtaShift] = useState<number | null>(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    const menu = menuRef.current;
+    const cta = ctaRef.current;
+    if (!container || !menu || !cta) return;
+    const measure = () => {
+      const box = container.getBoundingClientRect();
+      // Le parent n'est jamais transformé : sa mesure reste stable pendant l'animation du bouton.
+      const ctaBox = cta.parentElement!.getBoundingClientRect();
+      if (ctaBox.width === 0) {
+        setCtaShift(null);
+        return;
+      }
+      const next = ctaBox.right - (box.left + box.width / 2 + menu.getBoundingClientRect().width / 2);
+      // Ignore les écarts sous-pixel mesurés pendant l'animation de hauteur : chaque nouvelle valeur relancerait la transition du menu.
+      setCtaShift((prev) => (prev !== null && Math.abs(prev - next) < 0.5 ? prev : next));
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(container);
+    observer.observe(menu);
+    observer.observe(cta);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,14 +73,14 @@ export function Header(props: {
   return (
     <>
       {/* Navigation */}
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${(isScrolled || openProjectId) ? 'h-20' : 'h-24'}`}>
+      <nav className={`fixed top-0 w-full z-50 transition-[height] duration-500 ${(isScrolled || openProjectId) ? 'h-20' : 'h-24'}`}>
         <div 
           className={`absolute inset-0 border-b backdrop-blur-md pointer-events-none transition-opacity duration-500 
             ${headerTheme === 'dark' ? 'bg-[#F3F6F7]/90 border-[#0E2A33]/[0.12]' : 'bg-[#071318]/90 border-white/10'} 
             ${(isScrolled || openProjectId) ? 'opacity-100' : 'opacity-0'}`}
         ></div>
         
-        <div className="relative max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
+        <div ref={containerRef} className="relative max-w-7xl mx-auto px-6 h-full flex items-center justify-between [container-type:inline-size]">
           {/* Left: Logo */}
           {!isMenuOpen && (
             <div className="flex-none">
@@ -66,8 +98,16 @@ export function Header(props: {
           )}
 
           {/* Center: Navigation Menu */}
-          <div className="absolute left-1/2 -translate-x-1/2 hidden lg:flex items-center gap-1 p-1.5 rounded-full border transition-all duration-300
-            ${headerTheme === 'dark' ? 'bg-[#0E2A33]/5 border-black/10' : 'bg-white/5 border-white/5'}">
+          <div
+            ref={menuRef}
+            style={{
+              // Avant la première mesure (HTML pré-généré), 50cqw - 100 % colle le menu au bord droit du contenu.
+              transform: hideCta
+                ? `translate3d(${ctaShift === null ? 'calc(50cqw - 100%)' : `calc(-50% + ${ctaShift}px)`}, 0, 0)`
+                : 'translate3d(-50%, 0, 0)',
+            }}
+            className={`absolute left-1/2 hidden lg:flex items-center gap-1 p-1.5 rounded-full border will-change-transform transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${hideCta ? 'delay-100' : 'delay-0'}
+            \${headerTheme === 'dark' ? 'bg-[#0E2A33]/5 border-black/10' : 'bg-white/5 border-white/5'}`}>
             <Link 
               to="/" 
               className={`whitespace-nowrap text-xs font-semibold px-5 py-2 rounded-full transition-all 
@@ -191,9 +231,16 @@ export function Header(props: {
 
           {/* Right: CTA Button */}
           <div className="flex-none flex items-center gap-4">
-            <button onClick={goContactForm} className={`${DS.BTN_PRIMARY} max-lg:hidden lg:px-5 xl:px-10`}>
-              Demander un devis
-            </button>
+            <div
+              ref={ctaRef}
+              aria-hidden={hideCta || undefined}
+              inert={hideCta}
+              className={`max-lg:hidden transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${hideCta ? 'opacity-0 translate-x-2 scale-[0.97] pointer-events-none delay-0' : 'opacity-100 translate-x-0 scale-100 delay-150'}`}
+            >
+              <button onClick={goContactForm} tabIndex={hideCta ? -1 : undefined} className={`${DS.BTN_PRIMARY} lg:px-5 xl:px-10`}>
+                Demander un devis
+              </button>
+            </div>
             <button
               type="button"
               aria-label="Ouvrir le menu"

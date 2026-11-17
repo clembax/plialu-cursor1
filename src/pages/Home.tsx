@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router';
 import { ArrowRight, ArrowUpRight, Clock, Mail, MapPin, Phone, Play } from 'lucide-react';
 import * as DS from '../components/ds/ds';
@@ -8,6 +8,7 @@ import { PROJECTS } from '../../projects';
 import { expertisesDetails, processCardDescriptions } from '../data/expertises';
 import { homeProjects } from '../data/homeProjects';
 import { RAL_APERCU } from '../data/ral';
+import { setHeroCtaVisible } from '../heroCtaStore';
 
 export function HomePage(props: {
   goContactForm: () => void;
@@ -17,6 +18,22 @@ export function HomePage(props: {
   portfolioYearMax: number;
 }) {
   const { goContactForm, openProject, teaserVideoRef, portfolioYearMin, portfolioYearMax } = props;
+  const heroCtaRef = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    const cta = heroCtaRef.current;
+    if (!cta) return;
+    // Marge haute négative : hauteur du header déplié (h-24).
+    const observer = new IntersectionObserver(
+      ([entry]) => setHeroCtaVisible(entry.isIntersecting),
+      { rootMargin: '-96px 0px 0px 0px', threshold: 0 },
+    );
+    observer.observe(cta);
+    return () => {
+      observer.disconnect();
+      setHeroCtaVisible(true);
+    };
+  }, []);
+
   return (
         <>
           {/* 1. HERO SECTION (DARK) */}
@@ -42,11 +59,7 @@ export function HomePage(props: {
                   </p>
                 </div>
                 <div className="flex flex-col sm:flex-row items-center gap-4">
-                  <button onClick={goContactForm} className={`${DS.BTN_PRIMARY} w-full sm:w-auto`}>Demander un devis</button>
-                  <Link to="/expertises" className={`${DS.BTN_SECONDARY_DARK} w-full sm:w-auto group`}>
-                    Découvrir nos expertises
-                    <ArrowRight aria-hidden="true" size="1em" className="group-hover:translate-x-1 transition-transform" />
-                  </Link>
+                  <button ref={heroCtaRef} onClick={goContactForm} className={`${DS.BTN_PRIMARY} w-full sm:w-auto`}>Demander un devis</button>
                 </div>
               </div>
             </div>
