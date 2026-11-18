@@ -11,7 +11,9 @@ export function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-8 mb-12">
             {/* Column 1 -- Brand */}
             <div className="space-y-5">
-              <Link to="/" className="text-2xl font-black tracking-tighter text-white uppercase block">PLIALU.</Link>
+              <Link to="/" className="block">
+                <img src="/logos/PLIALU_sans-tagline_blanc.svg" alt="PLIALU" width="339.343" height="121.927" loading="lazy" className="block h-7 w-auto" />
+              </Link>
               <p className="text-white/50 text-sm leading-relaxed max-w-xs">PME industrielle&nbsp;: solutions métalliques sur-mesure pour l'enveloppe du bâtiment</p>
               <div className="flex items-center gap-4 pt-3">
                 <a href="https://www.linkedin.com/company/plialu" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-[#E2FD48] hover:border-[#E2FD48] transition-all">

@@ -85,13 +85,14 @@ export function Header(props: {
           {!isMenuOpen && (
             <div className="flex-none">
               <Link to="/" className="flex items-center gap-3 group outline-none h-full">
-                <img 
-                  src={headerTheme === 'dark' 
-                    ? "https://res.cloudinary.com/dyiup6v5x/image/upload/v1771582466/Logo_Noir_Plialu_ywbl2o.svg" 
-                    : "https://res.cloudinary.com/dyiup6v5x/image/upload/v1771582757/Logo_Blanc_Plialu_ssatk6.svg"
-                  } 
-                  alt="PLIALU" 
-                  className="h-6 md:h-7 transition-all duration-300 scale-[1.5] origin-left"
+                <img
+                  src={headerTheme === 'dark'
+                    ? '/logos/PLIALU_sans-tagline_noir.svg'
+                    : '/logos/PLIALU_sans-tagline_blanc.svg'}
+                  alt="PLIALU"
+                  width="339.343"
+                  height="121.927"
+                  className="h-[37px] w-auto md:h-[44px] transition-all duration-300"
                 />
               </Link>
             </div>
