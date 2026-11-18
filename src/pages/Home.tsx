@@ -47,7 +47,7 @@ export function HomePage(props: {
               <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#0e2a33]/70 to-[#071318]/90"></div>
               <div className="absolute inset-x-0 bottom-0 h-full z-20 pointer-events-none" style={{ background: 'linear-gradient(180deg, rgba(7, 19, 24, 0) 0%, rgba(7, 19, 24, 0.10) 60%, rgba(7, 19, 24, 0.55) 85%, #071318 100%)' }}></div>
             </div>
-            <div className={`relative z-30 w-full max-w-7xl mx-auto px-6 ${DS.HERO_TOP} pb-16`}>
+            <div className="relative z-30 w-full max-w-7xl mx-auto px-6 pt-48 md:pt-[272px] pb-16">
               <div className="max-w-7xl animate-fade-up">
                 <div className="mb-16">
                   <h1 className={`${DS.H1} text-white`}>
@@ -58,8 +58,13 @@ export function HomePage(props: {
                     PLIALU conçoit, plie et thermolaque sur mesure les pièces en aluminium et en acier de l'enveloppe du bâtiment, dans son usine intégrée près de Lyon. Qualité, coûts et délais sont maîtrisés de bout en bout, pour chaque projet.
                   </p>
                 </div>
-                <div className="flex flex-col sm:flex-row items-center gap-4">
+                <div className="flex flex-col xl:flex-row items-start xl:items-center gap-4 xl:gap-8">
                   <button ref={heroCtaRef} onClick={goContactForm} className={`${DS.BTN_PRIMARY} w-full sm:w-auto`}>Demander un devis</button>
+                  <ul className="flex flex-col gap-1.5 text-sm font-normal leading-5 text-white/70 xl:flex-row xl:items-center xl:gap-6">
+                    <li>Réponse sous 48&nbsp;h</li>
+                    <li>Chargé d'affaires technique</li>
+                    <li>Plans DXF et DWG acceptés</li>
+                  </ul>
                 </div>
               </div>
             </div>
