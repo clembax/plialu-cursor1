@@ -49,12 +49,12 @@ export function HomePage(props: {
             </div>
             <div className="relative z-30 w-full max-w-7xl mx-auto px-6 pt-48 md:pt-[272px] pb-16">
               <div className="max-w-7xl animate-fade-up">
-                <div className="mb-16">
+                <div className="mb-16 md:mb-24">
                   <h1 className={`${DS.H1} text-white`}>
                     <span className="block">SOLUTIONS MÉTALLIQUES <span className="whitespace-nowrap">SUR-MESURE</span></span>
                     <span className="block">pour l'enveloppe du bâtiment</span>
                   </h1>
-                  <p className={`${DS.LEAD_DARK} mt-6`}>
+                  <p className={`${DS.LEAD_DARK} mt-6 md:max-w-[45rem]`}>
                     PLIALU conçoit, plie et thermolaque sur mesure les pièces en aluminium et en acier de l'enveloppe du bâtiment, dans son usine intégrée près de Lyon. Qualité, coûts et délais sont maîtrisés de bout en bout, pour chaque projet.
                   </p>
                 </div>
