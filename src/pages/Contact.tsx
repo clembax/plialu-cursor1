@@ -269,8 +269,8 @@ export function ContactPage(props: {
                       <div className="flex-1">
                         <span className="block text-[9px] font-bold text-[#0E2A33]/[0.62] uppercase tracking-widest mb-1">Siège & Atelier</span>
                         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-                          <p className="text-lg font-bold text-[#0E2A33] leading-tight max-w-xs">Technoparc Saône Vallée Ouest, 150, Route Copernic, 01390 Civrieux</p>
-                          <button onClick={() => handleCopy("Technoparc Saône Vallée Ouest, 150, Route Copernic, 01390 Civrieux", "addr")} className="p-1.5 rounded-md hover:bg-black/5 transition-colors relative">
+                          <p className="text-lg font-bold text-[#0E2A33] leading-tight max-w-xs">Technoparc Saône Vallée Ouest, 150 rue Copernic, 01390 Civrieux</p>
+                          <button onClick={() => handleCopy("Technoparc Saône Vallée Ouest, 150 rue Copernic, 01390 Civrieux", "addr")} className="p-1.5 rounded-md hover:bg-black/5 transition-colors relative">
                             <Copy aria-hidden="true" size={16} className="text-[#0E2A33]/[0.62]" />
                             {copiedKey === 'addr' && <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-[10px] bg-[#0E2A33] text-white px-2 py-1 rounded shadow-sm">Copié</span>}
                           </button>

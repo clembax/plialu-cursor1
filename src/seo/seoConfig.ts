@@ -151,7 +151,7 @@ function localBusinessJsonLd() {
     email: 'commercial@plialu.fr',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Technoparc Saône Vallée Ouest, 150 Route Copernic',
+      streetAddress: 'Technoparc Saône Vallée Ouest, 150 rue Copernic',
       postalCode: '01390',
       addressLocality: 'Civrieux',
       addressCountry: 'FR',

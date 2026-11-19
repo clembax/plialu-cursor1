@@ -429,7 +429,7 @@ export function HomePage(props: {
                     </div>
                     <div>
                       <p className={DS.EYEBROW_LIGHT}>Adresse</p>
-                      <p className="mt-1.5 text-base font-bold leading-snug text-[#0E2A33]">Technoparc Saône Vallée Ouest, 150, Route Copernic, 01390 Civrieux</p>
+                      <p className="mt-1.5 text-base font-bold leading-snug text-[#0E2A33]">Technoparc Saône Vallée Ouest, 150 rue Copernic, 01390 Civrieux</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4 rounded-[20px] bg-white px-6 py-[22px]">
