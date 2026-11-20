@@ -170,21 +170,10 @@ export function HomePage(props: {
                 <div className="w-full">
                   <Link
                     to="/expertises#video-complete"
-                    className="group block w-full text-left focus:outline-none"
+                    aria-label="Voir la vidéo complète de l'usine PLIALU (2 minutes)"
+                    className="group block w-full text-left rounded-[20px] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E2FD48] focus-visible:ring-offset-2 focus-visible:ring-offset-[#071318]"
                   >
                     <div className="relative rounded-[20px] overflow-hidden border border-white/10 bg-black/40 aspect-video cursor-pointer">
-                      {/* Overlay de survol */}
-                      <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <div className="flex flex-col items-center gap-2">
-                          <span className="inline-flex items-center justify-center w-12 h-12 rounded-full border border-white/70 bg-black/60">
-                            <Play aria-hidden="true" size={22} className="text-white" />
-                          </span>
-                          <span className="text-xs font-medium tracking-[0.2em] uppercase text-white/50">
-                            Lire le teaser
-                          </span>
-                        </div>
-                      </div>
-
                       {/* Vidéo */}
                       <video
                         ref={teaserVideoRef}
@@ -200,6 +189,15 @@ export function HomePage(props: {
                         <source src="https://res.cloudinary.com/dyiup6v5x/video/upload/w_768,f_auto,q_auto/v1773244180/Teaser-Plialu_zxa8ml.mp4" type="video/mp4" />
                         Votre navigateur ne supporte pas la lecture de vidéos.
                       </video>
+                      <div className="absolute inset-0 z-10 flex items-center justify-center bg-[#071318]/40 opacity-0 pointer-events-none transition-opacity duration-300 ease-out motion-reduce:transition-none group-hover:opacity-100 group-focus-visible:opacity-100">
+                        <div className="flex flex-col items-center gap-3">
+                          <span className="inline-flex h-14 w-14 scale-95 items-center justify-center rounded-full border border-white/80 bg-white/10 backdrop-blur-sm transition-transform duration-300 group-hover:scale-100">
+                            <Play aria-hidden="true" size={20} className="ml-0.5 text-white" />
+                          </span>
+                          <span className="text-[13px] font-medium text-white/85">Voir la vidéo complète · 2 min</span>
+                        </div>
+                      </div>
+                      <span className="pointer-events-none absolute top-4 left-4 z-10 rounded-full bg-black/45 px-3 py-1 text-[11px] font-medium text-white/80 backdrop-blur-sm">Aperçu</span>
                     </div>
                   </Link>
                 </div>
