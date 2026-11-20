@@ -102,7 +102,7 @@ export function HomePage(props: {
           {/* 2. NOS EXPERTISES (DARK) */}
           <section id="expertise" className="pt-16 md:pt-20 pb-12 md:pb-16 section--dark" style={{ background: 'linear-gradient(180deg, #071318 0%, #0D2630 80%, #0C242D 100%)' }}>
             <div className="max-w-7xl mx-auto px-6">
-              <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-20 items-center">
+              <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-20 items-center lg:items-stretch">
                 <div>
                   <div className="mb-16">
                     <span className={`block mb-4 ${DS.EYEBROW_DARK}`}>PROCESS INTÉGRÉ</span>
@@ -116,10 +116,12 @@ export function HomePage(props: {
                     <ArrowRight aria-hidden="true" size="1em" className={DS.ACTION_ARROW} />
                   </Link>
                 </div>
-                <div className="relative aspect-square md:aspect-video lg:aspect-square overflow-hidden rounded-[20px] border border-white/10 bg-[#071318] group">
+                <div className="relative aspect-square md:aspect-video lg:aspect-auto lg:h-full overflow-hidden rounded-[20px] border border-white/10 bg-[#071318] group">
                   <img
                     src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1771508868/Expertise-1200_rb2ubu.webp"
-                    className={`w-full h-full object-cover ${DS.CARD_IMG_ZOOM}`}
+                    srcSet="https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,c_limit,w_800/v1771508868/Expertise-1200_rb2ubu.webp 800w, https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,c_limit,w_1200/v1771508868/Expertise-1200_rb2ubu.webp 1200w, https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,c_limit,w_1600/v1771508868/Expertise-1200_rb2ubu.webp 1600w"
+                    sizes="(min-width: 1024px) 55vw, 100vw"
+                    className={`w-full h-full object-cover object-bottom lg:absolute lg:inset-0 ${DS.CARD_IMG_ZOOM}`}
                     alt="Opérateur réalisant la fabrication de pièces métalliques sur mesure sur presse plieuse"
                     loading="lazy"
                   />
