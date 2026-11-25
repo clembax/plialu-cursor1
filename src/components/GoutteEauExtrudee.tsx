@@ -498,7 +498,7 @@ export const GoutteEauExtrudee: React.FC = () => {
           <p className={`${DS.EYEBROW_LIGHT} mb-4`}>Données techniques</p>
           <h2 className={`${DS.H2} mb-16 text-[#0E2A33]`}>Caractéristiques techniques</h2>
           <div className="grid items-start gap-10 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
-            <figure className="m-0 flex aspect-[2300/1972] items-center justify-center overflow-hidden rounded-[20px] border border-[#0E2A33]/[0.12] bg-[#E4E4E4]">
+            <figure className="m-0 flex aspect-[2300/1972] items-center justify-center overflow-hidden rounded-[20px] border border-[#0E2A33]/[0.12] bg-white">
               <img
                 src={cld(IMG.plan, 1200)}
                 srcSet={srcSetOf(IMG.plan)}
