@@ -25,7 +25,7 @@ const IMG = {
   pose: { v: 'v1794238459', file: 'Generated_Image_October_07_2026_-_5_34PM_qno64i.webp' },
   angleSortant: { v: 'v1794245864', file: 'angle_sortant_ptazks.webp', t: 'c_crop,x_323,y_301,w_1726,h_2114' },
   angleRentrant: { v: 'v1794245863', file: 'angle_rentrant_q1hv5o.webp', t: 'c_crop,x_255,y_869,w_2066,h_839' },
-  plan: { v: 'v1794238460', file: '9f79f125-cfb1-4963-881e-63f61e75de7a_sscxit.webp' },
+  plan: { v: 'v1795539536', file: 'PLIALU_GE_plan-de-coupe_buu9qf.webp' },
   avec: { v: 'v1794235010', file: '9cd7d856-180e-4fc2-bf46-7c3f938dfa8f_dj4zga.webp' },
   sans: { v: 'v1794238126', file: 'Generated_Image_November_09_2026_-_3_31PM_1_nkaa7q.webp' },
   mockup: { v: 'v1794240588', file: 'Fiche_Goutte_eau_mockup_k6behd.webp' },
@@ -498,14 +498,16 @@ export const GoutteEauExtrudee: React.FC = () => {
           <p className={`${DS.EYEBROW_LIGHT} mb-4`}>Données techniques</p>
           <h2 className={`${DS.H2} mb-16 text-[#0E2A33]`}>Caractéristiques techniques</h2>
           <div className="grid items-start gap-10 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
-            <figure className="m-0 flex aspect-[4/3] items-center justify-center overflow-hidden rounded-[20px] border border-[#0E2A33]/[0.12] bg-white">
+            <figure className="m-0 flex aspect-[2300/1972] items-center justify-center overflow-hidden rounded-[20px] border border-[#0E2A33]/[0.12] bg-[#E4E4E4]">
               <img
                 src={cld(IMG.plan, 1200)}
                 srcSet={srcSetOf(IMG.plan)}
-                sizes="(max-width: 1024px) 100vw, 640px"
-                alt="Plan de coupe coté du profil&nbsp;: 45 mm de haut, 22 mm de profondeur, joint, éclisse de jonction, trous Ø6"
+                sizes="(min-width: 1024px) 640px, calc(100vw - 48px)"
+                width="2300"
+                height="1972"
+                alt="Plan de coupe de la goutte d'eau extrudée : profil de 45 mm de haut et 22 mm de profondeur, retour de 16,5 mm, joint de 7 mm, éclisse de jonction, trous Ø6 à 8 mm du bas, entraxe 560 mm, à 100 mm des extrémités"
                 loading="lazy"
-                className="block h-full w-full scale-[1.7] object-contain"
+                className="block h-full w-full object-cover"
               />
             </figure>
             <dl className="m-0 border-t border-[#0E2A33]/[0.12]">
