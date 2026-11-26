@@ -254,10 +254,10 @@ export function SolutionsPage(props: {
                 <div className="max-w-3xl">
                   <p className={`${DS.EYEBROW_LIGHT} mb-4`}>Ressources</p>
                   <h2 className={`${DS.H2} text-[#0E2A33]`}>Fiches techniques et catalogue RAL à télécharger</h2>
-                  <p className={`${DS.LEAD_LIGHT} mt-6`}>Les documents PDF de PLIALU&nbsp;: plaquette de présentation, catalogue des teintes RAL, fiches techniques par domaine, guide du déroulage, fiche de la goutte d'eau extrudée et portfolio.</p>
+                  <p className={`${DS.LEAD_LIGHT} mt-6`}>Les documents PDF de PLIALU&nbsp;: plaquette de présentation, catalogue des teintes RAL, fiches techniques par domaine, guide du déroulage, fiches de la goutte d'eau et du couvre-joint extrudés, et portfolio.</p>
                 </div>
                 <p className="text-sm leading-[1.55] text-[#0E2A33]/[0.62] md:text-right">
-                  6 documents PDF
+                  7 documents PDF
                   <br />
                   En téléchargement direct
                 </p>
@@ -273,7 +273,8 @@ export function SolutionsPage(props: {
                     { id: 'res-ral', file: 'Catalogue_RAL.pdf', dl: 'Catalogue_RAL_PLIALU.pdf', title: 'Catalogue des teintes RAL', text: 'Toutes les teintes RAL proposées par PLIALU pour le thermolaquage, en finition brillante et mate.', img: 'v1794303276/Catalogue_RAL_mockup_1_cvsdji.webp', alt: 'Pages du catalogue RAL Infinimetal' },
                     { id: 'res-fiches', file: 'Fiches_techniques.pdf', dl: 'Fiches_techniques_PLIALU.pdf', title: 'Fiches techniques par domaine', text: 'Les fiches techniques PLIALU pour chaque domaine\u00A0: enduit, bardage, ravalement, précadres, étanchéité et MOB.', img: 'v1794303276/Fiches_techniques_mockup_1_iz09yh.webp', alt: 'Fiches techniques enduit mince, bardage et étanchéité' },
                     { id: 'res-deroulage', file: 'Deroulage.pdf', dl: 'Deroulage_PLIALU.pdf', title: 'Guide du déroulage', text: 'Le guide du déroulage PLIALU, pour optimiser vos formats et réduire vos chutes.', img: 'v1794306327/Deroulage_mockup_1_cmo86g.webp', alt: 'Pages du document déroulage aluminium' },
-                    { id: 'res-goutte', file: 'Fiche_Goutte_eau_extrudee.pdf', dl: 'Fiche_Goutte_eau_extrudee_PLIALU.pdf', title: "Fiche technique goutte d'eau extrudée", text: "Rejet d'eau pour nez de dalle\u00A0: plan de coupe, accessoires, mise en œuvre et finitions.", img: 'v1794240588/Fiche_Goutte_eau_mockup_k6behd.webp', alt: "Pages de la fiche technique Goutte d'eau extrudée", product: true },
+                    { id: 'res-goutte', file: 'Fiche_Goutte_eau_extrudee.pdf', dl: 'Fiche_Goutte_eau_extrudee_PLIALU.pdf', title: "Fiche technique goutte d'eau extrudée", text: "Rejet d'eau pour nez de dalle\u00A0: plan de coupe, accessoires, mise en œuvre et finitions.", img: 'v1794240588/Fiche_Goutte_eau_mockup_k6behd.webp', alt: "Pages de la fiche technique Goutte d'eau extrudée", product: true, productPage: '/goutte-eau-extrudee' },
+                    { id: 'res-couvre-joint', file: 'Fiche_Couvre_joint_extrude.pdf', dl: 'Fiche_Couvre_joint_extrude_PLIALU.pdf', title: 'Fiche technique couvre-joint extrudé', text: "Recouvrement de joint de dilatation\u00A0: plans de coupe du modèle plat et d'angle, mise en œuvre, accessoires et finitions.", img: 'v1795708816/Fiche_Couvre_joint_mockup_gy2vdg.webp', alt: "Pages de la fiche technique Couvre-joint extrudé : couverture, plans de coupe du couvre-joint plat et d'angle, mise en œuvre", product: true },
                   ];
                   const dlIcon = (size: number) => (
                     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -323,15 +324,17 @@ export function SolutionsPage(props: {
                                 Télécharger le PDF
                                 {dlIcon(14)}
                               </a>
-                              <Link
-                                to="/goutte-eau-extrudee"
-                                className="group/prod inline-flex items-center gap-2.5 rounded-full bg-[#E2FD48] px-[22px] py-3 text-sm font-bold text-[#0E2A33] transition-[background-color,transform] duration-150 hover:-translate-y-0.5 hover:bg-[#D4ED3F]"
-                              >
-                                Voir la page produit
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="transition-transform duration-150 group-hover/prod:translate-x-1">
-                                  <path d="M5 12h14M13 6l6 6-6 6" />
-                                </svg>
-                              </Link>
+                              {'productPage' in d && d.productPage ? (
+                                <Link
+                                  to={d.productPage}
+                                  className="group/prod inline-flex items-center gap-2.5 rounded-full bg-[#E2FD48] px-[22px] py-3 text-sm font-bold text-[#0E2A33] transition-[background-color,transform] duration-150 hover:-translate-y-0.5 hover:bg-[#D4ED3F]"
+                                >
+                                  Voir la page produit
+                                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="transition-transform duration-150 group-hover/prod:translate-x-1">
+                                    <path d="M5 12h14M13 6l6 6-6 6" />
+                                  </svg>
+                                </Link>
+                              ) : null}
                             </div>
                           </div>
                         </div>
