@@ -178,6 +178,7 @@ export function Header(props: {
                       </Link>
                       <div className={`mx-3 my-1 h-px ${headerTheme === 'dark' ? 'bg-[#0E2A33]/10' : 'bg-white/10'}`} />
                       {[
+                        ['Plaquette', 'res-plaquette'],
                         ['Portfolio', 'res-book'],
                         ['Catalogue RAL', 'res-ral'],
                         ['Fiches techniques', 'res-fiches'],

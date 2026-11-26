@@ -254,10 +254,10 @@ export function SolutionsPage(props: {
                 <div className="max-w-3xl">
                   <p className={`${DS.EYEBROW_LIGHT} mb-4`}>Ressources</p>
                   <h2 className={`${DS.H2} text-[#0E2A33]`}>Fiches techniques et catalogue RAL à télécharger</h2>
-                  <p className={`${DS.LEAD_LIGHT} mt-6`}>Les documents PDF de PLIALU&nbsp;: catalogue des teintes RAL, fiches techniques par domaine, guide du déroulage, fiche de la goutte d'eau extrudée et portfolio.</p>
+                  <p className={`${DS.LEAD_LIGHT} mt-6`}>Les documents PDF de PLIALU&nbsp;: plaquette de présentation, catalogue des teintes RAL, fiches techniques par domaine, guide du déroulage, fiche de la goutte d'eau extrudée et portfolio.</p>
                 </div>
                 <p className="text-sm leading-[1.55] text-[#0E2A33]/[0.62] md:text-right">
-                  5 documents PDF
+                  6 documents PDF
                   <br />
                   En téléchargement direct
                 </p>
@@ -268,6 +268,7 @@ export function SolutionsPage(props: {
                   const CLD = 'https://res.cloudinary.com/dyiup6v5x/image/upload';
                   const cld = (img: string, w: number) => `${CLD}/f_auto,q_auto,c_limit,w_${w}/${img}`;
                   const docs = [
+                    { id: 'res-plaquette', file: 'Plaquette_Plialu_2026.pdf', dl: 'Plaquette_PLIALU_2026.pdf', title: 'Plaquette PLIALU', text: "Déroulage, thermolaquage, pliage et nos six domaines d'application, en 12 pages.", img: 'v1795704366/Plaquette_Plialu_mockup_avm413.webp', alt: "Plaquette PLIALU imprimée : couverture Metal Solutions et double page sur le thermolaquage, avec les teintes RAL et la certification Qualicoat" },
                     { id: 'res-book', file: 'Portfolio_Plialu.pdf', dl: 'Portfolio_PLIALU.pdf', title: 'Portfolio', text: 'Découvrez nos réalisations et chantiers emblématiques.', img: 'v1794303276/Portfolio_Plialu_mockup_1_nk5hfv.webp', alt: 'Couverture et pages du portfolio PLIALU' },
                     { id: 'res-ral', file: 'Catalogue_RAL.pdf', dl: 'Catalogue_RAL_PLIALU.pdf', title: 'Catalogue des teintes RAL', text: 'Toutes les teintes RAL proposées par PLIALU pour le thermolaquage, en finition brillante et mate.', img: 'v1794303276/Catalogue_RAL_mockup_1_cvsdji.webp', alt: 'Pages du catalogue RAL Infinimetal' },
                     { id: 'res-fiches', file: 'Fiches_techniques.pdf', dl: 'Fiches_techniques_PLIALU.pdf', title: 'Fiches techniques par domaine', text: 'Les fiches techniques PLIALU pour chaque domaine\u00A0: enduit, bardage, ravalement, précadres, étanchéité et MOB.', img: 'v1794303276/Fiches_techniques_mockup_1_iz09yh.webp', alt: 'Fiches techniques enduit mince, bardage et étanchéité' },
