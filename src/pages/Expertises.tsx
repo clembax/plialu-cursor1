@@ -5,6 +5,8 @@ import * as DS from '../components/ds/ds';
 import ConsentEmbed from '../components/ConsentEmbed';
 import ScrollCue from '../components/ScrollCue';
 import { expertisesDetails, processCardDescriptions } from '../data/expertises';
+import { MobileCarousel } from '../components/MobileCarousel';
+import { LeadText } from '../components/LeadText';
 
 export function ExpertisesPage(props: {
   goContactForm: () => void;
@@ -139,36 +141,39 @@ export function ExpertisesPage(props: {
           </section>
 
           {/* Corps de Page */}
-          <div className="bg-[#F3F6F7]">
+          <div className="bg-[#F3F6F7] max-md:py-12">
+            <div className="mx-auto max-w-7xl px-6 max-md:px-6 md:max-w-none md:px-0">
+            <p className={`${DS.EYEBROW_LIGHT} mb-6 md:hidden`}>Les 6 étapes</p>
+            <MobileCarousel label="Les 6 étapes" tone="light" className="md:block">
             {expertisesDetails.map((exp, idx) => (
               <React.Fragment key={exp.id}>
                 <section 
                   id={exp.id} 
-                  className={`relative overflow-hidden py-12 md:py-20 scroll-mt-36 ${exp.light ? 'bg-white' : 'bg-[#F3F6F7]'} ${idx > 0 ? 'border-t border-[#0E2A33]/5' : ''}`}
+                  className={`relative overflow-hidden scroll-mt-36 max-md:flex max-md:h-full max-md:flex-1 max-md:flex-col max-md:rounded-[20px] max-md:bg-white md:py-20 ${exp.light ? 'md:bg-white' : 'md:bg-[#F3F6F7]'} ${idx > 0 ? 'md:border-t md:border-[#0E2A33]/5' : ''}`}
                 >
                   {/* Background Step Number */}
-                  <div className={`absolute top-0 md:top-10 select-none pointer-events-none z-0 ${idx % 2 === 0 ? 'left-[-15px] md:left-[-35px]' : 'right-[-15px] md:right-[-35px]'}`}>
-                    <span className="text-[140px] md:text-[220px] lg:text-[340px] font-black leading-none text-black/[0.035] tracking-tighter">
+                  <div className={`absolute top-0 md:top-10 select-none pointer-events-none z-0 max-md:hidden ${idx % 2 === 0 ? 'left-[-15px] md:left-[-35px]' : 'right-[-15px] md:right-[-35px]'}`}>
+                    <span className="text-[96px] font-black leading-none tracking-tighter text-black/[0.035] md:text-[220px] lg:text-[340px]">
                       0{idx + 1}
                     </span>
                   </div>
 
-                  <div className="relative z-10 max-w-7xl mx-auto px-6">
-                    <div className={`grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center`}>
-                      <div className={`space-y-6 ${idx % 2 !== 0 ? 'lg:order-2' : ''}`}>
+                  <div className="relative z-10 mx-auto max-w-7xl px-6 max-md:flex max-md:h-full max-md:flex-1 max-md:flex-col max-md:px-0">
+                    <div className="flex flex-col gap-4 max-md:h-full max-md:min-h-0 max-md:flex-1 md:grid md:grid-cols-1 md:items-center md:gap-16 lg:grid-cols-2 lg:gap-24">
+                      <div className={`md:space-y-6 max-md:flex max-md:min-h-0 max-md:flex-1 max-md:flex-col max-md:gap-3 max-md:p-5 ${idx % 2 !== 0 ? 'lg:order-2' : ''}`}>
                         <div className="space-y-3">
-                          <span className={`block mb-4 ${DS.EYEBROW_LIGHT}`}>
+                          <span className={`mb-4 block max-md:mb-0 ${DS.EYEBROW_LIGHT}`}>
                             {exp.tag}
                           </span>
                           {exp.id === 'thermolaquage-plat' ? (
                             <div className="flex flex-wrap items-center gap-4">
-                              <h2 className={`${DS.H2} text-[#0E2A33]`}>
+                              <h2 className={`${DS.H2} max-md:min-h-[90px] max-md:text-[24px] max-md:leading-tight text-[#0E2A33]`}>
                                 Thermolaquage Qualicoat, avant ou après pliage
                               </h2>
                               <Link
                                 to="/a-propos#infinimetal"
                                 aria-label="En savoir plus sur Infinimetal"
-                                className="flex items-center gap-3 px-5 py-2 bg-gray-50 rounded-full border border-[#0E2A33]/[0.12] shadow-sm mt-1 cursor-pointer hover:border-[#E2FD48]/50 transition-colors"
+                                className="mt-1 flex cursor-pointer items-center gap-3 rounded-full border border-[#0E2A33]/[0.12] bg-gray-50 px-5 py-2 shadow-sm transition-colors hover:border-[#E2FD48]/50 max-md:hidden"
                               >
                                 <img
                                   src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773322881/INFINI_Noir_ompn2i.png"
@@ -178,7 +183,7 @@ export function ExpertisesPage(props: {
                               </Link>
                             </div>
                           ) : (
-                            <h2 className={`${DS.H2} text-[#0E2A33]`}>
+                            <h2 className={`${DS.H2} max-md:min-h-[90px] max-md:text-[24px] max-md:leading-tight text-[#0E2A33]`}>
                               {exp.id === 'bureau-etudes'
                                 ? 'Bureau des méthodes\u00A0: des plans validés'
                                 : exp.id === 'deroulage-mise-format'
@@ -194,45 +199,81 @@ export function ExpertisesPage(props: {
                           )}
                         </div>
                         {exp.id === 'bureau-etudes' ? (
-                          <p className={`${DS.LEAD_LIGHT} mt-6`}>
-                            En collaboration avec les équipes commerciales et de production, nos techniciens analysent vos plans et cahiers des charges, avec optimisation des formats, validation des contraintes techniques pour une gamme de production sur mesure adaptée à chaque dossier, du plus simple au plus complexe
-                          </p>
+                          <LeadText
+                            tone="light"
+                            className={`${DS.LEAD_LIGHT} mt-6 max-md:mt-0 max-md:text-sm max-md:leading-snug`}
+                            lead="En collaboration avec les équipes commerciales et de production, nos techniciens analysent vos plans et cahiers des charges."
+                            rest=" Ils optimisent les formats et valident les contraintes techniques pour une gamme de production adaptée à chaque dossier, du plus simple au plus complexe."
+                          />
                         ) : exp.id === 'deroulage-mise-format' ? (
-                          <>
-                            <p className={`${DS.LEAD_LIGHT} mt-6`}>
-                              Déroulage de bobines&nbsp;: redressage - découpe de formats à plat et optimisation par dossier. Une étape clé de la fabrication et de la maîtrise des coûts
-                            </p>
-                          </>
+                          <LeadText
+                            tone="light"
+                            className={`${DS.LEAD_LIGHT} mt-6 max-md:mt-0 max-md:text-sm max-md:leading-snug`}
+                            lead={"Déroulage de bobines\u00A0: redressage, découpe de formats à plat et optimisation par dossier."}
+                            rest=" Une étape clé de la fabrication et de la maîtrise des coûts."
+                          />
                         ) : exp.id === 'thermolaquage-plat' ? (
-                          <>
-                            <p className={`${DS.LEAD_LIGHT} mt-6`}>
-                              Prélaquage ou post-laquage&nbsp;: nos deux lignes certifiées Qualicoat, sous la marque{' '}
-                              <Link to="/a-propos#infinimetal" className="cursor-pointer text-[#0E2A33] font-bold hover:underline transition-colors">
-                                Infinimetal
-                              </Link>
-                              , permettent les deux. En prélaquage, les tôles d'aluminium sont laquées à plat puis pliées, pour les cassettes, clins et bavettes. En post-laquage, les pièces sont pliées, soudées ou assemblées puis laquées&nbsp;: la solution pour les précadres soudés et les pièces complexes.
-                            </p>
-                          </>
+                          <LeadText
+                            tone="light"
+                            className={`${DS.LEAD_LIGHT} mt-6 max-md:mt-0 max-md:text-sm max-md:leading-snug`}
+                            lead={
+                              <>
+                                Prélaquage ou post-laquage&nbsp;: nos deux lignes certifiées Qualicoat, sous la marque{' '}
+                                <Link to="/a-propos#infinimetal" className="cursor-pointer font-bold text-[#0E2A33] transition-colors hover:underline">
+                                  Infinimetal
+                                </Link>
+                                , permettent les deux.
+                              </>
+                            }
+                            rest={" En prélaquage, les tôles d'aluminium sont laquées à plat puis pliées, pour les cassettes, clins et bavettes. En post-laquage, les pièces sont pliées, soudées ou assemblées puis laquées\u00A0: la solution pour les précadres soudés et les pièces complexes."}
+                          />
                         ) : exp.id === 'pliage-automatise' ? (
-                          <>
-                            <p className={`${DS.LEAD_LIGHT} mt-6`}>
-                              PLIALU plie l'aluminium et l'acier jusqu'à 4 m, en pliage traditionnel sur presse plieuse à commande numérique ou sur sa ligne de pliage automatisée. Découpe, poinçonnage et panneautage complètent l'étape.
-                            </p>
-                          </>
+                          <LeadText
+                            tone="light"
+                            className={`${DS.LEAD_LIGHT} mt-6 max-md:mt-0 max-md:text-sm max-md:leading-snug`}
+                            lead="PLIALU plie l'aluminium et l'acier jusqu'à 4 m, en pliage traditionnel sur presse plieuse à commande numérique ou sur sa ligne de pliage automatisée."
+                            rest=" Découpe, poinçonnage et panneautage complètent l'étape."
+                          />
+                        ) : exp.id === 'assemblage-finitions' ? (
+                          <LeadText
+                            tone="light"
+                            className={`${DS.LEAD_LIGHT} mt-6 max-md:mt-0 max-md:text-sm max-md:leading-snug`}
+                            lead="Rivetage haute résistance, collage structurel certifié et pose d'accessoires (joint, mousse)."
+                            rest=" Nous livrons des ensembles complets prêts à poser pour accélérer vos cadences de montage sur site."
+                          />
                         ) : (
-                          <p className={`${DS.LEAD_LIGHT} mt-6`}>
-                            {exp.text}
-                          </p>
+                          <LeadText
+                            tone="light"
+                            className={`${DS.LEAD_LIGHT} mt-6 max-md:mt-0 max-md:text-sm max-md:leading-snug`}
+                            lead="Conditionnement rigoureux sur palettes sur-mesure pour prévenir toute déformation."
+                            rest=" Nous assurons la traçabilité et le respect des flux tendus pour livrer vos chantiers partout en Europe dans les délais convenus."
+                          />
                         )}
                         {exp.materials && (
-                          <div className="pt-6 border-t border-[#0E2A33]/10 flex flex-col gap-2">
+                          <div className="mt-auto flex flex-col gap-2 border-t border-[#0E2A33]/10 pt-6 max-md:mt-auto max-md:pt-3">
                             <span className="text-[9px] font-bold tracking-[0.2em] text-[#0E2A33]/40 uppercase">DOMAINES D'APPLICATION</span>
-                            <p className="text-sm font-bold text-[#0E2A33]/60 italic">{exp.materials}</p>
+                            <p className="text-sm font-bold italic text-[#0E2A33]/60 max-md:text-[13px] max-md:font-medium max-md:not-italic">{exp.materials}</p>
                           </div>
                         )}
                       </div>
                       
-                      <div className={`relative overflow-hidden rounded-[20px] shadow-lg ${exp.id === 'thermolaquage-plat' ? 'h-[400px] md:h-[600px]' : 'h-[320px] md:h-[500px]'} ${idx % 2 !== 0 ? 'lg:order-1' : ''} group bg-zinc-50`}>
+                      <div className={`group relative w-full shrink-0 overflow-hidden bg-zinc-50 max-md:order-first max-md:h-[180px] max-md:rounded-none max-md:shadow-none md:rounded-[20px] md:shadow-lg ${exp.id === 'thermolaquage-plat' ? 'md:h-[600px]' : 'md:h-[500px]'} ${idx % 2 !== 0 ? 'lg:order-1' : ''}`}>
+                        <span className="absolute left-3 top-3 z-10 rounded-full bg-white/90 px-2.5 py-1 text-xs font-bold text-[#0E2A33] md:hidden">
+                          {String(idx + 1).padStart(2, '0')}
+                        </span>
+                        {exp.id === 'thermolaquage-plat' ? (
+                          <Link
+                            to="/a-propos#infinimetal"
+                            aria-label="En savoir plus sur Infinimetal"
+                            className="absolute right-3 top-3 z-10 rounded-full bg-white/90 px-3 py-1.5 md:hidden"
+                          >
+                            <img
+                              src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773322881/INFINI_Noir_ompn2i.png"
+                              alt=""
+                              className="h-5 w-auto object-contain"
+                            />
+                          </Link>
+                        ) : null}
                         {exp.id === 'bureau-etudes' ? (
                           <img
                             src="https://res.cloudinary.com/dyiup6v5x/image/upload/v1773074223/BE-1200px_nzpfpj.webp"
@@ -304,6 +345,8 @@ export function ExpertisesPage(props: {
                 </section>
               </React.Fragment>
             ))}
+            </MobileCarousel>
+            </div>
           </div>
 
           {/* CTA Final */}

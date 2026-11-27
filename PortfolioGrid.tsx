@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as DS from './src/components/ds/ds';
+import { MobileCarousel } from './src/components/MobileCarousel';
 import { getProjectImageAlt, getProjectImages, type Project, type ProjectImage } from './projects';
 
 type Layout = 'left' | 'trio' | 'right' | 'pair' | 'single';
@@ -265,22 +266,43 @@ const PortfolioGrid: React.FC<{
 }> = ({ projects, onOpen, context = 'portfolio' }) => {
   const groups = groupProjects(projects);
 
+  const cards = (group: { items: GridItem[] }) =>
+    group.items.map((item, offset) => (
+      <div key={item.project.id} className={`min-w-0 ${item.placement}`}>
+        <PortfolioCard
+          project={item.project}
+          index={item.index}
+          size={item.size}
+          stagger={Math.min(offset, 2) * 80}
+          onOpen={onOpen}
+          context={context}
+        />
+      </div>
+    ));
+
+  if (context === 'home') {
+    return (
+      <div className="flex flex-col gap-4 md:gap-5">
+        {groups.map((group) => (
+          <React.Fragment key={group.items.map((item) => item.project.id).join('-')}>
+            <MobileCarousel
+              label="Réalisations"
+              tone="dark"
+              className={gridClass(group.layout)}
+            >
+              {cards(group)}
+            </MobileCarousel>
+          </React.Fragment>
+        ))}
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col gap-4 md:gap-5">
       {groups.map((group) => (
         <div key={group.items.map((item) => item.project.id).join('-')} className={gridClass(group.layout)}>
-          {group.items.map((item, offset) => (
-            <div key={item.project.id} className={`min-w-0 ${item.placement}`}>
-              <PortfolioCard
-                project={item.project}
-                index={item.index}
-                size={item.size}
-                stagger={Math.min(offset, 2) * 80}
-                onOpen={onOpen}
-                context={context}
-              />
-            </div>
-          ))}
+          {cards(group)}
         </div>
       ))}
     </div>

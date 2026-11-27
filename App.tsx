@@ -165,7 +165,8 @@ const App: React.FC = () => {
     if (hash) {
       const element = document.getElementById(decodeURIComponent(hash.slice(1)));
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const behavior: ScrollBehavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+        element.scrollIntoView({ behavior, block: 'start', inline: 'start' });
       } else {
         window.scrollTo(0, 0);
       }

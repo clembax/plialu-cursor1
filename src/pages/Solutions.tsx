@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router';
 import { ArrowDown } from 'lucide-react';
 import * as DS from '../components/ds/ds';
+import { MobileCarousel } from '../components/MobileCarousel';
+import { LeadText } from '../components/LeadText';
 import ScrollCue from '../components/ScrollCue';
 import { RAL_APERCU } from '../data/ral';
 
@@ -59,7 +61,7 @@ export function SolutionsPage(props: {
                 </div>
 
                 {/* Grille 6 domaines (textes de la plaquette) */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <MobileCarousel label="Six domaines d'application" tone="dark" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {(() => {
                     const CLD = 'https://res.cloudinary.com/dyiup6v5x/image/upload';
                     const ic = 'h-6 w-6 shrink-0 text-[#E2FD48]';
@@ -68,7 +70,8 @@ export function SolutionsPage(props: {
                         n: '01',
                         anchor: 'enduit-mince',
                         title: 'Enduit mince sur isolant',
-                        text: "Profilés ITE sur mesure, y compris hors standard, pour les points singuliers de l'isolation par l'extérieur\u00A0: départs, arrêts latéraux, couronnements, cornières entoilées, joints de dilatation PVC entoilés, et tous les pliages associés en aluminium laqué.",
+                        lead: "Profilés ITE sur mesure, y compris hors standard, pour les points singuliers de l'isolation par l'extérieur.",
+                        rest: ' PLIALU fournit les départs, arrêts latéraux, couronnements, cornières entoilées, joints de dilatation PVC entoilés et tous les pliages associés en aluminium laqué.',
                         img: 'v1794308485/Solutions_enduit_mince_ITE_nhj3ul.webp',
                         alt: 'Enduit mince sur isolant\u00A0: façade ITE avec tableaux et bavettes de fenêtres en aluminium laqué',
                         icon: (
@@ -81,7 +84,8 @@ export function SolutionsPage(props: {
                         n: '02',
                         anchor: 'bardage',
                         title: 'Bardage, cassettes & clins',
-                        text: "Cassettes de façade et clins sur mesure, en aluminium ou en acier, laqués dans nos ateliers. Habillage des fenêtres\u00A0: bavettes, tableaux, linteaux et épingles d'embrasure. Ossatures galvanisées pour le bardage et grilles anti-rongeurs.",
+                        lead: 'Cassettes de façade et clins sur mesure, en aluminium ou en acier, laqués dans nos ateliers.',
+                        rest: " Habillage des fenêtres\u00A0: bavettes, tableaux, linteaux et épingles d'embrasure. Ossatures galvanisées pour le bardage et grilles anti-rongeurs.",
                         img: 'v1794305547/Image_site_bardage_eam6np.webp',
                         alt: 'Bardage en cassettes de façade aluminium\u00A0: joint en croix et fixations',
                         icon: (
@@ -94,7 +98,8 @@ export function SolutionsPage(props: {
                         n: '03',
                         anchor: 'ravalement',
                         title: 'Ravalement de façade',
-                        text: "Bavettes droites ou rayonnées, avec relevés droits ou rayonnés. Gouttes d'eau extrudées, couvre-joints extrudés ou pliés, habillages de nez de dalle.",
+                        lead: 'Bavettes droites ou rayonnées, avec relevés droits ou rayonnés.',
+                        rest: " Gouttes d'eau extrudées, couvre-joints extrudés ou pliés, habillages de nez de dalle.",
                         img: 'v1794235010/9cd7d856-180e-4fc2-bf46-7c3f938dfa8f_dj4zga.webp',
                         alt: "Ravalement de façade\u00A0: nez de dalle équipé d'une goutte d'eau extrudée en aluminium",
                         product: true,
@@ -108,7 +113,8 @@ export function SolutionsPage(props: {
                         n: '04',
                         anchor: 'precadres',
                         title: 'Précadres, portes ou fenêtres',
-                        text: 'Précadres de fenêtres et de portes sur mesure, en aluminium ou en acier\u00A0: étanches, monoblocs, soudés puis laqués. Livrés prêts à poser sur chantier.',
+                        lead: 'Précadres de fenêtres et de portes sur mesure, en aluminium ou en acier\u00A0: étanches, monoblocs, soudés puis laqués.',
+                        rest: ' Livrés prêts à poser sur chantier.',
                         img: 'v1794305764/20201001_141101_resized_bddixg.webp',
                         alt: "Précadre aluminium monobloc soudé dans l'atelier PLIALU, vue de dessus",
                         icon: (
@@ -121,7 +127,8 @@ export function SolutionsPage(props: {
                         n: '05',
                         anchor: 'etancheite',
                         title: 'Étanchéité',
-                        text: "Couvertines d'acrotère sur mesure, laquées dans la teinte RAL de votre choix, avec angles, éclisses et pattes drainantes. Bandes de rive pour toitures-terrasses.",
+                        lead: "Couvertines d'acrotère sur mesure, laquées dans la teinte RAL de votre choix, avec angles, éclisses et pattes drainantes.",
+                        rest: ' Bandes de rive pour toitures-terrasses.',
                         img: 'v1794308485/Solutions_etancheite_couvertine_nofleh.webp',
                         alt: 'Étanchéité de toiture-terrasse\u00A0: couvertine aluminium posée sur acrotère avec son support',
                         icon: (
@@ -134,7 +141,7 @@ export function SolutionsPage(props: {
                         n: '06',
                         anchor: 'mob-fob',
                         title: 'MOB, FOB & murs-rideaux',
-                        text: 'Murs et façades à ossature bois, murs-rideaux\u00A0: pièces techniques et spécifiques regroupant les cinq domaines précédents.',
+                        lead: 'Murs et façades à ossature bois, murs-rideaux\u00A0: pièces techniques et spécifiques regroupant les cinq domaines précédents.',
                         img: 'v1772021847/Welink-1200px_mu1jnb.webp',
                         alt: 'Murs-rideaux et façade métallique du bâtiment WeLink à Lyon 7',
                         icon: (
@@ -145,8 +152,8 @@ export function SolutionsPage(props: {
                       },
                     ];
                     return domaines.map((d) => (
-                      <article key={d.n} id={d.anchor} className={`${DS.CARD_DARK} group flex flex-col scroll-mt-32 transition-colors duration-300 hover:border-[#E2FD48]/50`}>
-                        <div className="relative h-[180px] overflow-hidden border-b border-white/10">
+                      <article key={d.n} id={d.anchor} className={`${DS.CARD_DARK} group flex max-md:h-full max-md:flex-1 flex-col scroll-mt-32 transition-colors duration-300 hover:border-[#E2FD48]/50`}>
+                        <div className="relative h-[180px] overflow-hidden border-b border-white/10 max-md:h-[160px]">
                           <img
                             src={`${CLD}/f_auto,q_auto,c_limit,w_800/${d.img}`}
                             srcSet={`${CLD}/f_auto,q_auto,c_limit,w_600/${d.img} 600w, ${CLD}/f_auto,q_auto,c_limit,w_800/${d.img} 800w, ${CLD}/f_auto,q_auto,c_limit,w_1200/${d.img} 1200w`}
@@ -157,17 +164,31 @@ export function SolutionsPage(props: {
                           />
                         </div>
                         <div className="flex flex-1 flex-col p-7">
-                          <span className="mb-3.5 block font-display text-xs font-bold tracking-[0.1em] text-white/40">{d.n}</span>
-                          <div className="mb-4 flex items-center gap-2">
-                            {d.icon}
-                            <h3 className={`${DS.H3} text-white`}>{d.title}</h3>
+                          <span className="mb-3.5 block font-display text-xs font-bold tracking-[0.1em] text-white/40 max-md:mb-3">{d.n}</span>
+                          <div className="mb-4 flex items-start gap-2 max-md:mb-3">
+                            <span className="mt-0.5 inline-flex shrink-0">{d.icon}</span>
+                            <h3 className={`${DS.H3} max-md:min-h-[56px] text-white`}>{d.title}</h3>
                           </div>
-                          <p className="mb-5 text-sm leading-relaxed text-white/60">{d.text}</p>
+                          <LeadText tone="dark" className="mb-5 text-sm leading-relaxed text-white/60 max-md:mb-0" lead={d.lead} rest={'rest' in d ? d.rest : undefined} />
+                          {'product' in d && d.product ? (
+                            <Link
+                              to="/goutte-eau-extrudee"
+                              className="group/link mt-4 flex w-full items-center gap-2.5 text-left md:hidden"
+                            >
+                              <span className="whitespace-nowrap rounded-full border border-[#E2FD48]/35 px-2.5 py-1 text-[11px] font-bold text-[#E2FD48]">
+                                Fiche produit
+                              </span>
+                              <span className="flex-1 text-sm font-semibold text-white">Goutte d'eau extrudée</span>
+                              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="text-[#E2FD48] transition-transform duration-150 group-hover/link:translate-x-2">
+                                <path d="M5 12h14M13 6l6 6-6 6" />
+                              </svg>
+                            </Link>
+                          ) : null}
                           <div className="mt-auto flex flex-col gap-5 border-t border-white/10 pt-5">
-                            {d.product && (
+                            {d.product ? (
                               <Link
                                 to="/goutte-eau-extrudee"
-                                className="group/link flex w-full items-center gap-2.5 text-left"
+                                className="group/link flex w-full items-center gap-2.5 text-left max-md:hidden"
                               >
                                 <span className="whitespace-nowrap rounded-full border border-[#E2FD48]/35 px-2.5 py-1 text-[11px] font-bold text-[#E2FD48]">
                                   Fiche produit
@@ -177,7 +198,7 @@ export function SolutionsPage(props: {
                                   <path d="M5 12h14M13 6l6 6-6 6" />
                                 </svg>
                               </Link>
-                            )}
+                            ) : null}
                             <button type="button" onClick={() => goDevis(d.title)} className="group/devis inline-flex items-center gap-3 self-start font-sans text-xs font-semibold uppercase tracking-widest text-[#E2FD48] transition-colors duration-150 hover:text-white">
                               Demander un devis
                               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="transition-transform duration-150 group-hover/devis:translate-x-2">
@@ -189,7 +210,7 @@ export function SolutionsPage(props: {
                       </article>
                     ));
                   })()}
-                </div>
+                </MobileCarousel>
 
                 {/* Tôles prélaquées — fullwidth */}
                 <div
@@ -263,7 +284,7 @@ export function SolutionsPage(props: {
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              <MobileCarousel label="Documents à télécharger" tone="light" className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 {(() => {
                   const CLD = 'https://res.cloudinary.com/dyiup6v5x/image/upload';
                   const cld = (img: string, w: number) => `${CLD}/f_auto,q_auto,c_limit,w_${w}/${img}`;
@@ -284,30 +305,30 @@ export function SolutionsPage(props: {
                   return docs.map((d, i) => {
                     const feat = i === 0;
                     const href = `/documents/${d.file}`;
-                    const cardCls = `${DS.CARD_LIGHT} group flex scroll-mt-32 flex-col text-[#0E2A33] transition-colors duration-150 hover:border-[#0E2A33]/45 ${feat ? 'md:col-span-2 md:flex-row' : ''}`;
-                    const mockCls = `relative block aspect-[16/10] overflow-hidden border-b border-[#0E2A33]/10 bg-[#E8EDEF] ${feat ? 'md:w-[58%] md:flex-none md:border-b-0 md:border-r' : ''}`;
+                    const cardCls = `${DS.CARD_LIGHT} group flex max-md:h-full max-md:flex-1 scroll-mt-32 flex-col text-[#0E2A33] transition-colors duration-150 hover:border-[#0E2A33]/45 ${feat ? 'md:col-span-2 md:flex-row' : ''}`;
+                    const mockCls = `relative block aspect-[16/10] max-md:aspect-[16/9] overflow-hidden border-b border-[#0E2A33]/10 bg-[#E8EDEF] ${feat ? 'md:aspect-[16/10] md:w-[58%] md:flex-none md:border-b-0 md:border-r' : ''}`;
                     const img = (
                       <img
                         src={cld(d.img, feat ? 1200 : 800)}
                         srcSet={`${cld(d.img, 800)} 800w, ${cld(d.img, 1200)} 1200w, ${cld(d.img, 1600)} 1600w`}
                         sizes={feat ? '(max-width: 768px) 100vw, 740px' : '(max-width: 768px) 100vw, 620px'}
                         alt={d.alt}
-                        loading="lazy"
+                        loading={i === 0 ? 'eager' : 'lazy'}
                         className={`absolute inset-0 h-full w-full object-cover ${DS.CARD_IMG_ZOOM}`}
                       />
                     );
                     const head = (
                       <>
-                        <div className="flex items-center justify-between gap-4">
-                          <span className={DS.EYEBROW_LIGHT}>PDF · 0{i + 1}</span>
+                        <div className="flex items-center justify-between gap-4 max-md:min-h-[25px]">
+                          <span className={`${DS.EYEBROW_LIGHT} whitespace-nowrap`}>PDF · 0{i + 1}</span>
                           {d.product ? (
                             <span className="whitespace-nowrap rounded-full bg-[#0E2A33] px-2.5 py-1 text-[11px] font-bold text-[#E2FD48]">Fiche produit</span>
                           ) : (
-                            <span className="text-xs text-[#0E2A33]/45">{d.file}</span>
+                            <span className="text-xs text-[#0E2A33]/45 max-md:hidden">{d.file}</span>
                           )}
                         </div>
-                        <h3 className={`mt-3.5 font-display font-bold text-[#0E2A33] ${feat ? 'text-xl md:text-[28px]' : 'text-xl'}`}>{d.title}</h3>
-                        <p className="mt-2 max-w-[440px] text-sm leading-relaxed text-[#0E2A33]/75">{d.text}</p>
+                        <h3 className={`mt-3.5 max-md:min-h-[56px] font-display font-bold text-[#0E2A33] ${feat ? 'text-xl md:text-[28px]' : 'text-xl'}`}>{d.title}</h3>
+                        <LeadText tone="light" className="mt-2 max-w-[440px] text-sm leading-relaxed text-[#0E2A33]/75" lead={d.text} />
                       </>
                     );
 
@@ -319,6 +340,14 @@ export function SolutionsPage(props: {
                           </a>
                           <div className="flex flex-1 flex-col p-7">
                             {head}
+                            {'productPage' in d && d.productPage ? (
+                              <Link to={d.productPage} className={`${DS.ACTION_LIGHT} mt-4 self-start md:hidden`}>
+                                Voir la page produit
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={DS.ACTION_ARROW}>
+                                  <path d="M5 12h14M13 6l6 6-6 6" />
+                                </svg>
+                              </Link>
+                            ) : null}
                             <div className="mt-auto flex flex-wrap items-center justify-between gap-4 pt-6">
                               <a href={href} download={d.dl} className="inline-flex items-center gap-2 text-sm font-semibold text-[#0E2A33] underline-offset-4 hover:underline">
                                 Télécharger le PDF
@@ -327,7 +356,7 @@ export function SolutionsPage(props: {
                               {'productPage' in d && d.productPage ? (
                                 <Link
                                   to={d.productPage}
-                                  className="group/prod inline-flex items-center gap-2.5 rounded-full bg-[#E2FD48] px-[22px] py-3 text-sm font-bold text-[#0E2A33] transition-[background-color,transform] duration-150 hover:-translate-y-0.5 hover:bg-[#D4ED3F]"
+                                  className="group/prod inline-flex items-center gap-2.5 rounded-full bg-[#E2FD48] px-[22px] py-3 text-sm font-bold text-[#0E2A33] transition-[background-color,transform] duration-150 hover:-translate-y-0.5 hover:bg-[#D4ED3F] max-md:hidden"
                                 >
                                   Voir la page produit
                                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="transition-transform duration-150 group-hover/prod:translate-x-1">
@@ -335,6 +364,9 @@ export function SolutionsPage(props: {
                                   </svg>
                                 </Link>
                               ) : null}
+                              <span className="flex h-11 w-11 items-center justify-center rounded-full border border-[#0E2A33]/20 transition-colors duration-150 group-hover:border-[#E2FD48] group-hover:bg-[#E2FD48] md:hidden">
+                                {dlIcon(16)}
+                              </span>
                             </div>
                           </div>
                         </div>
@@ -360,7 +392,7 @@ export function SolutionsPage(props: {
                     );
                   });
                 })()}
-              </div>
+              </MobileCarousel>
             </div>
           </section>
 

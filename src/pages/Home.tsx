@@ -6,6 +6,7 @@ import ScrollCue from '../components/ScrollCue';
 import PortfolioGrid from '../../PortfolioGrid';
 import { PROJECTS } from '../../projects';
 import { expertisesDetails, processCardDescriptions } from '../data/expertises';
+import { MobileCarousel } from '../components/MobileCarousel';
 import { homeProjects } from '../data/homeProjects';
 import { RAL_APERCU } from '../data/ral';
 import { setHeroCtaVisible } from '../heroCtaStore';
@@ -249,13 +250,13 @@ export function HomePage(props: {
                   { n: '06', anchor: 'mob-fob', title: 'MOB, FOB & murs-rideaux', img: 'v1772021847/Welink-1200px_mu1jnb.webp', alt: 'Murs-rideaux et façade métallique du bâtiment WeLink à Lyon 7' },
                 ];
                 return (
-                  <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+                  <MobileCarousel label="Domaines d'application" tone="light" className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
                     {/* Carte Goutte d'eau extrudée */}
                     <Link
                       to="/goutte-eau-extrudee"
-                      className="group relative flex min-h-[300px] flex-col overflow-hidden rounded-[20px] bg-[linear-gradient(135deg,#0E2A33_0%,#071318_100%)] text-left text-white md:col-span-2"
+                      className="group relative flex min-h-[300px] max-md:h-[420px] max-md:min-h-0 flex-col overflow-hidden rounded-[20px] bg-[linear-gradient(135deg,#0E2A33_0%,#071318_100%)] text-left text-white md:col-span-2"
                     >
-                      <div className="relative z-10 flex flex-1 flex-col justify-between gap-7 p-9 md:w-[56%]">
+                      <div className="relative z-10 flex min-h-0 flex-1 flex-col justify-between gap-7 p-9 max-md:gap-4 max-md:p-6 md:w-[56%]">
                         <div className="flex flex-wrap items-center gap-2.5">
                           <span className="rounded-full bg-[#E2FD48] px-2.5 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.12em] text-[#0E2A33]">Fiche produit</span>
                           <span className="font-display text-[10px] font-bold uppercase tracking-[0.3em] text-white/55">Ravalement de façade</span>
@@ -275,7 +276,7 @@ export function HomePage(props: {
                         sizes="(max-width: 768px) 100vw, 360px"
                         alt="Profil goutte d'eau extrudée en aluminium laqué, rendu 3D"
                         loading="lazy"
-                        className="h-[220px] w-full object-contain object-right transition-transform duration-700 ease-out group-hover:scale-[1.04] md:absolute md:right-0 md:top-1/2 md:h-[88%] md:w-[58%] md:-translate-y-1/2"
+                        className="h-[220px] w-full shrink-0 object-contain object-right transition-transform duration-700 ease-out group-hover:scale-[1.04] max-md:h-[140px] md:absolute md:right-0 md:top-1/2 md:h-[88%] md:w-[58%] md:-translate-y-1/2"
                       />
                     </Link>
 
@@ -284,7 +285,7 @@ export function HomePage(props: {
                       <Link
                         key={t.n}
                         to={`/solutions#${t.anchor}`}
-                        className="group relative flex min-h-[300px] flex-col justify-end overflow-hidden rounded-[20px] bg-[#0E2A33] text-left text-white"
+                        className="group relative flex h-[420px] min-h-[300px] flex-col justify-end overflow-hidden rounded-[20px] bg-[#0E2A33] text-left text-white max-md:h-[420px] md:h-auto"
                       >
                         <img
                           src={`${CLD}/f_auto,q_auto,c_limit,w_800/${t.img}`}
@@ -310,7 +311,7 @@ export function HomePage(props: {
                     {/* Aperçu Tôles prélaquées (renvoie à la carte complète de la page Solutions) */}
                     <Link
                       to="/solutions#toles-prelaquees"
-                      className="group grid grid-cols-1 items-center gap-6 rounded-[20px] bg-[linear-gradient(135deg,#0E2A33_0%,#071318_100%)] p-7 text-left text-white md:col-span-2 md:grid-cols-[1.6fr_1fr] md:gap-10 md:px-10 md:py-9 lg:col-span-4"
+                      className="group grid h-[420px] grid-cols-1 items-center gap-6 overflow-hidden rounded-[20px] bg-[linear-gradient(135deg,#0E2A33_0%,#071318_100%)] p-7 text-left text-white max-md:h-[420px] max-md:gap-4 max-md:p-6 md:col-span-2 md:h-auto md:grid-cols-[1.6fr_1fr] md:gap-10 md:px-10 md:py-9 lg:col-span-4"
                     >
                       <div>
                         <div className="mb-3 flex flex-wrap items-center gap-3">
@@ -320,19 +321,19 @@ export function HomePage(props: {
                         <p className="text-[15px] leading-relaxed text-white/70">Tôles aluminium prélaquées au format, certifiées Qualicoat et filmées.</p>
                         <div className="mt-5 flex flex-wrap gap-2" role="img" aria-label="Aperçu de teintes RAL disponibles">
                           {RAL_APERCU.map((c) => (
-                            <i key={c} className="block h-10 w-10 rounded-[10px] border border-white/[0.12]" style={{ background: c }} />
+                            <i key={c} className="block h-10 w-10 rounded-[10px] border border-white/[0.12] max-md:h-8 max-md:w-8" style={{ background: c }} />
                           ))}
                         </div>
                       </div>
                       <div className="flex flex-col items-start gap-6 md:items-end">
-                        <img src="https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,w_520/v1780589052/infini_blanc_zvlnn3.png" alt="Logo Infinimetal Laquage Solutions" loading="lazy" className="h-auto w-40 md:w-[200px]" />
+                        <img src="https://res.cloudinary.com/dyiup6v5x/image/upload/f_auto,q_auto,w_520/v1780589052/infini_blanc_zvlnn3.png" alt="Logo Infinimetal Laquage Solutions" loading="lazy" className="h-auto w-40 max-md:w-32 md:w-[200px]" />
                         <span className={DS.ACTION_DARK}>
                           Voir les tôles prélaquées
                           <span className={DS.ACTION_ARROW}>{arrow}</span>
                         </span>
                       </div>
                     </Link>
-                  </div>
+                  </MobileCarousel>
                 );
               })()}
             </div>
