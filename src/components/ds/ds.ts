@@ -28,7 +28,7 @@ export const BODY_LIGHT = 'font-sans text-base leading-[1.65] text-[#0E2A33]/75'
 export const STAT_NUMBER = 'font-display text-3xl md:text-[40px] font-semibold leading-none tracking-[-0.04em]';
 
 export const CONTAINER = 'max-w-7xl mx-auto px-6';
-export const SECTION = 'py-24 md:py-32';
+export const SECTION = 'py-16 md:py-32';
 export const SECTION_COMPACT = 'py-16 md:py-24';
 export const HERO_MAIN = 'pt-48 md:pt-56 pb-20';
 export const HERO_DETAIL = 'pt-32 md:pt-40 pb-20';

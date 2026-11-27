@@ -43,7 +43,7 @@ export function ContactPage(props: {
           </section>
 
           {/* Formulaire */}
-          <section id="contact-form" className="bg-[#F3F6F7] py-24 md:py-32">
+          <section id="contact-form" className="bg-[#F3F6F7] py-16 md:py-32">
             <div className="max-w-3xl mx-auto px-4 sm:px-6">
               <div className="mb-12 text-center">
                 <span className={`block mb-4 ${DS.EYEBROW_LIGHT}`}>CONTACT</span>
@@ -219,9 +219,9 @@ export function ContactPage(props: {
           </section>
 
           {/* Coordonnées & localisation */}
-          <section className="bg-white py-24 md:py-32">
+          <section className="bg-white py-16 md:py-32">
             <div className="max-w-7xl mx-auto px-4 sm:px-6">
-              <div className="mb-16">
+              <div className="mb-16 max-md:mb-10">
                 <span className={`block mb-4 ${DS.EYEBROW_LIGHT}`}>COORDONNÉES</span>
                 <h2 className={`${DS.H2} text-[#0E2A33]`}>Où nous trouver&nbsp;?</h2>
               </div>

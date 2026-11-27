@@ -53,7 +53,7 @@ export function HomePage(props: {
               <div className="max-w-7xl animate-fade-up">
                 <div className="mb-16 md:mb-24">
                   <h1 className={`${DS.H1} text-white`}>
-                    <span className="block">SOLUTIONS MÉTALLIQUES <span className="whitespace-nowrap">SUR-MESURE</span></span>
+                    <span className="block">SOLUTIONS MÉTALLIQUES <span className="whitespace-nowrap">SUR MESURE</span></span>
                     <span className="block">pour l'enveloppe du bâtiment</span>
                   </h1>
                   <LeadText tone="dark" className={`${DS.LEAD_DARK} mt-6 md:max-w-[45rem]`} lead="PLIALU conçoit, plie et thermolaque sur mesure les pièces en aluminium et en acier de l'enveloppe du bâtiment, dans son usine intégrée près de Lyon." rest=" Qualité, coûts et délais sont maîtrisés de bout en bout, pour chaque projet." />
@@ -125,7 +125,7 @@ export function HomePage(props: {
                   />
                 </div>
               </div>
-              <ol className="mt-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6 gap-4 lg:gap-5 xl:gap-4 list-none p-0">
+              <ol className="mt-16 max-md:mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6 gap-4 lg:gap-5 xl:gap-4 list-none p-0">
                 {expertisesDetails.map((exp, idx) => {
                   const name = exp.id === 'bureau-etudes'
                     ? 'Bureau des méthodes'
@@ -159,7 +159,7 @@ export function HomePage(props: {
           {/* Section dédiée : vidéo Teaser (loop, muette, lecture au scroll) */}
           <section
             id="teaser-video"
-            className="relative pt-12 md:pt-16 pb-24 md:pb-32 section--dark"
+            className="relative pt-12 md:pt-16 pb-16 md:pb-32 section--dark"
             style={{ background: 'linear-gradient(180deg, #0C242D 0%, #071318 100%)' }}
           >
             <div className="relative max-w-7xl mx-auto px-6 z-10">
@@ -337,9 +337,9 @@ export function HomePage(props: {
           </section>
 
           {/* 4. RÉALISATIONS (DARK) */}
-          <section id="projects" className="relative z-10 py-24 md:py-32 section--dark" style={{ background: 'linear-gradient(to bottom, #0b1e26 0%, #071318 100%)' }}>
+          <section id="projects" className="relative z-10 py-16 md:py-32 section--dark" style={{ background: 'linear-gradient(to bottom, #0b1e26 0%, #071318 100%)' }}>
             <div className="max-w-7xl mx-auto px-6">
-              <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+              <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 max-md:mb-10">
                 <div className="max-w-2xl">
                   <span className={`block mb-4 ${DS.EYEBROW_DARK}`}>PORTFOLIO COLLABORATIONS</span>
                   <h2 className={`${DS.H2} text-white`}>Façades en aluminium réalisées avec nos clients</h2>
@@ -361,7 +361,7 @@ export function HomePage(props: {
           </section>
 
           {/* 6. À PROPOS (DARK) */}
-          <section id="propos" className="py-24 md:py-32 section--dark overflow-hidden" style={{ background: 'linear-gradient(to bottom, #071318 0%, #0b1e26 100%)' }}>
+          <section id="propos" className="py-16 md:py-32 section--dark overflow-hidden" style={{ background: 'linear-gradient(to bottom, #071318 0%, #0b1e26 100%)' }}>
             <div className="max-w-7xl mx-auto px-6 relative z-10">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                 <div className="group relative rounded-[20px] overflow-hidden aspect-[4/3] border border-white/10 bg-[#071318] order-2 lg:order-1 shadow-2xl">
@@ -385,7 +385,7 @@ export function HomePage(props: {
           </section>
 
           {/* 7. CONTACT (LIGHT) */}
-          <section id="contact" className="bg-[#F3F6F7] py-24 md:py-32 section--light">
+          <section id="contact" className="bg-[#F3F6F7] py-16 md:py-32 section--light">
             <div className="relative z-10 max-w-7xl mx-auto px-6">
               <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-10 lg:gap-16 items-start">
                 <div>

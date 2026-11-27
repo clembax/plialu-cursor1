@@ -98,7 +98,7 @@ export function ExpertisesPage(props: {
           </div>
 
           {/* Vidéo complète – lecteur Vimeo */}
-          <section id="video-complete" className="section--dark py-24 md:py-32 scroll-mt-24" style={{ background: '#071318' }}>
+          <section id="video-complete" className="section--dark py-16 md:py-32 scroll-mt-24" style={{ background: '#071318' }}>
             <div className="max-w-6xl mx-auto px-6">
               <div className="relative rounded-[20px] overflow-hidden border border-white/10 bg-black/40 aspect-video">
                 <ConsentEmbed kind="vimeo" tone="dark">

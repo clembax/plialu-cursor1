@@ -495,7 +495,7 @@ export const GoutteEauExtrudee: React.FC = () => {
       <section className={`${DS.SECTION} bg-white`}>
         <div className={DS.CONTAINER}>
           <p className={`${DS.EYEBROW_LIGHT} mb-4`}>Données techniques</p>
-          <h2 className={`${DS.H2} mb-16 text-[#0E2A33]`}>Caractéristiques techniques</h2>
+          <h2 className={`${DS.H2} mb-16 max-md:mb-10 text-[#0E2A33]`}>Caractéristiques techniques</h2>
           <div className="grid items-start gap-10 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
             <figure className="m-0 flex aspect-[2300/1972] items-center justify-center overflow-hidden rounded-[20px] border border-[#0E2A33]/[0.12] bg-white">
               <img
@@ -525,7 +525,7 @@ export const GoutteEauExtrudee: React.FC = () => {
       <section className={`${DS.SECTION} bg-[#F3F6F7]`}>
         <div className={DS.CONTAINER}>
           <p className={`${DS.EYEBROW_LIGHT} mb-4`}>Finitions</p>
-          <h2 className={`${DS.H2} mb-16 text-[#0E2A33]`}>Brut, anodisé ou laqué</h2>
+          <h2 className={`${DS.H2} mb-16 max-md:mb-10 text-[#0E2A33]`}>Brut, anodisé ou laqué</h2>
           <div className="grid gap-6 md:grid-cols-3">
             <article className="rounded-[20px] bg-white p-5 pb-8">
               <div className="mb-6 h-40 rounded-[20px] bg-[#D5DADC]" role="img" aria-label="Pastille aluminium brut" />

@@ -46,9 +46,9 @@ export function SolutionsPage(props: {
           </section>
 
           {/* Domaines section */}
-          <section className="section--dark bg-gradient-to-b from-[#071318] to-[#0b1e26] py-24 md:py-32">
+          <section className="section--dark bg-gradient-to-b from-[#071318] to-[#0b1e26] py-16 md:py-32">
             <div className="relative z-30 w-full max-w-7xl mx-auto px-6">
-              <div className="space-y-16">
+              <div className="space-y-16 max-md:space-y-10">
                 {/* En-tête section */}
                 <div>
                   <p className={`${DS.EYEBROW_DARK} mb-4`}>Gammes</p>
@@ -272,7 +272,7 @@ export function SolutionsPage(props: {
           {/* Télécharger les documents */}
           <section id="ressources" className={`${DS.SECTION} bg-white scroll-mt-28`}>
             <div className={DS.CONTAINER}>
-              <div className="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between md:gap-10">
+              <div className="mb-16 max-md:mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between md:gap-10">
                 <div className="max-w-3xl">
                   <p className={`${DS.EYEBROW_LIGHT} mb-4`}>Ressources</p>
                   <h2 className={`${DS.H2} text-[#0E2A33]`}>Fiches techniques et catalogue RAL à télécharger</h2>

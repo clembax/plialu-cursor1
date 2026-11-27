@@ -29,7 +29,7 @@ export function AProposPage(props: {
                   NOTRE IDENTITÉ INDUSTRIELLE
                 </span>
                 <h1 className={`${DS.H1} text-white`}>
-                  PLIALU, entreprise de<br />
+                  PLIALU, entreprise de<br className="max-md:hidden" />
                   pliage et thermolaquage <span className="whitespace-nowrap">près de Lyon</span>
                 </h1>
                 <LeadText tone="dark" className={`${DS.LEAD_DARK} mt-6`} lead="PLIALU est une entreprise de pliage et thermolaquage près de Lyon, installée à Civrieux (Ain)." rest=" Son usine plie et laque sur mesure la tôle aluminium et acier des professionnels de l'enveloppe du bâtiment en Auvergne-Rhône-Alpes, de la transformation industrielle à la fabrication de pièces métalliques." />
@@ -43,7 +43,7 @@ export function AProposPage(props: {
           </section>
 
           {/* 2. POSITIONNEMENT (LIGHT) - MACHINED PERFECTION V2 (FIXED BACKGROUND) */}
-          <section id="a-propos-contenu" className="bg-white py-24 md:py-32">
+          <section id="a-propos-contenu" className="bg-white py-16 md:py-32">
             <div className="max-w-7xl mx-auto px-6">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-[72px] items-center">
                 <div>
@@ -65,7 +65,7 @@ export function AProposPage(props: {
 
           <section
             id="infinimetal"
-            className="bg-white py-24 md:py-32 border-t border-[#0E2A33]/[0.12] scroll-mt-24"
+            className="bg-white py-16 md:py-32 border-t border-[#0E2A33]/[0.12] scroll-mt-24"
           >
             <div className="max-w-7xl mx-auto px-6">
               <div className="relative flex items-center justify-between">
@@ -97,7 +97,7 @@ export function AProposPage(props: {
             </div>
           </section>
 
-          <section className="relative selection-brand py-24 md:py-32" style={{ background: 'linear-gradient(to bottom, #0b1e26 0%, #071318 100%)' }}>
+          <section className="relative selection-brand py-16 md:py-32" style={{ background: 'linear-gradient(to bottom, #0b1e26 0%, #071318 100%)' }}>
             <div className="mx-auto max-w-7xl px-6">
               <div className="h-px bg-white/10" />
               <p className="sr-only">PLIALU, atelier de façonnage métallique implanté en Rhône-Alpes, intervient sur toute la France, Corse comprise, ainsi qu'en Belgique et en Suisse.</p>
