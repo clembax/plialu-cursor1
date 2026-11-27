@@ -1,9 +1,22 @@
 import React, { useEffect, useRef, useState, useSyncExternalStore } from 'react';
-import { Link } from 'react-router';
-import { Menu } from 'lucide-react';
+import { Link, useLocation } from 'react-router';
+import { ChevronDown, Menu, X } from 'lucide-react';
 import * as DS from '../components/ds/ds';
 import { getSnapshot, subscribe } from '../heroCtaStore';
 import type { PageKey } from '../seo/seoConfig';
+
+const SOLUTIONS_DOCS = [
+  { label: 'Plaquette', id: 'res-plaquette' },
+  { label: 'Portfolio', id: 'res-book' },
+  { label: 'Catalogue RAL', id: 'res-ral' },
+  { label: 'Fiches techniques', id: 'res-fiches' },
+  { label: 'Déroulage', id: 'res-deroulage' },
+  { label: "Fiche goutte d'eau", id: 'res-goutte' },
+  { label: 'Fiche couvre-joint', id: 'res-couvre-joint' },
+] as const;
+
+const PDF_BADGE_ON_DARK = 'rounded-full border border-white/20 px-[7px] py-0.5 text-[10px] font-semibold tracking-[0.05em] text-white/50';
+const PRODUCT_BADGE_ON_DARK = 'whitespace-nowrap rounded-full border border-[#E2FD48]/35 px-2.5 py-1 text-[11px] font-bold text-[#E2FD48]';
 
 export function Header(props: {
   currentPage: PageKey;
@@ -13,13 +26,19 @@ export function Header(props: {
   setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const { currentPage, goContactForm, openProjectId, isMenuOpen, setIsMenuOpen } = props;
+  const location = useLocation();
   const heroCtaVisible = useSyncExternalStore(subscribe, getSnapshot, () => true);
   const hideCta = currentPage === 'home' && heroCtaVisible;
   const [isScrolled, setIsScrolled] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
+  const burgerRef = useRef<HTMLButtonElement>(null);
+  const firstLinkRef = useRef<HTMLAnchorElement>(null);
+  const menuWasOpen = useRef(false);
   const [ctaShift, setCtaShift] = useState<number | null>(null);
+  const solutionsCurrent = currentPage === 'solutions-temporaire' || currentPage === 'goutte-eau-extrudee';
+  const [solutionsOpen, setSolutionsOpen] = useState(solutionsCurrent);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -53,6 +72,67 @@ export function Header(props: {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (!isMenuOpen) return;
+    const html = document.documentElement;
+    const gap = window.innerWidth - html.clientWidth;
+    const previousOverflow = html.style.overflow;
+    const previousPadding = html.style.paddingRight;
+    html.style.overflow = 'hidden';
+    if (gap > 0) {
+      html.style.paddingRight = `${gap}px`;
+      html.style.setProperty('--menu-lock', `${gap}px`);
+    }
+    return () => {
+      html.style.overflow = previousOverflow;
+      html.style.paddingRight = previousPadding;
+      html.style.removeProperty('--menu-lock');
+    };
+  }, [isMenuOpen]);
+
+  useEffect(() => {
+    if (!isMenuOpen) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsMenuOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [isMenuOpen, setIsMenuOpen]);
+
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location.pathname, location.hash, setIsMenuOpen]);
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      firstLinkRef.current?.focus();
+    } else if (menuWasOpen.current) {
+      burgerRef.current?.focus();
+    }
+    menuWasOpen.current = isMenuOpen;
+  }, [isMenuOpen]);
+
+  const closeMenu = () => setIsMenuOpen(false);
+  const toggleMenu = () => {
+    if (!isMenuOpen) setSolutionsOpen(solutionsCurrent);
+    setIsMenuOpen((open) => !open);
+  };
+
+  const mainBefore = [
+    { label: 'Accueil', to: '/', current: currentPage === 'home' },
+    { label: 'Expertises', to: '/expertises', current: currentPage === 'expertises' },
+  ];
+  const mainAfter = [
+    { label: 'Portfolio', to: '/portfolio', current: currentPage === 'projects' },
+    { label: 'À propos', to: '/a-propos', current: currentPage === 'a-propos' },
+    { label: 'Contact', to: '/contact', current: currentPage === 'contact' },
+  ];
+  const mobileItem = (current: boolean) =>
+    `flex min-h-12 items-center gap-3 font-display text-[22px] font-semibold ${current ? 'text-white' : 'text-white/75'}`;
+  const mobileDot = (current: boolean) => (
+    <span aria-hidden="true" className={`h-1.5 w-1.5 shrink-0 rounded-full ${current ? 'bg-[#E2FD48]' : 'bg-transparent'}`} />
+  );
 
   const headerTheme =
     currentPage === 'expertises' ||
@@ -177,16 +257,10 @@ export function Header(props: {
                         Goutte d'eau extrudée
                       </Link>
                       <div className={`mx-3 my-1 h-px ${headerTheme === 'dark' ? 'bg-[#0E2A33]/10' : 'bg-white/10'}`} />
-                      {[
-                        ['Plaquette', 'res-plaquette'],
-                        ['Portfolio', 'res-book'],
-                        ['Catalogue RAL', 'res-ral'],
-                        ['Fiches techniques', 'res-fiches'],
-                        ['Déroulage', 'res-deroulage'],
-                      ].map(([label, anchor]) => (
+                      {SOLUTIONS_DOCS.map(({ label, id }) => (
                         <Link
-                          key={anchor}
-                          to={`/solutions#${anchor}`}
+                          key={id}
+                          to={`/solutions#${id}`}
                           onClick={() => { close(); }}
                           className={`${item} text-left`}
                         >
@@ -243,54 +317,139 @@ export function Header(props: {
                 Demander un devis
               </button>
             </div>
-            <button
-              type="button"
-              aria-label="Ouvrir le menu"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`fixed top-4 right-4 z-50 lg:hidden p-2 rounded-xl border-0 outline-none focus:outline-none focus:ring-0 transition-all
-                ${headerTheme === 'dark' ? 'text-[#0E2A33] bg-black/5' : 'text-white bg-white/5'}`}
-            >
-              <Menu aria-hidden="true" size={24} strokeWidth={1.5} />
-            </button>
           </div>
         </div>
       </nav>
 
-      {/* Menu mobile (panneau coulissant) */}
       <div
-        className={`fixed inset-0 z-40 lg:hidden transition-opacity duration-300 ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
-        aria-hidden={!isMenuOpen}
+        id="mobile-menu"
+        inert={isMenuOpen ? undefined : true}
+        className={`fixed inset-0 z-[70] lg:hidden transition-opacity duration-300 ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
       >
         <button
           type="button"
+          tabIndex={-1}
           aria-label="Fermer le menu"
-          onClick={() => setIsMenuOpen(false)}
-          className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+          onClick={closeMenu}
+          className="absolute inset-0 hidden bg-black/50 backdrop-blur-sm sm:block"
         />
         <div
-          className={`absolute top-0 right-0 h-full w-full max-w-sm bg-[#071318] border-l border-white/10 shadow-2xl flex flex-col transition-transform duration-300 ease-out ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+          className={`absolute top-0 right-0 flex h-full w-full flex-col bg-[#071318] transition-transform duration-300 ease-out sm:max-w-sm sm:border-l sm:border-white/10 sm:shadow-2xl ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
         >
-          <div className="flex items-center justify-between p-6 border-b border-white/10">
-            <span className="text-[10px] font-extrabold tracking-widest text-[#E2FD48] uppercase">Menu</span>
-          </div>
-          <nav className="flex flex-col p-6 gap-1 overflow-y-auto">
-            <Link to="/" onClick={() => setIsMenuOpen(false)} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Accueil</Link>
-            <Link to="/expertises" onClick={() => setIsMenuOpen(false)} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Expertises</Link>
-            <Link to="/solutions" onClick={() => setIsMenuOpen(false)} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Solutions</Link>
-            <Link
-              to="/goutte-eau-extrudee"
-              onClick={() => setIsMenuOpen(false)}
-              className="text-left py-2.5 pl-8 pr-4 rounded-xl text-sm text-white/70 font-medium hover:bg-white/10 hover:text-white transition-colors"
-            >
-              Goutte d'eau extrudée
+          <div className={`flex shrink-0 items-center px-6 ${(isScrolled || openProjectId) ? 'h-20' : 'h-24'}`}>
+            <Link to="/" onClick={closeMenu} className="flex items-center gap-3 outline-none">
+              <img
+                src="/logos/PLIALU_sans-tagline_blanc.svg"
+                alt="PLIALU"
+                width="339.343"
+                height="121.927"
+                className="h-[37px] w-auto md:h-[44px] transition-all duration-300"
+              />
             </Link>
-            <Link to="/portfolio" onClick={() => setIsMenuOpen(false)} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Portfolio</Link>
-            <Link to="/a-propos" onClick={() => setIsMenuOpen(false)} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">À propos</Link>
-            <Link to="/contact" onClick={() => setIsMenuOpen(false)} className="text-left py-3 px-4 rounded-xl text-white font-medium hover:bg-white/10 transition-colors">Contact</Link>
-            <button onClick={() => { goContactForm(); setIsMenuOpen(false); }} className={`${DS.BTN_PRIMARY} mt-4 w-full justify-center`}>Demander un devis</button>
+          </div>
+          <nav aria-label="Menu" className="flex min-h-0 flex-1 flex-col overflow-y-auto overscroll-contain px-6">
+            {mainBefore.map((item) => (
+              <Link
+                key={item.to}
+                ref={item.to === '/' ? firstLinkRef : undefined}
+                to={item.to}
+                onClick={closeMenu}
+                aria-current={item.current ? 'page' : undefined}
+                className={`border-b border-white/10 ${mobileItem(item.current)}`}
+              >
+                {mobileDot(item.current)}
+                {item.label}
+              </Link>
+            ))}
+            <div className="border-b border-white/10">
+              <div className="flex items-center">
+                <Link
+                  to="/solutions"
+                  onClick={closeMenu}
+                  aria-current={solutionsCurrent ? 'page' : undefined}
+                  className={`min-w-0 flex-1 ${mobileItem(solutionsCurrent)}`}
+                >
+                  {mobileDot(solutionsCurrent)}
+                  Solutions
+                </Link>
+                <button
+                  type="button"
+                  className="inline-flex h-11 w-11 shrink-0 items-center justify-center text-white/80"
+                  aria-label="Afficher les sous-pages de Solutions"
+                  aria-expanded={solutionsOpen}
+                  aria-controls="solutions-submenu"
+                  onClick={() => setSolutionsOpen((open) => !open)}
+                >
+                  <ChevronDown aria-hidden="true" size={22} strokeWidth={1.5} className={`transition-transform duration-[250ms] motion-reduce:transition-none ${solutionsOpen ? 'rotate-180' : ''}`} />
+                </button>
+              </div>
+              <div
+                id="solutions-submenu"
+                inert={solutionsOpen ? undefined : true}
+                className={`grid transition-[grid-template-rows] duration-[250ms] ease-out motion-reduce:transition-none ${solutionsOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}
+              >
+                <div className="overflow-hidden">
+                  <div className="ml-[18px] flex flex-col border-l border-white/10 pb-3 pl-4">
+                    <Link
+                      to="/goutte-eau-extrudee"
+                      onClick={closeMenu}
+                      className="flex min-h-11 items-center justify-between gap-3 py-2 text-[15px] text-white"
+                    >
+                      Goutte d'eau extrudée
+                      <span className={PRODUCT_BADGE_ON_DARK}>Fiche produit</span>
+                    </Link>
+                    <p className="px-0 pb-1 pt-3 text-[10px] uppercase tracking-widest text-white/40">Documents PDF</p>
+                    {SOLUTIONS_DOCS.map((doc) => (
+                      <Link
+                        key={doc.id}
+                        to={`/solutions#${doc.id}`}
+                        onClick={closeMenu}
+                        className="flex min-h-11 items-center justify-between gap-3 py-2 text-[15px] text-white/80"
+                      >
+                        {doc.label}
+                        <span className={PDF_BADGE_ON_DARK}>PDF</span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+            {mainAfter.map((item) => (
+              <Link
+                key={item.to}
+                to={item.to}
+                onClick={closeMenu}
+                aria-current={item.current ? 'page' : undefined}
+                className={`border-b border-white/10 ${mobileItem(item.current)}`}
+              >
+                {mobileDot(item.current)}
+                {item.label}
+              </Link>
+            ))}
           </nav>
+          <div className="shrink-0 px-6 pt-4 pb-[calc(1.25rem+env(safe-area-inset-bottom))]">
+            <button type="button" onClick={() => { goContactForm(); closeMenu(); }} className={`${DS.BTN_PRIMARY} w-full justify-center`}>
+              Demander un devis
+            </button>
+            <a href="tel:+33478089370" onClick={closeMenu} className="mt-3 block py-2 text-center text-sm text-white/60">
+              04 78 08 93 70
+            </a>
+          </div>
         </div>
       </div>
+      <button
+        ref={burgerRef}
+        type="button"
+        aria-label={isMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+        aria-expanded={isMenuOpen}
+        aria-controls="mobile-menu"
+        onClick={toggleMenu}
+        style={{ right: 'calc(1rem + var(--menu-lock, 0px))' }}
+        className={`fixed top-4 z-[80] lg:hidden p-2 rounded-xl border-0 outline-none focus:outline-none focus:ring-0 transition-all
+          ${isMenuOpen ? 'text-white bg-white/10' : headerTheme === 'dark' ? 'text-[#0E2A33] bg-black/5' : 'text-white bg-white/5'}`}
+      >
+        {isMenuOpen ? <X aria-hidden="true" size={24} strokeWidth={1.5} /> : <Menu aria-hidden="true" size={24} strokeWidth={1.5} />}
+      </button>
     </>
   );
 }
