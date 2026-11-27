@@ -1,6 +1,7 @@
 import { Link } from 'react-router';
 import React, { useEffect, useRef, useState } from 'react';
 import * as DS from './ds/ds';
+import { LeadText } from './LeadText';
 import { FORMSUBMIT_URL } from '../config/forms';
 
 /* -------------------------------------------------------------------------- */
@@ -264,9 +265,7 @@ export const GoutteEauExtrudee: React.FC = () => {
                 <span className="block">Goutte d'eau</span>
                 <span className="block">extrudée</span>
               </h1>
-              <p className={`${DS.LEAD_DARK} mb-11`}>
-                Goutte d'eau en aluminium extrudé pour nez de dalle et rive de balcon, laquée par PLIALU près de Lyon. Profil de 3 mètres, angles monoblocs, finition brute, anodisée ou laquée RAL.
-              </p>
+              <LeadText tone="dark" className={`${DS.LEAD_DARK} mb-11`} lead="Goutte d'eau en aluminium extrudé pour nez de dalle et rive de balcon, laquée par PLIALU près de Lyon." rest=" Profil de 3 mètres, angles monoblocs, finition brute, anodisée ou laquée RAL." />
               <div className="grid w-full gap-3.5 sm:w-fit xl:grid-cols-2">
                 <button type="button" onClick={() => scrollToId('commande')} className={`${DS.BTN_PRIMARY} w-full justify-center`}>
                   Faire une demande de commande

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import * as DS from './ds/ds';
+import { LeadText } from './LeadText';
 
 /* Section "Ce que vous y gagnez" de la page À propos.
    4 engagements : survol ou clic sur un onglet = la photo et le détail changent à droite. */
@@ -140,7 +141,11 @@ export const AproposGains: React.FC = () => {
             <div className="relative p-7 md:p-9" aria-live="polite">
               <p className={`${DS.EYEBROW_DARK} mb-4`}>{cur.tab}</p>
               <h3 className="mb-3.5 max-w-[520px] font-display text-[26px] font-bold leading-[1.1] tracking-[-0.03em] text-white md:text-[30px]">{cur.title}</h3>
-              <p className="mb-6 max-w-[520px] text-base leading-[1.65] text-white/[0.78]">{cur.text}</p>
+              {cur.id === 'delais' ? (
+                <LeadText tone="dark" className="mb-6 max-w-[520px] text-base leading-[1.65] text-white/[0.78]" lead="Déroulage, thermolaquage, pliage et assemblage se font dans nos ateliers." rest={" Aucune étape ne dépend d'un sous-traitant\u00A0: pas de délai caché entre deux prestataires."} />
+              ) : (
+                <p className="mb-6 max-w-[520px] text-base leading-[1.65] text-white/[0.78]">{cur.text}</p>
+              )}
               <div className="flex flex-wrap gap-2">
                 {cur.chips.map((c) => (
                   <span key={c} className="inline-flex items-center gap-2 rounded-full border border-white/[0.14] bg-white/10 px-3.5 py-2 text-xs font-bold text-white">

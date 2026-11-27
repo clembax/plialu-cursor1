@@ -26,9 +26,7 @@ export function SolutionsPage(props: {
                 <h1 className={`${DS.H1} text-[#0E2A33]`}>
                   Profilés et accessoires aluminium pour façade
                 </h1>
-                <p className={`${DS.LEAD_LIGHT} mt-6`}>
-                  PLIALU fabrique sur mesure les profilés et accessoires aluminium pour façade&nbsp;: habillages, pliages et pièces techniques de l'enveloppe du bâtiment. De l'isolation thermique par l'extérieur au ravalement, en passant par les bardages, précadres et tôles prélaquées, tout est plié et laqué dans notre usine près de Lyon.
-                </p>
+                <LeadText tone="light" className={`${DS.LEAD_LIGHT} mt-6`} lead={"PLIALU fabrique sur mesure les profilés et accessoires aluminium pour façade\u00A0: habillages, pliages et pièces techniques de l'enveloppe du bâtiment."} rest=" De l'isolation thermique par l'extérieur au ravalement, en passant par les bardages, précadres et tôles prélaquées, tout est plié et laqué dans notre usine près de Lyon." />
                 <div className="flex flex-wrap gap-4 mt-10">
                   <button type="button" onClick={goContactForm} className={DS.BTN_PRIMARY}>
                     Demander un devis
@@ -228,13 +226,16 @@ export function SolutionsPage(props: {
                       <h3 className="font-display text-[26px] font-bold tracking-tight text-white">Tôles prélaquées</h3>
                       <span className="rounded-full border border-[#E2FD48]/35 px-3 py-1.5 text-[11px] font-bold text-[#E2FD48]">Usine intégrée</span>
                     </div>
-                    <p className="max-w-[540px] text-base leading-[1.65] text-white/70">
-                      Tôles aluminium prélaquées au format pour les façonniers, certifiées Qualicoat et filmées. Largeurs 1 250 et 1 500 mm, longueur sur mesure jusqu'à 4 000 mm, à partir de 30 tôles. Déroulées dans nos ateliers, laquées par{' '}
+                    <LeadText
+                      tone="dark"
+                      className="max-w-[540px] text-base leading-[1.65] text-white/70"
+                      lead="Tôles aluminium prélaquées au format pour les façonniers, certifiées Qualicoat et filmées."
+                      rest={<> Largeurs 1 250 et 1 500 mm, longueur sur mesure jusqu'à 4 000 mm, à partir de 30 tôles. Déroulées dans nos ateliers, laquées par{' '}
                       <Link to="/a-propos#infinimetal" className={infinimetalLinkClass}>
                         Infinimetal
                       </Link>
-                      .
-                    </p>
+                      .</>}
+                    />
                     <div className="mt-5 flex flex-wrap gap-2">
                       {['Certifiées Qualicoat', 'Filmées', 'Déroulage intégré'].map((f) => (
                         <span key={f} className="rounded-full border border-white/[0.16] px-3 py-1.5 text-xs font-semibold text-white/80">{f}</span>

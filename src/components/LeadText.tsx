@@ -20,7 +20,7 @@ export function LeadText({ lead, rest, tone, className }: LeadTextProps) {
       {hasRest ? (
         <button
           type="button"
-          className={`inline align-baseline text-[13px] font-medium underline underline-offset-4 md:hidden ${buttonColor}`}
+          className={`inline align-baseline text-[0.85em] font-medium underline underline-offset-4 md:hidden ${buttonColor}`}
           aria-expanded={open}
           onClick={() => setOpen((current) => !current)}
         >

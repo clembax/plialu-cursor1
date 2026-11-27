@@ -7,6 +7,7 @@ import PortfolioGrid from '../../PortfolioGrid';
 import { PROJECTS } from '../../projects';
 import { expertisesDetails, processCardDescriptions } from '../data/expertises';
 import { MobileCarousel } from '../components/MobileCarousel';
+import { LeadText } from '../components/LeadText';
 import { homeProjects } from '../data/homeProjects';
 import { RAL_APERCU } from '../data/ral';
 import { setHeroCtaVisible } from '../heroCtaStore';
@@ -55,9 +56,7 @@ export function HomePage(props: {
                     <span className="block">SOLUTIONS MÉTALLIQUES <span className="whitespace-nowrap">SUR-MESURE</span></span>
                     <span className="block">pour l'enveloppe du bâtiment</span>
                   </h1>
-                  <p className={`${DS.LEAD_DARK} mt-6 md:max-w-[45rem]`}>
-                    PLIALU conçoit, plie et thermolaque sur mesure les pièces en aluminium et en acier de l'enveloppe du bâtiment, dans son usine intégrée près de Lyon. Qualité, coûts et délais sont maîtrisés de bout en bout, pour chaque projet.
-                  </p>
+                  <LeadText tone="dark" className={`${DS.LEAD_DARK} mt-6 md:max-w-[45rem]`} lead="PLIALU conçoit, plie et thermolaque sur mesure les pièces en aluminium et en acier de l'enveloppe du bâtiment, dans son usine intégrée près de Lyon." rest=" Qualité, coûts et délais sont maîtrisés de bout en bout, pour chaque projet." />
                 </div>
                 <div className="flex flex-col xl:flex-row items-start xl:items-center gap-4 xl:gap-8">
                   <button ref={heroCtaRef} onClick={goContactForm} className={`${DS.BTN_PRIMARY} w-full sm:w-auto`}>Demander un devis</button>
@@ -108,9 +107,7 @@ export function HomePage(props: {
                   <div className="mb-16">
                     <span className={`block mb-4 ${DS.EYEBROW_DARK}`}>PROCESS INTÉGRÉ</span>
                     <h2 className={`${DS.H2} text-white`}>Trois métiers sous le même toit</h2>
-                    <p className={`${DS.LEAD_DARK} mt-6`}>
-                    Chez PLIALU, le déroulage, le pliage et le thermolaquage se font dans la même usine, à Civrieux près de Lyon. Du bureau des méthodes à la livraison, avec un thermolaquage certifié Qualicoat et un pliage jusqu'à 4 m, chaque étape est réalisée en interne, sans sous-traitant entre deux opérations.
-                    </p>
+                    <LeadText tone="dark" className={`${DS.LEAD_DARK} mt-6`} lead="Chez PLIALU, le déroulage, le pliage et le thermolaquage se font dans la même usine, à Civrieux près de Lyon." rest=" Du bureau des méthodes à la livraison, avec un thermolaquage certifié Qualicoat et un pliage jusqu'à 4 m, chaque étape est réalisée en interne, sans sous-traitant entre deux opérations." />
                   </div>
                   <Link to="/expertises" className={DS.ACTION_DARK}>
                     Découvrir nos expertises
@@ -379,9 +376,7 @@ export function HomePage(props: {
                   <div className="mb-16">
                   <span className={`block mb-4 ${DS.EYEBROW_DARK}`}>À PROPOS</span>
                   <h2 className={`${DS.H2} text-white`}>Votre partenaire en pliage et thermolaquage</h2>
-                  <p className={`${DS.LEAD_DARK} mt-6`}>
-                    PLIALU fabrique les pièces pliées et laquées des façadiers, des entreprises de MOB et des entreprises du bâtiment. Depuis <strong>son usine près de Lyon</strong>, elle accompagne vos chantiers en <strong>Auvergne-Rhône-Alpes</strong>, partout en France, en Belgique et en Suisse, avec 7 000 m² dédiés au pliage et au thermolaquage sur mesure.
-                  </p>
+                  <LeadText tone="dark" className={`${DS.LEAD_DARK} mt-6`} lead="PLIALU fabrique les pièces pliées et laquées des façadiers, des entreprises de MOB et des entreprises du bâtiment." rest={<> Depuis <strong>son usine près de Lyon</strong>, elle accompagne vos chantiers en <strong>Auvergne-Rhône-Alpes</strong>, partout en France, en Belgique et en Suisse, avec 7 000 m² dédiés au pliage et au thermolaquage sur mesure.</>} />
                   </div>
                   <Link to="/a-propos" className={DS.ACTION_DARK}>EN SAVOIR PLUS <ArrowRight aria-hidden="true" size="1em" className={DS.ACTION_ARROW} /></Link>
                 </div>
